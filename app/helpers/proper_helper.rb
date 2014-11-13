@@ -1,0 +1,2 @@
+module ProperHelper
+end
