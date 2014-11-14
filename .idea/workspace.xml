@@ -26,125 +26,112 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="pricing.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/tasks/pricing.html.erb">
+      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/admins/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.010989" vertical-offset="5726" max-vertical-offset="6210">
-              <caret line="400" column="26" selection-start-line="400" selection-start-column="26" selection-end-line="400" selection-end-column="26" />
+            <state vertical-scroll-proportion="-1.7692307" vertical-offset="124" max-vertical-offset="4890">
+              <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
               <folding>
-                <marker date="1415961846426" expanded="true" signature="936:975" placeholder="..." />
-                <marker date="1415961846426" expanded="true" signature="936:1039" placeholder="..." />
+                <marker date="1415962390753" expanded="true" signature="842:932" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="properties_detail.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/tasks/properties_detail.html.erb">
+      <file leaf-file-name="new.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/admins/new.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-26.571428" vertical-offset="3252" max-vertical-offset="5880">
-              <caret line="378" column="26" selection-start-line="378" selection-start-column="26" selection-end-line="378" selection-end-column="26" />
+            <state vertical-scroll-proportion="-1.7692307" vertical-offset="124" max-vertical-offset="5175">
+              <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
               <folding>
-                <marker date="1415961846398" expanded="true" signature="936:1039" placeholder="..." />
+                <marker date="1415962390737" expanded="true" signature="842:932" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="properties_filter.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/tasks/properties_filter.html.erb">
+      <file leaf-file-name="show.html.erb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/admins/show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-24.021978" vertical-offset="6499" max-vertical-offset="8895">
-              <caret line="579" column="26" selection-start-line="579" selection-start-column="26" selection-end-line="579" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.33264464" vertical-offset="124" max-vertical-offset="4935">
+              <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
               <folding>
-                <marker date="1415961846418" expanded="true" signature="936:1039" placeholder="..." />
+                <marker date="1415962390757" expanded="true" signature="842:932" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="properties_map.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/tasks/properties_map.html.erb">
+      <file leaf-file-name="new.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/devise/registrations/new.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-24.021978" vertical-offset="6514" max-vertical-offset="8910">
-              <caret line="580" column="26" selection-start-line="580" selection-start-column="26" selection-end-line="580" selection-end-column="26" />
+            <state vertical-scroll-proportion="-1.7692307" vertical-offset="124" max-vertical-offset="4815">
+              <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
               <folding>
-                <marker date="1415961846470" expanded="true" signature="942:1045" placeholder="..." />
+                <marker date="1415962390761" expanded="true" signature="842:932" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shortcode.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/tasks/shortcode.html.erb">
+      <file leaf-file-name="agents.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/tasks/agents.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.010989" vertical-offset="6911" max-vertical-offset="7395">
-              <caret line="479" column="26" selection-start-line="479" selection-start-column="26" selection-end-line="479" selection-end-column="26" />
+            <state vertical-scroll-proportion="-66.62637" vertical-offset="147" max-vertical-offset="6435">
+              <caret line="414" column="26" selection-start-line="414" selection-start-column="26" selection-end-line="414" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/devise/sessions/new.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-49.736263" vertical-offset="139" max-vertical-offset="4875">
+              <caret line="311" column="18" selection-start-line="311" selection-start-column="18" selection-end-line="311" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/admins/edit.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.7692307" vertical-offset="124" max-vertical-offset="5160">
+              <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
               <folding>
-                <marker date="1415961846410" expanded="true" signature="936:975" placeholder="..." />
-                <marker date="1415961846410" expanded="true" signature="936:1039" placeholder="..." />
+                <marker date="1415962390801" expanded="true" signature="842:932" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sing_up.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/tasks/sing_up.html.erb">
+      <file leaf-file-name="add.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/tasks/add.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.6043956" vertical-offset="139" max-vertical-offset="4635">
-              <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
-              <folding>
-                <marker date="1415961846414" expanded="true" signature="936:1039" placeholder="..." />
-              </folding>
+            <state vertical-scroll-proportion="36.54945" vertical-offset="3926" max-vertical-offset="4410">
+              <caret line="40" column="68" selection-start-line="40" selection-start-column="68" selection-end-line="40" selection-end-column="68" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="typograpy.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/tasks/typograpy.html.erb">
+      <file leaf-file-name="about_us.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/tasks/about_us.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.010989" vertical-offset="4406" max-vertical-offset="4890">
-              <caret line="312" column="26" selection-start-line="312" selection-start-column="26" selection-end-line="312" selection-end-column="26" />
-              <folding>
-                <marker date="1415961846398" expanded="true" signature="936:1039" placeholder="..." />
-              </folding>
+            <state vertical-scroll-proportion="-3.5274725" vertical-offset="219" max-vertical-offset="5640">
+              <caret line="36" column="36" selection-start-line="33" selection-start-column="17" selection-end-line="41" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="upload_step1.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/tasks/upload_step1.html.erb">
+      <file leaf-file-name="_form.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/admins/_form.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.010989" vertical-offset="4796" max-vertical-offset="5280">
-              <caret line="338" column="30" selection-start-line="338" selection-start-column="30" selection-end-line="338" selection-end-column="30" />
-              <folding>
-                <marker date="1415961846342" expanded="true" signature="936:1039" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="upload_step2.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/tasks/upload_step2.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.010989" vertical-offset="4676" max-vertical-offset="5160">
-              <caret line="330" column="26" selection-start-line="330" selection-start-column="26" selection-end-line="330" selection-end-column="26" />
-              <folding>
-                <marker date="1415961846462" expanded="true" signature="935:974" placeholder="..." />
-                <marker date="1415961846462" expanded="true" signature="935:1038" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="upload_step3.html.erb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/tasks/upload_step3.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8094374" vertical-offset="4309" max-vertical-offset="4860">
-              <caret line="317" column="7" selection-start-line="317" selection-start-column="7" selection-end-line="317" selection-end-column="7" />
-              <folding>
-                <marker date="1415961846458" expanded="true" signature="935:1038" placeholder="..." />
-              </folding>
+            <state vertical-scroll-proportion="-1.0329671" vertical-offset="191" max-vertical-offset="5130">
+              <caret line="19" column="20" selection-start-line="0" selection-start-column="0" selection-end-line="336" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -178,38 +165,38 @@
         <option value="$PROJECT_DIR$/db/migrate/20141113075745_devise_create_users.rb" />
         <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/style.css" />
-        <option value="$PROJECT_DIR$/app/views/admins/_form.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/add.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/upload_step3.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/upload_step2.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/upload_step1.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/typograpy.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/sing_up.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/shortcode.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/properties_map.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/properties_filter.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/properties_detail.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/pricing.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/news_detail.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/news.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/login.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/home_simple.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/home_full_slider.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/home_carousel.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/grid_stystem.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/galeries.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/faq.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/error_page.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/contact.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/career.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tasks/agents.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/devise/registrations/new.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" />
         <option value="$PROJECT_DIR$/app/views/admins/edit.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/admins/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/views/admins/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/admins/new.html.erb" />
         <option value="$PROJECT_DIR$/app/views/admins/show.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/devise/registrations/new.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/add.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/agents.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/career.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/contact.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/error_page.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/faq.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/galeries.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/grid_stystem.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/home_carousel.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/home_full_slider.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/home_simple.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/index.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/login.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/news.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/news_detail.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/pricing.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/properties_detail.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/properties_filter.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/properties_map.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/shortcode.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/sing_up.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/typograpy.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/upload_step1.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/upload_step2.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tasks/upload_step3.html.erb" />
       </list>
     </option>
   </component>
@@ -996,56 +983,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admins/_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6043956" vertical-offset="139" max-vertical-offset="5130">
-          <caret line="19" column="19" selection-start-line="0" selection-start-column="0" selection-end-line="336" selection-end-column="0" />
-          <folding>
-            <marker date="1415961846454" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admins/edit.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7692307" vertical-offset="124" max-vertical-offset="5160">
-          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
-          <folding>
-            <marker date="1415961846434" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admins/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7692307" vertical-offset="124" max-vertical-offset="4890">
-          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
-          <folding>
-            <marker date="1415961846350" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admins/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7692307" vertical-offset="124" max-vertical-offset="5175">
-          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
-          <folding>
-            <marker date="1415961846322" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admins/show.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7692307" vertical-offset="124" max-vertical-offset="4935">
-          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
-          <folding>
-            <marker date="1415961846354" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
@@ -1054,62 +991,201 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/devise/registrations/new.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/upload_step3.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7692307" vertical-offset="124" max-vertical-offset="4815">
-          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+        <state vertical-scroll-proportion="-51.42857" vertical-offset="0" max-vertical-offset="4860">
+          <caret line="312" column="26" selection-start-line="312" selection-start-column="26" selection-end-line="312" selection-end-column="26" />
           <folding>
-            <marker date="1415961846382" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1415962390821" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1415962390821" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/devise/sessions/new.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/upload_step2.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.010989" vertical-offset="4391" max-vertical-offset="4875">
-          <caret line="311" column="18" selection-start-line="311" selection-start-column="18" selection-end-line="311" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/about_us.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.2637362" vertical-offset="152" max-vertical-offset="5640">
-          <caret line="36" column="36" selection-start-line="33" selection-start-column="17" selection-end-line="41" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/add.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.4175825" vertical-offset="139" max-vertical-offset="4410">
-          <caret line="30" column="33" selection-start-line="30" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        <state vertical-scroll-proportion="-3.010989" vertical-offset="4676" max-vertical-offset="5160">
+          <caret line="330" column="25" selection-start-line="330" selection-start-column="25" selection-end-line="330" selection-end-column="25" />
           <folding>
-            <marker date="1415961846450" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1415962390825" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/agents.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/upload_step1.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8461537" vertical-offset="5951" max-vertical-offset="6435">
-          <caret line="414" column="26" selection-start-line="414" selection-start-column="26" selection-end-line="414" selection-end-column="26" />
+        <state vertical-scroll-proportion="-3.010989" vertical-offset="4796" max-vertical-offset="5280">
+          <caret line="338" column="29" selection-start-line="338" selection-start-column="29" selection-end-line="338" selection-end-column="29" />
+          <folding>
+            <marker date="1415962390745" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/typograpy.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.010989" vertical-offset="4406" max-vertical-offset="4890">
+          <caret line="312" column="25" selection-start-line="312" selection-start-column="25" selection-end-line="312" selection-end-column="25" />
+          <folding>
+            <marker date="1415962390765" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/sing_up.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.9340659" vertical-offset="109" max-vertical-offset="4635">
+          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+          <folding>
+            <marker date="1415962390785" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/shortcode.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.010989" vertical-offset="6911" max-vertical-offset="7395">
+          <caret line="479" column="26" selection-start-line="479" selection-start-column="26" selection-end-line="479" selection-end-column="26" />
+          <folding>
+            <marker date="1415962390789" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1415962390789" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1415962390789" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/properties_map.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-24.021978" vertical-offset="6514" max-vertical-offset="8910">
+          <caret line="580" column="26" selection-start-line="580" selection-start-column="26" selection-end-line="580" selection-end-column="26" />
+          <folding>
+            <marker date="1415962390829" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/properties_filter.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-24.021978" vertical-offset="6499" max-vertical-offset="8895">
+          <caret line="579" column="26" selection-start-line="579" selection-start-column="26" selection-end-line="579" selection-end-column="26" />
+          <folding>
+            <marker date="1415962390789" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1415962390789" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/properties_detail.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-26.65934" vertical-offset="3244" max-vertical-offset="5880">
+          <caret line="378" column="26" selection-start-line="378" selection-start-column="26" selection-end-line="378" selection-end-column="26" />
+          <folding>
+            <marker date="1415962390769" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/pricing.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.010989" vertical-offset="5726" max-vertical-offset="6210">
+          <caret line="400" column="25" selection-start-line="400" selection-start-column="25" selection-end-line="400" selection-end-column="25" />
+          <folding>
+            <marker date="1415962390793" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/news_detail.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-72.15385" vertical-offset="109" max-vertical-offset="6885">
+          <caret line="445" column="26" selection-start-line="445" selection-start-column="26" selection-end-line="445" selection-end-column="26" />
+          <folding>
+            <marker date="1415962390813" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/news.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-67.37363" vertical-offset="139" max-vertical-offset="6480">
+          <caret line="418" column="26" selection-start-line="418" selection-start-column="26" selection-end-line="418" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/career.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/login.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8461537" vertical-offset="5231" max-vertical-offset="5715">
-          <caret line="366" column="26" selection-start-line="366" selection-start-column="26" selection-end-line="366" selection-end-column="26" />
+        <state vertical-scroll-proportion="-48.087914" vertical-offset="139" max-vertical-offset="4710">
+          <caret line="301" column="26" selection-start-line="301" selection-start-column="26" selection-end-line="301" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/contact.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-29.296703" vertical-offset="2509" max-vertical-offset="5400">
-          <caret line="345" column="26" selection-start-line="345" selection-start-column="26" selection-end-line="345" selection-end-column="26" />
+        <state vertical-scroll-proportion="-3.4505494" vertical-offset="8536" max-vertical-offset="9060">
+          <caret line="590" column="25" selection-start-line="590" selection-start-column="25" selection-end-line="590" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/home_simple.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-84.68132" vertical-offset="139" max-vertical-offset="8055">
+          <caret line="523" column="26" selection-start-line="523" selection-start-column="26" selection-end-line="523" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/home_full_slider.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-110.72527" vertical-offset="139" max-vertical-offset="10425">
+          <caret line="681" column="26" selection-start-line="681" selection-start-column="26" selection-end-line="681" selection-end-column="26" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#li#2;n#ul#0;n#div#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#li#3;n#ul#0;n#div#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/home_carousel.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-115.50549" vertical-offset="139" max-vertical-offset="10875">
+          <caret line="710" column="26" selection-start-line="710" selection-start-column="26" selection-end-line="710" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/grid_stystem.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-60.12088" vertical-offset="139" max-vertical-offset="5820">
+          <caret line="374" column="26" selection-start-line="374" selection-start-column="26" selection-end-line="374" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/galeries.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-51.054947" vertical-offset="139" max-vertical-offset="5010">
+          <caret line="319" column="26" selection-start-line="319" selection-start-column="26" selection-end-line="319" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/faq.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-64.40659" vertical-offset="139" max-vertical-offset="6225">
+          <caret line="400" column="26" selection-start-line="400" selection-start-column="26" selection-end-line="400" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/error_page.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-46.76923" vertical-offset="139" max-vertical-offset="4620">
+          <caret line="293" column="26" selection-start-line="293" selection-start-column="26" selection-end-line="293" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -1122,203 +1198,108 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/error_page.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/contact.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8461537" vertical-offset="4136" max-vertical-offset="4620">
-          <caret line="293" column="26" selection-start-line="293" selection-start-column="26" selection-end-line="293" selection-end-column="26" />
+        <state vertical-scroll-proportion="-55.34066" vertical-offset="139" max-vertical-offset="5400">
+          <caret line="345" column="26" selection-start-line="345" selection-start-column="26" selection-end-line="345" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/faq.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/career.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8461537" vertical-offset="5741" max-vertical-offset="6225">
-          <caret line="400" column="26" selection-start-line="400" selection-start-column="26" selection-end-line="400" selection-end-column="26" />
+        <state vertical-scroll-proportion="-58.714287" vertical-offset="147" max-vertical-offset="5715">
+          <caret line="366" column="26" selection-start-line="366" selection-start-column="26" selection-end-line="366" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/galeries.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/agents.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8461537" vertical-offset="4526" max-vertical-offset="5010">
-          <caret line="319" column="26" selection-start-line="319" selection-start-column="26" selection-end-line="319" selection-end-column="26" />
+        <state vertical-scroll-proportion="-66.62637" vertical-offset="147" max-vertical-offset="6435">
+          <caret line="414" column="26" selection-start-line="414" selection-start-column="26" selection-end-line="414" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/grid_stystem.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/add.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.010989" vertical-offset="5336" max-vertical-offset="5820">
-          <caret line="374" column="26" selection-start-line="374" selection-start-column="26" selection-end-line="374" selection-end-column="26" />
+        <state vertical-scroll-proportion="36.54945" vertical-offset="3926" max-vertical-offset="4410">
+          <caret line="40" column="68" selection-start-line="40" selection-start-column="68" selection-end-line="40" selection-end-column="68" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/home_carousel.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/about_us.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-46.934067" vertical-offset="6379" max-vertical-offset="10875">
-          <caret line="710" column="26" selection-start-line="710" selection-start-column="26" selection-end-line="710" selection-end-column="26" />
-          <folding>
-            <marker date="1415961846410" expanded="true" signature="-1:-1" placeholder="if ... end" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/home_full_slider.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-46.274727" vertical-offset="6004" max-vertical-offset="10425">
-          <caret line="681" column="26" selection-start-line="681" selection-start-column="26" selection-end-line="681" selection-end-column="26" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#li#2;n#ul#0;n#div#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#li#3;n#ul#0;n#div#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/home_simple.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-46.10989" vertical-offset="3649" max-vertical-offset="8055">
-          <caret line="523" column="26" selection-start-line="523" selection-start-column="26" selection-end-line="523" selection-end-column="26" />
+        <state vertical-scroll-proportion="-3.5274725" vertical-offset="219" max-vertical-offset="5640">
+          <caret line="36" column="36" selection-start-line="33" selection-start-column="17" selection-end-line="41" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/index.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/devise/registrations/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-95.72527" vertical-offset="139" max-vertical-offset="9060">
-          <caret line="590" column="26" selection-start-line="590" selection-start-column="26" selection-end-line="590" selection-end-column="26" />
+        <state vertical-scroll-proportion="-1.7692307" vertical-offset="124" max-vertical-offset="4815">
+          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+          <folding>
+            <marker date="1415962390761" expanded="true" signature="842:932" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/devise/sessions/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-49.736263" vertical-offset="139" max-vertical-offset="4875">
+          <caret line="311" column="18" selection-start-line="311" selection-start-column="18" selection-end-line="311" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/login.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/admins/edit.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.1758242" vertical-offset="4226" max-vertical-offset="4710">
-          <caret line="301" column="26" selection-start-line="301" selection-start-column="26" selection-end-line="301" selection-end-column="26" />
+        <state vertical-scroll-proportion="-1.7692307" vertical-offset="124" max-vertical-offset="5160">
+          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+          <folding>
+            <marker date="1415962390801" expanded="true" signature="842:932" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admins/_form.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.0329671" vertical-offset="191" max-vertical-offset="5130">
+          <caret line="19" column="20" selection-start-line="0" selection-start-column="0" selection-end-line="336" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/news.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/admins/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.010989" vertical-offset="5996" max-vertical-offset="6480">
-          <caret line="418" column="26" selection-start-line="418" selection-start-column="26" selection-end-line="418" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/news_detail.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-43.472527" vertical-offset="2719" max-vertical-offset="6885">
-          <caret line="445" column="26" selection-start-line="445" selection-start-column="26" selection-end-line="445" selection-end-column="26" />
+        <state vertical-scroll-proportion="-1.7692307" vertical-offset="124" max-vertical-offset="4890">
+          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
           <folding>
-            <marker date="1415961846454" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1415961846454" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1415962390753" expanded="true" signature="842:932" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/pricing.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/admins/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.010989" vertical-offset="5726" max-vertical-offset="6210">
-          <caret line="400" column="26" selection-start-line="400" selection-start-column="26" selection-end-line="400" selection-end-column="26" />
+        <state vertical-scroll-proportion="-1.7692307" vertical-offset="124" max-vertical-offset="5175">
+          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
           <folding>
-            <marker date="1415961846426" expanded="true" signature="936:975" placeholder="..." />
-            <marker date="1415961846426" expanded="true" signature="936:1039" placeholder="..." />
+            <marker date="1415962390737" expanded="true" signature="842:932" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/properties_detail.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/admins/show.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.571428" vertical-offset="3252" max-vertical-offset="5880">
-          <caret line="378" column="26" selection-start-line="378" selection-start-column="26" selection-end-line="378" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.33264464" vertical-offset="124" max-vertical-offset="4935">
+          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
           <folding>
-            <marker date="1415961846398" expanded="true" signature="936:1039" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/properties_filter.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.021978" vertical-offset="6499" max-vertical-offset="8895">
-          <caret line="579" column="26" selection-start-line="579" selection-start-column="26" selection-end-line="579" selection-end-column="26" />
-          <folding>
-            <marker date="1415961846418" expanded="true" signature="936:1039" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/properties_map.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.021978" vertical-offset="6514" max-vertical-offset="8910">
-          <caret line="580" column="26" selection-start-line="580" selection-start-column="26" selection-end-line="580" selection-end-column="26" />
-          <folding>
-            <marker date="1415961846470" expanded="true" signature="942:1045" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/shortcode.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.010989" vertical-offset="6911" max-vertical-offset="7395">
-          <caret line="479" column="26" selection-start-line="479" selection-start-column="26" selection-end-line="479" selection-end-column="26" />
-          <folding>
-            <marker date="1415961846410" expanded="true" signature="936:975" placeholder="..." />
-            <marker date="1415961846410" expanded="true" signature="936:1039" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/sing_up.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6043956" vertical-offset="139" max-vertical-offset="4635">
-          <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
-          <folding>
-            <marker date="1415961846414" expanded="true" signature="936:1039" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/typograpy.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.010989" vertical-offset="4406" max-vertical-offset="4890">
-          <caret line="312" column="26" selection-start-line="312" selection-start-column="26" selection-end-line="312" selection-end-column="26" />
-          <folding>
-            <marker date="1415961846398" expanded="true" signature="936:1039" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/upload_step1.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.010989" vertical-offset="4796" max-vertical-offset="5280">
-          <caret line="338" column="30" selection-start-line="338" selection-start-column="30" selection-end-line="338" selection-end-column="30" />
-          <folding>
-            <marker date="1415961846342" expanded="true" signature="936:1039" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/upload_step2.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.010989" vertical-offset="4676" max-vertical-offset="5160">
-          <caret line="330" column="26" selection-start-line="330" selection-start-column="26" selection-end-line="330" selection-end-column="26" />
-          <folding>
-            <marker date="1415961846462" expanded="true" signature="935:974" placeholder="..." />
-            <marker date="1415961846462" expanded="true" signature="935:1038" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tasks/upload_step3.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8094374" vertical-offset="4309" max-vertical-offset="4860">
-          <caret line="317" column="7" selection-start-line="317" selection-start-column="7" selection-end-line="317" selection-end-column="7" />
-          <folding>
-            <marker date="1415961846458" expanded="true" signature="935:1038" placeholder="..." />
+            <marker date="1415962390757" expanded="true" signature="842:932" placeholder="..." />
           </folding>
         </state>
       </provider>
