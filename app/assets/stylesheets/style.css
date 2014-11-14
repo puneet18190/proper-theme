@@ -593,3 +593,7 @@ select:focus{outline: none}
     .member-desc h3{font-size:19px; text-align:right}
     .member-desc{text-align:right}
 }
+
+.adjust {
+    margin-left: 130px;
+}

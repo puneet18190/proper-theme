@@ -31,13 +31,15 @@
                 <div class="container">
                     <div class="pull-left">Sunday, May 18 2013</div>
                     <div class="pull-right">
-                        <% if user_signed_in? %>
-                        Logged in as <strong><%= current_user.email %></strong>
-                        <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
-                        <% else %>
-                        <%= link_to "Sign up", new_user_registration_path %> |
-                        <%= link_to "Login", new_user_session_path %>
-                        <% end %>
+                      <% if user_signed_in? %>
+                          Logged in as <strong><%= current_user.email %></strong>
+                          <%= link_to "Add", add_path  %>
+                          <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
+                      <% else %>
+                          <%= link_to "Add", add_path  %>
+                          <%= link_to "Sign up", new_user_registration_path %> |
+                          <%= link_to "Login", new_user_session_path %>
+                      <% end %>
                     </div>
                 </div>
             </div><!-- end breadcrumb -->z
@@ -587,7 +589,7 @@
 
         <!-- JS GMAP3  -->
         <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-        <script src='/assets/gmap3/gmap3.min.js'></script>
+        <script src='assets/gmap3/gmap3.min.js'></script>
         <script src="assets/colorbox/jquery.colorbox-min.js"></script>
         <script src="assets/proper.js"></script>
 

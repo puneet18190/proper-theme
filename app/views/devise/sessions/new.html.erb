@@ -33,8 +33,15 @@
   <div class="container">
     <div class="pull-left">Sunday, May 18 2013</div>
     <div class="pull-right">
-      <a href="/users/sign_in">Log In</a>
-      <a href="/users/sign_up">Sign Up</a>
+      <% if user_signed_in? %>
+          Logged in as <strong><%= current_user.email %></strong>
+          <%= link_to "Add", add_path  %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
+      <% else %>
+          <%= link_to "Add", add_path  %>
+          <%= link_to "Sign up", new_user_registration_path %> |
+          <%= link_to "Login", new_user_session_path %>
+      <% end %>
     </div>
   </div>
 </div><!-- end breadcrumb -->
@@ -159,12 +166,12 @@
             <hr/>
           </div>
           <div class="field">
-            <%= f.label :email %><br />
+            <%= f.label :email %>
             <%= f.email_field :email, autofocus: true %>
           </div>
 
           <div class="field">
-            <%= f.label :password %><br />
+            <%= f.label :password %>
             <%= f.password_field :password, autocomplete: "off" %>
           </div>
 
