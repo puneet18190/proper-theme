@@ -599,6 +599,19 @@ select:focus{outline: none}
 }
 
 .cont {
+    width: 100%;max-width: 650px;margin: 30px auto;padding: 30px;border: 1px solid #858585; background: #eee;
+}
 
+th {
+    font-size: 15px;
+    padding: 15px;
+}
 
+td {
+    padding: 8px;
+    text-align: center;
+}
+
+tr {
+    padding: 8px;
 }

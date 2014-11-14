@@ -151,8 +151,8 @@
       </div>
       <!--    End News Carousel-->
       <div class="cont">
-        <div class="proper-singup">
-        <h4><b>Properties</b></h4>
+
+        <h3><b>Properties</b></h3>
 <table>
   <thead>
     <tr>
@@ -162,7 +162,7 @@
       <th>Beds</th>
       <th>Pools</th>
       <th>Category</th>
-      <th colspan="3"></th>
+
     </tr>
   </thead>
 
@@ -175,9 +175,9 @@
         <td><%= admin.beds %></td>
         <td><%= admin.pools %></td>
         <td><%= admin.category %></td>
-        <td><%= link_to 'Show', admin %> | </td>
-        <td><%= link_to 'Edit', edit_admin_path(admin) %> | </td>
-        <td><%= link_to 'Destroy', admin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', admin %> |
+       <%= link_to 'Edit', edit_admin_path(admin) %> |
+        <%= link_to 'Destroy', admin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -186,7 +186,7 @@
 <br>
 
 <%= link_to 'New Property', new_admin_path %>
-        </div>
+
       </div><!--End Form Singup-->
     </div><!--EndContent-->
 
