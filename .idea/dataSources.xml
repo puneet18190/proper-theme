@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1887207001">
+  <component name="DataSourceManagerImpl" format="xml" hash="340025473">
     <data-source source="LOCAL" name="Rails proper: development" uuid="fa99a44d-9d81-4439-b437-f0a62ee131f1">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:postgresql:proper</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/proper</jdbc-url>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails proper: test" uuid="06024a65-5fe8-4408-86ea-d1de52307071">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:postgresql:proper</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/proper</jdbc-url>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails proper: production" uuid="66fa5881-6ab1-413e-8dfd-f7c754140880">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:postgresql:proper</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/proper</jdbc-url>
       <libraries />
     </data-source>
   </component>

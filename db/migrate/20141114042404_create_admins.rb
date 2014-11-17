@@ -6,7 +6,6 @@ class CreateAdmins < ActiveRecord::Migration
       t.integer :bath
       t.integer :beds
       t.integer :pools
-
       t.timestamps
     end
   end

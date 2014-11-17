@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  def add
-
+  def index
+    @tasks= Property.all
   end
 end
