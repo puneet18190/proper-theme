@@ -206,27 +206,27 @@
           <%= f.text_field :amount %>
         </div>
         <div class="field">
-          <%= f.label :image1 %>
+          <%= f.label :image1, "Main image" %>
           <%= f.file_field :image1 %>
         </div>
         <div class="field">
-          <%= f.label :image2 %>
+          <%= f.label :image2, "Image1" %>
           <%= f.file_field :image2 %>
         </div>
         <div class="field">
-          <%= f.label :image3 %>
+          <%= f.label :image3, "Image2" %>
           <%= f.file_field :image3 %>
         </div>
         <div class="field">
-          <%= f.label :image4 %>
+          <%= f.label :image4, "Image3" %>
           <%= f.file_field :image4 %>
         </div>
         <div class="field">
-          <%= f.label :image5 %>
+          <%= f.label :image5, "Image4" %>
           <%= f.file_field :image5 %>
         </div>
         <div class="field">
-          <%= f.label :image6 %>
+          <%= f.label :image6, "Image5" %>
           <%= f.file_field :image6 %>
         </div>
 
@@ -237,14 +237,16 @@
         <div class="field">
           <%= f.label :date %>
           <%= f.date_select :date, :disabled => true %>
-        </div><br/><br/><br/><br/><br/><br/><br/>
+        </div><br/><br/><br/>
         <div class="field">
           <%= f.label :visibility %>
           <%= f.check_box :visibility %>
         </div>
         <div class="field">
-          <%= f.label :parking,"Off street parking"%>
+          <div class="fiel">
+          <%= f.label :parking,"Off street parking" %>
           <%= f.check_box :parking %>
+            </div>
         </div>
         <br/>
         <div class="actions">

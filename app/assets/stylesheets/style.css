@@ -615,3 +615,22 @@ td {
 tr {
     padding: 8px;
 }
+#property_date_1i {
+    width: 70px;
+}
+#property_date_2i {
+    width: 95px;
+}
+#property_date_3i {
+    width: 70px;
+}
+
+.fiel {
+    margin-left: 120px;
+    margin-top: -53px;
+}
+
+#property_description {
+    height: 150px;
+    width: 250px;
+}
