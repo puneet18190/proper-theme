@@ -105,7 +105,7 @@
       <file leaf-file-name="about_us.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/tasks/about_us.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.46098003" vertical-offset="389" max-vertical-offset="5625">
+            <state vertical-scroll-proportion="0.24500908" vertical-offset="0" max-vertical-offset="5625">
               <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
               <folding />
             </state>
@@ -1225,7 +1225,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/tasks/about_us.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.46098003" vertical-offset="389" max-vertical-offset="5625">
+        <state vertical-scroll-proportion="0.24500908" vertical-offset="0" max-vertical-offset="5625">
           <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
           <folding />
         </state>
