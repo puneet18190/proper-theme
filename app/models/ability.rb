@@ -8,9 +8,6 @@ class Ability
       can :manage, :all
     else
       can :read, :all
-      can :create, Property
-      can :update, Property
-
     end
   end
 end
