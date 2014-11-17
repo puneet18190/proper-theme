@@ -1,0 +1,1 @@
+json.extract! @property, :id, :name, :address1, :address2, :address3, :postcode, :amount, :bath, :beds, :price, :category, :parking, :image1, :image2, :image3, :image4, :image5, :image6, :description, :date, :visibility, :created_at, :updated_at
