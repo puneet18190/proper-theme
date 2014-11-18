@@ -32,7 +32,11 @@
                               <div class="box-white">
                                   <div class="grid-item grid-style-properties">
                                     <% if @tasks.empty? %>
-                                           <label id= "styles">No property to display</label>
+                                        <div class="item">
+                                          <a href="#" class="with-hover">
+                                            <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
+                                          </a>
+                                        </div>
                                         <% else %>
                                           <% @tasks.each do |task| %>
                                             <% if task.visibility== true %>
@@ -43,7 +47,7 @@
                                                     <% else %>
                                                         <div class="for_sale_banner"></div>
                                                     <% end %>
-                                                      <%=  image_tag task.image1.url class: "full", class: "mask_hover" %> </a>
+                                                    <a href=<%="/properties/#{task.id}"%>><%=  image_tag task.image1.url, class: "full", class: "mask_hover" %></a>   </a>
                                                       <h4 class=" "><%= task.name %></h4>
                                                       <div class="preview-properties ">
                                                         <div class="box-detail">
@@ -58,7 +62,7 @@
                                                              $<%= task.price %></span>
                                                           </p>
                                                           <div class="clearfix">
-                                                            <a href="#" class="btn-proper btn btn-small pull-left">See Detail</a>
+                                                            <a href=<%="/properties/#{task.id}"%>, class="btn-proper btn btn-small pull-left">See Detail</a>
                                                             <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
                                                           </div>
                                                         </div>
