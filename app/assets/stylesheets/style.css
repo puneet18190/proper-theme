@@ -643,3 +643,10 @@ tr {
     margin-left: 120px;
     margin-top: -44px;
 }
+
+#styles {
+    font-size: 40px;
+    font-family: "Calibri";
+    text-align: center;
+
+}
