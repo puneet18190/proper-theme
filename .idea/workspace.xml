@@ -101,8 +101,8 @@
       <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8956522" vertical-offset="8980" max-vertical-offset="9615">
-              <caret line="633" column="14" selection-start-line="633" selection-start-column="14" selection-end-line="633" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.79130435" vertical-offset="8980" max-vertical-offset="9615">
+              <caret line="629" column="19" selection-start-line="629" selection-start-column="19" selection-end-line="629" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -1140,14 +1140,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/properties/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.333333" vertical-offset="1186" max-vertical-offset="1980">
-          <caret line="102" column="29" selection-start-line="102" selection-start-column="29" selection-end-line="102" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/property.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
@@ -1200,10 +1192,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/properties/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.333333" vertical-offset="1186" max-vertical-offset="1980">
+          <caret line="102" column="29" selection-start-line="102" selection-start-column="29" selection-end-line="102" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8956522" vertical-offset="8980" max-vertical-offset="9615">
-          <caret line="633" column="14" selection-start-line="633" selection-start-column="14" selection-end-line="633" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.79130435" vertical-offset="8980" max-vertical-offset="9615">
+          <caret line="629" column="19" selection-start-line="629" selection-start-column="19" selection-end-line="629" selection-end-column="19" />
           <folding />
         </state>
       </provider>
