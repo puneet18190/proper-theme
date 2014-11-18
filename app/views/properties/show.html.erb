@@ -67,11 +67,6 @@
 </p>
 
 <p>
-  <strong>Amount:</strong>
-  <%= @property.amount %>
-</p>
-
-<p>
   <strong>Image1:</strong>
   <%=  image_tag @property.image1.url %>
 </p>
@@ -115,6 +110,19 @@
   <strong>Visibility:</strong>
   <%= @property.visibility %>
 </p>
+
+    <p>
+      <strong>Let:</strong>
+      <%= @property.let %>
+    </p>
+    <p>
+    <strong>Sold:</strong>
+    <%= @property.sold %>
+  </p>
+    <p>
+    <strong>Featured:</strong>
+    <%= @property.featured %>
+  </p>
     <% if can? :update, @project %>
 <%= link_to 'Edit', edit_property_path(@property) %> |
         <% end %>

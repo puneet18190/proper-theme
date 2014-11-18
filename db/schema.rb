@@ -11,22 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141117101531) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "admins", force: true do |t|
-    t.string   "name"
-    t.decimal  "price"
-    t.integer  "bath"
-    t.integer  "beds"
-    t.integer  "pools"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "category"
-    t.string   "image"
-  end
+ActiveRecord::Schema.define(version: 20141118061005) do
 
   create_table "properties", force: true do |t|
     t.string   "address1"
@@ -51,6 +36,12 @@ ActiveRecord::Schema.define(version: 20141117101531) do
     t.decimal  "price"
     t.string   "name"
     t.integer  "postcode"
+    t.boolean  "sold"
+    t.boolean  "let"
+    t.boolean  "featured"
+    t.date     "s_date"
+    t.date     "l_date"
+    t.date     "r_date"
   end
 
   create_table "users", force: true do |t|
@@ -68,7 +59,7 @@ ActiveRecord::Schema.define(version: 20141117101531) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

@@ -17,6 +17,7 @@ class PropertiesController < ApplicationController
   end
 
   def edit
+
   end
 
   def create
@@ -28,6 +29,15 @@ class PropertiesController < ApplicationController
 
   def update
     @property.update(property_params)
+    if @property.let_changed?
+      @property.l_date = Time.now
+    end
+    if @property.sold_changed?
+      @property.s_date = Time.now
+    end
+    if @property.featured_changed?
+      @property.r_date = Time.now
+    end
     respond_with(@property)
   end
 
@@ -42,6 +52,6 @@ class PropertiesController < ApplicationController
     end
 
     def property_params
-      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :amount, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :description, :date, :visibility, :price)
+      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :description, :date, :visibility, :price, :let, :sold, :featured )
     end
 end

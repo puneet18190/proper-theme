@@ -13,7 +13,7 @@
   </div>
   <!--    End News Carousel-->
   <!--Start Form Singup-->
-  <%= form_for(@property) do |f| %>
+  <%= form_for @property, html: { multipart: true } do |f| %>
       <% if @property.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
@@ -65,10 +65,6 @@
           <%= f.select :category, ["Rent","Sale"] %>
         </div><br><br>
         <div class="field">
-          <%= f.label :amount %>
-          <%= f.text_field :amount %>
-        </div>
-        <div class="field">
           <%= f.label :image1, "Main image" %>
           <%= f.file_field :image1 %>
         </div>
@@ -110,6 +106,20 @@
           <%= f.label :parking,"Off street parking" %>
           <%= f.check_box :parking %>
             </div>
+        </div><br>
+        <div class="field">
+          <%= f.label :let%>
+          <%= f.check_box :let %>
+        </div>
+        <div class="field">
+          <div class="sol">
+          <%= f.label :sold %>
+          <%= f.check_box :sold%>
+          </div>
+        </div><br>
+        <div class="field">
+          <%= f.label :featured %>
+          <%= f.check_box :featured %>
         </div>
         <br/>
         <div class="actions">

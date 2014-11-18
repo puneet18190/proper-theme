@@ -627,7 +627,7 @@ tr {
 
 .fiel {
     margin-left: 120px;
-    margin-top: -44px;
+    margin-top: -55px;
 }
 
 #property_description {
@@ -637,4 +637,9 @@ tr {
 
 #property_category {
     width: 90px;
+}
+
+.sol {
+    margin-left: 120px;
+    margin-top: -55px;
 }
