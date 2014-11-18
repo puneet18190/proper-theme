@@ -634,3 +634,7 @@ tr {
     height: 160px;
     width: 250px;
 }
+
+#property_category {
+    width: 90px;
+}
