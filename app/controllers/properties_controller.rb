@@ -22,7 +22,8 @@ class PropertiesController < ApplicationController
   def create
     @property = Property.new(property_params)
     @property.save
-    redirect_to action: "index"
+    respond_with(@property)
+    #redirect_to action: "index"
   end
 
   def update
