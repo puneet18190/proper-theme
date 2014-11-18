@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Proper - Real Estate Responsive Template</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="Real Estate Template" />
+  <meta name="description" content="Proper - Real Estate Responsive HTML5 Template">
+  <meta name="author" content="yobio.indiewebstyle.com">
+  <!-- Bootstrap -->
+  <link href="/assets/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="/assets/bootstrap-responsive.min.css" rel="stylesheet">
+  <link href="/assets/style.css" rel="stylesheet" media="screen">
+  <link href="/assets/colorbox/colorbox.css" rel="stylesheet" media="screen">
+  <!-- FONTAWESOME STYLE -->
+  <link rel="stylesheet" href="/assets/font-awesome.css"/>
+  <!--[if IE 7]>
+  <link rel="stylesheet" href="/assets/font-awesome-ie7.min.css">
+  <![endif]-->
+
+  <!--[if lt IE 9]>
+
+  <![endif]-->
+
+  <link rel="shortcut icon" href="/assets/logo.png">
+</head>
+<body>
+<!-- Start Wrapper-->
+<div id="wrapper">
+  <!-- start breadcrumb -->
+  <div id="breadcrumb-wrapper">
+    <div class="container">
+      <div class="pull-left">Sunday, May 18 2013</div>
+      <div class="pull-right">
+        <% if user_signed_in? %>
+            <%= link_to "Admin", properties_path   %>
+            Logged in as <strong><%= current_user.email %></strong>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
+        <% else %>
+            <%= link_to "Sign up", new_user_registration_path %> |
+            <%= link_to "Login", new_user_session_path %>
+        <% end %>
+      </div>
+    </div>
+  </div><!-- end breadcrumb -->
+  <!-- start header-wrapper -->
+  <div id="header-wrapper">
+    <div class="container">
+      <div class="panel">
+        <div class="row-fluid">
+          <div class="span9 right-line">
+            <a class="brand" href="/index" ><h1 class="font-caly"><img src="/assets/logo.png" width="40" alt="logo"> Proper <small class="visible-desktop visible-tablet">Real Esatate Template</small></h1></a>
+          </div>
+          <div class="span3 ">
+            <div class="clearfix">
+              <div class="language_curency">Curency: <a href="#">$</a> | <a href="#">&euro;</a> &nbsp; lang: <a href="#">En</a> | <a href="#">Ina</a> | <a href="#">Jpn</a></div>
+              <form method="get" class="form-search">
+                <div class="input-append">
+                  <input title="Keywords." class="search-query form-text input-block-level" placeholder="Search" type="text" name="">
+                  <button type="submit" class="btn"><i class="icon-search"></i></button>
+                </div><!-- /.input-append -->
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- End header-wrapper -->
+  <!-- start Navigation -->
+  <div id="navigation">
+    <div class="container">
+      <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+          <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <span class="brand visible-phone visible-tablet">Navbar</span>
+            <!--.nav-collapse -->
+            <div class="nav-collapse collapse">
+              <ul class="nav">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/home_full_slider">Home Full Slider</a></li>
+                    <li><a href="/home_carousel">Home Slider Carousel</a></li>
+                    <li><a href="/index">Home With Map</a></li>
+                    <li><a href="/home_simple">Home Simple</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Properties <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/properties_filter">Properties & Filter</a></li>
+                    <li><a href="/properties_map">Properties & Map</a></li>
+                    <li><a href="/properties_detail">Properties Detail</a></li>
+                  </ul>
+                <li><a href="agents">Agents</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Proper Pages<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/about_us">About Us</a></li>
+                    <li><a href="/galeries">Galeries</a></li>
+                    <li><a href="/career">Career</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/error_page">Error Page</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/shortcode">Shortcodes</a></li>
+                    <li><a href="/typograpy">Typograpy</a></li>
+                    <li><a href="/grid_stystem">Grid System</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">News <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/news">News List</a></li>
+                    <li><a href="/news_detail">News Detail</a></li>
+                  </ul>
+                </li>
+                <li><a href="/contact">Contact</a></li>
+              </ul>
+              <a class="pull-right mylisting" href="/upload_step1"><i class=" icon-folder-close-alt"></i> Upload Items</a>
+
+            </div><!--/.nav-collapse -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end Navigation -->
+</div>
