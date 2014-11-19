@@ -31,9 +31,9 @@ class Image1Uploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-     # def default_url
-     #   'default.jpg'
-     # end
+     def default_url
+       'default_images/no.jpg'
+     end
 
   # Create different versions of your uploaded files:
   version :thumb do
