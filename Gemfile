@@ -34,6 +34,8 @@ gem 'devise'
 gem 'rails_12factor', group: :production
 gem 'carrierwave'
 gem 'pry'
+gem 'ransack'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

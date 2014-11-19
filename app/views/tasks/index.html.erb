@@ -62,8 +62,12 @@
                                                              $<%= task.price %></span>
                                                           </p>
                                                           <div class="clearfix">
-                                                            <a href=<%="/properties/#{task.id}"%>, class="btn-proper btn btn-small pull-left">See Detail</a>
+                                                            <div class="btn-proper btn btn-small pull-left">
+                                                            <a href=<%="/properties/#{task.id}"%>>See Detail</a>
+
+                                                            </div>
                                                             <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
+
                                                           </div>
                                                         </div>
                                                       </div>
@@ -111,86 +115,13 @@
                           <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-search"></i></span>  Find Properties</h3>
                           <form class="bottom-line line-before" action="?" method="get">
                               <label>Location</label>
-                              <input type="text" placeholder="Type Your Location" name="" value="" class="input-block-level" required=""/>
-                              <label>Radius</label>
-                              <select name="" class="input-block-level" required="">
-                                  <option value="">This area only</option>
-                                  <option value="">Within 1/4 mile</option>
-                                  <option value="">Within 1/2 mile</option>
-                                  <option value="">Within 1 mile</option>
-                                  <option value="">Within 3 miles</option>
-                                  <option value="">Within 5 miles</option>
-                                  <option value="">Within 10 miles</option>
-                                  <option value="">Within 15 miles</option>
-                                  <option value="">Within 20 miles</option>
-                                  <option value="">Within 30 miles</option>
-                                  <option value="">Within 40 miles</option>
-                              </select>
-                              <div class="control-group-form">
-                                  <div class="control-group half pull-left">
-                                      <label class="control-label" >Min Price</label>
-                                      <div class="controls">
-                                          <select name="" class="input-block-level" required="">
-                                              <option value="">All</option>
-                                              <option value="1">1000</option>
-                                              <option value="9">2000</option>
-                                              <option value="9">3000</option>
-                                              <option value="9">4000</option>
-                                              <option value="9">5000+</option>
-                                          </select>
-                                      </div>
-                                  </div>
-                                  <div class="control-group half text-right pull-right">
-                                      <label class="control-label">Max Price</label>
-                                      <div class="controls">
-                                          <select name=""   class="input-block-level" required="">
-                                              <option value="">All</option>
-                                              <option value="1">10000</option>
-                                              <option value="9">20000</option>
-                                              <option value="9">30000</option>
-                                              <option value="9">40000</option>
-                                              <option value="9">50000+</option>
-                                          </select>
-                                      </div>
-                                  </div>
-                                  <div class="clearfix"></div>
-                              </div>
-                              <div class="control-group-form">
-                                  <div class="control-group half pull-left">
-                                      <label class="checkbox">
-                                          <input type="checkbox" > Rent Property
-                                      </label>
-                                  </div>
-                                  <div class="control-group half text-right pull-right">
-                                      <label class="checkbox">
-                                          <input type="checkbox"> Sell Property
-                                      </label>
-                                  </div>
-                                  <div class="clearfix"></div>
-                              </div>
-                              <label>Bath</label>
-                              <select name=""  class="input-block-level " required="">
-                                  <option value="">All</option>
-                                  <option value="1">1</option>
-                                  <option value="9">2</option>
-                                  <option value="9">3</option>
-                                  <option value="9">4</option>
-                                  <option value="9">5+</option>
-                              </select>
-                              <label>Beds</label>
-                              <select name=""  class="input-block-level " required="">
-                                  <option value="">All</option>
-                                  <option value="1">1</option>
-                                  <option value="9">2</option>
-                                  <option value="9">3</option>
-                                  <option value="9">4</option>
-                                  <option value="9">5+</option>
-                              </select>
-
-                              <button type="submit" class="input-block-level btn-proper btn btn-large"> Search</button>
+                            <%= search_form_for @search do |f| %>
+                                <div class="field">
+                                  <%= f.text_field :name_cont %>
+                                </div>
+                                <div class="actions"><%= f.submit "Search" %></div>
+                            <% end %>
                           </form>
-                          <!--End Form Search Properties-->
-
                           <!--Start List Our Agent-->
                           <h3 class="bottom-line  line-before main-heading"><span class="main-circle-icon"><i class="icon-list"></i></span>  Our Agents</h3>
                           <div class="list-items ">

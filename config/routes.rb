@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
-
-
   resources :properties
-
-  resources :admins
-
+  get 'details' => 'properties#show'
   devise_for :users
   root 'tasks#index'
   match '/add',   to: 'tasks#add',   via: 'get'
