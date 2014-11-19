@@ -1,5 +1,3 @@
-
-
             <!--Start Content-->
 <div id="content">
     <!--Start Main Title-->
@@ -28,61 +26,62 @@
         <div class="row-fluid">
             <div class="span9">
                 <div class="panel right-line">
-                    <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span> 034 Central Park Zoo</h2>   
+                    <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span> Properties </h2>
                   <!-- START DETAIL-->
-                    <div class="detail-properties right-space">
-                        <!-- START SLIDER -->
-                        <div class="big-image text-center">
-                            <div class="preloader"></div>
-                            <div class="desc-image">
-                                <h3>Central Park 023</h3>
+                  <div class="detail-properties right-space">
+                        <% Property.all.each do |task| %>
+                            <!-- START SLIDER -->
+                            <div class="big-image text-center">
+                              <div class="preloader"></div>
+                              <div class="desc-image">
+                                <h3><%= task.name %></h3>
                                 <p>In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque. </p>
+                              </div>
+                              <%= image_tag task.image1.url, id: "big-image-preview", alt: "big-image-preview" %>
                             </div>
-                            <img src="assets/properties/p1.jpg" id="big-image-preview" alt="big-image-preview">
-                        </div>
-                        <div class="list_image_detail">
-                            <ul id="list_images_property">
-                                <li><a href="#" data-bigimage="assets/interior/i1.jpg" data-title="Interior 01" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="assets/interior/i1.jpg" alt="Thum"/></a></li>
-                                <li><a href="#" data-bigimage="assets/interior/i2.jpg" data-title="Interior 02" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="assets/interior/i2.jpg" alt="Thum"/></a></li>
-                                <li><a href="#" data-bigimage="assets/interior/i3.jpg" data-title="Interior 03" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="assets/interior/i3.jpg" alt="Thum"/></a></li>
-                                <li><a href="#" data-bigImage="assets/interior/i4.jpg" data-title="Interior 04" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="assets/interior/i4.jpg" alt="Thum"/></a></li>
-                                <li><a href="#" data-bigimage="assets/interior/i5.jpg" data-title="Interior 05" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="assets/interior/i5.jpg" alt="Thum"/></a></li>
-                                <li><a href="#" data-bigimage="assets/interior/i6.jpg" data-title="Interior 06" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="assets/interior/i6.jpg" alt="Thum"/></a></li>
-                                <li><a href="#" data-bigimage="assets/interior/i7.jpg" data-title="Interior 07" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="assets/interior/i7.jpg" alt="Thum"/></a></li>
-                                <li><a href="#" data-bigimage="assets/interior/i8.jpg" data-title="Interior 08" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="assets/interior/i8.jpg" alt="Thum"/></a></li>
+                            <div class="list_image_detail">
+                              <ul id="list_images_property">
+                                <li><a href="#" data-bigimage="#" data-title="Interior 01" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag task.image1.url, alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigimage="#" data-title="Interior 02" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag task.image2.url, alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigimage="#" data-title="Interior 03" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag task.image3.url, alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigImage="#" data-title="Interior 04" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag task.image4.url, alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigimage="#" data-title="Interior 05" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag task.image5.url, alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigimage="#" data-title="Interior 06" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag task.image6.url, alt: "Thum"%></a></li>
+                              </ul>
+                              <div class="clearfix"></div>
+                              <a id="prev2" class="prev" href="#">&lt;</a>
+                              <a id="next2" class="next" href="#">&gt;</a>
+                            </div>
+                            <!-- END SLIDER -->
+                            <h3>Property Description</h3>
+                            <p> <%= task.description %>  </p>
+                            <!-- AddThis Button BEGIN -->
+                            <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
+                              <a class="addthis_button_facebook"></a>
+                              <a class="addthis_button_twitter"></a>
+                              <a class="addthis_button_pinterest_share"></a>
+                              <a class="addthis_button_google_plusone_share"></a>
+                              <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+                            </div>
+                            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51965a0e6903b31d"></script>
+                            <!-- AddThis Button END -->
+                            <h3>Property Feature</h3>
+                            <ul class="clear">
+                              <li>Name: <%= task.name %></li>
+                              <li>Price: <%= task.price %></li>
+                              <li>Address1: <%= task.address1 %></li>
+                              <li>Address2: <%= task.address2 %></li>
+                              <li>Address3: <%= task.address3 %></li>
+                              <li>Beds: <%= task.beds %></li>
+                              <li>Bath: <%= task.bath %></li>
+                              <li>Parking: <%= task.parking %></li>
+                              <li>Category: <%= task.category %></li>
                             </ul>
-                            <div class="clearfix"></div>
-                            <a id="prev2" class="prev" href="#">&lt;</a>
-                            <a id="next2" class="next" href="#">&gt;</a>
-                        </div>
-                        <!-- END SLIDER -->
-                        <h3>Property Description</h3>
-                        <p>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit.  </p>
-                        <!-- AddThis Button BEGIN -->
-                        <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
-                            <a class="addthis_button_facebook"></a>
-                            <a class="addthis_button_twitter"></a>
-                            <a class="addthis_button_pinterest_share"></a>
-                            <a class="addthis_button_google_plusone_share"></a>
-                            <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-                        </div>
-                        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51965a0e6903b31d"></script>
-                        <!-- AddThis Button END -->
-                        <h3>Property Feature</h3>
-                        <ul class="clear">
-                            <li>FMLS #: 3918702</li>
-                            <li>Subdivision: 3</li>
-                            <li>Bedrooms: 3</li>
-                            <li>Bathrooms: Full: 3, Half: 1</li>
-                            <li>Year Built: 2000</li>
-                            <li>Type: Condo/Townhouse</li>
-                            <li>Country: COBB</li>
-                            <li>Status: Active</li>
-                        </ul>
-                        <h3>Addtional Features</h3>
-                        <p>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elitipsum dolor sit amet, consectetur fermentum adipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elitadipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elitadipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elitadipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elit.</p>
-                    </div>
-                   <!-- END DETAIL-->
+                            <h3>Addtional Features</h3>
+                            <p>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elitipsum dolor sit amet, consectetur fermentum adipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elitadipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elitadipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elitadipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elit.</p>
+                            </div>
+                            <!-- END DETAIL-->
+                        <% end %>
 
                 </div>
             </div>

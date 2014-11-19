@@ -47,7 +47,7 @@
                                                     <% else %>
                                                         <div class="for_sale_banner"></div>
                                                     <% end %>
-                                                    <a href=<%="/properties/#{task.id}"%>><%=  image_tag task.image1.url, class: "full", class: "mask_hover" %></a>   </a>
+                                                    <a href=<%="/properties_detail"%>><%=  image_tag task.image1.url, class: "full", class: "mask_hover" %></a>   </a>
                                                       <h4 class=" "><%= task.name %></h4>
                                                       <div class="preview-properties ">
                                                         <div class="box-detail">
@@ -63,7 +63,7 @@
                                                           </p>
                                                           <div class="clearfix">
                                                             <div class="btn-proper btn btn-small pull-left">
-                                                            <a href=<%="/properties/#{task.id}"%>>See Detail</a>
+                                                            <a href=<%="/properties_detail"%>>See Detail</a>
 
                                                             </div>
                                                             <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
