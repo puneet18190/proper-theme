@@ -47,7 +47,7 @@
                                                     <% else %>
                                                         <div class="for_sale_banner"></div>
                                                     <% end %>
-                                                    <a href=<%="/properties_detail"%>><%=  image_tag task.image1.url, class: "full", class: "mask_hover" %></a>   </a>
+                                                    <a href=<%="/properties_detail/#{task.id}"%>><%=  image_tag task.image1.url, class: "full", class: "mask_hover" %></a>   </a>
                                                       <h4 class=" "><%= task.name %></h4>
                                                       <div class="preview-properties ">
                                                         <div class="box-detail">
@@ -63,7 +63,7 @@
                                                           </p>
                                                           <div class="clearfix">
                                                             <div class="btn-proper btn btn-small pull-left">
-                                                            <a href=<%="/properties_detail"%>>See Detail</a>
+                                                            <a href=<%="/properties_detail/#{task.id}"%>>See Detail</a>
 
                                                             </div>
                                                             <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
@@ -114,13 +114,11 @@
                           <!--Start Form Search Properties-->
                           <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-search"></i></span>  Find Properties</h3>
                           <form class="bottom-line line-before" action="?" method="get">
-                              <label>Location</label>
-                            <%= search_form_for @search do |f| %>
-                                <div class="field">
-                                  <%= f.text_field :name_cont %>
-                                </div>
-                                <div class="actions"><%= f.submit "Search" %></div>
-                            <% end %>
+                              <label>Search</label>
+                            <p>
+                              <%= text_field_tag :search, params[:search] %>
+                              <%= submit_tag "Search", :name => nil %>
+                            </p>
                           </form>
                           <!--Start List Our Agent-->
                           <h3 class="bottom-line  line-before main-heading"><span class="main-circle-icon"><i class="icon-list"></i></span>  Our Agents</h3>

@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   match '/news',   to: 'tasks#news',   via: 'get'
   match '/news_detail',   to: 'tasks#news_detail',   via: 'get'
   match '/pricing',   to: 'tasks#pricing',   via: 'get'
-  match '/properties_detail',   to: 'tasks#properties_detail',   via: 'get'
+  match '/properties_detail/:id',   to: 'tasks#properties_detail',   via: 'get'
   match '/properties_filter',   to: 'tasks#properties_filter',   via: 'get'
   match '/properties_map',   to: 'tasks#properties_map',   via: 'get'
   match '/shortcode',   to: 'tasks#shortcode',   via: 'get'
