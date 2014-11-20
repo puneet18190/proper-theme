@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   def index
-    @tasks= Property.all #search params[:search]
+    @search = Property.search(params[:q])
+    @tasks = @search.result
+  #  @tasks= Property.all
   end
 
   def properties_detail
