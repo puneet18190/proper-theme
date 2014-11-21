@@ -12,7 +12,6 @@ class PropertiesController < ApplicationController
   end
 
 
-
   def new
     @property = Property.new
     respond_with(@property)

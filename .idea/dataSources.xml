@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2983865348">
-    <data-source source="LOCAL" name="Rails proper: development" uuid="fa99a44d-9d81-4439-b437-f0a62ee131f1">
+  <component name="DataSourceManagerImpl" format="xml" hash="4797385">
+    <data-source source="LOCAL" name="Rails proper: test" uuid="06024a65-5fe8-4408-86ea-d1de52307071">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/sealproperties_development</jdbc-url>
@@ -14,7 +14,7 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="Rails proper: test" uuid="06024a65-5fe8-4408-86ea-d1de52307071">
+    <data-source source="LOCAL" name="Rails proper: production" uuid="66fa5881-6ab1-413e-8dfd-f7c754140880">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:postgresql:proper</jdbc-url>
@@ -27,7 +27,7 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="Rails proper: production" uuid="66fa5881-6ab1-413e-8dfd-f7c754140880">
+    <data-source source="LOCAL" name="Rails proper: development" uuid="fa99a44d-9d81-4439-b437-f0a62ee131f1">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:postgresql:proper</jdbc-url>
