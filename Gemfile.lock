@@ -55,7 +55,11 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     erubis (2.7.0)
+    excon (0.39.4)
     execjs (2.2.2)
+    heroku-api (0.3.19)
+      excon (~> 0.38)
+      multi_json (~> 1.8)
     hike (1.2.3)
     i18n (0.6.11)
     jbuilder (2.2.4)
@@ -172,6 +176,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   devise
+  heroku-api
   jbuilder (~> 2.0)
   jquery-rails
   less-rails
