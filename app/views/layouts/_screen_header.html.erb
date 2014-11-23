@@ -31,16 +31,7 @@
     <div class="container">
       <div class="pull-left"><%= Time.now.strftime("%A, %d %B %Y") %></div>
       <div class="pull-right">
-        <% if user_signed_in? %>
-            <% if current_user.email== "admin@gmail.com" %>
-             <%= link_to "Admin", properties_path   %>
-            <% end %>
-            Logged in as <strong><%= current_user.email %></strong>
-            <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
-        <% else %>
-            <%= link_to "Sign up", new_user_registration_path %> |
-            <%= link_to "Login", new_user_session_path %>
-        <% end %>
+
       </div>
     </div>
   </div><!-- end breadcrumb -->
@@ -54,13 +45,13 @@
           </div>
           <div class="span3 ">
             <div class="clearfix">
-              <div class="language_curency">Curency: <a href="#">$</a> | <a href="#">&euro;</a> &nbsp; lang: <a href="#">En</a> | <a href="#">Ina</a> | <a href="#">Jpn</a></div>
-              <form method="get" class="form-search">
+           <!--   <div class="language_curency">Curency: <a href="#">$</a> | <a href="#">&euro;</a> &nbsp; lang: <a href="#">En</a> | <a href="#">Ina</a> | <a href="#">Jpn</a></div> -->
+           <!--   <form method="get" class="form-search">
                 <div class="input-append">
                   <input title="Keywords." class="search-query form-text input-block-level" placeholder="Search" type="text" name="">
                   <button type="submit" class="btn"><i class="icon-search"></i></button>
                 </div><!-- /.input-append -->
-              </form>
+            <!--  </form>-->  0191 5805900 emma@sealproperties.co.uk
             </div>
           </div>
         </div>
