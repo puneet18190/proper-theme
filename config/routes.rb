@@ -30,12 +30,12 @@ Rails.application.routes.draw do
   match '/upload_step2',   to: 'tasks#upload_step2',   via: 'get'
   match '/upload_step3',   to: 'tasks#upload_step3',   via: 'get'
 
-  match '/screens/page1', to: 'screens#page1', via: 'get'
-  match '/screens/page2', to: 'screens#page2', via: 'get'
+  match '/screen2/page1', to: 'screens#page1', via: 'get'
+  match '/screen2/page2', to: 'screens#page2', via: 'get'
 
   match '/auto', to: 'screens#auto', via: 'get'
-  match '/screens/screen1', to: 'screens#screen1', via: 'get'
-  match 'screen2', to: 'screens#screen2', via: 'get'
+  match '/screen1', to: 'screens#screen1', via: 'get'
+  match '/screen2', to: 'screens#screen2', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
