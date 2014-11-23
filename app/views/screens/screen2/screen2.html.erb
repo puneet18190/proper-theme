@@ -13,7 +13,8 @@ function run_script(index){
 		async: false,
 		success : function(response){
 			$(".main_container").html(response);
-			$(".screen_num").html(index+1)
+			var num = index+1
+			$(".screen_num").html("Screen 2 page "+num)
 			index = index+1;
 			if (index == urls.length){
 				index = 0;
