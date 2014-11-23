@@ -12,7 +12,7 @@ function run_script(index){
 		url : '/'+urls[index],
 		async: false,
 		success : function(response){
-			$("body").html(response);
+			$(".main_container").html(response);
 			index = index+1;
 			if (index == urls.length){
 				index = 0;
