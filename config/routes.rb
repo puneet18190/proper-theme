@@ -36,8 +36,10 @@ Rails.application.routes.draw do
 
 
   match '/auto', to: 'screens#auto', via: 'get'
+
   match '/screen1', to: 'screens#screen1', via: 'get'
   match '/screen2', to: 'screens#screen2', via: 'get'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
