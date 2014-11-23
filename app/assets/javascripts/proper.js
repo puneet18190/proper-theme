@@ -58,7 +58,7 @@ function init_gmap3(){
         $("#googleMap").gmap3({
             map:{
                 // CENTRAL MAP DEFAULT
-                address:"JAKARTA, INDONESIA",
+                address:"167/169 saltwell road, gateshead, NE8 4TJ",
                 options:{
                     zoom:12,
                     scaleControl: false,
