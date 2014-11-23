@@ -1,4 +1,5 @@
 class PropertiesController < ApplicationController
+  layout proc { false if request.xhr? } 
   before_action :set_property, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
   load_and_authorize_resource

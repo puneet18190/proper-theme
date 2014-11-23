@@ -1,22 +1,32 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	while (-1){
-		var urls =  ["screens/page1","screens/page2","typograpy","sing_up","upload_step1","upload_step2","upload_step3"];
-			
-		$.each(urls, function( index, url ) {
-			$.ajax({
-				type : 'get',
-				url : '/'+url,
-				async: false,
-				success : function(response){
-					$("body").html(response)
-				},
-				error : function(){
-					alert('Sorry, something has gone wrong with the server response.')
-				}
-			})
-		})
-	}	
+	var index=0;
+	run_script(index);
 })	
+
+function run_script(index){
+	var urls =  ["typograpy","sing_up","upload_step1","upload_step2","upload_step3","screens/page1","screens/page2"];
+	$.ajax({
+		type : 'get',
+		url : '/'+urls[index],
+		async: false,
+		success : function(response){
+			$("body").html(response);
+			index = index+1;
+			if (index == urls.length){
+				index = 0;
+			}
+			setTimeout(
+			  function() 
+			  {
+			    run_script(index);
+			  }, 10000);
+			
+		},
+		error : function(){
+			alert('Sorry, something has gone wrong with the server response.')
+		}
+	})
+}
 </script>

@@ -1,4 +1,5 @@
 class ScreensController < ApplicationController
+	layout proc { false if request.xhr? }
 	def page1
 
 	end
