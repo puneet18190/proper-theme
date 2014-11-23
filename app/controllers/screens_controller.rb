@@ -1,11 +1,11 @@
 class ScreensController < ApplicationController
 	layout proc { false if request.xhr? }
 	def page1
-		render '/screens/screen2/page1', :layout => "screen_layout"
+		render '/screens/screen2/page1'
 	end
 
 	def page2
-		render '/screens/screen2/page2', :layout => "screen_layout"
+		render '/screens/screen2/page2'
 	end
 
 	def screen1
