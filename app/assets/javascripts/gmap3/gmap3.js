@@ -70,7 +70,7 @@
         },
         map: {
           mapTypeId : google.maps.MapTypeId.ROADMAP,
-          center: [46.578498, 2.457275],
+          center: [54.9285809,-1.5758628],
           zoom: 2
         },
         overlay: {
