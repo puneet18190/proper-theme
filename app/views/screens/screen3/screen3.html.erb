@@ -1,0 +1,35 @@
+
+<script type="text/javascript">
+$(document).ready(function() {
+	var property_id=1;
+	run_script(property_id);
+})	
+
+function run_script(property_id){
+	$.ajax({
+		type : 'get',
+		url : '/properties_detail/'+property_id,
+		async: false,
+		success : function(response){
+			$(".main_container").html(response);
+			var num = property_id
+			var delay = 10000;
+			$(".screen_num").html("Screen 3 Page "+num)
+			property_id = property_id+1;
+			if (<%= @properties.count.to_i %> == num){
+				property_id = 1;
+			}
+			
+			setTimeout(
+			  function() 
+			  {
+			    run_script(property_id);
+			  }, delay);
+			
+		},
+		error : function(){
+			run_script(1);
+		}
+	})
+}
+</script>

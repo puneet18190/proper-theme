@@ -14,16 +14,22 @@ function run_script(index){
 		success : function(response){
 			$(".main_container").html(response);
 			var num = index+1
+			var delay = 10000;
 			$(".screen_num").html("Screen 2 Page "+num)
 			index = index+1;
 			if (index == urls.length){
 				index = 0;
 			}
+			if (num == 1){
+				delay = 20000;
+			}else if(num == 2){
+				delay = 10000
+			}
 			setTimeout(
 			  function() 
 			  {
 			    run_script(index);
-			  }, 10000);
+			  }, delay);
 			
 		},
 		error : function(){
