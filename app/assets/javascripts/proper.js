@@ -7,7 +7,7 @@ $( document ).ready(function() {
     /*link back to top animation*/
     init_back_to_top();
     /*google map Config*/
-    init_gmap3();
+    //init_gmap3();
     /*backgroung Config*/
     init_bgswitch();
     /*light box Config*/
@@ -50,7 +50,7 @@ function init_back_to_top(){
 }
 
 
-function init_gmap3(){
+/*function init_gmap3(){
     $(function(){
         var icon_villa = "assets/map/hostel_0star.png"
         var icon_hotel = "assets/map/villa.png"
@@ -211,7 +211,7 @@ function init_gmap3(){
 			
         });
     });
-}
+}*/
 
 
 function init_slider(){
