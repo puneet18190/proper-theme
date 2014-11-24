@@ -208,7 +208,8 @@ $(document).ready(function() {
                         properties_desc:"saas",
                         properties_link:"#", 
                         zip:"009800",
-                        city:"167/169 saltwell road, gateshead, NE8 4TJ"
+                        city:"167/169 saltwell road, gateshead, NE8 4TJ",
+                        id: '0'
                     }, 
                     options:{
                         icon: icon_hotel //Image or icon of shop want to display on map
@@ -227,7 +228,8 @@ $(document).ready(function() {
                         properties_desc:'<%=obj.description%>',
                         properties_link:"#", 
                         zip:'<%=obj.postcode%>', 
-                        city:'<%=obj.address3%>'
+                        city:'<%=obj.address3%>',
+                        id: '<%=obj.id%>'
                     }, 
                     options:{
                         icon: icon_villa
@@ -247,10 +249,10 @@ $(document).ready(function() {
                                 latLng: marker.getPosition(),
                                 options:{
                                     content:  "<div class='info-location'>" +
-                                    "<div class='text'><h4>" 
+                                    "<div class='text'><h4><a href='/properties_detail/"+context.data.id+"'>" 
                                     + context.data.properties_name +
-                                    "</h4>"+
-                                    "<img src='"+ context.data.img_preview +"' width=90> $300.999 <br/>"+
+                                    "</a></h4>"+
+                                    "<a href='/properties_detail/"+context.data.id+"'><img src='"+ context.data.img_preview +"' width=90></a> $300.999 <br/>"+
                                     context.data.properties_desc +
                                     "<br/><a href='"+context.data.properties_link +"'class='btn btn-proper btn-small'>See Detail</a></div>" +
                                     "</div>" +
