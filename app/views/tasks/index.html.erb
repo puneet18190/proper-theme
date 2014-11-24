@@ -213,7 +213,27 @@ $(document).ready(function() {
                     options:{
                         icon: icon_hotel //Image or icon of shop want to display on map
                     }
-                }
+                },
+                <%# @tasks.each do |obj| %>
+                <%# address =  "#{obj.address1} #{obj.address2} #{obj.address3}"%>
+                <%# a=Geokit::Geocoders::GoogleGeocoder.geocode "#{address}"%>
+                <%#lat = (a.ll.nil? ? "" : a.ll.split(",")[0].to_f) %>
+                <%#lng = (a.ll.nil? ? "" : a.ll.split(",")[1].to_f) %>
+                {
+                    latLng:[53.9285809<%#= lat%>,-1.5758628<%#= lng%>], 
+                    data:{
+                        img_preview: img_p, 
+                        properties_name:"saasas"<%#=obj.name%>,
+                        properties_desc:"sasasa"<%#=obj.description%>,
+                        properties_link:"#", 
+                        zip:"123456"<%#=obj.postcode%>, 
+                        city:"ewewewee"<%#=obj.address3%>
+                    }, 
+                    options:{
+                        icon: icon_hotel
+                    }
+                },
+                <%# end %>
                 ],
                 events:{
                     mouseover: function(marker, event, context){
