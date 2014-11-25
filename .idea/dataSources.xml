@@ -4,13 +4,13 @@
     <data-source source="LOCAL" name="Rails proper: test" uuid="06024a65-5fe8-4408-86ea-d1de52307071">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:postgresql:proper</jdbc-url>
+      <jdbc-url>jdbc:mysql://127.0.0.1/sealproperties_development</jdbc-url>
       <libraries>
         <library>
-          <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-driver-license.txt</url>
+          <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-license.txt</url>
         </library>
         <library>
-          <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-9.1-901.jdbc3.jar</url>
+          <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-java-5.1.18-bin.jar</url>
         </library>
       </libraries>
     </data-source>
@@ -30,13 +30,13 @@
     <data-source source="LOCAL" name="Rails proper: development" uuid="fa99a44d-9d81-4439-b437-f0a62ee131f1">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:mysql://127.0.0.1/sealproperties_development</jdbc-url>
+      <jdbc-url>jdbc:postgresql:proper</jdbc-url>
       <libraries>
         <library>
-          <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-license.txt</url>
+          <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-driver-license.txt</url>
         </library>
         <library>
-          <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-java-5.1.18-bin.jar</url>
+          <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-9.1-901.jdbc3.jar</url>
         </library>
       </libraries>
     </data-source>
