@@ -1,0 +1,182 @@
+            <!--Start Content-->
+<div id="content">
+    <!--Start Main Title-->
+    <div id="main-title-content">
+        <img src="/assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
+        <div class="container">
+            <div class="panel">
+                <h1>Detail Property</h1>    
+                <p>Newest</p>
+            </div>
+        </div>
+    </div> <!--End Main Title-->
+     <!--    News Carousel-->
+    <div class="news-carousel-wrapper">
+        <dl id="news-carousel" class="news-carousel-style">
+            <dt><a href="#">News Link Here</a></dt>
+            <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+            <dt><a href="#">Promo Link Here</a></dt>
+            <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+            <dt><a href="#">Another Link Here</a></dt>
+            <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+        </dl>
+    </div>
+    <!--    End News Carousel-->
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span9">
+                <div class="panel right-line">
+                    <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span>Properties</h2>
+                  <!-- START DETAIL-->
+                  <div class="detail-properties right-space">
+
+                            <!-- START SLIDER -->
+                            <div class="big-image text-center">
+                              <div class="preloader"></div>
+                              <div class="desc-image">
+                                <h3><%= @data.name %></h3>
+                                <p>In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque. </p>
+                              </div>
+                              <%= image_tag @data.image1.url, id: "big-image-preview", alt: "big-image-preview" %>
+                            </div>
+                            <div class="list_image_detail">
+                              <ul id="list_images_property">
+                                <li><a href="#" data-bigimage="#" data-title="Interior 01" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag @data.image1.url, alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigimage="#" data-title="Interior 02" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag @data.image2.url, alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigimage="#" data-title="Interior 03" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag @data.image3.url, alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigImage="#" data-title="Interior 04" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag @data.image4.url, alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigimage="#" data-title="Interior 05" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag @data.image5.url, alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigimage="#" data-title="Interior 06" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag @data.image6.url, alt: "Thum"%></a></li>
+                              </ul>
+                              <div class="clearfix"></div>
+                              <a id="prev2" class="prev" href="#">&lt;</a>
+                              <a id="next2" class="next" href="#">&gt;</a>
+                            </div>
+                            <!-- END SLIDER -->
+                            <h3>Property Description</h3>
+                            <p> <%= @data.description %>  </p>
+                            <!-- AddThis Button BEGIN -->
+                            <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
+                              <a class="addthis_button_facebook"></a>
+                              <a class="addthis_button_twitter"></a>
+                              <a class="addthis_button_pinterest_share"></a>
+                              <a class="addthis_button_google_plusone_share"></a>
+                              <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+                            </div>
+                            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51965a0e6903b31d"></script>
+                            <!-- AddThis Button END -->
+                            <h3>Property Feature</h3>
+                            <ul class="clear">
+                              <li>Name: <%= @data.name %></li>
+                              <li>Price: <%= @data.price %></li>
+                              <li>Address1: <%= @data.address1 %></li>
+                              <li>Address2: <%= @data.address2 %></li>
+                              <li>Address3: <%= @data.address3 %></li>
+                              <li>Beds: <%= @data.beds %></li>
+                              <li>Bath: <%= @data.bath %></li>
+                              <li>Parking: <%= @data.parking %></li>
+                              <li>Category: <%= @data.category %></li>
+                            </ul>
+                            <h3>Addtional Features</h3>
+                            <p>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elitipsum dolor sit amet, consectetur fermentum adipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elitadipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elitadipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elitadipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elit.</p>
+
+                            <!-- END DETAIL-->
+
+                  </div>
+                </div>
+            </div>
+            <div class="span3">
+                <div class="panel">
+                    <!-- MAP LOCATION-->
+                    <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-map-marker"></i></span>  Location</h3>    
+                    <div class="bottom-line line-before">
+                        <div id="googleMap" class="" style="height:300px;margin-bottom:25px"></div>
+                    </div><!-- END MAP LOCATION -->
+                    <!-- Detail Agent -->
+                    <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-user"></i></span> Agent</h3>
+                    <div class="agent-panel bottom-line line-before">
+                        <a href="#" class="agent-image ">
+                            <img src="/assets/agents/circle/a1.jpg" class="img-polaroid" alt="agent">
+                        </a>
+                        <ul class="unstyled margin20">
+                            <li><i class="icon-phone"></i> (+89)98732.984 </li>
+                            <li><i class="icon-envelope"></i> agent@company.com</li>
+                            <li><i class="icon-facebook"></i> angel</li>
+                            <li><i class="icon-twitter"></i> @angel</li>
+                        </ul>
+                    </div><!-- END Detail Agent -->
+                    <!-- FORM CONTACT -->
+                    <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-envelope-alt"></i></span> Contact Agent</h3>
+                    <form>
+                        <label>Name</label>
+                        <input type="text" name="name" placeholder="Enter Your Name" required="" class="input-block-level"/>
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="Enter Your Email" required="" class="input-block-level"/>
+                        <label>Message</label>
+                        <textarea name="message" class="input-block-level" rows="5" placeholder="Your Message" required=""></textarea>
+                        <div class="clearfix">
+                            <input type="submit" value="Send" class="btn btn-proper "/>
+                        </div>
+                    </form>
+                    <!-- END FORM CONTACT -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div><!--EndContent-->            
+<script type="text/javascript">
+$(document).ready(function() {
+  init_gmap3()
+})  
+  function init_gmap3(){
+    $(function(){
+        var icon_villa = "/assets/map/hostel_0star.png"
+        var icon_hotel = "/assets/map/villa.png"
+        var img_p = "assets/properties/p1.jpg"
+        $("#googleMap").gmap3({
+            <% address =  "#{@data.address1} #{@data.address2} #{@data.address3}"%>
+            map:{
+                // CENTRAL MAP DEFAULT
+                address:'<%= address %>',
+                options:{
+                    zoom:12,
+                    scaleControl: false,
+                    scrollwheel: false,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    mapTypeControl: true,
+                    mapTypeControlOptions: {
+                        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+                    }
+                }
+            },
+            marker:{
+                // DATA LOCATION
+                values:[
+                {
+                  
+                  <% a=Geokit::Geocoders::GoogleGeocoder.geocode "#{address}"%>
+                  <%lat = (a.ll.nil? ? "" : a.ll.split(",")[0].to_f) %>
+                  <%lng = (a.ll.nil? ? "" : a.ll.split(",")[1].to_f) %>
+
+                    latLng:[<%= lat%>,<%= lng%>], 
+                    data:{
+                        img_preview: img_p, 
+                        properties_name:'<%= @data.name%>',
+                        properties_desc:'<%=@data.description%>',
+                        properties_link:"#", 
+                        zip:'<%=@data.postcode%>', 
+                        city:'<%=@data.address3%>'
+                    }, 
+                    options:{
+                        icon: icon_hotel //Image or icon of shop want to display on map
+                    }
+                }
+                ],
+                
+            }
+      
+        });
+    });
+}
+</script>

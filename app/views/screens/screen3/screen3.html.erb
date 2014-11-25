@@ -8,7 +8,7 @@ $(document).ready(function() {
 function run_script(property_id){
 	$.ajax({
 		type : 'get',
-		url : '/properties_detail/'+property_id,
+		url : 'screens/screen_properties_detail/'+property_id,
 		async: false,
 		success : function(response){
 			$(".main_container").html(response);
