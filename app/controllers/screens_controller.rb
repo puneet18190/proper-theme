@@ -23,6 +23,6 @@ class ScreensController < ApplicationController
 
 	def screen_properties_detail
 		@data = Property.find(params[:property_id])
-		render '/screens/screen3/screen_properties_detail', :layout => "screen_layout"
+		render '/screens/screen3/screen_properties_detail'
 	end
 end
