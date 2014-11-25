@@ -16,12 +16,13 @@ class ScreensController < ApplicationController
 		render '/screens/screen2/screen2', :layout => "screen_layout"
 	end
 
-
-
-
-
 	def screen3
-		@properties = Property.limit(5)
+		@properties = Property.where(:visibility=>true).last(5)
 		render '/screens/screen3/screen3', :layout => "screen_layout"
 	end	
+
+	def screen_properties_detail
+		@data = Property.find(params[:property_id])
+		render '/screens/screen3/screen_properties_detail', :layout => "screen_layout"
+	end
 end
