@@ -14,34 +14,64 @@
       </div>
       <!--    End News Carousel-->
       <!--Start Form Singup-->
+
       <div class="panel proper-form-bg">
 
+
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <%= devise_error_messages! %>
+
               <div class="proper-singup">
+                <%= devise_error_messages! %>
                <h1 class=""><i class="icon-user"></i> Sing Up</h1>
-            <div class="field">
-              <%= f.label :email %>
-              <%= f.email_field :email, autofocus: true %>
-            </div>
 
-            <div class="field">
-              <%= f.label :password %>
-              <% if @validatable %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
-              <% end %>
-              <%= f.password_field :password, autocomplete: "off" %>
-            </div>
+              <div class="field">
+                <%= f.label :username %>
+                <%= f.text_field :username, autofocus: true %>
+              </div>
 
-            <div class="field">
-              <%= f.label :password_confirmation %>
-              <%= f.password_field :password_confirmation, autocomplete: "off" %>
-            </div>
+              <div class="field">
+               <%= f.label :email %>
+               <%= f.email_field :email, autofocus: true %>
+              </div>
 
-            <div class="actions">
-              <%= f.submit "Register" , class: "btn-proper btn"%>
-              <h4>Already have an account?</h4>
-            </div>
+              <div class="field">
+                <%= f.label :address %>
+                <%= f.text_area :address, autofocus: true %>
+              </div>
+
+              <div class="field">
+                <%= f.label :phone %>
+                <%= f.text_field :phone, autofocus: true %>
+               </div>
+
+              <div class="field">
+                <%= f.label :password %>
+                <% if @validatable %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %>
+                <%= f.password_field :password, autocomplete: "off" %>
+              </div>
+
+              <div class="field">
+                <%= f.label :password_confirmation %>
+                <%= f.password_field :password_confirmation, autocomplete: "off" %>
+              </div>
+
+              <div class="field">
+                <%= f.label :tenant %>
+                <%= f.radio_button :status, 'tenant' %>
+              </div>
+
+              <div class="field1">
+                <%= f.label :landlord %>
+                <%= f.radio_button :status, 'landlord' %>
+              </div>
+              <br>
+              <div class="actions">
+                <%= f.submit "Register" , class: "btn-proper btn"%>
+                <h4>Already have an account?</h4>
+              </div>
+
           <% end %>
 
           <%= render "devise/shared/links" %>

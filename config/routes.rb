@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :properties
-  devise_for :users
+  devise_for :users, controllers: { confirmations: "confirmations" }
+
   root 'tasks#index'
+
   match '/add',   to: 'tasks#add',   via: 'get'
   match '/index',   to: 'tasks#index',   via: 'get'
   match '/about_us',   to: 'tasks#about_us',   via: 'get'
