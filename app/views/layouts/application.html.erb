@@ -9,9 +9,19 @@
 </head>
 <body>
 <%= render 'layouts/header' %>
+
 <div class="main_container">
+  <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
 	<%= yield %>
 </div>
 <%= render 'layouts/footer' %>
+<script type='text/javascript'>
+    $('.alert').fadeOut(5000);
+</script>
 </body>
 </html>
