@@ -35,45 +35,25 @@
                             <li><a href="/upload_step3"><span>3</span></a></li>
                         </ul><!-- End List-->
                         <div class="clearfix"></div>
-                        <!-- Start Form Step -->
-                        <form class="proper-form-step">
-                            <div class="proper-form-step-area">
-                                <h4>Property Information</h4>
-                                <div class="row-fluid">
-                                    <div class="span4">
-                                        <label>Name Property</label>
-                                        <input type="text" class="input-block-level" required=""/>
-                                    </div>
-                                    <div class="span4">
-                                        <label>Type Category</label>
-                                        <select class="input-block-level">
-                                            <option>Rent</option>
-                                            <option>Sell</option>
-                                        </select>
-                                    </div>
-                                    <div class="span4">
-                                        <label>Beds</label>
-                                        <input type="number" class="input-block-level" required=""/>
-                                    </div>
-                                </div>
-                                <div class="row-fluid">
-                                    <div class="span4">
-                                        <label>Bath</label>
-                                        <input type="number" class="input-block-level" required=""/>
-                                    </div>
-                                    <div class="span4">
-                                        <label>Meters</label>
-                                        <input type="number" class="input-block-level" required=""/>
-                                    </div>
-                                    <div class="span4">
-                                        <label>Address</label>
-                                        <input type="text" class="input-block-level" required=""/>
-                                    </div>
-                                </div>
-                            </div>
+                      <%= form_tag("/properties/payment", :method=>"post") do %>
+                          <div class="proper-form-step-area">
 
-                            <button  class="btn btn-proper btn-large">Next Step <i class="icon-arrow-right"></i></button>
-                        </form><!-- End Form Step -->
+                            <div class="proper-singup">
+                              <h3 class=""><b>Add Property</b></h3>
+                          <div>
+                            <label>Payment</label>
+                          </div>
+                          <div>
+                            <%= text_field_tag "payment" %>
+                          </div>
+                          <div><%= submit_tag 'OK', class: "btn btn-proper btn-large" %></div>
+                            </div>
+                          </div>
+                          <% end %>
+
+
+
+
                     </div>
 
                 </div>

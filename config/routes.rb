@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { confirmations: "confirmations" }
 
   root 'tasks#index'
-
+  post 'properties/approve'
+  post 'properties/payment'
   match '/add',   to: 'tasks#add',   via: 'get'
   match '/index',   to: 'tasks#index',   via: 'get'
   match '/about_us',   to: 'tasks#about_us',   via: 'get'

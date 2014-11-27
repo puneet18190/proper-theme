@@ -1,4 +1,5 @@
 class Property < ActiveRecord::Base
+  belongs_to :user
   mount_uploader :image1, Image1Uploader
   mount_uploader :image2, Image2Uploader
   mount_uploader :image3, Image3Uploader
@@ -7,9 +8,5 @@ class Property < ActiveRecord::Base
   mount_uploader :image6, Image6Uploader
   validates :name, presence: true, length: { maximum: 20 }
   validates_presence_of :address1, :address2, :address3, :price, :postcode, :beds, :bath, :description
-  #
-  # ThinkingSphinx::Index.define :property, :with => :active_record do
-  #   # fields
-  #   indexes :name
-  # end
+
 end

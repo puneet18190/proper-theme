@@ -3,14 +3,14 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
-
+  has_many :properties, dependent: :destroy
   Roles = [ :admin , :default ]
 
   def is?( requested_role )
     self.role == requested_role.to_s
   end
 
-  validates_inclusion_of :status, in: %w{tenant landlord}
+  validates_inclusion_of :status, in: %w{tenant landlord admin}
   after_initialize :set_default_state, if: :new_record?
 
 

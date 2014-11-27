@@ -4,7 +4,7 @@ class PropertiesController < ApplicationController
   respond_to :html, :xml, :json
   load_and_authorize_resource
   def index
-    @properties = Property.all
+    @properties = Property.where(:user_id => current_user.id)
     respond_with(@properties)
   end
 
@@ -23,10 +23,12 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    @property = Property.new(property_params)
+    @user = current_user
+    @property = @user.properties.new(property_params)
+    #@property = Property.new(property_params)
     @property.save
-    respond_with(@property)
-    #redirect_to action: "index"
+    #respond_with(@property)
+   redirect_to upload_step2_path
   end
 
   def update
@@ -48,12 +50,20 @@ class PropertiesController < ApplicationController
     respond_with(@property)
   end
 
+  def payment
+    # binding.pry
+
+    UserMailer.deliver_payment_method(current_user)
+    redirect_to upload_step3_path, :notice => "Payment details has been sent to your email"
+  end
+
+
   private
     def set_property
       @property = Property.find(params[:id])
     end
 
     def property_params
-      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :description, :date, :visibility, :price, :let, :sold, :featured )
+      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id)
     end
 end

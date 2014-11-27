@@ -28,6 +28,8 @@
 
       <div class="proper-singup">
         <h3 class=""><b>Add Property</b></h3>
+
+
         <div class="field">
           <%= f.label :name %>
           <%= f.text_field :name %>
@@ -121,9 +123,12 @@
           <%= f.label :featured %>
           <%= f.check_box :featured %>
         </div>
+        <div class="field">
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+          </div>
         <br/>
         <div class="actions">
-          <%= f.submit "Submit" %>
+          <%= f.submit "Next" %>
         </div>
   <% end %>
 <br>

@@ -1,0 +1,47 @@
+<!--Start Content-->
+<div id="content">
+  <!--    News Carousel-->
+  <div class="news-carousel-wrapper">
+    <dl id="news-carousel" class="news-carousel-style">
+      <dt><a href="#">News Link Here</a></dt>
+      <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+      <dt><a href="#">Promo Link Here</a></dt>
+      <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+      <dt><a href="#">Another Link Here</a></dt>
+      <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+    </dl>
+  </div>
+  <!--    End News Carousel-->
+  <!--Start Form Singup-->
+  <%= form_for @property do |f| %>
+  <% if @property.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
+
+        <ul>
+          <% @property.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+
+  <div class="proper-singup">
+    <h3 class=""><b>Payment</b></h3>
+    <div class="field">
+      <%= f.label :payment %>
+      <%= f.text_area :payment %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Ok" %>
+    </div>
+ <% end %>
+    <br>
+    <%= link_to 'Back', new_property_path %>
+  </div><!--End Form Singup-->
+</div><!--EndContent-->
+
+
+
+
