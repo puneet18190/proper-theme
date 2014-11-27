@@ -1,3 +1,4 @@
 $(".new_property").remove();
-
+$($("ul li a span")[0]).parent().removeClass("active");
+$($("ul li a span")[1]).parent().addClass("active");
 $( ".clearfix" ).after( "<%= escape_javascript( render( :partial => "payment_form", :locals => { } ) ) %>" );
