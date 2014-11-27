@@ -1,0 +1,13 @@
+<%= form_tag("/properties/confirm_payment", :method=>"post", :remote=>true) do %>
+  <div class="proper-form-step-area">
+
+    <div class="proper-singup">
+      <h3 class=""><b>Payment Form</b></h3>
+ 
+  <div>
+    <%= text_field_tag "payment" %>
+  </div>
+  <div><%= submit_tag 'OK', class: "btn btn-proper btn-large" %></div>
+    </div>
+  </div>
+<% end %>

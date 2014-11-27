@@ -1,141 +1,161 @@
-<!--Start Content-->
-<div id="content">
-  <!--    News Carousel-->
-  <div class="news-carousel-wrapper">
-    <dl id="news-carousel" class="news-carousel-style">
-      <dt><a href="#">News Link Here</a></dt>
-      <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
-      <dt><a href="#">Promo Link Here</a></dt>
-      <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
-      <dt><a href="#">Another Link Here</a></dt>
-      <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
-    </dl>
-  </div>
-  <!--    End News Carousel-->
-  <!--Start Form Singup-->
-  <%= form_for @property, html: { multipart: true } do |f| %>
-      <% if @property.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
 
-            <ul>
-              <% @property.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-      <% end %>
-
-      <div class="proper-singup">
-        <h3 class=""><b>Add Property</b></h3>
-
-
-        <div class="field">
-          <%= f.label :name %>
-          <%= f.text_field :name %>
-        </div>
-        <div class="field">
-          <%= f.label :address1 %>
-          <%= f.text_field :address1 %>
-        </div>
-        <div class="field">
-          <%= f.label :address2 %>
-          <%= f.text_field :address2 %>
-        </div>
-        <div class="field">
-          <%= f.label :address3 %>
-          <%= f.text_field :address3 %>
-        </div>
-        <div class="field">
-          <%= f.label :postcode %>
-          <%= f.text_field :postcode%>
-        </div>
-        <div class="field">
-          <%= f.label :price %>
-          <%= f.text_field :price %>
-        </div>
-        <div class="field">
-          <%= f.label :beds %>
-          <%= f.number_field :beds %>
-        </div>
-        <div class="field">
-          <%= f.label :bath %>
-          <%= f.number_field :bath %>
-        </div>
-        <div class="field">
-          <%= f.label :category %>
-          <%= f.select :category, ["Rent","Sale"] %>
-        </div><br><br>
-        <div class="field">
-          <%= f.label :image1, "Main image" %>
-          <%= f.file_field :image1 %>
-        </div>
-        <div class="field">
-          <%= f.label :image2, "Image1" %>
-          <%= f.file_field :image2 %>
-        </div>
-        <div class="field">
-          <%= f.label :image3, "Image2" %>
-          <%= f.file_field :image3 %>
-        </div>
-        <div class="field">
-          <%= f.label :image4, "Image3" %>
-          <%= f.file_field :image4 %>
-        </div>
-        <div class="field">
-          <%= f.label :image5, "Image4" %>
-          <%= f.file_field :image5 %>
-        </div>
-        <div class="field">
-          <%= f.label :image6, "Image5" %>
-          <%= f.file_field :image6 %>
-        </div>
-
-        <div class="field">
-          <%= f.label :description %>
-          <%= f.text_area :description %>
-        </div>
-        <div class="field">
-          <%= f.label :date %>
-          <%= f.date_select :date %>
-        </div><br/><br/><br/>
-        <div class="field">
-          <%= f.label :visibility %>
-          <%= f.check_box :visibility %>
-        </div>
-        <div class="field">
-          <div class="fiel">
-          <%= f.label :parking,"Off street parking" %>
-          <%= f.check_box :parking %>
-            </div>
-        </div><br>
-        <div class="field">
-          <%= f.label :let%>
-          <%= f.check_box :let %>
-        </div>
-        <div class="field">
-          <div class="sol">
-          <%= f.label :sold %>
-          <%= f.check_box :sold%>
-          </div>
-        </div><br>
-        <div class="field">
-          <%= f.label :featured %>
-          <%= f.check_box :featured %>
-        </div>
-        <div class="field">
-        <%= f.hidden_field :user_id, :value => current_user.id %>
-          </div>
-        <br/>
-        <div class="actions">
-          <%= f.submit "Next" %>
-        </div>
-  <% end %>
-<br>
-<%= link_to 'Back', properties_path %>
-</div><!--End Form Singup-->
-</div><!--EndContent-->
+                <!--Start Content-->
+                <div id="content">
+                    <!--Start Main Title-->
+                    <div id="main-title-content">
+                        <img src="assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
+                        <div class="container">
+                            <div class="panel">
+                                <h1>Upload Items</h1>
+                                <p>Sub Title Here</p>
+                            </div>
+                        </div>
+                    </div> <!--End Main Title-->
+                    <!--    News Carousel-->
+                    <div class="news-carousel-wrapper">
+                        <dl id="news-carousel" class="news-carousel-style">
+                            <dt><a href="#">News Link Here</a></dt>
+                            <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+                            <dt><a href="#">Promo Link Here</a></dt>
+                            <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+                            <dt><a href="#">Another Link Here</a></dt>
+                            <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+                        </dl>
+                    </div>
+                    <!--    End News Carousel-->
+                    <div class="container">
+                        <div class="panel">
+                            <div class="box-line">
+                                <h3 class="title-heading">Please complete the form</h3>
+                            </div>
+                            <!-- Start List Step Upload-->
+                            <ul class="unstyled proper-step">
+                                <li><a href="/upload_step1" class="active"><span>1</span></a></li>
+                                <li><a href="/upload_step2" ><span>2</span></a></li>
+                                <li><a href="/upload_step3"><span>3</span></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                            <!-- Start Form Step -->
 
 
+                                  <!--Start Form Singup-->
+                            <%= form_for @property, html: { multipart: true }, :remote=>true do |f| %>
+                              <% if @property.errors.any? %>
+                                  <div id="error_explanation">
+                                    <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
 
+                                    <ul>
+                                      <% @property.errors.full_messages.each do |message| %>
+                                          <li><%= message %></li>
+                                      <% end %>
+                                    </ul>
+                                  </div>
+                              <% end %>
+                              <div class="proper-form-step-area">
 
+                                  <div class="proper-singup">
+                                    <h3 class=""><b>Add Property</b></h3>
+                                    <div class="field">
+                                      <%= f.label :name %>
+                                      <%= f.text_field :name %>
+                                    </div>
+                                    <div class="field">
+                                      <%= f.label :address1 %>
+                                      <%= f.text_field :address1 %>
+                                    </div>
+                                    <div class="field">
+                                      <%= f.label :address2 %>
+                                      <%= f.text_field :address2 %>
+                                    </div>
+                                    <div class="field">
+                                      <%= f.label :address3 %>
+                                      <%= f.text_field :address3 %>
+                                    </div>
+                                    <div class="field">
+                                      <%= f.label :postcode %>
+                                      <%= f.text_field :postcode%>
+                                    </div>
+                                    <div class="field">
+                                      <%= f.label :price %>
+                                      <%= f.text_field :price %>
+                                    </div>
+                                    <div class="field">
+                                      <%= f.label :beds %>
+                                      <%= f.number_field :beds %>
+                                    </div>
+                                    <div class="field">
+                                      <%= f.label :bath %>
+                                      <%= f.number_field :bath %>
+                                    </div>
+                                    <div class="field">
+                                      <%= f.label :category %>
+                                      <%= f.select :category, ["Rent","Sale"] %>
+                                    </div><br><br>
+                                    <div class="field">
+                                      <%= f.label :image1, "Main image" %>
+                                      <%= f.file_field :image1 %>
+                                    </div>
+                                    <div class="field">
+                                      <%= f.label :image2, "Image1" %>
+                                      <%= f.file_field :image2 %>
+                                    </div>
+                                    <div class="field">
+                                      <%= f.label :image3, "Image2" %>
+                                      <%= f.file_field :image3 %>
+                                    </div>
+                                    <div class="field">
+                                      <%= f.label :image4, "Image3" %>
+                                      <%= f.file_field :image4 %>
+                                    </div>
+                                    <div class="field">
+                                      <%= f.label :image5, "Image4" %>
+                                      <%= f.file_field :image5 %>
+                                    </div>
+                                    <div class="field">
+                                      <%= f.label :image6, "Image5" %>
+                                      <%= f.file_field :image6 %>
+                                    </div>
+
+                                    <div class="field">
+                                      <%= f.label :description %>
+                                      <%= f.text_area :description %>
+                                    </div>
+                                    <div class="field">
+                                      <%= f.label :date %>
+                                      <%= f.date_select :date %>
+                                    </div><br/><br/><br/>
+                                    <div class="field">
+                                      <%= f.label :visibility %>
+                                      <%= f.check_box :visibility %>
+                                    </div>
+                                    <div class="field">
+                                      <div class="fiel">
+                                        <%= f.label :parking,"Off street parking" %>
+                                        <%= f.check_box :parking %>
+                                      </div>
+                                    </div><br>
+                                    <div class="field">
+                                      <%= f.label :let%>
+                                      <%= f.check_box :let %>
+                                    </div>
+                                    <div class="field">
+                                      <div class="sol">
+                                        <%= f.label :sold %>
+                                        <%= f.check_box :sold%>
+                                      </div>
+                                    </div><br>
+                                    <div class="field">
+                                      <%= f.label :featured %>
+                                      <%= f.check_box :featured %>
+                                    </div>
+                                    <br/>
+                                    <%= f.submit "Next step", class: "btn btn-proper btn-large" %>
+
+                                  </div>
+                                </div>
+                              <% end %>
+
+                        </div>
+
+                    </div>
+                </div><!--EndContent-->

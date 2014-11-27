@@ -14,7 +14,11 @@ class PropertiesController < ApplicationController
 
 
   def new
-    @property = Property.new
+    if current_user.status == "landlord"
+      @property = current_user.properties.new
+    else
+      @property = Property.new
+    end  
     respond_with(@property)
   end
 
@@ -23,12 +27,17 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    @user = current_user
-    @property = @user.properties.new(property_params)
-    #@property = Property.new(property_params)
-    @property.save
-    #respond_with(@property)
-   redirect_to upload_step2_path
+    if current_user.status == "landlord"
+      @user = current_user
+      @property = @user.properties.new(property_params)
+      @property.save
+      respond_to do |format|
+        format.js
+      end
+    else
+      @property = Property.new(property_params)
+      respond_with(@property)
+    end 
   end
 
   def update
@@ -50,11 +59,14 @@ class PropertiesController < ApplicationController
     respond_with(@property)
   end
 
-  def payment
+  def confirm_payment
     # binding.pry
 
     UserMailer.deliver_payment_method(current_user)
-    redirect_to upload_step3_path, :notice => "Payment details has been sent to your email"
+    respond_to do |format|
+      format.js
+    end
+    #redirect_to upload_step3_path, :notice => "Payment details has been sent to your email"
   end
 
 

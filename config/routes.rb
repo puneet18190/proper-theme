@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root 'tasks#index'
   post 'properties/approve'
-  post 'properties/payment'
+  post 'properties/confirm_payment'
   match '/add',   to: 'tasks#add',   via: 'get'
   match '/index',   to: 'tasks#index',   via: 'get'
   match '/about_us',   to: 'tasks#about_us',   via: 'get'
