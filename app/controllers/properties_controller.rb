@@ -97,6 +97,13 @@ class PropertiesController < ApplicationController
   end
 
   def approve
+    @user = Property.find(params[:id]).user
+    @status = params[:status]
+    if params[:status] == "Approve"
+      @user.update_attributes(:approve=>false)
+    else
+      @user.update_attributes(:approve=>true)
+    end  
     respond_to do |format|
         format.js
       end
