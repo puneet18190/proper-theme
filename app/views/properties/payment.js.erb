@@ -1,4 +1,5 @@
+
 $($("ul li a span")[0]).parent().removeClass("active");
 $($("ul li a span")[1]).parent().addClass("active");
-$( ".payment" ).after( "<%= escape_javascript( render( :partial => "payment_form", :locals => { } ) ) %>" );
+$( ".payment" ).after( "<%= escape_javascript( render( :partial => "search_form", :locals => { } ) ) %>" );
 $(".payment").remove();

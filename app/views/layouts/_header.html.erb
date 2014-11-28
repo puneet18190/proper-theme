@@ -32,19 +32,19 @@
       <div class="pull-left"><%= Time.now.strftime("%A, %d %B %Y") %></div>
       <div class="pull-right">
         <% if user_signed_in? %>
-            <% if current_user.email == "admin@gmail.com" %>
-                <% if current_user.status == "admin" %>
-                  <%= link_to "Admin", properties_path   %>
-                <% end %>
-                <% else %>
-                <%= link_to "List Properties",  properties_path   %>
-                 <%= link_to "Landlord",   upload_step1_path   %>
-            <% end %>
+          <% if current_user.status == "admin" %>
+            <%= link_to "Admin", properties_path   %>
+          <% elsif current_user.status == "landlord" %>
+           <%= link_to "List Properties", properties_path   %>
+           <%= link_to "Landlord", new_property_path   %>
+          <% else %>
+            <%= link_to "Search Properties", search_property_path  %>
+          <% end %>
             Logged in as <strong><%= current_user.email %></strong>
             <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
         <% else %>
-            <%= link_to "Sign up", new_user_registration_path %> |
-            <%= link_to "Login", new_user_session_path %>
+          <%= link_to "Sign up", new_user_registration_path %> |
+          <%= link_to "Login", new_user_session_path %>
         <% end %>
       </div>
     </div>

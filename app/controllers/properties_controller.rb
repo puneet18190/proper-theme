@@ -1,10 +1,14 @@
 class PropertiesController < ApplicationController
-  layout proc { false if request.xhr? } 
+  layout proc { false if request.xhr? }
   before_action :set_property, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
   load_and_authorize_resource
   def index
-    @properties = Property.where(:user_id => current_user.id)
+    if current_user.email == "admin@gmail.com"
+      @properties = Property.all
+    else
+      @properties = Property.where(:user_id => current_user.id)
+    end
     respond_with(@properties)
   end
 
@@ -61,7 +65,6 @@ class PropertiesController < ApplicationController
 
   def confirm_payment
     # binding.pry
-
     UserMailer.deliver_payment_method(current_user)
     respond_to do |format|
       format.js
@@ -69,6 +72,26 @@ class PropertiesController < ApplicationController
     #redirect_to upload_step3_path, :notice => "Payment details has been sent to your email"
   end
 
+  def payment_confirmation
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
+  def payment
+      respond_to do |format|
+        format.js
+      end
+  end
+
+  def search_property
+    if current_user.status == "tenant" && current_user.payment==false
+      render :payment
+    elsif current_user.status == "tenant" && current_user.payment==true
+      render :search_form
+    end
+  end
 
   private
     def set_property
