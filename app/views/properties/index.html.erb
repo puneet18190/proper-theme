@@ -50,7 +50,7 @@
         <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %> </td>
               <% end %>
           <% if current_user.status == "admin" %>
-            <td>  <div id= "approve">  <%= button_to 'Approve', { action: 'approve'} %>  </div> </td>
+            <td>  <div id= "approve">  <%= button_to 'Approve', {action: 'approve'},remote: true %>  </div> </td>
           <% end %>
       </tr>
     <% end %>

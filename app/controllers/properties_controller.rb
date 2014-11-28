@@ -40,7 +40,10 @@ class PropertiesController < ApplicationController
       end
     else
       @property = Property.new(property_params)
-      respond_with(@property)
+      @property.save
+      respond_to do |format|
+        format.js
+      end
     end 
   end
 
@@ -92,6 +95,12 @@ class PropertiesController < ApplicationController
       render :search_form
     end
   end
+
+  def approve
+    respond_to do |format|
+        format.js
+      end
+  end  
 
   private
     def set_property
