@@ -71,7 +71,6 @@ ActiveRecord::Schema.define(version: 20141129095556) do
     t.string   "phone"
     t.string   "status"
     t.boolean  "payment",                default: false
-    t.boolean  "approve",                default: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
