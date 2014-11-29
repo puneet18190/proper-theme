@@ -25,15 +25,17 @@
                     <!--    End News Carousel-->
                     <div class="container">
                         <div class="panel">
-                            <div class="box-line">
-                                <h3 class="title-heading">Please complete the form</h3>
-                            </div>
-                            <!-- Start List Step Upload-->
-                            <ul class="unstyled proper-step">
-                                <li><a href="" class="active"><span>1</span></a></li>
-                                <li><a href="" ><span>2</span></a></li>
-                                <li><a href=""><span>3</span></a></li>
-                            </ul>
+                            <% if current_user.status == "landlord"%>
+                              <div class="box-line">
+                                  <h3 class="title-heading">Please complete the form</h3>
+                              </div>
+                              <!-- Start List Step Upload-->
+                              <ul class="unstyled proper-step">
+                                  <li><a href="" class="active"><span>1</span></a></li>
+                                  <li><a href="" ><span>2</span></a></li>
+                                  <li><a href=""><span>3</span></a></li>
+                              </ul>
+                            <%end%>
                             <div class="clearfix"></div>
                             <!-- Start Form Step -->
                           <div class="payment">
@@ -124,30 +126,32 @@
                                       <%= f.label :date %>
                                       <%= f.date_select :date %>
                                     </div><br/><br/><br/>
-                                    <div class="field">
-                                      <%= f.label :visibility %>
-                                      <%= f.check_box :visibility %>
-                                    </div>
-                                    <div class="field">
-                                      <div class="fiel">
-                                        <%= f.label :parking,"Off street parking" %>
-                                        <%= f.check_box :parking %>
+                                    <% if current_user.status=="admin" %>
+                                      <div class="field">
+                                        <%= f.label :visibility %>
+                                        <%= f.check_box :visibility %>
                                       </div>
-                                    </div><br>
-                                    <div class="field">
-                                      <%= f.label :let%>
-                                      <%= f.check_box :let %>
-                                    </div>
-                                    <div class="field">
-                                      <div class="sol">
-                                        <%= f.label :sold %>
-                                        <%= f.check_box :sold%>
+                                      <div class="field">
+                                        <div class="fiel">
+                                          <%= f.label :parking,"Off street parking" %>
+                                          <%= f.check_box :parking %>
+                                        </div>
+                                      </div><br>
+                                      <div class="field">
+                                        <%= f.label :let%>
+                                        <%= f.check_box :let %>
                                       </div>
-                                    </div><br>
-                                    <div class="field">
-                                      <%= f.label :featured %>
-                                      <%= f.check_box :featured %>
-                                    </div>
+                                      <div class="field">
+                                        <div class="sol">
+                                          <%= f.label :sold %>
+                                          <%= f.check_box :sold%>
+                                        </div>
+                                      </div><br>
+                                      <div class="field">
+                                        <%= f.label :featured %>
+                                        <%= f.check_box :featured %>
+                                      </div>
+                                     <%end%> 
                                     <br/>
                                     <%= f.submit "Next step", class: "btn btn-proper btn-large" %>
 

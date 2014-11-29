@@ -5,5 +5,11 @@ class UserMailer < ActionMailer::Base
     mail( :to => @user.email, :subject => 'Thanks for signing up for our amazing app' )
   end
 
+  def property_approval(property,status)
+  	@user = property.user
+  	@status = status
+    mail( :to => @user.email, :subject => 'Status of Property Approval' )
+  end	
+
 end
 

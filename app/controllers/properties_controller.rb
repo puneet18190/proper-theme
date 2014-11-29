@@ -4,7 +4,7 @@ class PropertiesController < ApplicationController
   respond_to :html, :xml, :json
   load_and_authorize_resource
   def index
-    if current_user.email == "admin@gmail.com"
+    if current_user.status == "admin"
       @properties = Property.all
     else
       @properties = Property.where(:user_id => current_user.id)
@@ -18,12 +18,10 @@ class PropertiesController < ApplicationController
 
 
   def new
-    if current_user.status == "landlord"
-      @property = current_user.properties.new
-    else
-      @property = Property.new
+    unless current_user.status == "tenant"
+      @property = current_user.properties.new  
+      respond_with(@property)
     end  
-    respond_with(@property)
   end
 
   def edit
@@ -31,19 +29,11 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    if current_user.status == "landlord"
-      @user = current_user
-      @property = @user.properties.new(property_params)
-      @property.save
-      respond_to do |format|
-        format.js
-      end
-    else
-      @property = Property.new(property_params)
-      @property.save
-      respond_to do |format|
-        format.js
-      end
+    @user = current_user
+    @property = @user.properties.new(property_params)
+    @property.save
+    respond_to do |format|
+      format.js
     end 
   end
 
@@ -97,13 +87,15 @@ class PropertiesController < ApplicationController
   end
 
   def approve
-    @user = Property.find(params[:id]).user
+    @property = Property.find(params[:id])
     @status = params[:status]
+    @property_id  = params[:id]
     if params[:status] == "Approve"
-      @user.update_attributes(:approve=>false)
+      @property.update_attributes(:approve=>true)
     else
-      @user.update_attributes(:approve=>true)
+      @property.update_attributes(:approve=>false)
     end  
+    UserMailer.property_approval(@property,@status).deliver
     respond_to do |format|
         format.js
       end

@@ -1,5 +1,7 @@
 <% if @status == "Approve"%>
-	$($("#approve input")[0]).val("Unapprove")
+	$($("<%="#approve_#{@property.id}"%> input")[0]).val("Unapprove")
+	$("#approve_<%="#{@property.id}"%> form").attr("action","/properties/approve?id=<%="#{@property.id}"%>&status=Unapprove")
 <%else%>
-	$($("#approve input")[0]).val("Approve")	
+	$($("<%="#approve_#{@property.id}"%> input")[0]).val("Approve")	
+	$("#approve_<%="#{@property.id}"%> form").attr("action","/properties/approve?id=<%="#{@property.id}"%>&status=Approve")
 <%end%>

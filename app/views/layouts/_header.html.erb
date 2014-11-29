@@ -36,7 +36,7 @@
             <%= link_to "Admin", properties_path   %>
           <% elsif current_user.status == "landlord" %>
            <%= link_to "List Properties", properties_path   %>
-           <%= link_to "Landlord", new_property_path   %>
+           <%= link_to "Click here to Add Property", new_property_path   %>
           <% else %>
             <%= link_to "Search Properties", search_property_path  %>
           <% end %>

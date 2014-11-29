@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141128034356) do
+ActiveRecord::Schema.define(version: 20141129095556) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "properties", force: true do |t|
     t.string   "address1"
     t.string   "address2"
     t.string   "address3"
-    t.decimal  "amount",      precision: 10, scale: 0
+    t.decimal  "amount"
     t.integer  "bath"
     t.integer  "beds"
     t.boolean  "parking"
@@ -33,7 +36,7 @@ ActiveRecord::Schema.define(version: 20141128034356) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "category"
-    t.decimal  "price",       precision: 10, scale: 0
+    t.decimal  "price"
     t.string   "name"
     t.integer  "postcode"
     t.boolean  "sold"
@@ -42,8 +45,8 @@ ActiveRecord::Schema.define(version: 20141128034356) do
     t.date     "s_date"
     t.date     "l_date"
     t.date     "r_date"
-    t.boolean  "approved"
     t.integer  "user_id"
+    t.boolean  "approve",     default: false
   end
 
   create_table "users", force: true do |t|
@@ -68,6 +71,7 @@ ActiveRecord::Schema.define(version: 20141128034356) do
     t.string   "phone"
     t.string   "status"
     t.boolean  "payment",                default: false
+    t.boolean  "approve",                default: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
