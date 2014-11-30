@@ -14,7 +14,7 @@
     </dl>
   </div>
   <!--    End News Carousel-->
-  <div class="cont">
+  <div class="cont" style="max-width:900px">
 
 <h3><b>Properties</b></h3>
 
@@ -28,6 +28,7 @@
       <th>Bath</th>
       <th>Parking</th>
       <th>Category</th>
+      <th>Payment Status</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -42,6 +43,7 @@
         <td><%= property.bath %></td>
         <td><%= property.parking %></td>
         <td><%= property.category %></td>
+        <td><%= property.payment %></td>
         <td><%= link_to 'Show', property %></td>
           <% if can? :update, @property %>
         <td><%= link_to 'Edit', edit_property_path(property) %> </td>
@@ -51,6 +53,8 @@
               <% end %>
           <% if current_user.status == "admin" %>
             <td>  <div id= <%="approve_#{property.id}"%>>  <%= button_to (property.approve == false ? 'Approve' : 'Unapprove'), {:controller => "properties", :action => "approve", :id => property.id, :status => property.approve == false ? 'Approve' : 'Unapprove'}, :method=>:post,:remote=>true %>  </div> </td>
+          <% elsif current_user.status == "landlord" %>
+            <td>  <div id= <%="payment_#{property.id}"%> >  <%= button_to (property.payment == false ? 'Confirm Payment' : 'Confirmed'), {:controller => "properties", :action => "landlord_payment", :id => property.id}, :method=>:get,:disabled =>(property.payment == false ? false : true) %>  </div> </td>
           <% end %>
       </tr>
     <% end %>

@@ -1,4 +1,5 @@
 class PropertiesController < ApplicationController
+  protect_from_forgery :except => "create"
   layout proc { false if request.xhr? }
   before_action :set_property, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
@@ -32,9 +33,8 @@ class PropertiesController < ApplicationController
     @user = current_user
     @property = @user.properties.new(property_params)
     @property.save
-    respond_to do |format|
-      format.js
-    end 
+    @property.update_attributes(:payment=>true) if current_user.status == "admin"
+    redirect_to "/properties" 
   end
 
   def update
@@ -56,31 +56,31 @@ class PropertiesController < ApplicationController
     respond_with(@property)
   end
 
-  def confirm_payment
-    # binding.pry
-    UserMailer.deliver_payment_method(current_user)
-    respond_to do |format|
-      format.js
-    end
-    #redirect_to upload_step3_path, :notice => "Payment details has been sent to your email"
-  end
+  # def confirm_payment
+  #   # binding.pry
+  #   UserMailer.deliver_payment_method(current_user)
+  #   respond_to do |format|
+  #     format.js
+  #   end
+  #   #redirect_to upload_step3_path, :notice => "Payment details has been sent to your email"
+  # end
 
-  def payment_confirmation
-    respond_to do |format|
-      format.js
-    end
-  end
+  # def payment_confirmation
+  #   respond_to do |format|
+  #     format.js
+  #   end
+  # end
 
 
-  def payment
-      respond_to do |format|
-        format.js
-      end
-  end
+  # def payment
+  #     respond_to do |format|
+  #       format.js
+  #     end
+  # end
 
   def search_property
     if current_user.status == "tenant" && current_user.payment==false
-      render :payment
+      render :tenant_payment
     elsif current_user.status == "tenant" && current_user.payment==true
       render :search_form
     end
@@ -100,6 +100,28 @@ class PropertiesController < ApplicationController
         format.js
       end
   end  
+
+  def landlord_payment
+
+  end  
+
+  def confirm_landlord_payment 
+    @property = Property.find(params[:id])
+    @property.update_attributes(:payment=>true)
+    UserMailer.deliver_payment_method(current_user)
+    redirect_to root_url, alert: "Payment confirmed. Thanks"
+  end 
+
+  def confirm_tenant_payment
+    current_user.update_attributes(:payment=>true)
+    respond_to do |format|
+      format.js
+    end
+  end 
+
+  def tenant_search
+
+  end
 
   private
     def set_property
