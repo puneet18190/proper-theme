@@ -18,13 +18,14 @@ class Ability
       can :landlord_payment, :all
       can :confirm_landlord_payment,:all 
     else
-       #can :manage, :all
-      can :read, :all
-      can :search_property, :all
-      can :payment, :all
-      can :payment_confirmation, :all
-      can :confirm_tenant_payment, :all
-      can :tenant_search, :all
+       can :manage, :all
+      # can :read, :all
+      # can :search_property, :all
+      # can :payment, :all
+      # can :payment_confirmation, :all
+      # can :confirm_tenant_payment, :all
+      # can :tenant_search, :all
+      # can :search, :all
     end
   end
 end

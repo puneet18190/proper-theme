@@ -76,17 +76,17 @@ class PropertiesController < ApplicationController
   # end
 
   def search_property
-    @search = Property.search(params[:q])
-    binding.pry
-    @properties = @search.result
-    
     if current_user.status == "tenant" && current_user.payment==false
       render :tenant_payment
     elsif current_user.status == "tenant" && current_user.payment==true
       render :tenant_search
     end
+  end
 
-
+  def tenant_search_result
+    @search = Property.search(params[:q])
+    # binding.pry
+    @properties = @search.result
   end
 
   def approve

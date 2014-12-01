@@ -31,14 +31,8 @@
           <div class="featured-grid right-space">
             <div class="box-white">
               <div class="grid-item grid-style-properties">
-                <% if @tasks.empty? %>
-                    <div class="item">
-                      <a href="#" class="with-hover">
-                        <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
-                      </a>
-                    </div>
-                <% else %>
-                    <% @tasks.each do |task| %>
+
+                    <% @properties.each do |task| %>
                         <% if task.visibility== true %>
                             <div class="item">
                               <a href="#" class="with-hover">
@@ -74,7 +68,7 @@
                                           </div>
                                       <% end %>
                                   <% end %>
-                        <% end %>
+
                         </div>
                         </div>
                         <!--End Grid Featured-->
