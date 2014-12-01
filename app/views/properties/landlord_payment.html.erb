@@ -39,15 +39,18 @@
                                   <!--Start Form Singup-->
                             <%= form_tag("/property/#{params[:id]}/confirm_landlord_payment", :method=>"post") do %>
                               <div class="proper-form-step-area">
-
                                 <div class="proper-singup">
                                   <h3 class=""><b>Payment Form</b></h3>
-                             
-                              <div>
-                                <%= text_field_tag "payment" %>
-                              </div>
-                              <div><%= submit_tag 'OK', class: "btn btn-proper btn-large" %></div>
-                                </div>
+                                  <article>
+                                    <label class="amount">
+                                      <span>Amount: $5.00</span>
+                                    </label>
+                                  </article>
+
+                                  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                          data-key="sk_test_qqfegpLWKFzXLzsxHSVnIZ5V"
+                                          data-description="A month's subscription"
+                                          data-amount="500"></script>
                               </div>
                             <% end %>
                            </div>

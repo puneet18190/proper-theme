@@ -37,16 +37,19 @@
 
       <div class="clearfix"></div>
       <div class="payment">
-        <%= form_tag("/confirm_tenant_payment", :method=>"post", :remote=>true) do %>
-            <div class="proper-form-step-area">
+        <%= form_tag("/confirm_tenant_payment", :method=>"post") do %>
+            <div class="proper-singup">
+              <h3 class=""><b>Payment Form</b></h3>
+              <article>
+                <label class="amount">
+                  <span>Amount: $5.00</span>
+                </label>
+              </article>
 
-              <div class="proper-singup">
-                <h3 class=""><b>Payment</b></h3>
-                <div>
-                  <%= text_field_tag "payment" %>
-                </div>
-                <div><%= submit_tag 'OK', class: "btn btn-proper btn-large" %></div>
-              </div>
+              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                      data-key="sk_test_qqfegpLWKFzXLzsxHSVnIZ5V"
+                      data-description="A month's subscription"
+                      data-amount="500"></script>
             </div>
         <% end %>
       </div>

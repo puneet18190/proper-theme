@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  protect_from_forgery :except => "create"
+  # protect_from_forgery :except => "create"
   layout proc { false if request.xhr? }
   before_action :set_property, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
@@ -7,8 +7,10 @@ class PropertiesController < ApplicationController
   def index
     if current_user.status == "admin"
       @properties = Property.all
-    else
+    elsif current_user.status == "landlord"
       @properties = Property.where(:user_id => current_user.id)
+    else
+      @properties = Property.all
     end
     respond_with(@properties)
   end
@@ -57,12 +59,7 @@ class PropertiesController < ApplicationController
   end
 
   # def confirm_payment
-  #   # binding.pry
-  #   UserMailer.deliver_payment_method(current_user)
-  #   respond_to do |format|
-  #     format.js
-  #   end
-  #   #redirect_to upload_step3_path, :notice => "Payment details has been sent to your email"
+  #
   # end
 
   # def payment_confirmation
@@ -79,11 +76,17 @@ class PropertiesController < ApplicationController
   # end
 
   def search_property
+    @search = Property.search(params[:q])
+    binding.pry
+    @properties = @search.result
+    
     if current_user.status == "tenant" && current_user.payment==false
       render :tenant_payment
     elsif current_user.status == "tenant" && current_user.payment==true
-      render :search_form
+      render :tenant_search
     end
+
+
   end
 
   def approve
@@ -102,8 +105,29 @@ class PropertiesController < ApplicationController
   end  
 
   def landlord_payment
+    # Amount in cents
+    @amount = 500
 
-  end  
+    customer = Stripe::Customer.create(
+        :email => 'example@stripe.com',
+        :card  => params[:stripeToken]
+    )
+
+    charge = Stripe::Charge.create(
+        :customer    => customer.id,
+        :amount      => @amount,
+        :description => 'Rails Stripe customer',
+        :currency    => 'usd'
+    )
+
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    # redirect_to properties_landlord_payment_path
+  end
+
+  # def tenant_payment
+  #
+  # end
 
   def confirm_landlord_payment 
     @property = Property.find(params[:id])
@@ -113,10 +137,25 @@ class PropertiesController < ApplicationController
   end 
 
   def confirm_tenant_payment
+    # Amount in cents
+    @amount = 500
+
+    customer = Stripe::Customer.create(
+        :email => 'example@stripe.com',
+        :card  => params[:stripeToken]
+    )
+
+    charge = Stripe::Charge.create(
+        :customer    => customer.id,
+        :amount      => @amount,
+        :description => 'Rails Stripe customer',
+        :currency    => 'usd'
+    )
+    # binding.pry
     current_user.update_attributes(:payment=>true)
-    respond_to do |format|
-      format.js
-    end
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to search_form_path
   end 
 
   def tenant_search

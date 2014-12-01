@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root 'tasks#index'
   post 'properties/approve'
-  post 'properties/confirm_payment'
+  # post 'properties/confirm_payment'
   post 'properties/payment_confirmation'
   post 'properties/payment'
   match '/add',   to: 'tasks#add',   via: 'get'
@@ -50,14 +50,14 @@ Rails.application.routes.draw do
   match 'screen3', to: 'screens#screen3', via: 'get'
   match 'screens/screen_properties_detail/:property_id',   to: 'screens#screen_properties_detail',   via: 'get'
 
-  match 'payment', to: 'properties#payment', via: 'get', format: 'js'
+  match 'payment', to: 'properties#payment', via: 'get'
 
   match 'search_property', to: 'properties#search_property', via: 'get'
   match '/property/:id/landlord_payment', to: 'properties#landlord_payment', via: 'get'
   match '/property/:id/confirm_landlord_payment', to: 'properties#confirm_landlord_payment', via: 'post'
   match 'confirm_tenant_payment', to: 'properties#confirm_tenant_payment', via: 'post'
-  match 'tenant_search', to: 'properties#tenant_search', via: 'post'
-
+  match 'tenant_search', to: 'properties#tenant_search', via: 'get'
+  match 'search_property', to: 'properties#search_property', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
