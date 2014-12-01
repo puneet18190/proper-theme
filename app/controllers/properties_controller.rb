@@ -106,19 +106,25 @@ class PropertiesController < ApplicationController
 
   def landlord_payment
     # Amount in cents
-    @amount = 500
+    # @amount = 500
 
-    customer = Stripe::Customer.create(
-        :email => 'example@stripe.com',
-        :card  => params[:stripeToken]
-    )
+    # customer = Stripe::Customer.create(
+    #     :email => 'example@stripe.com',
+    #     :card  => params[:stripeToken]
+    # )
 
-    charge = Stripe::Charge.create(
-        :customer    => customer.id,
-        :amount      => @amount,
-        :description => 'Rails Stripe customer',
-        :currency    => 'usd'
-    )
+    # charge = Stripe::Charge.create(
+    #     :customer    => customer.id,
+    #     :amount      => @amount,
+    #     :description => 'Rails Stripe customer',
+    #     :currency    => 'usd'
+    # )
+  # Stripe.api_key = "sk_test_RsHCMpYllmYNshcj4p81bmfC"
+  #     plan = "plan_10"
+  #     binding.pry
+  #     card_token = Stripe::Token.create( :card => { :name => params[:name_on_card], :number => params[:card_number], :exp_month => params[:exp_month], :exp_year => params[:exp_year], :cvc => params[:card_id] })
+  #     customer_params = {:card => card_token[:id], :plan => plan, :email => @account.email}
+  #     stripe_customer = Stripe::Customer.create(customer_params)
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
@@ -129,11 +135,21 @@ class PropertiesController < ApplicationController
   #
   # end
 
-  def confirm_landlord_payment 
-    @property = Property.find(params[:id])
-    @property.update_attributes(:payment=>true)
-    UserMailer.deliver_payment_method(current_user)
-    redirect_to root_url, alert: "Payment confirmed. Thanks"
+  def confirm_landlord_payment
+    begin
+      Stripe.api_key = "sk_test_RsHCMpYllmYNshcj4p81bmfC"
+      plan = "plan_10"
+      card_token = Stripe::Token.create( :card => { :name => params[:name_on_card], :number => params[:card_number], :exp_month => params[:exp_month], :exp_year => params[:exp_year], :cvc => params[:card_id] })
+      customer_params = {:card => card_token[:id], :plan => plan, :email => current_user.email}
+      stripe_customer = Stripe::Customer.create(customer_params) 
+      
+      @property = Property.find(params[:id])
+      @property.update_attributes(:payment=>true)
+      UserMailer.deliver_payment_method(current_user)
+      redirect_to root_url, alert: "Payment confirmed. Thanks"
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+    end
   end 
 
   def confirm_tenant_payment
