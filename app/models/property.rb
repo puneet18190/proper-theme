@@ -1,4 +1,7 @@
 class Property < ActiveRecord::Base
+	extend FriendlyId
+  	friendly_id :name, use: :slugged
+
   belongs_to :user
   mount_uploader :image1, Image1Uploader
   mount_uploader :image2, Image2Uploader

@@ -11,7 +11,7 @@ class TasksController < ApplicationController
   # end
 
   def properties_detail
-    @data = Property.find(params[:id])
+    @data = Property.friendly.find(params[:id])
   end
 
   def upload_step1

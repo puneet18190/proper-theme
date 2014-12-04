@@ -47,7 +47,7 @@
                                                     <% else %>
                                                         <div class="for_sale_banner"></div>
                                                     <% end %>
-                                                    <a href=<%="/properties_detail/#{task.id}"%>><%=  image_tag task.image1.url, class: "full", class: "mask_hover" %></a>   </a>
+                                                    <a href=<%="/properties_detail/#{task.slug}"%>><%=  image_tag task.image1.url, class: "full", class: "mask_hover" %></a>   </a>
                                                       <h4 class=" "><%= task.name %></h4>
                                                       <div class="preview-properties ">
                                                         <div class="box-detail">
@@ -63,7 +63,7 @@
                                                           </p>
                                                           <div class="clearfix">
                                                             <div class="btn-proper btn btn-small pull-left">
-                                                            <a href=<%="/properties_detail/#{task.id}"%>>See Detail</a>
+                                                            <a href=<%="/properties_detail/#{task.slug}"%>>See Detail</a>
 
                                                             </div>
                                                             <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
@@ -249,10 +249,10 @@ $(document).ready(function() {
                                 latLng: marker.getPosition(),
                                 options:{
                                     content:  "<div class='info-location'>" +
-                                    "<div class='text'><h4><a href='/properties_detail/"+context.data.id+"'>" 
+                                    "<div class='text'><h4><a href='/properties_detail/"+context.data.slug+"'>" 
                                     + context.data.properties_name +
                                     "</a></h4>"+
-                                    "<a href='/properties_detail/"+context.data.id+"'><img src='"+ context.data.img_preview +"' width=90></a> $300.999 <br/>"+
+                                    "<a href='/properties_detail/"+context.data.slug+"'><img src='"+ context.data.img_preview +"' width=90></a> $300.999 <br/>"+
                                     context.data.properties_desc +
                                     "<br/><a href='"+context.data.properties_link +"'class='btn btn-proper btn-small'>See Detail</a></div>" +
                                     "</div>" +
