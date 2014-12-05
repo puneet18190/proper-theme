@@ -12,6 +12,12 @@ class PropertiesController < ApplicationController
     else
       @properties = Property.all
     end
+
+    @properties.each do |obj|
+      if (obj.payment == true && (obj.validity - DateTime.now.in_time_zone("UTC")) < 0)
+          obj.update_attributes(:payment => false,:visibility=>false,:validity=>nil)
+      end  
+    end  
     respond_with(@properties)
   end
 
@@ -143,8 +149,9 @@ class PropertiesController < ApplicationController
       stripe_customer = Stripe::Customer.create(customer_params) 
       
       @property = Property.find(params[:id])
-      @property.update_attributes(:payment=>true)
-      UserMailer.deliver_payment_method(current_user)
+      old_validity = @property.validity || DateTime.now
+      @property.update_attributes(:visibility=>true,:payment=>true, :validity=>(old_validity + 30.days))
+      UserMailer.deliver_payment_method(@property).deliver
       redirect_to root_url, alert: "Payment confirmed. Thanks"
     rescue Stripe::CardError => e
       flash[:error] = e.message

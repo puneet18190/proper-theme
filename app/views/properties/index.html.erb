@@ -14,7 +14,7 @@
     </dl>
   </div>
   <!--    End News Carousel-->
-  <div class="cont" style="max-width:900px">
+  <div class="cont" style="max-width:1180px">
 
 <h3><b>Properties</b></h3>
 
@@ -29,6 +29,7 @@
       <th>Parking</th>
       <th>Category</th>
       <th>Payment Status</th>
+      <th>Validate Upto</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -44,6 +45,7 @@
         <td><%= property.parking %></td>
         <td><%= property.category %></td>
         <td><%= property.payment %></td>
+        <td><%= property.validity %></td>
         <td><%= link_to 'Show', property %></td>
           <% if can? :update, @property %>
         <td><%= link_to 'Edit', edit_property_path(property) %> </td>
@@ -54,7 +56,11 @@
           <% if current_user.status == "admin" %>
             <td>  <div id= <%="approve_#{property.id}"%>>  <%= button_to (property.approve == false ? 'Approve' : 'Unapprove'), {:controller => "properties", :action => "approve", :id => property.id, :status => property.approve == false ? 'Approve' : 'Unapprove'}, :method=>:post,:remote=>true %>  </div> </td>
           <% elsif current_user.status == "landlord" %>
-            <td>  <div id= <%="payment_#{property.id}"%> >  <%= button_to (property.payment == false ? 'Confirm Payment' : 'Confirmed'), {:controller => "properties", :action => "landlord_payment", :id => property.id}, :method=>:get,:disabled =>(property.payment == false ? false : true) %>  </div> </td>
+            <% if property.payment == true && (((property.validity - DateTime.now)/1.days) < 7)%>
+                <td>  <div id= <%="payment_#{property.id}"%> >  <%= button_to 'Renew', {:controller => "properties", :action => "landlord_payment", :id => property.id}, :method=>:get %>  </div> </td>
+            <%else%>
+              <td>  <div id= <%="payment_#{property.id}"%> >  <%= button_to (property.payment == false ? 'Confirm Payment' : 'Confirmed'), {:controller => "properties", :action => "landlord_payment", :id => property.id}, :method=>:get,:disabled =>(property.payment == false ? false : true) %>  </div> </td>
+              <%end%>
           <% end %>
       </tr>
     <% end %>
