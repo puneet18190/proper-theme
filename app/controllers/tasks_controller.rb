@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
   layout proc { false if request.xhr? }	
   def index
-    @search = Property.search(params[:q])
+    @properties = Property.where({payment: true, visibility: true})
+    @search = @properties.search(params[:q])
     @tasks = @search.result
-  #  @tasks= Property.all
   end
   #
   # def upload_step2
@@ -11,7 +11,12 @@ class TasksController < ApplicationController
   # end
 
   def properties_detail
-    @data = Property.friendly.find(params[:id])
+    begin
+      @data = Property.friendly.find(params[:id])
+      redirect_to root_url, alert: "No Property Found" unless @data.payment == true
+    rescue Exception => e
+      redirect_to root_url, alert: "No Property Found"
+    end
   end
 
   def upload_step1
