@@ -178,7 +178,7 @@ class PropertiesController < ApplicationController
     page_link =    request.referer
     caption =     "#{@property.description} | #{@property.address3}"
     description =  @property.description || "N.A."
-    picture_url =  request.host_with_port+"/assets/R03R.png"
+    picture_url =  "http://"+request.host_with_port+"/assets/R03R.png"
 
     url = "https://www.facebook.com/dialog/feed?app_id=362914167223991&"\
     "link=#{page_link}&"\
@@ -186,7 +186,7 @@ class PropertiesController < ApplicationController
     "name=#{name}&"\
     "caption=#{caption}&"\
     "description=#{description}&"\
-    "redirect_uri=#{request.host_with_port}/properties/#{@property.id}&"\
+    "redirect_uri=http://#{request.host_with_port}/properties/#{@property.id}&"\
     "display=page"
 
     redirect_to URI.encode(url)
