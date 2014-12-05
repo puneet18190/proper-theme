@@ -186,7 +186,7 @@ class PropertiesController < ApplicationController
     "name=#{name}&"\
     "caption=#{caption}&"\
     "description=#{description}&"\
-    "redirect_uri=http://#{request.host_with_port}/properties/#{@property.id}&"\
+    "redirect_uri=http://#{request.host_with_port}/properties_detail/#{@property.id}&"\
     "display=page"
 
     redirect_to URI.encode(url)
