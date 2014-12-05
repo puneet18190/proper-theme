@@ -172,6 +172,26 @@ class PropertiesController < ApplicationController
 
   end
 
+  def facebook_share
+    @property = Property.find(params[:property_id])
+    name =         @property.name
+    page_link =    request.referer
+    caption =     "#{@property.description} | #{@property.address3}"
+    description =  @property.description || "N.A."
+    picture_url =  request.host_with_port+"/assets/R03R.png"
+
+    url = "https://www.facebook.com/dialog/feed?app_id=362914167223991&"\
+    "link=#{page_link}&"\
+    "picture=#{picture_url}&"\
+    "name=#{name}&"\
+    "caption=#{caption}&"\
+    "description=#{description}&"\
+    "redirect_uri=#{request.host_with_port}/properties/#{@property.id}&"\
+    "display=page"
+
+    redirect_to URI.encode(url)
+  end  
+
   private
     def set_property
       @property = Property.friendly.find(params[:id])
