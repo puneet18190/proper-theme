@@ -8,6 +8,7 @@
 
 User.create(:username => "admin", :email => "admin@gmail.com", :password => "12345678", :password_confirmation => "12345678", :address => "address", :phone => "9876543210", :status => "admin", :confirmed_at => Time.now)
 
+Property.create(:address1 => "16 Rectory Place", :address2 => "Bensham",:address3 => "Gateshead",:amount => "395",:bath => "1",:beds => "1",:parking =>"1", :description => "One bedroom ground floor flat with gas central heating", :visibility => "1",:category => "rent", :price => "450", :name => "Rectory Place", :postcode => "NE8 1XN")
 Property.create(:address1 => "25 Rectory Place", :address2 => "Bensham",:address3 => "Gateshead",:amount => "450",:bath => "2",:beds => "3",:parking =>"1", :description => "Very large, recently decorated throughout 3 bed room maisonette", :visibility => "1",:category => "rent", :price => "450", :name => "Rectory Place", :postcode => "NE8 1XN")
 
 #  t.string   "address1"
