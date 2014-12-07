@@ -1,7 +1,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	var property_id=1;
+	var property_id=<%=@properties[0].id%>;
 	run_script(property_id);
 })	
 
@@ -15,9 +15,9 @@ function run_script(property_id){
 			var num = property_id
 			var delay = 10000;
 			$(".screen_num").html("Screen 3 Page "+num)
-			property_id = property_id+1;
-			if (<%= @properties.count.to_i %> == num){
-				property_id = 1;
+			property_id = property_id+<%=@properties[0].id%>;
+			if (<%= @properties.count %> == num){
+				property_id = <%=@properties[0].id%>;
 			}
 			
 			setTimeout(
@@ -28,7 +28,7 @@ function run_script(property_id){
 			
 		},
 		error : function(){
-			run_script(1);
+			run_script(<%=@properties[0].id%>);
 		}
 	})
 }
