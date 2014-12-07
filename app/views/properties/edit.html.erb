@@ -94,10 +94,6 @@
           <%= f.label :description %>
           <%= f.text_area :description %>
         </div>
-        <div class="field">
-          <%= f.label :date %>
-          <%= f.date_select :date %>
-        </div><br/><br/>
         <% if current_user.status=="admin" %>
           <div class="field">
             <%= f.label :visibility %>

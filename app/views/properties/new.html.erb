@@ -83,11 +83,11 @@
                                     </div>
                                     <div class="field">
                                       <%= f.label :beds %>
-                                      <%= f.number_field :beds %>
+                                      <%= f.number_field :beds, :min => 0 %>
                                     </div>
                                     <div class="field">
                                       <%= f.label :bath %>
-                                      <%= f.number_field :bath %>
+                                      <%= f.number_field :bath, :min => 0 %>
                                     </div>
                                     <div class="field">
                                       <%= f.label :category %>
@@ -121,11 +121,7 @@
                                     <div class="field">
                                       <%= f.label :description %>
                                       <%= f.text_area :description %>
-                                    </div>
-                                    <div class="field">
-                                      <%= f.label :date %>
-                                      <%= f.date_select :date %>
-                                    </div><br/><br/><br/>
+                                    </div><br/>
                                     <% if current_user.status=="admin" %>
                                       <div class="field">
                                         <%= f.label :visibility %>
