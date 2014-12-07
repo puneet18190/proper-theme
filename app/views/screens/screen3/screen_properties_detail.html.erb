@@ -38,21 +38,20 @@
                                 <div class="desc-type for-sale">For Sale</div>
                                 <div class="price">&euro; 330.090</div>
                               </div>
-                              <img src="proper_theme/images/properties/p1.jpg" alt="property"/>
+                              <%= image_tag @data.image1.url, id: "big-image-preview", alt: "big-image-preview" %>
+                            <!--  <img src="proper_theme/images/properties/p1.jpg" alt="property"/> -->
                             </a>
                           </div>
                         </div>
                         <div class="span6">
                           <div class="property-details">
-                            <h3><a href="#">086 Central Park Lion</a></h3>
-                            <p>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</p>
+                            <h3><a href="#">086 <%= @data.name %></a></h3>
+                            <p><%= @data.description %></p>
                             <p>
-                              <span class="label"><i class="icon-circle-arrow-right"></i> Bath : 10</span>
-                              <span class="label"><i class="icon-circle-arrow-right"></i> Beds : 8</span>
-                              <span class="label"><i class="icon-circle-arrow-right"></i> Pool : 2</span>
-                              <span class="label"><i class="icon-circle-arrow-right"></i> Kicthen : 2</span>
-                              <span class="label"><i class="icon-circle-arrow-right"></i> Office : 3</span>
-                              <span class="label"><i class="icon-circle-arrow-right"></i> Music Room : 2</span>
+                              <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= @data.bath %></span>
+                              <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= @data.beds %></span>
+                              <span class="label"><i class="icon-circle-arrow-right"></i> Parking : <%= @data.parking %></span>
+
                             </p>
                             <div class="agent-preview">
                               <div class="agent-image pull-left"  ><a href="#"><img src="proper_theme/images/agents/a1.jpg" class="img-polaroid" alt="property"></a></div>
