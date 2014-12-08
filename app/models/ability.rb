@@ -17,6 +17,7 @@ class Ability
       can :destroy, :all
       can :landlord_payment, :all
       can :confirm_landlord_payment,:all 
+      can :facebook_share,:all
     else
        can :manage, :all
       # can :read, :all

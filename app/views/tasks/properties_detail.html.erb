@@ -25,15 +25,16 @@
     <div class="container">
         <div class="row-fluid">
             <div class="span9">
-                <div class="panel right-line">
+                <div class="panel right-line" itemscope="" itemtype="http://schema.org/Property">
                     <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span>Properties</h2>
                   <!-- START DETAIL-->
-                  <div class="detail-properties right-space">
+                  <div class="detail-properties right-space" itemscope="" itemtype="http://schema.org/Product">
 
                             <!-- START SLIDER -->
+                            <div itemprop="name" style="display:none"><%= @data.name %></div>
                             <div class="big-image text-center">
                               <div class="preloader"></div>
-                              <div class="desc-image">
+                              <div class="desc-image" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
                                 <h3><%= @data.name %></h3>
                                 <p>In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque. </p>
                               </div>
@@ -57,7 +58,8 @@
                             <p> <%= @data.description %>  </p>
                             <!-- AddThis Button BEGIN -->
                             <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
-                              <a class="addthis_button_facebook"></a>
+                              <!--<a class="addthis_button_facebook"></a>-->
+                              <a href="/facebook_share/<%=@data.id%>"><img src="/assets/fb_share.jpg" height="5" style="height: 24px;padding: 5px;margin-top: -8px;width: 70px;"></a>
                               <a class="addthis_button_twitter"></a>
                               <a class="addthis_button_pinterest_share"></a>
                               <a class="addthis_button_google_plusone_share"></a>

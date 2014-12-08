@@ -94,32 +94,30 @@
           <%= f.label :description %>
           <%= f.text_area :description %>
         </div>
-        <div class="field">
-          <%= f.label :date %>
-          <%= f.date_select :date %>
-        </div><br/><br/>
-        <div class="field">
-          <%= f.label :visibility %>
-          <%= f.check_box :visibility %>
-        </div>
-        <div class="field">
-          <div class="fiel">
-          <%= f.label :parking,"Off street parking"%>
-          <%= f.check_box :parking %>
-        </div></div><br>
-        <div class="field">
-          <%= f.label :let %>
-          <%= f.check_box :let %>
-        </div>
-        <div class="field">
-          <div class="sol">
-          <%= f.label :sold %>
-          <%= f.check_box :sold %>
-        </div></div><br>
-        <div class="field">
-          <%= f.label :featured %>
-          <%= f.check_box :featured %>
-        </div>
+        <% if current_user.status=="admin" %>
+          <div class="field">
+            <%= f.label :visibility %>
+            <%= f.check_box :visibility %>
+          </div>
+          <div class="field">
+            <div class="fiel">
+            <%= f.label :parking,"Off street parking"%>
+            <%= f.check_box :parking %>
+          </div></div><br>
+          <div class="field">
+            <%= f.label :let %>
+            <%= f.check_box :let %>
+          </div>
+          <div class="field">
+            <div class="sol">
+            <%= f.label :sold %>
+            <%= f.check_box :sold %>
+          </div></div><br>
+          <div class="field">
+            <%= f.label :featured %>
+            <%= f.check_box :featured %>
+          </div>
+        <%end%>  
         <br/>
         <div class="actions">
           <%= f.submit "Submit" %>

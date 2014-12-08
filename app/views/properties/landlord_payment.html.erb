@@ -37,22 +37,34 @@
                           <div class="payment">
 
                                   <!--Start Form Singup-->
-                            <%= form_tag("/property/#{params[:id]}/confirm_landlord_payment", :method=>"post") do %>
-                              <div class="proper-form-step-area">
-                                <div class="proper-singup">
-                                  <h3 class=""><b>Payment Form</b></h3>
-                                  <article>
-                                    <label class="amount">
-                                      <span>Amount: $5.00</span>
-                                    </label>
-                                  </article>
+                            <%= form_tag("/property/#{params[:id]}/confirm_landlord_payment", :method=>"post") do |f| %>
+                                <div class="field">
+                                  <%= label_tag "Name on card" %>
+                                  <%= text_field_tag :name_on_card, nil, :required => true %>
+                                </div>
+                                <div class="field">
+                                  <%= label_tag "Card Number" %>
+                                  <%= text_field_tag :card_number, nil, :required => true %>
+                                </div>
+                                <div class="field", style="height:70px">
+                                  <%= label_tag "Expire Date:" %>
+                                  <%= select_month nil, {:add_month_numbers_true => true}, {name: "exp_month", :required => true} %>
+                                  <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: "exp_year", :required => true} %>
+                                </div>
+                                <div class="field">
+                                  <%= label_tag "Security Code on Card (CVV)" %>
+                                  <%= text_field_tag :card_id, nil, :required => true %>
+                                </div>
+                          
+                                <div class="field">
+                                  <%= label_tag "Amount" %>
+                                  <%= text_field_tag :amount, "$10.00", {:readonly=>"readonly"} %>
+                                </div>
+                                <div class="actions"></div>
+                                <%= submit_tag "Next" %>
+                              <% end %>
+                            
 
-                                  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                          data-key="sk_test_qqfegpLWKFzXLzsxHSVnIZ5V"
-                                          data-description="A month's subscription"
-                                          data-amount="500"></script>
-                              </div>
-                            <% end %>
                            </div>
                         </div>
 

@@ -2,16 +2,16 @@
 <div id="content">
     <!--Start Main Title-->
     <div id="main-title-content">
-        <img src="/assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
+        <img src="/assets/properties/slider/fslider/p1.jpg" height = "200" id="bg" alt="main-title"/>
         <div class="container">
             <div class="panel">
-                <h1>Detail Property</h1>    
-                <p>Newest</p>
+                <h1>Property Details</h1>
+                <p>Newest Additions</p>
             </div>
         </div>
     </div> <!--End Main Title-->
      <!--    News Carousel-->
-    <div class="news-carousel-wrapper">
+  <!--  <div class="news-carousel-wrapper">
         <dl id="news-carousel" class="news-carousel-style">
             <dt><a href="#">News Link Here</a></dt>
             <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
@@ -27,6 +27,69 @@
             <div class="span9">
                 <div class="panel right-line">
                     <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span>Properties</h2>
+
+                  <div class="list-properties right-space">
+                    <div class="property ">
+                      <div class="row-fluid">
+                        <div class="span6">
+                          <div class="property-images">
+                            <a href="#">
+                              <div class="mask">
+                                <div class="desc-type for-sale">For Sale</div>
+                                <div class="price">&euro; 330.090</div>
+                              </div>
+                              <% if @data.image1.url.empty? %>
+                                   <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
+                              <% else %>
+                                <%= image_tag @data.image1.url, id: "big-image-preview", alt: "big-image-preview" %>
+                              <% end %>
+                            <!--  <img src="proper_theme/images/properties/p1.jpg" alt="property"/> -->
+                            </a>
+                          </div>
+                        </div>
+                        <div class="span6">
+                          <div class="property-details">
+                            <h3><a href="#">086 <%= @data.name %></a></h3>
+                            <p><%= @data.description %></p>
+                            <p>
+                              <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= @data.bath %></span>
+                              <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= @data.beds %></span>
+                              <span class="label"><i class="icon-circle-arrow-right"></i> Parking : <%= @data.parking %></span>
+
+                            </p>
+                            <div class="agent-preview">
+                              <div class="agent-image pull-left"  ><a href="#"><img src="proper_theme/images/agents/a1.jpg" class="img-polaroid" alt="property"></a></div>
+                              <div class="agent-contant pull-right">
+                                <ul class="unstyled">
+                                  <li><i class="icon-phone"></i> (+89)98732.984 </li>
+                                  <li><i class="icon-envelope"></i> agent@company.com</li>
+                                  <li><i class="icon-facebook"></i> angel</li>
+                                  <li><i class="icon-twitter"></i> @angel</li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                   <!-- START DETAIL-->
                   <div class="detail-properties right-space">
 
@@ -53,8 +116,7 @@
                               <a id="next2" class="next" href="#">&gt;</a>
                             </div>
                             <!-- END SLIDER -->
-                            <h3>Property Description</h3>
-                            <p> <%= @data.description %>  </p>
+
                             <!-- AddThis Button BEGIN -->
                             <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
                               <a class="addthis_button_facebook"></a>
@@ -65,7 +127,7 @@
                             </div>
                             <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51965a0e6903b31d"></script>
                             <!-- AddThis Button END -->
-                            <h3>Property Feature</h3>
+                            <h3>Property Features</h3>
                             <ul class="clear">
                               <li>Name: <%= @data.name %></li>
                               <li>Price: <%= @data.price %></li>
@@ -77,8 +139,8 @@
                               <li>Parking: <%= @data.parking %></li>
                               <li>Category: <%= @data.category %></li>
                             </ul>
-                            <h3>Addtional Features</h3>
-                            <p>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elitipsum dolor sit amet, consectetur fermentum adipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elitadipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elitadipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elitadipiscing elit, ipsum dolor sit amet, consectetur fermentum adipiscing elit.</p>
+                            <h3>Property Description</h3>
+                            <p> <%= @data.description %>  </p>
 
                             <!-- END DETAIL-->
 
@@ -93,7 +155,7 @@
                         <div id="googleMap" class="" style="height:300px;margin-bottom:25px"></div>
                     </div><!-- END MAP LOCATION -->
                     <!-- Detail Agent -->
-                    <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-user"></i></span> Agent</h3>
+                 <!--   <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-user"></i></span> Agent</h3>
                     <div class="agent-panel bottom-line line-before">
                         <a href="#" class="agent-image ">
                             <img src="/assets/agents/circle/a1.jpg" class="img-polaroid" alt="agent">
@@ -106,7 +168,7 @@
                         </ul>
                     </div><!-- END Detail Agent -->
                     <!-- FORM CONTACT -->
-                    <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-envelope-alt"></i></span> Contact Agent</h3>
+                <!--    <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-envelope-alt"></i></span> Contact Agent</h3>
                     <form>
                         <label>Name</label>
                         <input type="text" name="name" placeholder="Enter Your Name" required="" class="input-block-level"/>
