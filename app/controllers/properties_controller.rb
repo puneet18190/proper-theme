@@ -13,11 +13,13 @@ class PropertiesController < ApplicationController
       @properties = Property.all
     end
 
-    @properties.each do |obj|
-      if (obj.payment == true && (obj.validity - DateTime.now.in_time_zone("UTC")) < 0)
-          obj.update_attributes(:payment => false,:visibility=>false,:validity=>nil)
+    if current_user.status == "landlord"
+      @properties.each do |obj|
+        if (obj.payment == true && (obj.validity - DateTime.now.in_time_zone("UTC")) < 0)
+            obj.update_attributes(:payment => false,:visibility=>false,:validity=>nil)
+        end  
       end  
-    end  
+    end
     respond_with(@properties)
   end
 
