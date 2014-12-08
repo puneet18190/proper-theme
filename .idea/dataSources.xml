@@ -5,6 +5,8 @@
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1/proper</jdbc-url>
+      <user-name>puneet</user-name>
+      <user-password>dfdadfdfdfc4dfcfdfcfdfde</user-password>
       <libraries>
         <library>
           <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-driver-license.txt</url>
@@ -17,7 +19,9 @@
     <data-source source="LOCAL" name="Rails proper: production" uuid="66fa5881-6ab1-413e-8dfd-f7c754140880">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://127.0.0.1/proper1</jdbc-url>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/proper</jdbc-url>
+      <user-name>puneet</user-name>
+      <user-password>dfdadfdfdfc4dfcfdfcfdfde</user-password>
       <libraries>
         <library>
           <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-driver-license.txt</url>
@@ -31,14 +35,17 @@
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1/proper</jdbc-url>
+      <user-name>puneet</user-name>
+      <user-password>dfdadfdfdfc4dfcfdfcfdfde</user-password>
       <libraries>
         <library>
-          <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-driver-license.txt</url>
+          <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-license.txt</url>
         </library>
         <library>
-          <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-9.1-901.jdbc3.jar</url>
+          <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-java-5.1.18-bin.jar</url>
         </library>
       </libraries>
     </data-source>
   </component>
 </project>
+
