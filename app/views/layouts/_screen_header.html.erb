@@ -22,7 +22,16 @@
   <![endif]-->
 
   <style>
-      .noscroll{width:200px; height:200px; overflow-y: hidden;}
+
+      iframe::-webkit-scrollbar
+      {
+          display: none;
+      }
+
+      iframe
+      {
+          overflow: hidden;
+      }
   </style>
 
   <link rel="shortcut icon" href="/assets/logo.png">
