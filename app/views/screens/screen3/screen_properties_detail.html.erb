@@ -40,9 +40,9 @@
                               </div>
                               <% if @data.image1.url.empty? %>
                                    <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
-                                    <% else %>
-                              <%= image_tag @data.image1.url, id: "big-image-preview", alt: "big-image-preview" %>
-                                  <% end %>
+                              <% else %>
+                                <%= image_tag @data.image1.url, id: "big-image-preview", alt: "big-image-preview" %>
+                              <% end %>
                             <!--  <img src="proper_theme/images/properties/p1.jpg" alt="property"/> -->
                             </a>
                           </div>
