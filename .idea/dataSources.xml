@@ -17,7 +17,7 @@
     <data-source source="LOCAL" name="Rails proper: production" uuid="66fa5881-6ab1-413e-8dfd-f7c754140880">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://127.0.0.1/proper1</jdbc-url>
+      <jdbc-url>jdbc:postgresql:proper1</jdbc-url>
       <libraries>
         <library>
           <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-driver-license.txt</url>
