@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20141205092951) do
     t.string   "address1"
     t.string   "address2"
     t.string   "address3"
-    t.decimal  "amount"
+    t.decimal  "amount",      precision: 10, scale: 0
     t.integer  "bath"
     t.integer  "beds"
     t.boolean  "parking"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20141205092951) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "category"
-    t.decimal  "price"
+    t.decimal  "price",       precision: 10, scale: 0
     t.string   "name"
     t.integer  "postcode"
     t.boolean  "sold"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20141205092951) do
     t.date     "s_date"
     t.date     "l_date"
     t.date     "r_date"
+    t.boolean  "approved"
     t.integer  "user_id"
     t.boolean  "approve",     default: false
     t.boolean  "payment",     default: false

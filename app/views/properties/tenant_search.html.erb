@@ -28,26 +28,39 @@
               <h3 class="title-heading">Please complete the form</h3>
             </div>
             <!-- Start List Step Upload-->
-            <% if current_user.payment == false %>
-              <ul class="unstyled proper-step">
-                <li><a href="" ><span>1</span></a></li>
-                <li><a href="" class="active"><span>2</span></a></li>
-                <li><a href=""><span>3</span></a></li>
-              </ul><!-- End List-->
-            <% else %>
-                <ul class="unstyled proper-step">
-                  <li><a href="" class="active" ><span>1</span></a></li>
-                  <li><a href="" ><span>2</span></a></li>
-                </ul><!-- End List-->
-            <% end %>
+
             <div class="clearfix"></div>
-              <form class="bottom-line line-before" action="?" method="get">
+              <form class="bottom-line line-before" action="/tenant_search_result" method="get">
                 <div class="proper-form-step-area">
                   <div class="proper-singup">
                 <label><h3>Search</h3></label>
-                <%= search_form_for @search  do |f| %>
+                <%= search_form_for Property.search(params[:q]) do |f| %>
                     <div class="field">
-                      <%= f.text_field :name_cont %>
+                      <div class="input-block-level">
+                        <%= f.label :name_cont, "Name" %>
+                        <%= f.text_field :name_cont, class: "tcsize" %>
+                      </div>
+                      <div class="input-block-level">
+                        <%= f.label :category_cont, "Category" %>
+                        <%= f.text_field :category_cont, class: "tcsize" %>
+                      </div>
+                      <div class="control-group half pull-left">
+                        <%= f.label :price_gteq, "Min Price" %>
+                        <%= f.text_field :price_gteq, class: "tpgsize" %>
+                      </div>
+                      <div class="control-group half text-right pull-right">
+                        <%= f.label :price_lteq, "Max Price", class: "tpllsize"  %>
+                        <%= f.text_field :price_lteq, class: "tplsize" %>
+                      </div>
+                      <div class="input-block-level">
+                        <%= f.label :beds_eq, "Beds" %>
+                        <%= f.search_field :beds_eq, class: "tcsize" %>
+                      </div>
+                      <div class="input-block-level">
+                        <%= f.label :bath_eq, "Bath" %>
+                        <%= f.search_field :bath_eq, class: "tcsize" %>
+                      </div>
+
                     </div>
                     <div class="actions"><%= f.submit "Search" %></div>
                  </div>

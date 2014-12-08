@@ -13,6 +13,7 @@
            <%= link_to "List Properties", properties_path   %>
            <%= link_to "Click here to Add Property", new_property_path   %>
           <% else %>
+            <%= link_to "Payment", payment_property_path  %>
             <%= link_to "Search Properties", search_property_path  %>
           <% end %>
             Logged in as <strong><%= current_user.email %></strong>

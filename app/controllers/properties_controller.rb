@@ -1,5 +1,4 @@
 class PropertiesController < ApplicationController
-  # protect_from_forgery :except => "create"
   layout proc { false if request.xhr? }
   before_action :set_property, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
@@ -13,11 +12,13 @@ class PropertiesController < ApplicationController
       @properties = Property.all
     end
 
-    @properties.each do |obj|
-      if (obj.payment == true && (obj.validity - DateTime.now.in_time_zone("UTC")) < 0)
-          obj.update_attributes(:payment => false,:visibility=>false,:validity=>nil)
+    if current_user.status == "landlord"
+      @properties.each do |obj|
+        if (obj.payment == true && (obj.validity - DateTime.now.in_time_zone("UTC")) < 0)
+            obj.update_attributes(:payment => false,:visibility=>false,:validity=>nil)
+        end  
       end  
-    end  
+    end
     respond_with(@properties)
   end
 
@@ -64,35 +65,24 @@ class PropertiesController < ApplicationController
     respond_with(@property)
   end
 
-  # def confirm_payment
-  #
-  # end
-
-  # def payment_confirmation
-  #   respond_to do |format|
-  #     format.js
-  #   end
-  # end
-
-
-  # def payment
-  #     respond_to do |format|
-  #       format.js
-  #     end
-  # end
-
   def search_property
     @search = Property.search(params[:q])
     @properties = @search.result
-    
+
     if current_user.status == "tenant" && current_user.payment==false
       render :tenant_payment
     elsif current_user.status == "tenant" && current_user.payment==true
       render :tenant_search
     end
-
-
   end
+
+  def tenant_search_result
+    @user = current_user
+    @search = Property.search(params[:q])
+    @properties = @search.result
+    UserMailer.tenant_result_property(@user, @properties).deliver
+  end
+
 
   def approve
     @property = Property.find(params[:id])
@@ -105,8 +95,8 @@ class PropertiesController < ApplicationController
     end  
     UserMailer.property_approval(@property,@status).deliver
     respond_to do |format|
-        format.js
-      end
+      format.js
+    end
   end  
 
   def landlord_payment
@@ -133,7 +123,6 @@ class PropertiesController < ApplicationController
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    # redirect_to properties_landlord_payment_path
   end
 
   # def tenant_payment
@@ -169,11 +158,12 @@ class PropertiesController < ApplicationController
       
       current_user.update_attributes(:payment=>true)
       #UserMailer.deliver_payment_method(current_user)
+      render :tenant_search
     rescue Stripe::CardError => e
       flash[:error] = e.message
       redirect_to search_form_path
     end
-  end   
+  end
 
   def tenant_search
 

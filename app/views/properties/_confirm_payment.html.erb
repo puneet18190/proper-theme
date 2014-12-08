@@ -1,1 +1,52 @@
 <h1 align="center">Thank you very much......</h1>
+
+
+<!--Start Content-->
+<div id="content">
+  <!--Start Main Title-->
+  <div id="main-title-content">
+    <img src="/assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
+    <div class="container">
+      <div class="panel">
+        <h1>Upload Items</h1>
+        <p>Sub Title Here</p>
+      </div>
+    </div>
+  </div> <!--End Main Title-->
+  <!--    News Carousel-->
+  <div class="news-carousel-wrapper">
+    <dl id="news-carousel" class="news-carousel-style">
+      <dt><a href="#">News Link Here</a></dt>
+      <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+      <dt><a href="#">Promo Link Here</a></dt>
+      <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+      <dt><a href="#">Another Link Here</a></dt>
+      <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+    </dl>
+  </div>
+  <!--    End News Carousel-->
+  <div class="container">
+    <div class="panel">
+      <div class="box-line">
+        <h3 class="title-heading">Please complete the form</h3>
+      </div>
+      <!-- Start List Step Upload-->
+
+      <div class="clearfix"></div>
+      <form class="bottom-line line-before" action="?" method="get">
+        <br/>
+        <label><h3>Search</h3></label>
+        <%= search_form_for Property.search(params[:q]) do |f| %>
+            <div class="field">
+              <%= f.text_field :name_cont %>
+            </div>
+            <div class="actions">
+              <%= f.submit "Search" %>
+            </div>
+        <% end %>
+
+      </form>
+    </div>
+  </div>
+</div><!--EndContent-->
+

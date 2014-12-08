@@ -655,3 +655,34 @@ tr {
     margin-left: 100px;
     margin-top: -54px;
 }
+
+.tcsize {
+    width: 255px;
+}
+
+ .bsize {
+    width: 100px;
+}
+
+.tpgsize {
+    width: 80px;
+}
+
+.tplsize {
+    margin-right: 1000px;
+    width: 80px;
+}
+
+.tpllsize {
+    margin-right: 55px;
+}
+
+#b1 {
+    margin-left: 250px;
+    margin-top: 65px;
+}
+
+#b2 {
+    margin-left: 400px;
+    margin-top: -113px;
+}

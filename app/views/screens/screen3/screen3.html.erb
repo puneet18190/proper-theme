@@ -1,35 +1,43 @@
-
 <script type="text/javascript">
 $(document).ready(function() {
-	var property_id=<%=@properties[0].id%>;
-	run_script(property_id);
+	var ids = []
+	<% @properties.each do |n|%>
+		ids.push(<%=n.id%>)
+	<%end%>	
+	var index=0
+	run_script(ids,ids[0],index);
 })	
 
-function run_script(property_id){
+function run_script(ids,property_id,index){
 	$.ajax({
 		type : 'get',
 		url : 'screens/screen_properties_detail/'+property_id,
 		async: false,
 		success : function(response){
 			$(".main_container").html(response);
-			var num = property_id
+			var num = index + 1
 			var delay = 10000;
-			$(".screen_num").html("Screen 3 Page "+num)
-			property_id = property_id+<%=@properties[0].id%>;
-			if (<%= @properties.count %> == num){
-				property_id = <%=@properties[0].id%>;
+			$(".screen_num").html("Screen 1 Page "+num)
+			index = index+1;
+			if (index == ids.length){
+				index = 0;
 			}
 			
 			setTimeout(
 			  function() 
 			  {
-			    run_script(property_id);
+			    run_script(ids,ids[index],index);
 			  }, delay);
 			
 		},
 		error : function(){
-			run_script(<%=@properties[0].id%>);
-		}
-	})
+			var ids = []
+			<% @properties.each do |n|%>
+				ids.push(<%=n.id%>)
+			<%end%>	
+			var index=0
+			run_script(ids,ids[0],index);
+				}
+			})
 }
 </script>

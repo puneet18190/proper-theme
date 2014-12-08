@@ -5,10 +5,6 @@ class TasksController < ApplicationController
     @search = @properties.search(params[:q])
     @tasks = @search.result
   end
-  #
-  # def upload_step2
-  #   redirect_to upload_step3_path, :notice => "Payment details has been sent to your email"
-  # end
 
   def properties_detail
     begin

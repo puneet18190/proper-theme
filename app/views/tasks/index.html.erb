@@ -217,9 +217,8 @@ $(document).ready(function() {
                 },
                 <% @tasks.each do |obj| %>
                 <% address =  "#{obj.address1} #{obj.address2} #{obj.address3}"%>
-                <%="#{address}"%>
+                <%sleep 0.2%>
                 <% a=Geokit::Geocoders::GoogleGeocoder.geocode "#{address}"%>
-                <%= "#{a}"%>
                 <%lat = (a.ll.nil? ? "" : a.ll.split(",")[0].to_f) %>
                 <%lng = (a.ll.nil? ? "" : a.ll.split(",")[1].to_f) %>
                 {
