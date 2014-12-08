@@ -10,15 +10,18 @@ default: &default
   adapter: postgresql
   pool: 5
   timeout: 5000
-  host: localhost
-  username : puneet
-  password: puneet
+  username: ritika
+  password: root
+
+#development:
+#  <<: *default
+#  database: proper
 
 development:
-  adapter: postgresql
-  database: proper
-  username: puneet
-  password: puneet 
+  adapter: mysql
+  database: sealproperties_development
+  username: root
+  password: root
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
@@ -30,4 +33,4 @@ test:
 
 production:
   <<: *default
-  database: proper
+  database: proper1
