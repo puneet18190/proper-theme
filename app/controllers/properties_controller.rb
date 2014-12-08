@@ -12,6 +12,14 @@ class PropertiesController < ApplicationController
     else
       @properties = Property.all
     end
+
+    if current_user.status == "landlord"
+      @properties.each do |obj|
+        if (obj.payment == true && (obj.validity - DateTime.now.in_time_zone("UTC")) < 0)
+            obj.update_attributes(:payment => false,:visibility=>false,:validity=>nil)
+        end  
+      end  
+    end
     respond_with(@properties)
   end
 
@@ -76,6 +84,9 @@ class PropertiesController < ApplicationController
   # end
 
   def search_property
+    @search = Property.search(params[:q])
+    @properties = @search.result
+
     if current_user.status == "tenant" && current_user.payment==false
       render :tenant_payment
     elsif current_user.status == "tenant" && current_user.payment==true
@@ -106,19 +117,25 @@ class PropertiesController < ApplicationController
 
   def landlord_payment
     # Amount in cents
-    @amount = 500
+    # @amount = 500
 
-    customer = Stripe::Customer.create(
-        :email => 'example@stripe.com',
-        :card  => params[:stripeToken]
-    )
+    # customer = Stripe::Customer.create(
+    #     :email => 'example@stripe.com',
+    #     :card  => params[:stripeToken]
+    # )
 
-    charge = Stripe::Charge.create(
-        :customer    => customer.id,
-        :amount      => @amount,
-        :description => 'Rails Stripe customer',
-        :currency    => 'usd'
-    )
+    # charge = Stripe::Charge.create(
+    #     :customer    => customer.id,
+    #     :amount      => @amount,
+    #     :description => 'Rails Stripe customer',
+    #     :currency    => 'usd'
+    # )
+  # Stripe.api_key = "sk_test_RsHCMpYllmYNshcj4p81bmfC"
+  #     plan = "plan_10"
+  #     binding.pry
+  #     card_token = Stripe::Token.create( :card => { :name => params[:name_on_card], :number => params[:card_number], :exp_month => params[:exp_month], :exp_year => params[:exp_year], :cvc => params[:card_id] })
+  #     customer_params = {:card => card_token[:id], :plan => plan, :email => @account.email}
+  #     stripe_customer = Stripe::Customer.create(customer_params)
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
@@ -129,42 +146,68 @@ class PropertiesController < ApplicationController
   #
   # end
 
-  def confirm_landlord_payment 
-    @property = Property.find(params[:id])
-    @property.update_attributes(:payment=>true)
-    UserMailer.deliver_payment_method(current_user)
-    redirect_to root_url, alert: "Payment confirmed. Thanks"
+  def confirm_landlord_payment
+    begin
+      Stripe.api_key = "sk_test_RsHCMpYllmYNshcj4p81bmfC"
+      plan = "plan_10"
+      card_token = Stripe::Token.create( :card => { :name => params[:name_on_card], :number => params[:card_number], :exp_month => params[:exp_month], :exp_year => params[:exp_year], :cvc => params[:card_id] })
+      customer_params = {:card => card_token[:id], :plan => plan, :email => current_user.email}
+      stripe_customer = Stripe::Customer.create(customer_params) 
+      
+      @property = Property.find(params[:id])
+      old_validity = @property.validity || DateTime.now
+      @property.update_attributes(:visibility=>true,:payment=>true, :validity=>(old_validity + 30.days))
+      UserMailer.deliver_payment_method(@property).deliver
+      redirect_to root_url, alert: "Payment confirmed. Thanks"
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+    end
   end 
 
   def confirm_tenant_payment
-    # Amount in cents
-    @amount = 500
+    begin
+      Stripe.api_key = "sk_test_RsHCMpYllmYNshcj4p81bmfC"
+      plan = "plan_5"
 
-    customer = Stripe::Customer.create(
-        :email => 'example@stripe.com',
-        :card  => params[:stripeToken]
-    )
-
-    charge = Stripe::Charge.create(
-        :customer    => customer.id,
-        :amount      => @amount,
-        :description => 'Rails Stripe customer',
-        :currency    => 'usd'
-    )
-    # binding.pry
-    current_user.update_attributes(:payment=>true)
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to search_form_path
-  end 
+      card_token = Stripe::Token.create( :card => { :name => params[:name_on_card], :number => params[:card_number], :exp_month => params[:exp_month], :exp_year => params[:exp_year], :cvc => params[:card_id] })
+      customer_params = {:card => card_token[:id], :plan => plan, :email => current_user.email}
+      stripe_customer = Stripe::Customer.create(customer_params) 
+      
+      current_user.update_attributes(:payment=>true)
+      #UserMailer.deliver_payment_method(current_user)
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+      redirect_to search_form_path
+    end
+  end   
 
   def tenant_search
 
   end
 
+  def facebook_share
+    @property = Property.find(params[:property_id])
+    name =         @property.name
+    page_link =    request.referer
+    caption =     "#{@property.description} | #{@property.address3}"
+    description =  @property.description || "N.A."
+    picture_url =  "http://"+request.host_with_port+"/assets/R03R.png"
+
+    url = "https://www.facebook.com/dialog/feed?app_id=362914167223991&"\
+    "link=#{page_link}&"\
+    "picture=#{picture_url}&"\
+    "name=#{name}&"\
+    "caption=#{caption}&"\
+    "description=#{description}&"\
+    "redirect_uri=http://#{request.host_with_port}/properties_detail/#{@property.id}&"\
+    "display=page"
+
+    redirect_to URI.encode(url)
+  end  
+
   private
     def set_property
-      @property = Property.find(params[:id])
+      @property = Property.friendly.find(params[:id])
     end
 
     def property_params
