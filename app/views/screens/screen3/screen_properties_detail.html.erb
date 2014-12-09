@@ -25,8 +25,13 @@
                           <div class="property-images">
                             <a href="#">
                               <div class="mask">
-                                <div class="desc-type for-sale">For Sale</div>
-                                <div class="price">&euro; 330.090</div>
+                                <% if data.category== "Rent" %>
+                                    <div class="desc-type for-sale">To Rent</div>
+                                <% else %>
+                                    <div class="desc-type for-sale">For Sale</div>
+                                <% end %>
+
+                                <div class="price">&pound; <%= data.price %></div>
                               </div>
                               <% if @data.image1.url.empty? %>
                                    <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
