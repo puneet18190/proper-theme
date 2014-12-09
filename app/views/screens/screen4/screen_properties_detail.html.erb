@@ -90,7 +90,59 @@
 
 
 
+                  <!-- START DETAIL-->
+                  <div class="detail-properties right-space">
 
+                            <!-- START SLIDER -->
+                            <div class="big-image text-center">
+                              <div class="preloader"></div>
+                              <div class="desc-image">
+                                <h3><%= @data.name %></h3>
+                                <p>In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque. </p>
+                              </div>
+                              <%= image_tag @data.image1.url, id: "big-image-preview", alt: "big-image-preview" %>
+                            </div>
+                            <div class="list_image_detail">
+                              <ul id="list_images_property">
+                                <li><a href="#" data-bigimage="#" data-title="Interior 01" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag @data.image1.url, alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigimage="#" data-title="Interior 02" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag @data.image2.url, alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigimage="#" data-title="Interior 03" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag @data.image3.url, alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigImage="#" data-title="Interior 04" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag @data.image4.url, alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigimage="#" data-title="Interior 05" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag @data.image5.url, alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigimage="#" data-title="Interior 06" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag @data.image6.url, alt: "Thum"%></a></li>
+                              </ul>
+                              <div class="clearfix"></div>
+                              <a id="prev2" class="prev" href="#">&lt;</a>
+                              <a id="next2" class="next" href="#">&gt;</a>
+                            </div>
+                            <!-- END SLIDER -->
+
+                            <!-- AddThis Button BEGIN -->
+                            <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
+                              <a class="addthis_button_facebook"></a>
+                              <a class="addthis_button_twitter"></a>
+                              <a class="addthis_button_pinterest_share"></a>
+                              <a class="addthis_button_google_plusone_share"></a>
+                              <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+                            </div>
+                            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51965a0e6903b31d"></script>
+                            <!-- AddThis Button END -->
+                            <h3>Property Features</h3>
+                            <ul class="clear">
+                              <li>Name: <%= @data.name %></li>
+                              <li>Price: <%= @data.price %></li>
+                              <li>Address1: <%= @data.address1 %></li>
+                              <li>Address2: <%= @data.address2 %></li>
+                              <li>Address3: <%= @data.address3 %></li>
+                              <li>Beds: <%= @data.beds %></li>
+                              <li>Bath: <%= @data.bath %></li>
+                              <li>Parking: <%= @data.parking %></li>
+                              <li>Category: <%= @data.category %></li>
+                            </ul>
+                            <h3>Property Description</h3>
+                            <p> <%= @data.description %>  </p>
+
+                            <!-- END DETAIL-->
 
                   </div>
                 </div>
