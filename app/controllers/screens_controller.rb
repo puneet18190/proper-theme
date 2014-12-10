@@ -1,5 +1,4 @@
 class ScreensController < ApplicationController
-	require 'pat'
 	layout proc { false if request.xhr? }
 	def page1
 		render '/screens/screen2/page1'
