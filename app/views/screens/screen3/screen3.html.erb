@@ -54,6 +54,7 @@ function run_script_by_cookie(index,ids){
 		  {
 		  	$(".main_container").html($.localStorage.get('p'+index));
 			index = index + 1;
+			$(".screen_num").html("Screen 3 Page "+(index))
 			if (index == ids.length){
 				index = 0;
 			}
