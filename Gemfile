@@ -45,6 +45,7 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'friendly_id', '~> 5.0.0'
 gem 'figaro'
 gem "fog" #, "~> 1.3.1"
+gem 'pat'
 
 # gem install thinking-sphinx -v "~> 3.1.0"
 # gem install mysql2 -v 0.3.12b5
