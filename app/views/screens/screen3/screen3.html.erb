@@ -17,22 +17,20 @@ function run_script(ids,property_id,index){
 			success : function(response){
 				$(".main_container").html(response);
 				var num = index + 1
-				var delay = 50000;
+				var delay = 10000;
 				$(".screen_num").html("Screen 3 Page "+num)
 				$.localStorage.set('p'+index,response);
 				index = index+1;
 				console.log(index)
-				/*if (index == ids.length){
-					index = 0;
-					run_script_by_cookie(0);
-				}*/
-				
-				setTimeout(
-				  function() 
-				  {
-				    run_script(ids,ids[index],index);
-				  }, delay);
-				
+				if (index == ids.length){
+					run_script(ids,ids[index],index);
+				}else{
+					setTimeout(
+					  function() 
+					  {
+					    run_script(ids,ids[index],index);
+					  }, delay);
+				}
 			},
 			error : function(){
 				var ids = []
@@ -49,7 +47,7 @@ function run_script(ids,property_id,index){
 }
 
 function run_script_by_cookie(index,ids){
-	var delay = 50000;
+	var delay = 10000;
 	if($.localStorage.isSet('p'+index)){
 		setTimeout(
 		  function() 
