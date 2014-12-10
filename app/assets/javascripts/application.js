@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+//= jquery.cookie
+//= jquery.storageapi
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
