@@ -17,7 +17,7 @@ function run_script(ids,property_id,index){
 			success : function(response){
 				$(".main_container").html(response);
 				var num = index + 1
-				var delay = 10000;
+				var delay = 50000;
 				$(".screen_num").html("Screen 3 Page "+num)
 				$.localStorage.set('p'+index,response);
 				index = index+1;
@@ -47,7 +47,7 @@ function run_script(ids,property_id,index){
 }
 
 function run_script_by_cookie(index,ids){
-	var delay = 10000;
+	var delay = 50000;
 	if($.localStorage.isSet('p'+index)){
 		setTimeout(
 		  function() 
