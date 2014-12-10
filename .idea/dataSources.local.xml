@@ -9,6 +9,8 @@
     </data-source>
     <data-source name="Rails proper: development" uuid="fa99a44d-9d81-4439-b437-f0a62ee131f1">
       <secret-storage>memory</secret-storage>
+      <user-name>root</user-name>
+      <user-password>dfd8dfc5dfc5dfde</user-password>
     </data-source>
   </component>
 </project>

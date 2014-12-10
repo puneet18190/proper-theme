@@ -1,0 +1,9 @@
+Hi <%= @user.username %>
+<br/>
+Your searching results are:
+<br/>
+Property name : <%= @property.name %>,
+Bath : <%= @property.bath  %>,
+Beds : <%= @property.beds %> &
+Price :<%= @property.price %>
+<%= link_to "Click on the link to view the details", "http://#{@request}/properties_detail/#{@property.id}" %><br/>

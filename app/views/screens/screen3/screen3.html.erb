@@ -22,17 +22,15 @@ function run_script(ids,property_id,index){
 				$.localStorage.set('p'+index,response);
 				index = index+1;
 				console.log(index)
-				/*if (index == ids.length){
-					index = 0;
-					run_script_by_cookie(0);
-				}*/
-				
-				setTimeout(
-				  function() 
-				  {
-				    run_script(ids,ids[index],index);
-				  }, delay);
-				
+				if (index == ids.length){
+					run_script(ids,ids[index],index);
+				}else{
+					setTimeout(
+					  function() 
+					  {
+					    run_script(ids,ids[index],index);
+					  }, delay);
+				}
 			},
 			error : function(){
 				var ids = []
