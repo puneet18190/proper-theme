@@ -14,13 +14,13 @@
       </div>
       <!--    End News Carousel-->
       <!--Start Form Singup-->
-
-      <div class="panel proper-form-bg">
-
+      <div class="featured-grid right-space">
+        <div class="proper-form-step-area">
+          <div class="signup_form">
+          <div class="tenant_search">
 
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-
-              <div class="proper-singup">
+          <div class="proper-singup">
                 <%= devise_error_messages! %>
                <h1 class=""><i class="icon-user"></i> Sing Up</h1>
 
@@ -77,4 +77,7 @@
           <%= render "devise/shared/links" %>
        </div><!--End Form Singup-->
       </div><!--EndContent-->
+    </div>
+    </div>
+        </div>
     </div>

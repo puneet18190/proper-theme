@@ -16,9 +16,18 @@ class UserMailer < ActionMailer::Base
     mail( :to => @property.user.email, :subject => 'Payment Remainder' )
   end	
 
-  def tenant_result_property(user, properties)
+  def tenant_result_property(user, properties,request)
+    @request = request
     @user = user
     @properties = properties
+    # binding.pry
+    mail( :to => @user.email, :subject => 'Searching results')
+  end
+
+  def property_search_match(user, property,request)
+    @request = request
+    @user = user
+    @property = property
     binding.pry
     mail( :to => @user.email, :subject => 'Searching results')
   end

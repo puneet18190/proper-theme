@@ -29,11 +29,13 @@
         <h3 class="title-heading">Please complete the form</h3>
       </div>
       <!-- Start List Step Upload-->
+      <div class="featured-grid right-space">
 
-
+        <div class="grid-item grid-style-properties">
       <div class="clearfix"></div>
       <br/>
-      <div class="payment">
+       <div class="tenant_adjust">
+      <div class="proper-singup">
         <%= form_tag("/confirm_tenant_payment", :method=>"post") do |f| %>
           <div class="field">
             <%= label_tag "Name on card" %>
@@ -61,6 +63,8 @@
           <%= submit_tag "Next" %>
         <% end %>
       </div>
+ </div>
+    </div>
     </div>
   </div>
 </div><!--EndContent-->

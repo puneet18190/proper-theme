@@ -417,7 +417,7 @@ Proper Form Login
 /*============================================================================
 Proper Singup
 ============================================================================*/
-.proper-singup{width: 100%;max-width: 320px;margin: 30px auto;padding: 30px;border: 1px solid #858585; background: #eee;}
+.proper-singup{width: 100%;max-width: 320px;margin: -40px;padding: 30px;border: 1px solid #858585; background: #eee;}
 
 /*============================================================================
 Footer Css
@@ -678,11 +678,51 @@ tr {
 }
 
 #b1 {
-    margin-left: 250px;
+    margin-left: 170px;
     margin-top: 65px;
 }
 
 #b2 {
-    margin-left: 400px;
+    margin-left: 340px;
     margin-top: -113px;
+}
+
+.payment {
+    margin-left: 335px;
+}
+
+#date_month, #date_year {
+width: 110px;
+}
+
+.tenant_adjust{
+    margin-left: 335px;
+}
+
+.tc1size {
+    width: 205px;
+}
+
+select {
+   width: 220px;
+}
+
+.tgsize {
+   width: 60px;
+}
+
+.tsize {
+    width: 60px;
+    margin-left: -10px;
+}
+
+.tpggsize{
+    width: 80px;
+    margin-right: 180px;
+    margin-left: -44px;
+}
+
+.signup_form {
+    margin-left: 440px;
+    margin-top: 20px;
 }

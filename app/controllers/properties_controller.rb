@@ -41,6 +41,8 @@ class PropertiesController < ApplicationController
   def create
     @user = current_user
     @property = @user.properties.new(property_params)
+    @property.category.downcase
+    @property.name.downcase
     @property.save
     @property.update_attributes(:payment=>true) if current_user.status == "admin"
     redirect_to "/properties" 
@@ -68,7 +70,6 @@ class PropertiesController < ApplicationController
   def search_property
     @search = Property.search(params[:q])
     @properties = @search.result
-
     if current_user.status == "tenant" && current_user.payment==false
       render :tenant_payment
     elsif current_user.status == "tenant" && current_user.payment==true
@@ -80,7 +81,18 @@ class PropertiesController < ApplicationController
     @user = current_user
     @search = Property.search(params[:q])
     @properties = @search.result
-    UserMailer.tenant_result_property(@user, @properties).deliver
+    @request = request.host_with_port
+    @abc = params[:q]
+    name = @abc[:name_cont]
+    category = @abc[:category_cont]
+    price_less_than = @abc[:price_lteq]
+    price_greater_than = @abc[:price_gteq]
+    beds = @abc[:beds_eq]
+    bath = @abc[:bath_eq]
+    @user.search = "#{name},#{category},#{price_less_than},#{price_greater_than},#{beds},#{bath}"
+    @user.search.downcase
+    @user.save
+    UserMailer.tenant_result_property(@user, @properties, @request).deliver
   end
 
 
@@ -141,8 +153,23 @@ class PropertiesController < ApplicationController
       old_validity = @property.validity || DateTime.now
       @property.update_attributes(:visibility=>true,:payment=>true, :validity=>(old_validity + 30.days))
       UserMailer.deliver_payment_method(@property).deliver
+      @tenants = User.where(status: "tenant", payment: true)
+      @request = request.host_with_port
+      @tenants.each do |obj|
+        @user = obj
+        @result = obj.search.split(",")
+        name = @result[0].empty? ? "false" : @result[0]
+        category = @result[1].empty? ? "false" : @result[1]
+        price_less_than = @result[2].empty? ? "false" : @result[2]
+        price_greater_than = @result[3].empty? ? "false" : @result[3]
+        beds = @result[4].empty? ? "false" : @result[4]
+        bath = @result[5].empty? ? "false" : @result[5]
+        if @property.name.include?(name) or @property.category.include?(category) or (price_less_than.to_i..price_greater_than.to_i).cover?(@property.price) or @property.beds.equal?(beds) or @property.bath.equal?(bath)
+          UserMailer.property_search_match(@user, @property, @request).deliver
+        end
+      end
       redirect_to root_url, alert: "Payment confirmed. Thanks"
-    rescue Stripe::CardError => e
+      rescue Stripe::CardError => e
       flash[:error] = e.message
     end
   end 

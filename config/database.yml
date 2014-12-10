@@ -21,7 +21,7 @@ development:
   adapter: mysql
   database: sealproperties_development
   username: root
-  password: sb1234
+  password: root
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
