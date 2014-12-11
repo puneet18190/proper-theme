@@ -143,7 +143,7 @@ class PropertiesController < ApplicationController
 
   def confirm_landlord_payment
     begin
-      Stripe.api_key = "sk_live_XuspAdLII55yiaUjU8UWOeZQ"
+      Stripe.api_key = "sk_test_UZ0dgBsgRJqY95p0wCPALgv8"
       plan = "plan_10"
       card_token = Stripe::Token.create( :card => { :name => params[:name_on_card], :number => params[:card_number], :exp_month => params[:exp_month], :exp_year => params[:exp_year], :cvc => params[:card_id] })
       customer_params = {:card => card_token[:id], :plan => plan, :email => current_user.email}
@@ -176,7 +176,7 @@ class PropertiesController < ApplicationController
 
   def confirm_tenant_payment
     begin
-      Stripe.api_key = "sk_live_XuspAdLII55yiaUjU8UWOeZQ"
+      Stripe.api_key = "sk_test_UZ0dgBsgRJqY95p0wCPALgv8"
       plan = "plan_5"
 
       card_token = Stripe::Token.create( :card => { :name => params[:name_on_card], :number => params[:card_number], :exp_month => params[:exp_month], :exp_year => params[:exp_year], :cvc => params[:card_id] })
