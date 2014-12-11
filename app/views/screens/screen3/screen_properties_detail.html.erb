@@ -41,12 +41,32 @@
                             <!--  <img src="proper_theme/images/properties/p1.jpg" alt="property"/> -->
                             </a>
                             <div class="list_image_detail">
-                              <ul id="list_images_property">                               
-                                <li style="width:68px !important;margin:2px"><a href="#" data-title="Interior 02" ><%= image_tag @data.image2.url, alt: "Thum"%></a></li>
-                                <li style="width:68px !important;margin:2px"><a href="#" data-title="Interior 03" ><%= image_tag @data.image3.url, alt: "Thum"%></a></li>
-                                <li style="width:68px !important;margin:2px"><a href="#" data-title="Interior 04" ><%= image_tag @data.image4.url, alt: "Thum"%></a></li>
-                                <li style="width:68px !important;margin:2px"><a href="#" data-title="Interior 05" ><%= image_tag @data.image5.url, alt: "Thum"%></a></li>
-                                <li style="width:68px !important;margin:2px"><a href="#" data-title="Interior 06" ><%= image_tag @data.image6.url, alt: "Thum"%></a></li>
+                              <ul id="list_images_property">
+                                <% if @data.image2.url.nil? %>
+                                    <li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 02" ><img src="assets/default_images/no.jpg" alt="Thum"/></a></li>
+                                <% else %>
+                                    <li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 02" ><%= image_tag @data.image2.url, alt: "Thum"%></a></li>
+                                <% end %>
+                                <% if @data.image3.url.nil? %>
+                                    <li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 02" ><img src="assets/default_images/no.jpg" alt="Thum"/></a></li>
+                                <% else %>
+                                    <li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 03" ><%= image_tag @data.image3.url, alt: "Thum"%></a></li>
+                                <% end %>
+                                <% if @data.image4.url.nil? %>
+                                    <li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 02" ><img src="assets/default_images/no.jpg" alt="Thum"/></a></li>
+                                <% else %>
+                                    <li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 04" ><%= image_tag @data.image4.url, alt: "Thum"%></a></li>
+                                <% end %>
+                                <% if @data.image5.url.nil? %>
+                                    <li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 02" ><img src="assets/default_images/no.jpg" alt="Thum"/></a></li>
+                                <% else %>
+                                    <li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 05" ><%= image_tag @data.image5.url, alt: "Thum"%></a></li>
+                                <% end %>
+                                <% if @data.image6.url.nil? %>
+                                    <li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 02" ><img src="assets/default_images/no.jpg" alt="Thum"/></a></li>
+                                <% else %>
+                                    <li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 06" ><%= image_tag @data.image6.url, alt: "Thum"%></a></li>
+                                <% end %>
                               </ul>
                               <div class="clearfix"></div>
                             </div>

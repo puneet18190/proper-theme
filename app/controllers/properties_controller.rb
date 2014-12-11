@@ -43,6 +43,9 @@ class PropertiesController < ApplicationController
     @property = @user.properties.new(property_params)
     @property.category.downcase
     @property.name.downcase
+    address =  params[:property][:address1]+" "+params[:property][:address2]+" "+params[:property][:address3]
+    @a = Geokit::Geocoders::GoogleGeocoder.geocode "#{address}"
+    @property.coordinates = "#{@a.lat},#{@a.lng}"
     @property.save
     @property.update_attributes(:payment=>true) if current_user.status == "admin"
     redirect_to "/properties" 
@@ -143,7 +146,7 @@ class PropertiesController < ApplicationController
 
   def confirm_landlord_payment
     begin
-      Stripe.api_key = "sk_live_XuspAdLII55yiaUjU8UWOeZQ"
+      Stripe.api_key = "sk_test_RsHCMpYllmYNshcj4p81bmfC"
       plan = "plan_10"
       card_token = Stripe::Token.create( :card => { :name => params[:name_on_card], :number => params[:card_number], :exp_month => params[:exp_month], :exp_year => params[:exp_year], :cvc => params[:card_id] })
       customer_params = {:card => card_token[:id], :plan => plan, :email => current_user.email}
@@ -162,8 +165,8 @@ class PropertiesController < ApplicationController
         category = @result[1].empty? ? "false" : @result[1]
         price_less_than = @result[2].empty? ? "false" : @result[2]
         price_greater_than = @result[3].empty? ? "false" : @result[3]
-        beds = @result[4].empty? ? "false" : @result[4]
-        bath = @result[5].empty? ? "false" : @result[5]
+        beds = @result[4] #.empty? ? "false" : @result[4]
+        bath = @result[5] #.empty? ? "false" : @result[5]
         if @property.name.include?(name) or @property.category.include?(category) or (price_less_than.to_i..price_greater_than.to_i).cover?(@property.price) or @property.beds.equal?(beds) or @property.bath.equal?(bath)
           UserMailer.property_search_match(@user, @property, @request).deliver
         end
@@ -176,7 +179,7 @@ class PropertiesController < ApplicationController
 
   def confirm_tenant_payment
     begin
-      Stripe.api_key = "sk_live_XuspAdLII55yiaUjU8UWOeZQ"
+      Stripe.api_key = "sk_test_RsHCMpYllmYNshcj4p81bmfC"
       plan = "plan_5"
 
       card_token = Stripe::Token.create( :card => { :name => params[:name_on_card], :number => params[:card_number], :exp_month => params[:exp_month], :exp_year => params[:exp_year], :cvc => params[:card_id] })

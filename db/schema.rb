@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209071223) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20141211062955) do
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -58,12 +55,12 @@ ActiveRecord::Schema.define(version: 20141209071223) do
     t.date     "s_date"
     t.date     "l_date"
     t.date     "r_date"
-    t.boolean  "approved"
     t.integer  "user_id"
-    t.boolean  "approve",     default: false
-    t.boolean  "payment",     default: false
+    t.boolean  "approve",                              default: false
+    t.boolean  "payment",                              default: false
     t.string   "slug"
     t.datetime "validity"
+    t.string   "coordinates"
   end
 
   add_index "properties", ["slug"], name: "index_properties_on_slug", unique: true, using: :btree
