@@ -28,7 +28,6 @@ class UserMailer < ActionMailer::Base
     @request = request
     @user = user
     @property = property
-    binding.pry
     mail( :to => @user.email, :subject => 'Searching results')
   end
 end
