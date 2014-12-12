@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211062955) do
+ActiveRecord::Schema.define(version: 20141212182916) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -30,7 +33,7 @@ ActiveRecord::Schema.define(version: 20141211062955) do
     t.string   "address1"
     t.string   "address2"
     t.string   "address3"
-    t.decimal  "amount",      precision: 10, scale: 0
+    t.decimal  "amount"
     t.integer  "bath"
     t.integer  "beds"
     t.boolean  "parking"
@@ -46,9 +49,9 @@ ActiveRecord::Schema.define(version: 20141211062955) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "category"
-    t.decimal  "price",       precision: 10, scale: 0
+    t.decimal  "price"
     t.string   "name"
-    t.integer  "postcode"
+    t.string   "postcode"
     t.boolean  "sold"
     t.boolean  "let"
     t.boolean  "featured"
@@ -56,8 +59,8 @@ ActiveRecord::Schema.define(version: 20141211062955) do
     t.date     "l_date"
     t.date     "r_date"
     t.integer  "user_id"
-    t.boolean  "approve",                              default: false
-    t.boolean  "payment",                              default: false
+    t.boolean  "approve",     default: false
+    t.boolean  "payment",     default: false
     t.string   "slug"
     t.datetime "validity"
     t.string   "coordinates"
