@@ -5,8 +5,9 @@ class UserMailer < ActionMailer::Base
     mail( :to => @property.user.email, :subject => 'Payment Confirmation' )
   end
 
-  def property_approval(property,status)
-  	@user = property.user
+  def property_approval(user, property, status)
+  	@user = user
+    @property = property
   	@status = status
     mail( :to => @user.email, :subject => 'Status of Property Approval' )
   end
@@ -20,7 +21,6 @@ class UserMailer < ActionMailer::Base
     @request = request
     @user = user
     @properties = properties
-    # binding.pry
     mail( :to => @user.email, :subject => 'Searching results')
   end
 

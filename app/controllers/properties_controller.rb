@@ -100,6 +100,7 @@ class PropertiesController < ApplicationController
 
 
   def approve
+    @user = current_user
     @property = Property.find(params[:id])
     @status = params[:status]
     @property_id  = params[:id]
@@ -107,8 +108,8 @@ class PropertiesController < ApplicationController
       @property.update_attributes(:approve=>true)
     else
       @property.update_attributes(:approve=>false)
-    end  
-    UserMailer.property_approval(@property,@status).deliver
+    end
+    UserMailer.property_approval(@user, @property, @status).deliver
     respond_to do |format|
       format.js
     end
