@@ -94,8 +94,8 @@
         };
         var target = document.getElementById('loading');
         var spinner = new Spinner(opts).spin(target);
-        var spinner = new Spinner().spin();
-        $('.loading').appendChild(spinner.el);
+        //var spinner = new Spinner().spin();
+        target.appendChild(spinner.el);
         //$('.loading').html('<img src="http://www.lettersmarket.com/uploads/lettersmarket/blog/loaders/common_gray/ajax_loader_gray_256.gif"> loading...');
 
     })
