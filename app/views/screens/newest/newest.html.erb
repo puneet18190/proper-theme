@@ -12,7 +12,7 @@ function run_script(ids,property_id,index){
 	if(index != ids.length){
 		$.ajax({
 			type : 'get',
-			url : 'screens/screen_properties_detail/'+property_id,
+			url : 'screens/newest_properties_detail/'+property_id,
 			async: false,
 			success : function(response){
 				$(".main_container").html(response);
@@ -54,7 +54,7 @@ function run_script_by_cookie(index,ids){
 		  {
 		  	$(".main_container").html($.localStorage.get('p'+index));
 			index = index + 1;
-			$(".screen_num").html("Screen 3 Page "+(index))
+			$(".screen_num").html("Newest:Page "+(index))
 			if (index == ids.length){
 				index = 0;
 			}
