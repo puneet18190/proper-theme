@@ -8,7 +8,7 @@ module StevesHelper
 end
 
   def infopostcode
-    @postcode = Pat.get("N1 1AA")
+    @postcode = Pat.get("NE8 1XN")
     @infopostcode = JSON.parse(@postcode.body)
 
   end
