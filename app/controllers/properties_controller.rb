@@ -162,16 +162,18 @@ class PropertiesController < ApplicationController
       @request = request.host_with_port
       @tenants.each do |obj|
         @user = obj
-        @result = obj.search.split(",")
-        name = @result[0].empty? ? "false" : @result[0]
-        category = @result[1].empty? ? "false" : @result[1]
-        price_less_than = @result[2].empty? ? "false" : @result[2]
-        price_greater_than = @result[3].empty? ? "false" : @result[3]
-        beds = @result[4] #.empty? ? "false" : @result[4]
-        bath = @result[5] #.empty? ? "false" : @result[5]
-        if @property.name.include?(name) or @property.category.include?(category) or (price_less_than.to_i..price_greater_than.to_i).cover?(@property.price) or @property.beds.equal?(beds) or @property.bath.equal?(bath)
-          UserMailer.property_search_match(@user, @property, @request).deliver
-        end
+        unless obj.search.nil?
+          @result = obj.search.split(",")
+          name = @result[0].empty? ? "false" : @result[0]
+          category = @result[1].empty? ? "false" : @result[1]
+          price_less_than = @result[2].empty? ? "false" : @result[2]
+          price_greater_than = @result[3].empty? ? "false" : @result[3]
+          beds = @result[4] #.empty? ? "false" : @result[4]
+          bath = @result[5] #.empty? ? "false" : @result[5]
+          if @property.name.include?(name) or @property.category.include?(category) or (price_less_than.to_i..price_greater_than.to_i).cover?(@property.price) or @property.beds.equal?(beds) or @property.bath.equal?(bath)
+            UserMailer.property_search_match(@user, @property, @request).deliver
+          end
+        end  
       end
       redirect_to root_url, alert: "Payment confirmed. Thanks"
       rescue Stripe::CardError => e
