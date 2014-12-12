@@ -1,4 +1,6 @@
 class ScreensController < ApplicationController
+	require 'json'
+	require 'pat'
 	layout proc { false if request.xhr? }
 	def page1
 		render '/screens/screen2/page1'
@@ -32,7 +34,10 @@ class ScreensController < ApplicationController
 	end
 
 	def newest_properties_detail
-		@data = Property.find(params[:property_id])
+		@postcode = Pat.get("N1 1AA")
+		@datapat = JSON.parse(@postcode.body)
+
+    @data = Property.find(params[:property_id])
 		render '/screens/newest/newest_properties_detail'
 	end
 end
