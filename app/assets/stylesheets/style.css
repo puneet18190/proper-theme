@@ -688,7 +688,7 @@ tr {
 }
 
 .payment {
-    margin-left: 335px;
+    margin-left: 0px;
 }
 
 #date_month, #date_year {
@@ -727,9 +727,12 @@ select {
     margin-top: 20px;
 }
 
-.featured-grid {
+.scroll {
     overflow-y:scroll;
     width: 670px;
     height: 400px;
 }
 
+.add_loader {
+    margin-top: 30px;
+}

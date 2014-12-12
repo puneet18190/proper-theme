@@ -1,4 +1,3 @@
-
             <!-- start Content -->
       <div id="content">
           <div class="panel googleMaparea">
@@ -6,7 +5,7 @@
               </div>
               <div class="map-with-agent visible-desktop">
                   <h3 >Your Message Here</h3>
-                  <img src="assets/agents/n5.png" alt="ceo"/>
+                  <img src="/assets/agents/n5.png" alt="ceo"/>
               </div>
           </div>
           <!--    News Carousel-->
@@ -29,10 +28,11 @@
                           <!--Start Grid Featured-->
                           <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span> Properties Around you</h2>
                           <div class="featured-grid right-space">
+                            <div class="scroll">
                               <div class="box-white">
                                   <div class="grid-item grid-style-properties">
-                                    <% if @tasks.empty? %>
-                                        <div class="item">
+                                     <% if @tasks.empty? %>
+                                        <div class="item" >
                                           <a href="#" class="with-hover">
                                             <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
                                           </a>
@@ -74,10 +74,12 @@
                                               </div>
                                             <% end %>
                                           <% end %>
-                                        <% end %>
+                                     <% end %>
+
                                   </div>
                               </div>
                               <!--End Grid Featured-->
+                            </div>
                           </div>
 
                           <!--Start New List-->
@@ -199,12 +201,13 @@
 <script type="text/javascript">
 $(document).ready(function() {
   init_gmap3()
-})  
+});
+
   function init_gmap3(){
     $(function(){
-        var icon_villa = "assets/map/hostel_0star.png"
-        var icon_hotel = "assets/map/villa.png"
-        var img_p = "assets/properties/p1.jpg"
+        var icon_villa = "assets/map/hostel_0star.png";
+        var icon_hotel = "assets/map/villa.png";
+        var img_p = "assets/properties/p1.jpg";
         $("#googleMap").gmap3({
             map:{
                 // CENTRAL MAP DEFAULT
@@ -241,6 +244,7 @@ $(document).ready(function() {
                 <% @tasks.each do |obj| %>
                 <%# address =  "#{obj.address1} #{obj.address2} #{obj.address3}"%>
                 <%#sleep 0.3%>
+
                 <% a=obj.coordinates%>
                 <%lat = (a.nil? ? "" : a.split(",")[0].to_f) %>
                 <%lng = (a.nil? ? "" : a.split(",")[1].to_f) %>
@@ -295,5 +299,7 @@ $(document).ready(function() {
       
         });
     });
-}
+  }
+
 </script>
+
