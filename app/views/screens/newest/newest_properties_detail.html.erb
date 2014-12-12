@@ -21,7 +21,7 @@
                                     <div class="desc-type for-sale">For Sale</div>
                                 <% end %>
 
-                                <div class="price">&pound; <%= @data.price.to_i %></div>
+                                <div class="price" style="z-index:1px">&pound; <%= @data.price.to_i %></div>
                               </div>
                               <% if @data.image1.url.empty? %>
                                    <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
@@ -32,11 +32,11 @@
                             </a>
                             <div class="list_image_detail">
                               <ul id="list_images_property">
-                                <li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 02" ><img src=<%= (@data.image2.url.nil? ? "/assets/default_images/no.jpg" : @data.image2.url)%>></a></li>
-                                <li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 03" ><img src=<%= (@data.image3.url.nil? ? "/assets/default_images/no.jpg" : @data.image3.url)%>></a></li>
-                                <li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 04" ><img src=<%= (@data.image4.url.nil? ? "/assets/default_images/no.jpg" : @data.image4.url)%>></a></li>
-                                <li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 05" ><img src=<%= (@data.image5.url.nil? ? "/assets/default_images/no.jpg" : @data.image5.url)%>></a></li>
-                                <li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 06" ><img src=<%= (@data.image6.url.nil? ? "/assets/default_images/no.jpg" : @data.image6.url)%>></a></li>
+                                <%unless @data.image2.url.nil?%><li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 02" ><img src=<%= @data.image2.url%>></a></li><%end%>
+                                <%unless @data.image3.url.nil?%><li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 03" ><img src=<%= @data.image3.url%>></a></li><%end%>
+                                <%unless @data.image4.url.nil?%><li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 04" ><img src=<%= @data.image4.url%>></a></li><%end%>
+                                <%unless @data.image5.url.nil?%><li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 05" ><img src=<%= @data.image5.url%>></a></li><%end%>
+                                <%unless @data.image6.url.nil?%><li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 06" ><img src=<%= @data.image6.url%>></a></li><%end%>
                               </ul>
                               <div class="clearfix"></div>
                             </div>
