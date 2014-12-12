@@ -726,3 +726,10 @@ select {
     margin-left: 440px;
     margin-top: 20px;
 }
+
+.featured-grid {
+    overflow-y:scroll;
+    width: 670px;
+    height: 400px;
+}
+
