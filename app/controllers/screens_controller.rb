@@ -31,7 +31,7 @@ class ScreensController < ApplicationController
 		render '/screens/newest/newest', :layout => "screen_layout"
 	end
 
-	def screen_properties_detail
+	def newest_properties_detail
 		@data = Property.find(params[:property_id])
 		render '/screens/newest/newest_properties_detail'
 	end
