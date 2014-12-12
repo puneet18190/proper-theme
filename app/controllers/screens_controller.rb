@@ -34,8 +34,6 @@ class ScreensController < ApplicationController
 	end
 
 	def newest_properties_detail
-		@postcode = Pat.get("N1 1AA")
-		@datapat = JSON.parse(@postcode.body)
 
     @data = Property.find(params[:property_id])
 		render '/screens/newest/newest_properties_detail'
