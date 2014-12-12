@@ -25,4 +25,14 @@ class ScreensController < ApplicationController
 		@data = Property.find(params[:property_id])
 		render '/screens/screen3/screen_properties_detail'
 	end
+
+	def newest
+		@properties = Property.where(:visibility=>true).last(5)
+		render '/screens/newest/newest', :layout => "screen_layout"
+	end
+
+	def screen_properties_detail
+		@data = Property.find(params[:property_id])
+		render '/screens/newest/newest_properties_detail'
+	end
 end

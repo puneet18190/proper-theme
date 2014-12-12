@@ -1,0 +1,65 @@
+<script type="text/javascript">
+$(document).ready(function() {
+	var ids = []
+	<% @properties.each do |n|%>
+		ids.push(<%=n.id%>)
+	<%end%>	
+	var index=0
+	run_script(ids,ids[0],index);
+})	
+
+function run_script(ids,property_id,index){
+	if(index != ids.length){
+		$.ajax({
+			type : 'get',
+			url : 'screens/screen_properties_detail/'+property_id,
+			async: false,
+			success : function(response){
+				$(".main_container").html(response);
+				var num = index + 1
+				var delay = 50000;
+				$(".screen_num").html("Screen 3 Page "+num)
+				$.localStorage.set('p'+index,response);
+				index = index+1;
+				console.log(index)
+				if (index == ids.length){
+					run_script(ids,ids[index],index);
+				}else{
+					setTimeout(
+					  function() 
+					  {
+					    run_script(ids,ids[index],index);
+					  }, delay);
+				}
+			},
+			error : function(){
+				var ids = []
+				<% @properties.each do |n|%>
+					ids.push(<%=n.id%>)
+				<%end%>	
+				var index=0
+				run_script(ids,ids[0],index);
+			}
+		})
+	}else{
+		run_script_by_cookie(0,ids)
+	}	
+}
+
+function run_script_by_cookie(index,ids){
+	var delay = 50000;
+	if($.localStorage.isSet('p'+index)){
+		setTimeout(
+		  function() 
+		  {
+		  	$(".main_container").html($.localStorage.get('p'+index));
+			index = index + 1;
+			$(".screen_num").html("Screen 3 Page "+(index))
+			if (index == ids.length){
+				index = 0;
+			}
+			run_script_by_cookie(index,ids);
+		  }, delay);
+	}
+}
+</script>

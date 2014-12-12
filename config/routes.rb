@@ -50,6 +50,10 @@ Rails.application.routes.draw do
   match 'screen3', to: 'screens#screen3', via: 'get'
   match 'screens/screen_properties_detail/:property_id',   to: 'screens#screen_properties_detail',   via: 'get'
 
+  match 'newest', to: 'screens#newest', via: 'get'
+  match 'screens/newest_properties_detail/:property_id',   to: 'screens#newest_properties_detail',   via: 'get'
+
+
   match 'payment', to: 'properties#payment', via: 'get'
 
   match 'search_property', to: 'properties#search_property', via: 'get'
