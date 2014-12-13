@@ -80,6 +80,10 @@
                         <div id="googleMap" class="" style="height:300px;margin-bottom:25px"></div>
                     </div><!-- END MAP LOCATION -->
                   Council:<%=  @datapat["code"] ==404 ? "" : "#{@datapat["administrative"]["council"]["title"]}"   %>
+                  District:<%=  @datapat["code"] ==404 ? "" : "#{@datapat["administrative"]["district"]["title"]}"   %>
+                  Ward:<%=  @datapat["code"] ==404 ? "" : "#{@datapat["administrative"]["ward"]["title"]}"   %>
+
+
 
                     <!-- Detail Agent -->
                  <!--   <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-user"></i></span> Agent</h3>
