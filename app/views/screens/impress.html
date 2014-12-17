@@ -363,6 +363,17 @@ if ("ontouchstart" in document.documentElement) {
 
 <script>impress().init();</script>
 
+<script>
+    var firstAdvTime = 10000; //Time to wait before advancing first slide. (Milliseconds)
+    var autoAdvTime = 10000; //Time to wait before advancing all other slides. (Milliseconds)
+    impress().init();
+    window.setTimeout(autoAdv, firstAdvTime);
+    function autoAdv() {
+        impress().next();
+        window.setTimeout(autoAdv,autoAdvTime);
+    }
+</script>
+
 <!--
     
     The `impress()` function also gives you access to the API that controls the presentation.
