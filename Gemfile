@@ -47,6 +47,12 @@ gem 'figaro'
 gem "fog" #, "~> 1.3.1"
 gem 'pat'
 
+group :development do
+  gem "better_errors"
+  gem 'quiet_assets'
+  gem "binding_of_caller"
+  gem 'thin'
+end
 # gem install thinking-sphinx -v "~> 3.1.0"
 # gem install mysql2 -v 0.3.12b5
 # Use unicorn as the app server
