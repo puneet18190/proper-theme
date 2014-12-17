@@ -11,9 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= jquery.cookie
-//= jquery spin.min
-//= jquery.storageapi
+//= require jquery.cookie
+//= require jquery spin.min
+//= require jquery.storageapi
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
