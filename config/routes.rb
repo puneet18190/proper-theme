@@ -66,6 +66,7 @@ Rails.application.routes.draw do
   match '/facebook_share/:property_id', to: 'properties#facebook_share', via: 'get'
   match 'payment_property', to: 'properties#payment_property', via: 'get'
   match 'tenant_payment', to: 'properties#tenant_payment', via: 'get'
+  match '/impress', to: "screens#impress", via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

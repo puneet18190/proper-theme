@@ -39,4 +39,8 @@ class ScreensController < ApplicationController
 		@datapat = JSON.parse(@postcode.body)
 		render '/screens/newest/newest_properties_detail'
 	end
+
+	def impress
+		render :layout => false
+	end	
 end
