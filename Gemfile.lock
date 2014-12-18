@@ -341,6 +341,7 @@ DEPENDENCIES
   cancancan (~> 1.9)
   carrierwave
   coffee-rails (~> 4.0.0)
+  daemons
   delayed_job_active_record
   devise
   figaro

@@ -9,7 +9,7 @@ class UserMailer < ActionMailer::Base
   	@user = user
     @property = property
   	@status = status
-    mail( :to => @user.email, :subject => 'Status of Property Approval' )
+    mail( :to => @property.user.email, :subject => 'Status of Property Approval' )
   end
 
   def payment_remainder(property)
