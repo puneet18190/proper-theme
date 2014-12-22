@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery.cookie
-//= require jquery spin.min
+//= require spin.min
 //= require jquery.storageapi
 //= require jquery_ujs
 //= require bootstrap

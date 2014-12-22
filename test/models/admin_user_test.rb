@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: users
+# Table name: admin_users
 #
 #  id                     :integer          not null, primary key
 #  email                  :string(255)      default(""), not null
@@ -11,25 +11,15 @@
 #  sign_in_count          :integer          default(0), not null
 #  current_sign_in_at     :datetime
 #  last_sign_in_at        :datetime
-#  current_sign_in_ip     :string(255)
-#  last_sign_in_ip        :string(255)
-#  confirmation_token     :string(255)
-#  confirmed_at           :datetime
-#  confirmation_sent_at   :datetime
-#  unconfirmed_email      :string(255)
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
 #  created_at             :datetime
 #  updated_at             :datetime
-#  username               :string(255)
-#  address                :string(255)
-#  phone                  :string(255)
-#  status                 :string(255)
-#  payment                :boolean          default(FALSE)
-#  search                 :string(255)
 #
 
 require 'test_helper'
 
-class UserTest < ActiveSupport::TestCase
+class AdminUserTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

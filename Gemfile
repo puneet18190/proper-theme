@@ -52,6 +52,7 @@ group :development do
   gem 'quiet_assets'
   gem "binding_of_caller"
   gem 'thin'
+  gem 'annotate', '~> 2.6.5'
 end
 
 gem 'activeadmin', github: 'activeadmin'
