@@ -112,7 +112,7 @@ class PropertiesController < ApplicationController
         @api.put_connections("sealproperties", "feed", {
           :message => "New Property:#{@property.name} has been added.",
           :picture => @property.image1.url,
-          :link => "http://#{request.host_with_port}/properties_detail/#{@property.id}")
+          :link => "http://#{request.host_with_port}/properties_detail/#{@property.id}"})
       end  
     else
       @property.update_attributes(:approve=>false)
