@@ -3,7 +3,7 @@ class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
   load_and_authorize_resource
-  protect_from_forgery except: [:connect_facebook,:disconnect_fb] 
+  protect_from_forgery except: [:disconnect_fb] 
   def index
     if current_user.status == "admin"
       @properties = Property.all
