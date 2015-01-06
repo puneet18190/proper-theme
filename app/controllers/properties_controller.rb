@@ -246,7 +246,7 @@ class PropertiesController < ApplicationController
       @api = Koala::Facebook::API.new(session[:access_token])
       current_user.update_attributes(:fb_token=>session[:access_token])
       flash[:error] = "Connected with Facebook"
-      redirect_to "/"
+      redirect_to "/properties"
     end 
   end
 

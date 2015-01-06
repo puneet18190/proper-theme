@@ -20,9 +20,9 @@
    <%if current_user.status == "admin"%>
     <% if current_user.fb_token.nil? %>
       <!-- <a class= "btn connect_fb" href="/connect_facebook">Connect Facebook</a>     -->
-      <%= button_to "Connect Facebook","/connect_facebook"%>
+      <%= button_to "Connect Facebook","/connect_facebook",:class=>"btn"%>
     <%else%>
-      <a class= "disconnect_fb" href="/disconnect_fb">Connected with Facebook</a>
+      <a class= "btn disconnect_fb" href="/disconnect_fb">Connected with Facebook</a>
     <%end%>  
    <%end%>
 <table>
@@ -105,6 +105,14 @@
         var spinner = new Spinner(opts).spin(target);
         target.appendChild(spinner.el);
     })
+
+$( ".disconnect_fb" )
+  .mouseenter(function() {
+    $( this ).html("Disconnect Facebook");
+  })
+  .mouseleave(function() {
+    $( this ).html("Connected with Facebook");
+  });  
 </script>
 
 
