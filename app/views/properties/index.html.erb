@@ -17,7 +17,15 @@
   <div class="cont" style="max-width:1180px">
 
 <h3><b>Properties</b></h3>
-<%= button_to "Connect Facebook", "/connect_facebook" if current_user.status == "admin"%>
+   <%if current_user.status == "admin"%>
+    <% if current_user.fb_token.nil? %>
+      <a class= "btn connect_fb" href="/connect_facebook">Connect Facebook</a>    
+    <%else%>
+      <a class= "btn disconnect_fb" href="/disconnect_fb">Connected with Facebook</a>
+    <%end%>  
+   <%end%>
+<table>
+
 <table>
   <thead>
     <tr>
@@ -94,10 +102,7 @@
         };
         var target = document.getElementById('loading');
         var spinner = new Spinner(opts).spin(target);
-        //var spinner = new Spinner().spin();
         target.appendChild(spinner.el);
-        //$('.loading').html('<img src="http://www.lettersmarket.com/uploads/lettersmarket/blog/loaders/common_gray/ajax_loader_gray_256.gif"> loading...');
-
     })
 </script>
 

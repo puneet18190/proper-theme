@@ -3,6 +3,7 @@ class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
   load_and_authorize_resource
+  protect_from_forgery except: [:connect_facebook,:disconnect_fb] 
   def index
     if current_user.status == "admin"
       @properties = Property.all
@@ -108,7 +109,7 @@ class PropertiesController < ApplicationController
       @property.update_attributes(:approve=>true)
       unless current_user.fb_token.nil?
         @api = Koala::Facebook::API.new(current_user.fb_token)
-        @api.put_connections("me", "feed", :message => "#{@property.name} has been added.")
+        @api.put_connections("me", "feed", :message => "New Property:#{@property.name} has been added.")
       end  
     else
       @property.update_attributes(:approve=>false)
@@ -230,6 +231,12 @@ class PropertiesController < ApplicationController
   def connect_facebook
     @oauth = Koala::Facebook::OAuth.new("362914167223991", "4e43729461e68af98858b2e0701587be", "#{request.protocol}#{request.host}/get_fb_token/")
     redirect_to @oauth.url_for_oauth_code(:permissions => "manage_pages,publish_stream,email,publish_actions")
+  end
+
+  def disconnect_fb
+    current_user.update_attributes(:fb_token=>nil)
+    redirect_to :back
+    # render :json=>{:status=>true}.to_json
   end
 
   def get_fb_token

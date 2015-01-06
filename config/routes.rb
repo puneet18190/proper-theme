@@ -71,7 +71,8 @@ Rails.application.routes.draw do
   match '/impress', to: "screens#impress", via: 'get'
 
   get "/get_fb_token" => "properties#get_fb_token"
-  post "/connect_facebook" => "properties#connect_facebook"
+  get "/connect_facebook" => "properties#connect_facebook"
+  get "/disconnect_fb" => "properties#disconnect_fb"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
