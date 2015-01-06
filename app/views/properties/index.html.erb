@@ -20,9 +20,9 @@
    <%if current_user.status == "admin"%>
     <% if current_user.fb_token.nil? %>
       <!-- <a class= "btn connect_fb" href="/connect_facebook">Connect Facebook</a>     -->
-      <%= button_to "Connect Facebook","/connect_facebook",:class=>"btn"%>
+      <%= button_to "Connect Facebook","/connect_facebook",:class=>"btn btn-primary"%>
     <%else%>
-      <a class= "btn disconnect_fb" href="/disconnect_fb">Connected with Facebook</a>
+      <a class= "btn disconnect_fb btn-primary" href="/disconnect_fb">Connected with Facebook</a>
     <%end%>  
    <%end%>
 <table>
