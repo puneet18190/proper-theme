@@ -38,6 +38,10 @@
 #  validity    :datetime
 #  coordinates :string(255)
 #
+# Indexes
+#
+#  index_properties_on_slug  (slug) UNIQUE
+#
 
 require 'test_helper'
 

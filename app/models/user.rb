@@ -25,6 +25,13 @@
 #  status                 :string(255)
 #  payment                :boolean          default(FALSE)
 #  search                 :string(255)
+#  fb_token               :string(255)
+#
+# Indexes
+#
+#  index_users_on_confirmation_token    (confirmation_token) UNIQUE
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
 class User < ActiveRecord::Base
