@@ -114,7 +114,7 @@ class PropertiesController < ApplicationController
           :picture => @property.image1.url,
           :link => "http://#{request.host_with_port}/properties_detail/#{@property.id}",
           :name => @property.name,
-          :description => @property.description
+          :description => @property.description,
           :location => @property.address3})
       end  
     else
