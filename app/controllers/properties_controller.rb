@@ -109,7 +109,10 @@ class PropertiesController < ApplicationController
       @property.update_attributes(:approve=>true)
       unless current_user.fb_token.nil?
         @api = Koala::Facebook::API.new(current_user.fb_token)
-        @api.put_connections("sealproperties", "feed", :message => "New Property:#{@property.name} has been added.")
+        @api.put_connections("sealproperties", "feed", {
+          :message => "New Property:#{@property.name} has been added.",
+          :picture => @property.image1.url,
+          :link => "http://#{request.host_with_port}/properties_detail/#{@property.id}")
       end  
     else
       @property.update_attributes(:approve=>false)
