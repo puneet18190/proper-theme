@@ -106,6 +106,10 @@ class PropertiesController < ApplicationController
     @property_id  = params[:id]
     if params[:status] == "Approve"
       @property.update_attributes(:approve=>true)
+      unless current_user.fb_token.nil?
+        @api = Koala::Facebook::API.new(current_user.fb_token)
+        @api.put_connections("me", "feed", :message => "#{@property.name} has been added.")
+      end  
     else
       @property.update_attributes(:approve=>false)
     end
@@ -222,6 +226,22 @@ class PropertiesController < ApplicationController
 
     redirect_to URI.encode(url)
   end  
+
+  def connect_facebook
+    @oauth = Koala::Facebook::OAuth.new("362914167223991", "4e43729461e68af98858b2e0701587be", "#{request.protocol}#{request.host}/get_fb_token/")
+    redirect_to @oauth.url_for_oauth_code(:permissions => "manage_pages,publish_stream,email,publish_actions")
+  end
+
+  def get_fb_token
+    if params[:code]
+      @oauth = Koala::Facebook::OAuth.new("362914167223991", "4e43729461e68af98858b2e0701587be", "#{request.protocol}#{request.host}/get_fb_token/")
+      session[:access_token] = @oauth.get_access_token(params[:code])
+      @api = Koala::Facebook::API.new(session[:access_token])
+      current_user.update_attributes(:fb_token=>session[:access_token])
+      flash[:error] = "Connected with Facebook"
+      redirect_to "/"
+    end 
+  end
 
   private
     def set_property
