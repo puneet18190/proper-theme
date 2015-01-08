@@ -235,7 +235,7 @@ class PropertiesController < ApplicationController
   end  
 
   def connect_facebook
-    @oauth = Koala::Facebook::OAuth.new("362914167223991", "4e43729461e68af98858b2e0701587be", "#{request.protocol}#{request.host}/get_fb_token/")
+    @oauth = Koala::Facebook::OAuth.new("1621675821399010", "f249018913a98bc31d3df59a50658b17", "#{request.protocol}#{request.host}/get_fb_token/")
     redirect_to @oauth.url_for_oauth_code(:permissions => "manage_pages,publish_stream,email,publish_actions")
   end
 
@@ -247,7 +247,7 @@ class PropertiesController < ApplicationController
 
   def get_fb_token
     if params[:code]
-      @oauth = Koala::Facebook::OAuth.new("362914167223991", "4e43729461e68af98858b2e0701587be", "#{request.protocol}#{request.host}/get_fb_token/")
+      @oauth = Koala::Facebook::OAuth.new("1621675821399010", "f249018913a98bc31d3df59a50658b17", "#{request.protocol}#{request.host}/get_fb_token/")
       session[:access_token] = @oauth.get_access_token(params[:code])
       @api = Koala::Facebook::API.new(session[:access_token])
       current_user.update_attributes(:fb_token=>session[:access_token])
