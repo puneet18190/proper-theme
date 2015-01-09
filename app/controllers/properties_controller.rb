@@ -107,14 +107,15 @@ class PropertiesController < ApplicationController
     @property_id  = params[:id]
     if params[:status] == "Approve"
       @property.update_attributes(:approve=>true)
+      property_id = "SP"+@property.created_at.year.to_s.split(//).last(2).join()+@property.created_at.month.to_s.rjust(2,'0')+@property.id.to_s.rjust(4,'0')
       unless current_user.fb_token.nil?
         @api = Koala::Facebook::API.new(current_user.fb_token)
         @api.put_connections("sealproperties", "feed", {
-          :message => "New Property:#{@property.name} has been added.",
+          :message => "New Property:#{property_id} #{@property.name} has been Added.",
           :picture => @property.image1.url,
           :link => "http://#{request.host_with_port}/properties_detail/#{@property.id}",
           :name => @property.name,
-          :description => @property.description,
+          :description => "#{@property.description}, Price: £#{@property.price}",
           :location => @property.address3})
       end
 
@@ -127,9 +128,9 @@ class PropertiesController < ApplicationController
 
       img=open(@property.image1.url)
       if img.is_a?(StringIO)
-        client.update("New Property:#{@property.name} has been added.")
+        client.update("New Property:#{property_id} #{@property.name} has been Added. \nPrice:  £#{@property.price} \nhttp://#{request.host_with_port}/properties_detail/#{@property.id}")
       else
-        client.update_with_media("New Property: #{@property.name} has been Added.", img)
+        client.update_with_media("New Property:#{property_id} #{@property.name} has been Added.  \nPrice:  £#{@property.price} \nhttp://#{request.host_with_port}/properties_detail/#{@property.id}", img)
       end  
       
     else
