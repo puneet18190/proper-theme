@@ -119,10 +119,10 @@ class PropertiesController < ApplicationController
       end
 
       client = Twitter::REST::Client.new do |config|
-        config.consumer_key        = "hfB9DnIuhmz27VCCLCFsozx6n"
-        config.consumer_secret     = "UP1c9fNdP7ltAsWqoexDIwpcR9j00MsARtPeOdekTd160g0ruG"
-        config.access_token        = "2709006870-Ko0vXT8U9OaLZ2TXiUOEDaPU0hywoEAQItsrot0"
-        config.access_token_secret = "G9BPV9Nakc5vstopYUtDXGGrGDnxvs4MA4ie03CB4MgAr"
+        config.consumer_key        = "g6n3F8YmIIpK9NbpicuLIcDfI"
+        config.consumer_secret     = "uCMstIIJUHbzb9kF1odq0zQTFrC0yII3T0Rm4xleQgVcERiWM9"
+        config.access_token        = "2964161159-uXFWcovn9C9gwSeneAmvGmATfC5mvfqdQgdGodm"
+        config.access_token_secret = "i9Ws9DjyEmyC9fip50Prgo0L2exARNfhDz7IMbMq8L7M7"
       end  
 
       client.update("I'm tweeting with @gem!")
