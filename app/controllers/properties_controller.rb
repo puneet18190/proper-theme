@@ -125,7 +125,12 @@ class PropertiesController < ApplicationController
         config.access_token_secret = "i9Ws9DjyEmyC9fip50Prgo0L2exARNfhDz7IMbMq8L7M7"
       end  
 
-      client.update("New Property:#{@property.name} has been added.")
+      img=open(@property.image1.url)
+      if img.is_a?(StringIO)
+        client.update("New Property:#{@property.name} has been added.")
+      else
+        client.update_with_media("New Property: #{@property.name} has been Added.", img)
+      end  
       
     else
       @property.update_attributes(:approve=>false)
