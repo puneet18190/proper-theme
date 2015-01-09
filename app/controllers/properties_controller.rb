@@ -116,7 +116,17 @@ class PropertiesController < ApplicationController
           :name => @property.name,
           :description => @property.description,
           :location => @property.address3})
+      end
+
+      client = Twitter::REST::Client.new do |config|
+        config.consumer_key        = "hfB9DnIuhmz27VCCLCFsozx6n"
+        config.consumer_secret     = "UP1c9fNdP7ltAsWqoexDIwpcR9j00MsARtPeOdekTd160g0ruG"
+        config.access_token        = "2709006870-Ko0vXT8U9OaLZ2TXiUOEDaPU0hywoEAQItsrot0"
+        config.access_token_secret = "G9BPV9Nakc5vstopYUtDXGGrGDnxvs4MA4ie03CB4MgAr"
       end  
+
+      client.update("I'm tweeting with @gem!")
+      
     else
       @property.update_attributes(:approve=>false)
     end
