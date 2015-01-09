@@ -119,8 +119,8 @@ class PropertiesController < ApplicationController
       end
 
       client = Twitter::REST::Client.new do |config|
-        config.consumer_key        = "g6n3F8YmIIpK9NbpicuLIcDfI"
-        config.consumer_secret     = "uCMstIIJUHbzb9kF1odq0zQTFrC0yII3T0Rm4xleQgVcERiWM9"
+        config.consumer_key        = "g6n3F8YmIIpK9NbpicuLlcDfl"
+        config.consumer_secret     = "uCMstIIJUHbzb9kF1odq0zQTFrC0yII3T0Rm4xIeQgVcERiWM9"
         config.access_token        = "2964161159-uXFWcovn9C9gwSeneAmvGmATfC5mvfqdQgdGodm"
         config.access_token_secret = "i9Ws9DjyEmyC9fip50Prgo0L2exARNfhDz7IMbMq8L7M7"
       end  
