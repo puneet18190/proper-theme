@@ -35,6 +35,7 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer.delivery_method = :smtp
+  config.allow_concurrency = true
 
   config.action_mailer.smtp_settings = {
       :address => "smtp.gmail.com",
@@ -46,4 +47,6 @@ Rails.application.configure do
       :enable_starttls_auto => true
   }
   BetterErrors::Middleware.allow_ip! ENV['TRUSTED_IP'] if ENV['TRUSTED_IP']
+  ENV["REDISTOGO_URL"] = 'redis://127.0.0.1:6379'
+  
 end

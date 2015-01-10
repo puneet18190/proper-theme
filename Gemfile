@@ -51,7 +51,7 @@ group :development do
   gem "better_errors"
   gem 'quiet_assets'
   gem "binding_of_caller"
-  gem 'thin'
+  # gem 'thin'
   gem 'annotate', '~> 2.6.5'
 end
 
@@ -60,7 +60,7 @@ gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'koala'
 gem 'twitter'
-gem 'dashing-rails'
+gem 'dashing-rails', :git => 'https://github.com/gottfrois/dashing-rails'
 gem 'puma'
 # gem install thinking-sphinx -v "~> 3.1.0"
 # gem install mysql2 -v 0.3.12b5
