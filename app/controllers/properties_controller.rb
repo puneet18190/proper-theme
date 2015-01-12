@@ -115,7 +115,7 @@ class PropertiesController < ApplicationController
           :picture => @property.image1.url,
           :link => "http://#{request.host_with_port}/properties_detail/#{@property.id}",
           :name => @property.name,
-          :description => "#{@property.description}, Price: £#{@property.price}",
+          :description => "#{@property.description}, Price: #{@property.price}",
           :location => @property.address3})
       end
 
@@ -128,9 +128,9 @@ class PropertiesController < ApplicationController
 
       img=open(@property.image1.url)
       if img.is_a?(StringIO)
-        client.update("New Property:#{property_id} #{@property.name} has been Added. \nPrice:  £#{@property.price} \nhttp://#{request.host_with_port}/properties_detail/#{@property.id}")
+        client.update("New Property:#{property_id} #{@property.name} has been Added. \nPrice:  #{@property.price} \nhttp://#{request.host_with_port}/properties_detail/#{@property.id}")
       else
-        client.update_with_media("New Property:#{property_id} #{@property.name} has been Added.  \nPrice:  £#{@property.price} \nhttp://#{request.host_with_port}/properties_detail/#{@property.id}", img)
+        client.update_with_media("New Property:#{property_id} #{@property.name} has been Added.  \nPrice:  #{@property.price} \nhttp://#{request.host_with_port}/properties_detail/#{@property.id}", img)
       end  
       
     else
