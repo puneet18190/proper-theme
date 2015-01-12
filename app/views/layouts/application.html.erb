@@ -16,14 +16,14 @@
   <meta property="og:image" content="/assets/logo.png">
   <meta property="og:description" content="Proper - Real Estate Responsive HTML5 Template">
 
-  <link href="/assets/bootstrap.min.css" rel="stylesheet" media="screen">
+  <!-- <link href="/assets/bootstrap.min.css" rel="stylesheet" media="screen">
   <link href="/assets/bootstrap-responsive.min.css" rel="stylesheet">
   <link href="/assets/style.css" rel="stylesheet" media="screen">
   <link href="/assets/colorbox/colorbox.css" rel="stylesheet" media="screen">
   <link rel="stylesheet" href="/assets/font-awesome.css"/>
-  <link rel="shortcut icon" href="/assets/logo.png">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+   --><link rel="shortcut icon" href="/assets/logo.png">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
 </head>
@@ -43,17 +43,17 @@
 <script type='text/javascript'>
     $('.alert').fadeOut(5000);
 </script>
-<script>
+<!--<script>
   window.intercomSettings = {
     // TODO: The current logged in user's full name
-    name: "<%= current_user.username if current_user%>",
+    name: "<%#= current_user.username if current_user%>",
     // TODO: The current logged in user's email address.
-    email: "<%= current_user.email if current_user %>",
+    email: "<%#= current_user.email if current_user %>",
     // TODO: The current logged in user's sign-up date as a Unix timestamp.
-    created_at: <%= current_user.created_at.to_i if current_user%>,
+    created_at: <%#= current_user.created_at.to_i if current_user%>,
     app_id: "guooh5kd"
   };
 </script>
-<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/guooh5kd';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
+<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/guooh5kd';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>-->
 </body>
 </html>
