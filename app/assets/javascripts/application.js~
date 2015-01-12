@@ -32,7 +32,6 @@
 //= require bootstrap-transition
 //= require bootstrap-typeahead
 //= require gmap3.min
-//= require impress
 //= require jquery.carouFredSel-6.2.1
 //= require jquery.carouFredSel-6.2.1-packed
 //= require jquery.colorbox-min

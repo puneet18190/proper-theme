@@ -58,6 +58,7 @@ end
 gem 'activeadmin', github: 'activeadmin'
 gem 'delayed_job_active_record'
 gem 'daemons'
+gem 'cookies_eu'
 gem 'koala'
 gem 'twitter'
 gem 'dashing-rails'
