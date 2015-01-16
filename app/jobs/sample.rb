@@ -1,5 +1,5 @@
 count = 0
-Dashing.scheduler.every '5s' do
+Dashing.scheduler.every '10s' do
   @properties = Property.all
   @users = User.all
   a1= ["Active Properties"]
@@ -21,7 +21,7 @@ Dashing.scheduler.every '5s' do
 
 end
 
-Dashing.scheduler.every '5s' do
+Dashing.scheduler.every '10s' do
   a5= ["In Year","In Month","In Week","Today","Online Visitors"]
   b5= []
 
@@ -47,3 +47,111 @@ Dashing.scheduler.every '5s' do
 
   Dashing.send_event('visitors', { items: [{:label=>a5[count], :value=>b5[count]},{:label=>a5[count+1], :value=>b5[count+1]},{:label=>a5[count+2], :value=>b5[count+2]},{:label=>a5[count+3], :value=>b5[count+3]},{:label=>a5[count+4], :value=>b5[count+4]}] })
 end
+
+Dashing.scheduler.every '10s' do
+  a5= ["In Year","In Month","In Week","Today"]
+  b5= []
+
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=visitors-unique&date=2015&output=json')
+  data=JSON.parse(response.body)
+  b5 << data.first['dates'].first["items"].first["value"]
+
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=visitors-unique&date=this-month&output=json')
+  data=JSON.parse(response.body)
+  b5 << data.first['dates'].first["items"].first["value"]
+
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=visitors-unique&date=this-week&output=json')
+  data=JSON.parse(response.body)
+  b5 << data.first['dates'].first["items"].first["value"]
+
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=visitors-unique&output=json')
+  data=JSON.parse(response.body)
+  b5 << data.first['dates'].first["items"].first["value"]
+
+  Dashing.send_event('visitors_unique', { items: [{:label=>a5[count], :value=>b5[count]},{:label=>a5[count+1], :value=>b5[count+1]},{:label=>a5[count+2], :value=>b5[count+2]},{:label=>a5[count+3], :value=>b5[count+3]}] })
+end
+
+Dashing.scheduler.every '10s' do
+  a5= ["In Year","In Month","In Week","Today"]
+  b5= []
+
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=visitors-new&date=2015&output=json')
+  data=JSON.parse(response.body)
+  b5 << data.first['dates'].first["items"].first["value"]
+
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=visitors-new&date=this-month&output=json')
+  data=JSON.parse(response.body)
+  b5 << data.first['dates'].first["items"].first["value"]
+
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=visitors-new&date=this-week&output=json')
+  data=JSON.parse(response.body)
+  b5 << data.first['dates'].first["items"].first["value"]
+
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=visitors-new&output=json')
+  data=JSON.parse(response.body)
+  b5 << data.first['dates'].first["items"].first["value"]
+
+  Dashing.send_event('visitors_new', { items: [{:label=>a5[count], :value=>b5[count]},{:label=>a5[count+1], :value=>b5[count+1]},{:label=>a5[count+2], :value=>b5[count+2]},{:label=>a5[count+3], :value=>b5[count+3]}] })
+end
+
+Dashing.scheduler.every '10s' do
+  a5= ["In Year","In Month","In Week","Today"]
+  b5= []
+
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=actions-pageviews&date=2015&output=json')
+  data=JSON.parse(response.body)
+  b5 << data.first['dates'].first["items"].first["value"]
+
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=actions-pageviews&date=this-month&output=json')
+  data=JSON.parse(response.body)
+  b5 << data.first['dates'].first["items"].first["value"]
+
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=actions-pageviews&date=this-week&output=json')
+  data=JSON.parse(response.body)
+  b5 << data.first['dates'].first["items"].first["value"]
+
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=actions-pageviews&output=json')
+  data=JSON.parse(response.body)
+  b5 << data.first['dates'].first["items"].first["value"]
+
+  a6= ["Actions per visitor"]
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=actions-average&output=json')
+  data=JSON.parse(response.body)
+  b6 = []
+  b6 << data.first['dates'].first["items"].first["value"]
+
+  a7= ["Per visitor"]
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=time-average-pretty&output=json')
+  data=JSON.parse(response.body)
+  b7 = []
+  b7 << data.first['dates'].first["items"].first["value"]
+
+  Dashing.send_event('page_views', { items: [{:label=>a5[count], :value=>b5[count]},{:label=>a5[count+1], :value=>b5[count+1]},{:label=>a5[count+2], :value=>b5[count+2]},{:label=>a5[count+3], :value=>b5[count+3]}] })
+  Dashing.send_event('average_action', { items: [{:label=>a6[count], :value=>b6[count] }]})
+  Dashing.send_event('average_time', { items: [{:label=>a7[count], :value=>b7[count] }]})
+end
+
+Dashing.scheduler.every '10s' do
+  a5= ["In Year","In Month","In Week","Today"]
+  b5= []
+
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=bounce-rate&date=2015&output=json')
+  data=JSON.parse(response.body)
+  b5 << data.first['dates'].first["items"].first["value"]
+
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=bounce-rate&date=this-month&output=json')
+  data=JSON.parse(response.body)
+  b5 << data.first['dates'].first["items"].first["value"]
+
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=bounce-rate&date=this-week&output=json')
+  data=JSON.parse(response.body)
+  b5 << data.first['dates'].first["items"].first["value"]
+
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=bounce-rate&output=json')
+  data=JSON.parse(response.body)
+  b5 << data.first['dates'].first["items"].first["value"]
+
+  Dashing.send_event('bounce-rate', { items: [{:label=>a5[count], :value=>b5[count]},{:label=>a5[count+1], :value=>b5[count+1]},{:label=>a5[count+2], :value=>b5[count+2]},{:label=>a5[count+3], :value=>b5[count+3]}] })
+end
+
+
