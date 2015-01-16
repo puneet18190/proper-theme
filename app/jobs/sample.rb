@@ -25,58 +25,25 @@ Dashing.scheduler.every '5s' do
   a5= ["In Year","In Month","In Week","Today","Online Visitors"]
   b5= []
 
-  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808132&sitekey=5b9080bd8d4be08a&type=visitors&date=2015&output=json')
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=visitors&date=2015&output=json')
   data=JSON.parse(response.body)
   b5 << data.first['dates'].first["items"].first["value"]
 
-  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808132&sitekey=5b9080bd8d4be08a&type=visitors&date=this-month&output=json')
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=visitors&date=this-month&output=json')
   data=JSON.parse(response.body)
   b5 << data.first['dates'].first["items"].first["value"]
 
-  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808132&sitekey=5b9080bd8d4be08a&type=visitors&date=this-week&output=json')
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=visitors&date=this-week&output=json')
   data=JSON.parse(response.body)
   b5 << data.first['dates'].first["items"].first["value"]
 
-  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808132&sitekey=5b9080bd8d4be08a&type=visitors&output=json')
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=visitors&output=json')
   data=JSON.parse(response.body)
   b5 << data.first['dates'].first["items"].first["value"]
 
-  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808132&sitekey=5b9080bd8d4be08a&type=visitors-online&output=json')
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=visitors-online&output=json')
   data=JSON.parse(response.body)
   b5 << data.first['dates'].first["items"].first["value"]
 
   Dashing.send_event('visitors', { items: [{:label=>a5[count], :value=>b5[count]},{:label=>a5[count+1], :value=>b5[count+1]},{:label=>a5[count+2], :value=>b5[count+2]},{:label=>a5[count+3], :value=>b5[count+3]},{:label=>a5[count+4], :value=>b5[count+4]}] })
 end
-
-
-
-
-# count = 0
-# Dashing.scheduler.every '10s' do
-#   @users = User.all
-#   a2= ["Number of Active Tenants", "Number of Active Landlords"]
-#   b2= [@users.where("payment= ? AND status = ?", true,"tenant").count, @users.where("payment= ? AND status = ?", true,"landlord").count]
-#
-#   Dashing.send_event('active_users', { items: [{:label=>a[count], :value=>b[count] }, {:label=>a[count+1], :value=>b[count+1] }]})
-# end
-#
-#
-# count = 0
-# Dashing.scheduler.every '5s' do
-#   @users = User.all
-#   a3= ["Total","In Year","In Month","In Week","Today"]
-#   b3= [@users.where(:status => "landlord").count, @users.where("created_at >= ? AND status = ?", Date.today.at_beginning_of_year,"landlord").count, @users.where("created_at >= ? AND status = ?", Date.today.at_beginning_of_month,"landlord").count, @users.where("created_at >= ? AND status = ?", Date.today.at_beginning_of_week,"landlord").count, @users.where("created_at >= ? AND status = ?", Date.today.at_beginning_of_day,"landlord").count]
-#
-#   Dashing.send_event('landlords', { items: [{:label=>a[count], :value=>b[count]},{:label=>a[count+1], :value=>b[count+1]},{:label=>a[count+2], :value=>b[count+2]},{:label=>a[count+3], :value=>b[count+3]},{:label=>a[count+4], :value=>b[count+4]}] })
-# end
-#
-#
-#
-# count = 0
-# Dashing.scheduler.every '5s' do
-#   @users = User.all
-#   a4= ["Total","In Year","In Month","In Week","Today"]
-#   b4= [@users.where(:status => "tenant").count, @users.where("created_at >= ? AND status = ?", Date.today.at_beginning_of_year,"tenant").count, @users.where("created_at >= ? AND status = ?", Date.today.at_beginning_of_month,"tenant").count, @users.where("created_at >= ? AND status = ?", Date.today.at_beginning_of_week,"tenant").count, @users.where("created_at >= ? AND status = ?", Date.today.at_beginning_of_day,"tenant").count]
-#
-#   Dashing.send_event('tenants', { items: [{:label=>a[count], :value=>b[count]},{:label=>a[count+1], :value=>b[count+1]},{:label=>a[count+2], :value=>b[count+2]},{:label=>a[count+3], :value=>b[count+3]},{:label=>a[count+4], :value=>b[count+4]}] })
-# end
