@@ -47,5 +47,6 @@ module Proper
   config.assets.precompile += %w( /bootstrap-responsive.min.css)
   config.assets.precompile += %w( /style.css)
   config.assets.precompile += %w( /colorbox/colorbox.css)
+  config.assets.precompile += %w( /dashing/widgets/dashing.coffee)
   end
 end
