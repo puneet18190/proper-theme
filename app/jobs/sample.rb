@@ -154,4 +154,11 @@ Dashing.scheduler.every '10s' do
   Dashing.send_event('bounce-rate', { items: [{:label=>a5[count], :value=>b5[count]},{:label=>a5[count+1], :value=>b5[count+1]},{:label=>a5[count+2], :value=>b5[count+2]},{:label=>a5[count+3], :value=>b5[count+3]}] })
 end
 
+Dashing.scheduler.every '20s' do
+  @screen = Screen.all
+  a1= ["Screen 3"]
+  b1= [@screen.find_by_name("screen_3").status ? "Up" : "Down"]
 
+  Dashing.send_event('screen_status', { items: [{:label=>a1[count], :value=>b1[count] }]})
+
+end

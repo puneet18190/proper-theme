@@ -13,6 +13,7 @@ function run_script(ids,property_id,index){
 		$.ajax({
 			type : 'get',
 			url : 'screens/screen_properties_detail/'+property_id,
+			data: "screen_id=3&status=true",
 			async: false,
 			success : function(response){
 				$(".main_container").html(response);
@@ -32,13 +33,28 @@ function run_script(ids,property_id,index){
 					  }, delay);
 				}
 			},
-			error : function(){
-				var ids = []
-				<% @properties.each do |n|%>
-					ids.push(<%=n.id%>)
-				<%end%>	
-				var index=0
-				run_script(ids,ids[0],index);
+			error : function(jqXHR, exception){
+				if (jqXHR.status === 0) {
+                	update_screen_status()
+	            } else if (jqXHR.status == 404) {
+	                update_screen_status()
+	            } else if (jqXHR.status == 500) {
+	                update_screen_status()
+	            } else if (exception === 'parsererror') {
+	                update_screen_status()
+	            } else if (exception === 'timeout') {
+	                update_screen_status()
+	            } else if (exception === 'abort') {
+	                update_screen_status()
+	            } else {
+	                var ids = []
+					<% @properties.each do |n|%>
+						ids.push(<%=n.id%>)
+					<%end%>	
+					var index=0
+					run_script(ids,ids[0],index);
+	            }
+				
 			}
 		})
 	}else{
@@ -61,5 +77,16 @@ function run_script_by_cookie(index,ids){
 			run_script_by_cookie(index,ids);
 		  }, delay);
 	}
+}
+
+function update_screen_status(){
+	$.ajax({
+		type: 'post',
+		url: '/update_screen_status',
+		data: 'screen_id=3&status=false',
+		success: function(){
+
+		}
+	})
 }
 </script>

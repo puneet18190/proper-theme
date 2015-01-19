@@ -74,6 +74,7 @@ Rails.application.routes.draw do
   get "/get_fb_token" => "properties#get_fb_token"
   post "/connect_facebook" => "properties#connect_facebook"
   get "/disconnect_fb" => "properties#disconnect_fb"
+  match '/update_screen_status',   to: 'screens#update_screen_status',   via: 'post'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
