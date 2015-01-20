@@ -25,7 +25,8 @@ SitemapGenerator::Sitemap.create do
   #     add article_path(article), :lastmod => article.updated_at
   #   end
   add '/', :changefreq => 'daily', :priority => 1
+  add '/index', :changefreq => 'daily', :priority => 0.7
     Property.find_each do |property|
-      add '/properties_detail/'+property.id.to_s
+      add '/properties_detail/'+property.slug
     end
 end
