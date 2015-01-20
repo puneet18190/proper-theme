@@ -65,6 +65,7 @@ gem 'puma'
 gem 'yui-compressor'
 gem 'getclicky', '~> 0.1.4'
 gem 'httparty'
+gem 'sitemap_generator'
 
 # gem install thinking-sphinx -v "~> 3.1.0"
 # gem install mysql2 -v 0.3.12b5
