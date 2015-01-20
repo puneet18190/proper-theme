@@ -57,12 +57,14 @@
 
 <script src="/assets/colorbox/jquery.colorbox-min.js"></script>
 <script src="/assets/proper.js"></script>
+<script src="/assets/jquery.cookie.js"></script>
 
 
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
 </head>
 <body>
+  <%= render 'cookies_eu/cookies_eu', link: '/cookies'%>
 <%= render 'layouts/header' %>
 <div id="loading" style="position: fixed;z-index: 1;margin-left: 635px;margin-top:180px"></div>
 <div class="main_container">
