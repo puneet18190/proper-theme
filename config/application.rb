@@ -47,5 +47,8 @@ module Proper
   config.assets.precompile += %w( /bootstrap-responsive.min.css)
   config.assets.precompile += %w( /style.css)
   config.assets.precompile += %w( /colorbox/colorbox.css)
+  config.assets.precompile += %w( /cookies_eu.js)
+  config.assets.precompile += %w( /cookies_eu.css.scss)
+  config.assets.precompile += %w( /jquery.cookies.js)
   end
 end
