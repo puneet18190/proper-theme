@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :properties
+  # resources :advertisements
   devise_for :users, controllers: { confirmations: "confirmations" }
 
   root 'tasks#index'
