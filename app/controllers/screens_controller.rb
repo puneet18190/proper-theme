@@ -65,8 +65,8 @@ class ScreensController < ApplicationController
 		@datapat = JSON.parse(@postcode.body)
     	@advertisements = []
     	@advertisements = Advertisement.all
-    	@advertisements_l = @advertisements[0..3]
-    	@advertisements_r = @advertisements[3..6]
+    	@advertisements_l = @advertisements[0..1]
+    	@advertisements_r = @advertisements[2..3]
 		render '/screens/community/community_detail'
 	end
 end
