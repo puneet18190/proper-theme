@@ -43,8 +43,6 @@ class ScreensController < ApplicationController
 		@data = Property.find(params[:property_id])
 		@postcode = Pat.get(@data.postcode.to_s)
 		@datapat = JSON.parse(@postcode.body)
-    @advertisements = []
-    @advertisements = Advertisement.all
 		render '/screens/newest/newest_properties_detail'
 	end
 
@@ -55,6 +53,20 @@ class ScreensController < ApplicationController
 	def update_screen_status
 		Screen.find_by_name("screen_"+params[:screen_id].to_s).update_attributes(:status => params[:status])
 		render :json => {:status => "ok"}.to_json
-  end
+  	end
+  	def community
+		@properties = Property.where(:visibility=>true).last(5)
+		render '/screens/community/community', :layout => "screen_layout"
+	end
 
+	def community_detail
+		@data = Property.find(params[:property_id])
+		@postcode = Pat.get(@data.postcode.to_s)
+		@datapat = JSON.parse(@postcode.body)
+    	@advertisements = []
+    	@advertisements = Advertisement.all
+    	@advertisements_l = @advertisements[0..3]
+    	@advertisements_r = @advertisements[3..6]
+		render '/screens/community/community_detail'
+	end
 end

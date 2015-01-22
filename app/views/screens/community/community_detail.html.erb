@@ -1,7 +1,23 @@
             <!--Start Content-->
 <div id="content">
   <%= render :partial => "/layouts/main_title",:locals => { :maintitle => "Property Detail", :subtitle=>"Newest Addition"} %>
-  <div class="container">
+   <% unless @advertisements_l.blank? %>
+     <div class="ad_left"    
+      <% @advertisements_l.each do |ad| %>
+        <% if (ad.expiry_date - (Time.now).to_date)> 0 %>
+          <div id="oval_left" style="margin:5px;padding:3px;width:150px">
+            <b><%= ad.name%></b><br>
+            <%= ad.email%><br>
+            <%= ad.description%><br>
+            <%= image_tag ad.image.url, :size => '30x20'%><br>
+            <%= ad.phone%><br>
+            <%= ad.expiry_date%><br>
+          </div>
+       <% end %>
+      <% end %>      
+    </div>
+  <% end %>
+  <div class="container" style="width:930px">
     <div class="row-fluid">
       <div class="span9">
           <div class="panel right-line">
@@ -79,41 +95,27 @@
               </div><!-- END MAP LOCATION -->
             <p>Ward: <%=  @datapat["code"] ==404 ? "" : "#{@datapat["administrative"]["ward"]["title"]}"   %><br>
               Council: <%=  @datapat["code"] ==404 ? "" : "#{@datapat["administrative"]["council"]["title"]}"   %></p>
-
-
-
-              <!-- Detail Agent -->
-           <!--   <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-user"></i></span> Agent</h3>
-              <div class="agent-panel bottom-line line-before">
-                  <a href="#" class="agent-image ">
-                      <img src="/assets/agents/circle/a1.jpg" class="img-polaroid" alt="agent">
-                  </a>
-                  <ul class="unstyled margin20">
-                      <li><i class="icon-phone"></i> (+89)98732.984 </li>
-                      <li><i class="icon-envelope"></i> agent@company.com</li>
-                      <li><i class="icon-facebook"></i> angel</li>
-                      <li><i class="icon-twitter"></i> @angel</li>
-                  </ul>
-              </div><!-- END Detail Agent -->
-              <!-- FORM CONTACT -->
-          <!--    <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-envelope-alt"></i></span> Contact Agent</h3>
-              <form>
-                  <label>Name</label>
-                  <input type="text" name="name" placeholder="Enter Your Name" required="" class="input-block-level"/>
-                  <label>Email</label>
-                  <input type="email" name="email" placeholder="Enter Your Email" required="" class="input-block-level"/>
-                  <label>Message</label>
-                  <textarea name="message" class="input-block-level" rows="5" placeholder="Your Message" required=""></textarea>
-                  <div class="clearfix">
-                      <input type="submit" value="Send" class="btn btn-proper "/>
-                  </div>
-              </form>
-              <!-- END FORM CONTACT -->
-
           </div>
       </div>
     </div>
   </div>
+  <% unless @advertisements_r.blank? %>
+    <div class="ad_right">    
+      <% @advertisements_r.each_with_index do |ad| %>
+        <% if (ad.expiry_date - (Time.now).to_date)> 0 %>
+          <div id="oval_right" style="margin:5px;padding:3px;width:150px">
+            <b><%= ad.name%> </b><br>
+            <%= ad.email%><br>
+            <%= ad.description%><br>
+            <%= image_tag ad.image.url, :size => '30x20'%><br>
+            <%= ad.phone%><br>
+            <%= ad.expiry_date%><br>
+          </div>
+        <% end %>
+      <% end %> 
+    </div>
+  <% end %> 
+</div>
 
 <script type="text/javascript">
 $(document).ready(function() {
