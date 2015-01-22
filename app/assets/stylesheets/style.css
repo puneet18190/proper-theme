@@ -733,3 +733,39 @@ select {
     margin-top: 30px;
 }
 
+#oval_left {
+    text-align:center;
+    text-emphasis-color: red;
+    text-align: center;
+    text-decoration-style: solid;
+    background: #a6ebff;
+    -moz-border-radius: 100px / 50px;
+    -webkit-border-radius: 100px / 50px;
+    border-radius: 100px / 50px;
+}
+
+#oval_right {
+    text-align:center;
+    text-emphasis-color: red;
+    text-align: center;
+    text-decoration-style: solid;
+    background: #a6ebff;
+    -moz-border-radius: 100px / 50px;
+    -webkit-border-radius: 100px / 50px;
+    border-radius: 100px / 50px;
+}
+
+.ad_left {
+    width: 180px;
+    height: 90px;
+    margin-top: 5px;
+    position: absolute;
+}
+
+.ad_right {
+    width: 180px;
+    height: 90px;
+    margin-top: -500px;
+    margin-left: 1110px;
+    position: absolute;
+}

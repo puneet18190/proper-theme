@@ -43,6 +43,8 @@ class ScreensController < ApplicationController
 		@data = Property.find(params[:property_id])
 		@postcode = Pat.get(@data.postcode.to_s)
 		@datapat = JSON.parse(@postcode.body)
+    @advertisements = []
+    @advertisements = Advertisement.all
 		render '/screens/newest/newest_properties_detail'
 	end
 
@@ -53,5 +55,6 @@ class ScreensController < ApplicationController
 	def update_screen_status
 		Screen.find_by_name("screen_"+params[:screen_id].to_s).update_attributes(:status => params[:status])
 		render :json => {:status => "ok"}.to_json
-	end	
+  end
+
 end
