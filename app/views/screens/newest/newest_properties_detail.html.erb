@@ -1,21 +1,7 @@
             <!--Start Content-->
 <div id="content">
   <%= render :partial => "/layouts/main_title",:locals => { :maintitle => "Property Detail", :subtitle=>"Newest Addition"} %>
-   <div class="ad_left">
-    <% @advertisements[0..3].each do |ad| %>
-      <% if (ad.expiry_date - (Time.now).to_date)> 0 %>
-        <div id="oval_left" style="margin:5px;padding:3px;width:150px">
-          <b><%= ad.name%></b><br>
-          <%= ad.email%><br>
-          <%= ad.description%><br>
-          <%= image_tag ad.image.url, :size => '30x20'%><br>
-          <%= ad.phone%><br>
-          <%= ad.expiry_date%><br>
-        </div>
-     <% end %>
-    <% end %>
-  </div>
-  <div class="container" style="width:930px">
+  <div class="container">
     <div class="row-fluid">
       <div class="span9">
           <div class="panel right-line">
@@ -128,21 +114,6 @@
       </div>
     </div>
   </div>
-  <div class="ad_right">
-    <% @advertisements[3..6].each_with_index do |ad| %>
-      <% if (ad.expiry_date - (Time.now).to_date)> 0 %>
-        <div id="oval_right" style="margin:5px;padding:3px;width:150px">
-          <b><%= ad.name%> </b><br>
-          <%= ad.email%><br>
-          <%= ad.description%><br>
-          <%= image_tag ad.image.url, :size => '30x20'%><br>
-          <%= ad.phone%><br>
-          <%= ad.expiry_date%><br>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-</div>
 
 <script type="text/javascript">
 $(document).ready(function() {
