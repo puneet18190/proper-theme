@@ -67,6 +67,9 @@ gem 'getclicky', '~> 0.1.4'
 gem 'httparty'
 gem 'sitemap_generator'
 gem 'cookies_eu'
+gem 'mailboxer'
+gem 'simple_form'
+gem 'autoprefixer-rails'
 # gem install thinking-sphinx -v "~> 3.1.0"
 # gem install mysql2 -v 0.3.12b5
 # Use unicorn as the app server

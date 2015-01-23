@@ -1,0 +1,12 @@
+<div class="mailboxer">
+  <h3><b>Conversations</b></h3>
+  <h4><%= link_to 'Inbox', conversations_path(:id => "in"), :remote => true %></h4>
+  <h4><%= link_to 'SentBox', conversations_path(:id => "snt"), :remote => true  %></h4>
+  <h4><%= link_to 'Trash', conversations_path(:id => "tr"), :remote => true %></h4>
+  <b><%= link_to 'Compose Message', :new_conversation %></b>
+</div>
+
+<div class="inbox">
+
+</div>
+

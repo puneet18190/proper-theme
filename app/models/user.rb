@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :properties, dependent: :destroy
   Roles = [ :admin , :default ]
-
+  acts_as_messageable
   def is?( requested_role )
     self.role == requested_role.to_s
   end
@@ -52,6 +52,16 @@ class User < ActiveRecord::Base
 
   def set_default_state
     state = 'tenant'
+  end
+
+
+
+  def name
+    email
+  end
+
+  def mailboxer_email(object)
+    email
   end
 end
 
