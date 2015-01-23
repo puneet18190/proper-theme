@@ -88,8 +88,6 @@ Rails.application.routes.draw do
 
 
   match 'community', to: 'screens#community', via: 'get'
-  match 'screens/community_detail/:property_id',   to: 'screens#community_detail',   via: 'get'
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
