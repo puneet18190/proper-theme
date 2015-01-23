@@ -12,10 +12,12 @@
           <% elsif current_user.status == "landlord" %>
            <%= link_to "List Properties", properties_path   %>
            <%= link_to "Click here to Add Property", new_property_path   %>
+           <%= link_to "List Conversations", conversations_path   %>
           <% else %>
             <%= link_to "Payment", payment_property_path  %>
             <%= link_to "Search Properties", search_property_path  %>
-          <% end %>
+            <%= link_to "List Conversations", conversations_path   %>
+      <% end %>
             Logged in as <strong><%= current_user.email %></strong>
             <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
         <% else %>
