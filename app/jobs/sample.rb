@@ -162,3 +162,29 @@ Dashing.scheduler.every '20s' do
   Dashing.send_event('screen_status', { items: [{:label=>a1[count], :value=>b1[count] }]})
 
 end
+
+Dashing.scheduler.every '15s' do
+	require 'stripe'
+  tp = Stripe::Plan.retrieve("plan_5")["amount"]
+  lp = Stripe::Plan.retrieve("plan_10")["amount"]
+  a8= ["Tenant Payment", "Landlord Payment"]
+  b8= [tp.to_s, lp.to_s ]
+
+  Dashing.send_event('payment', { items: [{:label=>a8[count], :value=>b8[count] },{:label=>a8[count+1], :value=>b8[count+1]}]})
+end
+
+Dashing.scheduler.every '10s' do
+  a9= []
+  b9= []
+
+  response = HTTParty.get('http://api.clicky.com/api/stats/4?site_id=100808775&sitekey=97ff050949c91f89&type=searches-keywords&date=2015&output=json')
+  data=JSON.parse(response.body)
+  unless data.first['dates'].first["items"].empty?
+	  (0..5).each do |obj|
+		  a9 << data.first['dates'].first["items"][obj]["title"]
+		  b9 << data.first['dates'].first["items"][obj]["value"]
+	  end 	  
+   end
+  
+  Dashing.send_event('search_keyword', { items: [{:label=>a9[count], :value=>b9[count]},{:label=>a9[count+1], :value=>b9[count+1]},{:label=>a9[count+2], :value=>b9[count+2]},{:label=>a9[count+2], :value=>b9[count+2]},{:label=>a9[count+3], :value=>b9[count+3]},{:label=>a9[count+4], :value=>b9[count+4]}] })
+end
