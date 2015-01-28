@@ -1,5 +1,4 @@
 
-
 <!--Start Content-->
 <div id="content">
   <!--Start Main Title-->
@@ -31,52 +30,113 @@
         <h1 class="title-heading">Our Ads</h1>
       </div>
       <div class="row-fluid">
-        <% if @advertisements.nil? %>
-          <div class="span4">
-            <div class="dialog-box-style">
-              <h3><span class="main-circle-icon"><i class="icon-arrow-right"></i></span> No Advertisements</h3>
-              <p>Nothing to display...</p>
-            </div>
-            <div class="arrow-bottom"></div>
-            <img src="assets/default_images/no.jpg"/>
-          </div>
-        <% else %>
-          <div id="slider-wrapper">
+          <div id="slider-wrapper" style="margin-left: -25px">
             <ul id="ad_carousel1">
-              <% @advertisements.each do |ad| %>
-                <div class="span4" style="margin-left:5px">
-                  <div class="dialog-box-style">
-                    <h3><span class="main-circle-icon"><i class="icon-arrow-right"></i></span><%= ad.name %></h3>
-                    <p><%= ad.description %></p>
+              <% if @advertisements_t.count == 0 %>
+                <% 3.times do %>
+                  <div class="span4" style="margin-left:5px;margin-top:10px">
+                    <div class="dialog-box-style">
+                      <h3><span class="main-circle-icon"><i class="icon-arrow-right"></i></span>Nothing to display</h3>
+                      <p>Coming Soon...</p>
+                    </div>
+                    <div class="arrow-bottom"></div>
+                    <img alt='images' src="assets/default_images/no.jpg" style="height:200px;width:450px" class="full"/><span class="mask_hover"></span>
                   </div>
-                  <div class="arrow-bottom"></div>
-                    <%= image_tag ad.image.url, class: "full", class: "mask_hover" %>
-                </div>
+
+                <% end %>
+              <% elsif ((3-@advertisements_t.count) < 3) && ((3-@advertisements_t.count)  > 0) %>
+                <% (3-@advertisements_t.count).times do %>
+                  <div class="span4" style="margin-left:5px;">
+                    <div class="dialog-box-style">
+                      <h3><span class="main-circle-icon"><i class="icon-arrow-right"></i></span>Nothing to display</h3>
+                      <p>Coming Soon...</p>
+                    </div>
+                    <div class="arrow-bottom"></div>
+                    <img alt='images' src="assets/default_images/no.jpg" style="height:200px;width:450px" class="full"/><span class="mask_hover"></span>
+                  </div>
+                <% end %>
+                <% @advertisements_t.each do |adv| %>
+                  <div class="span4" style="margin-left:5px">
+                    <div class="dialog-box-style">
+                      <h3><span class="main-circle-icon"><i class="icon-arrow-right"></i></span><%= adv.name %></h3>
+                      <p><%= adv.description %></p>
+                    </div>
+                    <div class="arrow-bottom"></div>
+                    <%= image_tag adv.image.url, style: "height:200px;width:450px", class: "full", class: "mask_hover" %>
+                  </div>
+                <% end %>
+              <% else %>
+                <% @advertisements_t.each do |ad| %>
+                  <div class="span4" style="margin-left:5px;margin-top:10px">
+                    <div class="dialog-box-style">
+                      <h3><span class="main-circle-icon"><i class="icon-arrow-right"></i></span><%= ad.name %></h3>
+                      <p><%= ad.description %></p>
+                    </div>
+                    <div class="arrow-bottom"></div>
+                    <%= image_tag ad.image.url, style: "height:200px;width:450px", class: "full", class: "mask_hover" %>
+                  </div>
+                <% end %>
+
               <% end %>
             </ul>
           </div>
-          <div id="slider-wrapper">
+          <div id="slider-wrapper" style="margin-left: -25px">
             <ul id="ad_carousel2">
-              <% @advertisements.each do |ad| %>
+              <% if @advertisements_b.count == 0 %>
+                <% 3.times do %>
+                  <div class="span4" style="margin-left:5px;margin-top:10px">
+                    <div class="dialog-box-style">
+                      <h3><span class="main-circle-icon"><i class="icon-arrow-right"></i></span>Nothing to display</h3>
+                      <p>Coming Soon...</p>
+                    </div>
+                    <div class="arrow-bottom"></div>
+                    <img alt='images' src="assets/default_images/no.jpg" style="height:200px;width:450px" class="full"/><span class="mask_hover"></span>
+                  </div>
+                <% end %>
+              <% elsif ((3-@advertisements_b.count) < 3) && ((3-@advertisements_b.count)  > 0) %>
+                  <% (3-@advertisements_b.count).times do %>
+                  <div class="span4" style="margin-left:5px;margin-top:10px">
+                    <div class="dialog-box-style">
+                      <h3><span class="main-circle-icon"><i class="icon-arrow-right"></i></span>Nothing to display</h3>
+                      <p>Coming Soon...</p>
+                    </div>
+                    <div class="arrow-bottom"></div>
+                    <img alt='images' src="assets/default_images/no.jpg" style="height:200px;width:450px" class="full"/><span class="mask_hover"></span>
+                  </div>
+                <% end %>
+                  <% @advertisements_b.each do |adv| %>
+                    <div class="span4" style="margin-left:5px;margin-top:10px">
+                      <div class="dialog-box-style">
+                        <h3><span class="main-circle-icon"><i class="icon-arrow-right"></i></span><%= adv.name %></h3>
+                        <p><%= adv.description %></p>
+                      </div>
+                      <div class="arrow-bottom"></div>
+                      <%= image_tag adv.image.url, style: "height:200px;width:450px", class: "full", class: "mask_hover" %>
+                    </div>
+                  <% end %>
+              <% else %>
+              <% @advertisements_b.each do |ad| %>
                 <div class="span4" style="margin-left:5px;margin-top:10px">
                   <div class="dialog-box-style">
                     <h3><span class="main-circle-icon"><i class="icon-arrow-right"></i></span><%= ad.name %></h3>
                     <p><%= ad.description %></p>
                   </div>
                   <div class="arrow-bottom"></div>
-                    <%= image_tag ad.image.url, class: "full", class: "mask_hover" %>
+
+                    <%= image_tag ad.image.url, style: "height:200px;width:450px", class: "full", class: "mask_hover" %>
                 </div>
               <% end %>
+            <% end %>
+
             </ul>
           </div>
-        <% end %>
       </div>
     </div>
   </div>
 </div><!--EndContent-->
 
 <script type="text/javascript">
-    if ($('#ad_carousel1').length){
+    if ($('#ad_carousel1,#ad_carousel2').length){
         $('#ad_carousel1,#ad_carousel2').carouFredSel({
             width: '100px',
             circular: true,
@@ -97,12 +157,12 @@
                 easing: 'linear',
                 items: 1,
                 duration: 1000,
-                timeoutDuration: 6000
+                timeoutDuration: 3000
             },
-            mousewheel: false,
+            mousewheel: true,
             swipe: {
-                onMouse: true,
-                onTouch: true
+                onMouse: false,
+                onTouch: false
             },
             prev: '#prev',
             next: '#next',

@@ -273,7 +273,19 @@ class PropertiesController < ApplicationController
   end
 
   def advertisements
+    @advertisements = []
+    @advertisements_t = []
+    @advertisements_b = []
     @advertisements = Advertisement.all
+    @total = @advertisements.count
+    @half = @total/2
+    # @count_lt = @total < 3 ? (3-@total) : 0
+    (0..(@half-1)).each do |rec|
+      @advertisements_t << @advertisements[rec]
+    end
+    ((@half)..(@total-1)).each do |dat|
+      @advertisements_b << @advertisements[dat]
+    end
   end
 
   def ad
@@ -298,4 +310,5 @@ class PropertiesController < ApplicationController
     def property_params
       params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id)
     end
+
 end
