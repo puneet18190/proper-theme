@@ -7,7 +7,8 @@
     <img src="assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
     <div class="container">
       <div class="panel">
-        <h1>Advertisements</h1>
+        <h1>Community Adverts</h1>
+        <h3>Call inside to Advertise here</h3>
       </div>
     </div>
   </div> <!--End Main Title-->
@@ -49,13 +50,10 @@
                     <p><%= ad.description %></p>
                   </div>
                   <div class="arrow-bottom"></div>
-                    <%#= image_tag ad.image.url, class: "full", class: "mask_hover" %>
-                    <img src="assets/agents/a3.jpg" alt="people">
+                    <%= image_tag ad.image.url, class: "full", class: "mask_hover" %>
                 </div>
               <% end %>
-
             </ul>
-
           </div>
           <div id="slider-wrapper">
             <ul id="ad_carousel2">
@@ -66,13 +64,10 @@
                     <p><%= ad.description %></p>
                   </div>
                   <div class="arrow-bottom"></div>
-                    <%#= image_tag ad.image.url, class: "full", class: "mask_hover" %>
-                    <img src="assets/agents/a3.jpg" alt="people">
+                    <%= image_tag ad.image.url, class: "full", class: "mask_hover" %>
                 </div>
               <% end %>
-
             </ul>
-
           </div>
         <% end %>
       </div>
