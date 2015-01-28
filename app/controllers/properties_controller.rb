@@ -272,6 +272,24 @@ class PropertiesController < ApplicationController
     end 
   end
 
+  def advertisements
+    @advertisements = Advertisement.all
+  end
+
+  def ad
+    @ad = []
+    @ad = Advertisement.all
+    @section = (@ad.count)/5
+    # binding.pry
+    # @section.times do |section|
+    #   (1..5).each do |count|   (@ad.count)+1
+    #     section = section * 5
+    #     num = section + count
+    #     @ad[num]
+    #   end
+    # end
+  end
+
   private
     def set_property
       @property = Property.friendly.find(params[:id])

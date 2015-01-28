@@ -88,7 +88,9 @@ Rails.application.routes.draw do
 
 
   match 'community', to: 'screens#community', via: 'get'
+  match 'advertisements', to: 'properties#advertisements', via: 'get'
 
+match 'ad', to: 'properties#ad', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
