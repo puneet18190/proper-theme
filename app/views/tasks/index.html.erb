@@ -84,29 +84,21 @@
 
                           <!--Start New List-->
                           <h2 class="main-heading bottom-line top-line "><span class="main-circle-icon"><i class="icon-book"></i></span> News</h2>
-                          <div class=" news right-space">
-                              <div class="media box-white">
-                                  <a class="pull-left" href="#">
-                                      <img alt="images" class="media-object" src="assets/news/thum/n1.jpg">
+                          <div class="news right-space">
+                            <% @news.each do |news| %>
+                              <div class="media box-white" style="height:140px">
+                                  <div id="abb">
+                                  <a class="pull-left" href="#" style="width:180px">
+                                    <%=  image_tag news.image.url, alt: "images", class: "media-object" %>
                                   </a>
-                                  <div class="media-body">
-                                      <h4 class="media-heading">Investor Club</h4>
-                                      <p>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit.
-                                          Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit.</p>
-                                      <a href="#" class="btn-proper btn btn-small ">Read More</a>
+                                  <div class="media-body" style="margin-left:190px">
+                                      <h4 class="media-heading"> <%=news.title%></h4>
+                                      <p><%=news.description %></p>
+                                      <a href="#" class="btn-proper btn btn-small">Read More</a>
                                   </div>
+                                        </div><br><br><br><br><br><br>
                               </div>
-                              <div class="media box-white">
-                                  <a class="pull-left" href="#">
-                                      <img alt="images" class="media-object" src="http://placehold.it/150x90">
-                                  </a>
-                                  <div class="media-body">
-                                      <h4 class="media-heading">Investor Club</h4>
-                                      <p>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit.
-                                          Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit.</p>
-                                      <a href="#" class="btn-proper btn btn-small ">Read More</a>
-                                  </div>
-                              </div>
+                            <% end %>
                           </div>
                           <!--End News List-->
                       </div>
@@ -149,50 +141,20 @@
                           <!--Start List Our Agent-->
                           <h3 class="bottom-line  line-before main-heading"><span class="main-circle-icon"><i class="icon-list"></i></span>  Our Agents</h3>
                           <div class="list-items ">
-
-                              <div class="item">
-                                  <div class="img-preview">
-                                      <img src="assets/agents/thum_list/a2.jpg" alt="Corin Langpost" />
-                                  </div>
+                            <% @agents.each do |agent| %>
+                             <div class="item">
+                                <%=  image_tag agent.image.url, alt: "Corin Langpost", class: "img-preview" %>
                                   <div class="item-desk">
-                                      <div class="title">
-                                          <h3><a href="#">Angelina Cos</a></h3>
-                                      </div>
-                                      <div class="location">Palo Alto CA</div>
-                                      <a href="#" class="btn-proper btn-mini btn">Profile Page</a>
+                                    <div class="title">
+                                        <h3><a href="#"><%=agent.name%></a></h3>
+                                    </div>
+                                    <div class="location"><%=agent.address%></div>
+                                    <a href="#" class="btn-proper btn-mini btn">Profile Page</a>
                                   </div>
-                                  <div class="clearfix"></div>
-                              </div>
-                              <div class="item">
-                                  <div class="img-preview">
-                                      <img src="assets/agents/thum_list/a1.jpg" alt="Corin Langpost" />
-                                  </div>
-                                  <div class="item-desk">
-                                      <div class="title">
-                                          <h3><a href="#">Angelina Cos</a></h3>
-                                      </div>
-                                      <div class="location">Palo Alto CA</div>
-                                      <a href="#" class="btn-proper btn-mini btn">Profile Page</a>
-                                  </div>
-                                  <div class="clearfix"></div>
-                              </div>
-                              <div class="item">
-                                  <div class="img-preview">
-                                      <img src="http://placehold.it/100x80" alt="Corin Langpost" />
-                                  </div>
-                                  <div class="item-desk">
-                                      <div class="title">
-                                          <h3><a href="#">Angelina Cos</a></h3>
-                                     </div>
-                                      <div class="location">Palo Alto CA</div>
-                                      <a href="#" class="btn-proper btn-mini btn">Profile Page</a>
-                                  </div>
-                                  <div class="clearfix"></div>
-                              </div>
+                                <div class="clearfix"></div>
+                             </div>
+                            <% end %>
                           </div>
-                          <!--End List Our AGents -->
-
-                      </div>
                   </div>
               </div>
           </div>
