@@ -59,7 +59,7 @@
                                                              <i class="icon-circle-arrow-right"></i>
                                                             Beds :<%= task.beds %> </span>
                                                              <span class="price">
-                                                             $<%= task.price.to_i %></span>
+                                                              £<%= task.price.to_i %></span>
                                                           </p>
                                                           <div class="clearfix">
                                                             <div class="btn-proper btn btn-small pull-left">
@@ -175,7 +175,7 @@ $(document).ready(function() {
                 // CENTRAL MAP DEFAULT
                 address:"167/169 saltwell road, gateshead, NE8 4TJ",
                 options:{
-                    zoom:12,
+                    zoom:16,
                     scaleControl: false,
                     scrollwheel: false,
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -242,7 +242,7 @@ $(document).ready(function() {
                                     "<div class='text'><h4><a href='/properties_detail/"+context.data.slug+"'>" 
                                     + context.data.properties_name +
                                     "</a></h4>"+
-                                    "<a href='/properties_detail/"+context.data.slug+"'><img src='"+ context.data.img_preview +"' width=90></a> $300.999 <br/>"+
+                                    "<a href='/properties_detail/"+context.data.slug+"'><img src='"+ context.data.img_preview +"' width=90></a> £300.999 <br/>"+
                                     context.data.properties_desc +
                                     "<br/><a href='"+context.data.properties_link +"'class='btn btn-proper btn-small'>See Detail</a></div>" +
                                     "</div>" +
