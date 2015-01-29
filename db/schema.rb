@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150123043754) do
+ActiveRecord::Schema.define(version: 20150129072557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,15 @@ ActiveRecord::Schema.define(version: 20150123043754) do
     t.string   "phone"
     t.string   "image"
     t.date     "expiry_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "agents", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "phone"
+    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -141,6 +150,14 @@ ActiveRecord::Schema.define(version: 20150123043754) do
 
   add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id", using: :btree
   add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type", using: :btree
+
+  create_table "news", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "properties", force: true do |t|
     t.string   "address1"
