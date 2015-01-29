@@ -176,7 +176,7 @@ Map Css
 /*============================================================================
 Slider Content Css
 ============================================================================*/
-#slider-wrapper{position: relative;background-color: #141414;width: 100%;  display: block;clear: both;max-height: 310px;overflow: hidden}
+#slider-wrapper{position: relative;background-color: none;width: 100%;  display: block;clear: both;max-height: 310px;overflow: hidden}
 #slider-wrapper #carousel{margin: 0;padding: 0;list-style: none;}
 #slider-wrapper #carousel img{width: 100%;}
 #slider-wrapper #prev, #next{position: absolute;z-index: 2;top: 0;height: 100%;background-color: rgba(0,0,0,0.5);width: 6.7%;background-repeat: no-repeat;background-position: center center;}
@@ -799,4 +799,3 @@ select {
     margin-left: 170px;
     margin-top: -185px
 }
-

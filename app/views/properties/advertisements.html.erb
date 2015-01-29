@@ -31,7 +31,7 @@
       </div>
       <div class="row-fluid">
           <% b= (@advertisements_t.count % 3)%>
-          <div id="slider-wrapper" style="margin-left: -25px">
+          <div id="slider-wrapper" style="margin-left:-27px !important;">
             <ul id="ad_carousel1">
               <% if @advertisements_t.count == 0 %>
                 <% 3.times do %>
@@ -68,7 +68,7 @@
                 <% end %>  
               <% else %>
                 <% @advertisements_t.each do |ad| %>
-                  <div class="span4" style="margin-left:5px;margin-top:10px">
+                  <div class="span4" style="margin-left:5px">
                     <div class="dialog-box-style">
                       <h3><span class="main-circle-icon"><i class="icon-arrow-right"></i></span><%= ad.name %></h3>
                       <p><%= ad.description %></p>
@@ -81,7 +81,7 @@
               <% end %>
               <%if @advertisements_t.count < @advertisements_b.count %>
                   <% 3.times do %>
-                    <div class="span4" style="margin-left:5px;margin-top:10px">
+                    <div class="span4" style="margin-left:5px">
                       <div class="dialog-box-style">
                         <h3><span class="main-circle-icon"><i class="icon-arrow-right"></i></span>Call inside to Advertise here</h3>
                         <p>Coming Soon...</p>
@@ -95,7 +95,7 @@
             </ul>
           </div>
           <% a= (@advertisements_b.count % 3)%>
-          <div id="slider-wrapper" style="margin-left: -25px">
+          <div id="slider-wrapper" style="margin-left:-27px !important;">
             <ul id="ad_carousel2">
               <% if @advertisements_b.count == 0 %>
                 <% 3.times do %>
