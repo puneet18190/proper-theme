@@ -56,12 +56,26 @@ class ScreensController < ApplicationController
   	end
 
 	def community
-    	@advertisements = []
-    	@advertisements = Advertisement.all
-    	@advertisements_l = @advertisements[0..1]
-    	@advertisements_m = @advertisements[2..3]
-    	@advertisements_r = @advertisements[4..5]
-    	@advertisements_x = @advertisements[6..7]
-		render '/screens/community/community_detail', :layout => "screen_layout"
+  #   	@advertisements = []
+  #   	@advertisements = Advertisement.all
+  #   	@advertisements_l = @advertisements[0..1]
+  #   	@advertisements_m = @advertisements[2..3]
+  #   	@advertisements_r = @advertisements[4..5]
+  #   	@advertisements_x = @advertisements[6..7]
+		# render '/screens/community/community_detail', :layout => "screen_layout"
+		@advertisements = []
+	    @advertisements_t = []
+	    @advertisements_b = []
+	    @advertisements = Advertisement.all
+	    @total = @advertisements.count
+	    @half = @total/2
+	    # @count_lt = @total < 3 ? (3-@total) : 0
+	    (0..(@half-1)).each do |rec|
+	      @advertisements_t << @advertisements[rec]
+	    end
+	    ((@half)..(@total-1)).each do |dat|
+	      @advertisements_b << @advertisements[dat]
+	    end
+	    render '/properties/advertisements', :layout => "screen_layout"
 	end
 end
