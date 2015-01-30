@@ -31,6 +31,8 @@ gem 'spring',        group: :development
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-sass'
+gem 'bootstrap-will_paginate'
+gem 'will_paginate'
 gem 'devise'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -70,7 +72,8 @@ gem 'cookies_eu'
 gem 'mailboxer'
 gem 'simple_form'
 gem 'autoprefixer-rails'
-
+gem 'chosen-rails'
+gem 'gravatar_image_tag'
 # gem install thinking-sphinx -v "~> 3.1.0"
 # gem install mysql2 -v 0.3.12b5
 # Use unicorn as the app server

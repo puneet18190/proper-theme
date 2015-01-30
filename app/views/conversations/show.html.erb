@@ -1,18 +1,154 @@
-<div class="proper-singup">
-<h3><%= conversation.subject %></h3>
-<ul>
-  <%= content_tag_for(:li, conversation.receipts_for(current_user)) do |receipt| %>
-      <% message = receipt.message %>
-      <h3>
-        <%= message.subject %>
-      </h3>
-      <p>
-        <%= message.body %>
-      </p>
-  <% end %>
-</ul>
-<%= render 'messages/form', conversation: conversation %>
-<%= button_to "Cancel", conversations_path, class: 'btn-danger', method: :get, id: "cncl" %>
+<% page_header "Conversation" %>
+<p>Chatting with <%= render 'conversations/participants', conversation: @conversation %></p>
+ 
+<div class="panel panel-default">
+    <div class="panel-heading"><%= @conversation.subject %></div>
+    <div class="panel-body">
+        <div class="messages">
+            <% @conversation.receipts_for(current_user).each do |receipt| %>
+            <div class="media">
+              <% message = receipt.message %>
+                <div class="media-left">
+                    <%= gravatar_for message.sender, 45, message.sender.name %>
+                </div>
+                <div class="media-body">
+                    <h6 class="media-heading"><%= message.sender.name %> says at <%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %></h6><%= message.body %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+    </div>
+</div>
+<br>
 
+<%= form_tag reply_conversation_path(@conversation), method: :post do %>
+<div class="form-group">
+  <%= text_area_tag 'body', nil, cols: 3, class: 'form-control', placeholder: 'Type something...', required: true %>
+      </div>
+      <%= submit_tag "Send Message", class: 'btn btn-primary' %>
+      <% end %>
 </div>
 
+<style type="text/css">
+
+    .panel {
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .panel-default {
+        border-color: #c3c3c3;
+    }
+
+    * {
+        -webkit-box-sizing: border-box;
+    }
+
+    *:before, *:after {
+        -webkit-box-sizing: border-box;
+    }
+
+    div {
+        display: block;
+    }
+
+    body {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.428571429;
+        color: #333333;
+        width: 100%;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        background-color: #DDD;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+        background-image: url(../assets/pattern/diagonal-noise.png)
+    }
+
+    html {
+        -webkit-tap-highlight-color: rgba(0,0,0,0.399);
+    }
+
+    .panel-body {
+        padding: 15px;
+    }
+
+    .panel-body:before, .panel-body:after {
+        content: " ";
+        display: table;
+    }
+
+    .panel-default>.panel-heading {
+        background-image: linear-gradient(to bottom, #f5f5f5 3%,#e8e8e8 100%);
+        background-repeat: repeat-x;
+        color: #333333;
+        background-color: whitesmoke;
+        border-color: #dddddd;
+    }
+
+    .panel-heading {
+        padding: 10px 15px;
+        border-bottom: 1px solid transparent;
+        border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
+    }
+
+    .media:first-child {
+        margin-top: 0;
+    }
+
+    .media, .media-body {
+        overflow: hidden;
+        zoom: 1;
+    }
+
+    .messages {
+        max-height: 400px;
+        overflow-y: auto;
+        margin-bottom: 1em;
+        margin-top: 1em;
+    }
+
+    .media-left, .media-right, .media-body {
+        display: table-cell;
+        vertical-align: top;
+    }
+
+    .media-left, .media>.pull-left {
+        padding-right: 10px;
+    }
+
+    .media-left, .media-right, .media-body {
+        display: table-cell;
+        vertical-align: top;
+    }
+
+    textarea.form-control {
+        height: auto;
+    }
+
+    form {
+        display: block;
+        margin-top: 0em;
+    }
+
+    .form-control {
+        display: block;
+        width: 100%;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.428571429;
+        color: #555555;
+        background-color: white;
+        background-image: none;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    }
+
+</script>

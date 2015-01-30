@@ -18,4 +18,6 @@
 //= require bootstrap
 //= require turbolinks
 //= require cookies_eu
+//= require chosen-jquery
+//= require messages
 //= require_tree .

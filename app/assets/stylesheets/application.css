@@ -16,6 +16,7 @@
  *= require font-awesome
  *= require scaffolds
  *= require style
- // = require cookies_eu
+ *= require chosen
  *= require_self
  */
+
