@@ -76,17 +76,6 @@ Rails.application.routes.draw do
   post "/connect_facebook" => "properties#connect_facebook"
   get "/disconnect_fb" => "properties#disconnect_fb"
   match '/update_screen_status',   to: 'screens#update_screen_status',   via: 'post'
-
-  # resources :conversations, only: [:index, :show, :new, :create] do
-  #   member do
-  #     post :reply
-  #     post :trash
-  #     post :untrash
-  #   end
-  #   get 'conversations/index'
-  # end
-
-
   match 'community', to: 'screens#community', via: 'get'
   match 'advertisements', to: 'properties#advertisements', via: 'get'
 
@@ -102,6 +91,9 @@ Rails.application.routes.draw do
   end
 
   resources :messages, only: [:new, :create]
+
+  match 'search_results', to: 'tasks#search_results', via: [:get, :post]
+  match 'pdf_handle', to: 'properties#pdf_handle', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

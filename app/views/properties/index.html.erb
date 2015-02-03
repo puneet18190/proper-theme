@@ -60,6 +60,9 @@
           <% if can? :destroy, @property %>
         <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %> </td>
               <% end %>
+          <% if property.payment == true %>
+          <td><%= link_to 'Download', pdf_handle_path(:id => property.id, format: 'pdf') %></td>
+            <%end%>
           <% if current_user.status == "admin" %>
             <td>  <div class="add_loader" id= <%="approve_#{property.id}"%>>  <%= button_to (property.approve == false ? 'Approve' : 'Unapprove'), {:controller => "properties", :action => "approve", :id => property.id, :status => property.approve == false ? 'Approve' : 'Unapprove'}, :method=>:post,:remote=>true %>  </div> </td>
           <% elsif current_user.status == "landlord" %>

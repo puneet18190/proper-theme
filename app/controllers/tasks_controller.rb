@@ -21,4 +21,10 @@ class TasksController < ApplicationController
     @property = Property.new
   end
 
+  def search_results
+    @properties = Property.where({payment: true, visibility: true})
+    @search = @properties.search(params[:q])
+    @tasks = @search.result
+  end
+
 end

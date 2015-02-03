@@ -74,6 +74,7 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'chosen-rails'
 gem 'gravatar_image_tag'
+gem 'prawn'
 # gem install thinking-sphinx -v "~> 3.1.0"
 # gem install mysql2 -v 0.3.12b5
 # Use unicorn as the app server

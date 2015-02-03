@@ -1,0 +1,65 @@
+<!-- start Content -->
+<div id="content">
+<div class="container">
+  <div class="row-fluid" style="width:110%">
+    <div class="span9">
+      <div class="panel right-line">
+        <!--Start Grid Featured-->
+        <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span>Search Results</h2>
+        <div class="featured-grid right-space">
+          <div class="scroll">
+            <div class="box-white">
+              <div class="grid-item grid-style-properties">
+                <% if @tasks.empty? %>
+                    <div class="item" >
+                      <a href="#" class="with-hover">
+                        <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
+                      </a>
+                    </div>
+                <% else %>
+                    <% @tasks.each do |task| %>
+                        <% if task.visibility== true %>
+                            <div class="item">
+                              <a href="#" class="with-hover">
+                                <% if task.category== "rent" || "Rent" %>
+                                    <div class="for_rent_banner"></div>
+                                <% else %>
+                                    <div class="for_sale_banner"></div>
+                                <% end %>
+                                <a href=<%="/properties_detail/#{task.slug}"%>><%=  image_tag task.image1.url, class: "full", class: "mask_hover" %></a>   </a>
+                                          <h4 class=" "><%= task.name %></h4>
+                                          <div class="preview-properties ">
+                                            <div class="box-detail">
+                                              <p class="text-center short-detail">
+                                                            <span class="label">
+                                                              <i class="icon-circle-arrow-right"></i>
+                                                            Bath : <%= task.bath  %>  </span>
+                                                             <span class="label">
+                                                             <i class="icon-circle-arrow-right"></i>
+                                                            Beds :<%= task.beds %> </span>
+                                                             <span class="price">
+                                                              £<%= task.price.to_i %></span>
+                                              </p>
+                                              <div class="clearfix">
+                                                <div class="btn-proper btn btn-small pull-left">
+                                                  <a href=<%="/properties_detail/#{task.slug}"%>>See Detail</a>
+
+                                                </div>
+                                                <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
+
+                                              </div>
+                                            </div>
+                                          </div>
+                                          </div>
+                                      <% end %>
+                                  <% end %>
+                        <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+

@@ -9,15 +9,15 @@ class Ability
     elsif user.status=="admin"
       can :manage, :all
     elsif user.status== "landlord"
-      #can :manage, :all
-      can :confirm_payment, :all
-      can :create, :all
-      can :read, :all
-      can :update, :all
-      can :destroy, :all
-      can :landlord_payment, :all
-      can :confirm_landlord_payment,:all 
-      can :facebook_share,:all
+      can :manage, :all
+      # can :confirm_payment, :all
+      # can :create, :all
+      # can :read, :all
+      # can :update, :all
+      # can :destroy, :all
+      # can :landlord_payment, :all
+      # can :confirm_landlord_payment,:all
+      # can :facebook_share,:all
     else
        can :manage, :all
       # can :read, :all

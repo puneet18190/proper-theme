@@ -39,15 +39,19 @@
 
           <div class="span3 ">
             <div class="clearfix">
-              <!-- <div class="language_curency">Curency: <a href="#">$</a> | <a href="#">&euro;</a> &nbsp; lang: <a href="#">En</a> | <a href="#">Ina</a> | <a href="#">Jpn</a></div> -->
-              <form method="get" class="form-search">
+              <%#=form_tag(controller: "tasks", action: "search_results", method: "get", class: "form-search") %>
+              <form method="get" class="form-search" action="search_results" >
                 <div class="input-append">
-                  <input title="Keywords." class="search-query form-text input-block-level" placeholder="Search" type="text" name="">
-                  <button type="submit" class="btn"><i class="icon-search"></i></button>
-                </div><!-- /.input-append -->
+                  <%= search_form_for Property.search(params[:q])  do |f| %>
+                    <%= f.search_field :name_cont, :class=>"search-query form-text input-block-level", :placeholder=>"Search", :type=>"text" %>
+                    <button type="submit" class="btn"><i class="icon-search"></i></button>
+                  <% end %>
+                </div>
               </form>
+                  <%# end %>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -121,3 +125,21 @@
     </div>
   </div><!-- end Navigation -->
 </div>
+
+<style type="text/css">
+    #header-wrapper .form-search input {
+        margin-bottom: 0;
+        color: #DBDBDB;
+        text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+        border-radius: 3px;
+        outline: none;
+        float: left;
+        display: block;
+        font-size: 14px;
+        vertical-align: middle;
+        border: 1px solid #454545;
+        height: 40px;
+        background: #353535;
+        box-shadow: inset 1px 1px 0 #1D1D1D;
+    }
+</style>
