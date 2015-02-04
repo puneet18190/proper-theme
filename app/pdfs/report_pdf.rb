@@ -7,7 +7,7 @@ class ReportPdf < Prawn::Document
   end
 
   def header
-    image open(@properties.image1.url), width: 540, height: 320
+    image open(@properties.image1.url), width: 540, height: 320 if (@properties.image1).present?
     move_down(6)
     image open(@properties.image2.url), width: 175, height: 100 if (@properties.image2).present?
     move_up(100)
