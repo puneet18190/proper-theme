@@ -17,7 +17,11 @@ class ReportPdf < Prawn::Document
   end
 
   def text_content
-    y_position = cursor - 50
+    if (@properties.image2 || @properties.image3 || @properties.image4).present?
+      y_position = cursor - 50
+    else
+      y_position = cursor - 250
+    end
     bounding_box([0, y_position], :width => 270, :height => 300) do
       text "Name: #{@properties.name}", size: 15
       text "Description: #{@properties.description}", size: 15
