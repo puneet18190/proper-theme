@@ -25,6 +25,10 @@
       <a class= "btn disconnect_fb btn-primary" href="/disconnect_fb">Connected with Facebook</a>
     <%end%>  
    <%end%>
+
+    <% if can? :create, @property %>
+        <%= button_to "New Property", "/properties/new", :method=>:get, :class=>"btn btn-warning", :style=>"margin-left:1000px;margin-top:-90px;"%>
+    <% end %>
 <table>
 
 <table>
@@ -78,9 +82,7 @@
 </table>
 
 <br>
-    <% if can? :create, @property %>
-<%= button_to "New Property", "/properties/new", :method=>:get, :class=>"btn btn-warning", :style=>"margin-left:1000px;margin-top:-1445px;" %>
-<% end %>
+
 </div><!--End Form Singup-->
 </div><!--EndContent-->
 
