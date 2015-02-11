@@ -11,9 +11,10 @@
 // about supported directives.
 //
 //= require jquery
+//= require cleditor
+//= require jquery.cleditor
 //= require jquery.cookie
 //= require spin.min
-//= require jquery.storageapi
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks

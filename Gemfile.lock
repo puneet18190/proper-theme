@@ -72,7 +72,7 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (3.2.0.2)
+    bootstrap-sass (3.0.3.0)
       sass (~> 3.2)
     bootstrap-will_paginate (0.0.9)
       will_paginate
@@ -93,6 +93,7 @@ GEM
       railties (>= 3.0)
       sass-rails (>= 3.2)
     chunky_png (1.3.3)
+    cleditor_rails (0.0.3)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -433,6 +434,7 @@ DEPENDENCIES
   cancancan (~> 1.9)
   carrierwave
   chosen-rails
+  cleditor_rails
   coffee-rails (~> 4.0.0)
   cookies_eu
   daemons
