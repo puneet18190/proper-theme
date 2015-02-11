@@ -6,7 +6,7 @@
   <div class="news-carousel-wrapper">
     <dl id="news-carousel" class="news-carousel-style">
       <% @prop = [] %>
-      <% @prop = Property.all %>
+      <% @prop = Property.order("created_at DESC") %>
       <dt><a href="#">Latest Property</a></dt>
       <dd><%= @prop[0].name %> - <%= raw(@prop[0].description) %></dd>
       <dt><a href="#">Latest Property</a></dt>
