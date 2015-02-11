@@ -54,7 +54,6 @@ class PropertiesController < ApplicationController
     address =  params[:property][:address1]+" "+params[:property][:address2]+" "+params[:property][:address3]
     @a = Geokit::Geocoders::GoogleGeocoder.geocode "#{address}"
     @property.coordinates = "#{@a.lat},#{@a.lng}"
-    binding.pry
     @property.save
     @property.update_attributes(:payment=>true) if current_user.status == "admin"
     redirect_to "/properties" 
