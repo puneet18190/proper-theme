@@ -64,7 +64,7 @@
           <td><%= link_to 'Download', pdf_handle_path(:id => property.id, format: 'pdf') %></td>
             <%end%>
           <% if current_user.status == "admin" %>
-            <td>  <div class="add_loader" id= <%="approve_#{property.id}"%>>  <%= button_to (property.approve == false ? 'Approve' : 'Unapprove'), {:controller => "properties", :action => "approve", :id => property.id, :status => property.approve == false ? 'Approve' : 'Unapprove'}, :method=>:post,:remote=>true %>  </div> </td>
+            <td>  <div class="add_loader" id= <%="approve_#{property.id}"%>>  <%= button_to (property.approve == false ? 'Approve' : 'Unapprove'), {:controller => "properties", :action => "approve", :id => property.id, :status => property.approve == false ? 'Approve' : 'Unapprove'}, :method=>:post, :remote=>true %>  </div> </td>
           <% elsif current_user.status == "landlord" %>
             <% if property.payment == true && (((property.validity - DateTime.now)/1.days) < 7)%>
                 <td> <div class="add_loader" id= <%="payment_#{property.id}"%>>  <%= button_to 'Renew', {:controller => "properties", :action => "landlord_payment", :id => property.id}, :method=>:get %>  </div> </td>
@@ -79,7 +79,7 @@
 
 <br>
     <% if can? :create, @property %>
-<%= link_to 'New Property', new_property_path if can? :create, Property %>
+<%= button_to "New Property", "/properties/new", :method=>:get, :class=>"btn btn-warning", :style=>"margin-left:1000px;margin-top:-1445px;" %>
 <% end %>
 </div><!--End Form Singup-->
 </div><!--EndContent-->
