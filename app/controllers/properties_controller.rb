@@ -6,11 +6,11 @@ class PropertiesController < ApplicationController
   #protect_from_forgery except: [:disconnect_fb] 
   def index
     if current_user.status == "admin"
-      @properties = Property.all
+      @properties = Property.order("created_at DESC")
     elsif current_user.status == "landlord"
-      @properties = Property.where(:user_id => current_user.id)
+      @properties = Property.where(:user_id => current_user.id).order("created_at DESC")
     else
-      @properties = Property.all
+      @properties = Property.order("created_at DESC")
     end
 
     if current_user.status == "landlord"
@@ -181,7 +181,6 @@ class PropertiesController < ApplicationController
 
   def confirm_landlord_payment
     begin
-# binding.pry
       Stripe.api_key = "sk_test_UZ0dgBsgRJqY95p0wCPALgv8"
       plan = "plan_10"
       card_token = Stripe::Token.create( :card => { :name => params[:name_on_card], :number => params[:card_number], :exp_month => params[:exp_month], :exp_year => params[:exp_year], :cvc => params[:card_id] })

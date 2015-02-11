@@ -5,12 +5,14 @@
   <!--    News Carousel-->
   <div class="news-carousel-wrapper">
     <dl id="news-carousel" class="news-carousel-style">
-      <dt><a href="#">News Link Here</a></dt>
-      <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
-      <dt><a href="#">Promo Link Here</a></dt>
-      <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
-      <dt><a href="#">Another Link Here</a></dt>
-      <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+      <% @prop = [] %>
+      <% @prop = Property.all %>
+      <dt><a href="#">Latest Property</a></dt>
+      <dd><%= @prop[0].name %> - <%= raw(@prop[0].description) %></dd>
+      <dt><a href="#">Latest Property</a></dt>
+      <dd><%= @prop[1].name %> - <%= raw(@prop[1].description) %></dd>
+      <dt><a href="#">Latest Property</a></dt>
+      <dd><%= @prop[2].name %> - <%= raw(@prop[2].description) %></dd>
     </dl>
   </div>
   <!--    End News Carousel-->
@@ -68,7 +70,7 @@
           <td><%= link_to 'Download', pdf_handle_path(:id => property.id, format: 'pdf') %></td>
             <%end%>
           <% if current_user.status == "admin" %>
-            <td>  <div class="add_loader" id= <%="approve_#{property.id}"%>>  <%= button_to (property.approve == false ? 'Approve' : 'Unapprove'), {:controller => "properties", :action => "approve", :id => property.id, :status => property.approve == false ? 'Approve' : 'Unapprove'}, :method=>:post, :remote=>true %>  </div> </td>
+            <td>  <div class="add_loader" id= <%="approve_#{property.id}"%>>  <%= button_to (property.approve == false ? 'Approve' : 'Unapprove'), {:controller => "properties", :action => "approve", :id => property.id, :status => property.approve == false ? 'Approve' : 'Unapprove'},:class=>property.approve == false ? 'btn btn-danger' : 'btn btn-success', :method=>:post, :remote=>true %>  </div> </td>
           <% elsif current_user.status == "landlord" %>
             <% if property.payment == true && (((property.validity - DateTime.now)/1.days) < 7)%>
                 <td> <div class="add_loader" id= <%="payment_#{property.id}"%>>  <%= button_to 'Renew', {:controller => "properties", :action => "landlord_payment", :id => property.id}, :method=>:get %>  </div> </td>

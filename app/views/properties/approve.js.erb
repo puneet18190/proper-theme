@@ -1,10 +1,10 @@
 <% if @status == "Approve"%>
-	$($("<%="#approve_#{@property.id}"%> input")[0]).val("Unapprove")
+	$($("<%="#approve_#{@property.id}"%> input")[0]).val("Unapprove").removeClass('btn-danger').addClass('btn-success')
 	$("#approve_<%="#{@property.id}"%> form").attr("action","/properties/approve?id=<%="#{@property.id}"%>&status=Unapprove")
     $('#loading').html('')
 
 <%else%>
-	$($("<%="#approve_#{@property.id}"%> input")[0]).val("Approve")	
+	$($("<%="#approve_#{@property.id}"%> input")[0]).val("Approve").removeClass('btn-success').addClass('btn-danger')
 	$("#approve_<%="#{@property.id}"%> form").attr("action","/properties/approve?id=<%="#{@property.id}"%>&status=Approve")
     $('#loading').html('')
 <%end%>
