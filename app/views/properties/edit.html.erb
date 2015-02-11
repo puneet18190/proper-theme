@@ -95,6 +95,13 @@
           <%= f.text_area :description %>
         </div>
         <% if current_user.status=="admin" %>
+
+            <div class="field">
+              <%= f.label :agent_id %>
+              <% arr = Agent.all.map { |ag| [ag.name, ag.id ] } %>
+              <%= f.select :agent_id, (arr) %>
+            </div><br/><br/><br/>
+            
           <div class="field">
             <%= f.label :visibility %>
             <%= f.check_box :visibility %>

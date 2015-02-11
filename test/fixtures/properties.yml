@@ -37,6 +37,7 @@
 #  slug        :string(255)
 #  validity    :datetime
 #  coordinates :string(255)
+#  agent_id    :integer
 #
 # Indexes
 #

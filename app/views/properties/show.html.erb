@@ -101,6 +101,13 @@
   <%= raw(@property.description) %>
 </p>
 
+    <% if current_user.status == "admin" %>
+      <p>
+        <strong>Agent:</strong>
+        <%= Agent.find_by_id(@property.agent_id).name %>
+      </p>
+    <% end %>
+
 <p>
   <strong>Date:</strong>
   <%= @property.date %>

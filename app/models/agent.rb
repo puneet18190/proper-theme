@@ -12,5 +12,6 @@
 #
 
 class Agent < ActiveRecord::Base
+  has_many :properties
   mount_uploader :image, ImageUploader
 end
