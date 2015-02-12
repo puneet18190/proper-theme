@@ -221,6 +221,7 @@ GEM
       excon (~> 0.38)
       multi_json (~> 1.8)
     hike (1.2.3)
+    htmlentities (4.3.3)
     http (0.6.3)
       http_parser.rb (~> 0.6.0)
     http_parser.rb (0.6.0)
@@ -448,6 +449,7 @@ DEPENDENCIES
   getclicky (~> 0.1.4)
   gravatar_image_tag
   heroku-api
+  htmlentities
   httparty
   jbuilder (~> 2.0)
   jquery-rails

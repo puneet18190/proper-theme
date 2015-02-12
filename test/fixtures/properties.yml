@@ -38,6 +38,10 @@
 #  validity    :datetime
 #  coordinates :string(255)
 #  agent_id    :integer
+#  image7      :string(255)
+#  image8      :string(255)
+#  image9      :string(255)
+#  image10     :string(255)
 #
 # Indexes
 #

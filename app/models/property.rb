@@ -38,6 +38,10 @@
 #  validity    :datetime
 #  coordinates :string(255)
 #  agent_id    :integer
+#  image7      :string(255)
+#  image8      :string(255)
+#  image9      :string(255)
+#  image10     :string(255)
 #
 # Indexes
 #
@@ -56,6 +60,10 @@ class Property < ActiveRecord::Base
   mount_uploader :image4, Image4Uploader
   mount_uploader :image5, Image5Uploader
   mount_uploader :image6, Image6Uploader
+  mount_uploader :image7, Image7Uploader
+  mount_uploader :image8, Image8Uploader
+  mount_uploader :image9, Image9Uploader
+  mount_uploader :image10, Image10Uploader
   validates :name, presence: true, length: { maximum: 20 }
   validates_presence_of :address1, :address2, :address3, :price, :postcode, :beds, :bath, :description
 end
