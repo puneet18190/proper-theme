@@ -1,0 +1,8 @@
+<% @prop = [] %>
+<% @prop = Property.order("created_at DESC") %>
+<dt><a href="#">Latest Property</a></dt>
+<dd><%= @prop[0].name %> - <%= raw(@prop[0].description) %></dd>
+<dt><a href="#">Latest Property</a></dt>
+<dd><%= @prop[1].name %> - <%= raw(@prop[1].description) %></dd>
+<dt><a href="#">Latest Property</a></dt>
+<dd><%= @prop[2].name %> - <%= raw(@prop[2].description) %></dd>
