@@ -19,132 +19,58 @@
                     </dl>
                 </div>
                 <!--    End News Carousel-->
+
                 <div class="container agent-panel">
                     <div class="item-agent panel ">
+                      <% @agents.each do |agent| %>
                         <div class="row-fluid">
                             <div class="span3 bottom-line line-after">
                                 <div class="panel">
-                                    <h3 class="main-heading bottom-line line-after"><span class="main-circle-icon"><i class="icon-user"></i></span> Corin Cors</h3>
+
+                                    <h3 class="main-heading bottom-line line-after"><span class="main-circle-icon"><i class="icon-user"></i></span> <%= agent.name %></h3>
                                     <a href="#" class="agent-image">
-                                        <img src="assets/agents/circle/a1.jpg" class="img-circle" alt="agent">
+                                      <%=  image_tag agent.image.url, class: "full", class: "img-circle", :style=>"height:145px;width:230px;" %>
                                     </a>
                                 </div>
                             </div>
                             <div class="span9 ">
                                 <div class="panel left-line bottom-line desc-agent-preview">
-                                    <h3 class="line-before bottom-line main-heading"><span class="main-circle-icon"><i class="icon-circle-arrow-down"></i></span> Corin Cors Detail</h3>
-                                    <p>Morbi rhoncus, nisi eget molestie gravida, nunc turpis porttitor tortor, id sagittis eros magna sed arcu. In hac habitasse platea dictumst. Integer placerat gravida orci, in gravida massa dapibus nec. Morbi rhoncus, nisi eget molestie gravida, nunc turpis porttitor tortor, id sagittis eros magna sed arcu. In hac habitasse platea dictumst. Integer placerat gravida orci, in gravida massa dapibus nec. </p>
+                                    <h3 class="line-before bottom-line main-heading"><span class="main-circle-icon"><i class="icon-circle-arrow-down"></i></span> <%= agent.name %> Detail</h3>
+                                    <p> </p>
                                     <ul class="unstyled">
-                                        <li><i class="icon-phone"></i> (+89)98732.984 </li>
-                                        <li><i class="icon-envelope"></i> agent@company.com</li>
-                                        <li><i class="icon-facebook"></i> angel</li>
-                                        <li><i class="icon-twitter"></i> @angel</li>
+                                        <li><i class="icon-phone"></i> <%= agent.phone %></li>
+                                        <li><i class="icon-envelope"></i> <%= agent.address %></li>
+                                        <li><i class="icon-facebook"></i> <%= agent.name%></li>
+                                        <li><i class="icon-twitter"></i> @<%= agent.name%></li>
                                     </ul>
-                                    <div class="agent-image-properties">
-                                        <a href="#" ><img src="assets/properties/thum_mini/p1.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra"/></a>
-                                        <a href="#"><img src="assets/properties/thum_mini/p2.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra"/></a>
-                                        <a href="#"><img src="assets/properties/thum_mini/p3.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra"/></a>
-                                    </div>
+                                  <% if agent.properties.empty? %>
+                                      <div class="agent-image-properties">
+                                        <a href="#"><img src="assets/default_images/no.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra" style="width:55px;height:55px;"/></a>
+                                        <a href="#"><img src="assets/default_images/no.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra" style="width:55px;height:55px;"/></a>
+                                        <a href="#"><img src="assets/default_images/no.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra" style="width:55px;height:55px;"/></a>
+                                      <% else %>
+                                        <% @prop = agent.properties[0] %>
+                                          <%= image_tag @prop.image1.url, class: "img-polaroid tootip", :style=>"width:55px;height:55px;" %>
+                                              <%= image_tag @prop.image2.url, class: "img-polaroid tootip", :style=>"width:55px;height:55px;" %>
+                                                  <%= image_tag @prop.image3.url, class: "img-polaroid tootip", :style=>"width:55px;height:55px;" %>
+
+                                                  </div>  <%end%>
                                 </div>
                             </div>
+
                         </div>
+                                          <% end %>
                     </div>
-                    <div class="item-agent panel ">
-                        <div class="row-fluid">
-                            <div class="span3 bottom-line line-after">
-                                <div class="panel">
-                                    <h3 class="main-heading bottom-line line-after"><span class="main-circle-icon"><i class="icon-user"></i></span> Corin Cors</h3>
-                                    <a href="#" class="agent-image">
-                                        <img src="assets/agents/circle/a1.jpg" class="img-circle" alt="agent">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="span9 ">
-                                <div class="panel left-line bottom-line desc-agent-preview">
-                                    <h3 class="line-before bottom-line main-heading"><span class="main-circle-icon"><i class="icon-circle-arrow-down"></i></span> Corin Cors Detail</h3>
-                                    <p>Morbi rhoncus, nisi eget molestie gravida, nunc turpis porttitor tortor, id sagittis eros magna sed arcu. In hac habitasse platea dictumst. Integer placerat gravida orci, in gravida massa dapibus nec. Morbi rhoncus, nisi eget molestie gravida, nunc turpis porttitor tortor, id sagittis eros magna sed arcu. In hac habitasse platea dictumst. Integer placerat gravida orci, in gravida massa dapibus nec. </p>
-                                    <ul class="unstyled">
-                                        <li><i class="icon-phone"></i> (+89)98732.984 </li>
-                                        <li><i class="icon-envelope"></i> agent@company.com</li>
-                                        <li><i class="icon-facebook"></i> angel</li>
-                                        <li><i class="icon-twitter"></i> @angel</li>
-                                    </ul>
-                                    <div class="agent-image-properties">
-                                        <a href="#" ><img src="assets/properties/thum_mini/p1.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra"/></a>
-                                        <a href="#"><img src="assets/properties/thum_mini/p2.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra"/></a>
-                                        <a href="#"><img src="assets/properties/thum_mini/p3.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra"/></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-agent panel ">
-                        <div class="row-fluid">
-                            <div class="span3 bottom-line line-after">
-                                <div class="panel">
-                                    <h3 class="main-heading bottom-line line-after"><span class="main-circle-icon"><i class="icon-user"></i></span> Corin Cors</h3>
-                                    <a href="#" class="agent-image">
-                                        <img src="assets/agents/circle/a1.jpg" class="img-circle" alt="agent">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="span9 ">
-                                <div class="panel left-line bottom-line desc-agent-preview">
-                                    <h3 class="line-before bottom-line main-heading"><span class="main-circle-icon"><i class="icon-circle-arrow-down"></i></span> Corin Cors Detail</h3>
-                                    <p>Morbi rhoncus, nisi eget molestie gravida, nunc turpis porttitor tortor, id sagittis eros magna sed arcu. In hac habitasse platea dictumst. Integer placerat gravida orci, in gravida massa dapibus nec. Morbi rhoncus, nisi eget molestie gravida, nunc turpis porttitor tortor, id sagittis eros magna sed arcu. In hac habitasse platea dictumst. Integer placerat gravida orci, in gravida massa dapibus nec. </p>
-                                    <ul class="unstyled">
-                                        <li><i class="icon-phone"></i> (+89)98732.984 </li>
-                                        <li><i class="icon-envelope"></i> agent@company.com</li>
-                                        <li><i class="icon-facebook"></i> angel</li>
-                                        <li><i class="icon-twitter"></i> @angel</li>
-                                    </ul>
-                                    <div class="agent-image-properties">
-                                        <a href="#" ><img src="assets/properties/thum_mini/p1.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra"/></a>
-                                        <a href="#"><img src="assets/properties/thum_mini/p2.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra"/></a>
-                                        <a href="#"><img src="assets/properties/thum_mini/p3.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra"/></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-agent panel ">
-                        <div class="row-fluid">
-                            <div class="span3 bottom-line line-after">
-                                <div class="panel">
-                                    <h3 class="main-heading bottom-line line-after"><span class="main-circle-icon"><i class="icon-user"></i></span> Corin Cors</h3>
-                                    <a href="#" class="agent-image">
-                                        <img src="assets/agents/circle/a1.jpg" class="img-circle" alt="agent">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="span9 ">
-                                <div class="panel left-line bottom-line desc-agent-preview">
-                                    <h3 class="line-before bottom-line main-heading"><span class="main-circle-icon"><i class="icon-circle-arrow-down"></i></span> Corin Cors Detail</h3>
-                                    <p>Morbi rhoncus, nisi eget molestie gravida, nunc turpis porttitor tortor, id sagittis eros magna sed arcu. In hac habitasse platea dictumst. Integer placerat gravida orci, in gravida massa dapibus nec. Morbi rhoncus, nisi eget molestie gravida, nunc turpis porttitor tortor, id sagittis eros magna sed arcu. In hac habitasse platea dictumst. Integer placerat gravida orci, in gravida massa dapibus nec. </p>
-                                    <ul class="unstyled">
-                                        <li><i class="icon-phone"></i> (+89)98732.984 </li>
-                                        <li><i class="icon-envelope"></i> agent@company.com</li>
-                                        <li><i class="icon-facebook"></i> angel</li>
-                                        <li><i class="icon-twitter"></i> @angel</li>
-                                    </ul>
-                                    <div class="agent-image-properties">
-                                        <a href="#" ><img src="assets/properties/thum_mini/p1.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra"/></a>
-                                        <a href="#"><img src="assets/properties/thum_mini/p2.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra"/></a>
-                                        <a href="#"><img src="assets/properties/thum_mini/p3.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra"/></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Start Pagination    -->
-                    <div class="pagination pagination-large">
-                        <ul>
-                            <li><a href="#"><i class=" icon-angle-left"></i></a></li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#"><i class=" icon-angle-right"></i></a></li>
-                        </ul>
-                    </div><!-- end Pagination    -->
+                                             <!-- Start Pagination    -->
+                    <!--<div class="pagination pagination-large">-->
+                        <!--<ul>-->
+                            <!--<li><a href="#"><i class=" icon-angle-left"></i></a></li>-->
+                            <!--<li class="active"><a href="#">1</a></li>-->
+                            <!--<li><a href="#">2</a></li>-->
+                            <!--<li><a href="#">3</a></li>-->
+                            <!--<li><a href="#"><i class=" icon-angle-right"></i></a></li>-->
+                        <!--</ul>-->
+                    <!--</div>&lt;!&ndash; end Pagination    &ndash;&gt;-->
                 </div>
+
             </div><!--End Content-->            

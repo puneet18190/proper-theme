@@ -27,4 +27,8 @@ class TasksController < ApplicationController
     @tasks = @search.result
   end
 
+  def agents
+    @agents= Agent.all
+  end
+
 end
