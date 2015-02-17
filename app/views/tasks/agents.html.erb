@@ -1,6 +1,4 @@
-
-
-            <!--Start Content-->
+<!--Start Content-->
             <div id="content">
                 <!--Start Main Title-->
                 <div id="main-title-content">
@@ -26,7 +24,6 @@
                         <div class="row-fluid">
                             <div class="span3 bottom-line line-after">
                                 <div class="panel">
-
                                     <h3 class="main-heading bottom-line line-after"><span class="main-circle-icon"><i class="icon-user"></i></span> <%= agent.name %></h3>
                                     <a href="#" class="agent-image">
                                       <%=  image_tag agent.image.url, class: "full", class: "img-circle", :style=>"height:145px;width:230px;" %>
@@ -43,23 +40,22 @@
                                         <li><i class="icon-facebook"></i> <%= agent.name%></li>
                                         <li><i class="icon-twitter"></i> @<%= agent.name%></li>
                                     </ul>
-                                  <% if agent.properties.empty? %>
-                                      <div class="agent-image-properties">
-                                        <a href="#"><img src="assets/default_images/no.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra" style="width:55px;height:55px;"/></a>
-                                        <a href="#"><img src="assets/default_images/no.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra" style="width:55px;height:55px;"/></a>
-                                        <a href="#"><img src="assets/default_images/no.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra" style="width:55px;height:55px;"/></a>
-                                      <% else %>
+                                    <div class="agent-image-properties">
+                                        <% if agent.properties.empty? %>
+                                           <a href="#"><img src="assets/default_images/no.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra" style="width:55px;height:55px;"/></a>
+                                           <a href="#"><img src="assets/default_images/no.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra" style="width:55px;height:55px;"/></a>
+                                           <a href="#"><img src="assets/default_images/no.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra" style="width:55px;height:55px;"/></a>
+                                        <% else %>
                                         <% @prop = agent.properties[0] %>
-                                          <%= image_tag @prop.image1.url, class: "img-polaroid tootip", :style=>"width:55px;height:55px;" %>
+                                           <%= image_tag @prop.image1.url, class: "img-polaroid tootip", :style=>"width:55px;height:55px;" %>
                                               <%= image_tag @prop.image2.url, class: "img-polaroid tootip", :style=>"width:55px;height:55px;" %>
-                                                  <%= image_tag @prop.image3.url, class: "img-polaroid tootip", :style=>"width:55px;height:55px;" %>
-
-                                                  </div>  <%end%>
+                                                  <%= image_tag @prop.image3.url, class: "img-polaroid tootip", :style=>"width:55px;height:55px;" %> 
+                                        <% end %>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
-                                          <% end %>
+                      <% end %>
                     </div>
                                              <!-- Start Pagination    -->
                     <!--<div class="pagination pagination-large">-->
@@ -72,5 +68,4 @@
                         <!--</ul>-->
                     <!--</div>&lt;!&ndash; end Pagination    &ndash;&gt;-->
                 </div>
-
             </div><!--End Content-->            
