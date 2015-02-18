@@ -30,5 +30,12 @@ class UserMailer < ActionMailer::Base
     @property = property
     mail( :to => @user.email, :subject => 'Searching results')
   end
+
+  def query_message(contact_agent)
+    @contact_agent = contact_agent
+    @agent = Agent.find_by_id(@contact_agent.agent_id)
+    mail( :to => @agent.email_id, :subject => 'User Query')
+  end
+
 end
 

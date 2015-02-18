@@ -1,22 +1,19 @@
 # == Schema Information
 #
-# Table name: agents
+# Table name: contact_agents
 #
 #  id         :integer          not null, primary key
 #  name       :string(255)
-#  address    :string(255)
-#  phone      :string(255)
-#  image      :string(255)
+#  email      :string(255)
+#  message    :string(255)
 #  created_at :datetime
 #  updated_at :datetime
-#  email_id   :string(255)
-#  fb_id      :string(255)
-#  twitter_id :string(255)
+#  agent_id   :integer
 #
 
 require 'test_helper'
 
-class AgentTest < ActiveSupport::TestCase
+class ContactAgentTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

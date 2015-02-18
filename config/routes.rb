@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   match '/login',   to: 'tasks#login',   via: 'get'
   match '/agents',   to: 'tasks#agents',   via: 'get'
   match '/career',   to: 'tasks#career',   via: 'get'
-  match '/contacts',   to: 'tasks#contact',   via: [:get, :post]
+  match '/contact',   to: 'tasks#contact',   via: [:get, :post]
   match '/custum-bg',   to: 'tasks#custum-bg',   via: 'get'
   match '/error_page',   to: 'tasks#error_page',   via: 'get'
   match '/faq',   to: 'tasks#faq',   via: 'get'
@@ -95,6 +95,7 @@ Rails.application.routes.draw do
   match 'search_results', to: 'tasks#search_results', via: [:get, :post]
   match 'pdf_handle', to: 'properties#pdf_handle', via: 'get'
   match 'con', to: 'tasks#con', via: [:get, :post]
+  match 'contact_agent', to: 'tasks#contact_agent', via: 'post'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

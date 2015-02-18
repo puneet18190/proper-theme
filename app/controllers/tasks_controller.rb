@@ -11,6 +11,8 @@ class TasksController < ApplicationController
   def properties_detail
     begin
       @data = Property.friendly.find(params[:id])
+      @agents = Agent.find_by_id(@data.agent_id)
+      @contact_agent = ContactAgent.new
       redirect_to root_url, alert: "No Property Found" unless @data.payment == true
     rescue Exception => e
       redirect_to root_url, alert: "No Property Found"
@@ -39,15 +41,26 @@ class TasksController < ApplicationController
     @contact = Contact.new(con_params)
     if verify_recaptcha
       @contact.save!
-      redirect_to "/contacts", notice: "Thank You for posting your query, we will come back to you soon......"
+      redirect_to "/contact", notice: "Thank You for posting your query, we will come back to you soon......"
     else
-      redirect_to "/contacts", alert: "Please re-enter captcha......"
+      redirect_to "/contact", alert: "Please re-enter captcha......"
     end
+  end
+
+  def contact_agent
+    @contact_agent = ContactAgent.new(contact_agent_params)
+    @contact_agent.save
+    UserMailer.query_message(@contact_agent).deliver
+    redirect_to :back, notice: "Thank You for posting your query, we will come back to you soon......"
   end
 
   private
   def con_params
     params.require(:contact).permit(:first_name, :last_name, :email_id, :contact_number, :comments)
+  end
+
+  def contact_agent_params
+    params.require(:contact_agent).permit(:name, :email, :message, :agent_id)
   end
 
 end
