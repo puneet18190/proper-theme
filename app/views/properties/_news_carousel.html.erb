@@ -6,3 +6,31 @@
 <dd><%= @prop[1].name %> - <%= raw(@prop[1].description) %></dd>
 <dt><a href=<%="/properties_detail/#{@prop[2].id}"%>>Latest Property</a></dt>
 <dd><%= @prop[2].name %> - <%= raw(@prop[2].description) %></dd>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+
+
+	if ($('#news-carousel').length){
+        var _scroll = {
+            delay: 1000,
+            easing: 'linear',
+            items: 1,
+            duration: 0.07,
+            timeoutDuration: 0,
+            pauseOnHover: 'immediate'
+        };
+        $('#news-carousel').carouFredSel({
+            width: '100%',
+        
+            align: false,
+            items: {
+                width: 'variable',
+                height: 55,
+                visible: 1
+            },
+            scroll: _scroll
+        });
+    }
+    })
+</script>    
