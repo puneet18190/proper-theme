@@ -37,12 +37,15 @@ class TasksController < ApplicationController
 
   def con
     @contact = Contact.new(con_params)
-    @contact.save
-    redirect_to "/contacts", notice: "Thank You for posting your query, we will come back to you soon......"
+    if verify_recaptcha
+      @contact.save!
+      redirect_to "/contacts", notice: "Thank You for posting your query, we will come back to you soon......"
+    else
+      redirect_to "/contacts", alert: "Please re-enter captcha......"
+    end
   end
 
   private
-
   def con_params
     params.require(:contact).permit(:first_name, :last_name, :email_id, :contact_number, :comments)
   end

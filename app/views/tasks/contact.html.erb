@@ -63,18 +63,16 @@
                                           <%= f.text_area :comments, :class=> "input-block-level", :placeholder=> "Please type your comments here.."%>
                                         </div>
 
-                                        <!--<div class="row-fluid">-->
-                                            <!--<label for="verify" accesskey="V">Verify*</label>-->
-                                            <!--<input name="verify" type="text" id="verify" size="6" value="" placeholder="verify code">-->
-                                            <!--<label><img src="assets/captcha.png" alt="Image verification" border="0" width="220"></label>-->
-                                        <!--</div>-->
+                                        <div class="row-fluid">
+                                          <%= recaptcha_tags %>
+                                        </div>
                                         <br/>
+
                                       <%= f.submit "Send", class: "btn-proper btn" %>
-                                        <!--<button type="submit" class="btn-proper btn " > Send <i class="icon-arrow-right"></i></button>-->
                                     </div>
                                 <% end %>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>            
+
