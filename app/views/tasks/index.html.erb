@@ -4,13 +4,13 @@
               <div id="googleMap" class="">
               </div>
               <div class="map-with-agent visible-desktop">
-                  <h3 >Your Message Here</h3>
-                  <img src="/assets/agents/n5.png" alt="ceo"/>
+                  <h3 ><%= @settings.admin_text %></h3>
+                  <%= image_tag @settings.admin_image.url, :style=>"height:300px;" %>
               </div>
           </div>
           <!--    News Carousel-->
           <div class="news-carousel-wrapper">
-              <dl id="news-carousel" class="news-carousel-style">
+              <dl id="news-carousel" class="news-carousel-style" >
                 <%= render 'properties/news_carousel'%>
               </dl>
           </div>
@@ -132,7 +132,7 @@
                               </div>
                               <div class="actions"><%= f.submit "Search" %></div>
                             <% end %>
-                          </form>
+                        </form>
                           <!--Start List Our Agent-->
                           <h3 class="bottom-line  line-before main-heading"><span class="main-circle-icon"><i class="icon-list"></i></span>  Our Agents</h3>
                           <div class="list-items ">

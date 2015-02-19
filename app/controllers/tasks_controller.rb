@@ -6,6 +6,7 @@ class TasksController < ApplicationController
     @tasks = @search.result
     @agents= Agent.all
     @news= News.all
+    @settings = Setting.find_by_id(1)
   end
 
   def properties_detail
@@ -17,6 +18,16 @@ class TasksController < ApplicationController
     rescue Exception => e
       redirect_to root_url, alert: "No Property Found"
     end
+  end
+
+  def properties_filter
+    @prop = Property.all
+    @agents = Agent.all
+  end
+
+  def properties_map
+    @prop = Property.all
+    @agents = Agent.all
   end
 
   def upload_step1

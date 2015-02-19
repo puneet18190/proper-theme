@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: settings
+#
+#  id          :integer          not null, primary key
+#  admin_image :string(255)
+#  admin_text  :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  admin_image: MyString
+  admin_text: MyString
+
+two:
+  admin_image: MyString
+  admin_text: MyString
