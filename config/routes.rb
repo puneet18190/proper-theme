@@ -96,6 +96,7 @@ Rails.application.routes.draw do
   match 'pdf_handle', to: 'properties#pdf_handle', via: 'get'
   match 'con', to: 'tasks#con', via: [:get, :post]
   match 'contact_agent', to: 'tasks#contact_agent', via: 'post'
+  match '/pricing_tenant',   to: 'tasks#pricing_tenant',   via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
