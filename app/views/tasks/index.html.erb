@@ -133,8 +133,12 @@
                                   <%= f.label :postcode_eq, "Postcode" %>
                                   <%= f.search_field :postcode_eq, class: "tc1size" %>
                                 </div>
+                                <div class="control-group half pull-left">
+                                  <%=f.label :radius, "Radius"%>
+                                  <%=f.select :radius, ["Select","1/4","1/2","1","3","5","10","15","20","30","40"] %>
+                                </div><br><br><br>
                               </div>
-                              <div class="actions"><%= f.submit "Search" %></div>
+                              <div class="actions"><%= f.submit "Search", :style=>"margin-left:-112px;" %></div>
                             <% end %>
                         </form>
                           <!--Start List Our Agent-->
@@ -264,3 +268,8 @@ $(document).ready(function() {
 
 </script>
 
+<style>
+  select#q_radius{
+      width:90px;
+  }
+</style>

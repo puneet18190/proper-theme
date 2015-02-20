@@ -42,6 +42,9 @@
 #  image8      :string(255)
 #  image9      :string(255)
 #  image10     :string(255)
+#  latitude    :float
+#  longitude   :float
+#  radius      :string(255)
 #
 # Indexes
 #

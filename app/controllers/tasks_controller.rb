@@ -2,11 +2,28 @@ class TasksController < ApplicationController
   layout proc { false if request.xhr? }	
   def index
     @properties = Property.where({payment: true, visibility: true})
+
+    if !params[:q].nil? && params[:q][:radius]!="Select"
+      @properties = @properties.near(params[:q][:postcode_eq],params[:q][:radius].to_f)
+    end
+
+    params[:q].delete("postcode_eq") if params[:q] && params[:q][:postcode_eq]
+    params[:q].delete("radius") if params[:q] && params[:q][:radius]
+
     @search = @properties.search(params[:q])
-    @tasks = @search.result
+    #@locations = Property.near(params[:q][:address1],params[:q][:radius].to_f) unless params[:q].nil?
+    # unless params[:q].nil?
+    #   @result = []
+    #   @result.push(@search.result)
+    #   @result.push(@locations) unless @locations.nil?
+    #   @tasks = @result.flatten
+    # else
+      @tasks = @search.result
+
+    # end
     @agents= Agent.all
     @news= News.all
-    @settings = Setting.find_by_id(1)
+    @settings = Setting.all.first
   end
 
   def properties_detail

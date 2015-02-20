@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220044926) do
+ActiveRecord::Schema.define(version: 20150220120209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -221,6 +221,9 @@ ActiveRecord::Schema.define(version: 20150220044926) do
     t.string   "image8"
     t.string   "image9"
     t.string   "image10"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "radius"
   end
 
   add_index "properties", ["slug"], name: "index_properties_on_slug", unique: true, using: :btree
@@ -237,7 +240,7 @@ ActiveRecord::Schema.define(version: 20150220044926) do
     t.string   "admin_text"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "property_description"
+    t.text     "property_description"
   end
 
   create_table "users", force: true do |t|

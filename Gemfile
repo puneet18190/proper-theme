@@ -80,6 +80,7 @@ gem 'cleditor_rails'
 gem 'htmlentities'
 gem 'recaptcha'
 gem 'active_admin_editor'
+gem 'geocoder'
 # gem install thinking-sphinx -v "~> 3.1.0"
 # gem install mysql2 -v 0.3.12b5
 # Use unicorn as the app server

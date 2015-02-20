@@ -229,6 +229,7 @@ GEM
     friendly_id (5.0.4)
       activerecord (>= 4.0.0)
     fssm (0.2.10)
+    geocoder (1.2.7)
     geokit (1.9.0)
       multi_json (>= 1.3.2)
     getclicky (0.1.4)
@@ -468,6 +469,7 @@ DEPENDENCIES
   figaro
   fog
   friendly_id (~> 5.0.0)
+  geocoder
   geokit
   getclicky (~> 0.1.4)
   gravatar_image_tag
