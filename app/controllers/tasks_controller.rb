@@ -6,7 +6,7 @@ class TasksController < ApplicationController
     @tasks = @search.result
     @agents= Agent.all
     @news= News.all
-    @settings = Setting.find_by_id(1)
+    @settings = Setting.all.first
   end
 
   def properties_detail

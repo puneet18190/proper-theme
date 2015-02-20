@@ -7,7 +7,7 @@
 #  admin_text           :string(255)
 #  created_at           :datetime
 #  updated_at           :datetime
-#  property_description :string(255)
+#  property_description :text
 #
 
 require 'test_helper'
