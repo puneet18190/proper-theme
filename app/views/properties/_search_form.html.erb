@@ -1,14 +1,11 @@
-
-            <%= form_tag("/tenant_search", :method=>"post", :remote=>true) do %>
-              <div class="proper-form-step-area">
-                <div class="proper-singup">
-                  <h3 class=""><b>Search Form</b></h3>
-                  <div>
-                    <%= text_field_tag "search" %>
-                  </div>
-                  <div><%= submit_tag 'OK', class: "btn btn-proper btn-large" %></div>
-                </div>
-              </div>
-
-            <% end %>
-
+<%= form_tag("/tenant_search", :method=>"post", :remote=>true) do %>
+  <div class="proper-form-step-area">
+    <div class="proper-singup">
+      <h3 class=""><b>Search Form</b></h3>
+      <div>
+        <%= text_field_tag "search" %>
+      </div>
+      <div><%= submit_tag 'OK', class: "btn btn-proper btn-large" %></div>
+    </div>
+  </div>
+<% end %>

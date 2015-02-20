@@ -130,7 +130,7 @@
                                     </div>
                                     <div class="field">
                                       <%= f.label :description %>
-                                      <%= f.text_area :description, :value => "<b><i><font color=\"#ff0000\">Enter your property description here.....</i></b>" %>
+                                      <%= f.text_area :description, :value => Setting.first.property_description %>
                                     </div><br/>
                                     <% if current_user.status=="admin" %>
                                         <div class="field">
