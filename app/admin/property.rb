@@ -4,7 +4,7 @@ ActiveAdmin.register Property do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
-  permit_params :name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approve, :payment, :user_id, :agent_id
+  permit_params :name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approve, :payment, :user_id, :agent_id, :coordinates, :latitude, :longitude
   #
   form(:html => { :multipart => true }) do |f|
     f.inputs "Create Property..." do
