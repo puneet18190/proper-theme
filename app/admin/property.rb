@@ -38,6 +38,9 @@ ActiveAdmin.register Property do
       f.input :payment
       f.input :user_id
       f.input :agent_id
+      f.input :coordinates
+      f.input :latitude
+      f.input :longitude
     end
     f.actions
   end
