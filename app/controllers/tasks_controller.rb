@@ -30,6 +30,14 @@ class TasksController < ApplicationController
     end  
   end
 
+  def home_simple
+    @properties = Property.where({payment: true, visibility: true})
+    @search = @properties.search(params[:q])
+    @tasks = @search.result
+    @agents= Agent.all
+    @news= News.all
+  end
+
   def properties_detail
     begin
       @data = Property.friendly.find(params[:id])

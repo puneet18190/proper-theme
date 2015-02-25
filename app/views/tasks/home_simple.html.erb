@@ -1,6 +1,4 @@
-
-
-            <!--    Start Content-->
+<!--    Start Content-->
             <div id="content">
                 <!--  Start  Main Title -->
                 <div id="main-title-content">
@@ -26,101 +24,75 @@
                                 <!--Start Grid Featured-->
                                 <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span> Properties</h2>   
                                 <div class="featured-grid right-space">
+                                  <div class="scroll">
                                     <div class="box-white">
-                                        <div class="grid-item grid-style-properties">
-                                            <div class="item">
+                                      <div class="grid-item grid-style-properties">
+                                        <% if @tasks.empty? %>
+                                          <div class="item" >
+                                            <a href="#" class="with-hover">
+                                              <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
+                                            </a>
+                                          </div>
+                                        <% else %>
+                                          <% @tasks.each do |task| %>
+                                            <% if task.visibility== true %>
+                                              <div class="item">
                                                 <a href="#" class="with-hover">
-                                                    <div class="for_rent_banner"></div>
-                                                    <img alt='images' src="assets/properties/p2.jpg" class="full"/><span class="mask_hover"></span>
-                                                </a>
-                                                <h4 class=" ">34 Central Park</h4>
-                                                <div class="preview-properties ">
-                                                    <div class="box-detail"> 
-                                                        <p class="text-center short-detail">
-                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Bath : 2</span>
-                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Beds : 2</span>
-                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Pool : 2</span>
-                                                            <span class="price">$380,000</span>
-                                                        </p>
-                                                        <div class="clearfix">
-                                                            <a href="#" class="btn-proper btn btn-small pull-left">See Detail</a>
-                                                            <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
+                                                  <% if task.category== "rent" || "Rent" %>
+                                                      <div class="for_rent_banner"></div>
+                                                  <% else %>
+                                                      <div class="for_sale_banner"></div>
+                                                  <% end %>
+                                                  <a href=<%="/properties_detail/#{task.slug}"%>><%=  image_tag task.image1.url, class: "full", class: "mask_hover" %></a>   </a>
+                                                  <h4 class=" "><%= task.name %></h4>
+                                                  <div class="preview-properties ">
+                                                    <div class="box-detail">
+                                                      <p class="text-center short-detail">
+                                                        <span class="label">
+                                                        <i class="icon-circle-arrow-right"></i>
+                                                        Bath : <%= task.bath  %>  </span>
+                                                        <span class="label">
+                                                        <i class="icon-circle-arrow-right"></i>
+                                                        Beds :<%= task.beds %> </span>
+                                                        <span class="price">
+                                                        £<%= task.price.to_i %></span>
+                                                      </p>
+                                                      <div class="clearfix">
+                                                        <div class="btn-proper btn btn-small pull-left">
+                                                          <a href=<%="/properties_detail/#{task.slug}"%>>See Detail</a>
                                                         </div>
+                                                        <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
+                                                      </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <a href="#" class="with-hover">
-                                                    <div class="for_rent_banner"></div>
-                                                    <img alt='images' src="assets/properties/p3.jpg" class="full"/><span class="mask_hover"></span>
-                                                </a>
-                                                <h4 class="">34 Central Park</h4>
-                                                <div class="preview-properties ">
-                                                    <div class="box-detail"> 
-                                                        <p class="text-center short-detail">
-                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Bath : 2</span>
-                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Beds : 2</span>
-                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Pool : 2</span>
-                                                            <span class="price">$380,000</span>
-                                                        </p>
-                                                        <div class="clearfix">
-                                                            <a href="#" class="btn-proper btn btn-small pull-left">See Detail</a>
-                                                            <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <a href="#" class="with-hover">
-                                                    <div class="for_sale_banner"></div>
-                                                    <img alt='images' src="assets/properties/p4.jpg" class="full"/><span class="mask_hover"></span>
-                                                </a>
-                                                <h4 class="">34 Central Park</h4>
-                                                <div class="preview-properties ">
-                                                    <div class="box-detail"> 
-                                                        <p class="text-center short-detail">
-                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Bath : 2</span>
-                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Beds : 2</span>
-                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Pool : 2</span>
-                                                            <span class="price">$380,000</span>
-                                                        </p>
-                                                        <div class="clearfix">
-                                                            <a href="#" class="btn-proper btn btn-small pull-left">See Detail</a>
-                                                            <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                  </div>
+                                              </div>
+                                            <% end %>
+                                          <% end %>
+                                        <% end %>
+                                      </div>
                                     </div>
-                                    <!--End Grid Featured-->
+                                  </div>
+
+
                                 </div>
 
                                 <!--Start New List-->
-                                <h2 class="main-heading bottom-line top-line "><span class="main-circle-icon"><i class="icon-book"></i></span> News</h2>   
-                                <div class=" news right-space">
-                                    <div class="media box-white">
-                                        <a class="pull-left" href="#">
-                                            <img alt="images" class="media-object" src="assets/news/thum/n1.jpg">
+                                <h2 class="main-heading bottom-line top-line "><span class="main-circle-icon"><i class="icon-book"></i></span> News</h2>
+                                <div class="news right-space">
+                                  <% @news.each do |news| %>
+                                    <div class="media box-white" style="height:140px">
+                                      <div id="abb">
+                                        <a class="pull-left" href="#" style="width:180px">
+                                          <%=  image_tag news.image.url, alt: "images", class: "media-object" %>
                                         </a>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Investor Club</h4>
-                                            <p>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. 
-                                                Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit.</p>
-                                            <a href="#" class="btn-proper btn btn-small ">Read More</a>
+                                        <div class="media-body" style="margin-left:190px">
+                                          <h4 class="media-heading"> <%=news.title%></h4>
+                                          <p><%=news.description %></p>
+                                          <a href="#" class="btn-proper btn btn-small">Read More</a>
                                         </div>
+                                      </div><br><br><br><br><br><br>
                                     </div>
-                                    <div class="media box-white">
-                                        <a class="pull-left" href="#">
-                                            <img alt="images" class="media-object" src="http://placehold.it/150x90">
-                                        </a>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Investor Club</h4>
-                                            <p>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. 
-                                                Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit.</p>
-                                            <a href="#" class="btn-proper btn btn-small ">Read More</a>
-                                        </div>
-                                    </div>
+                                  <% end %>
                                 </div>
                                 <!--End News List-->
                             </div>
@@ -130,130 +102,59 @@
                                 <!--Start Form Search Properties-->
                                 <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-search"></i></span>  Find Properties</h3>    
                                 <form class="bottom-line line-before" action="?" method="get">
-                                    <label>Location</label>
-                                    <input type="text" placeholder="Type Your Location" name="" value="" class="input-block-level" required=""/>
-                                    <label>Radius</label>
-                                    <select name="" class="input-block-level" required="">
-                                        <option value="">This area only</option>
-                                        <option value="">Within 1/4 mile</option>
-                                        <option value="">Within 1/2 mile</option>
-                                        <option value="">Within 1 mile</option>
-                                        <option value="">Within 3 miles</option>
-                                        <option value="">Within 5 miles</option>
-                                        <option value="">Within 10 miles</option>
-                                        <option value="">Within 15 miles</option>
-                                        <option value="">Within 20 miles</option>
-                                        <option value="">Within 30 miles</option>
-                                        <option value="">Within 40 miles</option>
-                                    </select>
-                                    <div class="control-group-form">
-                                        <div class="control-group half pull-left">
-                                            <label class="control-label" >Min Price</label>
-                                            <div class="controls">
-                                                <select name="" class="input-block-level" required="">
-                                                    <option value="">All</option>
-                                                    <option value="1">1000</option>
-                                                    <option value="9">2000</option>
-                                                    <option value="9">3000</option>
-                                                    <option value="9">4000</option>
-                                                    <option value="9">5000+</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="control-group half text-right pull-right">
-                                            <label class="control-label" >Max Price</label>
-                                            <div class="controls">
-                                                <select name=""   class="input-block-level" required="">
-                                                    <option value="">All</option>
-                                                    <option value="1">10000</option>
-                                                    <option value="9">20000</option>
-                                                    <option value="9">30000</option>
-                                                    <option value="9">40000</option>
-                                                    <option value="9">50000+</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
+                                  <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-search"></i></span>Find Properties</h3>
+                                  <%= search_form_for Property.search(params[:q]) do |f| %>
+                                    <div class="field">
+                                      <div class="input-block-level">
+                                        <%= f.label :name_cont, "Name" %>
+                                        <%= f.search_field :name_cont, class: "tc1size" %>
+                                      </div>
+                                      <div class="input-block-level">
+                                        <%= f.label :category_cont, "Category" %>
+                                        <%= f.select :category_cont, ["Rent","Sale"], class: "tcksize" %>
+                                      </div>
+                                      <div class="control-group half pull-left">
+                                        <%= f.label :price_lteq, "Min Price" %>
+                                        <%= f.search_field :price_lteq, class: "tpgsize" %>
+                                      </div>
+                                      <div class="control-group half text-right pull-right">
+                                        <%= f.label :price_gteq, "Max Price", class: "tpgsize"  %>
+                                        <%= f.search_field :price_gteq, class: "tpgsize" %>
+                                      </div>
+                                      <div class="input-block-level">
+                                        <%= f.label :beds_eq, "Beds" %>
+                                        <%= f.search_field :beds_eq, class: "tc1size" %>
+                                      </div>
+                                      <div class="input-block-level">
+                                        <%= f.label :bath_eq, "Bath" %>
+                                        <%= f.search_field :bath_eq, class: "tc1size" %>
+                                      </div>
+                                      <div class="input-block-level">
+                                        <%= f.label :postcode_eq, "Postcode" %>
+                                        <%= f.search_field :postcode_eq, class: "tc1size" %>
+                                      </div>
                                     </div>
-                                    <div class="control-group-form">
-                                        <div class="control-group half pull-left">
-                                            <label class="checkbox">
-                                                <input type="checkbox" > Rent Property
-                                            </label>
-                                        </div>
-                                        <div class="control-group half text-right pull-right">
-                                            <label class="checkbox">
-                                                <input type="checkbox"> Sell Property
-                                            </label>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <label>Bath</label>
-                                    <select name=""  class="input-block-level " required="">
-                                        <option value="">All</option>
-                                        <option value="1">1</option>
-                                        <option value="9">2</option>
-                                        <option value="9">3</option>
-                                        <option value="9">4</option>
-                                        <option value="9">5+</option>
-                                    </select>
-                                    <label>Beds</label>
-                                    <select name=""  class="input-block-level " required="">
-                                        <option value="">All</option>
-                                        <option value="1">1</option>
-                                        <option value="9">2</option>
-                                        <option value="9">3</option>
-                                        <option value="9">4</option>
-                                        <option value="9">5+</option>
-                                    </select>
-
-                                    <button type="submit" class="input-block-level btn-proper btn btn-large"> Search</button>
+                                    <div class="actions"><%= f.submit "Search" %></div>
+                                  <% end %>
                                 </form>
                                 <!--End Form Search Properties-->
 
                                 <!--Start List Our Agent-->
                                 <h3 class="bottom-line  line-before main-heading"><span class="main-circle-icon"><i class="icon-list"></i></span>  Our Agents</h3>
                                 <div class="list-items ">
-
+                                  <% @agents.each do |agent| %>
                                     <div class="item">
-                                        <div class="img-preview">
-                                            <img src="assets/agents/thum_list/a2.jpg" alt="Corin Langpost" />
-                                        </div>
+                                      <%=  image_tag agent.image.url, alt: "Corin Langpost", class: "img-preview", :style=>"height:70px;width:100px;" %>
                                         <div class="item-desk">
-                                            <div class="title">
-                                                <h3><a href="#">Angelina Cos</a></h3>
-                                            </div>
-                                            <div class="location">Palo Alto CA</div>
-                                            <a href="#" class="btn-proper btn-mini btn">Profile Page</a>
+                                          <div class="title">
+                                            <h3><a href="#"><%=agent.name%></a></h3>
+                                          </div>
+                                          <div class="location"><%=agent.address%></div>
+                                          <a href="#" class="btn-proper btn-mini btn">Profile Page</a>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
-                                    <div class="item">
-                                        <div class="img-preview">
-                                            <img src="assets/agents/thum_list/a1.jpg" alt="Corin Langpost" />
-                                        </div>
-                                        <div class="item-desk">
-                                            <div class="title">
-                                                <h3><a href="#">Angelina Cos</a></h3>
-                                            </div>
-                                            <div class="location">Palo Alto CA</div>
-                                            <a href="#" class="btn-proper btn-mini btn">Profile Page</a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="img-preview">
-                                            <img src="http://placehold.it/100x80" alt="Corin Langpost" />
-                                        </div>
-                                        <div class="item-desk">
-                                            <div class="title">
-                                                <h3><a href="#">Angelina Cos</a></h3>
-                                            </div>
-                                            <div class="location">Palo Alto CA</div>
-                                            <a href="#" class="btn-proper btn-mini btn">Profile Page</a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
+                                  <% end %>
                                 </div>
                                 <!--End List Our AGents -->
                             </div>
