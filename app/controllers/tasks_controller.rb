@@ -26,6 +26,11 @@ class TasksController < ApplicationController
       @news= News.all
       @settings = Setting.all.first
     else
+      @properties = Property.where({payment: true, visibility: true})
+      @search = @properties.search(params[:q])
+      @tasks = @search.result
+      @agents= Agent.all
+      @news= News.all
       render "/home_simple"
     end  
   end
