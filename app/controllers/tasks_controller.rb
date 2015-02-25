@@ -31,7 +31,7 @@ class TasksController < ApplicationController
       @tasks = @search.result
       @agents= Agent.all
       @news= News.all
-      render "/home_simple"
+      render "home_simple.html.erb"
     end  
   end
 
