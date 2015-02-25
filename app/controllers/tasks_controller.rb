@@ -1,29 +1,33 @@
 class TasksController < ApplicationController
   layout proc { false if request.xhr? }	
   def index
-    @properties = Property.where({payment: true, visibility: true})
+    if request.env['mobvious.device_type'] == :desktop
+      @properties = Property.where({payment: true, visibility: true})
 
-    if !params[:q].nil? && params[:q][:radius]!="Select"
-      @properties = @properties.near(params[:q][:postcode_eq],params[:q][:radius].to_f)
-    end
+      if !params[:q].nil? && params[:q][:radius]!="Select"
+        @properties = @properties.near(params[:q][:postcode_eq],params[:q][:radius].to_f)
+      end
 
-    params[:q].delete("postcode_eq") if params[:q] && params[:q][:postcode_eq]
-    params[:q].delete("radius") if params[:q] && params[:q][:radius]
+      params[:q].delete("postcode_eq") if params[:q] && params[:q][:postcode_eq]
+      params[:q].delete("radius") if params[:q] && params[:q][:radius]
 
-    @search = @properties.search(params[:q])
-    #@locations = Property.near(params[:q][:address1],params[:q][:radius].to_f) unless params[:q].nil?
-    # unless params[:q].nil?
-    #   @result = []
-    #   @result.push(@search.result)
-    #   @result.push(@locations) unless @locations.nil?
-    #   @tasks = @result.flatten
-    # else
-      @tasks = @search.result
+      @search = @properties.search(params[:q])
+      #@locations = Property.near(params[:q][:address1],params[:q][:radius].to_f) unless params[:q].nil?
+      # unless params[:q].nil?
+      #   @result = []
+      #   @result.push(@search.result)
+      #   @result.push(@locations) unless @locations.nil?
+      #   @tasks = @result.flatten
+      # else
+        @tasks = @search.result
 
-    # end
-    @agents= Agent.all
-    @news= News.all
-    @settings = Setting.all.first
+      # end
+      @agents= Agent.all
+      @news= News.all
+      @settings = Setting.all.first
+    else
+      render "/home_simple"
+    end  
   end
 
   def properties_detail
