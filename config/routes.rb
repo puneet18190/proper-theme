@@ -97,6 +97,9 @@ Rails.application.routes.draw do
   match 'con', to: 'tasks#con', via: [:get, :post]
   match 'contact_agent', to: 'tasks#contact_agent', via: 'post'
   match '/pricing_tenant',   to: 'tasks#pricing_tenant',   via: 'get'
+  match 'featured_properties', to: 'screens#featured_properties', via: 'get'
+  match 'random_properties', to: 'screens#random_properties', via: 'get'
+  match 'screens/oldest_properties_detail/:property_id',   to: 'screens#oldest_properties_detail',   via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
