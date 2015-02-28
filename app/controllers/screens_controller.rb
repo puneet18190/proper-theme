@@ -88,6 +88,16 @@ class ScreensController < ApplicationController
 		@properties = Property.where(:visibility=>true).sample(5)
 		render '/screens/oldest/random', :layout => "screen_layout"
 	end	
+	def cycle
+		@properties = Property.where(:payment=>true, :visibility => true)
+		render '/screens/oldest/cycle', :layout => "screen_layout"
+	end	
+
+	def oldest
+		@properties = Property.where(:payment=>true,:visibility=>true).first(10)
+		render '/screens/oldest/oldest', :layout => "screen_layout"
+	end	
+
 	def oldest_properties_detail
 		@data = Property.find(params[:property_id])
 		@postcode = Pat.get(@data.postcode.to_s)
