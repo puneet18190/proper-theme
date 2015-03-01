@@ -1,0 +1,20 @@
+<div class="container">
+
+    <h1>Potential</h1>
+
+    <%= form_tag :controller => 'rubyzohos', :action => 'pot' do %>
+        <%= label_tag "Potential_owner" %> <br>
+        <%= text_field_tag "Potential_owner" %><br><br>
+        <%= label_tag "Amount" %> <br>
+        <%= text_field_tag "Amount" %><br><br>
+        <%= label_tag "Potential_name" %> <br>
+        <%= text_field_tag "Potential_name" %><br><br>
+        <%= label_tag "Contact_name" %> <br>
+        <%= text_field_tag "Contact_name" %><br><br>
+        <%= label_tag "Potential_Id" %> <br>
+        <%= text_field_tag "Potential_Id" %><br><br>
+        <%= label_tag "Description" %> <br>
+        <%= text_area_tag "Description" %><br><br>
+        <%= submit_tag "Submit" %>
+    <% end %>
+</div>    

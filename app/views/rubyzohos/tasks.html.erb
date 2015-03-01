@@ -1,0 +1,17 @@
+<div class="container">
+    <h1>Tasks</h1>
+
+    <%= form_tag :controller => 'rubyzohos', :action => 'tsk' do %>
+        <%= label_tag "Task_Owner" %> <br>
+        <%= text_field_tag "Task_Owner" %><br><br>
+        <%= label_tag "Subject" %> <br>
+        <%= text_field_tag "Subject" %><br><br>
+        <%= label_tag "Due_date" %> <br>
+        <%= text_field_tag "Due_date" %><br><br>
+        <%= label_tag "Contact_name" %> <br>
+        <%= text_field_tag "Contact_name" %><br><br>
+        <%= label_tag "Description" %> <br>
+        <%= text_area_tag "Description" %><br><br>
+        <%= submit_tag "Submit" %>
+    <% end %>
+</div>    

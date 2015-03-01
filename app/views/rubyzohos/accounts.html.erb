@@ -1,0 +1,23 @@
+<div class="container">
+
+    <h1>Accounts</h1>
+
+    <%= form_tag :controller => 'rubyzohos', :action => 'acc' do %>
+        <%= label_tag "Account_Owner" %> <br>
+        <%= text_field_tag "Account_Owner" %><br><br>
+        <%= label_tag "Account_Name" %> <br>
+        <%= text_field_tag "Account_Name" %><br><br>
+        <%= label_tag "Account_Number" %> <br>
+        <%= text_field_tag "Account_Number" %><br><br>
+        <%= label_tag "Phone" %> <br>
+        <%= text_field_tag "Phone" %><br><br>
+        <%= label_tag "Description" %> <br>
+        <%= text_area_tag "Description" %><br><br>
+        <%= label_tag "Industry" %> <br>
+        <%= text_field_tag "Industry" %><br><br>
+        <%= label_tag "Website" %> <br>
+        <%= text_field_tag "Website" %><br><br>
+
+        <%= submit_tag "Submit" %>
+    <% end %>
+</div>    

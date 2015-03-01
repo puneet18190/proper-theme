@@ -1,0 +1,20 @@
+<div class="container">
+
+    <h1>Leads</h1>
+
+    <%= form_tag :controller => 'rubyzohos', :action => 'ld' do %>
+        <%= label_tag "Firstname" %> <br>
+        <%= text_field_tag "Firstname" %><br><br>
+        <%= label_tag "Lastname" %> <br>
+        <%= text_field_tag "Lastname" %><br><br>
+        <%= label_tag "Email" %> <br>
+        <%= text_field_tag "Email" %><br><br>
+        <%= label_tag "Mobile" %> <br>
+        <%= text_field_tag "Mobile" %><br><br>
+        <%= label_tag "Phone" %> <br>
+        <%= text_field_tag "Phone" %><br><br>
+        <%= label_tag "Company" %> <br>
+        <%= text_field_tag "Company" %><br><br>
+        <%= submit_tag "Submit" %>
+    <% end %>
+</div>    
