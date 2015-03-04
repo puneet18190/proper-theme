@@ -1,0 +1,21 @@
+<div class="container">
+  <table>
+    <thead>
+    <tr>
+      <th>Task Owner</th>
+      <th>Subject</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @ta.each do |ta| %>
+        <tr>
+          <td><%= ta.task_owner %></td>
+          <td><%= ta.subject %></td>
+          <td><%= ta.description %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>  

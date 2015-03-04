@@ -104,16 +104,22 @@ Rails.application.routes.draw do
   match 'screens/oldest_properties_detail/:property_id',   to: 'screens#oldest_properties_detail',   via: 'get'
 
   match '/crm', to: "rubyzohos#index", via: 'get'
-  match 'contact_crm', to: 'rubyzohos#contact', via: [:get, :post]
-  post 'rubyzohos/con'
+  match 'crm_contact', to: 'rubyzohos#contact', via: [:get, :post]
+  post 'rubyzohos/create_contact'
   match 'leads', to: 'rubyzohos#leads', via: [:get, :post]
-  post 'rubyzohos/ld'
+  post 'rubyzohos/create_lead'
   match 'accounts', to: 'rubyzohos#accounts', via: [:get, :post]
-  post 'rubyzohos/acc'
+  post 'rubyzohos/create_account'
   match 'tasks', to: 'rubyzohos#tasks', via: [:get, :post]
-  post 'rubyzohos/tsk'
+  post 'rubyzohos/create_task'
   match 'potential', to: 'rubyzohos#potential', via: [:get, :post]
-  post 'rubyzohos/pot'
+  post 'rubyzohos/create_potential'
+  
+  match 'get_accounts', to: 'rubyzohos#get_accounts', via: [:get]
+  match 'get_contacts', to: 'rubyzohos#get_contacts', via: [:get]
+  match 'get_leads', to: 'rubyzohos#get_leads', via: [:get]
+  match 'get_tasks', to: 'rubyzohos#get_tasks', via: [:get]
+  match 'get_potentials', to: 'rubyzohos#get_potentials', via: [:get]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

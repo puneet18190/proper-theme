@@ -1,23 +1,59 @@
 <div class="container">
-
     <h1>Accounts</h1>
 
-    <%= form_tag :controller => 'rubyzohos', :action => 'acc' do %>
+    <%= form_tag :controller => 'rubyzohos', :action => 'create_account' do %>
         <%= label_tag "Account_Owner" %> <br>
         <%= text_field_tag "Account_Owner" %><br><br>
+        <%= label_tag "Rating" %> <br>
+        <%= text_field_tag "Rating" %><br><br>
         <%= label_tag "Account_Name" %> <br>
         <%= text_field_tag "Account_Name" %><br><br>
-        <%= label_tag "Account_Number" %> <br>
-        <%= text_field_tag "Account_Number" %><br><br>
         <%= label_tag "Phone" %> <br>
         <%= text_field_tag "Phone" %><br><br>
+        <%= label_tag "Fax" %> <br>
+        <%= text_field_tag "Fax" %><br><br>
+        <%= label_tag "Website" %> <br>
+        <%= text_field_tag "Website" %><br><br>
+        <%= label_tag "Account_Number" %> <br>
+        <%= text_field_tag "Account_Number" %><br><br>
+        <%= label_tag "Account_Site" %> <br>
+        <%= text_field_tag "Account_site" %><br><br>
+        <%= label_tag "Ticker_Symbol" %> <br>
+        <%= text_field_tag "Ticker_Symbol" %><br><br>
+        <%= label_tag "Account_Type" %> <br>
+        <%= text_field_tag "Account_type" %><br><br>
+        <%= label_tag "Ownership" %> <br>
+        <%= text_field_tag "Ownership" %><br><br>
         <%= label_tag "Description" %> <br>
         <%= text_area_tag "Description" %><br><br>
         <%= label_tag "Industry" %> <br>
         <%= text_field_tag "Industry" %><br><br>
-        <%= label_tag "Website" %> <br>
-        <%= text_field_tag "Website" %><br><br>
-
+        <%= label_tag "Employees" %> <br>
+        <%= text_field_tag "Employees" %><br><br>
+        <%= label_tag "Annual_revenue" %> <br>
+        <%= text_field_tag "Annual_revenue" %><br><br>
+        <%= label_tag "Billing_Street" %> <br>
+        <%= text_field_tag "Billing_street" %><br><br>
+        <%= label_tag "Billing_City" %> <br>
+        <%= text_field_tag "Billing_city" %><br><br>
+        <%= label_tag "Billing_Province" %> <br>
+        <%= text_field_tag "Billing_province" %><br><br>
+        <%= label_tag "Billing_Code" %> <br>
+        <%= text_field_tag "Billing_code" %><br><br>
+        <%= label_tag "Billing_Country" %> <br>
+        <%= text_field_tag "Billing_country" %><br><br>
+        <%= label_tag "Shipping_Street" %> <br>
+        <%= text_field_tag "Shipping_street" %><br><br>
+        <%= label_tag "Shipping_City" %> <br>
+        <%= text_field_tag "Shipping_city" %><br><br>
+        <%= label_tag "Shipping_Province" %> <br>
+        <%= text_field_tag "Shipping_province" %><br><br>
+        <%= label_tag "Shipping_Code" %> <br>
+        <%= text_field_tag "Shipping_code" %><br><br>
+        <%= label_tag "Shipping_Country" %> <br>
+        <%= text_field_tag "Shipping_country" %><br><br>
         <%= submit_tag "Submit" %>
     <% end %>
+
+    <%= link_to 'View Accounts Details', 'get_accounts' %>
 </div>    

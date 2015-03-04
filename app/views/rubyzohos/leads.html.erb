@@ -1,20 +1,53 @@
 <div class="container">
-
     <h1>Leads</h1>
 
-    <%= form_tag :controller => 'rubyzohos', :action => 'ld' do %>
+    <%= form_tag :controller => 'rubyzohos', :action => 'create_lead' do %>
+        <%= label_tag "Lead_Owner" %> <br>
+        <%= text_field_tag "Lead_owner" %><br><br>
+        <%= label_tag "Company" %> <br>
+        <%= text_field_tag "Company" %><br><br>
         <%= label_tag "Firstname" %> <br>
         <%= text_field_tag "Firstname" %><br><br>
         <%= label_tag "Lastname" %> <br>
         <%= text_field_tag "Lastname" %><br><br>
         <%= label_tag "Email" %> <br>
         <%= text_field_tag "Email" %><br><br>
-        <%= label_tag "Mobile" %> <br>
-        <%= text_field_tag "Mobile" %><br><br>
         <%= label_tag "Phone" %> <br>
         <%= text_field_tag "Phone" %><br><br>
-        <%= label_tag "Company" %> <br>
-        <%= text_field_tag "Company" %><br><br>
+        <%= label_tag "Fax" %> <br>
+        <%= text_field_tag "Fax" %><br><br>
+        <%= label_tag "Mobile" %> <br>
+        <%= text_field_tag "Mobile" %><br><br>
+        <%= label_tag "Website" %> <br>
+        <%= text_field_tag "Website" %><br><br>
+        <%= label_tag "Lead_Source" %> <br>
+        <%= text_field_tag "Lead_source" %><br><br>
+        <%= label_tag "Lead_Status" %> <br>
+        <%= text_field_tag "Lead_status" %><br><br>
+        <%= label_tag "Industry" %> <br>
+        <%= text_field_tag "Industry" %><br><br>
+        <%= label_tag "Annual_Revenue" %> <br>
+        <%= text_field_tag "Annual_revenue" %><br><br>
+        <%= label_tag "Rating" %> <br>
+        <%= text_field_tag "Rating" %><br><br>
+        <%= label_tag "Twitter" %> <br>
+        <%= text_field_tag "Twitter" %><br><br>
+        <%= label_tag "Secondary_Email" %> <br>
+        <%= text_field_tag "Secondary_email" %><br><br>
+        <%= label_tag "City" %> <br>
+        <%= text_field_tag "City" %><br><br>
+        <%= label_tag "Street" %> <br>
+        <%= text_field_tag "Street" %><br><br>
+        <%= label_tag "Province" %> <br>
+        <%= text_field_tag "Province" %><br><br>
+        <%= label_tag "Postal_Code" %> <br>
+        <%= text_field_tag "Postal_code" %><br><br>
+        <%= label_tag "Country" %> <br>
+        <%= text_field_tag "Country" %><br><br>
+        <%= label_tag "Description" %> <br>
+        <%= text_field_tag "Description" %><br><br>
         <%= submit_tag "Submit" %>
     <% end %>
+
+    <%= link_to 'View Lead Details', 'get_leads' %>
 </div>    
