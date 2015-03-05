@@ -93,5 +93,5 @@ gem 'geocoder'
 # gem 'debugger', group: [:development, :test]
 gem 'mobvious'
 gem 'rubyzoho'
-gem 'mobile-fu'
+
 
