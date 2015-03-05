@@ -94,3 +94,4 @@ gem 'geocoder'
 gem 'mobvious'
 gem 'rubyzoho'
 gem 'mobile-fu'
+

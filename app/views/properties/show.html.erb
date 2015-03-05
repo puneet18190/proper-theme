@@ -116,7 +116,7 @@
     <% if current_user.status == "admin" %>
       <p>
         <strong>Agent:</strong>
-        <%= Agent.find_by_id(@property.agent_id).name %>
+        <%= @property.agent.name unless @property.agent.nil? %>
       </p>
     <% end %>
 

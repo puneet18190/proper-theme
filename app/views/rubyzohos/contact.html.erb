@@ -1,0 +1,68 @@
+<div class="container">
+  <h1>Contacts</h1>
+
+  <%= form_tag :controller => 'rubyzohos', :action => 'create_contact' do %>
+    <%= label_tag "Contact_Owner" %> <br>
+    <%= text_field_tag "Contact_owner" %><br><br>
+    <%= label_tag "Lead_Source" %> <br>
+    <%= text_field_tag "Lead_source" %><br><br>
+    <%= label_tag "Account_Name" %> <br>
+    <%= text_field_tag "Account_name" %><br><br>
+    <%= label_tag "Title" %> <br>
+    <%= text_field_tag "Title" %><br><br>
+    <%= label_tag "Firstname" %> <br>
+    <%= text_field_tag "Firstname" %><br><br>
+    <%= label_tag "Lastname" %> <br>
+    <%= text_field_tag "Lastname" %><br><br>
+    <%= label_tag "Email" %> <br>
+    <%= text_field_tag "Email" %><br><br>
+    <%= label_tag "Department" %> <br>
+    <%= text_field_tag "Department" %><br><br>
+    <%= label_tag "Mobile" %> <br>
+    <%= text_field_tag "Mobile" %><br><br>
+    <%= label_tag "Phone" %> <br>
+    <%= text_field_tag "Phone" %><br><br>
+    <%= label_tag "Home_Phone" %> <br>
+    <%= text_field_tag "Home_phone" %><br><br>
+    <%= label_tag "Other_Phone" %> <br>
+    <%= text_field_tag "Other_phone" %><br><br>
+    <%= label_tag "Fax" %> <br>
+    <%= text_field_tag "Fax" %><br><br>
+    <%= label_tag "Assistant" %> <br>
+    <%= text_field_tag "Assistant" %><br><br>
+    <%= label_tag " Asst_Phone" %> <br>
+    <%= text_field_tag "Asst_phone" %><br><br>
+    <%= label_tag " Reports_To" %> <br>
+    <%= text_field_tag "Reports_to" %><br><br>
+    <%= label_tag "Secondary_Email" %> <br>
+    <%= text_field_tag "Secondary_email" %><br><br>
+    <%= label_tag "Twitter" %> <br>
+    <%= text_field_tag "Twitter" %><br><br>
+    <%= label_tag "Mailing_Street" %> <br>
+    <%= text_field_tag "Mailing_street" %><br><br>
+    <%= label_tag "Other_Street" %> <br>
+    <%= text_field_tag "Other_street" %><br><br>
+    <%= label_tag "Mailing_city" %> <br>
+    <%= text_field_tag "Mailing_city" %><br><br>
+    <%= label_tag "Other_city" %> <br>
+    <%= text_field_tag "Other_city" %><br><br>
+    <%= label_tag "Mailing_Province" %> <br>
+    <%= text_field_tag "Mailing_province" %><br><br>
+    <%= label_tag "Other_Province" %> <br>
+    <%= text_field_tag "Other_province" %><br><br>
+    <%= label_tag "Mailing_Postal_Code" %> <br>
+    <%= text_field_tag "Mailing_postal_code" %><br><br>
+    <%= label_tag "Other_Postal_Code" %> <br>
+    <%= text_field_tag "Other_postal_code" %><br><br>
+    <%= label_tag "Mailing_Country" %> <br>
+    <%= text_field_tag "Mailing_country" %><br><br>
+    <%= label_tag "Other_Country" %> <br>
+    <%= text_field_tag "Other_country" %><br><br>
+    <%= label_tag "Description" %> <br>
+    <%= text_field_tag "Description" %><br><br>
+    <%= submit_tag "Submit" %>
+  <% end %>
+
+
+  <%= link_to 'View Contact Details', 'get_contacts' %>
+</div>  

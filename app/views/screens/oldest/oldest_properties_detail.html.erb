@@ -1,6 +1,6 @@
             <!--Start Content-->
 <div id="content">
-  <%= render :partial => "/layouts/main_title",:locals => { :maintitle => "Property Detail", :subtitle=>"Newest Addition"} %>
+  <%= render :partial => "/layouts/main_title",:locals => { :maintitle => "Property Detail", :subtitle=>"#{params[:page]} Addition"} %>
 
   <div class="container">
         <div class="row-fluid">
@@ -52,14 +52,15 @@
                               <span class="label"><i class="icon-circle-arrow-right"></i> Parking : <%= @data.parking %></span>
 
                             </p>
+                            <% @agent = @data.agent.nil? ? Agent.all.first : @data.agent %>
                             <div class="agent-preview">
-                              <div class="agent-image pull-left"  ><a href="#"><img src="assets/agents/a1.jpg" class="img-polaroid" alt="property"></a></div>
+                              <div class="agent-image pull-left"  ><a href="#"><img src="<%=@agent.image.url%>" class="img-polaroid" alt="property"></a></div>
                               <div class="agent-contant pull-right">
                                 <ul class="unstyled">
-                                  <li><i class="icon-phone"></i> (+89)98732.984 </li>
-                                  <li><i class="icon-envelope"></i> agent@company.com</li>
-                                  <li><i class="icon-facebook"></i> angel</li>
-                                  <li><i class="icon-twitter"></i> @angel</li>
+                                  <li><i class="icon-phone"></i><%= @agent.phone %></li>
+                                  <li><i class="icon-envelope"></i><%= @agent.email_id %></li>
+                                  <li><i class="icon-facebook"></i><%= @agent.fb_id %></li>
+                                  <li><i class="icon-twitter"></i><%= @agent.twitter_id %></li>
                                 </ul>
                               </div>
                             </div>
@@ -79,7 +80,7 @@
                     <div class="bottom-line line-before">
                         <div id="googleMap" class="" style="height:300px;margin-bottom:25px"></div>
                     </div><!-- END MAP LOCATION -->
-                  <p>Ward: <%=  @datapat["code"] ==404 ? "" : "#{@datapat["administrative"]["ward"]["title"]}"   %><br>
+                  <p>Ward: <%=  @datapat["code"] ==404 ? "" : (@datapat["administrative"]["ward"].nil? ? "" : "#{@datapat["administrative"]["ward"]["title"]}")   %><br>
                     Council: <%=  @datapat["code"] ==404 ? "" : "#{@datapat["administrative"]["council"]["title"]}"   %></p>
 
 
