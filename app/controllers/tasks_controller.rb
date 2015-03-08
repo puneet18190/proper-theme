@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   layout proc { false if request.xhr? }	
   def index
-    if request.env['mobvious.device_type'] == :desktop
+    if is_mobile_device? == false
       @properties = Property.where({payment: true, visibility: true})
 
       if !params[:q].nil? && params[:q][:radius]!="Select"
