@@ -49,4 +49,6 @@ Rails.application.configure do
   BetterErrors::Middleware.allow_ip! ENV['TRUSTED_IP'] if ENV['TRUSTED_IP']
   ENV["REDISTOGO_URL"] = 'redis://127.0.0.1:6379'
   
+  # config.middleware.use Mobvious::Manager
+
 end

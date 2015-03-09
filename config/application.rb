@@ -47,6 +47,6 @@ module Proper
   config.assets.precompile += %w( /bootstrap-responsive.min.css)
   config.assets.precompile += %w( /style.css)
   config.assets.precompile += %w( /colorbox/colorbox.css)
-  config.middleware.use Mobvious::Manager
+  # config.middleware.use Mobvious::Manager
   end
 end

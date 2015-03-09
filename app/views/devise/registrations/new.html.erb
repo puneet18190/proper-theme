@@ -3,14 +3,9 @@
     <div id="content">
       <!--    News Carousel-->
       <div class="news-carousel-wrapper">
-        <dl id="news-carousel" class="news-carousel-style">
-          <dt><a href="#">News Link Here</a></dt>
-          <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
-          <dt><a href="#">Promo Link Here</a></dt>
-          <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
-          <dt><a href="#">Another Link Here</a></dt>
-          <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
-        </dl>
+          <dl id="news-carousel" class="news-carousel-style" >
+            <%= render 'properties/news_carousel'%>
+          </dl>
       </div>
       <!--    End News Carousel-->
       <!--Start Form Singup-->
@@ -21,7 +16,7 @@
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <div class="proper-singup">
                 <%= devise_error_messages! %>
-               <h1 class=""><i class="icon-user"></i> Sing Up</h1>
+               <h1 class=""><i class="icon-user"></i> Sign Up</h1>
 
               <div class="field">
                 <%= f.label :username %>
