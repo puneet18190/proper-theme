@@ -320,6 +320,16 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def approve_property
+    @user = current_user
+    @property = Property.find(params[:id])
+    @status = params[:status]
+    @property_id  = params[:id]
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
     def set_property
       @property = Property.friendly.find(params[:id])

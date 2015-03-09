@@ -120,6 +120,7 @@ Rails.application.routes.draw do
   match 'get_leads', to: 'rubyzohos#get_leads', via: [:get]
   match 'get_tasks', to: 'rubyzohos#get_tasks', via: [:get]
   match 'get_potentials', to: 'rubyzohos#get_potentials', via: [:get]
+  post 'properties/approve_property'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

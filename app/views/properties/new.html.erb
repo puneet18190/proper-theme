@@ -92,43 +92,43 @@
                                       <%= f.label :image1, "Main image" %>
                                       <%= f.file_field :image1 %>
                                     </div>
-                                    <div class="field">
+                                    <div class="field alert_popup">
                                       <%= f.label :image2, "Image1" %>
                                       <%= f.file_field :image2 %>
                                     </div>
-                                    <div class="field">
+                                    <div class="field alert_popup">
                                       <%= f.label :image3, "Image2" %>
                                       <%= f.file_field :image3 %>
                                     </div>
-                                    <div class="field">
+                                    <div class="field alert_popup">
                                       <%= f.label :image4, "Image3" %>
                                       <%= f.file_field :image4 %>
                                     </div>
-                                    <div class="field">
+                                    <div class="field alert_popup">
                                       <%= f.label :image5, "Image4" %>
                                       <%= f.file_field :image5 %>
                                     </div>
-                                    <div class="field">
+                                    <div class="field alert_popup">
                                       <%= f.label :image6, "Image5" %>
                                       <%= f.file_field :image6 %>
                                     </div>
-                                    <div class="field">
+                                    <div class="field alert_popup">
                                       <%= f.label :image7, "Image6" %>
                                       <%= f.file_field :image7 %>
                                     </div>
-                                    <div class="field">
+                                    <div class="field alert_popup">
                                       <%= f.label :image8, "Image7" %>
                                       <%= f.file_field :image8 %>
                                     </div>
-                                    <div class="field">
+                                    <div class="field alert_popup">
                                       <%= f.label :image9, "Image8" %>
                                       <%= f.file_field :image9 %>
                                     </div>
-                                    <div class="field">
+                                    <div class="field alert_popup">
                                       <%= f.label :image10, "Image9" %>
                                       <%= f.file_field :image10 %>
                                     </div>
-                                    <div class="field">
+                                    <div class="field" >
                                       <%= f.label :description %>
                                       <%= f.text_area :description, :value => Setting.first.property_description %>
                                     </div><br/>
@@ -177,5 +177,20 @@
 
                 <script type="text/javascript">
                     $('textarea').cleditor();
+                    <% if current_user.status == "landlord" || current_user.plan == "free" %>
+                      $(".alert_popup").click(function(e) {
+                          e.preventDefault();
+                          $("#myModal").modal();
+                      });
+                    <% end %>
                 </script>
 
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        Please Upgrade Your Plan....
+                      </div>
+                    </div>
+                  </div>
+                </div>

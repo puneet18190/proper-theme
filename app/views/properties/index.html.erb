@@ -24,9 +24,8 @@
     <% if can? :create, @property %>
         <%= button_to "New Property", "/properties/new", :method=>:get, :class=>"btn btn-warning", :style=>"margin-left:1000px;margin-top:-90px;"%>
     <% end %>
-<table>
 
-<table>
+<table id = "prop_info">
   <thead>
     <tr>
       <th>Name</th>
@@ -65,11 +64,12 @@
           <% if current_user.status == "admin" %>
             <td>  <div class="add_loader" id= <%="approve_#{property.id}"%>>  <%= button_to (property.approve == false ? 'Approve' : 'Unapprove'), {:controller => "properties", :action => "approve", :id => property.id, :status => property.approve == false ? 'Approve' : 'Unapprove'},:class=>property.approve == false ? 'btn btn-danger' : 'btn btn-success', :method=>:post, :remote=>true %>  </div> </td>
           <% elsif current_user.status == "landlord" %>
-            <% if property.payment == true && (((property.validity - DateTime.now)/1.days) < 7)%>
-                <td> <div class="add_loader" id= <%="payment_#{property.id}"%>>  <%= button_to 'Renew', {:controller => "properties", :action => "landlord_payment", :id => property.id}, :method=>:get %>  </div> </td>
-            <%else%>
-              <td>  <div class="add_loader" id= <%="payment_#{property.id}"%> >  <%= button_to (property.payment == false ? 'Confirm Payment' : 'Confirmed'), {:controller => "properties", :action => "landlord_payment", :id => property.id}, :method=>:get,:disabled =>(property.payment == false ? false : true) %>  </div> </td>
-              <%end%>
+            <td>  <div class="add_loader" id= <%="approve_#{property.id}"%>>  <%= button_to (property.approve == false ? 'Click here for approval' : 'Approved'), {:controller => "properties", :action => "approve_property", :id => property.id, :status => property.approve == false ? 'Click here for approval' : 'Waiting for approval' }, :class=>property.approve == false ? 'btn btn-primary approval-btn' : 'btn btn-success', :method=>:post, :remote=>true %>  </div> </td>
+            <%# if property.payment == true && (((property.validity - DateTime.now)/1.days) < 7)%>
+                <!--<td> <div class="add_loader" id= <%#="payment_#{property.id}"%>>  <%#= button_to 'Renew', {:controller => "properties", :action => "landlord_payment", :id => property.id}, :method=>:get %>  </div> </td>-->
+            <%#else%>
+              <!--<td>  <div class="add_loader" id= <%#="payment_#{property.id}"%> >  <%#= button_to (property.payment == false ? 'Confirm Payment' : 'Confirmed'), {:controller => "properties", :action => "landlord_payment", :id => property.id}, :method=>:get,:disabled =>(property.payment == false ? false : true) %>  </div> </td>-->
+              <%#end%>
           <% end %>
       </tr>
     <% end %>
@@ -112,7 +112,57 @@ $( ".disconnect_fb" )
   })
   .mouseleave(function() {
     $( this ).html("Connected with Facebook");
-  });  
+  });
+
+//  function onload() {
+//      document.getElementById('prop_info').getElementsByTagName("tr").className = "alert_popup";
+//      if(document.getElementsByTagName){
+//
+//          var table = document.getElementById('prop_info');
+//          var rows = table.getElementsByTagName("tr");
+//
+//          for(i = 3; i < rows.length; i++){
+//                  rows[i].className = "alert_popup";
+//
+//          }
+//      }
+//  }
+
+//    function onload() {
+//        var i, rows = document.getElementById("prop_info").getElementsByTagName("td.input.btn");
+//        for (i = 3, i < rows.length; i++) {
+//            rows[i].class = "alert_popup";
+//        }
+//    }
+//    window.onload =function(){
+//      onload();
+//    }
+       $(document).ready(function(){
+           $(".approval-btn").each( function (index) {
+               index += 1;
+               if (index != 1 && index != 2 && index != 3) {
+                   $(this).addClass("alert_popup");
+               }
+           })
+       })
+
+    <% if current_user.status == "landlord" || current_user.plan == "free" %>
+    $(".alert_popup").click(function(e) {
+        e.preventDefault();
+        $("#myModal").modal();
+    });
+    <% end %>
+
 </script>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        Please Upgrade Your Plan....
+      </div>
+    </div>
+  </div>
+</div>
 
 
