@@ -4,10 +4,10 @@
               <div id="googleMap" class="">
               </div>
               <div class="map-with-agent visible-desktop">
-                  <!--<h3 ><%#= @settings.admin_text %></h3>-->
-                  <%#= image_tag @settings.admin_image.url, :style=>"height:300px;" %>
-                <h3 >Your Message Here</h3>
-                <img src="/assets/agents/n5.png" alt="ceo"/>
+                  <h3 ><%= @settings.admin_text %></h3>
+                  <%= image_tag @settings.admin_image.url, :style=>"height:300px;" %>
+                <!-- <h3 >Your Message Here</h3>
+                <img src="/assets/agents/n5.png" alt="ceo"/> -->
               </div>
           </div>
           <!--    News Carousel-->
