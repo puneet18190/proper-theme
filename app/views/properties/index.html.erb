@@ -64,7 +64,7 @@
           <% if current_user.status == "admin" %>
             <td>  <div class="add_loader" id= <%="approve_#{property.id}"%>>  <%= button_to (property.approve == false ? 'Approve' : 'Unapprove'), {:controller => "properties", :action => "approve", :id => property.id, :status => property.approve == false ? 'Approve' : 'Unapprove'},:class=>property.approve == false ? 'btn btn-danger' : 'btn btn-success', :method=>:post, :remote=>true %>  </div> </td>
           <% elsif current_user.status == "landlord" %>
-            <td>  <div class="add_loader" id= <%="approve_#{property.id}"%>>  <%= button_to (property.approve == false ? 'Click here for approval' : 'Approved'), {:controller => "properties", :action => "approve_property", :id => property.id, :status => property.approve == false ? 'Click here for approval' : 'Waiting for approval' }, :class=>property.approve == false ? 'btn btn-primary approval-btn' : 'btn btn-success', :method=>:post, :remote=>true %>  </div> </td>
+            <td>  <div class="add_loader" id= <%="approve_#{property.id}"%>>  <%= button_to (property.approve == false ? 'Click here for approval' : 'Approved'), {:controller => "properties", :action => "approve_property", :id => property.id, :status => property.approve == false ? 'Click here for approval' : 'Waiting for approval' }, :class=>property.approve == false ? 'btn btn-primary approval-btn' : 'btn btn-success approval-btn', :method=>:post, :remote=>true %>  </div> </td>
             <%# if property.payment == true && (((property.validity - DateTime.now)/1.days) < 7)%>
                 <!--<td> <div class="add_loader" id= <%#="payment_#{property.id}"%>>  <%#= button_to 'Renew', {:controller => "properties", :action => "landlord_payment", :id => property.id}, :method=>:get %>  </div> </td>-->
             <%#else%>
@@ -159,7 +159,9 @@ $( ".disconnect_fb" )
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        Please Upgrade Your Plan....
+        <div class="box-line"> 
+            <h2 class="title-heading">Please Upgrade your Plan to Continue.</h2>
+        </div>
       </div>
     </div>
   </div>
