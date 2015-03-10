@@ -14,7 +14,7 @@
    <%= label_tag 'recipients', 'Choose recipients' %>
    <%= select_tag 'recipients', recipients_options, multiple: true, class: 'form-control chosen-it' %>
   </div>
-  <%= submit_tag 'Send', class: 'btn btn-primary' %>
+  <%= submit_tag 'Send', class: 'btn btn-primary alert_popup' %>
 <% end %>
 
 <style type="text/css">
@@ -91,4 +91,22 @@
   $("document").ready(function(){
       $('.chosen-it').chosen();
   })
+  <% if current_user.plan == "free" %>
+  $(".alert_popup").click(function(e) {
+      e.preventDefault();
+      $("#myModal").modal();
+  });
+  <% end %>
 </script>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="box-line">
+          <h2 class="title-heading">Please Upgrade your Plan to Continue.</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
