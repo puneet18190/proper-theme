@@ -60,11 +60,13 @@
               <% end %>
           <% if property.payment == true %>
           <td><%= link_to 'Download', pdf_handle_path(:id => property.id, format: 'pdf') %></td>
-            <%end%>
+          <%else%>
+          <td><%= link_to 'N/A' %></td>
+          <%end%>
           <% if current_user.status == "admin" %>
             <td>  <div class="add_loader" id= <%="approve_#{property.id}"%>>  <%= button_to (property.approve == false ? 'Approve' : 'Unapprove'), {:controller => "properties", :action => "approve", :id => property.id, :status => property.approve == false ? 'Approve' : 'Unapprove'},:class=>property.approve == false ? 'btn btn-danger' : 'btn btn-success', :method=>:post, :remote=>true %>  </div> </td>
           <% elsif current_user.status == "landlord" %>
-            <td>  <div class="add_loader" id= <%="approve_#{property.id}"%>>  <%= button_to (property.approve == false ? 'Click here for approval' : 'Approved'), {:controller => "properties", :action => "approve_property", :id => property.id, :status => property.approve == false ? 'Click here for approval' : 'Waiting for approval' }, :class=>property.approve == false ? 'btn btn-primary approval-btn' : 'btn btn-success approval-btn', :method=>:post, :remote=>true %>  </div> </td>
+            <td>  <div class="add_loader" id= <%="approve_#{property.id}"%>>  <%= button_to (property.approve == false ? (property.approval_status == "false" ? "Click here for approval" : "Waiting for approval") : "Approved"), {:controller => "properties", :action => "approve_property", :id => property.id, :status => property.approve == false ? (property.approval_status == "false" ? "Click here for approval" : "Waiting for approval") : "Approved" }, :class=>property.approve == false ? (property.approval_status == "false" ? "btn btn-primary approval-btn" : "btn btn-danger approval-btn") : "btn btn-success approval-btn", :method=>:post, :remote=>true %>  </div> </td>
             <%# if property.payment == true && (((property.validity - DateTime.now)/1.days) < 7)%>
                 <!--<td> <div class="add_loader" id= <%#="payment_#{property.id}"%>>  <%#= button_to 'Renew', {:controller => "properties", :action => "landlord_payment", :id => property.id}, :method=>:get %>  </div> </td>-->
             <%#else%>
@@ -142,14 +144,19 @@ $( ".disconnect_fb" )
                index += 1;
                if (index != 1 && index != 2 && index != 3) {
                    $(this).addClass("alert_popup");
+                   $(this).parent().parent().parent().removeClass("add_loader")
                }
            })
-       })
+       });
 
     <% if current_user.status == "landlord" || current_user.plan == "free" %>
-    $(".alert_popup").click(function(e) {
-        e.preventDefault();
-        $("#myModal").modal();
+    $(".approval-btn").click(function(e) {
+        if ($(this).hasClass("alert_popup")) {
+            e.preventDefault();
+            e.stopPropagation();
+            $('#loading').html('');
+            $("#myModal").modal();
+        }
     });
     <% end %>
 

@@ -116,6 +116,7 @@ class PropertiesController < ApplicationController
     @property_id  = params[:id]
     if params[:status] == "Approve"
       @property.update_attributes(:approve=>true)
+      @property.update_attributes(:approval_status=>"approved")
       property_id = "SP"+@property.created_at.year.to_s.split(//).last(2).join()+@property.created_at.month.to_s.rjust(2,'0')+@property.id.to_s.rjust(4,'0')
       unless current_user.fb_token.nil?
         @api = Koala::Facebook::API.new(current_user.fb_token)
@@ -320,11 +321,15 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def approve_property
+   def approve_property
     @user = current_user
     @property = Property.find(params[:id])
     @status = params[:status]
     @property_id  = params[:id]
+    if @status == "Click here for approval"
+      @property.update_attributes(:approval_status=>"wait")
+      @property.save
+    end
     respond_to do |format|
       format.js
     end
