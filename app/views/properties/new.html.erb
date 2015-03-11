@@ -177,7 +177,7 @@
                
                 <script type="text/javascript">
                     $('textarea').cleditor();
-                    <% if current_user.status == "landlord" || current_user.plan == "free" %>
+                    <% if current_user.status == "landlord" && current_user.plan == "free" %>
                     $(".alert_popup").click(function(e) {
                       e.preventDefault();
                       $("#myModal").modal();

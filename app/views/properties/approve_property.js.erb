@@ -1,10 +1,11 @@
 <% if @status == "Click here for approval"%>
-$($("<%="#approve_#{@property.id}"%> input")[0]).val("Waiting for approval").removeClass('btn-primary').addClass('btn-danger')
-$("#approve_<%="#{@property.id}"%> form").attr("action","/properties/approve?id=<%="#{@property.id}"%>&status=Waiting for approval")
-$('#loading').html('')
-
+	$($("<%="#approve_#{@property.id}"%> input")[0]).val("Waiting for approval").removeClass('btn-primary').addClass('btn-danger')
+	$("#approve_<%="#{@property.id}"%> form").attr("action","/properties/approve?id=<%="#{@property.id}"%>&status=Waiting for approval")
+	$('#loading').html('')
+	$($("<%="#approve_#{@property.id}"%> input")[0]).attr("disabled","disabled")
+	$("#approve_<%="#{@property.id}"%> form").parent().addClass("block_loader")
 <%else%>
-$($("<%="#approve_#{@property.id}"%> input")[0]).val("Click here for approval")
-$("#approve_<%="#{@property.id}"%> form").attr("action","/properties/approve?id=<%="#{@property.id}"%>&status=Click here for approval")
-$('#loading').html('')
+	$($("<%="#approve_#{@property.id}"%> input")[0]).val("Click here for approval")
+	$("#approve_<%="#{@property.id}"%> form").attr("action","/properties/approve?id=<%="#{@property.id}"%>&status=Click here for approval")
+	$('#loading').html('')
 <%end%>
