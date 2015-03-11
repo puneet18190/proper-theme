@@ -87,26 +87,16 @@
 
 </style>
 
+<%= render 'shared/plans'%>               
+
 <script type="text/javascript">
   $("document").ready(function(){
-      $('.chosen-it').chosen();
+    $('.chosen-it').chosen();
   })
   <% if current_user.plan == "free" %>
-  $(".alert_popup").click(function(e) {
+    $(".alert_popup").click(function(e) {
       e.preventDefault();
-      $("#myModal").modal();
+    $("#myModal").modal();
   });
   <% end %>
 </script>
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="box-line">
-          <h2 class="title-heading">Please Upgrade your Plan to Continue.</h2>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
