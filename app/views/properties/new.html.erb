@@ -172,16 +172,16 @@
                            </div>
                         </div>
                       </div> 
-                    </div>
                 </div><!--EndContent-->
-
                 <%= render 'shared/plans'%>
+               
                 <script type="text/javascript">
                     $('textarea').cleditor();
                     <% if current_user.status == "landlord" || current_user.plan == "free" %>
                     $(".alert_popup").click(function(e) {
                       e.preventDefault();
                       $("#myModal").modal();
+                      $("#myModal").css("z-index",10000)
                     });
                   <% end %>
                 </script>
