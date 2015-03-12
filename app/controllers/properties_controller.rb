@@ -188,7 +188,7 @@ class PropertiesController < ApplicationController
 
   def confirm_landlord_payment
     begin
-      Stripe.api_key = "sk_test_UZ0dgBsgRJqY95p0wCPALgv8"
+      Stripe.api_key = "sk_test_RsHCMpYllmYNshcj4p81bmfC"
       plan = "plan_10"
       card_token = Stripe::Token.create( :card => { :name => params[:name_on_card], :number => params[:card_number], :exp_month => params[:exp_month], :exp_year => params[:exp_year], :cvc => params[:card_id] })
       customer_params = {:card => card_token[:id], :plan => plan, :email => current_user.email}
@@ -223,7 +223,7 @@ class PropertiesController < ApplicationController
 
   def confirm_tenant_payment
     begin
-      Stripe.api_key = "sk_test_UZ0dgBsgRJqY95p0wCPALgv8"
+      Stripe.api_key = "sk_test_RsHCMpYllmYNshcj4p81bmfC"
       plan = "plan_5"
 
       card_token = Stripe::Token.create( :card => { :name => params[:name_on_card], :number => params[:card_number], :exp_month => params[:exp_month], :exp_year => params[:exp_year], :cvc => params[:card_id] })
@@ -338,6 +338,40 @@ class PropertiesController < ApplicationController
       format.js
     end
   end
+
+  def pay_plans
+    if params[:plan] == "Pro"
+      @pay = 99
+    elsif params[:plan] == "Pro Plus"
+      @pay = 30
+    else
+      @pay = 19.99
+    end       
+  end  
+
+  def pay
+    begin
+      if params[:amount] == "99"
+        plan = "Pro"
+      elsif params[:amount] == "30"
+        plan = "Pro Plus"
+      else
+        plan = "Basic Plus"    
+      end  
+      Stripe.api_key = "sk_test_RsHCMpYllmYNshcj4p81bmfC"
+      card_token = Stripe::Token.create( :card => { :name => params[:name_on_card], :number => params[:card_number], :exp_month => params[:exp_month], :exp_year => params[:exp_year], :cvc => params[:card_id] })
+      customer_params = {:card => card_token[:id], :plan => plan, :email => current_user.email}
+      stripe_customer = Stripe::Customer.create(customer_params) 
+      current_user.update_attributes(:plan => plan)
+      redirect_to root_url, notice: "Payment confirmed. Thanks"
+      rescue Stripe::CardError => e
+      flash[:error] = e.message
+    end
+  end  
+
+  def my_plan
+
+  end  
 
   private
     def set_property

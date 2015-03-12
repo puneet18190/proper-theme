@@ -121,6 +121,9 @@ Rails.application.routes.draw do
   match 'get_tasks', to: 'rubyzohos#get_tasks', via: [:get]
   match 'get_potentials', to: 'rubyzohos#get_potentials', via: [:get]
   post 'properties/approve_property'
+  match '/pay_plans', to: "properties#pay_plans", via: 'get'
+  match '/pay', to: "properties#pay", via: 'get'
+  match '/my_plan', to: "properties#my_plan", via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
