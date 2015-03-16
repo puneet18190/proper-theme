@@ -12,8 +12,10 @@
                 <div class="panel right-line" itemscope="" itemtype="http://schema.org/Property">
                     <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span>Tenant Search Results</h2>
                     <div class="cont" style="max-width:600px;margin-left:100px;">
-                    <table>
-                      <thead>
+                    <% if  @data.empty? %>
+                      No Result Found
+                    <% else %>  
+                      <table class="table">
                         <tr>
                           <th>Name</th>
                             <% unless current_user.plan == "free" %>
@@ -22,8 +24,6 @@
                               <th>Phone</th>
                             <%end%>
                         </tr>
-                       </thead>
-                      <tbody>  
                         <% @data.each do |data| %>
                           <tr>
                             <td><%= data.username %></td>
@@ -33,10 +33,10 @@
                               <td><%= data.phone %></td>
                             <%end%>
                           </tr>
-                        <%end%>
-                      </tbody>  
-                    </table>
-                    </div>
+                        <%end%>  
+                      </table>
+                    <%end%>
+                  </div>
             </div> 
         </div>
     </div>               
