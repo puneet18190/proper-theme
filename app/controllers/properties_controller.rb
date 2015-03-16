@@ -373,6 +373,28 @@ class PropertiesController < ApplicationController
 
   end  
 
+  def tenant_searching
+    @data = []
+    @properties = Property.all
+    @tenants = User.where(:status => "tenant")
+    @agents = Agent.all
+    @news = News.all
+    @properties.each do |p|
+      @tenants.each do |t|
+        @string = t.search
+        @words = @string.split(/\W+/)
+        @category = @words[1]
+        @price_l = @words[2]
+        @price_g = @words[3]
+        @beds = @words[4]
+        @bath = @words[5]
+        if p.category.include?(@category) && (@price_l.to_i..@price_g.to_i).cover?(p.price) && p.beds.equal?(@beds.to_i) && p.bath.equal?(@bath.to_i)
+          @data << t
+        end  
+      end
+    end    
+  end  
+
   private
     def set_property
       @property = Property.friendly.find(params[:id])

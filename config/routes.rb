@@ -124,6 +124,7 @@ Rails.application.routes.draw do
   match '/pay_plans', to: "properties#pay_plans", via: 'get'
   match '/pay', to: "properties#pay", via: 'get'
   match '/my_plan', to: "properties#my_plan", via: 'get'
+  match '/tenant_searching', to: "properties#tenant_searching", via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
