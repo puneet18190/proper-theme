@@ -16,6 +16,7 @@
         </div>
     </div>
     <div class="span3">
+      <a href = "/pay_plans?plan=Pro">
         <div class="well active">
             <h3 class="title"><span class="em">Pro</span></h3>
             <p class="price"><span class="currency">£</span> <span class="digits">99</span></p>
@@ -31,9 +32,11 @@
             <% unless user_signed_in? %>
                 <a class="btn btn-proper" href="/users/sign_up">Sign Up</a>
             <% end %> 
-        </div>    
+        </div> 
+      </a>     
     </div>
     <div class="span3">
+      <a href = "/pay_plans?plan=Pro Plus">
         <div class="well active" style="height:377px">
             <h3 class="title"><span class="em">Pro Plus+</span></h3>
             <p class="price">Only <span class="currency">£</span> <span class="digits">30</span> <span class="term">/Month</span></p>
@@ -46,8 +49,10 @@
                 <a class="btn btn-proper" href="/users/sign_up" style="margin-top:124px">Sign Up</a>
             <% end %>    
         </div>
+      </a>  
     </div>
     <div class="span3">
+      <a href = "/pay_plans?plan=Basic Plus">
         <div class="well" style="height:377px">
             <h3 class="title"><span class="">Basic Plus+</span></h3>
             <p class="price"><span class="currency">£</span> <span class="digits">19<span>.99</span></span> <span class="term">/Month</span></p>
@@ -62,6 +67,7 @@
             <% unless user_signed_in? %>
                 <a class="btn btn-proper" href="/users/sign_up" style="margin-top:24px">Sign Up</a>
             <% end %> 
-        </div>    
+        </div>
+      </a>      
     </div>
 </div>
