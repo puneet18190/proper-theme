@@ -27,6 +27,7 @@
 #  search                 :string(255)
 #  fb_token               :string(255)
 #  plan                   :string(255)      default("free")
+#  validity               :datetime
 #
 # Indexes
 #

@@ -1,5 +1,6 @@
 <div class="pricing-style1">
     <div class="span3" style="margin-left:130px">
+      <a href= <%= "#{user_signed_in? ? '' : '/tenant_free_plan' }" %>>
         <div class="well" style="height:326px">
             <h3 class="title">Basic</h3>
             <p class="price"><span class="">Free!</span></p>
@@ -13,9 +14,10 @@
                 <a class="btn btn-proper" href="/users/sign_up" style="margin-top:47px">Sign Up</a>
             <% end %> 
         </div>
+      </a>  
     </div>
     <div class="span3">
-      <a href = "/pay_plans?plan=Pro">
+      <a href= <%= "#{user_signed_in? ? '/pay_plans?plan=Pro' : '/tenant_pro_plan' }" %>>
         <div class="well active" style="height:326px">
             <h3 class="title"><span class="em">Pro</span></h3>
             <p class="price"><span class="currency">£</span> <span class="digits">99</span></p>
@@ -44,7 +46,7 @@
             <a class="btn btn-proper">Sign Up</a> </div>
     </div> -->
     <div class="span3">
-      <a href = "/pay_plans?plan=Basic Plus">
+      <a href= <%= "#{user_signed_in? ? '/pay_plans?plan=Basic Plus' : '/tenant_basic_plus_plan' }" %>>
         <div class="well" style="height:326px">
             <h3 class="title"><span class="">Basic Plus+</span></h3>
             <p class="price"><span class="currency">£</span> <span class="digits">19<span>.99</span></span> <span class="term">/Month</span></p>
@@ -62,3 +64,5 @@
       </a>  
     </div>
 </div>
+
+
