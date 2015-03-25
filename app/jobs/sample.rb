@@ -188,3 +188,64 @@ Dashing.scheduler.every '10s' do
 
   Dashing.send_event('search_keyword', { items: [{:label=>a9[count], :value=>b9[count]},{:label=>a9[count+1], :value=>b9[count+1]},{:label=>a9[count+2], :value=>b9[count+2]},{:label=>a9[count+2], :value=>b9[count+2]},{:label=>a9[count+3], :value=>b9[count+3]},{:label=>a9[count+4], :value=>b9[count+4]}] })
 end
+
+@count_1 = 0
+require 'open-uri'
+Dashing.scheduler.every '10s', :first_in => 0 do |job|
+  response = Nokogiri::HTML(open("http://feeds.bbci.co.uk/news/uk/rss.xml?edition=uk"))
+  news_headlines = []
+  @count_1 = 0 if response.css('title').size == @count_1
+  @count_1 = @count_1 + 1
+  
+  i = @count_1
+  a = response.css('title')[i].text
+  b = response.css('description')[i-1].text
+  news_headline = NewsHeadlineBuilder.BuildFrom(a,b)
+  news_headlines.push(news_headline)
+  news_headlines
+  puts news_headlines
+  Dashing.send_event('xyz', { :headlines => news_headlines})
+end
+
+class NewsHeadlineBuilder
+  def self.BuildFrom(a,b)
+    {
+        title: a,
+        description: b,
+    }
+  end
+end
+
+require 'open-uri'
+require 'mechanize'
+
+@count = 0
+Dashing.scheduler.every '10s', :first_in => 0 do |job|
+  agent = Mechanize.new
+  page = agent.get('http://www.propertyreporter.co.uk/rss.asp')
+  response = Nokogiri::XML::Document.parse(page.body, nil, "UTF-8")
+  news_headlines = []
+  @count = 0 if response.css('title').size == @count
+  @count = @count + 1
+  
+  i = @count
+  puts i
+  a = response.css('title')[i].text
+  puts a
+  b = response.css('description')[i].text
+  b = Nokogiri::HTML(b).children().last.children().last().children().last().text
+  news_headline = NewsHeadlineBuilder.BuildFrom(a,b)
+  news_headlines.push(news_headline)
+  news_headlines
+  puts news_headlines
+  Dashing.send_event('abc', { :headlines => news_headlines})
+end
+
+class NewsHeadlineBuilder
+  def self.BuildFrom(a,b)
+    {
+        title: a,
+        description: b,
+    }
+  end
+end
