@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   match '/custum-bg',   to: 'tasks#custum-bg',   via: 'get'
   match '/error_page',   to: 'tasks#error_page',   via: 'get'
   match '/faq',   to: 'tasks#faq',   via: 'get'
-  match '/galeries',   to: 'tasks#galeries',   via: 'get'
+  match '/testimonials',   to: 'tasks#galeries',   via: 'get'
   match '/grid_stystem',   to: 'tasks#grid_stystem',   via: 'get'
   match '/home_carousel',   to: 'tasks#home_carousel', via: 'get'
   match '/home_full_slider',   to: 'tasks#home_full_slider', via: 'get'
@@ -124,6 +124,14 @@ Rails.application.routes.draw do
   match '/pay_plans', to: "properties#pay_plans", via: 'get'
   match '/pay', to: "properties#pay", via: 'get'
   match '/my_plan', to: "properties#my_plan", via: 'get'
+  match '/tenant_searching', to: "properties#tenant_searching", via: 'get'
+  match '/landlord_free_plan',   to: 'properties#landlord_free_plan', via: 'get'
+  match '/landlord_basic_plus_plan',   to: 'properties#landlord_basic_plus_plan', via: 'get'
+  match '/landlord_pro_plan',   to: 'properties#landlord_pro_plan', via: 'get'
+  match '/landlord_pro_plus_plan',   to: 'properties#landlord_pro_plus_plan', via: 'get'
+  match '/tenant_free_plan',   to: 'properties#tenant_free_plan', via: 'get'
+  match '/tenant_basic_plus_plan',   to: 'properties#tenant_basic_plus_plan', via: 'get'
+  match '/tenant_pro_plan',   to: 'properties#tenant_pro_plan', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

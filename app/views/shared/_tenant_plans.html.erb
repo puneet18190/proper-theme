@@ -1,6 +1,7 @@
-<div class="row pricing-style1">
-    <div class="span3">
-        <div class="well">
+<div class="pricing-style1">
+    <div class="span3" style="margin-left:130px">
+      <a href= <%= "#{user_signed_in? ? '' : '/tenant_free_plan' }" %>>
+        <div class="well" style="height:326px">
             <h3 class="title">Basic</h3>
             <p class="price"><span class="">Free!</span></p>
             <ul class="unstyled points">
@@ -9,19 +10,28 @@
                 <li>Emailed Property Matches</li>
                 <li>View Property Details</li>
             </ul>
-            <a class="btn btn-proper">Sign Up</a> </div>
+            <% unless user_signed_in? %>
+                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:47px">Sign Up</a>
+            <% end %> 
+        </div>
+      </a>  
     </div>
     <div class="span3">
-        <div class="well active">
+      <a href= <%= "#{user_signed_in? ? '/pay_plans?plan=Pro' : '/tenant_pro_plan' }" %>>
+        <div class="well active" style="height:326px">
             <h3 class="title"><span class="em">Pro</span></h3>
-            <p class="price"><span class="currency">£</span> <span class="digits">99</span> <span class="term">/MO</span></p>
+            <p class="price"><span class="currency">£</span> <span class="digits">99</span></p>
             <ul class="unstyled points">
                 <li>Fully Managed Property Find</li>
                 <li>Vetted Tenants</li>
                 <li>SEAL of Approval</li>
                 <li>Attractive for Landlords</li>
             </ul>
-            <a class="btn btn-proper">Sign Up</a> </div>
+            <% unless user_signed_in? %>
+                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:47px">Sign Up</a>
+            <% end %> 
+        </div>
+      </a>  
     </div>
     <!-- <div class="span3">
         <div class="well active">
@@ -36,9 +46,10 @@
             <a class="btn btn-proper">Sign Up</a> </div>
     </div> -->
     <div class="span3">
-        <div class="well">
+      <a href= <%= "#{user_signed_in? ? '/pay_plans?plan=Basic Plus' : '/tenant_basic_plus_plan' }" %>>
+        <div class="well" style="height:326px">
             <h3 class="title"><span class="">Basic Plus+</span></h3>
-            <p class="price"><span class="currency">£</span> <span class="digits">19<span>.99</span></span> <span class="term">/MO</span></p>
+            <p class="price"><span class="currency">£</span> <span class="digits">19<span>.99</span></span> <span class="term">/Month</span></p>
             <ul class="unstyled points">
                 <li>Create a Profile</li>
                 <li>Specify Property Requirements</li>
@@ -46,6 +57,12 @@
                 <li>View Property Details</li>
                 <li>Free to Contact Landlord</li>
             </ul>
-            <a class="btn btn-proper">Sign Up</a> </div>
+            <% unless user_signed_in? %>
+                <a class="btn btn-proper" href="/users/sign_up">Sign Up</a>
+            <% end %> 
+        </div>
+      </a>  
     </div>
 </div>
+
+

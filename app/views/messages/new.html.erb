@@ -87,7 +87,14 @@
 
 </style>
 
-<%= render 'shared/plans'%>               
+<%#= render 'shared/plans'%> 
+
+<% if current_user.status == "landlord" %>
+  <%= render 'shared/plans'%>               
+<% else %>
+  <%= render 'shared/plans_tenant'%>
+<% end %>
+
 
 <script type="text/javascript">
   $("document").ready(function(){
@@ -101,3 +108,10 @@
   });
   <% end %>
 </script>
+
+
+<%# if current_user.status == "landlord" %>
+  <%#= render 'shared/landlord_plans'%>               
+<%# else %>
+  <%#= render 'shared/tenant_plans'%>
+<%# end %>

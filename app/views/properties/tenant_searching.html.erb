@@ -1,0 +1,49 @@
+            <!--Start Content-->
+
+  <div id="content">
+  <!--    News Carousel-->
+  <div class="news-carousel-wrapper">
+    <dl id="news-carousel" class="news-carousel-style">
+      <%= render 'properties/news_carousel'%>
+    </dl>
+  </div>
+   <div class="container">
+        <div class="row-fluid" style="width:1100px;">
+                <div class="panel right-line" itemscope="" itemtype="http://schema.org/Property">
+                    <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span>Tenant Search Results</h2>
+                    <div class="cont" style="max-width:600px;margin-left:100px;">
+                    <% if  @data.empty? %>
+                      No Result Found
+                    <% else %>  
+                      <table class="table">
+                        <tr>
+                          <th>Name</th>
+                            <% unless current_user.plan == "free" %>
+                              <th>Email</th>
+                              <th>Address</th>
+                              <th>Phone</th>
+                            <%end%>
+                        </tr>
+                        <% @data.each do |data| %>
+                          <tr>
+                            <td><%= data.username %></td>
+                            <% unless current_user.plan == "free" %>
+                              <td><%= data.email %></td>
+                              <td><%= data.address %></td>
+                              <td><%= data.phone %></td>
+                            <%end%>
+                          </tr>
+                        <%end%>  
+                      </table>
+                    <%end%>
+                  </div>
+            </div> 
+        </div>
+    </div>               
+  <!--    End News Carousel-->
+     
+   
+  </div>
+          
+
+

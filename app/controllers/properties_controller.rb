@@ -13,13 +13,24 @@ class PropertiesController < ApplicationController
       @properties = Property.order("created_at DESC")
     end
 
-    if current_user.status == "landlord"
-      @properties.each do |obj|
-        if (obj.payment == true && (obj.validity - DateTime.now.in_time_zone("UTC")) < 0)
-            obj.update_attributes(:payment => false,:visibility=>false,:validity=>nil)
-        end
+    # if current_user.status == "landlord"
+    #   @properties.each do |obj|
+    #     if (obj.payment == true && (obj.validity - DateTime.now.in_time_zone("UTC")) < 0)
+    #         obj.update_attributes(:payment => false,:visibility=>false,:validity=>nil)
+    #     end
+    #   end
+    # end
+    @users = User.all
+    if current_user.status != "admin"
+      @users.each do |obj|
+        unless obj.validity == nil
+          if (obj.payment == true && (obj.validity - DateTime.now.in_time_zone("UTC") < 0))
+            obj.update_attributes(:payment => false,:validity=>nil)
+          end
+        end  
       end
     end
+
     respond_with(@properties)
     # respond_to do |format|
     #   format.html
@@ -351,18 +362,27 @@ class PropertiesController < ApplicationController
 
   def pay
     begin
-      if params[:amount] == "99"
-        plan = "Pro"
-      elsif params[:amount] == "30"
-        plan = "Pro Plus"
+      if current_user.status == "landlord"
+        if params[:amount] == "99"
+          plan = "Pro"
+        elsif params[:amount] == "30"
+          plan = "Pro Plus"
+        else
+          plan = "Basic Plus"    
+        end
       else
-        plan = "Basic Plus"    
-      end  
+        if params[:amount] == "99"
+          plan = "Pro1"
+        else
+          plan = "Basic Plus1"    
+        end
+      end   
       Stripe.api_key = "sk_test_RsHCMpYllmYNshcj4p81bmfC"
       card_token = Stripe::Token.create( :card => { :name => params[:name_on_card], :number => params[:card_number], :exp_month => params[:exp_month], :exp_year => params[:exp_year], :cvc => params[:card_id] })
       customer_params = {:card => card_token[:id], :plan => plan, :email => current_user.email}
       stripe_customer = Stripe::Customer.create(customer_params) 
-      current_user.update_attributes(:plan => plan)
+      old_validity = current_user.validity || DateTime.now
+      current_user.update_attributes(:plan => plan, :validity=>(old_validity + 30.days), :payment => true)
       redirect_to root_url, notice: "Payment confirmed. Thanks"
       rescue Stripe::CardError => e
       flash[:error] = e.message
@@ -371,6 +391,30 @@ class PropertiesController < ApplicationController
 
   def my_plan
 
+  end  
+
+  def tenant_searching
+    @data = []
+    @properties = Property.all
+    @tenants = User.where(:status => "tenant")
+    @agents = Agent.all
+    @news = News.all
+    @properties.each do |p|
+      @tenants.each do |t|
+        unless t.search.nil?
+          @string = t.search
+          @words = @string.split(/\W+/)
+          @category = @words[1]
+          @price_l = @words[2]
+          @price_g = @words[3]
+          @beds = @words[4]
+          @bath = @words[5]
+          if p.category.include?(@category) && (@price_l.to_i..@price_g.to_i).cover?(p.price) && p.beds.equal?(@beds.to_i) && p.bath.equal?(@bath.to_i)
+            @data << t
+          end 
+        end 
+      end
+    end    
   end  
 
   private

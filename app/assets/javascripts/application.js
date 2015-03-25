@@ -16,7 +16,6 @@
 //= require jquery.cookie
 //= require spin.min
 //= require jquery_ujs
-//= require bootstrap
 //= require turbolinks
 //= require cookies_eu
 //= require chosen-jquery
