@@ -417,6 +417,32 @@ class PropertiesController < ApplicationController
     end    
   end  
 
+  def test
+    @title = []
+    @description = []
+    response = Nokogiri::HTML(open("http://feeds.bbci.co.uk/news/uk/rss.xml?edition=uk"))
+    response.css('title').each do |t|
+      @title.push(t.text)
+    end  
+    response.css('description').each do |t|
+      t= t-1
+      @description.push(t.text)
+    end  
+
+    @p_title = []
+    @p_description = []
+    agent = Mechanize.new
+    page = agent.get('http://www.propertyreporter.co.uk/rss.asp')
+    response = Nokogiri::XML::Document.parse(page.body, nil, "UTF-8")
+    response.css('title').each do |t|
+      @p_title.push(t.text)
+    end  
+    response.css('description').each do |t|
+      @p_description.push(t.text)
+    end
+
+  end  
+
   private
     def set_property
       @property = Property.friendly.find(params[:id])
