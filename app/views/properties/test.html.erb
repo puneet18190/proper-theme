@@ -1,11 +1,17 @@
+
 <div class="sky">
-    <div class="clouds_one"></div>
-<!--     <div class="clouds_two"></div>
+    <!-- <div class="clouds_one"></div> -->
+    <!-- <div class="clouds_two"></div> -->
     <div class="clouds_three"></div>
- -->    <div class="row text-center">
-        <div class="col-md-2 col-sm-6 hero-feature" style="float:left;margin-left:40px">
-            <div class="thumbnail">
-            </div>
+    
+    <div class="row text-center">
+        <div class="" style="float:left;margin-left:40px;position:absolute">
+            <!-- <div class="thumbnail"> -->
+                <!-- <div id="test" style="padding:20px;backgound-color:grey;position:absolute;color:black;"></div> -->
+                <div class="vertical">
+                    <div id="test" class="items" style="width:430px;"></div>
+                </div>
+            <!-- </div> -->
         </div>
 
         <div class="col-md-3 col-sm-6 hero-feature" style="float:right;margin-right:40px">
@@ -26,7 +32,7 @@
     <div class="container">
 
         <header class="jumbotron hero-spacer">
-            <iframe id="myIframe" frameborder="0" src="/cycle" style="width:1000px;height:1000px;margin-left:-120px"></iframe>
+            <iframe id="myIframe" frameborder="0" src="/cycle" style="width:1000px;height:810px;margin-left:-120px"></iframe>
         </header>
 
         <hr>
@@ -53,4 +59,21 @@
         tagClass: "quotes"
     });
 
+</script>
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#test').weatherfeed(['UKXX0085'],{
+        unit: 'f',
+        image: true,
+        country: true,
+        highlow: true,
+        wind: true,
+        humidity: true,
+        visibility: true,
+        sunrise: true,
+        sunset: true,
+        forecast: true,
+        link: true
+    });
+});
 </script>

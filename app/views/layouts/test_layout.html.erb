@@ -10,6 +10,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/jquery.jticker.js"></script>
     <script type="text/javascript" src="/assets/jquery.crotator.js"></script>
+    <script type="text/javascript" src="/assets/jquery.zweatherfeed.js"></script>
   
     <script type="text/javascript">
       jQuery(function($) {
@@ -182,8 +183,8 @@
       }
       
       50% {
-        background:#000;
-        color:#a3d9ff
+        background:#007fd5;
+        color:#007fd5
       }
       
       100% {
@@ -246,6 +247,75 @@
       }
     }
     </style>
+    <style type="text/css">
+      /*.weatherItem { width: 450px; height: 200px; background-position: left center; }*/
+      .weatherForecastItem { margin-top: 1em;  font-size: 0.9em; }
+      /*.weatherLink { margin-top: 1em; }*/
+
+      .weatherForecast {}
+      .weatherForecastItem { float: left; margin: 1em 2em 1em 0; padding-right: 2em;  }
+      .weatherForecastItem { position:relative;
+  overflow:hidden;  
+  height: 100px;   
+  width: 150px;
+  border: 4px solid #555;
+  background: #222 url('bg.jpg') repeat-x; }
+      /*.weatherLink { clear: both; }*/
+
+/*body {
+  margin: 1em 3em;
+  font-family: Tahoma, Genevam, sans-serif;
+}
+*/
+.weatherFeed {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 90%;
+  margin: 2em 3em;
+  width: 280px;
+  color: #ccc;
+}
+.weatherFeed a { color: #888; }
+.weatherFeed a:hover {
+  color: #eee;
+  text-decoration: none;
+}
+.weatherItem {
+  padding: 0.8em;
+  text-align: right;
+}
+.weatherCity { text-transform: uppercase; color: #000; }
+.weatherTemp {
+  font-size: 2.8em;
+  font-weight: bold;
+  color: #eee;
+}
+.weatherDesc, .weatherCity { font-weight: bold; }
+.weatherDesc { margin-bottom: 0.4em; color: #eee; }
+.weatherRange, .weatherWind { font-size: 0.8em; }
+.weatherLink {
+  margin-top: 6px;
+  text-align: left;
+  font-size: 0.8em;
+}
+
+.vertical {  
+  position:relative;
+  overflow:hidden;  
+  height: 615px;   
+  width: 433px;
+  border: 4px solid #555;
+  background: #222 url('bg.jpg') repeat-x;
+}
+
+.items {
+  position:absolute;
+  height:20000em; 
+  margin: 0px;
+}
+.items div.weatherItem { height: 160px; }
+
+</style>
+
  
   </head>
 
