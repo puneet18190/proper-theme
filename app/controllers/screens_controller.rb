@@ -104,4 +104,31 @@ class ScreensController < ApplicationController
 		@datapat = JSON.parse(@postcode.body)
 		render '/screens/oldest/oldest_properties_detail'
 	end
+
+	def bigscreen
+	    @title = []
+	    @description = []
+	    response = Nokogiri::HTML(open("http://feeds.bbci.co.uk/news/uk/rss.xml?edition=uk"))
+	    sleep 2
+	    response.css('title').each do |t|
+	      @title.push(t.text)
+	    end  
+	    response.css('description').each do |t|
+	      @description.push(t.text)
+	    end  
+
+	    @p_title = []
+	    @p_description = []
+	    agent = Mechanize.new
+	    page = agent.get('http://www.propertyreporter.co.uk/rss.asp')
+	    response = Nokogiri::XML::Document.parse(page.body, nil, "UTF-8")
+	    response.css('title').each do |t|
+	      @p_title.push(t.text)
+	    end  
+	    response.css('description').each do |t|
+	      @p_description.push(t.text)
+	    end
+	    render :layout => "test_layout"
+
+	end  
 end
