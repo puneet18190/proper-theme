@@ -9,14 +9,14 @@
             <!-- <div class="thumbnail"> -->
                 <!-- <div id="test" style="padding:20px;backgound-color:grey;position:absolute;color:black;"></div> -->
                 <div class="vertical">
-                    <div id="test" class="items" style="width:430px;"></div>
+                    <div id="test" class="items" style="width:675px;"></div>
                 </div>
             <!-- </div> -->
         </div>
 
         <div class="col-md-3 col-sm-6 hero-feature" style="float:right;margin-right:40px">
             <div class="thumbnail">
-                <div id="crotator" style="height:400px;width:750px;position:relative">
+                <div id="crotator" style="height:205px;width:750px;position:relative;padding:10px">
                     <div id="quotes">
                         <% @p_title.each_with_index do |a,i| %>    
                             <p><b style="color:red"><%= a %></b><br/><%= raw(@p_description[i]) %></p>
@@ -29,16 +29,16 @@
     </div>        
     <hr>
 
-    <div class="container">
+    <!-- <div class="container"> -->
 
         <header class="jumbotron hero-spacer">
-            <iframe id="myIframe" frameborder="0" src="/cycle" style="width:1000px;height:810px;margin-left:-120px"></iframe>
+            <iframe id="myIframe" frameborder="0" src="/cycle" style="width:1215px;height:800px;margin-left:20px"></iframe>
         </header>
 
         <hr>
         <div class="row text-center">
-            <img src="/assets/bbcnews.jpg" alt="" style="float:left" width="120" height="100"/>
-            <div class="ticker well" data-duration="500" data-loop="2" data-effect="linear" style="width:770px;float:right;">
+            <img src="/assets/bbcnews.jpg" alt="" style="float:left;margin-left:40px" width="120" height="100"/>
+            <div class="ticker well" data-duration="500" data-loop="2" data-effect="linear" style="width:1065px;float:right;margin-right:20px">
                 <span>
                     <% @title.each_with_index do |a,i| %>      
                         <b style="color:red"><%= "#{a}" %></b> - <b style="color:black"><%= "#{@description[i]}" %></b> <b style="color:blue">|</b>
@@ -46,16 +46,14 @@
                 </span>
             </div>
         </div>
-        <hr>
-
-    </div>
+    <!-- </div> -->
 </div>
 <script>
 
     $("#quotes").crotator({
         timeOfExistence: 5,
         cycle: true,
-        typeofTag: "<h3/>",
+        typeofTag: "<h5/>",
         tagClass: "quotes"
     });
 
@@ -73,7 +71,7 @@ $(document).ready(function () {
         sunrise: true,
         sunset: true,
         forecast: true,
-        link: true
+        link: false
     });
 });
 </script>
