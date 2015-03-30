@@ -1,6 +1,7 @@
 class ScreensController < ApplicationController
 	require 'json'
 	require 'pat'
+	require 'rqrcode_png' 
 	layout proc { false if request.xhr? }
 	protect_from_forgery :except => "update_screen_status"
 	def page1
@@ -102,6 +103,8 @@ class ScreensController < ApplicationController
 		@data = Property.find(params[:property_id])
 		@postcode = Pat.get(@data.postcode.to_s)
 		@datapat = JSON.parse(@postcode.body)
+		url = "http://#{request.host_with_port}/properties_detail/#{@data.id}"
+		@qr = RQRCode::QRCode.new(url).to_img.resize(200, 200).to_data_url
 		render '/screens/oldest/oldest_properties_detail'
 	end
 
