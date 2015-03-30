@@ -104,7 +104,7 @@ class ScreensController < ApplicationController
 		@postcode = Pat.get(@data.postcode.to_s)
 		@datapat = JSON.parse(@postcode.body)
 		url = "http://#{request.host_with_port}/properties_detail/#{@data.id}"
-		@qr = RQRCode::QRCode.new(url).to_img.resize(200, 200).to_data_url
+		@qr = RQRCode::QRCode.new(url,:size => 10).to_img.resize(200, 200).to_data_url
 		render '/screens/oldest/oldest_properties_detail'
 	end
 
