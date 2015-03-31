@@ -1,0 +1,7 @@
+<contactData>
+<group>
+<contact sDisplayName="Person One" sOfficeNumber="13241" sMobilNumber="1234893534" sOtherNumber="84735" sLine="0"/>
+<contact sDisplayName="Person Two" sOfficeNumber="12312" sMobilNumber="2938920385" sOtherNumber="23442" sLine="0"/>
+</group>
+<blacklist></blacklist>
+</contactData>
