@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SnomIPPhoneDirectory clearlight="true">
+<Title>Phonelist</Title>
+<Prompt>Prompt</Prompt>
+<DirectoryEntry>
+<Name>Entry One</Name>
+<Telephone>02987654321</Telephone>
+</DirectoryEntry>
+<DirectoryEntry>
+<Name>Entry Two</Name>
+<Telephone>02123456789</Telephone>
+</DirectoryEntry>
+</SnomIPPhoneDirectory>
