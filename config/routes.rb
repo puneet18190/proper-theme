@@ -134,6 +134,7 @@ Rails.application.routes.draw do
   match '/tenant_pro_plan',   to: 'properties#tenant_pro_plan', via: 'get'
 
   match '/bigscreen',   to: 'screens#bigscreen', via: 'get'  # The priority is based upon order of creation: first created -> highest priority.
+  match '/provisioning',   to: 'screens#provisioning', via: 'get'
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"

@@ -134,4 +134,8 @@ class ScreensController < ApplicationController
 	    render :layout => "test_layout"
 
 	end  
+
+	def provisioning
+
+	end	
 end
