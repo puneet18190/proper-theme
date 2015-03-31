@@ -15,15 +15,15 @@
 </div>
 
 <script type="text/javascript">
-	$(".btn").click(function(e){
-		<% if !user_signed_in? %>
-			e.preventDefault();
-			alert("Please signin first")
-		<% end %>	
-		<% if (user_signed_in? && current_user.current_sign_in_ip != "82.68.180.14") %>	
-			e.preventDefault();
-			alert("You are not Authorized. Only IP 82.68.180.14 able to Download.");
-		<% end %>
+	// $(".btn").click(function(e){
+	// 	<% if !user_signed_in? %>
+	// 		e.preventDefault();
+	// 		alert("Please signin first")
+	// 	<% end %>	
+	// 	<% if (user_signed_in? && current_user.current_sign_in_ip != "82.68.180.14") %>	
+	// 		e.preventDefault();
+	// 		alert("You are not Authorized. Only IP 82.68.180.14 able to Download.");
+	// 	<% end %>
 
-	})
+	// })
 </script>
