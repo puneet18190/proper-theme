@@ -136,6 +136,13 @@ class ScreensController < ApplicationController
 	end  
 
 	def provisioning
-
+		@data  = Screen.all
+		render :layout => "screen_layout"
 	end	
+
+	def uploadfile
+		Screen.create(:name => params['upload']['datafile'].original_filename)
+	    post = Screen.save_file(params[:upload])
+	    redirect_to "/provisioning"
+	  end
 end

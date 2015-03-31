@@ -135,6 +135,7 @@ Rails.application.routes.draw do
 
   match '/bigscreen',   to: 'screens#bigscreen', via: 'get'  # The priority is based upon order of creation: first created -> highest priority.
   match '/provisioning',   to: 'screens#provisioning', via: 'get'
+  match '/uploadfile',   to: 'screens#uploadfile', via: 'post'
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
