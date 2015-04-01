@@ -708,7 +708,7 @@ phone_setting.inactive_backlight_level =
 
 ###Except T20P/T19P/T21P Models
 ##It configures the backlight time (in seconds).0, 1, 15, 30, 60, 120, 300, 600 or 1800.
-phone_setting.backlight_time = 300
+phone_setting.backlight_time = 
 
 ###Except T20P/T22P/T41P/T42G Models
 ###It configures the contrast of the LCD screen.
