@@ -21,4 +21,5 @@
 //= require chosen-jquery
 //= require messages
 //= require bootstrap-modal
+#= require s3_direct_upload
 //= require_tree .

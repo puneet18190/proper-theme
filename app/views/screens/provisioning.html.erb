@@ -1,7 +1,11 @@
+<%= s3_uploader_form callback_url: "/", callback_param: "model[image_url]", id: "s3-uploader" do %>
+  <%= file_field_tag :file, multiple: true %>
+<% end %>
+
 <!-- <div class="container"> -->
 	<!-- <h1>File Upload</h1> -->
 	<%#= form_for Screen.new, url: "/uploadfile", html: { multipart: true } do |f| %>
-	<!-- <%#= file_field 'upload', 'datafile' %></p> -->
+	<%#= file_field 'upload', 'datafile' %></p>
 	<%#= submit_tag "Upload" %>
 	<%# end %>
 <!-- </div> -->
@@ -15,6 +19,7 @@
 </div>
 
 <script type="text/javascript">
+ $("#s3-uploader").S3Uploader()
 	// $(".btn").click(function(e){
 	// 	<% if !user_signed_in? %>
 	// 		e.preventDefault();

@@ -2,6 +2,7 @@ class ScreensController < ApplicationController
 	require 'json'
 	require 'pat'
 	require 'rqrcode_png' 
+	respond_to :html, :xml, :json
 	layout proc { false if request.xhr? }
 	protect_from_forgery :except => "update_screen_status"
 	def page1
@@ -138,6 +139,32 @@ class ScreensController < ApplicationController
 	def provisioning
 		# @data  = Screen.all
 		render :layout => "screen_layout"
+	end	
+
+	def phones
+		# binding.pry
+		@data = DirectoryEntry.all.select(:Name, :Telephone)
+		# arr = [:YealinkIPPhoneDirectory => []]
+		# @data.each do |obj| 
+		# 	arr[0][:YealinkIPPhoneDirectory ].push(DirectoryEntry: {:Name => obj.Name, :Telephone=> obj.Telephone })
+		# end
+		# arr = {:YealinkIPPhoneDirectory => 
+		# 	{:DirectoryEntry => {:Name=>"dsd",:Telephone=>"87878"}},
+		# 	{:DirectoryEntry => {:Name=>"dsd",:Telephone=>"878sa"}}
+		# }
+		# builder = Nokogiri::XML::Builder.new do |xml|
+		#   xml.YealinkIPPhoneDirectory {
+		#     @data.each do |ob|
+		#       xml.DirectoryEntry {
+		#         xml.Name ob.Name
+		#         xml.Telephone ob.Telephone
+		#       }
+		#     end
+		#   }
+		# end
+		# @data = builder.to_xml
+		# binding.pry
+		# respond_with(@data)
 	end	
 
 	# def uploadfile
