@@ -2,6 +2,7 @@ class ScreensController < ApplicationController
 	require 'json'
 	require 'pat'
 	require 'rqrcode_png' 
+	require 'aws/s3'
 	respond_to :html, :xml, :json
 	layout proc { false if request.xhr? }
 	protect_from_forgery :except => "update_screen_status"
@@ -137,7 +138,7 @@ class ScreensController < ApplicationController
 	end  
 
 	def provisioning
-		# @data  = Screen.all
+		@data  = Provision.all
 		render :layout => "screen_layout"
 	end	
 
@@ -167,9 +168,44 @@ class ScreensController < ApplicationController
 		# respond_with(@data)
 	end	
 
-	# def uploadfile
-	# 	Screen.create(:name => params['upload']['datafile'].original_filename)
-	#     post = Screen.save_file(params[:upload])
-	#     redirect_to "/provisioning"
-	#   end
+	def uploadfile
+		@data = Provision.create(:name => params[:filename], :url => params[:url])
+	    respond_to do |format|
+	      format.js
+	    end
+	end
+
+	def landlords
+		@data = User.all.where("status = ?", "landlord")
+	end
+	
+	def tenants
+		@data = User.all.where("status = ?", "tenant")
+	end	
+
+	def mobiles
+		@data = Mobile.all.select(:name, :telephone)
+	end
+	def services
+		@data = Service.all.select(:name, :telephone)
+	end	
+
+	def delete_file_from_s3
+		AWS::S3::Base.establish_connection!(
+		  :access_key_id     => 'AKIAI42ZRYRPLOREEEDQ', 
+		  :secret_access_key => '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',
+		  :server => "sealpropertiesus.s3.amazonaws.com"
+		)
+		begin
+			a= params[:url].split("https://sealpropertiesus.s3.amazonaws.com/").last
+			file = AWS::S3::S3Object.find(a)
+			if file
+				AWS::S3::S3Object.find(a).delete
+				Provision.find_by_id(params[:id]).delete
+				redirect_to :back
+			end	
+		rescue
+			redirect_to :back
+		end	
+	end	
 end

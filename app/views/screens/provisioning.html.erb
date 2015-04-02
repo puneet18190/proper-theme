@@ -1,21 +1,23 @@
-<%= s3_uploader_form callback_url: "/", callback_param: "model[image_url]", id: "s3-uploader" do %>
+<%= s3_uploader_form callback_url: "/uploadfile", callback_param: "model[image_url]", id: "s3-uploader" do %>
   <%= file_field_tag :file, multiple: true %>
 <% end %>
 
-<!-- <div class="container"> -->
-	<!-- <h1>File Upload</h1> -->
-	<%#= form_for Screen.new, url: "/uploadfile", html: { multipart: true } do |f| %>
-	<%#= file_field 'upload', 'datafile' %></p>
-	<%#= submit_tag "Upload" %>
-	<%# end %>
-<!-- </div> -->
+<script id="template-upload" type="text/x-tmpl">
+	<div id="file-{%=o.unique_id%}" class="upload">
+	  {%=o.name%}
+	  <div class="progress"><div class="bar" style="width: 0%"></div></div>
+	</div>
+</script>
 
-<div class="container">
-	<%# @data.each_with_index do |a| %>
-		<%#= link_to "Download File #{a.name}", "/doc/#{a.name}", :class => 'btn' %><br/>
-	<%# end %>
-	<%= link_to "Download File 0015657A863C.cfg", "/provisioning/0015657A863C.cfg", :class => 'btn' %>
-	<%= link_to "Download File y000000000031.cfg", "/provisioning/y000000000031.cfg", :class => 'btn' %>
+<div class="file_container">
+	<table>
+		<% @data.each_with_index do |a| %>
+			<tr>
+				<td><%= link_to "Download File #{a.name}", "#{a.url}", :class => 'btn' %></td>
+				<td><%= link_to "Delete", "/delete_file?url=#{a.url}&id=#{a.id}", :method => :put, :class => 'btn' %></td>
+			</tr>	
+		<% end %>
+	</table>
 </div>
 
 <script type="text/javascript">
