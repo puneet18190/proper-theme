@@ -142,6 +142,7 @@ Rails.application.routes.draw do
   match '/mobiles',   to: 'screens#mobiles', via: 'get'
   match '/services',   to: 'screens#services', via: 'get'
   match '/uploadfile',   to: 'screens#uploadfile', via: 'post'
+  match '/delete_file',   to: 'screens#delete_file_from_s3', via: 'get'
   #match '/uploadfile',   to: 'screens#uploadfile', via: 'post'
   # See how all your routes lay out with "rake routes".
 
