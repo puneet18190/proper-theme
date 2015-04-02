@@ -172,5 +172,13 @@ class ScreensController < ApplicationController
 	    respond_to do |format|
 	      format.js
 	    end
-	  end
+	end
+
+	def landlords
+		@data = User.all.where("status = ?", "landlord")
+	end
+	
+	def tenants
+		@data = User.all.where("status = ?", "tenant")
+	end	
 end
