@@ -181,4 +181,11 @@ class ScreensController < ApplicationController
 	def tenants
 		@data = User.all.where("status = ?", "tenant")
 	end	
+
+	def mobiles
+		@data = Mobile.all.select(:name, :telephone)
+	end
+	def services
+		@data = Service.all.select(:name, :telephone)
+	end	
 end
