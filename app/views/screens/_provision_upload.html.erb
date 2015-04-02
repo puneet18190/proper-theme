@@ -1,1 +1,4 @@
-<%= link_to "Download File #{@data.name}", "#{@data.url}", :class => 'btn' %><br/>
+<tr>
+	<td><%= link_to "Download File #{@data.name}", "#{@data.url}", :class => 'btn' %></td>
+	<td><%= link_to "Delete", "/delete_file?url=#{@data.url}&id=#{@data.id}", :method => :put, :class => 'btn' %></td>
+</tr>

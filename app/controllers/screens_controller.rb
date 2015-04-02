@@ -2,7 +2,7 @@ class ScreensController < ApplicationController
 	require 'json'
 	require 'pat'
 	require 'rqrcode_png' 
-	require 'aws/s3'
+	require 's3'
 	respond_to :html, :xml, :json
 	layout proc { false if request.xhr? }
 	protect_from_forgery :except => "update_screen_status"
@@ -191,16 +191,14 @@ class ScreensController < ApplicationController
 	end	
 
 	def delete_file_from_s3
-		AWS::S3::Base.establish_connection!(
-		  :access_key_id     => 'AKIAI42ZRYRPLOREEEDQ', 
-		  :secret_access_key => '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',
-		  :server => "sealpropertiesus.s3.amazonaws.com"
-		)
+		service = S3::Service.new(:access_key_id => "AKIAI42ZRYRPLOREEEDQ",:secret_access_key => "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")
+		bucket = service.buckets.find("sealpropertiesus")
+
 		begin
 			a= params[:url].split("https://sealpropertiesus.s3.amazonaws.com/").last
-			file = AWS::S3::S3Object.find(a)
-			if file
-				AWS::S3::S3Object.find(a).delete
+			object = bucket.objects.find(a)
+			if object
+				object.destroy
 				Provision.find_by_id(params[:id]).delete
 				redirect_to :back
 			end	

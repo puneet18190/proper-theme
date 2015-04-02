@@ -84,11 +84,6 @@ GEM
     arel (5.0.1.20140414130214)
     autoprefixer-rails (3.1.2.20141016)
       execjs
-    aws-sdk (1.63.0)
-      aws-sdk-v1 (= 1.63.0)
-    aws-sdk-v1 (1.63.0)
-      json (~> 1.4)
-      nokogiri (>= 1.4.4)
     batman-rails (0.16.1)
       railties (>= 3.2)
     bcrypt (3.1.9)
@@ -354,6 +349,7 @@ GEM
       pdf-core (~> 0.4.0)
       ttfunk (~> 1.4.0)
     promise (0.3.0)
+    proxies (0.2.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -423,6 +419,8 @@ GEM
       roxml (>= 1.0)
     rufus-scheduler (3.0.9)
       tzinfo
+    s3 (0.3.21)
+      proxies (~> 0.2.0)
     s3_direct_upload (0.1.7)
       coffee-rails (>= 3.1)
       jquery-fileupload-rails (~> 0.4.1)
@@ -508,7 +506,6 @@ DEPENDENCIES
   activeadmin!
   annotate (~> 2.6.5)
   autoprefixer-rails
-  aws-sdk (< 2.0)
   better_errors
   binding_of_caller
   bootstrap-sass
@@ -554,6 +551,7 @@ DEPENDENCIES
   rmagick
   rqrcode_png
   rubyzoho
+  s3
   s3_direct_upload
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
