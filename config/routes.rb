@@ -137,6 +137,7 @@ Rails.application.routes.draw do
   match '/provisioning',   to: 'screens#provisioning', via: 'get'
   match '/PROVISIONING',   to: 'screens#provisioning', via: 'get'
   match '/phones',   to: 'screens#phones', via: 'get'
+  match '/uploadfile',   to: 'screens#uploadfile', via: 'post'
   #match '/uploadfile',   to: 'screens#uploadfile', via: 'post'
   # See how all your routes lay out with "rake routes".
 
