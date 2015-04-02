@@ -84,10 +84,11 @@ GEM
     arel (5.0.1.20140414130214)
     autoprefixer-rails (3.1.2.20141016)
       execjs
-    aws-s3 (0.6.3)
-      builder
-      mime-types
-      xml-simple
+    aws-sdk (1.63.0)
+      aws-sdk-v1 (= 1.63.0)
+    aws-sdk-v1 (1.63.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     batman-rails (0.16.1)
       railties (>= 3.2)
     bcrypt (3.1.9)
@@ -497,7 +498,6 @@ GEM
       simple_oauth (~> 0.2)
     webrobots (0.1.1)
     will_paginate (3.0.7)
-    xml-simple (1.1.5)
     yui-compressor (0.12.0)
 
 PLATFORMS
@@ -508,7 +508,7 @@ DEPENDENCIES
   activeadmin!
   annotate (~> 2.6.5)
   autoprefixer-rails
-  aws-s3
+  aws-sdk (< 2.0)
   better_errors
   binding_of_caller
   bootstrap-sass
