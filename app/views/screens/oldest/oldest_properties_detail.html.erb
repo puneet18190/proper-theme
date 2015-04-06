@@ -1,124 +1,107 @@
-            <!--Start Content-->
 <div id="content">
-  <%= render :partial => "/layouts/main_title",:locals => { :maintitle => "Property Detail", :subtitle=>"#{params[:page]} Addition"} %>
-
   <div class="container">
-        <div class="row-fluid">
-            <div class="span9">
-                <div class="panel right-line">
-                    <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span>Properties<%=@data.id%></h2>
-                  <!-- START DETAIL-->
-                  <div class="detail-properties right-space">
-                    <div class="property ">
-                      <div class="row-fluid">
-                        <div class="span6">
-                          <div class="property-images">
-                            <a href="#">
-                              <div class="mask">
-                                <% if @data.category == "rent" %>
-                                    <div class="desc-type for-sale">To Rent</div>
-                                <% else %>
-                                    <div class="desc-type for-sale">For Sale</div>
-                                <% end %>
-
-                                <div class="price" style="z-index:1px">&pound; <%= @data.price.to_i %></div>
-                              </div>
-                              <% if @data.image1.url.empty? %>
-                                   <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
-                              <% else %>
-                                <%= image_tag @data.image1.url, id: "big-image-preview", alt: "big-image-preview" %>
-                              <% end %>
-                            <!--  <img src="proper_theme/images/properties/p1.jpg" alt="property"/> -->
-                            </a>
-                            <div class="list_image_detail">
-                              <ul id="list_images_property">
-                                <%unless @data.image2.url.nil?%><li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 02" ><img src=<%= @data.image2.url%>></a></li><%end%>
-                                <%unless @data.image3.url.nil?%><li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 03" ><img src=<%= @data.image3.url%>></a></li><%end%>
-                                <%unless @data.image4.url.nil?%><li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 04" ><img src=<%= @data.image4.url%>></a></li><%end%>
-                                <%unless @data.image5.url.nil?%><li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 05" ><img src=<%= @data.image5.url%>></a></li><%end%>
-                                <%unless @data.image6.url.nil?%><li style="width:71px !important;margin:2px"><a href="#" data-title="Interior 06" ><img src=<%= @data.image6.url%>></a></li><%end%>
-                              </ul>
-                              <div class="clearfix"></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="span6">
-                          <div class="property-details">
-                            <h3><a href="#"><%="SP"+@data.created_at.year.to_s.split(//).last(2).join()+@data.created_at.month.to_s.rjust(2,'0')+@data.id.to_s.rjust(4,'0')%> <%= @data.name %></a></h3>
-                            <p><%= @data.description %></p>
-                            <p>
-                              <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= @data.bath %></span>
-                              <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= @data.beds %></span>
-                              <span class="label"><i class="icon-circle-arrow-right"></i> Parking : <%= @data.parking %></span>
-
-                            </p>
-                            <% @agent = @data.agent.nil? ? Agent.all.first : @data.agent %>
-                            <div class="agent-preview">
-                              <div class="agent-image pull-left"  ><a href="#"><img src="<%=@agent.image.url%>" class="img-polaroid" alt="property"></a></div>
-                              <div class="agent-contant pull-right">
-                                <ul class="unstyled">
-                                  <li><i class="icon-phone"></i><%= @agent.phone %></li>
-                                  <li><i class="icon-envelope"></i><%= @agent.email_id %></li>
-                                  <li><i class="icon-facebook"></i><%= @agent.fb_id %></li>
-                                  <li><i class="icon-twitter"></i><%= @agent.twitter_id %></li>
-                                </ul>
-                                <%= image_tag @qr %> 
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+    <div class="row-fluid">
+      <div class="span9">
+        <div class="panel right-line" style="height:822px">
+          <h2 class="main-heading bottom-line">
+            <span class="main-circle-icon"><i class="icon-building"></i></span> 
+            <%=@data.name%>
+          </h2>
+          <div class="detail-properties right-space">
+            <div class="property ">
+              <div class="row-fluid">
+                <div class="span6">
+                  <div class="property-images">
+                    <a href="#">
+                      <div class="mask">
+                        <% if @data.category == "rent" %>
+                            <div class="desc-type for-sale">To Rent</div>
+                        <% else %>
+                            <div class="desc-type for-sale">For Sale</div>
+                        <% end %>
+                        <% if @data.image1.url == "default_images/no.jpg" %>
+                           <div class="price" style="z-index:1px;margin-bottom:20px">&pound; <%= @data.price.to_i %></div>
+                      <% else %>
+                        <div class="price" style="z-index:1px;margin-bottom:90px">&pound; <%= @data.price.to_i %></div>
+                      <%end%>  
                       </div>
+                      <% if @data.image1.url.empty? %>
+                           <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
+                      <% else %>
+                        <%= image_tag @data.image1.url, id: "big-image-preview", alt: "big-image-preview",style: "height:400px" %>
+                      <% end %>
+                    </a>
+                    <div class="list_image_detail" style="width:800px;margin-top:20px">
+                      <ul id="list_images_property">
+                        <%unless @data.image2.url.nil?%><li style="margin:2px"><a href="#" data-title="Interior 02" ><img src=<%= @data.image2.url%>></a></li><%end%>
+                        <%unless @data.image3.url.nil?%><li style="margin:2px"><a href="#" data-title="Interior 03" ><img src=<%= @data.image3.url%>></a></li><%end%>
+                        <%unless @data.image4.url.nil?%><li style="margin:2px"><a href="#" data-title="Interior 04" ><img src=<%= @data.image4.url%>></a></li><%end%>
+                        <%unless @data.image5.url.nil?%><li style="margin:2px"><a href="#" data-title="Interior 05" ><img src=<%= @data.image5.url%>></a></li><%end%>
+                        <%unless @data.image6.url.nil?%><li style="margin:2px"><a href="#" data-title="Interior 06" ><img src=<%= @data.image6.url%>></a></li><%end%>
+                        <%unless @data.image7.url.nil?%><li style="margin:2px"><a href="#" data-title="Interior 06" ><img src=<%= @data.image7.url%>></a></li><%end%>
+                        <%unless @data.image8.url.nil?%><li style="margin:2px"><a href="#" data-title="Interior 06" ><img src=<%= @data.image8.url%>></a></li><%end%>
+                        <%unless @data.image9.url.nil?%><li style="margin:2px"><a href="#" data-title="Interior 06" ><img src=<%= @data.image9.url%>></a></li><%end%>
+                        <%unless @data.image10.url.nil?%><li style="margin:2px"><a href="#" data-title="Interior 06" ><img src=<%= @data.image10.url%>></a></li><%end%>
+                      </ul>
+                      <div class="clearfix"></div>
+                      <%unless @data.image2.url.nil?%>
+                        <a id="prev2" class="prev" href="#">&lt;</a>
+                        <a id="next2" class="next" href="#">&gt;</a>
+                      <%end%>
+                    </div>
                   </div>
-
-                    <!-- END DETAIL-->
+                </div>
+                <div class="span6">
+                  <div class="property-details">
+                    <h3><a href="#"><%="SP"+@data.created_at.year.to_s.split(//).last(2).join()+@data.created_at.month.to_s.rjust(2,'0')+@data.id.to_s.rjust(4,'0')%> <%= @data.name %></a></h3>
+                    <p><%= @data.description %></p>
+                    <p>
+                      <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= @data.bath %></span>
+                      <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= @data.beds %></span>
+                      <span class="label"><i class="icon-circle-arrow-right"></i> Parking : <%= @data.parking %></span>
+                      <div style="padding:20px"><%= image_tag @qr %> </div>
+                    </p>
                   </div>
                 </div>
               </div>
-            <div class="span3">
-                <div class="panel">
-                    <!-- MAP LOCATION-->
-                    <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-map-marker"></i></span>  Location</h3>    
-                    <div class="bottom-line line-before">
-                        <div id="googleMap" class="" style="height:300px;margin-bottom:25px"></div>
-                    </div><!-- END MAP LOCATION -->
-                  <p>Ward: <%=  (@datapat["code"] ==404 || @datapat["code"] ==nil) ? "" : (@datapat["administrative"]["ward"].nil? ? "" : "#{@datapat["administrative"]["ward"]["title"]}")   %><br>
-                    Council: <%=  (@datapat["code"] ==404 || @datapat["code"] ==nil) ? "" : "#{@datapat["administrative"]["council"]["title"]}"   %></p>
-
-
-
-                    <!-- Detail Agent -->
-                 <!--   <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-user"></i></span> Agent</h3>
-                    <div class="agent-panel bottom-line line-before">
-                        <a href="#" class="agent-image ">
-                            <img src="/assets/agents/circle/a1.jpg" class="img-polaroid" alt="agent">
-                        </a>
-                        <ul class="unstyled margin20">
-                            <li><i class="icon-phone"></i> (+89)98732.984 </li>
-                            <li><i class="icon-envelope"></i> agent@company.com</li>
-                            <li><i class="icon-facebook"></i> angel</li>
-                            <li><i class="icon-twitter"></i> @angel</li>
-                        </ul>
-                    </div><!-- END Detail Agent -->
-                    <!-- FORM CONTACT -->
-                <!--    <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-envelope-alt"></i></span> Contact Agent</h3>
-                    <form>
-                        <label>Name</label>
-                        <input type="text" name="name" placeholder="Enter Your Name" required="" class="input-block-level"/>
-                        <label>Email</label>
-                        <input type="email" name="email" placeholder="Enter Your Email" required="" class="input-block-level"/>
-                        <label>Message</label>
-                        <textarea name="message" class="input-block-level" rows="5" placeholder="Your Message" required=""></textarea>
-                        <div class="clearfix">
-                            <input type="submit" value="Send" class="btn btn-proper "/>
-                        </div>
-                    </form>
-                    <!-- END FORM CONTACT -->
-                </div>
             </div>
+          </div>
         </div>
-       </div>
       </div>
-</div><!--EndContent-->            
+      <div class="span3">
+        <div class="panel">
+          <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-map-marker"></i></span>  Location</h3>    
+          <div class="bottom-line line-before">
+            <div id="googleMap" class="" style="height:200px;margin-bottom:5px"></div>
+            <p>
+              Ward: <%=  (@datapat["code"] ==404 || @datapat["code"] ==nil) ? "" : (@datapat["administrative"]["ward"].nil? ? "" : "#{@datapat["administrative"]["ward"]["title"]}")   %>
+              <br/>
+              Council: <%=  (@datapat["code"] ==404 || @datapat["code"] ==nil) ? "" : "#{@datapat["administrative"]["council"]["title"]}"   %>
+            </p>
+          </div>
+          <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-user"></i></span> Agent</h3>
+          <div class="agent-panel bottom-line line-before">
+              <% @agent = @data.agent %>
+              <% unless @agent.nil? %>
+                <a href="#" class="agent-image ">
+                    <img src="<%=@agent.image.url%>" class="img-polaroid" alt="agent">
+                </a>
+                <ul class="unstyled margin20">
+                  <li><i class="icon-phone"></i><%= @agent.phone %></li>
+                  <li><i class="icon-envelope"></i><%= @agent.email_id %></li>
+                  <li><i class="icon-facebook"></i><%= @agent.fb_id %></li>
+                  <li><i class="icon-twitter"></i><%= @agent.twitter_id %></li>
+                </ul>
+              <%else%>
+                No Agent  
+              <%end%>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript">
 $(document).ready(function() {
   init_gmap3()
