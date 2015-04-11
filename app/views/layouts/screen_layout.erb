@@ -32,9 +32,9 @@
 	</head>
 	<body style="<%='zoom:1.2' if params[:bigscreen] == 'true' %>">
 		<%= render 'layouts/screen_header' %>
-		<div class="main_container" style="padding-bottom:458px">
+		<div class="main_container">
 			<%= yield %>
 		</div>
-		<%#= render 'layouts/screen_footer' %>
+		<%= render 'layouts/screen_footer' %>
 	</body>
 </html>
