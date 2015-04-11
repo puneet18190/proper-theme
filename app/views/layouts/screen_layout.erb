@@ -30,7 +30,7 @@
 		<%= csrf_meta_tags %>
 		<%= render 'layouts/shim' %>
 	</head>
-	<body>
+	<body style="<%='zoom:1.2' if params[:bigscreen] == 'true' %>">
 		<%= render 'layouts/screen_header' %>
 		<div class="main_container" style="padding-bottom:458px">
 			<%= yield %>
