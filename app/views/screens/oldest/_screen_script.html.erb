@@ -41,10 +41,13 @@ function run_script(ids,property_id,index){
 				<%end%>	
 				var index=0
 				run_script(ids,ids[0],index);
+				init_slider();
 			}
 		})
 	}else{
 		run_script_by_cookie(0,ids)
+		init_slider();
+
 	}	
 }
 
