@@ -17,6 +17,7 @@ function run_script(ids,property_id,index){
 			async: false,
 			success : function(response){
 				$(".main_container").html(response);
+				init_slider();
 				var num = index + 1
 				var delay = 50000;
 				$(".screen_num").html("<%=page%> Properties:Page "+num)
@@ -54,6 +55,7 @@ function run_script_by_cookie(index,ids){
 		  function() 
 		  {
 		  	$(".main_container").html($.localStorage.get('p'+index));
+		  	init_slider();
 			index = index + 1;
 			$(".screen_num").html("<%=page%>:Page "+(index))
 			if (index == ids.length){
