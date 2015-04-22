@@ -140,6 +140,14 @@ class ScreensController < ApplicationController
 	def provisioning
 		@data  = Provision.all
 		render :layout => "screen_layout"
+	end
+
+	def provisioning_files
+		if request.ip == "82.68.0.86" || request.ip == "82.68.180.14" 
+			render "/screens/provisioning/#{params[:id]}.#{params[:format]}", :layout => false
+		else
+			redirect_to root_url, alert: "IP: #{request.ip} is not Authorized." 
+		end					
 	end	
 
 	def phones
