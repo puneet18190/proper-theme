@@ -44,7 +44,7 @@
                     <div id="crotator" style="height:620px;width:620px;position:relative;padding:10px;background: lightblue;margin-left:-664px">
                         <div id="quotes">
                             <% @p_title.each_with_index do |a,i| %>    
-                                <p><b style="color:red"><%= a %></b><br/><%= raw(@p_description[i+1]) %></p>
+                                <p><b style="color:red"><%= @p_title[i+1] %></b><br/><%= raw(@p_description[i+1]) %></p>
                             <% end %>
                         </div>
 
