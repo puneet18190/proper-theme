@@ -143,29 +143,11 @@ class ScreensController < ApplicationController
 	end	
 
 	def phones
-		# binding.pry
-		@data = DirectoryEntry.all.select(:Name, :Telephone)
-		# arr = [:YealinkIPPhoneDirectory => []]
-		# @data.each do |obj| 
-		# 	arr[0][:YealinkIPPhoneDirectory ].push(DirectoryEntry: {:Name => obj.Name, :Telephone=> obj.Telephone })
-		# end
-		# arr = {:YealinkIPPhoneDirectory => 
-		# 	{:DirectoryEntry => {:Name=>"dsd",:Telephone=>"87878"}},
-		# 	{:DirectoryEntry => {:Name=>"dsd",:Telephone=>"878sa"}}
-		# }
-		# builder = Nokogiri::XML::Builder.new do |xml|
-		#   xml.YealinkIPPhoneDirectory {
-		#     @data.each do |ob|
-		#       xml.DirectoryEntry {
-		#         xml.Name ob.Name
-		#         xml.Telephone ob.Telephone
-		#       }
-		#     end
-		#   }
-		# end
-		# @data = builder.to_xml
-		# binding.pry
-		# respond_with(@data)
+		if request.ip == "82.68.0.86" || request.ip == "82.68.180.14" 
+			@data = DirectoryEntry.all.select(:Name, :Telephone)
+		else
+			redirect_to root_url, alert: "You are not Authorized." 
+		end			
 	end	
 
 	def uploadfile
@@ -176,18 +158,34 @@ class ScreensController < ApplicationController
 	end
 
 	def landlords
-		@data = User.all.where("status = ?", "landlord")
+		if request.ip == "82.68.0.86" || request.ip == "82.68.180.14" 
+			@data = User.all.where("status = ?", "landlord")
+		else
+			redirect_to root_url, alert: "You are not Authorized." 
+		end	
 	end
 	
 	def tenants
-		@data = User.all.where("status = ?", "tenant")
+		if request.ip == "82.68.0.86" || request.ip == "82.68.180.14" 
+			@data = User.all.where("status = ?", "tenant")
+		else
+			redirect_to root_url, alert: "You are not Authorized." 
+		end	
 	end	
 
 	def mobiles
-		@data = Mobile.all.select(:name, :telephone)
+		if request.ip == "82.68.0.86" || request.ip == "82.68.180.14" 
+			@data = Mobile.all.select(:name, :telephone)
+		else
+			redirect_to root_url, alert: "You are not Authorized." 
+		end			
 	end
 	def services
-		@data = Service.all.select(:name, :telephone)
+		if request.ip == "82.68.0.86" || request.ip == "82.68.180.14" 
+			@data = Service.all.select(:name, :telephone)
+		else
+			redirect_to root_url, alert: "You are not Authorized." 
+		end					
 	end	
 
 	def delete_file_from_s3
