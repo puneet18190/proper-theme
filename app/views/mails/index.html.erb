@@ -1,31 +1,34 @@
-<h1>Listing messages</h1>
+<div class="container">
 
-<table>
-  <tr>
-    <th>To</th>
-    <th>From</th>
-    <th>Subject</th>
-    <!-- <th>Html body</th> -->
-    <!-- <th>Text body</th> -->
-    <th></th>
-    <!-- <th></th> -->
-    <th></th>
-  </tr>
+    <h1>Listing messages</h1>
 
-<% @messages.each do |message| %>
-  <tr>
-    <td><%= message.to %></td>
-    <td><%= message.from %></td>
-    <td><%= message.subject %></td>    
-    <td><%#= message.html_body.html_safe %></td>
-    <td><%#= message.text_body.html_safe %></td>
-    <td><%= link_to 'Show', mail_path(message) %></td>
-    <!-- <td><%#= link_to 'Edit', edit_mail_path(message) %></td> -->
-    <td><%= link_to 'Destroy', mail_path(message), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+    <table class="table">
+      <tr>
+        <th>To</th>
+        <th>From</th>
+        <th>Subject</th>
+        <!-- <th>Html body</th> -->
+        <!-- <th>Text body</th> -->
+        <th></th>
+        <!-- <th></th> -->
+        <th></th>
+      </tr>
 
-<br />
+    <% @messages.each do |message| %>
+      <tr>
+        <td><%= message.to %></td>
+        <td><%= message.from %></td>
+        <td><%= message.subject %></td>    
+        <td><%#= message.html_body.html_safe %></td>
+        <td><%#= message.text_body.html_safe %></td>
+        <td><%= link_to 'Show', mail_path(message) %></td>
+        <!-- <td><%#= link_to 'Edit', edit_mail_path(message) %></td> -->
+        <td><%= link_to 'Destroy', mail_path(message), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </table>
 
-<%#= link_to 'New Message', new_mail_path %>
+    <br />
+
+    <%#= link_to 'New Message', new_mail_path %>
+</div>
