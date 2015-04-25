@@ -8,6 +8,7 @@
         <% if user_signed_in? %>
           <% if current_user.status == "admin" %>
             <%= link_to "Admin", properties_path   %>
+            <%= link_to "Admin Mails", mails_path   %>
           <% elsif current_user.status == "landlord" %>
            <%= link_to "List Properties", properties_path   %>
            <%= link_to "Click here to Add Property", new_property_path   %>
