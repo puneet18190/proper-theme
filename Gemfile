@@ -92,7 +92,7 @@ gem 'geocoder'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 # gem 'mobvious'
-gem 'rubyzoho'
+# gem 'rubyzoho'
 gem 'mobile-fu'
 gem 'mechanize'
 gem 'rqrcode_png'  
