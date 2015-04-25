@@ -8,9 +8,12 @@ require "mailman"
 #Mailman.config.logger = Logger.new("log/mailman.log")
 Mailman.config.poll_interval = 3
 Mailman.config.pop3 = {
-  server: 'mail.bov.nu', port: 995, ssl: true,
-  username: "info@sealproperties.co.uk",
-  password: "info1234"
+  server: 'pop.gmail.com', port: 995, ssl: true,
+  username: "puneetgupta1801@gmail.com",
+  password: "puneet18"
+  # server: 'mail.bov.nu', port: 995, ssl: true,
+  # username: "info@sealproperties.co.uk",
+  # password: "info1234"
 }
 
 Mailman::Application.run do
