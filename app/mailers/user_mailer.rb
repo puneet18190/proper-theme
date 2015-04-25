@@ -37,5 +37,10 @@ class UserMailer < ActionMailer::Base
     mail( :to => @agent.email_id, :subject => 'User Query')
   end
 
+  def auto_respond_mail(email)
+    @email = email
+    mail( :to => @email, :subject => 'Auto Respond Mail' )
+  end
+
 end
 

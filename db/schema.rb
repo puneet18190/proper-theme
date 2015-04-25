@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402102747) do
+ActiveRecord::Schema.define(version: 20150424164451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,15 @@ ActiveRecord::Schema.define(version: 20150402102747) do
     t.string   "email_id"
     t.string   "fb_id"
     t.string   "twitter_id"
+  end
+
+  create_table "attachments", force: true do |t|
+    t.string   "attached_file_file_name"
+    t.string   "attached_file_content_type"
+    t.integer  "attached_file_file_size"
+    t.datetime "attached_file_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "contact_agents", force: true do |t|
@@ -179,6 +188,16 @@ ActiveRecord::Schema.define(version: 20150402102747) do
 
   add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id", using: :btree
   add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type", using: :btree
+
+  create_table "messages", force: true do |t|
+    t.text     "subject"
+    t.string   "to"
+    t.string   "from"
+    t.text     "html_body"
+    t.text     "text_body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "mobiles", force: true do |t|
     t.string   "name"
