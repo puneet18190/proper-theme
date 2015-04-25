@@ -157,10 +157,11 @@ end
 Dashing.scheduler.every '72s' do
   @screen = Screen.all
   a1= ["Screen 3"]
-  b1= [@screen.find_by_name("screen_3").status ? "Up" : "Down"]
+  unless @screen.find_by_name("screen_3").nil?
+	  b1= [@screen.find_by_name("screen_3").status ? "Up" : "Down"]
 
-  Dashing.send_event('screen_status', { items: [{:label=>a1[count], :value=>b1[count] }]})
-
+	  Dashing.send_event('screen_status', { items: [{:label=>a1[count], :value=>b1[count] }]})
+   end	  
 end
 
 Dashing.scheduler.every '74s' do
