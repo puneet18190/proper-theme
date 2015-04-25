@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150424164451) do
+ActiveRecord::Schema.define(version: 20150425155753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20150424164451) do
     t.datetime "attached_file_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "message_id"
   end
 
   create_table "contact_agents", force: true do |t|
@@ -197,6 +198,7 @@ ActiveRecord::Schema.define(version: 20150424164451) do
     t.text     "text_body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "date"
   end
 
   create_table "mobiles", force: true do |t|

@@ -48,5 +48,14 @@ module Proper
   config.assets.precompile += %w( /style.css)
   config.assets.precompile += %w( /colorbox/colorbox.css)
   # config.middleware.use Mobvious::Manager
+    config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => "sealpropertiesus",
+      :access_key_id => "AKIAI42ZRYRPLOREEEDQ",
+      :secret_access_key => "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"
+    }
+  }
+
   end
 end

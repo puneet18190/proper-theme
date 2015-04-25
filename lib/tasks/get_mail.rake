@@ -8,9 +8,9 @@ require "mailman"
 #Mailman.config.logger = Logger.new("log/mailman.log")
 Mailman.config.poll_interval = 3
 Mailman.config.pop3 = {
-  server: 'pop.gmail.com', port: 995, ssl: true,
-  username: "puneetgupta1801@gmail.com",
-  password: "puneet18"
+  server: 'mail.bov.nu', port: 995, ssl: true,
+  username: "info@sealproperties.co.uk",
+  password: "info1234"
 }
 
 Mailman::Application.run do
@@ -22,6 +22,17 @@ Mailman::Application.run do
       p "-------------------------------"
       p message.multipart?
       p "-------------------------------"
+
+      m = Message.new
+      m.from = message.from.first
+      m.to = message.to.first
+      m.subject = message.subject
+      m.html_body = message.multipart? ? message.html_part.body.decoded : message.body.decoded
+      m.text_body = message.multipart? ? message.text_part.body.decoded : message.body.decoded
+      p message.date
+      m.date = message.date
+      m.save
+
       if message.multipart?
         the_message_html = message.html_part.body.decoded
         the_message_text = message.text_part.body.decoded
@@ -31,7 +42,7 @@ Mailman::Application.run do
           file.class.class_eval { attr_accessor :original_filename, :content_type }
           file.original_filename = attachment.filename
           file.content_type = attachment.mime_type
-          attachment = Attachment.new
+          attachment = m.attachments.new
           attachment.attached_file = file
           attachment.save
           the_message_attachments << attachment
@@ -41,15 +52,9 @@ Mailman::Application.run do
         the_message_text = message.body.decoded
         the_message_attachments = []
       end
-      m = Message.new
-      m.from = message.from.first
-      m.to = message.to.first
-      m.subject = message.subject
-      m.html_body = the_message_html
-      m.text_body = the_message_text
-      m.save
-   
-   	  UserMailer.auto_respond_mail(m.from).deliver
+
+   	   UserMailer.auto_respond_mail(m.from).deliver
+   	   UserMailer.copy_to_emma(m.from, m.html_body).deliver
  	  # map attachments with message object and save other stuff and do other processing or trigger other events..
    
     rescue Exception => e

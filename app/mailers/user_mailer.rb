@@ -42,5 +42,10 @@ class UserMailer < ActionMailer::Base
     mail( :to => @email, :subject => 'Auto Respond Mail' )
   end
 
+  def copy_to_emma(user, message)
+    @message = message
+    mail( :to => "emma@sealproperties.co.uk", :subject => "Mail From #{user}" )
+  end
+
 end
 

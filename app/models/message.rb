@@ -10,8 +10,10 @@
 #  text_body  :text
 #  created_at :datetime
 #  updated_at :datetime
+#  date       :string(255)
 #
 
 class Message < ActiveRecord::Base
   # attr_accessible :from, :html_body, :subject, :text_body, :to
+  has_many :attachments
 end

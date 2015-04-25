@@ -97,7 +97,7 @@ gem 'mobile-fu'
 gem 'mechanize'
 gem 'rqrcode_png'  
 gem 's3_direct_upload'
-# gem 'aws-sdk', '~> 2'
+gem 'aws-sdk', '< 2.0'
 gem 's3'
 gem 'mailman', require: false
 gem "paperclip", "~> 3.0"

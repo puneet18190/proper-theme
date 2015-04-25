@@ -1,30 +1,44 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<p>
-  <b>Subject:</b>
-  <%= @message.subject %>
-</p>
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <b>To:</b>
-  <%= @message.to %>
-</p>
+  <p>
+    <b>Subject:</b>
+    <%= @message.subject %>
+  </p>
 
-<p>
-  <b>From:</b>
-  <%= @message.from %>
-</p>
+  <p>
+    <b>To:</b>
+    <%= @message.to %>
+  </p>
 
-<p>
-  <b>Html body:</b>
-  <%= @message.html_body.html_safe %>
-</p>
+  <p>
+    <b>From:</b>
+    <%= @message.from %>
+  </p>
 
-<!-- <p>
-  <b>Text body:</b>
-  <%#= @message.text_body.html_safe %>
-</p>
- -->
+  <p>
+    <b>Html body:</b>
+    <%= @message.html_body.html_safe %>
+  </p>
 
-<%= link_to 'Edit', edit_mail_path(@message) %> |
-<%= link_to 'Back', mails_path %>
+  <p>
+    <b>Date:</b>
+    <%= @message.date %>
+  </p>
+
+  <!-- <p>
+    <b>Text body:</b>
+    <%#= @message.text_body.html_safe %>
+  </p>
+   -->
+
+  <%#= link_to 'Edit', edit_mail_path(@message) %> <!-- | -->
+  <% unless @message.attachments.empty? %>
+    <% @message.attachments.each do |attachment| %>
+      <%= image_tag(attachment.attached_file) %>
+    <% end %>
+  <% end %>
+  <br/>
+  <%= link_to 'Back', mails_path %>
+</div>
