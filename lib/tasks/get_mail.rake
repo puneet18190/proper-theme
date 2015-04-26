@@ -26,15 +26,25 @@ Mailman::Application.run do
       p message.multipart?
       p "-------------------------------"
 
+      p "-------------------------------1"
       m = Message.new
+      p "-------------------------------2"
       m.from = message.from.first
+      p "-------------------------------3"
       m.to = message.to.first
+      p "-------------------------------4"
       m.subject = message.subject
+      p "-------------------------------5"
       m.html_body = message.multipart? ? message.html_part.body.decoded : message.body.decoded
+      p "-------------------------------6"
       m.text_body = message.multipart? ? message.text_part.body.decoded : message.body.decoded
+      p "-------------------------------7"
       p message.date
+      p "-------------------------------8"
       m.date = message.date
+      p "-------------------------------9"
       m.save
+      p "-------------------------------10"
 
       if message.multipart?
         the_message_html = message.html_part.body.decoded
