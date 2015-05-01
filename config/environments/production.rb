@@ -92,13 +92,13 @@ Rails.application.configure do
   #     :enable_starttls_auto => true
   # }
   config.action_mailer.smtp_settings = {
-      :address => "mail.bov.nu",
-      :port => 25,
-      :domain => "sealproperties.co.uk",
-      :user_name => "donotreply@sealproperties.co.uk",
-      :password => "dnr123456",
-      :authentication => "plain",
-      :enable_starttls_auto => true
+    :address => "mail.sealproperties.co.uk",
+    :port => 587,
+    :domain => "sealproperties.co.uk",
+    :user_name => "donotreply@sealproperties.co.uk",
+    :password => "dnr123456",
+    :authentication => "plain",
+    :enable_starttls_auto => true
   }
 
 end

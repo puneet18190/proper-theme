@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => 'any_from_address@example.com'
+  default :from => 'donotreply@sealproperties.co.uk'
   def deliver_payment_method(property)
     @property = property
     mail( :to => @property.user.email, :subject => 'Payment Confirmation' )

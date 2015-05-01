@@ -37,14 +37,23 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.allow_concurrency = true
 
+  # config.action_mailer.smtp_settings = {
+  #     :address => "smtp.gmail.com",
+  #     :port => 587,
+  #     :domain => "gmail.com",
+  #     :user_name => "testing.testing055@gmail.com",
+  #     :password => "sanjeev123",
+  #     :authentication => "plain",
+  #     :enable_starttls_auto => true
+  # }
   config.action_mailer.smtp_settings = {
-      :address => "smtp.gmail.com",
-      :port => 587,
-      :domain => "gmail.com",
-      :user_name => "testing.testing055@gmail.com",
-      :password => "sanjeev123",
-      :authentication => "plain",
-      :enable_starttls_auto => true
+    :address => "mail.sealproperties.co.uk",
+    :port => 587,
+    :domain => "sealproperties.co.uk",
+    :user_name => "donotreply@sealproperties.co.uk",
+    :password => "dnr123456",
+    :authentication => "plain",
+    :enable_starttls_auto => true
   }
   BetterErrors::Middleware.allow_ip! ENV['TRUSTED_IP'] if ENV['TRUSTED_IP']
   ENV["REDISTOGO_URL"] = 'redis://127.0.0.1:6379'

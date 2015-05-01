@@ -11,7 +11,10 @@ Mailman.config.pop3 = {
   # server: 'pop.gmail.com', port: 995, ssl: true,
   # username: "puneetgupta1801@gmail.com",
   # password: "puneet18"
-  server: 'mail.bov.nu', port: 110, ssl: true,
+
+  #require 'net/pop'
+  #Net::POP3.new('mail.bov.nu', 995).start("info@sealproperties.co.uk", "info1234")
+  server: '82.68.0.86', port: 110, ssl: false,
   username: "info@sealproperties.co.uk",
   password: "info1234"
 }
@@ -65,9 +68,11 @@ Mailman::Application.run do
         the_message_text = message.body.decoded
         the_message_attachments = []
       end
-
+      p "-------------------------------11"
    	   UserMailer.auto_respond_mail(m.from).deliver
+      p "-------------------------------12" 
    	   UserMailer.copy_to_emma(m.from, m.html_body).deliver
+      p "-------------------------------13" 
  	  # map attachments with message object and save other stuff and do other processing or trigger other events..
    
     rescue Exception => e
