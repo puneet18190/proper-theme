@@ -101,3 +101,4 @@ gem 'aws-sdk', '< 2.0'
 gem 's3'
 gem 'mailman', require: false
 gem "paperclip", "~> 3.0"
+gem 'carrierwave_backgrounder'

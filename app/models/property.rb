@@ -68,6 +68,18 @@ class Property < ActiveRecord::Base
   mount_uploader :image8, Image8Uploader
   mount_uploader :image9, Image9Uploader
   mount_uploader :image10, Image10Uploader
+
+  process_in_background :image1
+  process_in_background :image2
+  process_in_background :image3
+  process_in_background :image4
+  process_in_background :image5
+  process_in_background :image6
+  process_in_background :image7
+  process_in_background :image8
+  process_in_background :image9
+  process_in_background :image10
+
   validates :name, presence: true, length: { maximum: 20 }
   validates_presence_of :address1, :address2, :address3, :price, :postcode, :beds, :bath, :description
   geocoded_by :address
