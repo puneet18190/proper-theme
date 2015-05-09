@@ -103,3 +103,4 @@ gem 'mailman', require: false
 gem "paperclip", "~> 3.0"
 gem 'odf-report', github: 'sandrods/odf-report' 
 gem 'carrierwave_backgrounder'
+gem 'whenever', :require => false
