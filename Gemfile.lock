@@ -17,6 +17,14 @@ GIT
       sass-rails
 
 GIT
+  remote: git://github.com/sandrods/odf-report.git
+  revision: 3d4c5d69fc4243cfcc9302a5fd31cba65f400d58
+  specs:
+    odf-report (0.5.1)
+      nokogiri (>= 1.5.0)
+      rubyzip (~> 1.1.0)
+
+GIT
   remote: https://github.com/stripe/stripe-ruby
   revision: 9c7ebd21c97358d1329abdbd91628dbf970d314f
   specs:
@@ -438,6 +446,7 @@ GEM
     rqrcode_png (0.1.5)
       chunky_png
       rqrcode
+    rubyzip (1.1.7)
     rufus-scheduler (3.0.9)
       tzinfo
     s3 (0.3.21)
@@ -564,6 +573,7 @@ DEPENDENCIES
   mechanize
   meta-tags
   mobile-fu
+  odf-report!
   paperclip (~> 3.0)
   pat
   pg

@@ -1,0 +1,32 @@
+<%= s3_uploader_form callback_url: "/mail_merge_uploadfile", callback_param: "model[image_url]", id: "s3-uploader" do %>
+  <%#= text_field_tag :name %>
+  <%= file_field_tag :file, multiple: true %>
+<% end %>
+
+<script id="template-upload" type="text/x-tmpl">
+	<div id="file-{%=o.unique_id%}" class="upload">
+	  {%=o.name%}
+	  <div class="progress"><div class="bar" style="width: 0%"></div></div>
+	</div>
+</script>
+
+<div class="file_container">
+	<table>
+		<% @data.each_with_index do |a,i| %>
+			<tr>
+				<td>Template:<%="#{i+1}"%> <%= link_to "Download File #{a.filename}", "#{a.url}", :class => 'btn' %></td>
+				<td><%= link_to "Delete", "/delete_file?url=#{a.url}&id=#{a.id}&mailmerge=true", :method => :put, :class => 'btn' %></td>
+			</tr>	
+				<% a.mail_merge_items.each_with_index do |b,j| %>
+					<tr>
+						<td>File:<%="#{j+1}"%> <%= link_to "Download File #{b.filename}", "#{b.url}", :class => 'btn' %></td>
+						<td><%= link_to "Delete", "/delete_file?url=#{b.url}&id=#{b.id}&mailmergeitem=true", :method => :put, :class => 'btn' %></td>
+					</tr>
+				<%end%>
+		<% end %>
+	</table>
+</div>
+
+<script type="text/javascript">
+	$("#s3-uploader").S3Uploader()
+</script>

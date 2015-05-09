@@ -145,6 +145,8 @@ Rails.application.routes.draw do
   match '/uploadfile',   to: 'screens#uploadfile', via: 'post'
   match '/delete_file',   to: 'screens#delete_file_from_s3', via: 'get'
   match '/provisioning/:id',   to: 'screens#provisioning_files', via: 'get'
+  match '/mail_merge',   to: 'screens#mail_merge', via: 'get'
+  match '/mail_merge_uploadfile',   to: 'screens#mail_merge_uploadfile', via: 'post'
   #match '/uploadfile',   to: 'screens#uploadfile', via: 'post'
   # See how all your routes lay out with "rake routes".
 

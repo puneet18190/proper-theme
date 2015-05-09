@@ -5,7 +5,7 @@ class ScreensController < ApplicationController
 	require 's3'
 	respond_to :html, :xml, :json
 	layout proc { false if request.xhr? }
-	protect_from_forgery :except => "update_screen_status"
+	protect_from_forgery :except => ["update_screen_status", "mail_merge_uploadfile"]
 	def page1
 		render '/screens/screen2/page1'
 	end
@@ -205,11 +205,47 @@ class ScreensController < ApplicationController
 			object = bucket.objects.find(a)
 			if object
 				object.destroy
-				Provision.find_by_id(params[:id]).delete
+				if params[:mailmerge]
+					MailMerge.find_by_id(params[:id]).mail_merge_items.each do |obj|
+						bucket.objects.find(obj.url.split("https://sealpropertiesus.s3.amazonaws.com/").last).destroy
+						obj.delete
+					end	
+					MailMerge.find_by_id(params[:id]).delete
+				elsif params[:mailmergeitem]
+					MailMergeItem.find_by_id(params[:id]).delete		
+				else	
+					Provision.find_by_id(params[:id]).delete
+				end	
 				redirect_to :back
 			end	
 		rescue
 			redirect_to :back
 		end	
+	end	
+
+	def mail_merge
+		@data = MailMerge.all
+		render :layout => "screen_layout"
+	end
+		
+	def mail_merge_uploadfile
+		@data = MailMerge.create(:filename => params[:filename], :url => params[:url], :m_type => "template")
+		['puneet','sumeet'].each_with_index do |user,i|
+			report = ODFReport::Report.new(open(params[:url])) do |r|
+  				r.add_field('BODY', "#{user}")
+			end
+
+			service = S3::Service.new(:access_key_id => "AKIAI42ZRYRPLOREEEDQ",:secret_access_key => "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")
+			bucket = service.buckets.find("sealpropertiesus")
+			a=DateTime.now
+			a=a.year.to_s+a.month.to_s.rjust(2,'0')+a.day.to_s.rjust(2,'0')+a.hour.to_s+a.minute.to_s+a.second.to_s
+			object = bucket.objects.build(a+"file#{i}.odt")
+			object.content = report.generate()
+			object.save
+			@data.mail_merge_items.create(:filename => a+"file#{i}.odt", :url=>"https://sealpropertiesus.s3.amazonaws.com/"+a+"file#{i}.odt",:m_type=>"item")			    
+		end	
+		respond_to do |format|
+	      format.js
+	    end
 	end	
 end

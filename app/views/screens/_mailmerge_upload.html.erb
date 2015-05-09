@@ -1,0 +1,10 @@
+<tr>
+	<td>Template: <%= link_to "Download File #{@data.filename}", "#{@data.url}", :class => 'btn' %></td>
+	<td><%= link_to "Delete", "/delete_file?url=#{@data.url}&id=#{@data.id}&mailmerge=true", :method => :put, :class => 'btn' %></td>
+</tr>	
+	<% @data.mail_merge_items.each_with_index do |b,j| %>
+		<tr>
+			<td>File:<%="#{j+1}"%> <%= link_to "Download File #{b.filename}", "#{b.url}", :class => 'btn' %></td>
+			<td><%= link_to "Delete", "/delete_file?url=#{b.url}&id=#{b.id}&mailmergeitem=true", :method => :put, :class => 'btn' %></td>
+		</tr>
+	<%end%>
