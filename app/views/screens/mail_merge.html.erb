@@ -20,6 +20,7 @@
 				<% a.mail_merge_items.each_with_index do |b,j| %>
 					<tr>
 						<td>File:<%="#{j+1}"%> <%= link_to "Download File #{b.filename}", "#{b.url}", :class => 'btn' %></td>
+						<td><%= link_to "Download Pdf", "#{b.pdf_url}", :class => 'btn' %></td>
 						<td><%= link_to "Delete", "/delete_file?url=#{b.url}&id=#{b.id}&mailmergeitem=true", :method => :put, :class => 'btn' %></td>
 					</tr>
 				<%end%>

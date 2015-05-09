@@ -3,6 +3,7 @@ class ScreensController < ApplicationController
 	require 'pat'
 	require 'rqrcode_png' 
 	require 's3'
+	require 'httparty'
 	respond_to :html, :xml, :json
 	layout proc { false if request.xhr? }
 	protect_from_forgery :except => ["update_screen_status", "mail_merge_uploadfile"]
@@ -242,7 +243,9 @@ class ScreensController < ApplicationController
 			object = bucket.objects.build(a+"file#{i}.odt")
 			object.content = report.generate()
 			object.save
-			@data.mail_merge_items.create(:filename => a+"file#{i}.odt", :url=>"https://sealpropertiesus.s3.amazonaws.com/"+a+"file#{i}.odt",:m_type=>"item")			    
+			response = HTTParty.get("http://online.verypdf.com/api/?apikey=BF8763B8F38C40FEC5DB3F109FA034AE10F66497&app=doc2any&infile=https://sealpropertiesus.s3.amazonaws.com/#{a}file#{i}.odt&outfile=#{a}file#{i}.pdf")
+			pdf_url = response.body.split("[Output]").last.gsub("<br>","")
+			@data.mail_merge_items.create(:filename => a+"file#{i}.odt", :url=>"https://sealpropertiesus.s3.amazonaws.com/"+a+"file#{i}.odt",:m_type=>"item", :pdf_url => pdf_url)			    
 		end	
 		respond_to do |format|
 	      format.js

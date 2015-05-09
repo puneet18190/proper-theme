@@ -9,6 +9,7 @@
 #  mail_merge_id :integer
 #  created_at    :datetime
 #  updated_at    :datetime
+#  pdf_url       :string(255)
 #
 
 require 'test_helper'
