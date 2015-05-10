@@ -276,7 +276,7 @@ class PropertiesController < ApplicationController
 
   def connect_facebook
     @oauth = Koala::Facebook::OAuth.new("1621675821399010", "f249018913a98bc31d3df59a50658b17", "#{request.protocol}#{request.host}/get_fb_token/")
-    redirect_to @oauth.url_for_oauth_code(:permissions => "manage_pages,publish_stream,email,publish_actions")
+    redirect_to @oauth.url_for_oauth_code(:permissions => "manage_pages ,email,publish_actions")
   end
 
   def disconnect_fb
