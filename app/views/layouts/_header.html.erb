@@ -20,9 +20,9 @@
             <%= link_to "Search Properties", search_property_path  %>
             <%= link_to "List Conversations", conversations_path   %>
             <%= link_to "My Plans", my_plan_path   %>
-      <% end %>
-            Logged in as <strong><%= current_user.email %></strong>
-            <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
+          <% end %>
+          Logged in as <strong><%= current_user.email %></strong>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
         <% else %>
           <%= link_to "Sign up", new_user_registration_path %> |
           <%= link_to "Login", new_user_session_path %>
@@ -36,8 +36,8 @@
       <div class="panel">
         <div class="row-fluid">
           <div class="span9 right-line" style=" min-height: 120px;">
-            <div><a class="brand" href="/index" ><img src="/assets/seal_logo.png" style="margin: 20px; height: 100px; position: absolute; width: 380px; top: 18px; left: 85px;background-color: white;"></a> </div>
-            <div style="font-size:42px;font-weight:300;top: 80px;position: absolute;left: 550px;"> 0191 5805900</div> <small class="visible-desktop visible-tablet"></small>
+            <div><a class="brand" href="/index" ><img src="/assets/seal_logo.png" style="margin: 20px; height: 100px; position: absolute; width: 830px; top: 18px; left: 0px;background-color: white;"></a> </div>
+            <!-- <div style="font-size:42px;font-weight:300;top: 80px;position: absolute;left: 550px;"> 0191 5805900</div> --> <small class="visible-desktop visible-tablet"></small>
           </div>
 
           <div class="span3 ">

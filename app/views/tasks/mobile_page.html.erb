@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<!-- <html itemscope itemtype="http://schema.org/Article">   -->
+<html lang="en">
+    <head>
+        <meta name="p:domain_verify" content="4703b993a3d70d3941b7b0f075d433ac"/>
+        <%= display_meta_tags :title => 'SEAL Properties - Rental market specialists' %>
+        <%= display_meta_tags :viewport => "width=device-width, initial-scale=1.0" %>
+        <%= display_meta_tags :keywords => ["Estate","Agents","Rental","Market","Specialist","flats","houses","terraced","maisonette","bungalow","let","sale","rent","Bensham","Saltwell","Gateshead","mortgages","buy to let","buy2let","insurance","buy","vetted","seal","properties","semi","detached","digital signage"] %>
+        <%= display_meta_tags :description => "Family Estate Agents based in Saltwell/Bensham Gateshead, NE8 4TJ Offering a wide range of property from flats, terraced houses to modern bungalows for sale or rent. " %>
+        <%= display_meta_tags :author => "yobio.indiewebstyle.com" %>
+
+        <%= display_meta_tags :og => {
+        :title    => 'SEAL Properties - Rental market specialists',
+        :type     => 'property',
+        :site_name => 'www.sealproperties.co.uk',
+        :url      => request.url,
+        :image    => '/assets/logo.png',
+        :description => 'Family Estate Agents based in Saltwell/Bensham Gateshead, NE8 4TJ Offering a wide range of property from flats, terraced houses to modern bungalows for sale or rent. '
+        } %>
+        <!-- Bootstrap -->
+        <link href="assets/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="assets/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="assets/style.css" rel="stylesheet" media="screen">
+        <link href="assets/colorbox/colorbox.css" rel="stylesheet" media="screen">
+        <!-- FONTAWESOME STYLE -->
+        <link rel="stylesheet" href="assets/font-awesome.css"/>
+        <!--[if IE 7]>
+        <link rel="stylesheet" href="assets/font-awesome-ie7.min.css">
+        <![endif]-->
+
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+	
+	<link rel="shortcut icon" href="assets/logo.png">
+    </head>
+    <body>
+        <!-- Start Wrapper-->
+        <div id="wrapper">
+            <!-- start breadcrumb -->
+            <div id="breadcrumb-wrapper">
+                <div class="container">
+                    <div class="pull-left"><%= Time.now.strftime("%A, %d %B %Y") %></div>
+                    <div class="pull-right">
+                        <% if user_signed_in? %>
+                          <% if current_user.status == "admin" %>
+                            <%= link_to "Admin", properties_path   %>
+                            <%= link_to "Admin Mails", mails_path   %>
+                          <% elsif current_user.status == "landlord" %>
+                           <%= link_to "List Properties", properties_path   %>
+                           <%= link_to "Click here to Add Property", new_property_path   %>
+                           <%= link_to "List Conversations", conversations_path   %>
+                           <%= link_to "My Plans", my_plan_path   %>
+                           <%= link_to "Tenant Search", tenant_searching_path   %>
+                          <% else %>
+                            <%= link_to "Payment", payment_property_path  %>
+                            <%= link_to "Search Properties", search_property_path  %>
+                            <%= link_to "List Conversations", conversations_path   %>
+                            <%= link_to "My Plans", my_plan_path   %>
+                          <% end %>
+                          Logged in as <strong><%= current_user.email %></strong>
+                          <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
+                        <% else %>
+                          <%= link_to "Sign up", new_user_registration_path %> |
+                          <%= link_to "Login", new_user_session_path %>
+                        <% end %>
+                    </div>
+                </div>
+            </div><!-- end breadcrumb -->
+            <!-- start header-wrapper -->
+            <div id="header-wrapper">
+                <div class="container">
+                    <div class="panel">
+                        <div class="row-fluid">
+                            <div class="span9 right-line">
+                                <a class="brand" href="/index" ><h1 class="font-caly"><img src="assets/seal_logo.png" alt="logo" style="background-color:white;width:100%;height:100px"><!-- <span style="font-size:42px;font-weight:300;top: 80px;margin:30px">0191 5805900</span> --></h1></a>
+                            </div>
+                            <div class="span3 ">
+                                <div class="clearfix">
+                                    <!-- <div class="language_curency">Curency: <a href="#">$</a> | <a href="#">&euro;</a> &nbsp; lang: <a href="#">En</a> | <a href="#">Ina</a> | <a href="#">Jpn</a></div> -->
+                                    <form method="get" class="form-search" action="search_results" >
+                                        <div class="input-append">
+                                          <%= search_form_for Property.search(params[:q])  do |f| %>
+                                            <%= f.search_field :name_cont, :class=>"search-query form-text input-block-level", :placeholder=>"Search", :type=>"text" %>
+                                            <button type="submit" class="btn"><i class="icon-search"></i></button>
+                                          <% end %>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div><!-- End header-wrapper -->
+            <!-- start Navigation -->
+            <div id="navigation">
+                <div class="container">
+                    <div class="navbar navbar-inverse">
+                        <div class="navbar-inner">
+                            <div class="container">
+                                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <span class="brand visible-phone visible-tablet">Navbar</span>
+                                <!--.nav-collapse -->
+                                <div class="nav-collapse collapse">
+                                    <ul class="nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/home_full_slider">Home Full Slider</a></li>
+                                                <li><a href="/home_carousel">Home Slider Carousel</a></li>
+                                                <li><a href="/index">Home With Map</a></li>
+                                                <li><a href="/home_simple">Home Simple</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Properties <b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/properties_filter">Properties & Filter</a></li>
+                                                <li><a href="/properties_map">Properties & Map</a></li>
+<!--                                                 <li><a href="/properties_detail">Properties Detail</a></li>
+ -->                                            </ul>
+                                        <li><a href="agents">Agents</a></li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Additional Information<b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/about_us">About Us</a></li>
+                                                <li><a href="/testimonials">Testimonials</a></li>
+                                                <li><a href="/faq">FAQ</a></li>
+                                                <li><a href="/career">Career</a></li>
+                                            </ul>
+                                        </li>
+<!--                                         <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/error_page">Error Page</a></li>
+                                                <li><a href="/pricing">Pricing</a></li>
+                                                <li><a href="/shortcode">Shortcodes</a></li>
+                                                <li><a href="/typograpy">Typograpy</a></li>
+                                                <li><a href="/grid_stystem">Grid System</a></li>
+                                            </ul>
+                                        </li>
+ -->                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">News <b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/news">News List</a></li>
+                                                <li><a href="/news_detail">News Detail</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="/contact">Contact</a></li>
+                                        <li><a href="/pricing">Landlord</a></li>
+                                        <li><a href="/pricing_tenant">Tenant</a></li>
+
+                                    </ul>
+                                    <!-- <a class="pull-right mylisting" href="/upload_step1"><i class=" icon-folder-close-alt"></i> Upload Items</a> -->
+
+                                </div><!--/.nav-collapse -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end Navigation -->
+
+            <!--    Start Content-->
+            <div id="content">
+                <!--  Start  Main Title -->
+                <div id="main-title-content">
+                    <img src="assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
+                    <div class="container">
+                        <div class="panel">
+                            <h1>Welcome to Proper</h1>    
+                            <p>Sub Title Here</p>    
+                        </div>
+                    </div>
+                </div> <!--    End Main Title -->
+                <!--    News Carousel-->
+                <div class="news-carousel-wrapper">
+                    <dl id="news-carousel" class="news-carousel-style">
+                        <%= render 'properties/news_carousel'%>
+                    </dl>
+                </div>
+                <!--    End News Carousel-->
+                <div class="container">
+                    <div class="row-fluid">
+                        <div class="span9">
+                            <div class="panel right-line">
+                                <!--Start Grid Featured-->
+                                <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span> Properties</h2>   
+                                <div class="featured-grid right-space" style="height: 414px;overflow-y: scroll">
+                                    <div class="box-white">
+                                        <div class="grid-item grid-style-properties">
+                                            <% @tasks.each do |task| %>
+                                                <% if task.visibility== true %>
+                                                    <div class="item">
+                                                        <a href="#" class="with-hover">
+                                                            <% if task.category== "rent" || "Rent" %>
+                                                                <div class="for_rent_banner"></div>
+                                                            <% else %>
+                                                                <div class="for_sale_banner"></div>
+                                                            <% end %>
+                                                            <a href=<%="/properties_detail/#{task.slug}"%>><%=  image_tag task.image1.url, class: "full", class: "mask_hover" %></a>
+                                                        </a>
+                                                        <h4 class=" "><%= task.name %></h4>
+                                                        <div class="preview-properties ">
+                                                            <div class="box-detail"> 
+                                                                <p class="text-center short-detail">
+                                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= task.bath %></span>
+                                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= task.beds %></span>
+                                                                    <span class="price">£<%= task.price.to_i %></span>
+                                                                </p>
+                                                                <div class="clearfix">
+                                                                    <a href=<%="/properties_detail/#{task.slug}"%> class="btn-proper btn btn-small pull-left">See Detail</a>
+                                                                    <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <% end %>
+                                            <% end %>
+                                            <!-- <div class="item">
+                                                <a href="#" class="with-hover">
+                                                    <div class="for_rent_banner"></div>
+                                                    <img alt='images' src="assets/properties/p3.jpg" class="full"/><span class="mask_hover"></span>
+                                                </a>
+                                                <h4 class="">34 Central Park</h4>
+                                                <div class="preview-properties ">
+                                                    <div class="box-detail"> 
+                                                        <p class="text-center short-detail">
+                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Bath : 2</span>
+                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Beds : 2</span>
+                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Pool : 2</span>
+                                                            <span class="price">$380,000</span>
+                                                        </p>
+                                                        <div class="clearfix">
+                                                            <a href="#" class="btn-proper btn btn-small pull-left">See Detail</a>
+                                                            <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <a href="#" class="with-hover">
+                                                    <div class="for_sale_banner"></div>
+                                                    <img alt='images' src="assets/properties/p4.jpg" class="full"/><span class="mask_hover"></span>
+                                                </a>
+                                                <h4 class="">34 Central Park</h4>
+                                                <div class="preview-properties ">
+                                                    <div class="box-detail"> 
+                                                        <p class="text-center short-detail">
+                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Bath : 2</span>
+                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Beds : 2</span>
+                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Pool : 2</span>
+                                                            <span class="price">$380,000</span>
+                                                        </p>
+                                                        <div class="clearfix">
+                                                            <a href="#" class="btn-proper btn btn-small pull-left">See Detail</a>
+                                                            <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <!--End Grid Featured-->
+                                </div>
+
+                                <!--Start New List-->
+                                <!-- <h2 class="main-heading bottom-line top-line "><span class="main-circle-icon"><i class="icon-book"></i></span> News</h2>   
+                                <div class=" news right-space">
+                                    <%# @news.each do |news| %>
+                                        <div class="media box-white">
+                                            <a class="pull-left" href="#">
+                                                <%#=  image_tag news.image.url, alt: "images", class: "media-object" %>
+                                            </a>
+                                            <div class="media-body">
+                                                <h4 class="media-heading"><%#=news.title%></h4>
+                                                <p><%#=news.description %></p>
+                                                <a href="#" class="btn-proper btn btn-small ">Read More</a>
+                                            </div>
+                                        </div>
+                                    <%#end%>
+                                </div> -->
+                                <!--End News List-->
+                            </div>
+                        </div>
+                        <div class="span3">
+                            <div class="panel">
+                                <!--Start Form Search Properties-->
+                                <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-search"></i></span>  Find Properties</h3>    
+                                <%= search_form_for Property.search(params[:q]),url: "/index", class: "bottom-line line-before" do |f| %>
+                                    <div class="field" style="height:360px">
+                                      <div class="input-block-level">
+                                        <%= f.label :name_cont, "Name" %>
+                                        <%= f.search_field :name_cont, class: "tc1size" %>
+                                      </div>
+                                      <div class="input-block-level">
+                                        <%= f.label :category_cont, "Category" %>
+                                        <%= f.select :category_cont, ["Rent","Sale"], class: "tcksize" %>
+                                      </div>
+                                      <div class="clearfix"></div>
+                                      <div class="input-block-level half pull-left" style="max-width:100px">
+                                        <%= f.label :price_lteq, "Min Price", :style => "width:60px" %>
+                                        <%= f.search_field :price_lteq, class: "tpgsize" %>
+                                      </div>
+                                      <div class="input-block-level half pull-right" style="max-width:100px;margin-right:45px">
+                                        <%= f.label :price_gteq, "Max Price", :style => "width:60px"  %>
+                                        <%= f.search_field :price_gteq, class: "tpgsize" %>
+                                      </div>
+                                      <div class="clearfix"></div>
+                                      
+                                      <div class="input-block-level half pull-left" style="max-width:100px">
+                                        <%= f.label :beds_eq, "Beds", :style => "width:60px" %>
+                                        <%= f.search_field :beds_eq, class: "tpgsize" %>
+                                      </div>
+                                      <div class="input-block-level half pull-right" style="max-width:100px;margin-right:45px">
+                                        <%= f.label :bath_eq, "Bath", :style => "width:60px"  %>
+                                        <%= f.search_field :bath_eq, class: "tpgsize" %>
+                                      </div>
+                                      <div class="clearfix"></div>
+<!--                                       <div class="input-block-level">
+                                        <%= f.label :beds_eq, "Beds" %>
+                                        <%= f.search_field :beds_eq, class: "tc1size" %>
+                                      </div>
+                                      <div class="input-block-level">
+                                        <%= f.label :bath_eq, "Bath" %>
+                                        <%= f.search_field :bath_eq, class: "tc1size" %>
+                                      </div>
+ -->                                      
+                                      <div class="input-block-level">
+                                        <%= f.label :postcode_eq, "Postcode" %>
+                                        <%= f.search_field :postcode_eq, class: "tc1size" %>
+                                      </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="actions"><%= f.submit "Search", :class => "input-block-level btn-proper btn btn-large" %></div>
+                                <%end%>
+                                <!--End Form Search Properties-->
+
+                                <!--Start List Our Agent-->
+                                <h3 class="bottom-line  line-before main-heading"><span class="main-circle-icon"><i class="icon-list"></i></span>  Our Agents</h3>
+                                <div class="list-items ">
+                                  <% @agents.each do |agent| %>
+                                    <div class="item">
+                                      <%=  image_tag agent.image.url, alt: "Corin Langpost", class: "img-preview", :style=>"height:70px;width:100px;" %>
+                                        <div class="item-desk">
+                                          <div class="title">
+                                            <h3><a href="#"><%=agent.name%></a></h3>
+                                          </div>
+                                          <div class="location"><%=agent.address%></div>
+                                          <a href="#" class="btn-proper btn-mini btn">Profile Page</a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                  <% end %>
+                                </div>
+                                    <!-- <div class="item">
+                                        <div class="img-preview">
+                                            <img src="assets/agents/thum_list/a1.jpg" alt="Corin Langpost" />
+                                        </div>
+                                        <div class="item-desk">
+                                            <div class="title">
+                                                <h3><a href="#">Angelina Cos</a></h3>
+                                            </div>
+                                            <div class="location">Palo Alto CA</div>
+                                            <a href="#" class="btn-proper btn-mini btn">Profile Page</a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="img-preview">
+                                            <img src="http://placehold.it/100x80" alt="Corin Langpost" />
+                                        </div>
+                                        <div class="item-desk">
+                                            <div class="title">
+                                                <h3><a href="#">Angelina Cos</a></h3>
+                                            </div>
+                                            <div class="location">Palo Alto CA</div>
+                                            <a href="#" class="btn-proper btn-mini btn">Profile Page</a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div> -->
+                                </div>
+                                <!--End List Our AGents -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- start Footer -->
+            <div id="footer-wrapper">
+		<!-- start footer-ribon -->
+		<div class="container" >
+		  <div class="footer-ribon">
+		    <span>Get in Touch</span>
+		  </div>
+		</div><!-- end footer-ribon -->
+                <div id="footer-top">
+                    <div class="container">
+                        <div class="row-fluid">
+                            <div class="span3">
+                                <div class="panel">
+                                    <h4><i class="icon-time"></i> Contact Us</h4>
+                                    <!-- <p>Nullam justo nunc, dignissim at convallis posuere, sodales eu orci.</p> -->
+                                    <ul class="unstyled">
+                                      <li><i class="icon-home"></i> 167/169, Saltwell Road, NE8 4TJ</li>
+                                      <li><i class="icon-phone"></i> 0191 5805900</li>
+                                      <li><i class="icon-envelope"></i> emma@sealproperties.co.uk</li>
+                                    </ul>
+
+                                    <script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
+
+                                    <div id="fb-root"></div>
+                                    <script>(function(d, s, id) {
+                                        var js, fjs = d.getElementsByTagName(s)[0];
+                                        if (d.getElementById(id)) return;
+                                        js = d.createElement(s); js.id = id;
+                                        js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.3&appId=1621675821399010";
+                                        fjs.parentNode.insertBefore(js, fjs);
+                                      }(document, 'script', 'facebook-jssdk'));</script>
+                                      
+                                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+                                    <a href="https://www.facebook.com/sealproperties" class="btn-proper btn" target="_blank"><i class="icon-facebook"></i></a>
+                                    <a href="https://twitter.com/sealproperties" class="btn-proper btn" target="_blank"><i class="icon-twitter"></i></a>
+                                    <a href="#" class="btn-proper btn"><i class="icon-google-plus"></i></a>
+                                    <a href="http://gb.pinterest.com/sealpropert0356/" class="btn-proper btn" target="_blank"><i class="icon-pinterest"></i></a>
+                                </div>
+                            </div>
+                            <!-- <div class="span3">
+                                <div class="panel">
+                                    <h4><i class="icon-suitcase"> </i> Pages Link</h4>
+                                    <ul class="unstyled list-link">
+                                        <li><a href="#">Condimentum - Condimentum gravida</a></li>
+                                        <li><a href="#">Etiam at - Condimentum gravida</a></li>
+                                        <li><a href="#">Fusce vel - Condimentum gravida</a></li>
+                                        <li><a href="#">Vivamus - Condimentum gravida</a></li>
+                                        <li><a href="#">Pellentesque - Condimentum gravida</a></li>
+                                        <li><a href="#">Fusce vel - Condimentum gravida</a></li>
+                                    </ul>
+                                </div>
+                            </div> -->
+                            <div class="span3">
+                                <div class="panel">
+                                    <h4><i class="icon-screenshot"></i> Subscribe</h4>
+
+                                    <form >
+                                        <label>Full Name</label>
+                                        <input type="text" name="" value="" placeholder="Enter Your Full Name" required=""/>
+                                        <label>Email</label>
+                                        <input type="email" name="" value="" placeholder="Enter Your Email" required=""/>
+                                        <div>
+                                            <button class="btn-proper btn">Send</button>
+                                        </div>
+
+
+
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- <div class="span3">
+                                <div class="panel">
+                                    <h4><i class="icon-trophy"></i> Recent News</h4>
+                                    <ul class="unstyled list-link">
+                                        <li><a href="#">Sed eu leo orci, condimentum gravida metus</a></li>
+                                        <li><a href="#">Etiam at nulla ipsum, in rhoncus purus</a></li>
+                                        <li><a href="#">Fusce vel magna faucibus felis dapibus facilisis</a></li>
+                                        <li><a href="#">Vivamus scelerisque dui in massa</a></li>
+                                        <li><a href="#">Pellentesque eget adipiscing dui semper</a></li>
+                                    </ul>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div id="back-to-top" class="text-center"><a href="#"><i class="icon-angle-up"></i></a></div>
+                </div>
+                <div id="footer-twit" class="text-center">
+                    <div class="container">
+                        <div class="panel">
+                            <p><i class="icon-twitter icon-4x"></i> <i class="icon-quote-left qoute"></i> Looking for your new Bond we are your special agents! <i class="icon-quote-right qoute"></i></p>
+                        </div>
+                    </div>
+                </div>
+                <div id="footer" class="text-center">
+                    <div class="panel">
+                        <p>Copyright &copy; <a href="#">SEAL Properties 2014 - <%=DateTime.now.year%> <%= rel %></a> - <a href="/index">Home</a> | <a href="/about_us">About Us</a> | <a href="/faq">FAQ</a> | <a href="/contact">Contact Us</a> | <a href="/career">Careers</a></p>
+                    </div>
+                </div>
+            </div><!-- end  Footer -->
+        </div><!-- End Wrapper-->
+        <!-- Just For Demo You can Remove it if unnecessary-->
+        <a href="/custum-bg" class="ajax-demo"><i class="  icon-cogs"></i></a>
+
+        <!-- Defaut Js Bootsrap
+         ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="assets/jquery.js"></script>
+        <script src="assets/bootstrap-transition.js"></script>
+        <script src="assets/bootstrap-alert.js"></script>
+        <script src="assets/bootstrap-modal.js"></script>
+        <script src="assets/bootstrap-dropdown.js"></script>
+        <script src="assets/bootstrap-scrollspy.js"></script>
+        <script src="assets/bootstrap-tab.js"></script>
+        <script src="assets/bootstrap-tooltip.js"></script>
+        <script src="assets/bootstrap-popover.js"></script>
+        <script src="assets/bootstrap-button.js"></script>
+        <script src="assets/bootstrap-collapse.js"></script>
+        <script src="assets/bootstrap-carousel.js"></script>
+        <script src="assets/bootstrap-typeahead.js"></script>
+
+
+        <!-- Grid -->
+        <script src="assets/Grid-A-Licious-master/jquery.grid-a-licious.min.js"></script>
+        <script src="assets/carouFredSel-6.2.1/jquery.carouFredSel-6.2.1-packed.js"></script>
+        <script src="assets/carouFredSel-6.2.1/helper-plugins/jquery.mousewheel.min.js"></script>
+        <script src="assets/carouFredSel-6.2.1/helper-plugins/jquery.touchSwipe.min.js"></script>
+        <script src="assets/carouFredSel-6.2.1/helper-plugins/jquery.transit.min.js"></script>
+        <script src="assets/carouFredSel-6.2.1/helper-plugins/jquery.ba-throttle-debounce.min.js"></script>
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        <script src='assets/gmap3/gmap3.min.js'></script>
+        <script src="assets/colorbox/jquery.colorbox-min.js"></script>
+        <script src="assets/proper.js"></script>
+
+
+    </body>
+</html>
