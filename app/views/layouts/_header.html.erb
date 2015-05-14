@@ -1,6 +1,4 @@
-<!-- Start Wrapper-->
 <div id="wrapper">
-  <!-- start breadcrumb -->
   <div id="breadcrumb-wrapper">
     <div class="container">
       <div class="pull-left"><%= Time.now.strftime("%A, %d %B %Y") %></div>
@@ -29,20 +27,18 @@
         <% end %>
       </div>
     </div>
-  </div><!-- end breadcrumb -->
-  <!-- start header-wrapper -->
+  </div>
   <div id="header-wrapper" style="background-color:white">
     <div class="container">
       <div class="panel">
         <div class="row-fluid">
           <div class="span9 right-line" style=" min-height: 120px;">
             <div><a class="brand" href="/index" ><img src="/assets/seal_logo.png" style="margin: 20px; height: 100px; position: absolute; width: 830px; top: 18px; left: 0px;"></a> </div>
-            <!-- <div style="font-size:42px;font-weight:300;top: 80px;position: absolute;left: 550px;"> 0191 5805900</div> --> <small class="visible-desktop visible-tablet"></small>
+            <small class="visible-desktop visible-tablet"></small>
           </div>
 
           <div class="span3 ">
             <div class="clearfix">
-              <%#=form_tag(controller: "tasks", action: "search_results", method: "get", class: "form-search") %>
               <form method="get" class="form-search" action="search_results" >
                 <div class="input-append">
                   <%= search_form_for Property.search(params[:q])  do |f| %>
@@ -50,16 +46,13 @@
                     <button type="submit" class="btn"><i class="icon-search"></i></button>
                   <% end %>
                 </div>
-              </form>
-                  <%# end %>
+              </form>              
             </div>
           </div>
-
         </div>
       </div>
     </div>
-  </div><!-- End header-wrapper -->
-  <!-- start Navigation -->
+  </div>
   <div id="navigation">
     <div class="container">
       <div class="navbar navbar-inverse">
@@ -71,7 +64,6 @@
               <span class="icon-bar"></span>
             </button>
             <span class="brand visible-phone visible-tablet">Navbar</span>
-            <!--.nav-collapse -->
             <div class="nav-collapse collapse">
               <ul class="nav">
                 <li class="dropdown">
@@ -88,8 +80,7 @@
                   <ul class="dropdown-menu">
                     <li><a href="/properties_filter">Properties & Filter</a></li>
                     <li><a href="/properties_map">Properties & Map</a></li>
-                    <!--<li><a href="/properties_detail">Properties Detail</a></li>-->
-                  </ul>
+                   </ul>
                 <li><a href="agents">Agents</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Additional Information<b class="caret"></b></a>
@@ -100,16 +91,6 @@
                     <li><a href="/career">Career</a></li>
                   </ul>
                 </li>
-                <!--<li class="dropdown">-->
-                  <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>-->
-                  <!--<ul class="dropdown-menu">-->
-                    <!--<li><a href="/error_page">Error Page</a></li>-->
-                    <!--<li><a href="/pricing">Pricing</a></li>-->
-                    <!--<li><a href="/shortcode">Shortcodes</a></li>-->
-                    <!--<li><a href="/typograpy">Typograpy</a></li>-->
-                    <!--<li><a href="/grid_stystem">Grid System</a></li>-->
-                  <!--</ul>-->
-                <!--</li>-->
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">News <b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -121,14 +102,12 @@
                 <li><a href="/pricing">Landlord</a></li>
                 <li><a href="/pricing_tenant">Tenant</a></li>
               </ul>
-              <!-- <a class="pull-right mylisting" href="/upload_step1"><i class=" icon-folder-close-alt"></i> Upload Items</a>
- -->
-            </div><!--/.nav-collapse -->
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div><!-- end Navigation -->
+  </div>
 </div>
 
 <style type="text/css">
