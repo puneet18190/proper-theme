@@ -100,6 +100,11 @@ class TasksController < ApplicationController
     redirect_to :back, notice: "Thank You for posting your query, we will come back to you soon......"
   end
 
+  def sitemap
+    @static_pages = [root_url]
+    @property = Property.all
+  end  
+
   private
   def con_params
     params.require(:contact).permit(:first_name, :last_name, :email_id, :contact_number, :comments)
