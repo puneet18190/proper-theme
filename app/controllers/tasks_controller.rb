@@ -101,7 +101,7 @@ class TasksController < ApplicationController
   end
 
   def sitemap
-    @static_pages = [root_url]
+    @static_pages = [root_url, contact_url]
     @property = Property.all
   end  
 
