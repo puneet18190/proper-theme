@@ -26,7 +26,7 @@ class TasksController < ApplicationController
       @news= News.all
       @settings = Setting.all.first
     else
-      @properties = Property.where({payment: true, visibility: true})
+      @properties = Property.where({payment: true, visibility: true}).take(3)
       @search = @properties.search(params[:q])
       @tasks = @search.result
       @agents= Agent.all
