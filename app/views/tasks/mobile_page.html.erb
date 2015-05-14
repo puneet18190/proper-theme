@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- <html itemscope itemtype="http://schema.org/Article">   -->
 <html lang="en">
     <head>
         <meta name="p:domain_verify" content="4703b993a3d70d3941b7b0f075d433ac"/>
@@ -17,27 +16,16 @@
         :image    => '/assets/logo.png',
         :description => 'Family Estate Agents based in Saltwell/Bensham Gateshead, NE8 4TJ Offering a wide range of property from flats, terraced houses to modern bungalows for sale or rent. '
         } %>
-        <!-- Bootstrap -->
+    
         <link href="assets/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="assets/bootstrap-responsive.min.css" rel="stylesheet">
         <link href="assets/style.css" rel="stylesheet" media="screen">
         <link href="assets/colorbox/colorbox.css" rel="stylesheet" media="screen">
-        <!-- FONTAWESOME STYLE -->
-        <link rel="stylesheet" href="assets/font-awesome.css"/>
-        <!--[if IE 7]>
-        <link rel="stylesheet" href="assets/font-awesome-ie7.min.css">
-        <![endif]-->
-
-        <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-	
-	<link rel="shortcut icon" href="assets/logo.png">
+        <link rel="stylesheet" href="assets/font-awesome.css"/>	
+    	<link rel="shortcut icon" href="assets/logo.png">
     </head>
     <body>
-        <!-- Start Wrapper-->
         <div id="wrapper">
-            <!-- start breadcrumb -->
             <div id="breadcrumb-wrapper">
                 <div class="container">
                     <div class="pull-left"><%= Time.now.strftime("%A, %d %B %Y") %></div>
@@ -66,8 +54,8 @@
                         <% end %>
                     </div>
                 </div>
-            </div><!-- end breadcrumb -->
-            <!-- start header-wrapper -->
+            </div>
+
             <div id="header-wrapper">
                 <div class="container">
                     <div class="panel">
@@ -77,7 +65,6 @@
                             </div>
                             <div class="span3 ">
                                 <div class="clearfix">
-                                    <!-- <div class="language_curency">Curency: <a href="#">$</a> | <a href="#">&euro;</a> &nbsp; lang: <a href="#">En</a> | <a href="#">Ina</a> | <a href="#">Jpn</a></div> -->
                                     <form method="get" class="form-search" action="search_results" >
                                         <div class="input-append">
                                           <%= search_form_for Property.search(params[:q])  do |f| %>
@@ -91,8 +78,8 @@
                         </div> 
                     </div>
                 </div>
-            </div><!-- End header-wrapper -->
-            <!-- start Navigation -->
+            </div>
+
             <div id="navigation">
                 <div class="container">
                     <div class="navbar navbar-inverse">
@@ -104,7 +91,6 @@
                                     <span class="icon-bar"></span>
                                 </button>
                                 <span class="brand visible-phone visible-tablet">Navbar</span>
-                                <!--.nav-collapse -->
                                 <div class="nav-collapse collapse">
                                     <ul class="nav">
                                         <li class="dropdown">
@@ -121,8 +107,7 @@
                                             <ul class="dropdown-menu">
                                                 <li><a href="/properties_filter">Properties & Filter</a></li>
                                                 <li><a href="/properties_map">Properties & Map</a></li>
-<!--                                                 <li><a href="/properties_detail">Properties Detail</a></li>
- -->                                            </ul>
+                                            </ul>
                                         <li><a href="agents">Agents</a></li>
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Additional Information<b class="caret"></b></a>
@@ -133,17 +118,7 @@
                                                 <li><a href="/career">Career</a></li>
                                             </ul>
                                         </li>
-<!--                                         <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="/error_page">Error Page</a></li>
-                                                <li><a href="/pricing">Pricing</a></li>
-                                                <li><a href="/shortcode">Shortcodes</a></li>
-                                                <li><a href="/typograpy">Typograpy</a></li>
-                                                <li><a href="/grid_stystem">Grid System</a></li>
-                                            </ul>
-                                        </li>
- -->                                        <li class="dropdown">
+                                        <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">News <b class="caret"></b></a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="/news">News List</a></li>
@@ -153,20 +128,15 @@
                                         <li><a href="/contact">Contact</a></li>
                                         <li><a href="/pricing">Landlord</a></li>
                                         <li><a href="/pricing_tenant">Tenant</a></li>
-
                                     </ul>
-                                    <!-- <a class="pull-right mylisting" href="/upload_step1"><i class=" icon-folder-close-alt"></i> Upload Items</a> -->
-
-                                </div><!--/.nav-collapse -->
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div><!-- end Navigation -->
+            </div>
 
-            <!--    Start Content-->
             <div id="content">
-                <!--  Start  Main Title -->
                 <div id="main-title-content">
                     <img src="assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
                     <div class="container">
@@ -175,20 +145,19 @@
                             <p>Sub Title Here</p>    
                         </div>
                     </div>
-                </div> <!--    End Main Title -->
-                <!--    News Carousel-->
+                </div>
                 <div class="news-carousel-wrapper">
                     <dl id="news-carousel" class="news-carousel-style">
                         <%= render 'properties/news_carousel'%>
                     </dl>
                 </div>
-                <!--    End News Carousel-->
                 <div class="container">
                     <div class="row-fluid">
                         <div class="span9">
                             <div class="panel right-line">
-                                <!--Start Grid Featured-->
-                                <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span> Properties</h2>   
+                                <h2 class="main-heading bottom-line">
+                                    <span class="main-circle-icon"><i class="icon-building"></i></span> Properties
+                                </h2>   
                                 <div class="featured-grid right-space" style="height: 882px;overflow-y: scroll">
                                     <div class="box-white">
                                         <div class="grid-item grid-style-properties">
@@ -220,75 +189,13 @@
                                                     </div>
                                                 <% end %>
                                             <% end %>
-                                            <!-- <div class="item">
-                                                <a href="#" class="with-hover">
-                                                    <div class="for_rent_banner"></div>
-                                                    <img alt='images' src="assets/properties/p3.jpg" class="full"/><span class="mask_hover"></span>
-                                                </a>
-                                                <h4 class="">34 Central Park</h4>
-                                                <div class="preview-properties ">
-                                                    <div class="box-detail"> 
-                                                        <p class="text-center short-detail">
-                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Bath : 2</span>
-                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Beds : 2</span>
-                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Pool : 2</span>
-                                                            <span class="price">$380,000</span>
-                                                        </p>
-                                                        <div class="clearfix">
-                                                            <a href="#" class="btn-proper btn btn-small pull-left">See Detail</a>
-                                                            <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <a href="#" class="with-hover">
-                                                    <div class="for_sale_banner"></div>
-                                                    <img alt='images' src="assets/properties/p4.jpg" class="full"/><span class="mask_hover"></span>
-                                                </a>
-                                                <h4 class="">34 Central Park</h4>
-                                                <div class="preview-properties ">
-                                                    <div class="box-detail"> 
-                                                        <p class="text-center short-detail">
-                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Bath : 2</span>
-                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Beds : 2</span>
-                                                            <span class="label"><i class="icon-circle-arrow-right"></i> Pool : 2</span>
-                                                            <span class="price">$380,000</span>
-                                                        </p>
-                                                        <div class="clearfix">
-                                                            <a href="#" class="btn-proper btn btn-small pull-left">See Detail</a>
-                                                            <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> -->
                                         </div>
                                     </div>
-                                    <!--End Grid Featured-->
                                 </div>
-
-                                <!--Start New List-->
-                                <!-- <h2 class="main-heading bottom-line top-line "><span class="main-circle-icon"><i class="icon-book"></i></span> News</h2>   
-                                <div class=" news right-space">
-                                    <%# @news.each do |news| %>
-                                        <div class="media box-white">
-                                            <a class="pull-left" href="#">
-                                                <%#=  image_tag news.image.url, alt: "images", class: "media-object" %>
-                                            </a>
-                                            <div class="media-body">
-                                                <h4 class="media-heading"><%#=news.title%></h4>
-                                                <p><%#=news.description %></p>
-                                                <a href="#" class="btn-proper btn btn-small ">Read More</a>
-                                            </div>
-                                        </div>
-                                    <%#end%>
-                                </div> -->
-                                <!--End News List-->
                             </div>
                         </div>
                         <div class="span3">
                             <div class="panel">
-                                <!--Start Form Search Properties-->
                                 <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-search"></i></span>  Find Properties</h3>    
                                 <%= search_form_for Property.search(params[:q]),url: "/index", class: "bottom-line line-before" do |f| %>
                                     <div class="field" style="height:360px">
@@ -320,15 +227,6 @@
                                         <%= f.search_field :bath_eq, class: "tpgsize" %>
                                       </div>
                                       <div class="clearfix"></div>
-<!--                                       <div class="input-block-level">
-                                        <%= f.label :beds_eq, "Beds" %>
-                                        <%= f.search_field :beds_eq, class: "tc1size" %>
-                                      </div>
-                                      <div class="input-block-level">
-                                        <%= f.label :bath_eq, "Bath" %>
-                                        <%= f.search_field :bath_eq, class: "tc1size" %>
-                                      </div>
- -->                                      
                                       <div class="input-block-level">
                                         <%= f.label :postcode_eq, "Postcode" %>
                                         <%= f.search_field :postcode_eq, class: "tc1size" %>
@@ -337,9 +235,7 @@
                                     <div class="clearfix"></div>
                                     <div class="actions"><%= f.submit "Search", :class => "input-block-level btn-proper btn btn-large" %></div>
                                 <%end%>
-                                <!--End Form Search Properties-->
 
-                                <!--Start List Our Agent-->
                                 <h3 class="bottom-line  line-before main-heading"><span class="main-circle-icon"><i class="icon-list"></i></span>  Our Agents</h3>
                                 <div class="list-items ">
                                   <% @agents.each do |agent| %>
@@ -356,55 +252,26 @@
                                     </div>
                                   <% end %>
                                 </div>
-                                    <!-- <div class="item">
-                                        <div class="img-preview">
-                                            <img src="assets/agents/thum_list/a1.jpg" alt="Corin Langpost" />
-                                        </div>
-                                        <div class="item-desk">
-                                            <div class="title">
-                                                <h3><a href="#">Angelina Cos</a></h3>
-                                            </div>
-                                            <div class="location">Palo Alto CA</div>
-                                            <a href="#" class="btn-proper btn-mini btn">Profile Page</a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="img-preview">
-                                            <img src="http://placehold.it/100x80" alt="Corin Langpost" />
-                                        </div>
-                                        <div class="item-desk">
-                                            <div class="title">
-                                                <h3><a href="#">Angelina Cos</a></h3>
-                                            </div>
-                                            <div class="location">Palo Alto CA</div>
-                                            <a href="#" class="btn-proper btn-mini btn">Profile Page</a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div> -->
                                 </div>
-                                <!--End List Our AGents -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- start Footer -->
             <div id="footer-wrapper">
-		<!-- start footer-ribon -->
-		<div class="container" >
-		  <div class="footer-ribon">
-		    <span>Get in Touch</span>
-		  </div>
-		</div><!-- end footer-ribon -->
+        		<div class="container" >
+        		  <div class="footer-ribon">
+        		    <span>Get in Touch</span>
+        		  </div>
+        		</div>
                 <div id="footer-top">
                     <div class="container">
                         <div class="row-fluid">
                             <div class="span3">
                                 <div class="panel">
                                     <h4><i class="icon-time"></i> Contact Us</h4>
-                                    <!-- <p>Nullam justo nunc, dignissim at convallis posuere, sodales eu orci.</p> -->
+                                    
                                     <ul class="unstyled">
                                       <li><i class="icon-home"></i> 167/169, Saltwell Road, NE8 4TJ</li>
                                       <li><i class="icon-phone"></i> 0191 5805900</li>
@@ -430,23 +297,10 @@
                                     <a href="http://gb.pinterest.com/sealpropert0356/" class="btn-proper btn" target="_blank"><i class="icon-pinterest"></i></a>
                                 </div>
                             </div>
-                            <!-- <div class="span3">
-                                <div class="panel">
-                                    <h4><i class="icon-suitcase"> </i> Pages Link</h4>
-                                    <ul class="unstyled list-link">
-                                        <li><a href="#">Condimentum - Condimentum gravida</a></li>
-                                        <li><a href="#">Etiam at - Condimentum gravida</a></li>
-                                        <li><a href="#">Fusce vel - Condimentum gravida</a></li>
-                                        <li><a href="#">Vivamus - Condimentum gravida</a></li>
-                                        <li><a href="#">Pellentesque - Condimentum gravida</a></li>
-                                        <li><a href="#">Fusce vel - Condimentum gravida</a></li>
-                                    </ul>
-                                </div>
-                            </div> -->
+
                             <div class="span3">
                                 <div class="panel">
                                     <h4><i class="icon-screenshot"></i> Subscribe</h4>
-
                                     <form >
                                         <label>Full Name</label>
                                         <input type="text" name="" value="" placeholder="Enter Your Full Name" required=""/>
@@ -455,24 +309,9 @@
                                         <div>
                                             <button class="btn-proper btn">Send</button>
                                         </div>
-
-
-
                                     </form>
                                 </div>
                             </div>
-                            <!-- <div class="span3">
-                                <div class="panel">
-                                    <h4><i class="icon-trophy"></i> Recent News</h4>
-                                    <ul class="unstyled list-link">
-                                        <li><a href="#">Sed eu leo orci, condimentum gravida metus</a></li>
-                                        <li><a href="#">Etiam at nulla ipsum, in rhoncus purus</a></li>
-                                        <li><a href="#">Fusce vel magna faucibus felis dapibus facilisis</a></li>
-                                        <li><a href="#">Vivamus scelerisque dui in massa</a></li>
-                                        <li><a href="#">Pellentesque eget adipiscing dui semper</a></li>
-                                    </ul>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                     <div id="back-to-top" class="text-center"><a href="#"><i class="icon-angle-up"></i></a></div>
@@ -489,14 +328,10 @@
                         <p>Copyright &copy; <a href="#">SEAL Properties 2014 - <%=DateTime.now.year%> <%= rel %></a> - <a href="/index">Home</a> | <a href="/about_us">About Us</a> | <a href="/faq">FAQ</a> | <a href="/contact">Contact Us</a> | <a href="/career">Careers</a></p>
                     </div>
                 </div>
-            </div><!-- end  Footer -->
-        </div><!-- End Wrapper-->
-        <!-- Just For Demo You can Remove it if unnecessary-->
-        <a href="/custum-bg" class="ajax-demo"><i class="  icon-cogs"></i></a>
+            </div>
+        </div>
+        <a href="/custum-bg" class="ajax-demo"><i class="icon-cogs"></i></a>
 
-        <!-- Defaut Js Bootsrap
-         ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
         <script src="assets/jquery.js"></script>
         <script src="assets/bootstrap-transition.js"></script>
         <script src="assets/bootstrap-alert.js"></script>
@@ -510,9 +345,6 @@
         <script src="assets/bootstrap-collapse.js"></script>
         <script src="assets/bootstrap-carousel.js"></script>
         <script src="assets/bootstrap-typeahead.js"></script>
-
-
-        <!-- Grid -->
         <script src="assets/Grid-A-Licious-master/jquery.grid-a-licious.min.js"></script>
         <script src="assets/carouFredSel-6.2.1/jquery.carouFredSel-6.2.1-packed.js"></script>
         <script src="assets/carouFredSel-6.2.1/helper-plugins/jquery.mousewheel.min.js"></script>
@@ -523,7 +355,5 @@
         <script src='assets/gmap3/gmap3.min.js'></script>
         <script src="assets/colorbox/jquery.colorbox-min.js"></script>
         <script src="assets/proper.js"></script>
-
-
     </body>
 </html>
