@@ -27,7 +27,7 @@ module Proper
     config.assets.precompile += %w( /jquery.transit.min.js )
     config.assets.precompile += %w( /jquery.ba-throttle-debounce.min.js )
     config.assets.precompile += %w( /gmap3.min.js )
-    config.assets.precompile += %w( /colorbox/jquery.colorbox-min.js )
+    config.assets.precompile += %w( /jquery.colorbox-min.js )
     config.assets.precompile += %w( /jquery.js )
     config.assets.precompile += %w( /bootstrap-transition.js )
     config.assets.precompile += %w( /bootstrap-alert.js )
@@ -46,7 +46,7 @@ module Proper
     config.assets.precompile += %w( /bootstrap.min.css")
   config.assets.precompile += %w( /bootstrap-responsive.min.css)
   config.assets.precompile += %w( /style.css)
-  config.assets.precompile += %w( /colorbox/colorbox.css)
+  config.assets.precompile += %w( /colorbox.css)
   # config.middleware.use Mobvious::Manager
     config.paperclip_defaults = {
     :storage => :s3,
