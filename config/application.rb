@@ -20,13 +20,13 @@ module Proper
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.assets.precompile += %w( /bootstrap-tooltip.js )
-    config.assets.precompile += %w( /Grid-A-Licious-master/jquery.grid-a-licious.min.js )
+    config.assets.precompile += %w( /jquery.grid-a-licious.min.js )
     config.assets.precompile += %w( /carouFredSel-6.2.1/jquery.carouFredSel-6.2.1-packed.js )
     config.assets.precompile += %w( /carouFredSel-6.2.1/helper-plugins/jquery.mousewheel.min.js )
     config.assets.precompile += %w( /carouFredSel-6.2.1/helper-plugins/jquery.touchSwipe.min.js )
     config.assets.precompile += %w( /carouFredSel-6.2.1/helper-plugins/jquery.transit.min.js )
     config.assets.precompile += %w( /carouFredSel-6.2.1/helper-plugins/jquery.ba-throttle-debounce.min.js )
-    config.assets.precompile += %w( /gmap3/gmap3.min.js )
+    config.assets.precompile += %w( /gmap3.min.js )
     config.assets.precompile += %w( /colorbox/jquery.colorbox-min.js )
     config.assets.precompile += %w( /jquery.js )
     config.assets.precompile += %w( /bootstrap-transition.js )
