@@ -11,7 +11,7 @@
  * file per style scope.
  *
  *= require bootstrap-responsive.min
- *= require bootstrap
+ *= require bootstrap.min
  *= require font-awesome-ie7.min
  *= require font-awesome
  *= require scaffolds
