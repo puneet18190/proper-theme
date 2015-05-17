@@ -9,7 +9,9 @@ $(document).ready(function() {
 })	
 
 function run_script(ids,property_id,index){
+	$("body").css("background-image","none")
 	if(index != ids.length){
+		randomColor = Math.floor(Math.random()*16777215).toString(16);
 		$.ajax({
 			type : 'get',
 			url : 'screens/oldest_properties_detail/'+property_id,
@@ -19,9 +21,10 @@ function run_script(ids,property_id,index){
 				$(".main_container").toggle( "fast")
 				$(".main_container").html(response);
 				$(".main_container").toggle( "fast")
+				$("body").css("background-color","#"+randomColor)
 				init_slider();
 				var num = index + 1
-				var delay = 50000;
+				var delay = 5000;
 				$(".screen_num").html("<%=page%> :Page "+num)
 				$.localStorage.set('p'+index,response);
 				index = index+1;
@@ -54,16 +57,18 @@ function run_script(ids,property_id,index){
 }
 
 function run_script_by_cookie(index,ids){
-	var delay = 50000;
+	var delay = 5000;
 	if($.localStorage.isSet('p'+index)){
 		setTimeout(
 		  function() 
 		  {
+		  	randomColor = Math.floor(Math.random()*16777215).toString(16);
 		  	$(".main_container").html($.localStorage.get('p'+index));
 		  	init_slider();
 			index = index + 1;
 			$(".main_container").toggle( "fast")
 			$(".screen_num").html("<%=page%>:Page "+(index))
+			$("body").css("background-color","#"+randomColor)
 			$(".main_container").toggle( "fast")
 			if (index == ids.length){
 				index = 0;
