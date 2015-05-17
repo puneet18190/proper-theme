@@ -14,4 +14,22 @@ module ApplicationHelper
   def page_header(text)
     content_for(:page_header) { text.to_s }
   end
+
+  def responsive_image(image)
+    begin
+      if request.ip == "82.68.0.86"
+        image.url
+      else
+        if is_mobile_device?
+          image.url(:small)
+        elsif ::MobileFu::Tablet.is_a_tablet_device? request.user_agent
+          image.url(:medium)
+        else
+          image.url(:large)
+        end      
+      end
+    rescue
+      image.url
+    end    
+  end 
 end

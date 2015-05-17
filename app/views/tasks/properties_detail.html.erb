@@ -33,16 +33,16 @@
                                 <h3><%= @data.name %></h3> <br>
                                 <p>£<%= @data.price %> </p>
                               </div>
-                              <%= image_tag @data.image1.url, id: "big-image-preview", alt: "big-image-preview" %>
+                              <%= image_tag responsive_image(@data.image1), id: "big-image-preview", alt: "big-image-preview" %>
                             </div>
                             <div class="list_image_detail">
                               <ul id="list_images_property">
-                                <li><a href="#" data-bigimage="#" data-title="Interior 01" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag @data.image1.url, alt: "Thum"%></a></li>
-                                <li><a href="#" data-bigimage="#" data-title="Interior 02" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag @data.image2.url, alt: "Thum"%></a></li>
-                                <li><a href="#" data-bigimage="#" data-title="Interior 03" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag @data.image3.url, alt: "Thum"%></a></li>
-                                <li><a href="#" data-bigImage="#" data-title="Interior 04" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag @data.image4.url, alt: "Thum"%></a></li>
-                                <li><a href="#" data-bigimage="#" data-title="Interior 05" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag @data.image5.url, alt: "Thum"%></a></li>
-                                <li><a href="#" data-bigimage="#" data-title="Interior 06" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag @data.image6.url, alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigimage="#" data-title="Interior 01" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag responsive_image(@data.image1), alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigimage="#" data-title="Interior 02" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag responsive_image(@data.image2), alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigimage="#" data-title="Interior 03" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag responsive_image(@data.image3), alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigImage="#" data-title="Interior 04" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag responsive_image(@data.image4), alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigimage="#" data-title="Interior 05" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag responsive_image(@data.image5), alt: "Thum"%></a></li>
+                                <li><a href="#" data-bigimage="#" data-title="Interior 06" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag responsive_image(@data.image6), alt: "Thum"%></a></li>
                               </ul>
                               <div class="clearfix"></div>
                               <a id="prev2" class="prev" href="#">&lt;</a>
@@ -89,7 +89,7 @@
                     <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-user"></i></span> Agent</h3>
                     <div class="agent-panel bottom-line line-before">
                         <a href="#" class="agent-image ">
-                          <%=  image_tag @agents.image.url, class: "img-polaroid" %>
+                          <%=  image_tag responsive_image(@agents.image), class: "img-polaroid" %>
                         </a>
                         <ul class="unstyled margin20">
                             <li><i class="icon-phone"></i><%= @agents.phone %></li>

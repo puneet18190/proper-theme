@@ -41,7 +41,7 @@
                             <% else %>
                               <div class="for_sale_banner"></div>
                             <% end %>
-                            <a href=<%="/properties_detail/#{task.slug}"%>><%=  image_tag task.image1.url, class: "full", class: "mask_hover" %></a>
+                            <a href=<%="/properties_detail/#{task.slug}"%>><%=  image_tag responsive_image(task.image1), class: "full", class: "mask_hover" %></a>
                           </a>
                           <h4 class=" "><%= task.name %></h4>
                           <div class="preview-properties ">
@@ -82,7 +82,7 @@
               <div class="media box-white" style="height:140px">
                 <div id="abb">
                   <a class="pull-left" href="#" style="width:180px">
-                    <%=  image_tag news.image.url, alt: "images", class: "media-object" %>
+                    <%=  image_tag responsive_image(news.image), alt: "images", class: "media-object" %>
                   </a>
                   <div class="media-body" style="margin-left:190px">
                     <h4 class="media-heading"> <%=news.title%></h4>

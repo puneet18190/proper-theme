@@ -66,7 +66,7 @@
                                                             <div class="desc-type for-sale"><%= task.category %></div>
                                                             <div class="price">&euro; <%= task.price %></div>
                                                         </div>
-                                                        <%= image_tag task.image1.url, :style=>"height:250px;width:500px;" %>
+                                                        <%= image_tag responsive_image(task.image1), :style=>"height:250px;width:500px;" %>
                                                     </a>
                                                 </div>
                                             </div>
@@ -80,7 +80,7 @@
                                                     </p>
                                                     <div class="agent-preview">
                                                         <% ag = Agent.find_by_id(task.agent_id)%>
-                                                        <div class="agent-image pull-left"  ><a href="#"><%= image_tag ag.image.url, :style=>"height:80px;width:200px;" %></a></div>
+                                                        <div class="agent-image pull-left"  ><a href="#"><%= image_tag responsive_image(ag.image), :style=>"height:80px;width:200px;" %></a></div>
                                                         <div class="agent-contant pull-right">
                                                             <ul class="unstyled">
                                                                 <li><i class="icon-phone"></i><%=ag.phone%></li>
@@ -146,7 +146,7 @@
                               <div class="list-items ">
                                 <% @agents.each do |agent| %>
                                   <div class="item">
-                                    <%=  image_tag agent.image.url, alt: "Corin Langpost", class: "img-preview", :style=>"height:70px;width:100px;" %>
+                                    <%=  image_tag responsive_image(agent.image), alt: "Corin Langpost", class: "img-preview", :style=>"height:70px;width:100px;" %>
                                       <div class="item-desk">
                                         <div class="title">
                                           <h3><a href="#"><%=agent.name%></a></h3>

@@ -3,7 +3,7 @@
       <div id="googleMap" class=""></div>
       <div class="map-with-agent visible-desktop">
           <h3><%= @settings.admin_text %></h3>
-          <%= image_tag @settings.admin_image.url, :style=>"height:300px;" %>
+          <%= image_tag responsive_image(@settings.admin_image), :style=>"height:300px;" %>
       </div>
   </div>
   <div class="news-carousel-wrapper">
@@ -40,7 +40,7 @@
                             <% else %>
                                 <div class="for_sale_banner"></div>
                             <% end %>
-                            <a href=<%="/properties_detail/#{task.slug}"%>><%=  image_tag (is_mobile_device? ? task.image1.url(:thumb) : task.image1.url), class: "full", class: "mask_hover" %></a>
+                            <a href=<%="/properties_detail/#{task.slug}"%>><%=  image_tag (responsive_image(task.image1)), class: "full", class: "mask_hover" %></a>
                           </a>
                           <h4 class=" "><%= task.name %></h4>
                           <div class="preview-properties ">
@@ -126,7 +126,7 @@
           <div class="list-items ">
             <% @agents.each do |agent| %>
               <div class="item">
-                <%=  image_tag agent.image.url, alt: "Corin Langpost", class: "img-preview" %>
+                <%=  image_tag responsive_image(agent.image), alt: "Corin Langpost", class: "img-preview" %>
                   <div class="item-desk">
                     <div class="title">
                       <h3><a href="#"><%=agent.name%></a></h3>

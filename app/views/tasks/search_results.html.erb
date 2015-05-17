@@ -26,7 +26,7 @@
                                 <% else %>
                                     <div class="for_sale_banner"></div>
                                 <% end %>
-                                <a href=<%="/properties_detail/#{task.slug}"%>><%=  image_tag task.image1.url, class: "full", class: "mask_hover" %></a>   </a>
+                                <a href=<%="/properties_detail/#{task.slug}"%>><%=  image_tag responsive_image(task.image1), class: "full", class: "mask_hover" %></a>   </a>
                                           <h4 class=" "><%= task.name %></h4>
                                           <div class="preview-properties ">
                                             <div class="box-detail">
