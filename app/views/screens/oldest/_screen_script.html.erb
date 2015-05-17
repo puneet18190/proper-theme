@@ -16,12 +16,12 @@ function run_script(ids,property_id,index){
 			data : 'page=<%=page%>',
 			async: false,
 			success : function(response){
-				$("#footer-wrapper,.main_container").slideUp('slow')
+				$(".main_container").toggle( "fast")
 				$(".main_container").html(response);
-				$("#footer-wrapper,.main_container").slideDown('slow')
+				$(".main_container").toggle( "fast")
 				init_slider();
 				var num = index + 1
-				var delay = 50000;
+				var delay = 5000;
 				$(".screen_num").html("<%=page%> :Page "+num)
 				$.localStorage.set('p'+index,response);
 				index = index+1;
@@ -54,7 +54,7 @@ function run_script(ids,property_id,index){
 }
 
 function run_script_by_cookie(index,ids){
-	var delay = 50000;
+	var delay = 5000;
 	if($.localStorage.isSet('p'+index)){
 		setTimeout(
 		  function() 
@@ -62,9 +62,9 @@ function run_script_by_cookie(index,ids){
 		  	$(".main_container").html($.localStorage.get('p'+index));
 		  	init_slider();
 			index = index + 1;
-			$("#footer-wrapper,.main_container").slideUp('slow')
+			$(".main_container").toggle( "fast")
 			$(".screen_num").html("<%=page%>:Page "+(index))
-			$("#footer-wrapper,.main_container").slideDown('slow')
+			$(".main_container").toggle( "fast")
 			if (index == ids.length){
 				index = 0;
 			}
