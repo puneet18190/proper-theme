@@ -11,7 +11,7 @@
             <div class="property ">
               <div class="row-fluid">
                 <div class="span6">
-                  <div class="property-images">
+                  <div class="property-images" style="120%">
                     <a href="#">
                       <div class="mask">
                         <% if @data.category == "rent" %>
@@ -48,7 +48,7 @@
                   </div>
                 </div>
                 <div class="span6">
-                  <div class="property-details">
+                  <div class="property-details" style="width:84%;margin-left:80px">
                     <h3><a href="#"><%="SP"+@data.created_at.year.to_s.split(//).last(2).join()+@data.created_at.month.to_s.rjust(2,'0')+@data.id.to_s.rjust(4,'0')%> <%= @data.name %></a></h3>
                     <p><%= @data.description %></p>
                     <p>
