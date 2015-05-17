@@ -27,7 +27,7 @@
                         <%= image_tag @data.image1.url, id: "big-image-preview", alt: "big-image-preview",style: "height:500px" %>
                       <% end %>
                     </a>
-                    <div class="list_image_detail" style="width:800px;margin-top:20px">
+                    <div class="list_image_detail" style="width:198%;margin-top:20px">
                       <ul id="list_images_property">
                         <%unless @data.image2.url.nil?%><li style="margin:2px;height:100px"><a href="#" data-title="Interior 02" ><img src=<%= @data.image2.url%>></a></li><%end%>
                         <%unless @data.image3.url.nil?%><li style="margin:2px;height:100px"><a href="#" data-title="Interior 03" ><img src=<%= @data.image3.url%>></a></li><%end%>
