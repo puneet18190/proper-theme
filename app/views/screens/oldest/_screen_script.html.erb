@@ -20,7 +20,7 @@ function run_script(ids,property_id,index){
 				init_slider();
 				var num = index + 1
 				var delay = 50000;
-				$(".screen_num").html("<%=page%> Properties:Page "+num)
+				$(".screen_num").html("<%=page%> :Page "+num)
 				$.localStorage.set('p'+index,response);
 				index = index+1;
 				console.log(index)

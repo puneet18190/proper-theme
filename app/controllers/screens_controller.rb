@@ -40,7 +40,7 @@ class ScreensController < ApplicationController
 
 	def newest
 		@properties = Property.where(:visibility=>true).last(5)
-		render '/screens/newest/newest', :layout => "screen_layout"
+		render '/screens/oldest/newest', :layout => "screen_layout"
 	end
 
 	def newest_properties_detail
