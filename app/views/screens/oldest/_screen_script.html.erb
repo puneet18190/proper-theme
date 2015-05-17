@@ -16,7 +16,9 @@ function run_script(ids,property_id,index){
 			data : 'page=<%=page%>',
 			async: false,
 			success : function(response){
+				$("#footer-wrapper,.main_container").slideUp('slow')
 				$(".main_container").html(response);
+				$("#footer-wrapper,.main_container").slideDown('slow')
 				init_slider();
 				var num = index + 1
 				var delay = 50000;
@@ -60,7 +62,9 @@ function run_script_by_cookie(index,ids){
 		  	$(".main_container").html($.localStorage.get('p'+index));
 		  	init_slider();
 			index = index + 1;
+			$("#footer-wrapper,.main_container").slideUp('slow')
 			$(".screen_num").html("<%=page%>:Page "+(index))
+			$("#footer-wrapper,.main_container").slideDown('slow')
 			if (index == ids.length){
 				index = 0;
 			}
