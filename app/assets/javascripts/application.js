@@ -23,6 +23,5 @@
 //= require bootstrap-modal
 //= require bootstrap-tooltip
 //= require bootstrap-popover
-//= require jquery.slicebox
 #= require s3_direct_upload
 //= require_tree .
