@@ -26,9 +26,11 @@
                       <% else %>
                         <%#= image_tag @data.image1.url, id: "big-image-preview", alt: "big-image-preview",style: "height:500px" %>
                           <ul id="sb-slider" class="sb-slider" style="position:static;width:116%">
-                            <li><a href="#"><img src="https://sealpropertiesus.s3.amazonaws.com/uploads/property/image1/85/large_25rp.jpg" style="height:500px"></a></li>
-                            <li><a href="#"><img src="https://sealpropertiesus.s3.amazonaws.com/uploads/property/image1/85/large_25rp.jpg" style="height:500px"></a></li>
-                            <li><a href="#"><img src="https://sealpropertiesus.s3.amazonaws.com/uploads/property/image1/85/large_25rp.jpg" style="height:500px"></a></li>
+                            <% (2..10).each do |i| %>
+                              <%unless @data.send("image#{i}").url.nil?%>
+                                <li><a href="#"><img src=<%= @data.send("image#{i}").url%> style="height:500px"></a></li>
+                              <%end%>
+                            <%end%>
                           </ul>
                       <% end %>
                     </a>
