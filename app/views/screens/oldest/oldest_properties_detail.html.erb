@@ -24,10 +24,17 @@
                       <% if @data.image1.url.empty? %>
                            <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
                       <% else %>
-                        <%= image_tag @data.image1.url, id: "big-image-preview", alt: "big-image-preview",style: "height:500px" %>
+                        <%#= image_tag @data.image1.url, id: "big-image-preview", alt: "big-image-preview",style: "height:500px" %>
+                          <ul id="sb-slider" class="sb-slider" style="position:static;width:116%">
+                            <li><a href="#"><img src="https://sealpropertiesus.s3.amazonaws.com/uploads/property/image1/85/large_25rp.jpg" style="height:500px"></a></li>
+                            <li><a href="#"><img src="https://sealpropertiesus.s3.amazonaws.com/uploads/property/image1/85/large_25rp.jpg" style="height:500px"></a></li>
+                            <li><a href="#"><img src="https://sealpropertiesus.s3.amazonaws.com/uploads/property/image1/85/large_25rp.jpg" style="height:500px"></a></li>
+                          </ul>
                       <% end %>
                     </a>
-                    <div id="sb-slider" class="sb-slider list_image_detail" style="width:198%;margin-top:20px">
+<%
+=begin%>                    
+                    <div class="list_image_detail" style="width:198%;margin-top:20px">
                       <ul id="list_images_property">
                         <%unless @data.image2.url.nil?%><li style="margin:2px;height:100px"><a href="#" data-title="Interior 02" ><img src=<%= @data.image2.url%>></a></li><%end%>
                         <%unless @data.image3.url.nil?%><li style="margin:2px;height:100px"><a href="#" data-title="Interior 03" ><img src=<%= @data.image3.url%>></a></li><%end%>
@@ -45,6 +52,8 @@
                         <a id="next2" class="next" href="#">&gt;</a>
                       <%end%>
                     </div>
+<%
+=end%>                    
                   </div>
                 </div>
                 <div class="span6">
