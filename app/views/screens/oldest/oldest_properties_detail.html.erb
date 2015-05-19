@@ -26,7 +26,7 @@
                       <% else %>
                         <%#= image_tag @data.image1.url, id: "big-image-preview", alt: "big-image-preview",style: "height:500px" %>
                           <ul id="sb-slider" class="sb-slider" style="position:static;width:116%">
-                            <% (2..10).each do |i| %>
+                            <% (1..10).each do |i| %>
                               <%unless @data.send("image#{i}").url.nil?%>
                                 <li><a href="#"><img src=<%= @data.send("image#{i}").url%> style="height:500px"></a></li>
                               <%end%>
