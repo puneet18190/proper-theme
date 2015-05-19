@@ -137,7 +137,7 @@ class PropertiesController < ApplicationController
         @api = Koala::Facebook::API.new(current_user.fb_token)
         @api.put_connections("sealproperties", "feed", {
           :message => "New Property:#{property_id} #{@property.name} has been Added.",
-          :picture => @property.image1.url,
+          :picture => @property.image1.url(:large),
           :link => "http://#{request.host_with_port}/properties_detail/#{@property.id}",
           :name => @property.name,
           :description => "#{@property.description}, Price: #{@property.price}",
@@ -151,7 +151,7 @@ class PropertiesController < ApplicationController
         config.access_token_secret = "i9Ws9DjyEmyC9fip50Prgo0L2exARNfhDz7IMbMq8L7M7"
       end  
 
-      img=open(@property.image1.url)
+      img=open(@property.image1.url(:large))
       if img.is_a?(StringIO)
         client.update("New Property:#{property_id} #{@property.name} has been Added. \nPrice:  #{@property.price} \nhttp://#{request.host_with_port}/properties_detail/#{@property.id}")
       else
