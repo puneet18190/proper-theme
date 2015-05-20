@@ -105,5 +105,5 @@ gem 'odf-report', github: 'sandrods/odf-report'
 gem 'carrierwave_backgrounder'
 gem 'whenever', :require => false
 gem 'tty-screen'
-gem 'sextant'
-gem 'rails_db_info'
+# gem 'sextant'
+# gem 'rails_db_info'
