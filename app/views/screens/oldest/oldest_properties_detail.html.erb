@@ -2,7 +2,7 @@
   <div class="container" style="width:90%">
     <div class="row-fluid">
       <div class="span9">
-        <div class="panel right-line" style="height:880px">
+        <div class="panel right-line" style="height:929px">
           <h2 class="main-heading bottom-line">
             <span class="main-circle-icon"><i class="icon-building"></i></span> 
             <%=@data.name%>
@@ -75,12 +75,12 @@
               Council: <%=  (@datapat["code"] ==404 || @datapat["code"] ==nil) ? "" : "#{@datapat["administrative"]["council"]["title"]}"   %>
             </p>
           </div>
-          <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-user"></i></span> Agent</h3>
+          <h3 class="main-heading bottom-line line-before" style="padding:10px 0;margin-bottom: 5px;"><span class="main-circle-icon"><i class="icon-user"></i></span> Agent</h3>
           <div class="agent-panel bottom-line line-before">
               <% @agent = @data.agent %>
               <% unless @agent.nil? %>
                 <a href="#" class="agent-image ">
-                    <img src="<%=@agent.image.url%>" class="img-polaroid" alt="agent">
+                    <img src="<%=@agent.image.url%>" class="img-polaroid" alt="agent" style = "max-height:140px">
                 </a>
                 <ul class="unstyled margin20">
                   <li><i class="icon-phone"></i><%= @agent.phone %></li>
@@ -91,6 +91,12 @@
               <%else%>
                 No Agent  
               <%end%>  
+          </div>
+          <h3 class="main-heading bottom-line line-before" style="padding:10px 0;margin-bottom: 5px;"><span class="main-circle-icon"><i class="icon-user"></i></span> Scan Me</h3>
+          <div class="agent-panel bottom-line line-before">
+            <a href="#" class="agent-image ">
+              <%= image_tag @qr,:style => "max-height:140px" %>
+            </a>
           </div>
         </div>
       </div>
