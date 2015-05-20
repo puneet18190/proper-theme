@@ -20,7 +20,6 @@ function run_script(ids,property_id,index){
 			success : function(response){
 				$(".main_container").toggle( "fast")
 				$(".main_container").html(response);
-				$('#sb-slider').slicebox({autoplay : true,interval: 5000,orientation : 'r'});
 				$(".main_container").toggle( "fast")
 				$("body").css("background-color","#"+randomColor)
 				init_slider();
@@ -68,7 +67,6 @@ function run_script_by_cookie(index,ids){
 		  	init_slider();
 			index = index + 1;
 			$(".main_container").toggle( "fast")
-			$('#sb-slider').slicebox({autoplay : true,interval: 5000,orientation : 'r'});
 			$(".screen_num").html("<%=page%>:Page "+(index))
 			$("body").css("background-color","#"+randomColor)
 			$(".main_container").toggle( "fast")
