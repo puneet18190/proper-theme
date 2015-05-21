@@ -9,6 +9,7 @@ $(document).ready(function() {
 })	
 
 function run_script(ids,property_id,index){
+	$("body").css("background-image","none")
 	if(index != ids.length){
 		randomColor = Math.floor(Math.random()*16777215).toString(16);
 		$.ajax({
