@@ -107,3 +107,4 @@ gem 'whenever', :require => false
 gem 'tty-screen'
 # gem 'sextant'
 # gem 'rails_db_info'
+gem 'newrelic_rpm'
