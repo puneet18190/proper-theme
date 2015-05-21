@@ -1,5 +1,5 @@
 count = 0
-Dashing.scheduler.every '60s' do
+Dashing.scheduler.every '121s' do
   @properties = Property.all
   @users = User.all
   a1= ["Active Properties"]
@@ -21,7 +21,7 @@ Dashing.scheduler.every '60s' do
 
 end
 
-Dashing.scheduler.every '62s' do
+Dashing.scheduler.every '111s' do
   a5= ["In Year","In Month","In Week","Today","Online Visitors"]
   b5= []
 
@@ -48,7 +48,7 @@ Dashing.scheduler.every '62s' do
   Dashing.send_event('visitors', { items: [{:label=>a5[count], :value=>b5[count]},{:label=>a5[count+1], :value=>b5[count+1]},{:label=>a5[count+2], :value=>b5[count+2]},{:label=>a5[count+3], :value=>b5[count+3]},{:label=>a5[count+4], :value=>b5[count+4]}] })
 end
 
-Dashing.scheduler.every '64s' do
+Dashing.scheduler.every '101s' do
   a5= ["In Year","In Month","In Week","Today"]
   b5= []
 
@@ -71,7 +71,7 @@ Dashing.scheduler.every '64s' do
   Dashing.send_event('visitors_unique', { items: [{:label=>a5[count], :value=>b5[count]},{:label=>a5[count+1], :value=>b5[count+1]},{:label=>a5[count+2], :value=>b5[count+2]},{:label=>a5[count+3], :value=>b5[count+3]}] })
 end
 
-Dashing.scheduler.every '66s' do
+Dashing.scheduler.every '91s' do
   a5= ["In Year","In Month","In Week","Today"]
   b5= []
 
@@ -94,7 +94,7 @@ Dashing.scheduler.every '66s' do
   Dashing.send_event('visitors_new', { items: [{:label=>a5[count], :value=>b5[count]},{:label=>a5[count+1], :value=>b5[count+1]},{:label=>a5[count+2], :value=>b5[count+2]},{:label=>a5[count+3], :value=>b5[count+3]}] })
 end
 
-Dashing.scheduler.every '68s' do
+Dashing.scheduler.every '81s' do
   a5= ["In Year","In Month","In Week","Today"]
   b5= []
 
@@ -131,7 +131,7 @@ Dashing.scheduler.every '68s' do
   Dashing.send_event('average_time', { items: [{:label=>a7[count], :value=>b7[count] }]})
 end
 
-Dashing.scheduler.every '70s' do
+Dashing.scheduler.every '71s' do
   a5= ["In Year","In Month","In Week","Today"]
   b5= []
 
@@ -154,7 +154,7 @@ Dashing.scheduler.every '70s' do
   Dashing.send_event('bounce-rate', { items: [{:label=>a5[count], :value=>b5[count]},{:label=>a5[count+1], :value=>b5[count+1]},{:label=>a5[count+2], :value=>b5[count+2]},{:label=>a5[count+3], :value=>b5[count+3]}] })
 end
 
-Dashing.scheduler.every '72s' do
+Dashing.scheduler.every '61s' do
   @screen = Screen.all
   a1= ["Screen 3"]
   unless @screen.find_by_name("screen_3").nil?
@@ -164,7 +164,7 @@ Dashing.scheduler.every '72s' do
    end	  
 end
 
-Dashing.scheduler.every '74s' do
+Dashing.scheduler.every '51s' do
 	require 'stripe'
   tp = Stripe::Plan.retrieve("plan_5")["amount"]
   lp = Stripe::Plan.retrieve("plan_10")["amount"]
@@ -174,7 +174,7 @@ Dashing.scheduler.every '74s' do
   Dashing.send_event('payment', { items: [{:label=>a8[count], :value=>b8[count] },{:label=>a8[count+1], :value=>b8[count+1]}]})
 end
 
-Dashing.scheduler.every '76s' do
+Dashing.scheduler.every '41s' do
   a9= []
   b9= []
 
