@@ -251,4 +251,26 @@ class ScreensController < ApplicationController
 	      format.js
 	    end
 	end	
+
+	def api_for_dashing
+	  @properties = Property.all
+	  @users = User.all
+	  properties = @properties.where(:payment=>true).count
+	  tenants = @users.where("payment= ? AND status = ?", true,"tenant").count
+	  landlords = @users.where("payment= ? AND status = ?", true,"landlord").count
+	  total_ll = @users.where(:status => "landlord").count
+	  year_ll = @users.where("created_at >= ? AND status = ?", Date.today.at_beginning_of_year,"landlord").count
+	  month_ll = @users.where("created_at >= ? AND status = ?", Date.today.at_beginning_of_month,"landlord").count
+	  week_ll = @users.where("created_at >= ? AND status = ?", Date.today.at_beginning_of_week,"landlord").count
+	  today_ll = @users.where("created_at >= ? AND status = ?", Date.today.at_beginning_of_day,"landlord").count
+	  total_tenant = @users.where(:status => "tenant").count
+	  year_tenant = @users.where("created_at >= ? AND status = ?", Date.today.at_beginning_of_year,"tenant").count
+	  month_tenant = @users.where("created_at >= ? AND status = ?", Date.today.at_beginning_of_month,"tenant").count
+	  week_tenant = @users.where("created_at >= ? AND status = ?", Date.today.at_beginning_of_week,"tenant").count
+	  today_tenant = @users.where("created_at >= ? AND status = ?", Date.today.at_beginning_of_day,"tenant").count
+
+	  respond_to do |format|
+	    format.json { render :json => {properties: properties, tenants: tenants, landlords: landlords,total_ll:total_ll,year_ll:year_ll,month_ll:month_ll,week_ll:week_ll,today_ll:today_ll,total_ll:total_ll,total_tenant:total_tenant,year_tenant:year_tenant,month_tenant:month_tenant,week_tenant:week_tenant,today_tenant:today_tenant} }
+      end
+	end
 end

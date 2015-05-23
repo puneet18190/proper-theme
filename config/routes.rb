@@ -148,6 +148,7 @@ Rails.application.routes.draw do
   match '/mail_merge',   to: 'screens#mail_merge', via: 'get'
   match '/mail_merge_uploadfile',   to: 'screens#mail_merge_uploadfile', via: 'post'
   get "sitemap.xml" => "tasks#sitemap", as: "sitemap", defaults: { format: "xml" }
+  match '/api_for_dashing',   to: 'screens#api_for_dashing', via: 'get'
   #match '/uploadfile',   to: 'screens#uploadfile', via: 'post'
   # See how all your routes lay out with "rake routes".
 
