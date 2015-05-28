@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150509192910) do
+ActiveRecord::Schema.define(version: 20150528161257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -264,8 +264,8 @@ ActiveRecord::Schema.define(version: 20150509192910) do
     t.date     "l_date"
     t.date     "r_date"
     t.integer  "user_id"
-    t.boolean  "approve",         default: false
-    t.boolean  "payment",         default: false
+    t.boolean  "approve",           default: false
+    t.boolean  "payment",           default: false
     t.string   "slug"
     t.datetime "validity"
     t.string   "coordinates"
@@ -277,7 +277,12 @@ ActiveRecord::Schema.define(version: 20150509192910) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "radius"
-    t.string   "approval_status", default: "false"
+    t.string   "approval_status",   default: "false"
+    t.text     "short_description"
+    t.boolean  "gas_ch",            default: false
+    t.boolean  "glazing",           default: false
+    t.string   "parking_status",    default: "none"
+    t.integer  "car"
   end
 
   add_index "properties", ["slug"], name: "index_properties_on_slug", unique: true, using: :btree

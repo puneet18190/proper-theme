@@ -50,12 +50,16 @@
                 <div class="span6">
                   <div class="property-details" style="width:84%;margin-left:80px">
                     <h3><a href="#"><%="SP"+@data.created_at.year.to_s.split(//).last(2).join()+@data.created_at.month.to_s.rjust(2,'0')+@data.id.to_s.rjust(4,'0')%> <%= @data.name %></a></h3>
-                    <p><%= @data.description.html_safe %></p>
+                    <p><%= @data.short_description %></p>
                     <p>
                       <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= @data.bath %></span>
                       <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= @data.beds %></span>
                       <span class="label"><i class="icon-circle-arrow-right"></i> Parking : <%= @data.parking %></span>
-                      <!-- <div style="padding:20px"><%#= image_tag @qr %> </div> -->
+                      <span class="label"><i class="icon-circle-arrow-right"></i> Gas CH : <%= @data.gas_ch %></span>
+                      <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> Glazing : <%= @data.glazing %></span>
+                      <% unless @data.parking_status == "none" %>
+                        <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> <%= @data.parking_status %> : <%= @data.car %></span>
+                      <%end%>
                     </p>
                   </div>
                 </div>

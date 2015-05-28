@@ -1,152 +1,145 @@
 
-
-<!--Start Content-->
 <div id="content">
-  <!--    News Carousel-->
   <div class="news-carousel-wrapper">
     <dl id="news-carousel" class="news-carousel-style">
       <%= render 'properties/news_carousel'%>
     </dl>
   </div>
-  <!--    End News Carousel-->
-  <!--Start Form Singup-->
-
   <div class="proper-singup">
-<p>
-  <strong>Name:</strong>
-  <%= @property.name %>
-</p>
-<p>
-  <strong>Address1:</strong>
-  <%= @property.address1 %>
-</p>
-
-<p>
-  <strong>Address2:</strong>
-  <%= @property.address2 %>
-</p>
-
-<p>
-  <strong>Address3:</strong>
-  <%= @property.address3 %>
-</p>
-
-<p>
-  <strong>Postcode:</strong>
-  <%= @property.postcode %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  £<%= @property.price.to_i %>
-</p>
-
-<p>
-  <strong>Beds:</strong>
-  <%= @property.beds %>
-</p>
-
-<p>
-  <strong>Bath:</strong>
-  <%= @property.bath %>
-</p>
-
-<p>
-  <strong>Parking:</strong>
-  <%= @property.parking %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @property.category %>
-</p>
-
-<p>
-  <strong>Image1:</strong><br>
-  <%= image_tag @property.image1.url(:small) %>
-</p>
-
-<p>
-  <strong>Image2:</strong><br>
-  <%= image_tag @property.image2.url(:small) %>
-</p>
-
-<p>
-  <strong>Image3:</strong><br>
-  <%= image_tag @property.image3.url(:small) %>
-</p>
-
-<p>
-  <strong>Image4:</strong><br>
-  <%= image_tag @property.image4.url(:small) %>
-</p>
-
-<p>
-  <strong>Image5:</strong><br>
-  <%= image_tag @property.image5.url(:small) %>
-</p>
-
-<p>
-  <strong>Image6:</strong><br>
-  <%= image_tag @property.image6.url(:small) %>
-</p>
-
-<p>
-  <strong>Image7:</strong><br>
-  <%= image_tag @property.image7.url(:small) %>
-</p>
-<p>
-  <strong>Image8:</strong><br>
-  <%= image_tag @property.image8.url(:small) %>
-</p>
-<p>
-  <strong>Image9:</strong><br>
-  <%= image_tag @property.image9.url(:small) %>
-</p>
-<p>
-  <strong>Image10:</strong><br>
-  <%= image_tag @property.image10.url(:small) %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= raw(@property.description) %>
-</p>
-
+    <p>
+      <strong>Name:</strong>
+      <%= @property.name %>
+    </p>
+    <p>
+      <strong>Address1:</strong>
+      <%= @property.address1 %>
+    </p>
+    <p>
+      <strong>Address2:</strong>
+      <%= @property.address2 %>
+    </p>
+    <p>
+      <strong>Address3:</strong>
+      <%= @property.address3 %>
+    </p>
+    <p>
+      <strong>Postcode:</strong>
+      <%= @property.postcode %>
+    </p>
+    <p>
+      <strong>Price:</strong>
+      £<%= @property.price.to_i %>
+    </p>
+    <p>
+      <strong>Beds:</strong>
+      <%= @property.beds %>
+    </p>
+    <p>
+      <strong>Bath:</strong>
+      <%= @property.bath %>
+    </p>
+    <p>
+      <strong>Parking:</strong>
+      <%= @property.parking %>
+    </p>
+    <p>
+      <strong>Category:</strong>
+      <%= @property.category %>
+    </p>
+    <p>
+      <strong>Parking:</strong>
+      <%= @property.parking_status %>
+    </p>
+    <p>
+      <strong>Number of Cars:</strong>
+      <%= @property.car %>
+    </p>
+    <p>
+      <strong>Image1:</strong><br>
+      <%= image_tag @property.image1.url(:small) %>
+    </p>
+    <p>
+      <strong>Image2:</strong><br>
+      <%= image_tag @property.image2.url(:small) %>
+    </p>
+    <p>
+      <strong>Image3:</strong><br>
+      <%= image_tag @property.image3.url(:small) %>
+    </p>
+    <p>
+      <strong>Image4:</strong><br>
+      <%= image_tag @property.image4.url(:small) %>
+    </p>
+    <p>
+      <strong>Image5:</strong><br>
+      <%= image_tag @property.image5.url(:small) %>
+    </p>
+    <p>
+      <strong>Image6:</strong><br>
+      <%= image_tag @property.image6.url(:small) %>
+    </p>
+    <p>
+      <strong>Image7:</strong><br>
+      <%= image_tag @property.image7.url(:small) %>
+    </p>
+    <p>
+      <strong>Image8:</strong><br>
+      <%= image_tag @property.image8.url(:small) %>
+    </p>
+    <p>
+      <strong>Image9:</strong><br>
+      <%= image_tag @property.image9.url(:small) %>
+    </p>
+    <p>
+      <strong>Image10:</strong><br>
+      <%= image_tag @property.image10.url(:small) %>
+    </p>
+    <p>
+      <strong>Short Description:</strong>
+      <%= @property.short_description %>
+    </p>
+    <p>
+      <strong>Description:</strong>
+      <%= raw(@property.description) %>
+    </p>
     <% if current_user.status == "admin" %>
       <p>
         <strong>Agent:</strong>
         <%= @property.agent.name unless @property.agent.nil? %>
       </p>
     <% end %>
-
-<p>
-  <strong>Date:</strong>
-  <%= @property.date %>
-</p>
-
-<p>
-  <strong>Visibility:</strong>
-  <%= @property.visibility %>
-</p>
-
+    <p>
+      <strong>Date:</strong>
+      <%= @property.date %>
+    </p>
+    <p>
+      <strong>Visibility:</strong>
+      <%= @property.visibility %>
+    </p>
     <p>
       <strong>Let:</strong>
       <%= @property.let %>
     </p>
     <p>
-    <strong>Sold:</strong>
-    <%= @property.sold %>
-  </p>
+      <strong>Sold:</strong>
+      <%= @property.sold %>
+    </p>
     <p>
-    <strong>Featured:</strong>
-    <%= @property.featured %>
-  </p>
+      <strong>Featured:</strong>
+      <%= @property.featured %>
+    </p>
+    <p>
+      <strong>Gas CH:</strong>
+      <%= @property.gas_ch %>
+    </p>
+    <p>
+      <strong>Glazing:</strong>
+      <%= @property.glazing %>
+    </p>
     <% if can? :update, @project %>
-<%= link_to 'Edit', edit_property_path(@property) %> |
-        <% end %>
-<%= link_to 'Back', properties_path %>
-
-  </div><!--End Form Singup-->
-</div><!--EndContent-->
+      <%= link_to 'Edit', edit_property_path(@property) %> |
+    <% end %>
+    <%= link_to 'Back', properties_path %>
+  </div>
+</div>
 

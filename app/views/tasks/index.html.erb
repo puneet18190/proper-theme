@@ -96,7 +96,7 @@
                   <%= f.search_field :price_lteq, class: "tpgsize" %>
                 </div>
                 <div class="control-group half text-right pull-right">
-                  <%= f.label :price_gteq, "Max Price", class: "tpgsize"  %>
+                  <%= f.label :price_gteq, "Max Price", class: "tpgsize" %>
                   <%= f.search_field :price_gteq, class: "tpgsize" %>
                 </div>
                 <div class="input-block-level">
@@ -196,7 +196,7 @@
               data:{
                 img_preview: img_p, 
                 properties_name:'<%= obj.name%>',
-                properties_desc:'<%=obj.description%>',
+                properties_desc:'<%=obj.short_description%>',
                 properties_link:"#", 
                 zip:'<%=obj.postcode%>', 
                 city:'<%=obj.address3%>',
