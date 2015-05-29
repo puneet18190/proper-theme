@@ -10,7 +10,7 @@ class ReportPdf < Prawn::Document
   def content
     coder = HTMLEntities.new
     if (@properties.image10).present?
-      image open(@properties.image10.url), width: 150, height: 110
+      image open(@properties.image10.url(:large)), width: 150, height: 110
     else
       image open("#{Rails.root}/app/assets/images/default_images/no.jpg"), width: 150, height: 110
     end
@@ -21,19 +21,19 @@ class ReportPdf < Prawn::Document
     text "Phone: #{User.find(@properties.user_id).phone}", size: 13, :align => :right if (@properties.user_id).present?
     move_down(27)
     if (@properties.image1).present?
-      image open(@properties.image1.url), width: 540, height: 370
+      image open(@properties.image1.url(:large)), width: 540, height: 370
     else
       image open("#{Rails.root}/app/assets/images/default_images/no.jpg"), width: 540, height: 370
     end
     move_down(6)
     if (@properties.image2).present?
-      image open(@properties.image2.url), width: 267, height: 215, :position => :left
+      image open(@properties.image2.url(:large)), width: 267, height: 215, :position => :left
     else
       image open("#{Rails.root}/app/assets/images/default_images/no.jpg"), width: 267, height: 215, :position => :left
     end
     move_up(215)
     if (@properties.image3).present?
-      image open(@properties.image3.url), width: 267, height: 215, :position => :right
+      image open(@properties.image3.url(:large)), width: 267, height: 215, :position => :right
     else
       image open("#{Rails.root}/app/assets/images/default_images/no.jpg"), width: 267, height: 215, :position => :right
     end
@@ -60,37 +60,37 @@ class ReportPdf < Prawn::Document
     text "Featured: #{@properties.featured}", size: 20, :align => :left
     move_down(180)
     if (@properties.image4).present?
-      image open(@properties.image4.url), width: 267, height: 215, :position => :left
+      image open(@properties.image4.url(:large)), width: 267, height: 215, :position => :left
     else
       image open("#{Rails.root}/app/assets/images/default_images/no.jpg"), width: 267, height: 215, :position => :left
     end
     move_up(215)
     if (@properties.image5).present?
-      image open(@properties.image5.url), width: 267, height: 215, :position => :right
+      image open(@properties.image5.url(:large)), width: 267, height: 215, :position => :right
     else
       image open("#{Rails.root}/app/assets/images/default_images/no.jpg"), width: 267, height: 215, :position => :right
     end
     move_down(6)
     if (@properties.image6).present?
-      image open(@properties.image6.url), width: 540, height: 350
+      image open(@properties.image6.url(:large)), width: 540, height: 350
     else
       image open("#{Rails.root}/app/assets/images/default_images/no.jpg"), width: 540, height: 350
     end
     move_down(6)
     if (@properties.image7).present?
-      image open(@properties.image7.url), width: 175, height: 135, :position => :left
+      image open(@properties.image7.url(:large)), width: 175, height: 135, :position => :left
     else
       image open("#{Rails.root}/app/assets/images/default_images/no.jpg"), width: 175, height: 135, :position => :left
     end
     move_up(135)
     if (@properties.image8).present?
-      image open(@properties.image8.url), width: 175, height: 135, :position => :center
+      image open(@properties.image8.url(:large)), width: 175, height: 135, :position => :center
     else
       image open("#{Rails.root}/app/assets/images/default_images/no.jpg"), width: 175, height: 135, :position => :center
     end
     move_up(135)
     if (@properties.image9).present?
-      image open(@properties.image9.url), width: 175, height: 135, :position => :right
+      image open(@properties.image9.url(:large)), width: 175, height: 135, :position => :right
     else
       image open("#{Rails.root}/app/assets/images/default_images/no.jpg"), width: 175, height: 135, :position => :right
     end
