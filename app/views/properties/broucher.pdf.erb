@@ -1,0 +1,23 @@
+<%= wicked_pdf_stylesheet_link_tag "bootstrap.css" %>
+<div class="well"><%=wicked_pdf_image_tag("seal_logo.png", :height=> "120",:width=>"1300") %></div>
+
+<div class="float-left" style="width:300px">
+  <div style="font-size:30px;margin:10px"><%="Name: #{@properties.name}"%></div>
+  <div style="font-size:30px;margin:10px"><%="Address:"%></div>
+  <div style="font-size:30px;margin:10px"><%="#{@properties.address1}"%></div>
+  <div style="font-size:30px;margin:10px"><%="#{@properties.address2}"%></div>
+  <div style="font-size:30px;margin:10px"><%="#{@properties.address3}"%></div>
+  <div style="font-size:30px;margin:10px"><%="Price: £#{(@properties.price).to_s}"%></div>
+  <div style="margin:10px"><%=image_tag("https://maps.googleapis.com/maps/api/staticmap?size=200x200&maptype=roadmap&sensor=false&zoom=3&markers=#{((@properties.coordinates).nil? ? "" :(@properties.coordinates).split(",")[0].to_f)}%2C#{((@properties.coordinates).nil? ? "" :(@properties.coordinates).split(",")[1].to_f)}", :height=> "350",:width=>"300") %></div>
+  <div style="font-size:30px;margin:10px"><%="Phone:#{@properties.user.phone}"%></div>
+</div>  
+<div>
+  <% no_image = "#{Rails.root}/app/assets/images/default_images/no.jpg" %>
+  <div class="float-right" style="position:absolute;top:230px;left:350px;width:360px"><%=image_tag(@properties.image1.present? ? @properties.image1.url(:large) : no_image, :height=> "300",:width=>"700") %></div>
+  <div class="float-right" style="position:absolute;top:550px;left:350px;width:360px"><%=image_tag(@properties.image2.present? ? @properties.image2.url(:large) : no_image, :height=> "300",:width=>"350") %></div>
+  <div class="float-right" style="position:absolute;top:550px;left:720px;width:360px"><%=image_tag(@properties.image3.present? ? @properties.image3.url(:large) : no_image, :height=> "300",:width=>"350") %></div>
+</div>  
+<div style="position:absolute;top:230px;right:80px;width:200px">
+  <span style="font-size:30px;">Description:</span><br/> 
+  <span style="font-size:20px;"><%=@properties.description.html_safe%></span>
+</div>

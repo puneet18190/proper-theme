@@ -62,6 +62,7 @@
 
         <% if current_user.status == "admin" || (current_user.status == "landlord" && current_user.plan != "free") %>
           <td><%= link_to 'Download', pdf_handle_path(:id => property.id, format: 'pdf') %></td>
+          <td><%= link_to 'Broucher', broucher_path(:id => property.id, format: 'pdf') %></td>
         <%else%>
           <td><%= link_to 'N/A',"#" %></td>
         <%end%>
