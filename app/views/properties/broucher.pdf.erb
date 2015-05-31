@@ -10,7 +10,7 @@
   <div style="font-size:30px;margin:5px"><center><%="#{@properties.address3}"%></center></div>
   <div style="font-size:30px;margin:5px"><center><%="Price: £#{(@properties.price).to_s}"%></center></div>
   <div style="margin:10px"><center><%=image_tag("https://maps.googleapis.com/maps/api/staticmap?size=450x600&maptype=roadmap&sensor=false&zoom=11&markers=#{((@properties.coordinates).nil? ? "" :(@properties.coordinates).split(",")[0].to_f)}%2C#{((@properties.coordinates).nil? ? "" :(@properties.coordinates).split(",")[1].to_f)}", :height=> "450",:width=>"600") %></center></div>
-  <div style="font-size:30px;margin:10px" class="well"><center><%="Contact: #{@properties.user.phone}"%></center></div>
+  <div style=""><center><%=wicked_pdf_image_tag("contact_info.png", :height=> "50",:width=>"690") %></center></div>
 </div>
 
 <div class="float-right" style="position:absolute;width:720px;top:0;right:0px;border:1px solid Black">
