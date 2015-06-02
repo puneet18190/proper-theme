@@ -48,10 +48,10 @@
 
 <div>
   <div class="" style="height:80px;color:white;margin:15px;text-align:center;font-size:30px;background-color:purple"><center><b>Description</b></center></div>
-  <div style="height:600px;border:1px solid black;margin:15px;vertical-align:middle;padding:20px;font-family:arial"><center><b><%=@properties.short_description%></b></center></div>
+  <div style="height:600px;border:1px solid black;margin:15px;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;"><center><b><%=@properties.short_description%></b></center></div>
 
   <div class="" style="height:80px;color:white;margin:15px;text-align:center;font-size:30px;margin-top:30px;background-color:purple;"><center><b><span style="margin-top:30px">Specification</span></b></center></div>
-  <div  style="height:600px;border:1px solid black;margin:15px;vertical-align:middle;padding:20px;font-family:arial"><center><b><%=@properties.description.html_safe%></b></center></div>
+  <div  style="height:600px;border:1px solid black;margin:15px;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;"><center><b><%=@properties.description.html_safe%></b></center></div>
 </div>  
 
 <!-- <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
@@ -70,7 +70,7 @@
   <div class="" style="height:80px;color:white;margin:15px;text-align:center;font-size:30px;background-color:purple"><center><b>Contact Us</b></center></div>
 
   <div style="height:800px;border:1px solid black;margin:15px;vertical-align:middle; padding:20px;font-family:arial">
-    <div style="float:left;border:1px solid red;">
+    <div style="float:left;">
       <div style="font-size:40px;padding:10px"><center><b>Agent Information</b></center></div>
       <div class="well" style="margin-top:40px;margin:20px">
         <div style="font-size:30px;margin:5px"><center><b>Emma</b></center></div>
@@ -83,13 +83,13 @@
       
     </div>
 
-    <div style="float:right;border:1px solid green;">
+    <div style="float:right;">
       <div style="width:420px;"><center><%=image_tag(@properties.agent.image.present? ? @properties.agent.image.url(:large) : no_image, :height=> "400",:width=>"400") %></center></div>
     </div>
 
     <div style="float:left;">
       <% qr = RQRCode::QRCode.new("http://#{request.host_with_port}/properties_detail/#{@properties.id}",:size => 10).to_img.resize(200, 200).to_data_url %>
-      <div style="width:350px;height:300px;border:2px solid blue;margin-top:50px;margin-left:300px"><center><%=image_tag(@qr, :height=> "300",:width=>"350") %></center></div>  
+      <div style="width:350px;height:300px;margin-top:50px;margin-left:300px"><center><%=image_tag(qr, :height=> "300",:width=>"350") %></center></div>  
     </div>
 
   </div>
