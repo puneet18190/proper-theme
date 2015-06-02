@@ -1,50 +1,99 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <%= wicked_pdf_stylesheet_link_tag "bootstrap.css" %>
+<%= wicked_pdf_stylesheet_link_tag "font-awesome.css" %>
 <% no_image = "#{Rails.root}/app/assets/images/default_images/no.jpg" %>
 
-<div class="float-left" style="width:700px;border:1px solid Black">
-  <div class="well" style="margin:10px"><center><%=wicked_pdf_image_tag("seal_logo.png", :height=> "120",:width=>"500") %></center></div>
-  <div style="font-size:30px;margin:5px"><center><b><%="#{@properties.name}"%></b></center></div>
-  <div style="font-size:30px;margin:5px"><center><%="#{@properties.address1}"%></center></div>
-  <div style="font-size:30px;margin:5px"><center><%="#{@properties.address2}"%></center></div>
-  <div style="font-size:30px;margin:5px"><center><%="#{@properties.address3}"%></center></div>
-  <div style="font-size:30px;margin:5px"><center><%="Price: £#{(@properties.price).to_s}"%></center></div>
-  <div style="margin:10px"><center><%=image_tag("https://maps.googleapis.com/maps/api/staticmap?size=450x600&maptype=roadmap&sensor=false&zoom=11&markers=#{((@properties.coordinates).nil? ? "" :(@properties.coordinates).split(",")[0].to_f)}%2C#{((@properties.coordinates).nil? ? "" :(@properties.coordinates).split(",")[1].to_f)}", :height=> "450",:width=>"600") %></center></div>
-  <div style=""><center><%=wicked_pdf_image_tag("contact_info.png", :height=> "50",:width=>"690") %></center></div>
+<div class="float-left" style="border:1px solid Black;height:1500px;background-color:white">
+  <div class="well" style="margin:10px"><center><%=wicked_pdf_image_tag("seal_logo.png") %></center></div>
+  <!-- <div style="font-size:40px;margin:5px"><center><b><%#="#{@properties.name}"%></b></center></div> -->
+  <div style="height:280px;width:1000px;">
+    <div style="font-size:40px;margin:10px"><center><b><%="#{@properties.address1}"%></b></center></div>
+    <div style="font-size:40px;margin:10px"><center><b><%="#{@properties.address2}"%></b></center></div>
+    <div style="font-size:40px;margin:10px"><center><b><%="#{@properties.address3}"%></b></center></div>
+    <div style="font-size:40px;margin:10px"><center><b><%="#{@properties.postcode}"%></b></center></div>
+  </div>
+
+  <div class="desc-type for-sale" style="height:50px;width:120px;position:absolute;top:522px; padding:8px;left:198;color:white;font-size:32px;background: #FF6666;font-weight: bold">To Rent</div>
+  
+  <div style="margin:20px;width:650px;position:absolute;left:175px;border:2px solid Blue;">
+    <center><%=image_tag(@properties.image1.url, :height=> "560",:width=>"650") %></center>
+  </div>
+
+  <div style="height:70px;width:120px;position:absolute;font-weight: bold;background-color: rgba(0,0,0,0.8);font-size: 50px;color:white;padding:15px;top:980px;left:198px">
+    &pound; <%= @properties.price.to_i %>
+  </div>
+
+  <div style="height:60px;width:1000px;background-color:purple;font-size:20px;margin:10px;color:white;font-family:arial;position:absolute;top:1100px;left:0px">
+    <center><span style=""><b>Tag Line</b></span></center>
+  </div>
+
+  <div style="position:absolute; top:1250px;height:80px;width:1015px;">
+    <span class="label" style="width:100px;height:40px;color:black;font-weight: normal;display:inline-block;padding:2px;font-size:20px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px"> <i class="icon-circle-arrow-right"></i>Beds : <%= @properties.beds %></span>
+    
+    <span class="label" style="width:100px;height:40px;color:black;font-weight: normal;display:inline-block;padding:2px 4px;font-size:20px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px"><i class="icon-large icon-glass"></i>Bath : <%= @properties.bath %></span>
+    
+    <span class="label" style="width:150px;height:40px;color:black;font-weight: normal;display:inline-block;padding:2px 4px;font-size:20px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px"> Parking : <%= @properties.parking %></span>
+    
+    <span class="label" style="width:150px;height:40px;color:black;font-weight: normal;display:inline-block;padding:2px 4px;font-size:20px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px"><i class="icon-large icon-glass"></i>Garden : <%#= @properties.bath %></span>
+    
+    <span class="label" style="width:150px;height:40px;color:black;font-weight: normal;display:inline-block;padding:2px 4px;font-size:20px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px"> Gas CH : <%= @properties.gas_ch %></span>
+    
+    <span class="label" style="width:150px;height:40px;color:black;font-weight: normal;display:inline-block;padding:2px 4px;font-size:20px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px"><i class="icon-large icon-glass"></i>DG : <%#= @properties.bath %></span>
+  </div>
+
+  <div style="position:absolute;top:1400px;left:5px">
+    <center><%=wicked_pdf_image_tag("contact_info.png", :height=> "60", :width => "1000") %></center>
+  </div>
 </div>
 
-<div class="float-right" style="position:absolute;width:720px;top:0;right:0px;border:1px solid Black">
-  <div style="font-size:40px;padding:10px"><center><b>Agent Information</b></center></div>
-  <div class="float-left" style="position:relative;top:30px;left:140px;width:450px;"><center><%=image_tag(@properties.agent.image.present? ? @properties.agent.image.url(:large) : no_image, :height=> "350",:width=>"450") %></center></div>
-  <div class="well" style="margin-top:40px;margin:40px">
-  <%if @properties.agent.name.present? %><div style="font-size:30px;margin:5px"><center><%="#{@properties.agent.name}"%></center></div><%end%>
-  <%if @properties.agent.address.present? %><div style="font-size:30px;margin:5px;word-wrap: break-word;"><center><%="#{@properties.agent.address}"%></center></div><%end%>
-  <%if @properties.agent.phone.present? %><div style="font-size:30px;margin:5px"><center><b>Phone:</b><%="#{@properties.agent.phone}"%></center></div><%end%>
-  <%if @properties.agent.email_id.present? %><div style="font-size:30px;margin:5px"><center><b>Email:</b><%="#{@properties.agent.email_id}"%></center></div><%end%>
-  <%if @properties.agent.fb_id.present? %><div style="font-size:30px;margin:5px"><center><b>Facebook:</b><%="#{@properties.agent.fb_id}"%></center></div><%end%>
-  <%if @properties.agent.twitter_id.present? %><div style="font-size:30px;margin:5px"><center><b>Twitter:</b><%="#{@properties.agent.twitter_id}"%></center></div><%end%>
-  </div>
-</div>  
-<!-- <div class="float-right" style="border:1px solid Black">
-  <%# no_image = "#{Rails.root}/app/assets/images/default_images/no.jpg" %>
-  <div class="float-right" style="position:absolute;top:0px;left:750px;width:740px;border:1px solid Black"><%#=image_tag(@properties.image1.present? ? @properties.image1.url(:large) : no_image, :height=> "300",:width=>"740") %></div>
-  <div class="float-right" style="position:absolute;top:330px;right:365px;width:360px;border:1px solid Black"><%#=image_tag(@properties.image2.present? ? @properties.image2.url(:large) : no_image, :height=> "300",:width=>"360") %></div>
-  <div class="float-right" style="position:absolute;top:330px;right:-15px;width:360px;border:1px solid Black"><%#=image_tag(@properties.image3.present? ? @properties.image3.url(:large) : no_image, :height=> "300",:width=>"360") %></div>
-  <div class="float-right" style="position:absolute;top:660px;right:365px;width:360px;border:1px solid Black"><%#=image_tag(@properties.image2.present? ? @properties.image2.url(:large) : no_image, :height=> "300",:width=>"360") %></div>
-  <div class="float-right" style="position:absolute;top:660px;right:-15px;width:360px;border:1px solid Black"><%#=image_tag(@properties.image3.present? ? @properties.image3.url(:large) : no_image, :height=> "300",:width=>"360") %></div>
-</div>  
- -->
-<div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
+<div>
+  <div class="" style="height:80px;color:white;margin:15px;text-align:center;font-size:30px;background-color:purple"><center><b>Description</b></center></div>
+  <div style="height:600px;border:1px solid black;margin:15px;vertical-align:middle;padding:20px;font-family:arial"><center><b><%=@properties.short_description%></b></center></div>
 
+  <div class="" style="height:80px;color:white;margin:15px;text-align:center;font-size:30px;margin-top:30px;background-color:purple;"><center><b><span style="margin-top:30px">Specification</span></b></center></div>
+  <div  style="height:600px;border:1px solid black;margin:15px;vertical-align:middle;padding:20px;font-family:arial"><center><b><%=@properties.description.html_safe%></b></center></div>
+</div>  
+
+<!-- <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
+ -->
 <div class="float-left" style="">
   <% no_image = "#{Rails.root}/app/assets/images/default_images/no.jpg" %>
-  <div class="float-left" style="position:relative;top:0px;left:0px;width:700px;"><%=image_tag(@properties.image1.present? ? @properties.image1.url(:large) : no_image, :height=> "300",:width=>"700") %></div>
-  <div class="float-left" style="position:relative;top:30px;left:0px;width:335px;"><%=image_tag(@properties.image2.present? ? @properties.image2.url(:large) : no_image, :height=> "300",:width=>"335") %></div>
-  <div class="float-left" style="position:relative;top:-270px;left:370px;width:335px;"><%=image_tag(@properties.image3.present? ? @properties.image3.url(:large) : no_image, :height=> "300",:width=>"335") %></div>
-  <div class="float-left" style="position:relative;top:-240px;left:0px;width:335px;"><%=image_tag(@properties.image4.present? ? @properties.image4.url(:large) : no_image, :height=> "300",:width=>"335") %></div>
-  <div class="float-left" style="position:relative;top:-540px;left:370px;width:335px;"><%=image_tag(@properties.image5.present? ? @properties.image5.url(:large) : no_image, :height=> "300",:width=>"335") %></div>
+  <div class="float-left" style="position:relative;top:0px;left:0px;width:500px;"><%=image_tag(@properties.image1.present? ? @properties.image1.url(:large) : no_image, :height=> "1100",:width=>"500") %></div>
+  <div class="float-left" style="position:relative;top:40px;left:0px;width:500px;"><%=image_tag(@properties.image2.present? ? @properties.image2.url(:large) : no_image, :height=> "340",:width=>"500") %></div>
+  <div class="float-right" style="position:relative;top:-1440px;left:550px;width:500px;"><%=image_tag(@properties.image3.present? ? @properties.image3.url(:large) : no_image, :height=> "340",:width=>"500") %></div>
+  <div class="float-right" style="position:relative;top:-1400px;left:550px;width:500px;"><%=image_tag(@properties.image4.present? ? @properties.image4.url(:large) : no_image, :height=> "340",:width=>"500") %></div>
+  <div class="float-right" style="position:relative;top:-1360px;left:550px;width:500px;"><%=image_tag(@properties.image5.present? ? @properties.image5.url(:large) : no_image, :height=> "340",:width=>"500") %></div>
+  <div class="float-right" style="position:relative;top:-1320px;left:550px;width:500px;"><%=image_tag(@properties.image5.present? ? @properties.image5.url(:large) : no_image, :height=> "340",:width=>"500") %></div>
 </div>  
-<div style="position:relative;top:-1512px;left:745px;width:680px;padding:25px;">
-  <span style="font-size:30px;"><b>Description:</b></span><br/> 
-  <span style="font-size:20px;"><%=@properties.description.html_safe%></span>
+
+<div style="position:absolute;bottom:-230px">
+  <div class="" style="height:80px;color:white;margin:15px;text-align:center;font-size:30px;background-color:purple"><center><b>Contact Us</b></center></div>
+
+  <div style="height:800px;border:1px solid black;margin:15px;vertical-align:middle; padding:20px;font-family:arial">
+    <div style="float:left;border:1px solid red;">
+      <div style="font-size:40px;padding:10px"><center><b>Agent Information</b></center></div>
+      <div class="well" style="margin-top:40px;margin:20px">
+        <div style="font-size:30px;margin:5px"><center><b>Emma</b></center></div>
+        <div style="font-size:30px;margin:5px"><center><b>emma@sealproperties.co.uk</b></center></div>
+        <div style="font-size:30px;margin:5px"><center><b>0191 5805900</b></center></div>
+        <div style="font-size:30px;margin:5px"><center><b>167-169 Saltwell Road</b></center></div>
+        <div style="font-size:30px;margin:5px"><center><b>Gateshead, NE8
+4JT</b></center></div>
+      </div>
+      
+    </div>
+
+    <div style="float:right;border:1px solid green;">
+      <div style="width:420px;"><center><%=image_tag(@properties.agent.image.present? ? @properties.agent.image.url(:large) : no_image, :height=> "400",:width=>"400") %></center></div>
+    </div>
+
+    <div style="float:left;">
+      <% qr = RQRCode::QRCode.new("http://#{request.host_with_port}/properties_detail/#{@properties.id}",:size => 10).to_img.resize(200, 200).to_data_url %>
+      <div style="width:350px;height:300px;border:2px solid blue;margin-top:50px;margin-left:300px"><center><%=image_tag(@qr, :height=> "300",:width=>"350") %></center></div>  
+    </div>
+
+  </div>
+
+  <div class="" style="height:80px;color:white;margin:15px;text-align:center;font-size:30px;margin-top:30px;background-color:purple;"><center><b><span style="margin-top:30px">Disclaimer</span></b></center></div>
+  <div  style="height:400px;border:1px solid black;margin:15px;vertical-align:middle;padding:20px;font-family:arial"><center><b></b></center></div>
 </div>
