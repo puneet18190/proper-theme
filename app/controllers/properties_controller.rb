@@ -342,8 +342,7 @@ class PropertiesController < ApplicationController
       format.html
       format.pdf do
         render pdf: "broucher",
-               page_size: "A3",
-              orientation: 'Landscape'
+               page_size: "A3"
       end
     end
     # respond_to do |format|
