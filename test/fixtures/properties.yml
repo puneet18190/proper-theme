@@ -51,6 +51,7 @@
 #  glazing           :boolean          default(FALSE)
 #  parking_status    :string(255)      default("none")
 #  car               :integer
+#  tag_line          :text
 #
 # Indexes
 #

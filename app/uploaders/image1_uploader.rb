@@ -64,26 +64,26 @@ class Image1Uploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png)
   end
 
-   def watermark
-     manipulate! do |img|
-       logo = Magick::Image.read("#{Rails.root}/app/assets/images/logo.png").first
-       img = img.composite(logo, Magick::NorthWestGravity, 15, 0, Magick::OverCompositeOp)
-     end
+   # def watermark
+   #   manipulate! do |img|
+   #     logo = Magick::Image.read("#{Rails.root}/app/assets/images/logo.png").first
+   #     img = img.composite(logo, Magick::NorthWestGravity, 15, 0, Magick::OverCompositeOp)
+   #   end
 
-     # // for addition of text watermark #
+   #   # // for addition of text watermark #
 
-     # if model.name.present?
-     #   manipulate! do |img|
-     #     text = Magick::Draw.new
-     #     text.gravity = Magick::CenterGravity
-     #     text.fill = 'white'
-     #     text.pointsize = 40
-     #     text.stroke = 'none'
-     #     text.annotate(img, 0, 0, 0, 0, "#{model.name}")
-     #     img
-     #   end
-     # end
-   end
+   #   # if model.name.present?
+   #   #   manipulate! do |img|
+   #   #     text = Magick::Draw.new
+   #   #     text.gravity = Magick::CenterGravity
+   #   #     text.fill = 'white'
+   #   #     text.pointsize = 40
+   #   #     text.stroke = 'none'
+   #   #     text.annotate(img, 0, 0, 0, 0, "#{model.name}")
+   #   #     img
+   #   #   end
+   #   # end
+   # end
 
 
 
