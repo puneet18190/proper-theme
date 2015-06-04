@@ -27,7 +27,7 @@
                         <%= image_tag @data.image1.url(:large), id: "big-image-preview", alt: "big-image-preview",style: "height:500px" %>
                       <% end %>
                     </a>
-                    <% if !@data.image2.url.nil? || @data.image3.url.nil? || !@data.image4.url.nil?%>
+                    <% if !@data.image2.url.nil? || !@data.image3.url.nil? || !@data.image4.url.nil?%>
                     <div class="list_image_detail" style="width:198%;margin-top:20px;height:250px">
                       <ul id="list_images_property" style="height:250px">
                         <%unless @data.image2.url.nil?%><li style="margin:2px;height:240px"><a href="#" data-title="Interior 02" ><img src=<%= @data.image2.url(:large)%> style="min-height:100%"></a></li><%end%>
