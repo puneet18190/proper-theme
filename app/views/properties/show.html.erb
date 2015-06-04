@@ -140,6 +140,14 @@
       <strong>Glazing:</strong>
       <%= @property.glazing %>
     </p>
+    <p>
+      <strong>Garden:</strong>
+      <%= @property.garden %>
+    </p>
+    <p>
+      <strong>DG:</strong>
+      <%= @property.dg %>
+    </p>
     <% if can? :update, @project %>
       <%= link_to 'Edit', edit_property_path(@property) %> |
     <% end %>

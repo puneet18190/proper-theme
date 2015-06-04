@@ -52,6 +52,8 @@
 #  parking_status    :string(255)      default("none")
 #  car               :integer
 #  tag_line          :text
+#  garden            :boolean          default(FALSE)
+#  dg                :boolean          default(FALSE)
 #
 # Indexes
 #
