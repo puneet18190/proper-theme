@@ -15,7 +15,7 @@ class Image1Uploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   # process :resize_to_fill => [850, 315]
   process :convert => 'png'
-  process :watermark
+  # process :watermark
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
@@ -54,9 +54,14 @@ class Image1Uploader < CarrierWave::Uploader::Base
     process :resize_to_fit => [300, 300]
   end
 
-   version :small do
-     process :resize_to_fit =>  [120, 120]
-   end
+ version :small do
+   process :resize_to_fit =>  [120, 120]
+ end
+
+ version :seal do
+   process :resize_to_fit =>  [500, 500]
+   process :watermark
+ end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
@@ -64,26 +69,26 @@ class Image1Uploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png)
   end
 
-   # def watermark
+ def watermark
+   manipulate! do |img|
+     logo = Magick::Image.read("#{Rails.root}/app/assets/images/seal_logo.png").first
+     img = img.composite(logo, Magick::NorthWestGravity, 15, 0, Magick::OverCompositeOp)
+   end
+
+   # // for addition of text watermark #
+
+   # if model.name.present?
    #   manipulate! do |img|
-   #     logo = Magick::Image.read("#{Rails.root}/app/assets/images/logo.png").first
-   #     img = img.composite(logo, Magick::NorthWestGravity, 15, 0, Magick::OverCompositeOp)
+   #     text = Magick::Draw.new
+   #     text.gravity = Magick::CenterGravity
+   #     text.fill = 'white'
+   #     text.pointsize = 40
+   #     text.stroke = 'none'
+   #     text.annotate(img, 0, 0, 0, 0, "#{model.name}")
+   #     img
    #   end
-
-   #   # // for addition of text watermark #
-
-   #   # if model.name.present?
-   #   #   manipulate! do |img|
-   #   #     text = Magick::Draw.new
-   #   #     text.gravity = Magick::CenterGravity
-   #   #     text.fill = 'white'
-   #   #     text.pointsize = 40
-   #   #     text.stroke = 'none'
-   #   #     text.annotate(img, 0, 0, 0, 0, "#{model.name}")
-   #   #     img
-   #   #   end
-   #   # end
    # end
+ end
 
 
 
