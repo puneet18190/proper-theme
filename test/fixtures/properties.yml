@@ -54,6 +54,7 @@
 #  tag_line          :text
 #  garden            :boolean          default(FALSE)
 #  dg                :boolean          default(FALSE)
+#  seal_approved     :boolean          default(FALSE)
 #
 # Indexes
 #

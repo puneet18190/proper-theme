@@ -24,7 +24,7 @@
                       <% if @data.image1.url.empty? %>
                            <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
                       <% else %>
-                        <%= image_tag @data.image1.url(:large), id: "big-image-preview", alt: "big-image-preview",style: "height:500px" %>
+                        <%= image_tag @data.seal_approved? ? @data.image1.url(:seal) : @data.image1.url(:large), id: "big-image-preview", alt: "big-image-preview",style: "height:500px" %>
                       <% end %>
                     </a>
                     <% if !@data.image2.url.nil? || !@data.image3.url.nil? || !@data.image4.url.nil?%>

@@ -1,0 +1,232 @@
+<style type="text/css">
+  input,select {
+    margin-top: -32px;
+    margin-left: 60px;
+  }
+</style>
+
+<div id="content">
+  <!-- <div id="main-title-content">
+    <img src="/assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
+    <div class="container">
+      <div class="panel">
+        <h1>Upload Items</h1>
+        <p>Sub Title Here</p>
+      </div>
+    </div>
+  </div> -->
+  <!-- <div class="news-carousel-wrapper">
+    <dl id="news-carousel" class="news-carousel-style">
+      <%#= render 'properties/news_carousel'%>
+    </dl>
+  </div> -->
+  <div class="container" style="margin:0;width:95%">
+    <div class="panel" style="padding-bottom:0">
+      <% if current_user.status == "landlord"%>
+        <div class="box-line">
+          <h3 class="title-heading">Please complete the form</h3>
+        </div>
+        <ul class="unstyled proper-step">
+          <li><a href="" class="active"><span>1</span></a></li>
+          <li><a href="" ><span>2</span></a></li>
+          <li><a href=""><span>3</span></a></li>
+        </ul>
+      <%end%>
+      <div class="clearfix"></div>
+      <div class="payment">
+        <%= form_for @property, html: { multipart: true },:style=>"padding-bottom:0" do |f| %>
+          <% if @property.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
+              <ul>
+                <% @property.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="proper-form-step-area" style="height:1170px">
+            <div class="proper-singup" style="max-width:100%;margin:0;padding:0;height:100%">
+              <div style="float:left;margin:30px;width:350px">
+                <h3 class=""><b>Property</b></h3>
+                <div class="field">
+                  <%= f.label :name %>
+                  <%= f.text_field :name %>
+                </div>
+                <div class="field">
+                  <%= f.label :address1 %>
+                  <%= f.text_field :address1 %>
+                </div>
+                <div class="field">
+                  <%= f.label :address2 %>
+                  <%= f.text_field :address2 %>
+                </div>
+                <div class="field">
+                  <%= f.label :address3 %>
+                  <%= f.text_field :address3 %>
+                </div>
+                <div class="field">
+                  <%= f.label :postcode %>
+                  <%= f.text_field :postcode%>
+                </div>
+
+                <h3 class=""><b>Marketing</b></h3>
+                <div class="field">
+                  <%= f.label :category %>
+                  <%= f.select :category, ["Rent","Sale"] %>
+                </div><br/>
+                <div class="field">
+                  <%= f.label :price %>
+                  <%= f.text_field :price %>
+                </div>
+                <div class="field">
+                  <%= f.label :agent_id %>
+                  <% arr = Agent.all.map { |ag| [ag.name, ag.id ] } %>
+                  <%= f.select :agent_id, (arr), :selected => '0' %>
+                </div><br/>
+                <div class="field">
+                  <%= f.label :seal %>
+                  <%= f.select :seal_approved, [['False', false],['True', true]] %>
+                </div><br/>
+                <div class="field">
+                  <%= f.label :visibility %>
+                  <%= f.check_box :visibility %>
+                </div>
+                <div class="field" style="margin-top:-53px;margin-left:100px">
+                  <%= f.label :let%>
+                  <%= f.check_box :let %>
+                </div>
+                <div class="field" style="margin-top:-53px;margin-left:65px">
+                  <div class="sol">
+                    <%= f.label :sold %>
+                    <%= f.check_box :sold%>
+                  </div>
+                </div>  
+
+                <h3 class=""><b>Images</b></h3>
+                <div class="field">
+                  <%= f.label :image1, "Main",:style=>"margin:0" %>
+                  <%= f.file_field :image1 %>
+                </div>
+                <div class="field alert_popup">
+                  <%= f.label :image2, "Image1",:style=>"margin:0" %>
+                  <%= f.file_field :image2,:style=>"line-height:0" %>
+                </div>
+                <div class="field alert_popup">
+                  <%= f.label :image3, "Image2",:style=>"margin:0" %>
+                  <%= f.file_field :image3,:style=>"line-height:0" %>
+                </div>
+                <div class="field alert_popup">
+                  <%= f.label :image4, "Image3",:style=>"margin:0" %>
+                  <%= f.file_field :image4,:style=>"line-height:0" %>
+                </div>
+                <div class="field alert_popup">
+                  <%= f.label :image5, "Image4",:style=>"margin:0" %>
+                  <%= f.file_field :image5,:style=>"line-height:0" %>
+                </div>
+                <div class="field alert_popup">
+                  <%= f.label :image6, "Image5",:style=>"margin:0" %>
+                  <%= f.file_field :image6,:style=>"line-height:0" %>
+                </div>
+                <div class="field alert_popup">
+                  <%= f.label :image7, "Image6",:style=>"margin:0" %>
+                  <%= f.file_field :image7,:style=>"line-height:0" %>
+                </div>
+                <div class="field alert_popup">
+                  <%= f.label :image8, "Image7",:style=>"margin:0" %>
+                  <%= f.file_field :image8,:style=>"line-height:0" %>
+                </div>
+                <div class="field alert_popup">
+                  <%= f.label :image9, "Image8",:style=>"margin:0" %>
+                  <%= f.file_field :image9,:style=>"line-height:0" %>
+                </div>
+                <div class="field alert_popup">
+                  <%= f.label :image10, "Image9",:style=>"margin:0" %>
+                  <%= f.file_field :image10,:style=>"line-height:0" %>
+                </div>
+              </div>
+              <div style="float:right;width:600px;margin:30px;margin-top:70px">  
+                <div class="field">
+                  <%= f.label :tag_line %>
+                  <%= f.text_field :tag_line,:style=>"width:540px" %>
+                </div>
+                <div class="field" >
+                  <%= f.label :short_description %>
+                  <%= f.text_area :short_description, style: "width:600px;height:60px" %>
+                </div>
+                <div class="field" >
+                  <%= f.label :description %>
+                  <%if params[:action]=="edit"%>
+                    <%= f.text_area :description, :class=>"long_desc" %>
+                  <%else%>  
+                    <%= f.text_area :description, :value => Setting.first.property_description, :class=>"long_desc" %>
+                  <%end%>
+                </div><br/>
+                <h3 class=""><b>Key Features</b></h3>
+                <div style="float:left">
+                  <div class="field">
+                    <%= f.label :beds %>
+                    <%= f.number_field :beds, :min => 0 %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :bath %>
+                    <%= f.number_field :bath, :min => 0 %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :parking %>
+                    <%= f.select :parking_status, ["None","On Street","Off Street"] %>
+                  </div><br/>
+                  <div class="field">
+                    <%= f.label "Cars" %>
+                    <%= f.number_field :car, :min => 0 %>
+                  </div>
+                </div>
+                <div style="float:right">  
+                  <div class="field">
+                    <%= f.label :featured %>
+                    <%= f.select :featured, [['False', false],['True', true]] %>
+                  </div><br/>
+                  <div class="field">
+                    <%= f.label :gas_CH %>
+                    <%= f.select :gas_ch, [['False', false],['True', true]] %>
+                  </div><br/>
+                  <div class="field">
+                    <%= f.label :glazing %>
+                    <%= f.select :glazing, [['False', false],['True', true]] %>
+                  </div><br/>
+                  <div class="field">
+                    <%= f.label :garden %>
+                    <%= f.select :garden, [['False', false],['True', true]] %>
+                  </div><br/>
+                  <div class="field">
+                    <%= f.label :dg, "DG" %>
+                    <%= f.select :dg, [['False', false],['True', true]] %>
+                  </div><br/>
+                </div>  
+                <br/><br/><br/>
+                <%= f.submit (params[:action]=="edit" ? "Update" : "Create"), class: "btn btn-proper btn-large", :style=>"margin:0" %>
+              </div>
+            </div>  
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div> 
+</div>
+<%= render 'shared/plans'%>
+<script type="text/javascript">
+  $('.long_desc').cleditor();
+  <% if current_user.status == "landlord" && current_user.plan == "free" %>
+    $(".alert_popup").click(function(e) {
+      e.preventDefault();
+      $("#myModal").modal();
+      $("#myModal").css("z-index",10000)
+    });
+  <% end %>
+</script>
+<style type="text/css">
+  .cleditorMain{
+    width: 600px !important;
+    height: 530px !important;
+  }
+<style>

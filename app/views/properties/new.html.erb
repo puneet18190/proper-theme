@@ -1,212 +1,216 @@
-<div id="content">
-  <div id="main-title-content">
-    <img src="/assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
+<% if current_user.status == "admin" %>
+  <%= render :partial => "add_property" %>
+<% else %>  
+  <div id="content">
+    <div id="main-title-content">
+      <img src="/assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
+      <div class="container">
+        <div class="panel">
+          <h1>Upload Items</h1>
+          <p>Sub Title Here</p>
+        </div>
+      </div>
+    </div>
+    <div class="news-carousel-wrapper">
+      <dl id="news-carousel" class="news-carousel-style">
+        <%= render 'properties/news_carousel'%>
+      </dl>
+    </div>
     <div class="container">
       <div class="panel">
-        <h1>Upload Items</h1>
-        <p>Sub Title Here</p>
-      </div>
-    </div>
-  </div>
-  <div class="news-carousel-wrapper">
-    <dl id="news-carousel" class="news-carousel-style">
-      <%= render 'properties/news_carousel'%>
-    </dl>
-  </div>
-  <div class="container">
-    <div class="panel">
-      <% if current_user.status == "landlord"%>
-        <div class="box-line">
-          <h3 class="title-heading">Please complete the form</h3>
-        </div>
-        <ul class="unstyled proper-step">
-          <li><a href="" class="active"><span>1</span></a></li>
-          <li><a href="" ><span>2</span></a></li>
-          <li><a href=""><span>3</span></a></li>
-        </ul>
-      <%end%>
-      <div class="clearfix"></div>
-      <div class="payment">
-        <%= form_for @property, html: { multipart: true } do |f| %>
-          <% if @property.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
-              <ul>
-                <% @property.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
+        <% if current_user.status == "landlord"%>
+          <div class="box-line">
+            <h3 class="title-heading">Please complete the form</h3>
+          </div>
+          <ul class="unstyled proper-step">
+            <li><a href="" class="active"><span>1</span></a></li>
+            <li><a href="" ><span>2</span></a></li>
+            <li><a href=""><span>3</span></a></li>
+          </ul>
+        <%end%>
+        <div class="clearfix"></div>
+        <div class="payment">
+          <%= form_for @property, html: { multipart: true } do |f| %>
+            <% if @property.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
+                <ul>
+                  <% @property.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="proper-form-step-area">
+              <div class="proper-singup" style="max-width:1500px">
+                <h3 class=""><b>Add Property</b></h3>
+                <div class="field">
+                  <%= f.label :name %>
+                  <%= f.text_field :name %>
+                </div>
+                <div class="field">
+                  <%= f.label :address1 %>
+                  <%= f.text_field :address1 %>
+                </div>
+                <div class="field">
+                  <%= f.label :address2 %>
+                  <%= f.text_field :address2 %>
+                </div>
+                <div class="field">
+                  <%= f.label :address3 %>
+                  <%= f.text_field :address3 %>
+                </div>
+                <div class="field">
+                  <%= f.label :postcode %>
+                  <%= f.text_field :postcode%>
+                </div>
+                <div class="field">
+                  <%= f.label :price %>
+                  <%= f.text_field :price %>
+                </div>
+                <div class="field">
+                  <%= f.label :beds %>
+                  <%= f.number_field :beds, :min => 0 %>
+                </div>
+                <div class="field">
+                  <%= f.label :bath %>
+                  <%= f.number_field :bath, :min => 0 %>
+                </div>
+                <div class="field">
+                  <%= f.label :tag_line %>
+                  <%= f.text_field :tag_line %>
+                </div>
+                <div class="field">
+                  <%= f.label :category %>
+                  <%= f.select :category, ["Rent","Sale"] %>
+                </div><br><br>
+                <div class="field">
+                  <%= f.label :parking_status %>
+                  <%= f.select :parking_status, ["None","On Street","Off Street"] %>
+                </div><br><br>
+                <div class="field">
+                  <%= f.label "Number of Cars" %>
+                  <%= f.number_field :car, :min => 0 %>
+                </div>
+                <div class="field">
+                  <%= f.label :image1, "Main image" %>
+                  <%= f.file_field :image1 %>
+                </div>
+                <div class="field alert_popup">
+                  <%= f.label :image2, "Image1" %>
+                  <%= f.file_field :image2 %>
+                </div>
+                <div class="field alert_popup">
+                  <%= f.label :image3, "Image2" %>
+                  <%= f.file_field :image3 %>
+                </div>
+                <div class="field alert_popup">
+                  <%= f.label :image4, "Image3" %>
+                  <%= f.file_field :image4 %>
+                </div>
+                <div class="field alert_popup">
+                  <%= f.label :image5, "Image4" %>
+                  <%= f.file_field :image5 %>
+                </div>
+                <div class="field alert_popup">
+                  <%= f.label :image6, "Image5" %>
+                  <%= f.file_field :image6 %>
+                </div>
+                <div class="field alert_popup">
+                  <%= f.label :image7, "Image6" %>
+                  <%= f.file_field :image7 %>
+                </div>
+                <div class="field alert_popup">
+                  <%= f.label :image8, "Image7" %>
+                  <%= f.file_field :image8 %>
+                </div>
+                <div class="field alert_popup">
+                  <%= f.label :image9, "Image8" %>
+                  <%= f.file_field :image9 %>
+                </div>
+                <div class="field alert_popup">
+                  <%= f.label :image10, "Image9" %>
+                  <%= f.file_field :image10 %>
+                </div>
+                <div class="field" >
+                  <%= f.label :short_description %>
+                  <%= f.text_area :short_description, style: "width:870px" %>
+                </div>
+                <div class="field" >
+                  <%= f.label :description %>
+                  <%= f.text_area :description, :value => Setting.first.property_description, :class=>"long_desc" %>
+                </div><br/>
+                <% if current_user.status=="admin" %>
+                  <div class="field">
+                    <%= f.label :agent_id %>
+                    <% arr = Agent.all.map { |ag| [ag.name, ag.id ] } %>
+                    <%= f.select :agent_id, (arr), :selected => '0' %>
+                  </div><br/><br/><br/>
+                  <div class="field">
+                    <%= f.label :visibility %>
+                    <%= f.check_box :visibility %>
+                  </div>
+                  <div class="field">
+                    <div class="fiel">
+                      <%= f.label :parking,"Off street parking" %>
+                      <%= f.check_box :parking %>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <%= f.label :let%>
+                    <%= f.check_box :let %>
+                  </div>
+                  <div class="field">
+                    <div class="sol">
+                      <%= f.label :sold %>
+                      <%= f.check_box :sold%>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <%= f.label :featured %>
+                    <%= f.check_box :featured %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :gas_CH %>
+                    <%= f.check_box :gas_ch %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :glazing %>
+                    <%= f.check_box :glazing %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :garden %>
+                    <%= f.check_box :garden %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :dg %>
+                    <%= f.check_box :dg %>
+                  </div>
+                <%end%> 
+                <br/>
+                <%= f.submit "Next step", class: "btn btn-proper btn-large" %>
+              </div>
             </div>
           <% end %>
-          <div class="proper-form-step-area">
-            <div class="proper-singup" style="max-width:1500px">
-              <h3 class=""><b>Add Property</b></h3>
-              <div class="field">
-                <%= f.label :name %>
-                <%= f.text_field :name %>
-              </div>
-              <div class="field">
-                <%= f.label :address1 %>
-                <%= f.text_field :address1 %>
-              </div>
-              <div class="field">
-                <%= f.label :address2 %>
-                <%= f.text_field :address2 %>
-              </div>
-              <div class="field">
-                <%= f.label :address3 %>
-                <%= f.text_field :address3 %>
-              </div>
-              <div class="field">
-                <%= f.label :postcode %>
-                <%= f.text_field :postcode%>
-              </div>
-              <div class="field">
-                <%= f.label :price %>
-                <%= f.text_field :price %>
-              </div>
-              <div class="field">
-                <%= f.label :beds %>
-                <%= f.number_field :beds, :min => 0 %>
-              </div>
-              <div class="field">
-                <%= f.label :bath %>
-                <%= f.number_field :bath, :min => 0 %>
-              </div>
-              <div class="field">
-                <%= f.label :tag_line %>
-                <%= f.text_field :tag_line %>
-              </div>
-              <div class="field">
-                <%= f.label :category %>
-                <%= f.select :category, ["Rent","Sale"] %>
-              </div><br><br>
-              <div class="field">
-                <%= f.label :parking_status %>
-                <%= f.select :parking_status, ["None","On Street","Off Street"] %>
-              </div><br><br>
-              <div class="field">
-                <%= f.label "Number of Cars" %>
-                <%= f.number_field :car, :min => 0 %>
-              </div>
-              <div class="field">
-                <%= f.label :image1, "Main image" %>
-                <%= f.file_field :image1 %>
-              </div>
-              <div class="field alert_popup">
-                <%= f.label :image2, "Image1" %>
-                <%= f.file_field :image2 %>
-              </div>
-              <div class="field alert_popup">
-                <%= f.label :image3, "Image2" %>
-                <%= f.file_field :image3 %>
-              </div>
-              <div class="field alert_popup">
-                <%= f.label :image4, "Image3" %>
-                <%= f.file_field :image4 %>
-              </div>
-              <div class="field alert_popup">
-                <%= f.label :image5, "Image4" %>
-                <%= f.file_field :image5 %>
-              </div>
-              <div class="field alert_popup">
-                <%= f.label :image6, "Image5" %>
-                <%= f.file_field :image6 %>
-              </div>
-              <div class="field alert_popup">
-                <%= f.label :image7, "Image6" %>
-                <%= f.file_field :image7 %>
-              </div>
-              <div class="field alert_popup">
-                <%= f.label :image8, "Image7" %>
-                <%= f.file_field :image8 %>
-              </div>
-              <div class="field alert_popup">
-                <%= f.label :image9, "Image8" %>
-                <%= f.file_field :image9 %>
-              </div>
-              <div class="field alert_popup">
-                <%= f.label :image10, "Image9" %>
-                <%= f.file_field :image10 %>
-              </div>
-              <div class="field" >
-                <%= f.label :short_description %>
-                <%= f.text_area :short_description, style: "width:870px" %>
-              </div>
-              <div class="field" >
-                <%= f.label :description %>
-                <%= f.text_area :description, :value => Setting.first.property_description, :class=>"long_desc" %>
-              </div><br/>
-              <% if current_user.status=="admin" %>
-                <div class="field">
-                  <%= f.label :agent_id %>
-                  <% arr = Agent.all.map { |ag| [ag.name, ag.id ] } %>
-                  <%= f.select :agent_id, (arr), :selected => '0' %>
-                </div><br/><br/><br/>
-                <div class="field">
-                  <%= f.label :visibility %>
-                  <%= f.check_box :visibility %>
-                </div>
-                <div class="field">
-                  <div class="fiel">
-                    <%= f.label :parking,"Off street parking" %>
-                    <%= f.check_box :parking %>
-                  </div>
-                </div>
-                <div class="field">
-                  <%= f.label :let%>
-                  <%= f.check_box :let %>
-                </div>
-                <div class="field">
-                  <div class="sol">
-                    <%= f.label :sold %>
-                    <%= f.check_box :sold%>
-                  </div>
-                </div>
-                <div class="field">
-                  <%= f.label :featured %>
-                  <%= f.check_box :featured %>
-                </div>
-                <div class="field">
-                  <%= f.label :gas_CH %>
-                  <%= f.check_box :gas_ch %>
-                </div>
-                <div class="field">
-                  <%= f.label :glazing %>
-                  <%= f.check_box :glazing %>
-                </div>
-                <div class="field">
-                  <%= f.label :garden %>
-                  <%= f.check_box :garden %>
-                </div>
-                <div class="field">
-                  <%= f.label :dg %>
-                  <%= f.check_box :dg %>
-                </div>
-              <%end%> 
-              <br/>
-              <%= f.submit "Next step", class: "btn btn-proper btn-large" %>
-            </div>
-          </div>
-        <% end %>
+        </div>
       </div>
-    </div>
-  </div> 
-</div>
-<%= render 'shared/plans'%>
-<script type="text/javascript">
-  $('.long_desc').cleditor();
-  <% if current_user.status == "landlord" && current_user.plan == "free" %>
-    $(".alert_popup").click(function(e) {
-      e.preventDefault();
-      $("#myModal").modal();
-      $("#myModal").css("z-index",10000)
-    });
-  <% end %>
-</script>
-<style type="text/css">
-  .cleditorMain{
-    width: 880px !important;
-    height: 300px !important;
-  }
-<style>
+    </div> 
+  </div>
+  <%= render 'shared/plans'%>
+  <script type="text/javascript">
+    $('.long_desc').cleditor();
+    <% if current_user.status == "landlord" && current_user.plan == "free" %>
+      $(".alert_popup").click(function(e) {
+        e.preventDefault();
+        $("#myModal").modal();
+        $("#myModal").css("z-index",10000)
+      });
+    <% end %>
+  </script>
+  <style type="text/css">
+    .cleditorMain{
+      width: 880px !important;
+      height: 300px !important;
+    }
+  </style>
+<% end %>
