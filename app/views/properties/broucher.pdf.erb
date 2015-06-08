@@ -3,7 +3,7 @@
 <%= wicked_pdf_stylesheet_link_tag "font-awesome.css" %>
 <% no_image = "#{Rails.root}/app/assets/images/default_images/no.jpg" %>
 
-<div style="border:1px solid Blue;height:1670px;background-color:white;margin-left:60px;width:1100px;left:0">
+<div style="border:1px solid Blue;height:1875px;background-color:white;width:1300px;left:0">
   <div class="" style="margin:10px"><center><%=wicked_pdf_image_tag("seal_logo.png") %></center></div>
   <!-- <div style="font-size:40px;margin:5px"><center><b><%#="#{@properties.name}"%></b></center></div> -->
   <div style="height:280px;width:1000px;">
@@ -46,7 +46,7 @@
   </div>
 </div>
 
-<div style="position:relative;margin-left:60px;width:1100px">
+<div style="position:relative;width:1300px">
   <div class="" style="height:60px;color:white;margin-top:10px;font-size:30px;background-color:purple;padding-top:15px;padding-left:420px;"><b>Contact Us</b></div>
 
   <div style="height:800px;border:1px solid black;margin-top:15px;vertical-align:middle; padding:20px;font-family:arial;margin-bottom:20px">
@@ -75,12 +75,12 @@
   </div>
 
   <div class="" style="height:60px;color:white;font-size:30px;margin-top:30px;background-color:purple;padding-top:15px;padding-left:420px"><b>Disclaimer</b></div>
-  <div  style="height:550px;border:1px solid black;margin:0px;vertical-align:middle;padding:20px;font-family:arial;margin-top:15px;"><center><b></b></center></div>
+  <div  style="height:775px;border:1px solid black;margin:0px;vertical-align:middle;padding:20px;font-family:arial;margin-top:15px;"><center><b></b></center></div>
 </div>
 
 <!-- <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
  -->
-<div style="margin:15px;margin-left:60px;height:1670px;width:1100px;margin-top:35px;">
+<div style="height:1880px;width:1300px;">
   <% no_image = "#{Rails.root}/app/assets/images/default_images/no.jpg" %>
   <div style="position:relative;top:0px;left:0px;width:500px;"><%=image_tag(@properties.image2.present? ? @properties.image2.url(:large) : no_image, :height=> "1155",:width=>"500") %></div>
   <div style="position:relative;top:30px;left:0px;width:500px;"><%=image_tag(@properties.image3.present? ? @properties.image3.url(:large) : no_image, :height=> "355",:width=>"500") %></div>
@@ -92,10 +92,10 @@
 </div>  
 
 
-<div style="position:relative;margin-left:60px;height:1600px;width:1100px">
+<div style="position:relative;height:1870px;width:1300px;">
   <div class="" style="height:60px;color:white;font-size:30px;background-color:purple;padding-top:15px;padding-left:420px"><b>Description</b></div>
-  <div style="height:650px;border:1px solid purple;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;margin-top:15px;"><center><b><%=@properties.short_description%></b></center></div>
+  <div style="height:790px;border:1px solid purple;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;margin-top:15px;"><center><b><%=@properties.short_description%></b></center></div>
 
   <div class="" style="height:60px;color:white;font-size:30px;background-color:purple;padding-top:15px;padding-left:420px;margin-top:30px"><b>Specification</b></div>
-  <div  style="height:650px;border:1px solid purple;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;margin-top:15px;"><center><b><%=@properties.description.html_safe%></b></center></div>
+  <div  style="height:790px;border:1px solid purple;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;margin-top:15px;"><center><b><%=@properties.description.html_safe%></b></center></div>
 </div>  
