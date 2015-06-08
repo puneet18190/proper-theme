@@ -183,11 +183,11 @@ class ScreensController < ApplicationController
 	end	
 
 	def mobiles
-		if request.ip == "82.68.0.86" || request.ip == "82.68.180.14" 
+		#if request.ip == "82.68.0.86" || request.ip == "82.68.180.14" 
 			@data = Mobile.all.select(:name, :telephone)
-		else
-			redirect_to root_url, alert: "IP: #{request.ip} is not Authorized." 
-		end			
+		# else
+		# 	redirect_to root_url, alert: "IP: #{request.ip} is not Authorized." 
+		# end			
 	end
 	def services
 		if request.ip == "82.68.0.86" || request.ip == "82.68.180.14" 
