@@ -84,7 +84,7 @@
  -->
 <div style="height:1878px;width:1300px;height:1875px;">
   <% no_image = "#{Rails.root}/app/assets/images/default_images/no.jpg" %>
-  <div style="position:relative;width:1300px;"><%=image_tag(@properties.image2.present? ? @properties.image2.present? : no_image, :height=> "715",:width=>"1295") %></div>
+  <div style="position:relative;width:1300px;"><%=image_tag(@properties.image2.present? ? @properties.image2.url(:large) : no_image, :height=> "715",:width=>"1295") %></div>
   <div style="position:relative;top:40px;left:0px;width:615px;padding:5px"><%=image_tag(@properties.image3.present? ? @properties.image3.url(:large) : no_image, :height=> "525",:width=>"615") %></div>
   <div style="position:relative;top:80px;left:0px;width:615px;padding:5px"><%=image_tag(@properties.image3.present? ? @properties.image3.url(:large) : no_image, :height=> "525",:width=>"615") %></div>
   
