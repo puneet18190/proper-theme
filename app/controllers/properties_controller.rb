@@ -342,7 +342,11 @@ class PropertiesController < ApplicationController
       format.html
       format.pdf do
         render pdf: "broucher",
-               page_size: "A3"
+               page_size: "A3",
+               margin:  {   top:               5,                     # default 10 (mm)
+                            bottom:            5,
+                            left:              5,
+                            right:             5 }
       end
     end
     # respond_to do |format|
