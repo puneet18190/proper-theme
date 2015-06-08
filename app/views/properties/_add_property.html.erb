@@ -3,6 +3,10 @@
     margin-top: -32px;
     margin-left: 60px;
   }
+  .search-query{
+    margin-top: 0px;
+    margin-left: 0px;  
+  }
 </style>
 
 <div id="content">
@@ -20,7 +24,7 @@
       <%#= render 'properties/news_carousel'%>
     </dl>
   </div> -->
-  <div class="container" style="margin:0;width:95%">
+  <div class="container" style="margin:0;width:100%">
     <div class="panel" style="padding-bottom:0">
       <% if current_user.status == "landlord"%>
         <div class="box-line">
@@ -45,9 +49,9 @@
               </ul>
             </div>
           <% end %>
-          <div class="proper-form-step-area" style="height:1170px">
+          <div class="proper-form-step-area" style="height:850px">
             <div class="proper-singup" style="max-width:100%;margin:0;padding:0;height:100%">
-              <div style="float:left;margin:30px;width:34%">
+              <div style="float:left;margin:10px;width:23%">
                 <h3 class=""><b>Property</b></h3>
                 <div class="field">
                   <%= f.label :name %>
@@ -70,7 +74,7 @@
                   <%= f.text_field :postcode%>
                 </div>
 
-                <h3 class=""><b>Marketing</b></h3>
+                <h3 style="margin-top:30px"><b>Marketing</b></h3>
                 <div class="field">
                   <%= f.label :category %>
                   <%= f.select :category, ["Rent","Sale"] %>
@@ -101,8 +105,13 @@
                     <%= f.label :sold %>
                     <%= f.check_box :sold%>
                   </div>
-                </div>  
-
+                </div> 
+                <div class="field" style="margin-top:40px">
+                  <%= f.label :tag_line %>
+                  <%= f.text_field :tag_line,:style=>"width:500px" %>
+                </div> 
+              </div>
+              <div style="float:left;width:20%;margin:10px;height:95%">
                 <h3 class=""><b>Images</b></h3>
                 <div class="field">
                   <%= f.label :image1, "Main",:style=>"margin:0" %>
@@ -144,15 +153,11 @@
                   <%= f.label :image10, "Image9",:style=>"margin:0" %>
                   <%= f.file_field :image10,:style=>"line-height:0" %>
                 </div>
-              </div>
-              <div style="float:right;width:55%;margin:30px;margin-top:70px">  
-                <div class="field">
-                  <%= f.label :tag_line %>
-                  <%= f.text_field :tag_line,:style=>"width:540px" %>
-                </div>
+              </div>  
+              <div style="float:right;width:48%;margin:10px;">  
                 <div class="field" >
                   <%= f.label :short_description %>
-                  <%= f.text_area :short_description, style: "width:600px;height:60px" %>
+                  <%= f.text_area :short_description, style: "width:575px;height:60px" %>
                 </div>
                 <div class="field" >
                   <%= f.label :description %>
@@ -204,8 +209,8 @@
                   </div><br/>
                 </div>  
                 <br/><br/><br/>
-                <%= f.submit (params[:action]=="edit" ? "Update" : "Create"), class: "btn btn-proper btn-large", :style=>"margin:0" %>
               </div>
+              <%= f.submit (params[:action]=="edit" ? "Update" : "Create"), class: "btn btn-proper btn-large", :style=>"margin:0" %>
             </div>  
           </div>
         <% end %>
@@ -226,8 +231,8 @@
 </script>
 <style type="text/css">
   .cleditorMain{
-    width: 600px !important;
-    height: 530px !important;
+    width: 575px !important;
+    height: 300px !important;
   }
   .cleditorMain iframe {
     height: 478px !important;
