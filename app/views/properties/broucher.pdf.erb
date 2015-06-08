@@ -6,48 +6,49 @@
 <div style="border:1px solid Blue;height:1875px;background-color:white;width:1300px;left:0">
   <div class="" style="margin:10px"><center><%=wicked_pdf_image_tag("seal_logo.png") %></center></div>
   <!-- <div style="font-size:40px;margin:5px"><center><b><%#="#{@properties.name}"%></b></center></div> -->
-  <div style="height:280px;width:1000px;">
+  <div style="height:280px;width:1300px;">
     <div style="font-size:40px;margin:10px"><center><b><%="#{@properties.address1}"%></b></center></div>
     <div style="font-size:40px;margin:10px"><center><b><%="#{@properties.address2}"%></b></center></div>
     <div style="font-size:40px;margin:10px"><center><b><%="#{@properties.address3}"%></b></center></div>
     <div style="font-size:40px;margin:10px"><center><b><%="#{@properties.postcode}"%></b></center></div>
   </div>
 
-  <div class="desc-type for-sale" style="height:50px;width:125px;position:absolute;top:482px; padding:5px;left:256;color:white;font-size:30px;background: #FF6666;font-weight: bold;z-index:1;opacity:0.8"><%=(@properties.category == "rent" || @properties.category == "Rent") ? "To Rent" : "To Sale" %></div>
+  <div class="desc-type for-sale" style="height:50px;width:125px;position:absolute;top:482px; padding:5px;left:322px;color:white;font-size:30px;background: #FF6666;font-weight: bold;z-index:1;opacity:0.8"><%=(@properties.category == "rent" || @properties.category == "Rent") ? "To Rent" : "To Sale" %></div>
   
-  <div style="margin:20px;width:650px;position:absolute;left:235px;border:2px solid Blue;">
+  <div style="margin:20px;width:650px;position:absolute;left:300px;border:2px solid Blue;">
     <center><%=image_tag(@properties.image1.url, :height=> "560",:width=>"650") %></center>
   </div>
 
-  <div style="height:70px;width:<%=(@properties.category == "rent" || @properties.category == "Rent") ? "130px" : "230px" %>;position:absolute;font-weight: bold;background-color: rgba(0,0,0,0.8);font-size: 50px;color:white;padding:10px;top:953px;left:256px">
+  <div style="height:70px;width:<%=(@properties.category == "rent" || @properties.category == "Rent") ? "130px" : "230px" %>;position:absolute;font-weight: bold;background-color: rgba(0,0,0,0.8);font-size: 50px;color:white;padding:10px;top:953px;left:322px">
     &pound; <%= @properties.price.to_i %>
   </div>
 
-  <div style="height:60px;width:1029px;background-color:purple;font-size:30px;margin:0px;color:white;font-family:arial;position:relative; top:620px;left:0px;padding-top:15px;">
+  <div style="height:80px;width:1300px;background-color:purple;font-size:40px;color:white;font-family:arial;position:relative; top:700px;padding-top:10px">
     <b style=""><center><%=@properties.tag_line%></center></b>
   </div>
 
-  <div style="position:absolute; top:1260px;height:80px;width:1015px;">
-    <span class="label" style="width:100px;height:40px;color:black;font-weight: normal;display:inline-block;padding:2px;font-size:20px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px"> <i class="icon-circle-arrow-right"></i>Beds : <%= @properties.beds %></span>
+  <div style="position:absolute; top:1460px;height:80px;width:1300px;">
+    <span class="label" style="width:120px;height:50px;color:black;font-weight: normal;display:inline-block;padding:2px;font-size:20px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px"> <i class="icon-circle-arrow-right"></i>Beds : <%= @properties.beds %></span>
     
-    <span class="label" style="width:100px;height:40px;color:black;font-weight: normal;display:inline-block;padding:2px 4px;font-size:20px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px"><i class="icon-large icon-glass"></i>Bath : <%= @properties.bath %></span>
+    <span class="label" style="width:120px;height:50px;color:black;font-weight: normal;display:inline-block;padding:2px 4px;font-size:20px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px"><i class="icon-large icon-glass"></i>Bath : <%= @properties.bath %></span>
     
-    <span class="label" style="width:150px;height:40px;color:black;font-weight: normal;display:inline-block;padding:2px 4px;font-size:20px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px;"> Parking : <%= @properties.parking %></span>
+    <span class="label" style="width:170px;height:50px;color:black;font-weight: normal;display:inline-block;padding:2px 4px;font-size:20px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px;"> Parking : <%= @properties.parking %></span>
     
-    <span class="label" style="width:150px;height:40px;color:black;font-weight: normal;display:inline-block;padding:2px 4px;font-size:20px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px;"><i class="icon-large icon-glass"></i>Garden : <%= @properties.garden %></span>
+    <span class="label" style="width:170px;height:50px;color:black;font-weight: normal;display:inline-block;padding:2px 4px;font-size:20px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px;"><i class="icon-large icon-glass"></i>Garden : <%= @properties.garden %></span>
     
-    <span class="label" style="width:150px;height:40px;color:black;font-weight: normal;display:inline-block;padding:2px 4px;font-size:20px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px;"> Gas CH : <%= @properties.gas_ch %></span>
+    <span class="label" style="width:170px;height:50px;color:black;font-weight: normal;display:inline-block;padding:2px 4px;font-size:20px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px;"> Gas CH : <%= @properties.gas_ch %></span>
     
-    <span class="label" style="width:150px;height:40px;color:black;font-weight: normal;display:inline-block;padding:2px 4px;font-size:20px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;background-color:#999;margin:10px;padding-top:15px"><i class="icon-large icon-glass"></i>DG : <%= @properties.dg %></span>
+    <span class="label" style="width:170px;height:50px;color:black;font-weight: normal;display:inline-block;padding:2px 4px;font-size:20px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;background-color:#999;margin:10px;padding-top:15px"><i class="icon-large icon-glass"></i>DG : <%= @properties.dg %></span>
   </div>
 
-  <div style="position:absolute;top:1440px;left:70px">
-    <center><%=wicked_pdf_image_tag("contact_info.png", :height=> "60", :width => "1000") %></center>
+  <div style="position:absolute;top:1720px;left:60px;">
+    <center><%=wicked_pdf_image_tag("contact_info.png", :height=> "80", :width => "1200") %></center>
   </div>
 </div>
+<div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
 
-<div style="position:relative;width:1300px">
-  <div class="" style="height:60px;color:white;margin-top:10px;font-size:30px;background-color:purple;padding-top:15px;padding-left:420px;"><b>Contact Us</b></div>
+<div style="position:relative;width:1300px;height:1875px;border:1px solid transparent">
+  <div style="height:60px;color:white;font-size:30px;background-color:purple;padding-top:15px;padding-left:550px;"><b>Contact Us</b></div>
 
   <div style="height:800px;border:1px solid black;margin-top:15px;vertical-align:middle; padding:20px;font-family:arial;margin-bottom:20px">
     <div style="float:left;">
@@ -74,28 +75,31 @@
 
   </div>
 
-  <div class="" style="height:60px;color:white;font-size:30px;margin-top:30px;background-color:purple;padding-top:15px;padding-left:420px"><b>Disclaimer</b></div>
-  <div  style="height:775px;border:1px solid black;margin:0px;vertical-align:middle;padding:20px;font-family:arial;margin-top:15px;"><center><b></b></center></div>
+  <div class="" style="height:60px;color:white;font-size:30px;margin-top:30px;background-color:purple;padding-top:15px;padding-left:550px"><b>Disclaimer</b></div>
+  <div  style="height:743px;border:1px solid black;margin:0px;vertical-align:middle;padding:20px;font-family:arial;margin-top:15px;"><center><b></b></center></div>
 </div>
+<div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
 
 <!-- <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
  -->
-<div style="height:1880px;width:1300px;">
+<div style="height:1878px;width:1300px;height:1875px;">
   <% no_image = "#{Rails.root}/app/assets/images/default_images/no.jpg" %>
-  <div style="position:relative;top:0px;left:0px;width:500px;"><%=image_tag(@properties.image2.present? ? @properties.image2.url(:large) : no_image, :height=> "1155",:width=>"500") %></div>
-  <div style="position:relative;top:30px;left:0px;width:500px;"><%=image_tag(@properties.image3.present? ? @properties.image3.url(:large) : no_image, :height=> "355",:width=>"500") %></div>
+  <div style="position:relative;width:1300px;"><%=image_tag(@properties.image2.present? ? no_image : no_image, :height=> "715",:width=>"1295") %></div>
+  <div style="position:relative;top:40px;left:0px;width:615px;padding:5px"><%=image_tag(@properties.image3.present? ? @properties.image3.url(:large) : no_image, :height=> "525",:width=>"615") %></div>
+  <div style="position:relative;top:80px;left:0px;width:615px;padding:5px"><%=image_tag(@properties.image3.present? ? @properties.image3.url(:large) : no_image, :height=> "525",:width=>"615") %></div>
   
-  <div style="position:relative;top:-1510px;left:530px;width:500px;"><%=image_tag(@properties.image4.present? ? @properties.image4.url(:large) : no_image, :height=> "355",:width=>"500") %></div>
-  <div style="position:relative;top:-1470px;left:530px;width:500px;"><%=image_tag(@properties.image5.present? ? @properties.image5.url(:large) : no_image, :height=> "355",:width=>"500") %></div>
-  <div style="position:relative;top:-1430px;left:530px;width:500px;"><%=image_tag(@properties.image6.present? ? @properties.image6.url(:large) : no_image, :height=> "355",:width=>"500") %></div>
-  <div style="position:relative;top:-1390px;left:530px;width:500px;"><%=image_tag(@properties.image7.present? ? @properties.image7.url(:large) : no_image, :height=> "355",:width=>"500") %></div>
+  <div style="position:relative;top:-1035px;left:670px;width:615px;padding:5px"><%=image_tag(@properties.image4.present? ? @properties.image4.url(:large) : no_image, :height=> "525",:width=>"615") %></div>
+  <div style="position:relative;top:-995px;left:670px;width:615px;padding:5px"><%=image_tag(@properties.image5.present? ? @properties.image5.url(:large) : no_image, :height=> "525",:width=>"615") %></div>
+  <!-- <div style="position:relative;top:-1430px;left:530px;width:500px;"><%#=image_tag(@properties.image6.present? ? @properties.image6.url(:large) : no_image, :height=> "355",:width=>"500") %></div>
+  <div style="position:relative;top:-1390px;left:530px;width:500px;"><%#=image_tag(@properties.image7.present? ? @properties.image7.url(:large) : no_image, :height=> "355",:width=>"500") %></div> -->
 </div>  
 
+<div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
 
-<div style="position:relative;height:1870px;width:1300px;">
-  <div class="" style="height:60px;color:white;font-size:30px;background-color:purple;padding-top:15px;padding-left:420px"><b>Description</b></div>
-  <div style="height:790px;border:1px solid purple;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;margin-top:15px;"><center><b><%=@properties.short_description%></b></center></div>
+<div style="position:relative;height:1875px;width:1300px;">
+  <div class="" style="height:60px;color:white;font-size:30px;background-color:purple;padding-top:15px;padding-left:550px"><b>Description</b></div>
+  <div style="height:785px;border:1px solid purple;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;margin-top:15px;"><center><b><%=@properties.short_description%></b></center></div>
 
-  <div class="" style="height:60px;color:white;font-size:30px;background-color:purple;padding-top:15px;padding-left:420px;margin-top:30px"><b>Specification</b></div>
-  <div  style="height:790px;border:1px solid purple;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;margin-top:15px;"><center><b><%=@properties.description.html_safe%></b></center></div>
+  <div class="" style="height:60px;color:white;font-size:30px;background-color:purple;padding-top:15px;padding-left:550px;margin-top:30px"><b>Specification</b></div>
+  <div  style="height:785px;border:1px solid purple;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;margin-top:15px;"><center><b><%=@properties.description.html_safe%></b></center></div>
 </div>  
