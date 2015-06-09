@@ -161,11 +161,7 @@
                 </div>
                 <div class="field" >
                   <%= f.label :description %>
-                  <%if params[:action]=="edit"%>
-                    <%= f.text_area :description, :class=>"long_desc" %>
-                  <%else%>  
-                    <%= f.text_area :description, :value => Setting.first.property_description, :class=>"long_desc" %>
-                  <%end%>
+                  <%= f.text_area :description, :class=>"long_desc" %>
                 </div><br/>
                 <h3 class=""><b>Key Features</b></h3>
                 <div style="float:left">
