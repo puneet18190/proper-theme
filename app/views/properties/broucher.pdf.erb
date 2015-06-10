@@ -3,31 +3,32 @@
 <%#= wicked_pdf_stylesheet_link_tag "font-awesome.css" %>
 <% no_image = "#{Rails.root}/app/assets/images/default_images/no.jpg" %>
 
-<div style="border:1px solid Blue;height:1950px;width:135%;">
-  <div class="" style="margin:10px"><center><%=wicked_pdf_image_tag("seal_logo.png") %></center></div>
-  <!-- <div style="font-size:40px;margin:5px"><center><b><%#="#{@properties.name}"%></b></center></div> -->
+<div style="border:1px solid Blue;height:1875px;width:1300px;">
+  <div style="margin:10px">
+    <center><%=wicked_pdf_image_tag("seal_logo.png", :height=>"200",:width=>"700") %></center>
+  </div>
   <div style="height:280px;width:1300px;">
-    <div style="font-size:40px;margin:10px"><center><b><%="#{@properties.address1}"%></b></center></div>
-    <div style="font-size:40px;margin:10px"><center><b><%="#{@properties.address2}"%></b></center></div>
-    <div style="font-size:40px;margin:10px"><center><b><%="#{@properties.address3}"%></b></center></div>
-    <div style="font-size:40px;margin:10px"><center><b><%="#{@properties.postcode}"%></b></center></div>
+    <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.address1}"%></b></center></div>
+    <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.address2}"%></b></center></div>
+    <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.address3}"%></b></center></div>
+    <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.postcode}"%></b></center></div>
   </div>
 
-  <div class="desc-type for-sale" style="height:50px;width:125px;position:absolute;top:482px; padding:5px;left:322px;color:white;font-size:30px;background: #FF6666;font-weight: bold;z-index:1;opacity:0.8"><%=(@properties.category == "rent" || @properties.category == "Rent") ? "To Rent" : "To Sale" %></div>
+  <div class="desc-type for-sale" style="height:50px;width:125px;position:absolute;top:530px; padding:5px;left:202px;color:white;font-size:30px;background: #FF6666;font-weight: bold;z-index:1;opacity:0.8"><%=(@properties.category == "rent" || @properties.category == "Rent") ? "To Rent" : "To Sale" %></div>
   
-  <div style="margin:20px;width:700px;position:absolute;left:300px;border:2px solid Blue;height:600px">
-    <center><%=image_tag(@properties.image1.url, :height=> "600",:width=>"700") %></center>
+  <div style="margin:20px;width:900px;position:absolute;left:180px;border:2px solid Blue;height:700px">
+    <center><%=image_tag(@properties.image1.url, :height=> "700",:width=>"900") %></center>
   </div>
 
-  <div style="height:70px;width:<%=(@properties.category == "rent" || @properties.category == "Rent") ? "130px" : "230px" %>;position:absolute;font-weight: bold;background-color: rgba(0,0,0,0.8);font-size: 50px;color:white;padding:10px;top:993px;left:322px">
+  <div style="height:70px;width:<%=(@properties.category == "rent" || @properties.category == "Rent") ? "130px" : "230px" %>;position:absolute;font-weight: bold;background-color: rgba(0,0,0,0.7);font-size: 50px;color:white;padding:10px;top:1141px;left:202px">
     &pound; <%= @properties.price.to_i %>
   </div>
 
-  <div style="height:80px;width:1300px;background-color:purple;font-size:40px;color:white;font-family:arial;position:relative; top:720px;padding-top:10px">
-    <b style=""><center><%=@properties.tag_line%></center></b>
+  <div style="height:80px;width:1300px;background-color:purple;font-size:40px;color:white;font-family:arial;position:relative; top:800px;padding-top:20px">
+    <b><center><%=@properties.tag_line%></center></b>
   </div>
 
-  <div style="position:absolute; top:1460px;height:80px;width:1300px;">
+  <div style="position:absolute; top:1550px;height:80px;width:1300px;">
     <span class="label" style="width:120px;height:50px;color:black;font-weight: normal;display:inline-block;padding:3px;font-size:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px;margin-left:50px"> <i class="icon-circle-arrow-right"></i>Beds : <%= @properties.beds %></span>
     
     <span class="label" style="width:120px;height:50px;color:black;font-weight: normal;display:inline-block;padding:3px 4px;font-size:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px"><i class="icon-large icon-glass"></i>Bath : <%= @properties.bath %></span>
@@ -41,25 +42,26 @@
     <span class="label" style="width:190px;height:50px;color:black;font-weight: normal;display:inline-block;padding:3px 4px;font-size:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;background-color:#999;margin:10px;padding-top:15px"><i class="icon-large icon-glass"></i>DG : <%= @properties.dg %></span>
   </div>
 
-  <div style="position:absolute;top:1720px;left:60px;">
+  <div style="position:absolute;top:1780px;left:60px;">
     <center><%=wicked_pdf_image_tag("contact_info.png", :height=> "80", :width => "1200") %></center>
   </div>
 </div>
 <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
 
 <div style="position:relative;width:1300px;height:1875px;border:1px solid transparent">
-  <div style="height:60px;color:white;font-size:30px;background-color:purple;padding-top:15px;padding-left:550px;"><b>Contact Us</b></div>
+  <div style="height:60px;color:white;font-size:40px;background-color:purple;padding-top:15px;padding-left:560px;"><b>Contact Us</b></div>
 
-  <div style="height:800px;border:1px solid black;margin-top:15px;vertical-align:middle; padding:20px;font-family:arial;margin-bottom:20px">
+  <div style="height:400px;border:1px solid purple;margin-top:15px;vertical-align:middle; padding:20px;font-family:arial;margin-bottom:20px">
     <div style="float:left;">
       <div style="font-size:40px;padding:10px"><center><b>Agent Information</b></center></div>
       <div class="" style="margin-top:40px;margin:20px">
-        <div style="font-size:30px;margin:5px"><center><b><%=@properties.agent.name%></b></center></div>
-        <div style="font-size:30px;margin:5px"><center><b><%=@properties.agent.name.downcase%>@sealproperties.co.uk</b></center></div>
-        <div style="font-size:30px;margin:5px"><center><b><%=@properties.agent.phone%></b></center></div>
-        <div style="font-size:30px;margin:5px"><center><b>167-169 Saltwell Road</b></center></div>
-        <div style="font-size:30px;margin:5px"><center><b>Gateshead, NE8
+        <div style="font-size:40px;margin:5px"><center><b><%=@properties.agent.name%></b></center></div>
+        <div style="font-size:40px;margin:5px"><center><b><%=@properties.agent.name.downcase%>@sealproperties.co.uk</b></center></div>
+        <div style="font-size:40px;margin:5px"><center><b><%=@properties.agent.phone%></b></center></div>
+        <div style="font-size:40px;margin:5px"><center><b>167-169 Saltwell Road</b></center></div>
+        <div style="font-size:40px;margin:5px"><center><b>Gateshead, NE8
 4JT</b></center></div>
+        <div style="font-size:40px;margin:5px"><center><b>Web: www.sealproperties.co.uk</b></center></div>
       </div>
       
     </div>
@@ -67,22 +69,33 @@
     <div style="float:right;">
       <div style="width:420px;"><center><%=image_tag(@properties.agent.image.present? ? @properties.agent.image.url(:large) : no_image, :height=> "400",:width=>"400") %></center></div>
     </div>
-
-    <div style="float:left;">
-      <% qr = RQRCode::QRCode.new("http://#{request.host_with_port}/properties_detail/#{@properties.id}",:size => 10).to_img.resize(200, 200).to_data_url %>
-      <div style="width:350px;height:300px;margin-top:50px;margin-left:300px"><center><%=image_tag(qr, :height=> "300",:width=>"350") %></center></div>  
-    </div>
-
   </div>
+  <div style="height:60px;color:white;font-size:40px;background-color:purple;padding-top:15px;padding-left:570px;"><b>Scan Me</b></div>
+  <div style="height:330px;border:1px solid purple;margin-top:15px;vertical-align:middle; padding:20px;font-family:arial;">
+    <div style="font-size:30px;margin:5px"><center><b>Scan me for Property Detail</b></center></div>
+    <div style="">
+      <% qr = RQRCode::QRCode.new("http://#{request.host_with_port}/properties_detail/#{@properties.id}",:size => 10).to_img.resize(200, 200).to_data_url %>
+      <div style="width:350px;height:300px;margin-left:450px;"><center><%=image_tag(qr, :height=> "300",:width=>"350") %></center></div>  
+    </div>
+  </div>  
 
-  <div class="" style="height:60px;color:white;font-size:30px;margin-top:30px;background-color:purple;padding-top:15px;padding-left:550px"><b>Disclaimer</b></div>
-  <div  style="height:743px;border:1px solid black;margin:0px;vertical-align:middle;padding:20px;font-family:arial;margin-top:15px;"><center><b></b></center></div>
+  <div class="" style="height:60px;color:white;font-size:40px;margin-top:30px;background-color:purple;padding-top:15px;padding-left:560px"><b>Disclaimer</b></div>
+  <div  style="height:700px;border:1px solid purple;margin:0px;vertical-align:middle;padding:20px;font-family:arial;margin-top:15px;font-size:40px"><center><b>
+    <p>
+      Whilst every effort is made to ensure the contents of this brochure are accurate and true, the particulars are set out as a general outline for guidance purposes only and do not constitute any part of an offer or contract. Interested Parties should not rely on them as statements of representation of fact, but instead must satisfy themselves by inspection or otherwise as to their accuracy.
+    </p>   
+    <p>
+      An Administration Fee is payable. Fees are typically £199 for a single tenancy. Please contact the office for more details.
+    </p>
+    <p>  
+      Energy Performance Certificate (EPC) information is available upon request. Please contact the office.
+    </p></b></center></div>
 </div>
 <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
 
-<!-- <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
- -->
 <div style="height:1878px;width:1300px;height:1875px;">
+  <div style="height:60px;color:white;font-size:40px;background-color:purple;padding-top:15px;padding-left:570px;margin-bottom:15px"><b>Gallery</b></div>
+
   <% no_image = "#{Rails.root}/app/assets/images/default_images/no.jpg" %>
   <div style="position:relative;width:1300px;"><%=image_tag(@properties.image2.present? ? @properties.image2.url(:large) : no_image, :height=> "715",:width=>"1295") %></div>
   <div style="position:relative;top:40px;left:0px;width:615px;padding:5px"><%=image_tag(@properties.image3.present? ? @properties.image3.url(:large) : no_image, :height=> "525",:width=>"615") %></div>
@@ -90,16 +103,14 @@
   
   <div style="position:relative;top:-1035px;left:670px;width:615px;padding:5px"><%=image_tag(@properties.image4.present? ? @properties.image4.url(:large) : no_image, :height=> "525",:width=>"615") %></div>
   <div style="position:relative;top:-995px;left:670px;width:615px;padding:5px"><%=image_tag(@properties.image5.present? ? @properties.image5.url(:large) : no_image, :height=> "525",:width=>"615") %></div>
-  <!-- <div style="position:relative;top:-1430px;left:530px;width:500px;"><%#=image_tag(@properties.image6.present? ? @properties.image6.url(:large) : no_image, :height=> "355",:width=>"500") %></div>
-  <div style="position:relative;top:-1390px;left:530px;width:500px;"><%#=image_tag(@properties.image7.present? ? @properties.image7.url(:large) : no_image, :height=> "355",:width=>"500") %></div> -->
 </div>  
 
 <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
 
 <div style="position:relative;height:1875px;width:1300px;">
-  <div class="" style="height:60px;color:white;font-size:30px;background-color:purple;padding-top:15px;padding-left:550px"><b>Description</b></div>
-  <div style="height:785px;border:1px solid purple;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;margin-top:15px;"><center><b><%=@properties.short_description%></b></center></div>
+  <div class="" style="height:60px;color:white;font-size:40px;background-color:purple;padding-top:15px;padding-left:550px"><b>Description</b></div>
+  <div style="height:500px;border:1px solid purple;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;"><center><b><%=@properties.short_description%></b></center></div>
 
-  <div class="" style="height:60px;color:white;font-size:30px;background-color:purple;padding-top:15px;padding-left:550px;margin-top:30px"><b>Specification</b></div>
-  <div  style="height:785px;border:1px solid purple;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;margin-top:15px;"><center><b><%=@properties.description.html_safe%></b></center></div>
+  <div class="" style="height:60px;color:white;font-size:40px;background-color:purple;padding-top:15px;padding-left:550px;margin-top:30px"><b>Specification</b></div>
+  <div  style="height:1120px;border:1px solid purple;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;"><center><b><%=@properties.description.html_safe%></b></center></div>
 </div>  
