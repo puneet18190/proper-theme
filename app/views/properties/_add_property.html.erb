@@ -157,7 +157,7 @@
               <div style="float:right;width:48%;margin:10px;">  
                 <div class="field" >
                   <%= f.label :short_description %>
-                  <%= f.text_area :short_description, style: "width:575px;height:60px" %>
+                  <%= f.text_area :short_description, style: "width:575px;height:60px",:maxlength => 900 %>
                 </div>
                 <div class="field" >
                   <%= f.label :description %>
