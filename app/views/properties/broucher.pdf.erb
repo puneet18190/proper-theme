@@ -20,7 +20,7 @@
     <center><%=image_tag(@properties.image1.url, :height=> "700",:width=>"900") %></center>
   </div>
 
-  <div style="height:70px;width:<%=(@properties.category == "rent" || @properties.category == "Rent") ? "130px" : "230px" %>;position:absolute;font-weight: bold;background-color: rgba(0,0,0,0.7);font-size: 50px;color:white;padding:10px;top:1141px;left:202px">
+  <div style="height:70px;width:<%=(@properties.category == "rent" || @properties.category == "Rent") ? "130px" : "230px" %>;position:absolute;font-weight: bold;background-color: rgba(0,0,0,0.6);font-size: 50px;color:white;padding:10px;top:1141px;left:202px">
     &pound; <%= @properties.price.to_i %>
   </div>
 
@@ -49,12 +49,12 @@
 <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
 
 <div style="position:relative;width:1300px;height:1875px;border:1px solid transparent">
-  <div style="height:60px;color:white;font-size:40px;background-color:purple;padding-top:15px;padding-left:560px;"><b>Contact Us</b></div>
+  <div style="height:60px;color:white;font-size:40px;background-color:purple;padding-top:10px;padding-left:560px;"><b>Contact Us</b></div>
 
   <div style="height:400px;border:1px solid purple;margin-top:15px;vertical-align:middle; padding:20px;font-family:arial;margin-bottom:20px">
     <div style="float:left;">
       <div style="font-size:40px;padding:10px"><center><b>Agent Information</b></center></div>
-      <div class="" style="margin-top:40px;margin:20px">
+      <div style="margin-top:40px;margin:10px">
         <div style="font-size:40px;margin:5px"><center><b><%=@properties.agent.name%></b></center></div>
         <div style="font-size:40px;margin:5px"><center><b><%=@properties.agent.name.downcase%>@sealproperties.co.uk</b></center></div>
         <div style="font-size:40px;margin:5px"><center><b><%=@properties.agent.phone%></b></center></div>
@@ -63,23 +63,22 @@
 4JT</b></center></div>
         <div style="font-size:40px;margin:5px"><center><b>Web: www.sealproperties.co.uk</b></center></div>
       </div>
-      
     </div>
 
     <div style="float:right;">
       <div style="width:420px;"><center><%=image_tag(@properties.agent.image.present? ? @properties.agent.image.url(:large) : no_image, :height=> "400",:width=>"400") %></center></div>
     </div>
   </div>
-  <div style="height:60px;color:white;font-size:40px;background-color:purple;padding-top:15px;padding-left:570px;"><b>Scan Me</b></div>
+  <div style="height:60px;color:white;font-size:40px;background-color:purple;padding-top:10px;padding-left:570px;"><b>Scan Me</b></div>
   <div style="height:330px;border:1px solid purple;margin-top:15px;vertical-align:middle; padding:20px;font-family:arial;">
-    <div style="font-size:30px;margin:5px"><center><b>Scan me for Property Detail</b></center></div>
+    <div style="font-size:30px;margin:5px"><center><b>Scan Me For Property Detail</b></center></div>
     <div style="">
       <% qr = RQRCode::QRCode.new("http://#{request.host_with_port}/properties_detail/#{@properties.id}",:size => 10).to_img.resize(200, 200).to_data_url %>
       <div style="width:350px;height:300px;margin-left:450px;"><center><%=image_tag(qr, :height=> "300",:width=>"350") %></center></div>  
     </div>
   </div>  
 
-  <div class="" style="height:60px;color:white;font-size:40px;margin-top:30px;background-color:purple;padding-top:15px;padding-left:560px"><b>Disclaimer</b></div>
+  <div style="height:60px;color:white;font-size:40px;margin-top:30px;background-color:purple;padding-top:10px;padding-left:560px"><b>Disclaimer</b></div>
   <div  style="height:700px;border:1px solid purple;margin:0px;vertical-align:middle;padding:20px;font-family:arial;margin-top:15px;font-size:40px"><center><b>
     <p>
       Whilst every effort is made to ensure the contents of this brochure are accurate and true, the particulars are set out as a general outline for guidance purposes only and do not constitute any part of an offer or contract. Interested Parties should not rely on them as statements of representation of fact, but instead must satisfy themselves by inspection or otherwise as to their accuracy.
@@ -93,16 +92,16 @@
 </div>
 <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
 
-<div style="height:1878px;width:1300px;height:1875px;">
+<div style="height:1878px;width:1300px;height:1875px;border:1px solid red">
   <div style="height:60px;color:white;font-size:40px;background-color:purple;padding-top:15px;padding-left:570px;margin-bottom:15px"><b>Gallery</b></div>
 
   <% no_image = "#{Rails.root}/app/assets/images/default_images/no.jpg" %>
-  <div style="position:relative;width:1300px;"><%=image_tag(@properties.image2.present? ? @properties.image2.url(:large) : no_image, :height=> "715",:width=>"1295") %></div>
-  <div style="position:relative;top:40px;left:0px;width:615px;padding:5px"><%=image_tag(@properties.image3.present? ? @properties.image3.url(:large) : no_image, :height=> "525",:width=>"615") %></div>
-  <div style="position:relative;top:80px;left:0px;width:615px;padding:5px"><%=image_tag(@properties.image3.present? ? @properties.image3.url(:large) : no_image, :height=> "525",:width=>"615") %></div>
+  <div style="position:relative;width:1300px;"><%=image_tag(@properties.image2.present? ? @properties.image2.url(:large) : no_image, :height=> "680",:width=>"1295") %></div>
+  <div style="position:relative;top:25px;left:0px;width:615px;padding:5px"><%=image_tag(@properties.image3.present? ? @properties.image3.url(:large) : no_image, :height=> "520",:width=>"615") %></div>
+  <div style="position:relative;top:45px;left:0px;width:615px;padding:5px"><%=image_tag(@properties.image3.present? ? @properties.image3.url(:large) : no_image, :height=> "520",:width=>"615") %></div>
   
-  <div style="position:relative;top:-1035px;left:670px;width:615px;padding:5px"><%=image_tag(@properties.image4.present? ? @properties.image4.url(:large) : no_image, :height=> "525",:width=>"615") %></div>
-  <div style="position:relative;top:-995px;left:670px;width:615px;padding:5px"><%=image_tag(@properties.image5.present? ? @properties.image5.url(:large) : no_image, :height=> "525",:width=>"615") %></div>
+  <div style="position:relative;top:-1035px;left:670px;width:615px;padding:5px"><%=image_tag(@properties.image4.present? ? @properties.image4.url(:large) : no_image, :height=> "520",:width=>"615") %></div>
+  <div style="position:relative;top:-1015px;left:670px;width:615px;padding:5px"><%=image_tag(@properties.image5.present? ? @properties.image5.url(:large) : no_image, :height=> "520",:width=>"615") %></div>
 </div>  
 
 <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>

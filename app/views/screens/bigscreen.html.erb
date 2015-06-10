@@ -16,7 +16,7 @@
         </div>
         <div class="col-md-3 col-sm-6 hero-feature" style="float:left;margin-right:40px;">
             <div>
-                <img src="./assets/R03R.png" alt="" style="margin-left:40px;height:220px !important" width="360" height="220"/>    
+                <img src="./assets/seal_logo.png" alt="" style="margin-left:40px;height:220px !important;opacity:0.8" width="450" height="220"/>    
             </div>
         </div>
         <div class="col-md-3 col-sm-6 hero-feature" style="float:right;position:relative">
@@ -59,7 +59,7 @@
             <div class="ticker well" data-duration="500" data-loop="2" data-effect="linear" style="width:1580px;float:right;margin-right:20px;margin-bottom:5px">
                 <span>
                     <% @title.each_with_index do |a,i| %>      
-                        <b style="color:red"><%= "#{a}" %></b> - <b style="color:black"><%= "#{@description[i]}" %></b> <b style="color:blue">|</b>
+                        <b style="color:red"><%= @title[i+2] %></b> - <b style="color:black"><%= "#{@description[i+1]}" %></b> <b style="color:blue">|</b>
                     <%end%>
                 </span>
             </div>

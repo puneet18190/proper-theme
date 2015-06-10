@@ -19,7 +19,7 @@
                         <% else %>
                             <div class="desc-type for-sale">For Sale</div>
                         <% end %>
-                           <div class="price" style="z-index:1px;margin-bottom:20px;top:452px;width:110px;position:relative;width:143px">&pound; <%= @data.price.to_i %></div>
+                           <div class="price" style="z-index:1px;margin-bottom:20px;top:452px;position:relative;width:145px">&pound; <%= @data.price.to_i %></div>
                       </div>
                       <% if @data.image1.url.empty? %>
                            <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
