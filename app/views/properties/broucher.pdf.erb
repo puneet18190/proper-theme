@@ -52,7 +52,7 @@
   <div style="height:80px;color:white;font-size:40px;background-color:purple;padding-top:20px;padding-left:560px;"><b>Contact Us</b></div>
 
   <div style="height:550px;border:1px solid purple;vertical-align:middle; padding:20px;font-family:arial;margin-bottom:30px">
-    <div style="float:left;margin-left:30px;margin-top:70px">
+    <div style="float:left;margin-left:30px;margin-top:50px">
       <div style="font-size:40px;padding:10px"><center><b>Agent Information</b></center></div>
       <div style="margin-top:40px;margin:10px">
         <div style="font-size:40px;margin:10px"><center><b><%=@properties.agent.name%></b></center></div>
@@ -94,12 +94,12 @@
 <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
 
 <div style="height:1878px;width:1300px;height:1875px;border:1px solid purple">
-  <div style="height:60px;color:white;font-size:40px;background-color:purple;padding-top:15px;padding-left:570px"><b>Gallery</b></div>
+  <div style="height:60px;color:white;font-size:40px;background-color:purple;padding-top:10px;padding-left:570px"><b>Gallery</b></div>
 
   <% no_image = "#{Rails.root}/app/assets/images/default_images/no.jpg" %>
   <div style="position:relative;width:1300px;padding:5px"><%=image_tag(@properties.image2.present? ? @properties.image2.url(:large) : no_image, :height=> "680",:width=>"1290") %></div>
-  <div style="position:relative;top:30px;left:0px;width:625px;padding:1px"><%=image_tag(@properties.image4.present? ? @properties.image4.url(:large) : no_image, :height=> "520",:width=>"625") %></div>
-  <div style="position:relative;top:60px;left:0px;width:625px;padding:1px"><%=image_tag(@properties.image5.present? ? @properties.image5.url(:large) : no_image, :height=> "520",:width=>"625") %></div>
+  <div style="position:relative;top:30px;left:0px;width:625px;padding:1px;margin-left:5px"><%=image_tag(@properties.image4.present? ? @properties.image4.url(:large) : no_image, :height=> "520",:width=>"625") %></div>
+  <div style="position:relative;top:60px;left:0px;width:625px;padding:1px;margin-left:5px"><%=image_tag(@properties.image5.present? ? @properties.image5.url(:large) : no_image, :height=> "520",:width=>"625") %></div>
   
   <div style="position:relative;top:-1015px;left:665px;width:625px;padding:1px"><%=image_tag(@properties.image6.present? ? @properties.image6.url(:large) : no_image, :height=> "520",:width=>"625") %></div>
   <div style="position:relative;top:-985px;left:665px;width:625px;padding:1px"><%=image_tag(@properties.image7.present? ? @properties.image7.url(:large) : no_image, :height=> "520",:width=>"625") %></div>
