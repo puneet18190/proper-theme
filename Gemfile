@@ -113,10 +113,14 @@ gem 'wkhtmltopdf-binary'
 
 group :development do
 	#performance analysis tools
-	gem "rails-erd"
-	gem 'traceroute'
-	gem 'rack-mini-profiler'
-	gem "bullet"
-	gem 'brakeman', :require => false
+	gem "rails-erd" #er disgram for models
+	gem 'traceroute' #trace unused routes
+	gem 'rack-mini-profiler' #track loding time of pages
+	gem "bullet" #for n+1 queries
+	gem 'brakeman', :require => false 
 	gem "rails_best_practices"
+	gem 'railroady' #show database models, controller in diagram
+	gem 'awesome_print'
+	gem 'hirb' #displat table in boxes in console
+	gem 'pry-rails'
 end	
