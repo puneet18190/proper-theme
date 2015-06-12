@@ -56,9 +56,11 @@
                     <p>
                       <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= @data.bath %></span>
                       <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= @data.beds %></span>
-                      <span class="label"><i class="icon-circle-arrow-right"></i> Parking : <%= @data.parking %></span>
                       <span class="label"><i class="icon-circle-arrow-right"></i> Gas CH : <%= @data.gas_ch %></span>
                       <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> Glazing : <%= @data.glazing %></span>
+                      <% unless @data.parking_status == "none" %>
+                        <span class="label"><i class="icon-circle-arrow-right"></i> Parking : <%= @data.parking_status %></span>
+                      <%end%>
                       <% unless @data.parking_status == "none" %>
                         <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> <%= @data.parking_status %> : <%= @data.car %></span>
                       <%end%>
@@ -88,7 +90,7 @@
                 <a href="#" class="agent-image ">
                     <img src="<%=@agent.image.url%>" class="img-polaroid" alt="agent" style = "max-height:140px;margin-bottom:5px">
                 </a>
-                <ul class="unstyled margin20" style="position:absolute;top:0;left:177px;width:150px">
+                <ul class="unstyled margin20" style="position:absolute;top:0;left:148px;width:180px">
                   <li><i class="icon-phone"></i><%= @agent.phone %></li>
                   <li><i class="icon-envelope"></i><%= @agent.email_id %></li>
                   <li><i class="icon-facebook"></i><%= @agent.fb_id %></li>

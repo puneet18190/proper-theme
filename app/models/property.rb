@@ -93,10 +93,6 @@ class Property < ActiveRecord::Base
   validates_presence_of :address1, :address2, :address3, :price, :postcode, :beds, :bath, :description
   geocoded_by :address
 
-  def parking
-    self.parking? ? "Yes" : "No"
-  end
-
   def garden
     self.garden? ? "Yes" : "No"
   end
@@ -107,6 +103,10 @@ class Property < ActiveRecord::Base
 
   def dg
     self.dg? ? "Yes" : "No"
+  end
+
+  def glazing
+    self.glazing? ? "Yes" : "No"
   end
 
 end
