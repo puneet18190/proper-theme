@@ -110,3 +110,13 @@ gem 'tty-screen'
 gem 'newrelic_rpm'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+
+group :development do
+	#performance analysis tools
+	gem "rails-erd"
+	gem 'traceroute'
+	gem 'rack-mini-profiler'
+	gem "bullet"
+	gem 'brakeman', :require => false
+	gem "rails_best_practices"
+end	
