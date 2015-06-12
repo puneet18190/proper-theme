@@ -26,19 +26,20 @@
                                 <div class="panel">
                                     <h3 class="main-heading bottom-line line-after"><span class="main-circle-icon"><i class="icon-user"></i></span> <%= agent.name %></h3>
                                     <a href="#" class="agent-image">
-                                      <%=  image_tag responsive_image(agent.image), class: "full", class: "img-circle", :style=>"height:145px;width:230px;" %>
+                                      <%=  image_tag responsive_image(agent.image), class: "full", class: "img-circle", :style=>"height:165px;width:230px;" %>
                                     </a>
                                 </div>
                             </div>
                             <div class="span9 ">
                                 <div class="panel left-line bottom-line desc-agent-preview">
-                                    <h3 class="line-before bottom-line main-heading"><span class="main-circle-icon"><i class="icon-circle-arrow-down"></i></span> <%= agent.name %> Detail</h3>
+                                    <h3 class="line-before bottom-line main-heading"><span class="main-circle-icon"><i class="icon-circle-arrow-down"></i></span>Contact Details</h3>
                                     <p> </p>
                                     <ul class="unstyled">
                                         <li><i class="icon-phone"></i> <%= agent.phone %></li>
-                                        <li><i class="icon-envelope"></i> <%= agent.address %></li>
-                                        <li><i class="icon-facebook"></i> <%= agent.name%></li>
-                                        <li><i class="icon-twitter"></i> @<%= agent.name%></li>
+                                        <li><i class="icon-home"></i> <%= agent.address %></li>
+                                        <li><i class="icon-envelope"></i> <%= agent.email_id%></li>
+                                        <li><i class="icon-facebook"></i> <%= agent.fb_id%></li>
+                                        <li><i class="icon-twitter"></i> @<%= agent.twitter_id%></li>
                                     </ul>
                                     <div class="agent-image-properties">
                                         <% if agent.properties.empty? %>
