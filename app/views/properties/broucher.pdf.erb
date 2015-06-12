@@ -1,7 +1,8 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <%#= wicked_pdf_stylesheet_link_tag "bootstrap.css" %>
 <%#= wicked_pdf_stylesheet_link_tag "font-awesome.css" %>
-<% no_image = "#{Rails.root}/app/assets/images/default_images/no.jpg" %>
+<%# no_image = "#{Rails.root}/app/assets/images/default_images/no.jpg" %>
+<% no_image = "" %>
 
 <div style="border:1px solid Blue;height:1875px;width:1300px;">
   <div style="margin:10px">
@@ -17,7 +18,7 @@
   <div class="desc-type for-sale" style="height:50px;width:125px;position:absolute;top:530px; padding:5px;left:202px;color:white;font-size:30px;background: #FF6666;font-weight: bold;z-index:1;opacity:0.8"><%=(@properties.category == "rent" || @properties.category == "Rent") ? "To Rent" : "To Sale" %></div>
   
   <div style="margin:20px;width:900px;position:absolute;left:180px;border:2px solid Blue;height:700px">
-    <center><%=image_tag(@properties.image1.url, :height=> "700",:width=>"900") %></center>
+    <center><%=image_tag(@properties.image1.url.gsub("https","http"), :height=> "700",:width=>"898") %></center>
   </div>
 
   <div style="height:70px;width:<%=(@properties.category == "rent" || @properties.category == "Rent") ? "130px" : "230px" %>;position:absolute;font-weight: bold;background-color: rgba(0,0,0,0.6);font-size: 50px;color:white;padding:10px;top:1141px;left:202px">
@@ -67,7 +68,7 @@
     </div>
 
     <div style="float:right;margin-right:30px;margin-top:25px">
-      <div style="width:520px;"><center><%=image_tag(@properties.agent.image.present? ? @properties.agent.image.url(:large) : no_image, :height=> "500",:width=>"500") %></center></div>
+      <div style="width:520px;"><center><%=image_tag(@properties.agent.image.present? ? @properties.agent.image.url(:large).gsub("https","http") : no_image, :height=> "500",:width=>"500") %></center></div>
     </div>
   </div>
   <div style="height:80px;color:white;font-size:40px;background-color:purple;padding-top:20px;padding-left:570px;"><b>Scan Me</b></div>
@@ -96,12 +97,11 @@
 <div style="width:1300px;height:1875px;border:1px solid purple">
   <div style="height:60px;color:white;font-size:40px;background-color:purple;padding-top:10px;padding-left:570px"><b>Gallery</b></div>
 
-  <% no_image = "#{Rails.root}/app/assets/images/default_images/no.jpg" %>
-  <div style="position:relative;width:1300px;padding:5px"><%=image_tag(@properties.image2.present? ? @properties.image2.url(:large) : no_image, :height=> "680",:width=>"1290") %></div>
-  <div style="float:left;width:625px;margin:5px;margin-top:25px"><%=image_tag(@properties.image4.present? ? @properties.image4.url(:large) : no_image, :height=> "525",:width=>"625") %></div>
-  <div style="float:right;width:625px;margin:5px;margin-top:25px"><%=image_tag(@properties.image5.present? ? @properties.image5.url(:large) : no_image, :height=> "525",:width=>"625") %></div>
-  <div style="float:left;width:625px;margin:5px;margin-top:25px"><%=image_tag(@properties.image6.present? ? @properties.image6.url(:large) : no_image, :height=> "525",:width=>"625") %></div>
-  <div style="float:right;width:625px;margin:5px;margin-top:25px"><%=image_tag(@properties.image7.present? ? @properties.image7.url(:large) : no_image, :height=> "525",:width=>"625") %></div>
+  <div style="position:relative;width:1300px;padding:5px"><%=image_tag(@properties.image2.present? ? @properties.image2.url(:large).gsub("https","http") : no_image, :height=> "680",:width=>"1290") %></div>
+  <div style="float:left;width:625px;margin:5px;margin-top:25px"><%=image_tag(@properties.image4.present? ? @properties.image4.url(:large).gsub("https","http") : no_image, :height=> "525",:width=>"625") %></div>
+  <div style="float:right;width:625px;margin:5px;margin-top:25px"><%=image_tag(@properties.image5.present? ? @properties.image5.url(:large).gsub("https","http") : no_image, :height=> "525",:width=>"625") %></div>
+  <div style="float:left;width:625px;margin:5px;margin-top:25px"><%=image_tag(@properties.image6.present? ? @properties.image6.url(:large).gsub("https","http") : no_image, :height=> "525",:width=>"625") %></div>
+  <div style="float:right;width:625px;margin:5px;margin-top:25px"><%=image_tag(@properties.image7.present? ? @properties.image7.url(:large).gsub("https","http") : no_image, :height=> "525",:width=>"625") %></div>
 </div>  
 
 <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
