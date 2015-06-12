@@ -28,7 +28,7 @@ function run_script(ids,property_id,index){
 				$(".right-line").html(randomColor)
 				init_slider();
 				var num = index + 1
-				var delay = 5000;
+				var delay = 65000;
 				$(".screen_num").html("<%=page%> :Page "+num)
 				$.localStorage.set('p'+index,response);
 				index = index+1;
@@ -61,7 +61,7 @@ function run_script(ids,property_id,index){
 }
 
 function run_script_by_cookie(index,ids){
-	var delay = 5000;
+	var delay = 65000;
 	if($.localStorage.isSet('p'+index)){
 		setTimeout(
 		  function() 
