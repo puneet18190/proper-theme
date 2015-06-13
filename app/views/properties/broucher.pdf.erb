@@ -34,13 +34,19 @@
     
     <span style="width:120px;height:50px;color:black;font-weight: normal;display:inline-block;padding-left:15px;font-size:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px;border-radius:10px">Bath : <%= @properties.bath %></span>
     
-    <span style="width:190px;height:50px;font-weight: normal;display:inline-block;padding-left:15px;font-size:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px;border-radius:10px">Parking : <%= @properties.parking %></span>
+    <% if @properties.garden == "Yes" %>
+      <span style="width:190px;height:50px;font-weight: normal;display:inline-block;padding-left:15px;font-size:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px;border-radius:10px">Garden : <%= @properties.garden %></span>
+    <%end%>
     
-    <span style="width:190px;height:50px;font-weight: normal;display:inline-block;padding-left:15px;font-size:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px;border-radius:10px">Garden : <%= @properties.garden %></span>
+    <span style="width:190px;height:50px;font-weight: normal;display:inline-block;padding-left:15px;font-size:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px;border-radius:10px">Parking : <%= @properties.parking_status == "none" ? "No" : "Yes" %></span>
     
-    <span style="width:190px;height:50px;font-weight: normal;display:inline-block;padding-left:15px;font-size:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px;border-radius:10px">Gas CH : <%= @properties.gas_ch %></span>
+    <% if @properties.gas_ch == "Yes" %>
+      <span style="width:190px;height:50px;font-weight: normal;display:inline-block;padding-left:15px;font-size:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px;border-radius:10px">Gas CH : <%= @properties.gas_ch %></span>
+    <%end%>  
     
-    <span style="width:130px;height:50px;font-weight: normal;display:inline-block;padding-left:15px;font-size:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;background-color:#999;margin:10px;padding-top:15px;border-radius:10px">DG : <%= @properties.dg %></span>
+    <% if @properties.dg == "Yes" %>
+      <span style="width:130px;height:50px;font-weight: normal;display:inline-block;padding-left:15px;font-size:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;background-color:#999;margin:10px;padding-top:15px;border-radius:10px">DG : <%= @properties.dg %></span>
+    <%end%>  
   </div>
 
   <div style="position:absolute;top:1780px;left:60px;">

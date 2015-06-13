@@ -1,9 +1,9 @@
 <% @prop = [] %>
 <% @prop = Property.order("created_at DESC") %>
 
-<% (0..2).each do |n| %>
+<% (0..4).each do |n| %>
   <dt><a href=<%="/properties_detail/#{@prop[n].id}"%>>Latest Property</a></dt>
-  <dd><%= @prop[n].name %> - <%= raw(@prop[n].tag_line) %></dd>
+  <dd><%= @prop[n].name %> - <%= @prop[n].tag_line %></dd>
 <%end%>
 
 <script type="text/javascript">
