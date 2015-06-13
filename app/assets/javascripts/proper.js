@@ -326,10 +326,10 @@ function init_slider(){
         $('#list_images_property a').click(function(){
             $('.preloader').show(0).delay(4000).fadeOut("slow");
             var bigImage = $(this).data("bigimage");
-            var bigTitle = $(this).data("title");
-            var bigDesc = $(this).data("desc");
-            $(".big-image .desc-image h3").text(bigTitle);
-            $(".big-image .desc-image p").text(bigDesc);
+            // var bigTitle = $(this).data("title");
+            // var bigDesc = $(this).data("desc");
+            // $(".big-image .desc-image h3").text(bigTitle);
+            // $(".big-image .desc-image p").text(bigDesc);
             $("#big-image-preview").attr('src', bigImage) 
             console.log(bigTitle);
             return false; 

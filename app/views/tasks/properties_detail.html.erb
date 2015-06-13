@@ -1,174 +1,169 @@
-            <!--Start Content-->
 <div id="content">
-    <!--Start Main Title-->
-    <div id="main-title-content">
-        <img src="/assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
-        <div class="container">
-            <div class="panel">
-                <h1>Detail Property</h1>    
-                <p>Sub Title Here</p>    
-            </div>
-        </div>
-    </div> <!--End Main Title-->
-     <!--    News Carousel-->
-    <div class="news-carousel-wrapper">
-        <dl id="news-carousel" class="news-carousel-style">
-          <%= render 'properties/news_carousel'%>
-        </dl>
-    </div>
-    <!--    End News Carousel-->
+  <div id="main-title-content">
+    <img src="/assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
     <div class="container">
-        <div class="row-fluid">
-            <div class="span9">
-                <div class="panel right-line" itemscope="" itemtype="http://schema.org/Property">
-                    <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span>Properties</h2>
-                  <!-- START DETAIL-->
-                  <div class="detail-properties right-space" itemscope="" itemtype="http://schema.org/Product">
-
-                            <!-- START SLIDER -->
-                            <div itemprop="name" style="display:none"><%= @data.name %></div>
-                            <div class="big-image text-center">
-                              <div class="preloader"></div>
-                              <div class="desc-image" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
-                                <h3><%= @data.name %></h3> <br>
-                                <p>£<%= @data.price %> </p>
-                              </div>
-                              <%= image_tag responsive_image(@data.image1), id: "big-image-preview", alt: "big-image-preview" %>
-                            </div>
-                            <div class="list_image_detail">
-                              <ul id="list_images_property">
-                                <li><a href="#" data-bigimage="#" data-title="Interior 01" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag responsive_image(@data.image1), alt: "Thum"%></a></li>
-                                <li><a href="#" data-bigimage="#" data-title="Interior 02" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag responsive_image(@data.image2), alt: "Thum"%></a></li>
-                                <li><a href="#" data-bigimage="#" data-title="Interior 03" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag responsive_image(@data.image3), alt: "Thum"%></a></li>
-                                <li><a href="#" data-bigImage="#" data-title="Interior 04" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag responsive_image(@data.image4), alt: "Thum"%></a></li>
-                                <li><a href="#" data-bigimage="#" data-title="Interior 05" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag responsive_image(@data.image5), alt: "Thum"%></a></li>
-                                <li><a href="#" data-bigimage="#" data-title="Interior 06" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><%= image_tag responsive_image(@data.image6), alt: "Thum"%></a></li>
-                              </ul>
-                              <div class="clearfix"></div>
-                              <a id="prev2" class="prev" href="#">&lt;</a>
-                              <a id="next2" class="next" href="#">&gt;</a>
-                            </div>
-                            <!-- END SLIDER -->
-                            <h3>Property Description</h3>
-                            <p> <%= raw(@data.description) %>  </p>
-                            <!-- AddThis Button BEGIN -->
-                            <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
-                              <!--<a class="addthis_button_facebook"></a>-->
-                              <a href="/facebook_share/<%=@data.id %>"><img src="/assets/fb_share.jpg" height="5" style="height: 24px;padding: 5px;margin-top: -8px;width: 70px;"></a>
-                              <a class="addthis_button_twitter"></a>
-                              <a class="addthis_button_pinterest_share"></a>
-                              <a class="addthis_button_google_plusone_share"></a>
-                              <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-                            </div>
-                            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51965a0e6903b31d"></script>
-                            <!-- AddThis Button END -->
-                            <h3>Property Feature</h3>
-                            <ul class="clear">
-                              <li>Name: <%= @data.name %></li>
-                              <li>Price: £<%= @data.price %></li>
-                              <li>Address1: <%= @data.address1 %></li>
-                              <li>Address2: <%= @data.address2 %></li>
-                              <li>Address3: <%= @data.address3 %></li>
-                              <li>Beds: <%= @data.beds %></li>
-                              <li>Bath: <%= @data.bath %></li>
-                              <li>Parking: <%= @data.parking %></li>
-                              <li>Category: <%= @data.category %></li>
-                            </ul>
-                            <!-- END DETAIL-->
-                  </div>
-                </div>
-            </div>
-            <div class="span3">
-                <div class="panel">
-                    <!-- MAP LOCATION-->
-                    <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-map-marker"></i></span>  Location</h3>    
-                    <div class="bottom-line line-before">
-                        <div id="googleMap" class="" style="height:300px;margin-bottom:25px"></div>
-                    </div><!-- END MAP LOCATION -->
-                    <!-- Detail Agent -->
-                    <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-user"></i></span> Agent</h3>
-                    <div class="agent-panel bottom-line line-before">
-                        <a href="#" class="agent-image ">
-                          <%=  image_tag responsive_image(@agents.image), class: "img-polaroid" %>
-                        </a>
-                        <ul class="unstyled margin20">
-                            <li><i class="icon-phone"></i><%= @agents.phone %></li>
-                            <li><i class="icon-envelope"></i><%= @agents.email_id %></li>
-                            <li><i class="icon-facebook"></i><%= @agents.fb_id %></li>
-                            <li><i class="icon-twitter"></i><%= @agents.twitter_id %></li>
-                        </ul>
-                    </div><!-- END Detail Agent -->
-                    <!-- FORM CONTACT -->
-                    <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-envelope-alt"></i></span> Contact Agent</h3>
-                    <%= form_for @contact_agent, :url => contact_agent_path  do |f| %>
-                        <%= f.label :name %>
-                        <%= f.text_field :name, :class=> "input-block-level", :placeholder=>"Enter Your Name"%>
-                        <%= f.label :email %>
-                        <%= f.text_field :email, :class=> "input-block-level", :placeholder=>"Enter Your Email"%>
-                        <%= f.label :message %>
-                        <%= f.text_area :message, :class=> "input-block-level", :placeholder=>"Your Message"%>
-                        <%= f.hidden_field :agent_id, :value => @agents.id %>
-                        <%= f.submit "Send", class: "btn-proper btn" %>
-                    <% end %>
-                    <!-- END FORM CONTACT -->
-                </div>
-            </div>
-        </div>
-
+      <div class="panel">
+        <h1>Property Details</h1>
+        <p><%= @data.name %></p>
+      </div>
     </div>
-</div><!--EndContent-->            
+  </div>
+  <div class="news-carousel-wrapper">
+    <dl id="news-carousel" class="news-carousel-style">
+      <%= render 'properties/news_carousel'%>
+    </dl>
+  </div>
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span9">
+        <div class="panel right-line" style="width:690px" itemscope="" itemtype="http://schema.org/Property">
+          <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span>Property</h2>
+          <div class="detail-properties right-space" itemscope="" itemtype="http://schema.org/Product">
+            <div itemprop="name" style="display:none"><%= @data.name %></div>
+            <div class="big-image text-center">
+              <div class="preloader"></div>
+              <!-- <div class="desc-image" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
+                <h3><%#= @data.name %></h3> <br>
+                <p>£<%#= @data.price %> </p>
+              </div> -->
+              <div class="desc-type for-sale" style="height: 30px;width: 100px;position:absolute;top: 0; padding: 5px;left: 0px;color:white;font-size: 25px;background: #FF6666;font-weight: bold;z-index:1;opacity:0.8;padding-top: 15px;"><%=(@data.category == "rent" || @data.category == "Rent") ? "To Rent" : "To Sale" %></div>
+              <%= image_tag responsive_image(@data.image1), id: "big-image-preview", alt: "big-image-preview" %>
+              <div style="height: 25px;width: 100px;position:absolute;font-weight: bold;background-color: rgba(0,0,0,0.6);font-size: 35px;color:white;padding: 10px;top: 244px;left: 0;padding-top: 20px;">
+                &pound; <%= @data.price.to_i %>
+              </div>
+            </div>
+            <div class="list_image_detail">
+              <ul id="list_images_property">
+                <li><a href="#" data-bigimage="<%=responsive_image(@data.image2)%>"><%= image_tag responsive_image(@data.image2), alt: "Thum"%></a></li>
+                <li><a href="#" data-bigimage="<%=responsive_image(@data.image3)%>"><%= image_tag responsive_image(@data.image3), alt: "Thum"%></a></li>
+                <li><a href="#" data-bigImage="<%=responsive_image(@data.image4)%>"><%= image_tag responsive_image(@data.image4), alt: "Thum"%></a></li>
+                <li><a href="#" data-bigimage="<%=responsive_image(@data.image5)%>"><%= image_tag responsive_image(@data.image5), alt: "Thum"%></a></li>
+                <li><a href="#" data-bigimage="<%=responsive_image(@data.image6)%>"><%= image_tag responsive_image(@data.image6), alt: "Thum"%></a></li>
+                <li><a href="#" data-bigimage="<%=responsive_image(@data.image7)%>"><%= image_tag responsive_image(@data.image7), alt: "Thum"%></a></li>
+                <li><a href="#" data-bigimage="<%=responsive_image(@data.image8)%>"><%= image_tag responsive_image(@data.image8), alt: "Thum"%></a></li>
+              </ul>
+              <div class="clearfix"></div>
+              <a id="prev2" class="prev" href="#">&lt;</a>
+              <a id="next2" class="next" href="#">&gt;</a>
+            </div>
+            <h3>Property Description</h3>
+            <p> <%= raw(@data.short_description) %>  </p>
+            <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
+              <a href="/facebook_share/<%=@data.id %>"><img src="/assets/fb_share.jpg" height="5" style="height: 24px;padding: 5px;margin-top: -8px;width: 70px;"></a>
+              <a class="addthis_button_twitter"></a>
+              <a class="addthis_button_pinterest_share"></a>
+              <a class="addthis_button_google_plusone_share"></a>
+              <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+            </div>
+            <div class="property-details" style="width:100%;">
+                <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= @data.beds %></span>
+                <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= @data.bath %></span>
+                <span class="label"><i class="icon-circle-arrow-right"></i> Garden : <%= @data.garden %></span>
+                <% unless @data.parking_status == "none" %>
+                  <span class="label"><i class="icon-circle-arrow-right"></i> Parking : <%= @data.parking_status %></span>
+                <%end%>
+                <% if @data.gas_ch == "Yes" %>
+                  <span class="label"><i class="icon-circle-arrow-right"></i> Gas CH : <%= @data.gas_ch %></span>
+                <%end%>
+                <% if @data.dg == "Yes" %>
+                  <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> DG : <%= @data.dg %></span>
+                <%end%>  
+              </p>
+            </div>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51965a0e6903b31d"></script>
+            <%= link_to 'Download Broucher', broucher_path(:id => @data.id, format: 'pdf') %>
+            <br/>
+            <%=raw(@data.description)%>
+          </div>
+        </div>
+      </div>
+      <div class="span3">
+        <div class="panel">
+          <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-map-marker"></i></span>  Location</h3>    
+          <div class="bottom-line line-before">
+              <div id="googleMap" class="" style="height:300px;margin-bottom:25px"></div>
+          </div>
+          <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-user"></i></span> Agent</h3>
+          <div class="agent-panel bottom-line line-before">
+            <a href="#" class="agent-image ">
+              <%=  image_tag responsive_image(@agents.image), class: "img-polaroid" %>
+            </a>
+            <ul class="unstyled margin20">
+              <li><i class="icon-phone"></i><%= @agents.phone %></li>
+              <li><i class="icon-envelope"></i><%= @agents.email_id %></li>
+              <li><i class="icon-facebook"></i><%= @agents.fb_id %></li>
+              <li><i class="icon-twitter"></i><%= @agents.twitter_id %></li>
+            </ul>
+          </div>
+          <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-envelope-alt"></i></span> Contact Agent</h3>
+          <%= form_for @contact_agent, :url => contact_agent_path  do |f| %>
+              <%= f.label :name %>
+              <%= f.text_field :name, :class=> "input-block-level", :placeholder=>"Enter Your Name"%>
+              <%= f.label :email %>
+              <%= f.text_field :email, :class=> "input-block-level", :placeholder=>"Enter Your Email"%>
+              <%= f.label :message %>
+              <%= f.text_area :message, :class=> "input-block-level", :placeholder=>"Your Message"%>
+              <%= f.hidden_field :agent_id, :value => @agents.id %>
+              <%= f.submit "Send", class: "btn-proper btn" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <script type="text/javascript">
 $(document).ready(function() {
   init_gmap3()
-})  
-  function init_gmap3(){
-    $(function(){
-        var icon_villa = "/assets/map/hostel_0star.png"
-        var icon_hotel = "/assets/map/villa.png"
-        var img_p = "assets/properties/p1.jpg"
-        $("#googleMap").gmap3({
-            <% address =  "#{@data.address1} #{@data.address2} #{@data.address3}"%>
-            map:{
-                // CENTRAL MAP DEFAULT
-                address:'<%= address %>',
-                options:{
-                    zoom:12,
-                    scaleControl: false,
-                    scrollwheel: false,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP,
-                    mapTypeControl: true,
-                    mapTypeControlOptions: {
-                        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-                    }
-                }
-            },
-            marker:{
-                // DATA LOCATION
-                values:[
-                {
-                  
-                  <% a=Geokit::Geocoders::GoogleGeocoder.geocode "#{address}"%>
-                  <%lat = (a.ll.nil? ? "" : a.ll.split(",")[0].to_f) %>
-                  <%lng = (a.ll.nil? ? "" : a.ll.split(",")[1].to_f) %>
+})
 
-                    latLng:[<%= lat%>,<%= lng%>], 
-                    data:{
-                        img_preview: img_p, 
-                        properties_name:'<%= @data.name%>',
-                        properties_desc:'<%=@data.short_description%>',
-                        properties_link:"#", 
-                        zip:'<%=@data.postcode%>', 
-                        city:'<%=@data.address3%>'
-                    }, 
-                    options:{
-                        icon: icon_hotel //Image or icon of shop want to display on map
-                    }
-                }
-                ],
+function init_gmap3(){
+  $(function(){
+      var icon_villa = "/assets/map/hostel_0star.png"
+      var icon_hotel = "/assets/map/villa.png"
+      var img_p = "assets/properties/p1.jpg"
+      $("#googleMap").gmap3({
+          <% address =  "#{@data.address1} #{@data.address2} #{@data.address3}"%>
+          map:{
+              // CENTRAL MAP DEFAULT
+              address:'<%= address %>',
+              options:{
+                  zoom:12,
+                  scaleControl: false,
+                  scrollwheel: false,
+                  mapTypeId: google.maps.MapTypeId.ROADMAP,
+                  mapTypeControl: true,
+                  mapTypeControlOptions: {
+                      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+                  }
+              }
+          },
+          marker:{
+              // DATA LOCATION
+              values:[
+              {
                 
-            }
-      
-        });
-    });
+                <% a=Geokit::Geocoders::GoogleGeocoder.geocode "#{address}"%>
+                <%lat = (a.ll.nil? ? "" : a.ll.split(",")[0].to_f) %>
+                <%lng = (a.ll.nil? ? "" : a.ll.split(",")[1].to_f) %>
+
+                  latLng:[<%= lat%>,<%= lng%>], 
+                  data:{
+                      img_preview: img_p, 
+                      properties_name:'<%= @data.name%>',
+                      properties_desc:'<%=@data.short_description%>',
+                      properties_link:"#", 
+                      zip:'<%=@data.postcode%>', 
+                      city:'<%=@data.address3%>'
+                  }, 
+                  options:{
+                      icon: icon_hotel //Image or icon of shop want to display on map
+                  }
+              }
+              ],
+              
+          }
+    
+      });
+  });
 }
 </script>
