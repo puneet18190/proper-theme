@@ -28,7 +28,7 @@
               </div> -->
               <div class="desc-type for-sale" style="height: 30px;width: 100px;position:absolute;top: 0; padding: 5px;left: 0px;color:white;font-size: 25px;background: #FF6666;font-weight: bold;z-index:1;opacity:0.8;padding-top: 15px;"><%=(@data.category == "rent" || @data.category == "Rent") ? "To Rent" : "To Sale" %></div>
               <%= image_tag responsive_image(@data.image1), id: "big-image-preview", alt: "big-image-preview" %>
-              <div style="height: 25px;width: 100px;position:absolute;font-weight: bold;background-color: rgba(0,0,0,0.6);font-size: 35px;color:white;padding: 10px;top: 244px;left: 0;padding-top: 20px;">
+              <div style="height: 25px;width: 100px;position:absolute;font-weight: bold;background-color: rgba(0,0,0,0.6);font-size: 35px;color:white;padding: 10px;bottom: 0;left: 0;padding-top: 20px;">
                 &pound; <%= @data.price.to_i %>
               </div>
             </div>
@@ -113,7 +113,27 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
-  init_gmap3()
+  init_gmap3();
+  $('#list_images_property').carouFredSel({
+    auto: false,
+    responsive: true,
+    width: '100%',
+    prev: '#prev2',
+    next: '#next2',
+    mousewheel: true,
+    swipe: {
+        onMouse: true,
+        onTouch: true
+    },
+    scroll: 2,
+    items: {
+        width: 200,
+        visible: {
+            min: 2,
+            max: 6
+        }
+    }
+});
 })
 
 function init_gmap3(){
