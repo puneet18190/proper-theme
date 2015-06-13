@@ -73,8 +73,12 @@
                   <%= f.label :postcode %>
                   <%= f.text_field :postcode%>
                 </div>
+                <div class="field">
+                  <%= f.label :type %>
+                  <%= f.text_field :property_type%>
+                </div>
 
-                <h3 style="margin-top:30px"><b>Marketing</b></h3>
+                <h3 style="margin-top:10px"><b>Marketing</b></h3>
                 <div class="field">
                   <%= f.label :category %>
                   <%= f.select :category, ["Rent","Sale"] %>

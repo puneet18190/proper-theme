@@ -55,6 +55,7 @@
 #  garden            :boolean          default(FALSE)
 #  dg                :boolean          default(FALSE)
 #  seal_approved     :boolean          default(FALSE)
+#  property_type     :string(255)
 #
 # Indexes
 #
@@ -108,5 +109,5 @@ class Property < ActiveRecord::Base
   def glazing
     self.glazing? ? "Yes" : "No"
   end
-
+  
 end

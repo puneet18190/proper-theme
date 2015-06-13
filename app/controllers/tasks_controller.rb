@@ -71,6 +71,23 @@ class TasksController < ApplicationController
 
   def search_results
     @properties = Property.where({payment: true, visibility: true})
+    if params[:q][:postcode_cont] != ""
+      address2 = @properties.search(:address2_cont => params[:q][:postcode_cont])
+      unless address2.result.empty?
+        params[:q][:address2_cont] = params[:q][:postcode_cont]
+      end
+
+      address3 = @properties.search(:address3_cont => params[:q][:postcode_cont])
+      unless address3.result.empty?
+        params[:q][:address3_cont] = params[:q][:postcode_cont]
+      end
+
+      postcode = @properties.search(:postcode_cont => params[:q][:postcode_cont])
+      if postcode.result.empty?
+        params[:q].delete("postcode_cont")
+      end
+    end
+
     @search = @properties.search(params[:q])
     @tasks = @search.result
   end
