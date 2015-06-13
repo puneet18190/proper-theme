@@ -41,7 +41,7 @@ class TasksController < ApplicationController
     @tasks = @search.result
     @agents= Agent.all
     @news= News.all
-    render "mobile_page.html.erb", :layout => false
+    # render "mobile_page.html.erb", :layout => false
   end
 
   def properties_detail
@@ -120,6 +120,24 @@ class TasksController < ApplicationController
   def sitemap
     @static_pages = [root_url, contact_url]
     @property = Property.all
+  end  
+
+  def news
+    @news = News.all
+
+    @p_title = []
+    @p_description = []
+    @p_image = []
+    agent = Mechanize.new
+    page = agent.get('http://www.propertyreporter.co.uk/rss.asp')
+    response = Nokogiri::XML::Document.parse(page.body, nil, "UTF-8")
+    response.css('title').each do |t|
+      @p_title.push(t.text)
+    end  
+    response.css('description').each do |t|
+      @p_image.push(t.text.split("<br />")[0])
+      @p_description.push(t.text.split("<br />")[1])
+    end
   end  
 
   private

@@ -21,7 +21,7 @@
       <a href= <%= "#{user_signed_in? ? '/pay_plans?plan=Pro' : '/landlord_pro_plan' }" %>>
         <div class="well active">
             <h3 class="title"><span class="em">Pro</span></h3>
-            <p class="price"><span class="currency">£</span> <span class="digits">99</span></p>
+            <p class="price"><span class="currency">£</span> <span class="digits">199</span></p>
             <ul class="unstyled points">
                 <li>Tenant Find</li>
                 <li>Professional Photos</li>
@@ -54,24 +54,22 @@
       </a>  
     </div>
     <div class="span3">
-      <a href= <%= "#{user_signed_in? ? '/pay_plans?plan=Basic Plus' : '/landlord_basic_plus_plan' }" %>>
-        <div class="well active">  
-          <div class="well" style="height:377px">
-            <h3 class="title"><span class="">Basic Plus+</span></h3>
-            <p class="price"><span class="currency">£</span> <span class="digits">19<span>.99</span></span> <span class="term">/Month</span></p>
-            <ul class="unstyled points">
-                <li>10 Property Ads</li>
-                <li>10 Photos/Property</li>
-                <li>Increased Digital Sign Airtime</li>
-                <li>Web Marketing</li>
-                <li>Free To Contact Matching Tenants</li>
-                <li>Matches Emailed</li>
-            </ul>
-            <% unless user_signed_in? %>
-                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:24px">Sign Up</a>
-            <% end %> 
-          </div>     
-        </div>
+      <a href= <%= "#{user_signed_in? ? '/pay_plans?plan=Basic Plus' : '/landlord_basic_plus_plan' }" %>>  
+      <div class="well" style="height:377px">
+        <h3 class="title"><span class="">Basic Plus+</span></h3>
+        <p class="price"><span class="currency">£</span> <span class="digits">19<span>.99</span></span> <span class="term">/Month</span></p>
+        <ul class="unstyled points">
+            <li>10 Property Ads</li>
+            <li>10 Photos/Property</li>
+            <li>Increased Digital Sign Airtime</li>
+            <li>Web Marketing</li>
+            <li>Free To Contact Matching Tenants</li>
+            <li>Matches Emailed</li>
+        </ul>
+        <% unless user_signed_in? %>
+            <a class="btn btn-proper" href="/users/sign_up" style="margin-top:24px">Sign Up</a>
+        <% end %> 
+      </div>
       </a>  
     </div>
-</div>    
+</div>

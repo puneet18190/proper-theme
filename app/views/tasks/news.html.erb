@@ -1,8 +1,4 @@
-
-
-            <!--Start Content-->
 <div id="content">
-    <!--Start Main Title-->
     <div id="main-title-content">
         <img src="assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
         <div class="container">
@@ -11,152 +7,59 @@
                 <p>Sub Title Here</p>    
             </div>
         </div>
-    </div> <!--End Main Title-->
-    <!--    News Carousel-->
+    </div>
     <div class="news-carousel-wrapper">
         <dl id="news-carousel" class="news-carousel-style">
           <%= render 'properties/news_carousel'%>
         </dl>
     </div>
-    <!--    End News Carousel-->
     <div class="container">
-        <div class="row-fluid">
-            <div class="span9">
-                <div class="new-list ">
-                    <div class="item panel">
-                        <h2 class="title-heading">Investation Club On The Weekend</h2>
-                        <img src="assets/news/n4.jpg" alt="new-image">
-                        <div class="box-panel">
-                            <div class="clearfix decs-meta">
-                                <span class="italic pull-left">
-                                    Date:
-                                    15 May 2013</span>
-                                <span class="italic pull-right">
-                                    <i class="icon-comment"></i>
-                                    <a href="#">4 Comments</a></span>
-                            </div>
-                            <p>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit.
-                                Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit.
-                            </p>
-                            <a href="#" class="btn-mini btn btn-proper">Read More</a>
-                        </div>
-
-                    </div>
-                    <div class="item panel">
-                        <h2 class="title-heading">Investation Club On The Weekend</h2>
-                        <img src="assets/news/n2.jpg" alt="new-image">
-                        <div class="box-panel">
-                            <div class="clearfix decs-meta">
-                                <span class="italic pull-left">
-                                    Date:
-                                    15 May 2013</span>
-                                <span class="italic pull-right">
-                                    <i class="icon-comment"></i>
-                                    <a href="#">4 Comments</a></span>
-                            </div>
-                            <p >Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit.
-                                Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet, consectetur fermentum adipiscing elit.
-                            </p>
-                            <a href="#" class="btn-mini btn btn-proper">Read More</a>
-                        </div>
-
-                    </div>
-                    <div class="pagination pagination-large panel">
-                        <ul>
-                            <li><a href="#"><i class=" icon-angle-left"></i></a></li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#"><i class=" icon-angle-right"></i></a></li>
+        <div class="panel">
+            <div class="row-fluid bottom-line">
+                <div class="span12">
+                    <h2 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-check"></i></span> News</h2>
+                    <section class="">
+                        <ul class="nav nav-tabs bot-tab" >
+                            <li class="active"><a href="#home">Our New</a></li>
+                            <li><a href="#industry">Industry News</a></li>
                         </ul>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="span3">
-                <div class="panel">
-                    <h3 class="main-heading bottom-line "><span class="main-circle-icon"><i class="icon-search"></i></span> Find News</h3>   
-                    <form  class="bottom-line " action="?" method="get">
-                        <label>Keywords</label>
-                        <input type="text" placeholder="" name="" value="" class="input-block-level" required=""/>
-                        <input type="submit" class="btn btn-proper" value="Search"/>
-                    </form>
-                    <h3 class="main-heading bottom-line "><span class="main-circle-icon"><i class="icon-paper-clip"></i></span> Category</h3>   
-                    <div class="accordion">
-                        <div class="accordion-group">
-                            <div class="accordion-heading">
-                                <a class="accordion-toggle" data-toggle="collapse" href="#question103">
-                                    <h4>Categoty 01</h4>
-                                </a>
-                            </div>
-                            <div id="question103" class="accordion-body collapse">
-                                <div class="accordion-inner">
-                                    <ul>
-                                        <li>Sub Category 01</li>
-                                        <li>Sub Category 02</li>
-                                        <li>Sub Category 03</li>
-                                        <li>Sub Category 04</li>
-                                        <li>Sub Category 05</li>
-                                    </ul>
+                        <div class="tab-content custom-tab">
+                            <div class="tab-pane active" id="home">
+                                <div class=" news right-space">
+                                    <% @news.each do |news| %>
+                                        <div class="media box-white" style="margin-top:20px">
+                                            <%unless news.image.url=="default_images/no.jpg"%>
+                                                <a class="pull-left" href="#">
+                                                    <img alt="images" class="media-object" src="<%=news.image.url%>">
+                                                </a>
+                                            <%end%>    
+                                            <div class="media-body">
+                                                <h4 class="media-heading"><%=news.title%></h4>
+                                                <p><%=news.description%></p>
+                                            </div>
+                                        </div>
+                                    <%end%>
                                 </div>
                             </div>
-                            <div class="accordion-heading">
-                                <a class="accordion-toggle" data-toggle="collapse" href="#question102">
-                                    <h4>Categoty 02</h4>
-                                </a>
-                            </div>
-                            <div id="question102" class="accordion-body collapse in">
-                                <div class="accordion-inner">
-                                    <ul>
-                                        <li>Sub Category 01</li>
-                                        <li>Sub Category 02</li>
-                                        <li>Sub Category 03</li>
-                                        <li>Sub Category 04</li>
-                                        <li>Sub Category 05</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="accordion-heading">
-                                <a class="accordion-toggle" data-toggle="collapse" href="#question101">
-                                    <h4>Categoty 03</h4>
-                                </a>
-                            </div>
-                            <div id="question101" class="accordion-body collapse">
-                                <div class="accordion-inner">
-                                    <ul>
-                                        <li>Sub Category 01</li>
-                                        <li>Sub Category 02</li>
-                                        <li>Sub Category 03</li>
-                                        <li>Sub Category 04</li>
-                                        <li>Sub Category 05</li>
-                                    </ul>
+                            <div class="tab-pane" id="industry">
+                                <div class=" news right-space">
+                                    <% @p_title.each_with_index do |a,i| %>
+                                        <div class="media box-white" style="margin-top:20px">
+                                            <a class="pull-left" href="#">
+                                                <%= raw(@p_image[i+1]) %>
+                                            </a>
+                                            <div class="media-body">
+                                                <h4 class="media-heading"><%= @p_title[i+1] %></h4>
+                                                <p><%= raw(@p_description[i+1]) %></p>
+                                            </div>
+                                        </div>
+                                    <%end%>
                                 </div>
                             </div>
                         </div>
-                    </div><!--End Accordion2-->
-
-                    <h3 class="main-heading bottom-line top-line"><span class="main-circle-icon"><i class="icon-tags"></i></span> Tags</h3>   
-                    <div class="tags">
-                        <p class="">
-                            <span class="label"> Investation</span>
-                            <span class="label">Rent</span>
-                            <span class="label"> Top Properties</span>
-                            <span class="label"> Sell</span>
-                            <span class="label"> Investation</span>
-                            <span class="label">Rent 30</span>
-                            <span class="label"> Top Properties</span>
-                            <span class="label"> Sell 03</span>
-                            <span class="label"> Investation</span>
-                            <span class="label">Rent</span>
-                            <span class="label"> Top Properties</span>
-                            <span class="label"> Sell 02</span>
-                        </p>
-                    </div>
+                    </section>
                 </div>
-
             </div>
         </div>
     </div>
-
 </div>
