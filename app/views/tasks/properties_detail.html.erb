@@ -115,26 +115,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
   init_gmap3();
-  $('#list_images_property').carouFredSel({
-    auto: false,
-    responsive: true,
-    width: '100%',
-    prev: '#prev2',
-    next: '#next2',
-    mousewheel: true,
-    swipe: {
-        onMouse: true,
-        onTouch: true
-    },
-    scroll: 2,
-    items: {
-        width: 200,
-        visible: {
-            min: 2,
-            max: 6
-        }
-    }
-});
+  init_slider();
 })
 
 function init_gmap3(){
