@@ -124,7 +124,6 @@ function init_gmap3(){
       var icon_hotel = "/assets/map/villa.png"
       var img_p = "assets/properties/p1.jpg"
       $("#googleMap").gmap3({
-          <% address =  "#{@data.address1} #{@data.address2} #{@data.address3}"%>
           map:{
               // CENTRAL MAP DEFAULT
               address:'<%= address %>',
@@ -144,15 +143,15 @@ function init_gmap3(){
               values:[
               {
                 
-                <% a=Geokit::Geocoders::GoogleGeocoder.geocode "#{address}"%>
-                <%lat = (a.ll.nil? ? "" : a.ll.split(",")[0].to_f) %>
-                <%lng = (a.ll.nil? ? "" : a.ll.split(",")[1].to_f) %>
+                <% a = @data.coordinates%>
+                <%lat = (a.nil? ? "" : a.split(",")[0].to_f) %>
+                <%lng = (a.nil? ? "" : a.split(",")[1].to_f) %>
 
                   latLng:[<%= lat%>,<%= lng%>], 
                   data:{
                       img_preview: img_p, 
                       properties_name:'<%= @data.name%>',
-                      properties_desc:'<%=@data.short_description%>',
+                      properties_desc:'',
                       properties_link:"#", 
                       zip:'<%=@data.postcode%>', 
                       city:'<%=@data.address3%>'
