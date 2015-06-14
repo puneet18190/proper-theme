@@ -80,13 +80,13 @@
                             <%end%>  
                           </p>
                           <div class="agent-preview">
-                            <div class="agent-image pull-left"  ><a href="#"><%#= image_tag responsive_image(task.agent.image), :style=>"height:80px;width:200px;" %></a></div>
+                            <div class="agent-image pull-left"  ><a href="#"><%= image_tag responsive_image(task.agent.image), :style=>"height:80px;width:200px;" %></a></div>
                             <div class="agent-contant pull-right">
                               <ul class="unstyled">
-                                <li><i class="icon-phone"></i><%#=task.agent.phone%></li>
-                                <li><i class="icon-envelope"></i><%#=task.agent.email_id%></li>
-                                <li><i class="icon-facebook"></i><%#=task.agent.fb_id%></li>
-                                <li><i class="icon-twitter"></i><%#=task.agent.twitter_id%></li>
+                                <li><i class="icon-phone"></i><%=task.agent.phone%></li>
+                                <li><i class="icon-envelope"></i><%=task.agent.email_id%></li>
+                                <li><i class="icon-facebook"></i><%=task.agent.fb_id%></li>
+                                <li><i class="icon-twitter"></i><%=task.agent.twitter_id%></li>
                               </ul>
                             </div>
                           </div>
