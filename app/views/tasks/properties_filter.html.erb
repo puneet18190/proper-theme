@@ -25,28 +25,27 @@
               <div class="main-heading bottom-line line-before filterarea">
                 <form class="filterform">
                   <p></p>
-                    <!--<select class="">-->
-                        <!--<option>Asc</option>-->
-                        <!--<option>Desc</option>-->
-                    <!--</select>-->
-                    <!--<select class="">-->
-                        <!--<option>Price</option>-->
-                        <!--<option>Location</option>-->
-                    <!--</select>-->
+                    <select class="sort">
+                        <option class="asc active" id="asc">Asc</option>
+                        <option class="desc" id="desc">Desc</option>
+                    </select>
+                    <select class="condition">
+                        <option class="price active" id="price">Price</option>
+                        <option class="name" id="name">Name</option>
+                    </select>
                 </form>
-                <div class="clearfix"></div>
               </div>
             </div>
           </div>
-
-          <% if @prop.empty? %>
+          <div class="filter_data">
+          <% if @data.empty? %>
             <div class="item" >
               <a href="#" class="with-hover">
                 <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
               </a>
             </div>
           <% else %>
-            <% @prop.each do |task| %>
+            <% @data.each do |task| %>
               <% if task.visibility== true %>
                 <div class="list-properties right-space">
                   <div class="property ">
@@ -81,13 +80,13 @@
                             <%end%>  
                           </p>
                           <div class="agent-preview">
-                            <div class="agent-image pull-left"  ><a href="#"><%= image_tag responsive_image(task.agent.image), :style=>"height:80px;width:200px;" %></a></div>
+                            <div class="agent-image pull-left"  ><a href="#"><%#= image_tag responsive_image(task.agent.image), :style=>"height:80px;width:200px;" %></a></div>
                             <div class="agent-contant pull-right">
                               <ul class="unstyled">
-                                <li><i class="icon-phone"></i><%=task.agent.phone%></li>
-                                <li><i class="icon-envelope"></i><%=task.agent.email_id%></li>
-                                <li><i class="icon-facebook"></i><%=task.agent.fb_id%></li>
-                                <li><i class="icon-twitter"></i><%=task.agent.twitter_id%></li>
+                                <li><i class="icon-phone"></i><%#=task.agent.phone%></li>
+                                <li><i class="icon-envelope"></i><%#=task.agent.email_id%></li>
+                                <li><i class="icon-facebook"></i><%#=task.agent.fb_id%></li>
+                                <li><i class="icon-twitter"></i><%#=task.agent.twitter_id%></li>
                               </ul>
                             </div>
                           </div>
@@ -100,20 +99,16 @@
             <% end %>
           <% end %>
         </div>
+        </div>
       </div>
       <div class="span3">
         <div class="panel">
-            <!--Start Form Search Properties-->
           <form class="bottom-line line-before" action="/search_results" method="get">
             <h3 class="main-heading bottom-line line-before">
               <span class="main-circle-icon"><i class="icon-search"></i></span>Find Properties
             </h3>
             <%= search_form_for Property.search(params[:q]) do |f| %>
               <div class="field">
-                <!-- <div class="input-block-level">
-                  <%#= f.label :name_cont, "Name" %>
-                  <%#= f.search_field :name_cont, class: "tc1size" %>
-                </div> -->
                 <div class="input-block-level">
                   <%= f.label :category_cont, "Category" %>
                   <%= f.select :category_cont, ["Rent","Sale"], class: "tcksize" %>
@@ -142,7 +137,6 @@
               <div class="actions"><%= f.submit "Search"%></div>
             <% end %>
           </form>
-            <!--Start List Our Agent-->
           <h3 class="bottom-line  line-before main-heading">
             <span class="main-circle-icon"><i class="icon-list"></i></span>  Our Agents
           </h3>
@@ -166,3 +160,34 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".condition, .sort").click(function(){
+      target = document.getElementById('loading')
+      spinner = new Spinner({radius: 80,width:25,length:60}).spin(target)
+      var src = $( "."+$(this).attr("class")+" option:selected" )
+      if(src.attr("id") == "asc" || src.attr("id") == "desc"){
+        condition = $(".condition .active").attr("id")
+        sort = src.attr("id")
+      }else{
+        sort = $(".sort .active").attr("id")
+        condition = src.attr("id")
+      }
+      src.parent().find("option").removeClass("active")
+      src.addClass("active");
+      $.ajax({
+        type: "get",
+        url: "/properties_filter",
+        data: "condition="+condition+"&sort="+sort,
+        success: function(res){
+          $(".filter_data").html($(res).find(".filter_data").html())
+          target.removeChild(spinner.el)
+        },
+        error: function(){
+          target.removeChild(spinner.el)
+        }
+      })
+    })
+  })  
+</script>
