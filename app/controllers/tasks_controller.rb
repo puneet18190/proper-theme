@@ -97,7 +97,7 @@ class TasksController < ApplicationController
   end
 
   def agents
-    @agents= Agent.all
+    @agents=  Agent.includes(:properties)
   end
 
   def contact
