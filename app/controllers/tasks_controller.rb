@@ -59,7 +59,7 @@ class TasksController < ApplicationController
     if request.xhr?
       @data = Property.order("#{params["condition"]} #{params["sort"]}")
     else  
-      @data = Property.order("price asc")
+      @data = Property.order("price asc").includes(:agent)
     end  
     @agents = Agent.all
   end
