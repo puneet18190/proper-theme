@@ -1,5 +1,4 @@
 <div id="content">
-    <!--Start Main Title-->
     <div id="main-title-content">
         <img src="assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
         <div class="container">
@@ -8,88 +7,45 @@
                 <p>Landlord Price Plan</p>    
             </div>
         </div>
-    </div> <!--End Main Title-->
-     <!--    News Carousel-->
+    </div>
     <div class="news-carousel-wrapper">
         <dl id="news-carousel" class="news-carousel-style">
           <%= render 'properties/news_carousel'%>
         </dl>
     </div>
-    <!--    End News Carousel-->
     <div class="container">
         <div class="panel">
-            <!--Strat Pricing Plan-->
             <div class="box-line"> 
                 <h2 class="title-heading">Choose Your Plan</h2>
             </div>
             <%= render 'shared/landlord_plans'%>
-            <!--End Pricing Plan-->
-            <!--Strat Note Pricing-->
             <div class="well well-mini text-center">
                 <h4 class="inline-el pad-right"><span class="pink-block">All Plans Include :</span></h4>
                 <p class="inline-el pad-left muted">30 day money back guarantee if you are not satisfied with our services</p>
-            </div><!--End Note Plan-->
-            <!--Strat Pricing Testimonial Recomomended-->
+            </div>
             <div class="box-line"> 
                 <h3 class="title-heading">Recommended</h3>
             </div>
             <div class="row-fluid">
-                <div class="span4">
-                    <div class="box-block">
-                        <div class="dialog-box-style">
-                            <h4>I Choose Pro Plus</h4>
-                            <p>Because donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus etiam sem...</p>
-                        </div>
-                        <div class="arrow-bottom"></div>
-                        <div class="full-block">
-                            <div class="img-screen">
-                                <img src="assets/agents/a3.jpg" alt="people" class="img-polaroid"/>
+                <% Testimonial.where(:user_type => "Landlord").all.each do |t| %>
+                    <div class="span4">
+                        <div class="box-block">
+                            <div class="dialog-box-style">
+                                <p><%=t.testimonial%></p>
                             </div>
-                            <div class="desc-img-screen">
-                                <p>Angilenia Grey / @rosiana</p>
+                            <div class="arrow-bottom"></div>
+                            <div class="full-block">
+                                <div class="desc-img-screen" style="float:left">
+                                    <p><%=t.name%></p>
+                                    <p><%=t.user_type%></p>
+                                </div>
+                                <div class="clearfix"></div>
                             </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="span4">
-                    <div class="box-block">
-                        <div class="dialog-box-style">
-                            <h4>I Choose Standard Plus</h4>
-                            <p>Because donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus etiam sem...</p>
-                        </div>
-                        <div class="arrow-bottom"></div>
-                        <div class="full-block">
-                            <div class="img-screen">
-                                <img src="assets/agents/a1.jpg" alt="people" class="img-polaroid"/>
-                            </div>
-                            <div class="desc-img-screen">
-                                <p>Angilenia Grey / @rosiana</p>
-                            </div>
-                            <div class="clearfix"></div>
                         </div>
                     </div>
-                </div>
-                <div class="span4">
-                    <div class="box-block">
-                        <div class="dialog-box-style">
-                            <h4>I Choose Biz Plus</h4>
-                            <p>Because donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus etiam sem...</p>
-                        </div>
-                        <div class="arrow-bottom"></div>
-                        <div class="full-block">
-                            <div class="img-screen">
-                                <img src="assets/agents/a4.jpg" alt="people" class="img-polaroid"/>
-                            </div>
-                            <div class="desc-img-screen">
-                                <p>Angilenia Grey / @rosiana</p>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-            </div><!--End Pricing Testimonial Recomomended-->
+                <%end%>
+            </div>
         </div>
     </div>
-</div><!--EndContent-->            
+</div>
 
