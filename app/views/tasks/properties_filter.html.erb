@@ -19,7 +19,7 @@
         <div class="panel right-line">
           <div class="row-fluid">
             <div class="span6">
-              <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span> List Properties</h2>   
+              <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span> Properties List</h2>   
             </div>
             <div class="span6 ">
               <div class="main-heading bottom-line line-before filterarea">
@@ -54,8 +54,8 @@
                         <div class="property-images">
                           <a href="#">
                             <div class="mask">
-                              <div class="desc-type for-sale"><%= task.category %></div>
-                              <div class="price">&pound; <%= task.price %></div>
+                              <div class="desc-type for-sale">To <%= task.category %></div>
+                              <div class="price">&pound; <%= task.price.to_i %></div>
                             </div>
                             <%= image_tag responsive_image(task.image1), :style=>"height:250px;width:500px;" %>
                           </a>
