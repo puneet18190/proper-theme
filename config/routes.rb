@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   match '/custum-bg',   to: 'tasks#custum-bg',   via: 'get'
   match '/error_page',   to: 'tasks#error_page',   via: 'get'
   match '/faq',   to: 'tasks#faq',   via: 'get'
-  match '/testimonials',   to: 'tasks#galeries',   via: 'get'
+  match '/testimonials',   to: 'tasks#testimonials',   via: 'get'
   match '/grid_stystem',   to: 'tasks#grid_stystem',   via: 'get'
   match '/home_carousel',   to: 'tasks#home_carousel', via: 'get'
   match '/home_full_slider',   to: 'tasks#home_full_slider', via: 'get'

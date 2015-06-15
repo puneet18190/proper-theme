@@ -144,6 +144,10 @@ class TasksController < ApplicationController
     end
   end  
 
+  def testimonials
+    @testimonials = Testimonial.all
+  end
+
   private
   def con_params
     params.require(:contact).permit(:first_name, :last_name, :email_id, :contact_number, :comments)

@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: testimonials
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  title       :string(255)
+#  testimonial :text
+#  t_date      :date
+#  user_type   :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  title: MyString
+  testimonial: MyText
+  t_date: 2015-06-15 22:39:32
+  user_type: MyString
+
+two:
+  name: MyString
+  title: MyString
+  testimonial: MyText
+  t_date: 2015-06-15 22:39:32
+  user_type: MyString

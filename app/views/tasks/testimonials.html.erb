@@ -1,0 +1,38 @@
+<div id="content">
+    <div id="main-title-content">
+        <img src="assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
+        <div class="container">
+            <div class="panel">
+                <h1>Testimonials</h1>
+            </div>
+        </div>
+    </div>
+    <div class="news-carousel-wrapper">
+        <dl id="news-carousel" class="news-carousel-style">
+          <%= render 'properties/news_carousel'%>
+        </dl>
+    </div>
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="new-list ">
+                    <% @testimonials.each do |testimonial| %>
+                        <div class="item panel" style="padding-bottom:0px">
+                            <h2 class="title-heading" style="margin-bottom:0"><%=testimonial.title%></h2>
+                            <div class="box-panel" style="padding:10px">
+                                <div class="clearfix decs-meta">
+                                    <span class="italic pull-left">
+                                        <h4><%=testimonial.name%></h4>
+                                        <%=testimonial.t_date%>
+                                    </span>
+                                </div>
+                                <p><%= testimonial.testimonial%></p>
+                                <h4><%=testimonial.user_type%></h4>
+                            </div>
+                        </div>
+                    <%end%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
