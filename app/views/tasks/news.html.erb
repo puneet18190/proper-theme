@@ -20,7 +20,7 @@
                     <h2 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-check"></i></span> News</h2>
                     <section class="">
                         <ul class="nav nav-tabs bot-tab" >
-                            <li class="active"><a href="#home">Our New</a></li>
+                            <li class="active"><a href="#home">Our News</a></li>
                             <li><a href="#industry">Industry News</a></li>
                         </ul>
                         <div class="tab-content custom-tab">
@@ -45,7 +45,7 @@
                                 <div class=" news right-space">
                                     <% @p_title.each_with_index do |a,i| %>
                                         <div class="media box-white" style="margin-top:20px">
-                                            <a class="pull-left" href="#">
+                                            <a class="pull-left news_img" href="#">
                                                 <%= raw(@p_image[i+1]) %>
                                             </a>
                                             <div class="media-body">
@@ -69,3 +69,10 @@
         init_tabs();
     })
 </script>
+
+<style>
+    .news_img img{
+        width:180px;
+        height: 100px
+    }
+</style>

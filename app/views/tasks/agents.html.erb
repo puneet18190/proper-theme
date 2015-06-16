@@ -44,7 +44,7 @@
                             <% else %>
                                 <% @prop = agent.properties[0] %>
                                 <% (1..3).each do |n| %>
-                                    <%if @prop.send("image#{n}").nil? %>
+                                    <%if @prop.send("image#{n}").url.nil? %>
                                         <a href="#"><img src="assets/default_images/no.jpg" class="img-polaroid tootip" data-toggle="tooltip" data-placement="bottom" title="033 Central Park" alt="033 Centra" style="width:55px;height:55px;"/></a>
                                     <%else%>
                                         <%= image_tag responsive_image(@prop.send("image#{n}")), class: "img-polaroid tootip", :style=>"width:55px;height:55px;" %>
