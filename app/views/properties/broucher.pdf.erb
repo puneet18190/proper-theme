@@ -77,17 +77,32 @@
       <div style="width:520px;"><center><%=image_tag(@properties.agent.image.present? ? @properties.agent.image.url(:large).gsub("https","http") : no_image, :height=> "500",:width=>"500") %></center></div>
     </div>
   </div>
-  <div style="height:80px;color:white;font-size:40px;background-color:purple;padding-top:20px;padding-left:570px;"><b>Scan Me</b></div>
-  <div style="height:350px;border:1px solid purple;vertical-align:middle; padding:20px;font-family:arial;">
-    <div style="font-size:30px;margin:5px"><center><b>Scan Me For Property Details</b></center></div>
-    <div style="">
-      <% qr = RQRCode::QRCode.new("http://#{request.host_with_port}/properties_detail/#{@properties.id}",:size => 10).to_img.resize(200, 200).to_data_url %>
-      <div style="width:350px;height:320px;margin-left:450px;"><center><%=image_tag(qr, :height=> "320",:width=>"350") %></center></div>  
+
+  <div style="height:490px;vertical-align:middle;font-family:arial;margin-bottom:30px">
+    <div style="float:left;width:620px;">
+      <div style="height:80px;color:white;font-size:40px;background-color:purple;padding-top:20px;padding-left:240px;"><b>Scan Me</b></div>
+      <div style="height:350px;border:1px solid purple;vertical-align:middle; padding:20px;font-family:arial;">
+        <div style="font-size:30px;margin:5px"><center><b>Scan Me For Property Details</b></center></div>
+        <div style="">
+          <% qr = RQRCode::QRCode.new("http://#{request.host_with_port}/properties_detail/#{@properties.id}",:size => 10).to_img.resize(200, 200).to_data_url %>
+          <div style="width:350px;height:320px;margin-left:120px;"><center><%=image_tag(qr, :height=> "320",:width=>"350") %></center></div>  
+        </div>
+      </div>
     </div>
-  </div>  
+
+    <div style="float:right;width:620px;">
+      <div style="height:80px;color:white;font-size:40px;background-color:purple;padding-top:20px;padding-left:240px;"><b>Quote Me</b></div>
+      <div style="height:350px;border:1px solid purple;vertical-align:middle; padding:20px;font-family:arial;">
+        <div style="font-size:30px;margin:5px;"><center><b>Quote This Reference Number For More Information</b></center></div>
+        <div style="">
+          <div style="font-size:40px;margin-top:100px"><center><b><%="SP"+@properties.created_at.year.to_s.split(//).last(2).join()+@properties.created_at.month.to_s.rjust(2,'0')+@properties.id.to_s.rjust(4,'0')%></b></center></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div style="height:80px;color:white;font-size:40px;margin-top:30px;background-color:purple;padding-top:20px;padding-left:560px"><b>Disclaimer</b></div>
-  <div  style="height:470px;border:1px solid purple;margin:0px;vertical-align:middle;padding:20px;font-family:arial;font-size:30px"><center><b>
+  <div  style="height:490px;border:1px solid purple;margin:0px;vertical-align:middle;padding:20px;font-family:arial;font-size:30px"><center><b>
     <p>
       Whilst every effort is made to ensure the contents of this brochure are accurate and true, the particulars are set out as a general outline for guidance purposes only and do not constitute any part of an offer or contract. Interested Parties should not rely on them as statements of representation of fact, but instead must satisfy themselves by inspection or otherwise as to their accuracy.
     </p>   
