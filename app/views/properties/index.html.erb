@@ -51,7 +51,7 @@
         <td><%= property.category %></td>
         <td><%= property.payment %></td>
         <td><%= property.validity %></td>
-        <td><%= link_to 'Show', property %></td>
+        <td><%= link_to 'Show', "/properties_detail/"+property.slug %></td>
         <% if can? :update, @property %>
           <td><%= link_to 'Edit', edit_property_path(property) %> </td>
         <% end %>
