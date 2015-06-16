@@ -4,7 +4,7 @@
 <%# no_image = "#{Rails.root}/app/assets/images/default_images/no.jpg" %>
 <% no_image = "" %>
 
-<div style="border:1px solid Blue;height:1875px;width:1300px;">
+<div style="border:1px solid #2e4588;height:1875px;width:1300px;">
   <div style="margin:10px">
     <center><%=wicked_pdf_image_tag("seal_logo.png", :height=>"200",:width=>"900") %></center>
   </div>
@@ -17,7 +17,7 @@
 
   <div class="desc-type for-sale" style="height:50px;width:125px;position:absolute;top:530px; padding:5px;left:202px;color:white;font-size:30px;background: #FF6666;font-weight: bold;z-index:1;opacity:0.8"><%=(@properties.category == "rent" || @properties.category == "Rent") ? "To Rent" : "To Sale" %></div>
   
-  <div style="margin:20px;width:900px;position:absolute;left:180px;border:2px solid Blue;height:700px">
+  <div style="margin:20px;width:900px;position:absolute;left:180px;border:2px solid #2e4588;height:700px">
     <center><%=image_tag(@properties.image1.url.gsub("https","http"), :height=> "700",:width=>"898") %></center>
   </div>
 
@@ -25,7 +25,7 @@
     &pound; <%= @properties.price.to_i %>
   </div>
 
-  <div style="height:80px;width:1300px;background-color:purple;font-size:40px;color:white;font-family:arial;position:relative; top:800px;padding-top:20px">
+  <div style="height:80px;width:1300px;background-color:#903c9e;font-size:40px;color:white;font-family:arial;position:relative; top:800px;padding-top:20px">
     <b><center><%=@properties.tag_line%></center></b>
   </div>
 
@@ -56,9 +56,9 @@
 <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
 
 <div style="position:relative;width:1300px;height:1875px;border:1px solid transparent">
-  <div style="height:80px;color:white;font-size:40px;background-color:purple;padding-top:20px;padding-left:560px;"><b>Contact Us</b></div>
+  <div style="height:80px;color:white;font-size:40px;background-color:#903c9e;padding-top:20px;padding-left:560px;"><b>Contact Us</b></div>
 
-  <div style="height:550px;border:1px solid purple;vertical-align:middle; padding:20px;font-family:arial;margin-bottom:30px">
+  <div style="height:550px;border:1px solid #903c9e;vertical-align:middle; padding:20px;font-family:arial;margin-bottom:30px">
     <div style="float:left;margin-left:30px;margin-top:50px">
       <div style="font-size:40px;padding:10px"><center><b>Agent Information</b></center></div>
       <div style="margin-top:40px;margin:10px">
@@ -80,8 +80,8 @@
 
   <div style="height:490px;vertical-align:middle;font-family:arial;margin-bottom:30px">
     <div style="float:left;width:620px;">
-      <div style="height:80px;color:white;font-size:40px;background-color:purple;padding-top:20px;padding-left:240px;"><b>Scan Me</b></div>
-      <div style="height:350px;border:1px solid purple;vertical-align:middle; padding:20px;font-family:arial;">
+      <div style="height:80px;color:white;font-size:40px;background-color:#903c9e;padding-top:20px;padding-left:240px;"><b>Scan Me</b></div>
+      <div style="height:350px;border:1px solid #903c9e;vertical-align:middle; padding:20px;font-family:arial;">
         <div style="font-size:30px;margin:5px"><center><b>Scan Me For Property Details</b></center></div>
         <div style="">
           <% qr = RQRCode::QRCode.new("http://#{request.host_with_port}/properties_detail/#{@properties.id}",:size => 10).to_img.resize(200, 200).to_data_url %>
@@ -91,8 +91,8 @@
     </div>
 
     <div style="float:right;width:620px;">
-      <div style="height:80px;color:white;font-size:40px;background-color:purple;padding-top:20px;padding-left:240px;"><b>Quote Me</b></div>
-      <div style="height:350px;border:1px solid purple;vertical-align:middle; padding:20px;font-family:arial;">
+      <div style="height:80px;color:white;font-size:40px;background-color:#903c9e;padding-top:20px;padding-left:240px;"><b>Quote Me</b></div>
+      <div style="height:350px;border:1px solid #903c9e;vertical-align:middle; padding:20px;font-family:arial;">
         <div style="font-size:30px;margin:5px;"><center><b>Quote This Reference Number For More Information</b></center></div>
         <div style="">
           <div style="font-size:40px;margin-top:100px"><center><b><%="SP"+@properties.created_at.year.to_s.split(//).last(2).join()+@properties.created_at.month.to_s.rjust(2,'0')+@properties.id.to_s.rjust(4,'0')%></b></center></div>
@@ -101,8 +101,8 @@
     </div>
   </div>
 
-  <div style="height:80px;color:white;font-size:40px;margin-top:30px;background-color:purple;padding-top:20px;padding-left:560px"><b>Disclaimer</b></div>
-  <div  style="height:490px;border:1px solid purple;margin:0px;vertical-align:middle;padding:20px;font-family:arial;font-size:30px"><center><b>
+  <div style="height:80px;color:white;font-size:40px;margin-top:30px;background-color:#903c9e;padding-top:20px;padding-left:560px"><b>Disclaimer</b></div>
+  <div  style="height:490px;border:1px solid #903c9e;margin:0px;vertical-align:middle;padding:20px;font-family:arial;font-size:30px"><center><b>
     <p>
       Whilst every effort is made to ensure the contents of this brochure are accurate and true, the particulars are set out as a general outline for guidance purposes only and do not constitute any part of an offer or contract. Interested Parties should not rely on them as statements of representation of fact, but instead must satisfy themselves by inspection or otherwise as to their accuracy.
     </p>   
@@ -115,8 +115,8 @@
 </div>
 <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
 
-<div style="width:1300px;height:1875px;border:1px solid purple">
-  <div style="height:60px;color:white;font-size:40px;background-color:purple;padding-top:10px;padding-left:570px"><b>Gallery</b></div>
+<div style="width:1300px;height:1875px;border:1px solid #903c9e">
+  <div style="height:60px;color:white;font-size:40px;background-color:#903c9e;padding-top:10px;padding-left:570px"><b>Gallery</b></div>
 
   <div style="position:relative;width:1300px;padding:5px"><%=image_tag(@properties.image2.present? ? @properties.image2.url(:large).gsub("https","http") : no_image, :height=> "680",:width=>"1290") %></div>
   <div style="float:left;width:625px;margin:5px;margin-top:25px"><%=image_tag(@properties.image4.present? ? @properties.image4.url(:large).gsub("https","http") : no_image, :height=> "525",:width=>"625") %></div>
@@ -128,9 +128,9 @@
 <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
 
 <div style="position:relative;height:1875px;width:1300px;">
-  <div class="" style="height:60px;color:white;font-size:40px;background-color:purple;padding-top:15px;padding-left:550px"><b>Description</b></div>
-  <div style="height:500px;border:1px solid purple;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;"><center><b><%=@properties.short_description%></b></center></div>
+  <div class="" style="height:60px;color:white;font-size:40px;background-color:#903c9e;padding-top:15px;padding-left:550px"><b>Description</b></div>
+  <div style="height:500px;border:1px solid #903c9e;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;"><center><b><%=@properties.short_description%></b></center></div>
 
-  <div class="" style="height:60px;color:white;font-size:40px;background-color:purple;padding-top:15px;padding-left:550px;margin-top:30px"><b>Specification</b></div>
-  <div  style="height:1120px;border:1px solid purple;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;"><center><b><%=@properties.description.html_safe%></b></center></div>
+  <div class="" style="height:60px;color:white;font-size:40px;background-color:#903c9e;padding-top:15px;padding-left:550px;margin-top:30px"><b>Specification</b></div>
+  <div  style="height:1120px;border:1px solid #903c9e;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;"><center><b><%=@properties.description.html_safe%></b></center></div>
 </div>  
