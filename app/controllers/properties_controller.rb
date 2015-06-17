@@ -354,6 +354,29 @@ class PropertiesController < ApplicationController
     # end
   end
 
+  def broucher1
+    @properties = Property.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "broucher",
+               page_size: "A3",
+               orientation: "Landscape"
+      end
+    end
+  end
+
+  def broucher2
+    @properties = Property.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "broucher",
+               page_size: "A4"
+      end
+    end
+  end
+
    def approve_property
     @user = current_user
     @property = Property.find(params[:id])

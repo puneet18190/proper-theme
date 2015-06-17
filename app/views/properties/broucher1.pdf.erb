@@ -1,0 +1,72 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<%#= wicked_pdf_stylesheet_link_tag "bootstrap.css" %>
+<%#= wicked_pdf_stylesheet_link_tag "font-awesome.css" %>
+<% no_image = "#{Rails.root}/app/assets/images/default_images/no.jpg" %>
+
+<div style="border:1px solid #2e4588;height:1000px">
+  <div style="margin:10px">
+    <center><%=wicked_pdf_image_tag("seal_logo.png", :height=>"150",:width=>"700") %></center>
+  </div>
+
+  <div style="height:300px">
+    <div style="width:400px;height:300px;float:left;margin-left:1px">
+      <center>
+        <%=image_tag(@properties.image1.url.gsub("https","http"),:width=>"400",:height=>"300") %>
+      </center>
+    </div>
+
+    <div style="width:600px;float:left;height:300px">
+      <div style="font-size:30px;margin:5px;font-family:arial;margin-top:20px"><center><b><%="#{@properties.address1}"%></b></center></div>
+      <div style="font-size:30px;margin:5px;font-family:arial"><center><b><%="#{@properties.address2}"%></b></center></div>
+      <div style="font-size:30px;margin:5px;font-family:arial"><center><b><%="#{@properties.address3}"%></b></center></div>
+      <div style="font-size:30px;margin:5px;font-family:arial"><center><b><%="#{@properties.postcode}"%></b></center></div>
+      <div style="font-size:30px;margin:5px;font-family:arial;margin-top:10px"><center><b>&pound; <%= @properties.price.to_i %></b></center></div>
+    </div>
+
+    <div style="width:400px;height:300px;float:right;margin-right:1px">
+      <center>
+        <%=image_tag(@properties.image2.url.gsub("https","http"),:width=>"400",:height=>"300") %>
+      </center>
+    </div>
+  </div>
+
+  <div style="height:100px;margin-top:10px">
+    <div style="font-size:20px;font-family:arial"><center><b><%="#{@properties.short_description}"%></b></center></div>
+  </div>
+
+  <div style="height:330px;margin-top:10px">
+    <div style="width:355px;height:330px;float:left">
+      <center>
+        <% unless @properties.image3.url.nil? %>
+          <%=image_tag(@properties.image3.url.gsub("https","http"),:width=>"355",:height=>"330") %>
+        <% end %>
+      </center>
+    </div>
+    <div style="width:355px;height:330px;float:left;margin-left:9px">
+      <center>
+        <% unless @properties.image3.url.nil? %>
+          <%=image_tag(@properties.image4.url.gsub("https","http"),:width=>"355",:height=>"330") %>
+        <% end %>  
+      </center>
+    </div>
+    <div style="width:355px;height:330px;float:left;margin-left:9px">
+      <center>
+        <% unless @properties.image3.url.nil? %>
+          <%=image_tag(@properties.image5.url.gsub("https","http"),:width=>"355",:height=>"330") %>
+        <% end %>  
+      </center>
+    </div>
+    <div style="width:355px;height:330px;float:left;margin-left:9px">
+      <center>
+        <% unless @properties.image3.url.nil? %>
+          <%=image_tag(@properties.image6.url.gsub("https","http"),:width=>"355",:height=>"330") %>
+        <% end %>  
+      </center>
+    </div>
+  </div>  
+
+  <div style="">
+    <center><%=wicked_pdf_image_tag("contact_info.png", :height=> "55") %></center>
+    <div style="font-size:15px;margin:0px;font-family:arial"><center><b>Seal Partnership Limited T/A Seal Properties. Registered Company No: 8589070</b></center></div>
+  </div>
+</div>
