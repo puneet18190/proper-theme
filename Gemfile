@@ -124,3 +124,5 @@ group :development do
 	gem 'hirb' #displat table in boxes in console
 	gem 'pry-rails'
 end	
+
+gem 'jquery-datatables-rails', '~> 3.3.0'

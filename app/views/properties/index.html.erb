@@ -9,7 +9,7 @@
     </dl>
   </div>
   <!--    End News Carousel-->
-  <div class="cont" style="max-width:1180px">
+  <div class="cont" style="max-width:1200px">
 
 <h3><b>Properties</b></h3>
    <%if current_user.status == "admin"%>
@@ -36,7 +36,12 @@
       <th>Category</th>
       <th>Payment Status</th>
       <th>Validate Upto</th>
-      <th colspan="3"></th>
+      <th>Action</th>
+      <th>Action</th>
+      <th>Action</th>
+      <th>Action</th>
+      <th>Brochure</th>
+      <th>Brochure</th>
     </tr>
   </thead>
 
@@ -89,6 +94,9 @@
 <%= render 'shared/plans'%>
 
 <script type="text/javascript">
+    $(document).ready(function(){
+      $("#prop_info").dataTable()
+    })
     $(".add_loader").click(function(e){
       if($(this).hasClass('block_loader') == false){
         var opts = {
@@ -184,3 +192,17 @@ $( ".disconnect_fb" )
 
 
 
+<style type="text/css">
+  .dataTables_paginate .next{
+    position: relative;
+    bottom: 0;
+    color: white !important;
+  }
+  select{
+    width: 70px;
+    float: none;
+  }
+  tr{
+    background-color: #eee !important;
+  }
+</style>
