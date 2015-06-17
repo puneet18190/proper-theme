@@ -1,0 +1,51 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<%#= wicked_pdf_stylesheet_link_tag "bootstrap.css" %>
+<%#= wicked_pdf_stylesheet_link_tag "font-awesome.css" %>
+<%# no_image = "#{Rails.root}/app/assets/images/default_images/no.jpg" %>
+<% no_image = "" %>
+
+<div style="border:1px solid #2e4588;height:1875px;width:1300px;">
+  <div style="margin:10px">
+    <center><%=wicked_pdf_image_tag("seal_logo.png", :height=>"200",:width=>"900") %></center>
+  </div>
+  <div style="height:280px;width:1300px;">
+    <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.address1}"%></b></center></div>
+    <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.address2}"%></b></center></div>
+    <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.address3}"%></b></center></div>
+    <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.postcode}"%></b></center></div>
+    <div style="font-size:30px;margin:5px;font-family:arial;margin-top:10px"><center><b>&pound; <%= @properties.price.to_i %></b></center></div>
+  </div>
+
+  <div class="desc-type for-sale" style="height:50px;width:125px;position:absolute;top:530px; padding:5px;left:202px;color:white;font-size:30px;background: #FF6666;font-weight: bold;z-index:1;opacity:0.8"><%=(@properties.category == "rent" || @properties.category == "Rent") ? "To Rent" : "To Sale" %></div>
+  
+  <div style="margin:20px;width:900px;position:absolute;left:180px;border:2px solid #2e4588;height:700px">
+    <center><%=image_tag(@properties.image1.url.gsub("https","http"), :height=> "700",:width=>"898") %></center>
+  </div>
+
+  <div style="height:70px;width:<%=(@properties.category == "rent" || @properties.category == "Rent") ? "130px" : "230px" %>;position:absolute;font-weight: bold;background-color: rgba(0,0,0,0.6);font-size: 50px;color:white;padding:10px;top:1141px;left:202px">
+    &pound; <%= @properties.price.to_i %>
+  </div>
+
+  <div style="position:absolute; top:1300px;height:450px;width:1300px;">
+      <div style="font-size:40px;font-family:arial"><center><b><%="#{@properties.short_description}"%></b></center></div>
+  </div>
+
+  <div style="position:absolute;top:1780px;left:60px;">
+    <center><%=wicked_pdf_image_tag("contact_info.png", :height=> "80", :width => "1200") %></center>
+    <div style="font-size:15px;margin:0px;font-family:arial"><center><b>Seal Partnership Limited T/A Seal Properties. Registered Company No: 8589070</b></center></div>
+  </div>
+</div>
+<div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
+
+<div style="width:1300px;height:1900px;">
+  <div style="float:left;width:625px;height:550px;"><%=image_tag(@properties.image4.present? ? @properties.image4.url(:large).gsub("https","http") : no_image, :height=> "550",:width=>"625") %></div>
+  <div style="float:right;width:625px;height:550px;"><%=image_tag(@properties.image5.present? ? @properties.image5.url(:large).gsub("https","http") : no_image, :height=> "550",:width=>"625") %></div>
+  <div style="float:left;width:625px;margin-top:25px;height:550px;"><%=image_tag(@properties.image6.present? ? @properties.image6.url(:large).gsub("https","http") : no_image, :height=> "550",:width=>"625") %></div>
+  <div style="float:right;width:625px;margin-top:25px;height:550px;"><%=image_tag(@properties.image7.present? ? @properties.image7.url(:large).gsub("https","http") : no_image, :height=> "550",:width=>"625") %></div>
+
+  <div style="float:left;width:1300px;height:660px;margin-top:25px"><%=image_tag(@properties.image2.present? ? @properties.image2.url(:large).gsub("https","http") : no_image, :height=> "660",:width=>"1300") %></div>
+  <div style="left:60px;">
+    <center><%=wicked_pdf_image_tag("contact_info.png", :height=> "80", :width => "1200") %></center>
+    <div style="font-size:15px;margin:0px;font-family:arial"><center><b>Seal Partnership Limited T/A Seal Properties. Registered Company No: 8589070</b></center></div>
+  </div>
+</div>
