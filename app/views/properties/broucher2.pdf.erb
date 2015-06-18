@@ -13,7 +13,6 @@
     <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.address2}"%></b></center></div>
     <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.address3}"%></b></center></div>
     <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.postcode}"%></b></center></div>
-    <div style="font-size:30px;margin:5px;font-family:arial;margin-top:10px"><center><b>&pound; <%= @properties.price.to_i %></b></center></div>
   </div>
 
   <div class="desc-type for-sale" style="height:50px;width:125px;position:absolute;top:530px; padding:5px;left:202px;color:white;font-size:30px;background: #FF6666;font-weight: bold;z-index:1;opacity:0.8"><%=(@properties.category == "rent" || @properties.category == "Rent") ? "To Rent" : "To Sale" %></div>
@@ -32,7 +31,7 @@
 
   <div style="position:absolute;top:1780px;left:60px;">
     <center><%=wicked_pdf_image_tag("contact_info.png", :height=> "80", :width => "1200") %></center>
-    <div style="font-size:15px;margin:0px;font-family:arial"><center><b>Seal Partnership Limited T/A Seal Properties. Registered Company No: 8589070</b></center></div>
+    <div style="font-size:15px;margin:0px;font-family:arial;margin-left:80px"><center><b>Seal Partnership Limited T/A Seal Properties. Registered Company No: 8589070<span style="float:right"><%="SP"+@properties.created_at.year.to_s.split(//).last(2).join()+@properties.created_at.month.to_s.rjust(2,'0')+@properties.id.to_s.rjust(4,'0')%></span></b></center></div>
   </div>
 </div>
 <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
