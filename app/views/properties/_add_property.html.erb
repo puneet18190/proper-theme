@@ -123,9 +123,9 @@
                     <span style="margin-left:132px"><%= @property.image1.file.filename %></span><%end%>
                   </label>
                   <%if params[:action]=="edit" %>
-                    <%= f.file_field :image2,:style=>"width:95px;line-height:0;" %>
+                    <%= f.file_field :image1,:style=>"width:95px;line-height:0;" %>
                   <%else%>
-                    <%= f.file_field :image2,:style=>"line-height:0;" %>
+                    <%= f.file_field :image1,:style=>"line-height:0;" %>
                   <%end%>
                 </div>
                 <%(2..10).each do |n|%>
@@ -135,9 +135,9 @@
                       <span style="margin-left:114px"><%= @property.send("image"+n.to_s).file.filename %></span><%end%>
                     </label>
                     <%if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
-                      <%= f.file_field :image2,:style=>"width:95px;line-height:0;" %>
+                      <%= f.file_field ("image"+n.to_s).to_sym,:style=>"width:95px;line-height:0;" %>
                     <%else%>
-                      <%= f.file_field :image2,:style=>"line-height:0;" %>
+                      <%= f.file_field ("image"+n.to_s).to_sym,:style=>"line-height:0;" %>
                     <%end%>
                   </div>
                 <%end%>
@@ -204,7 +204,9 @@
 </div>
 <%= render 'shared/plans'%>
 <script type="text/javascript">
-  $('.long_desc').cleditor();
+  $(document).ready(function(){
+    $('.long_desc').cleditor();
+  })
   <% if current_user.status == "landlord" && current_user.plan == "free" %>
     $(".alert_popup").click(function(e) {
       e.preventDefault();
