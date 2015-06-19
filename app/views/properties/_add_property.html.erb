@@ -118,76 +118,29 @@
               <div style="float:left;width:20%;margin:10px;height:95%">
                 <h3 class=""><b>Images</b></h3>
                 <div class="field">
-
                   <label for="property_image1" style="margin:0">Main
                     <%if params[:action]=="edit" && !@property.image1.file.nil?%>
                     <span style="margin-left:132px"><%= @property.image1.file.filename %></span><%end%>
                   </label>
-                  <%= f.file_field :image1,:style=>"width:95px;" %>
+                  <%if params[:action]=="edit" %>
+                    <%= f.file_field :image2,:style=>"width:95px;line-height:0;" %>
+                  <%else%>
+                    <%= f.file_field :image2,:style=>"line-height:0;" %>
+                  <%end%>
                 </div>
-                <div class="field alert_popup">
-                  <label for="property_image2" style="margin:0">Image 1
-                    <%if params[:action]=="edit" && !@property.image2.file.nil?%>
-                    <span style="margin-left:114px"><%= @property.image2.file.filename %></span><%end%>
-                  </label>
-                  <%= f.file_field :image2,:style=>"width:95px;line-height:0" %>
-                </div>
-                <div class="field alert_popup">
-                  <label for="property_image3" style="margin:0">Image 2
-                    <%if params[:action]=="edit" && !@property.image3.file.nil? %>
-                    <span style="margin-left:114px"><%= @property.image3.file.filename %></span><%end%>
-                  </label>
-                  <%= f.file_field :image3,:style=>"width:95px;line-height:0" %>
-                </div>
-                <div class="field alert_popup">
-                  <label for="property_image4" style="margin:0">Image 3
-                    <%if params[:action]=="edit" && !@property.image4.file.nil?%>
-                    <span style="margin-left:114px"><%= @property.image4.file.filename %></span><%end%>
-                  </label>
-                  <%= f.file_field :image4,:style=>"width:95px;line-height:0" %>
-                </div>
-                <div class="field alert_popup">
-                  <label for="property_image5" style="margin:0">Image 4
-                    <%if params[:action]=="edit" && !@property.image5.file.nil?%>
-                    <span style="margin-left:114px"><%= @property.image5.file.filename %></span><%end%>
-                  </label>
-                  <%= f.file_field :image5,:style=>"width:95px;line-height:0" %>
-                </div>
-                <div class="field alert_popup">
-                  <label for="property_image6" style="margin:0">Image 5
-                    <%if params[:action]=="edit" && !@property.image6.file.nil?%>
-                    <span style="margin-left:114px"><%= @property.image6.file.filename %></span><%end%>
-                  </label>
-                  <%= f.file_field :image6,:style=>"width:95px;line-height:0" %>
-                </div>
-                <div class="field alert_popup">
-                  <label for="property_image7" style="margin:0">Image 6
-                    <%if params[:action]=="edit" && !@property.image7.file.nil?%>
-                    <span style="margin-left:114px"><%= @property.image7.file.filename %></span><%end%>
-                  </label>
-                  <%= f.file_field :image7,:style=>"width:95px;;line-height:0" %>
-                </div>
-                <div class="field alert_popup">
-                  <label for="property_image8" style="margin:0">Image 7
-                    <%if params[:action]=="edit" && !@property.image8.file.nil?%>
-                    <span style="margin-left:114px"><%= @property.image8.file.filename %></span><%end%>
-                  </label>
-                  <%= f.file_field :image8,:style=>"width:95px;line-height:0" %>
-                </div>
-                <div class="field alert_popup">
-                  <label for="property_image9" style="margin:0">Image 8
-                    <%if params[:action]=="edit" && !@property.image9.file.nil?%>
-                    <span style="margin-left:114px"><%= @property.image9.file.filename %></span><%end%>
-                  </label>
-                  <%= f.file_field :image9,:style=>"width:95px;line-height:0" %>
-                </div>
-                <div class="field alert_popup">
-                  <label for="property_image10" style="margin:0">Image 9
-                    <%if params[:action]=="edit" && !@property.image10.file.nil?%>
-                    <span style="margin-left:114px"><%= @property.image10.file.filename %></span><%end%>
-                  </label>
-                  <%= f.file_field :image10,:style=>"width:95px;line-height:0" %>
-                </div>
+                <%(2..10).each do |n|%>
+                  <div class="field alert_popup">
+                    <label for="property_image<%=n%>" style="margin:0">Image <%=n-1%>
+                      <%if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
+                      <span style="margin-left:114px"><%= @property.send("image"+n.to_s).file.filename %></span><%end%>
+                    </label>
+                    <%if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
+                      <%= f.file_field :image2,:style=>"width:95px;line-height:0;" %>
+                    <%else%>
+                      <%= f.file_field :image2,:style=>"line-height:0;" %>
+                    <%end%>
+                  </div>
+                <%end%>
               </div>  
               <div style="float:right;width:48%;margin:10px;">  
                 <div class="field" >
