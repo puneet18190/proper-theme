@@ -18,7 +18,7 @@
   <div class="desc-type for-sale" style="height:50px;width:125px;position:absolute;top:530px; padding:5px;left:202px;color:white;font-size:30px;background: #FF6666;font-weight: bold;z-index:1;opacity:0.8"><%=(@properties.category == "rent" || @properties.category == "Rent") ? "To Rent" : "To Sale" %></div>
   
   <div style="margin:20px;width:900px;position:absolute;left:180px;border:2px solid #2e4588;height:700px">
-    <center><%=image_tag(@properties.image1(:large).url.gsub("https","http"), :height=> "700",:width=>"898") %></center>
+    <center><%=image_tag(@properties.image1.url(:large).gsub("https","http"), :height=> "700",:width=>"898") %></center>
   </div>
 
   <div style="height:70px;width:<%=(@properties.category == "rent" || @properties.category == "Rent") ? "130px" : "230px" %>;position:absolute;font-weight: bold;background-color: rgba(0,0,0,0.6);font-size: 50px;color:white;padding:10px;top:1141px;left:202px">
