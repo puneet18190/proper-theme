@@ -39,7 +39,7 @@ class ScreensController < ApplicationController
 	end
 
 	def newest
-		@properties = Property.where(:visibility=>true).last(5)
+		@properties = Property.where(:visibility=>true,:approve=>true).last(5)
 		render '/screens/oldest/newest', :layout => "screen_layout"
 	end
 
@@ -84,21 +84,21 @@ class ScreensController < ApplicationController
 	end
 
 	def featured_properties
-		@properties = Property.where(:featured=>true).last(5)
+		@properties = Property.where(:featured=>true,:approve=>true).last(5)
 		render '/screens/oldest/featured', :layout => "screen_layout"
 	end	
 
 	def random_properties
-		@properties = Property.where(:visibility=>true).sample(5)
+		@properties = Property.where(:visibility=>true,:approve=>true).sample(5)
 		render '/screens/oldest/random', :layout => "screen_layout"
 	end	
 	def cycle
-		@properties = Property.where(:payment=>true, :visibility => true)
+		@properties = Property.where(:visibility => true,:approve=>true)
 		render '/screens/oldest/cycle', :layout => "screen_layout"
 	end	
 
 	def oldest
-		@properties = Property.where(:payment=>true,:visibility=>true).first(10)
+		@properties = Property.where(:visibility=>true,:approve=>true).first(10)
 		render '/screens/oldest/oldest', :layout => "screen_layout"
 	end	
 
