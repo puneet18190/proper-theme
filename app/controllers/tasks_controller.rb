@@ -46,18 +46,24 @@ class TasksController < ApplicationController
   end
 
   def properties_detail
-    begin
+    if is_mobile_device?
       @data = Property.friendly.find(params[:id])
       @agents = Agent.find_by_id(@data.agent_id)
       @contact_agent = ContactAgent.new
-      redirect_to root_url, alert: "No Property Found" unless @data.payment == true
-      respond_to do |format|
-        format.html
-        format.mobile
+    else  
+      begin
+        @data = Property.friendly.find(params[:id])
+        @agents = Agent.find_by_id(@data.agent_id)
+        @contact_agent = ContactAgent.new
+        redirect_to root_url, alert: "No Property Found" unless @data.payment == true
+        # respond_to do |format|
+        #   format.html
+        #   format.mobile
+        # end
+      rescue Exception => e
+        redirect_to root_url, alert: "No Property Found"
       end
-    rescue Exception => e
-      redirect_to root_url, alert: "No Property Found"
-    end
+    end  
   end
 
   def properties_filter
