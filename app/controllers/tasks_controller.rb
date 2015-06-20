@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   layout proc { false if request.xhr? }	
+  respond_to :html, :xml, :json,:mobile
   def index
     if is_mobile_device? == false
       @properties = Property.where({payment: true, visibility: true})
@@ -50,6 +51,10 @@ class TasksController < ApplicationController
       @agents = Agent.find_by_id(@data.agent_id)
       @contact_agent = ContactAgent.new
       redirect_to root_url, alert: "No Property Found" unless @data.payment == true
+      respond_to do |format|
+        format.html
+        format.mobile
+      end
     rescue Exception => e
       redirect_to root_url, alert: "No Property Found"
     end
