@@ -50,6 +50,7 @@ class TasksController < ApplicationController
       @data = Property.friendly.find(params[:id])
       @agents = Agent.find_by_id(@data.agent_id)
       @contact_agent = ContactAgent.new
+      render "properties_detail.html.erb"
     else  
       begin
         @data = Property.friendly.find(params[:id])
