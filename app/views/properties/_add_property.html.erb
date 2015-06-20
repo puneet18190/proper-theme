@@ -49,7 +49,7 @@
               </ul>
             </div>
           <% end %>
-          <div class="proper-form-step-area" style="height:850px">
+          <div class="proper-form-step-area" style="height:1080px">
             <div class="proper-singup" style="max-width:100%;margin:0;padding:0;height:100%">
               <div style="float:left;margin:10px;width:23%">
                 <h3 class=""><b>Property</b></h3>
@@ -70,8 +70,13 @@
                   <%= f.text_field :address3 %>
                 </div>
                 <div class="field">
+                  <%= f.label :town %>
+                  <%= f.text_field :town %>
+                </div>
+                <div class="field">
                   <%= f.label :postcode %>
-                  <%= f.text_field :postcode%>
+                  <%= f.text_field :postcode, :style=>"width:90px"%>
+                  <%= f.text_field :postcode1, :style=>"width:90px;margin-top:-68px;margin-left:175px"%>
                 </div>
                 <div class="field">
                   <%= f.label :type %>
@@ -84,8 +89,16 @@
                   <%= f.select :category, ["Rent","Sale"] %>
                 </div><br/>
                 <div class="field">
+                  <%= f.label :status %>
+                  <%= f.text_field :status %>
+                </div>
+                <div class="field">
                   <%= f.label :price %>
                   <%= f.text_field :price %>
+                </div>
+                <div class="field">
+                  <%= f.label :qualifier %>
+                  <%= f.text_field :qualifier %>
                 </div>
                 <div class="field">
                   <%= f.label :agent_id %>
@@ -144,8 +157,12 @@
               </div>  
               <div style="float:right;width:48%;margin:10px;">  
                 <div class="field" >
+                  <%= f.label :summary %>
+                  <%= f.text_area :summary, style: "width:98%;height:50px",:maxlength => 300 %>
+                </div>
+                <div class="field" >
                   <%= f.label :short_description %>
-                  <%= f.text_area :short_description, style: "width:575px;height:60px",:maxlength => 900 %>
+                  <%= f.text_area :short_description, style: "width:98%;height:60px",:maxlength => 900 %>
                 </div>
                 <div class="field" >
                   <%= f.label :description %>
@@ -173,6 +190,10 @@
                     <%= f.label "En-suite" %>
                     <%= f.select :ensuite, [['No', 'No'],['Yes', 'Yes']] %>
                   </div><br/>
+                  <div class="field">
+                    <%= f.label :furnished %>
+                    <%= f.select :furnished, ['Furnished','Unfurnished'] %>
+                  </div><br/>
                 </div>
                 <div style="float:right">  
                   <div class="field">
@@ -198,6 +219,14 @@
                   <div class="field">
                     <%= f.label :pets %>
                     <%= f.select :pets, [['No', 'No'],['Yes', 'Yes']] %>
+                  </div><br/>
+                  <div class="field">
+                    <%= f.label :feature1 %>
+                    <%= f.text_field :feature1 %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :feature2 %>
+                    <%= f.text_field :feature2 %>
                   </div><br/>
                 </div>  
                 <br/><br/><br/>
@@ -227,7 +256,7 @@
 </script>
 <style type="text/css">
   .cleditorMain{
-    width: 575px !important;
+    width: 98% !important;
     height: 300px !important;
   }
   .cleditorMain iframe {

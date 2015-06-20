@@ -58,6 +58,14 @@
 #  property_type     :string(255)
 #  pets              :string(255)      default("No")
 #  ensuite           :string(255)      default("No")
+#  town              :string(255)
+#  status            :string(255)
+#  postcode1         :integer
+#  qualifier         :string(255)
+#  summary           :text
+#  furnished         :string(255)
+#  feature1          :string(255)
+#  feature2          :string(255)
 #
 # Indexes
 #
