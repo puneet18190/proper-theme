@@ -47,17 +47,17 @@
 #  radius            :string(255)
 #  approval_status   :string(255)      default("false")
 #  short_description :text
-#  gas_ch            :boolean          default(FALSE)
+#  gas_ch            :string(255)      default("No")
 #  glazing           :boolean          default(FALSE)
 #  parking_status    :string(255)      default("none")
 #  car               :integer
 #  tag_line          :text
-#  garden            :boolean          default(FALSE)
+#  garden            :string(255)      default("No")
 #  dg                :string(255)      default(FALSE)
 #  seal_approved     :boolean          default(FALSE)
 #  property_type     :string(255)
-#  pets              :boolean          default(FALSE)
-#  ensuite           :boolean          default(FALSE)
+#  pets              :string(255)      default("No")
+#  ensuite           :string(255)      default("No")
 #
 # Indexes
 #
@@ -96,28 +96,28 @@ class Property < ActiveRecord::Base
   #validates_presence_of :address1, :address2, :address3, :price, :postcode, :beds, :bath, :description
   geocoded_by :address
 
-  def garden
-    self.garden? ? "Yes" : "No"
-  end
+  # def garden
+  #   self.garden? ? "Yes" : "No"
+  # end
 
-  def gas_ch
-    self.gas_ch? ? "Yes" : "No"
-  end
+  # def gas_ch
+  #   self.gas_ch? ? "Yes" : "No"
+  # end
 
-  def dg
-    self.dg? ? "Yes" : "No"
-  end
+  # def dg
+  #   self.dg? ? "Yes" : "No"
+  # end
 
-  def glazing
-    self.glazing? ? "Yes" : "No"
-  end
+  # def glazing
+  #   self.glazing? ? "Yes" : "No"
+  # end
 
-  def pets
-    self.pets? ? "Yes" : "No"
-  end
+  # def pets
+  #   self.pets? ? "Yes" : "No"
+  # end
 
-  def ensuite
-    self.ensuite? ? "Yes" : "No"
-  end
+  # def ensuite
+  #   self.ensuite? ? "Yes" : "No"
+  # end
   
 end
