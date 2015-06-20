@@ -46,15 +46,9 @@
               <a id="prev2" class="prev" href="#">&lt;</a>
               <a id="next2" class="next" href="#">&gt;</a>
             </div>
-            <h3>Property Description</h3>
+            
+            <h3 style="margin-top:40px">Property Description<a class="btn btn-proper" href="<%=broucher_path(:id => @data.id, format: 'pdf')%>" style="float:right" target="_blank">Download Brochure</a></h3>
             <p> <%= raw(@data.short_description) %>  </p>
-            <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
-              <a href="/facebook_share/<%=@data.id %>"><img src="/assets/fb_share.jpg" height="5" style="height: 24px;padding: 5px;margin-top: -8px;width: 70px;"></a>
-              <a class="addthis_button_twitter"></a>
-              <a class="addthis_button_pinterest_share"></a>
-              <a class="addthis_button_google_plusone_share"></a>
-              <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-            </div>
             <div class="property-details" style="width:100%;">
               <p>
                 <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= @data.beds %></span>
@@ -68,13 +62,27 @@
                 <%end%>
                 <% if @data.dg == "Yes" %>
                   <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> DG : <%= @data.dg %></span>
+                <%end%>
+                <% if @data.pets == "Yes" %>
+                  <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> Pets : <%= @data.pets %></span>
+                <%end%>
+                <% if @data.ensuite == "Yes" %>
+                  <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> En-suite : <%= @data.ensuite %></span>
                 <%end%>  
               </p>
             </div>
             <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51965a0e6903b31d"></script>
-            <%= link_to 'Download Broucher', broucher_path(:id => @data.id, format: 'pdf') %>
+            <%#= link_to 'Download Broucher', broucher_path(:id => @data.id, format: 'pdf') %>
             <br/>
+            <h3>Property Specification</h3>
             <%=raw(@data.description)%>
+            <div class="addthis_toolbox addthis_default_style addthis_16x16_style" style="margin-top:20px">
+              <a href="/facebook_share/<%=@data.id %>"><img src="/assets/fb_share.jpg" height="5" style="height: 24px;padding: 5px;margin-top: -8px;width: 70px;"></a>
+              <a class="addthis_button_twitter"></a>
+              <a class="addthis_button_pinterest_share"></a>
+              <a class="addthis_button_google_plusone_share"></a>
+              <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+            </div>
           </div>
         </div>
       </div>

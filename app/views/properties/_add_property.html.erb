@@ -75,7 +75,7 @@
                 </div>
                 <div class="field">
                   <%= f.label :type %>
-                  <%= f.text_field :property_type%>
+                  <%= f.select :property_type,["Lower Flat", "Upper Flat", "Maisonette", "Terrace House", "Semi-Detached", "Detached", "Studio", "Apartment", "Commercial", "Land"]%>
                 </div>
 
                 <h3 style="margin-top:10px"><b>Marketing</b></h3>
@@ -169,6 +169,10 @@
                     <%= f.label "Cars" %>
                     <%= f.number_field :car, :min => 0 %>
                   </div>
+                  <div class="field">
+                    <%= f.label "En-suite" %>
+                    <%= f.select :ensuite, [['No', false],['Yes', true]] %>
+                  </div><br/>
                 </div>
                 <div style="float:right">  
                   <div class="field">
@@ -179,17 +183,21 @@
                     <%= f.label :gas_CH %>
                     <%= f.select :gas_ch, [['False', false],['True', true]] %>
                   </div><br/>
-                  <div class="field">
-                    <%= f.label :glazing %>
-                    <%= f.select :glazing, [['False', false],['True', true]] %>
+<!--                   <div class="field">
+                    <%#= f.label :glazing %>
+                    <%#= f.select :glazing, [['False', false],['True', true]] %>
                   </div><br/>
-                  <div class="field">
+ -->              <div class="field">
                     <%= f.label :garden %>
                     <%= f.select :garden, [['False', false],['True', true]] %>
                   </div><br/>
                   <div class="field">
                     <%= f.label :dg, "DG" %>
-                    <%= f.select :dg, [['False', false],['True', true]] %>
+                    <%= f.select :dg, ["Full", "Partial", "No"] %>
+                  </div><br/>
+                  <div class="field">
+                    <%= f.label :pets %>
+                    <%= f.select :pets, [['No', false],['Yes', true]] %>
                   </div><br/>
                 </div>  
                 <br/><br/><br/>

@@ -65,6 +65,12 @@
                       <%end%>
                       <% if @data.dg == "Yes" %>
                         <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> DG : <%= @data.dg %></span>
+                      <%end%>
+                      <% if @data.pets == "Yes" %>
+                        <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> Pets : <%= @data.pets %></span>
+                      <%end%>
+                      <% if @data.ensuite == "Yes" %>
+                        <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> En-suite : <%= @data.ensuite %></span>
                       <%end%>  
                     </p>
                   </div>

@@ -53,9 +53,11 @@
 #  car               :integer
 #  tag_line          :text
 #  garden            :boolean          default(FALSE)
-#  dg                :boolean          default(FALSE)
+#  dg                :string(255)      default(FALSE)
 #  seal_approved     :boolean          default(FALSE)
 #  property_type     :string(255)
+#  pets              :boolean          default(FALSE)
+#  ensuite           :boolean          default(FALSE)
 #
 # Indexes
 #

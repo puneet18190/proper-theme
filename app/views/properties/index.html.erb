@@ -33,14 +33,16 @@
       <th>Beds</th>
       <th>Bath</th>
       <th>Category</th>
+      <th>Payment</th>
+      <th>Type</th>
       <th>Action</th>
       <th>Action</th>
       <th>Action</th>
-      <th>Action</th>
+      <th>PDF</th>
       <th>Brochure</th>
-      <th>Brochure A3</th>
+<!--       <th>Brochure A3</th>
       <th>Brochure A4</th>
-      <th>Approval</th>
+ -->      <th>Approval</th>
     </tr>
   </thead>
 
@@ -52,6 +54,8 @@
         <td><%= property.beds %></td>
         <td><%= property.bath %></td>
         <td><%= property.category %></td>
+        <td><%= property.payment %></td>
+        <td><%= property.property_type %></td>
         <td><%= link_to 'Show', "/properties_detail/"+property.slug %></td>
         <% if can? :update, @property %>
           <td><%= link_to 'Edit', edit_property_path(property) %> </td>
@@ -63,9 +67,9 @@
 
         <% if current_user.status == "admin" || (current_user.status == "landlord" && current_user.plan != "free") %>
           <td><%= link_to 'Download', pdf_handle_path(:id => property.id, format: 'pdf') %></td>
-          <td><%= link_to 'Download', broucher_path(:id => property.id, format: 'pdf') %></td>
-          <td><%= link_to 'Download', broucher1_path(:id => property.id, format: 'pdf') %></td>
-          <td><%= link_to 'Download', broucher2_path(:id => property.id, format: 'pdf') %></td>
+          <td><%= link_to 'Main', broucher_path(:id => property.id, format: 'pdf') %>
+          <%= link_to 'A3', broucher1_path(:id => property.id, format: 'pdf') %>
+          <%= link_to 'A4', broucher2_path(:id => property.id, format: 'pdf') %></td>
         <%else%>
           <td><%= link_to 'N/A',"#" %></td>
         <%end%>

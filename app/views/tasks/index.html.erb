@@ -134,12 +134,14 @@
             latLng:[54.9484992,-1.6144501],
             data:{
               img_preview: img_p, 
-              properties_name:"We are here - SEAL Properties 0191 5805900",
+              properties_name:"SEAL Properties 0191 5805900",
               properties_desc:"Opening times Mon-fri Sat",
               properties_link:"#", 
               zip:"009800",
               city:"167/169 Saltwell Road, Gateshead, NE8 4TJ",
-              id: '0'
+              id: '0',
+              price: '',
+              slug: '#'
             }, 
             options:{
               icon: icon_hotel //Image or icon of shop want to display on map
@@ -152,13 +154,15 @@
             {
               latLng:[<%= lat%>,<%= lng%>],
               data:{
-                img_preview: img_p, 
+                img_preview: '<%=obj.image1.url(:thumb)%>', 
                 properties_name:'<%= obj.name%>',
                 properties_desc:'<%#=obj.short_description%>',
                 properties_link:"#", 
                 zip:'<%=obj.postcode%>', 
                 city:'<%=obj.address3%>',
-                id: '<%=obj.id%>'
+                id: '<%=obj.id%>',
+                price: "&pound;<%=obj.price.to_i%>",
+                slug: '/properties_detail/<%=obj.slug%>'
               }, 
               options:{
                 icon: icon_villa
@@ -178,12 +182,12 @@
                   latLng: marker.getPosition(),
                   options:{
                     content:  "<div class='info-location'>" +
-                    "<div class='text'><h4><a href='/properties_detail/"+context.data.slug+"'>" 
+                    "<div class='text'><h4><a href='"+context.data.slug+"'>" 
                     + context.data.properties_name +
                     "</a></h4>"+
-                    "<a href='/properties_detail/"+context.data.slug+"'><img src='"+ context.data.img_preview +"' width=90></a> £300.999 <br/>"+
-                    context.data.properties_desc +
-                    "<br/><a href='"+context.data.properties_link +"'class='btn btn-proper btn-small'>See Detail</a></div>" +
+                    "<a href='"+context.data.slug+"'><img src='"+ context.data.img_preview +"' width='90' style='height:75px'></a>"+
+                    context.data.price +
+                    "<br/><br/><a href='"+context.data.slug +"'class='btn btn-proper btn-small'>See Detail</a></div>" +
                     "</div>" +
                     "<div class='arrow-location'></div>",
                     offset: {

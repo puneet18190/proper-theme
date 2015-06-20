@@ -53,9 +53,11 @@
 #  car               :integer
 #  tag_line          :text
 #  garden            :boolean          default(FALSE)
-#  dg                :boolean          default(FALSE)
+#  dg                :string(255)      default(FALSE)
 #  seal_approved     :boolean          default(FALSE)
 #  property_type     :string(255)
+#  pets              :boolean          default(FALSE)
+#  ensuite           :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -91,7 +93,7 @@ class Property < ActiveRecord::Base
   process_in_background :image10
 
   validates :name, presence: true, length: { maximum: 20 }
-  validates_presence_of :address1, :address2, :address3, :price, :postcode, :beds, :bath, :description
+  #validates_presence_of :address1, :address2, :address3, :price, :postcode, :beds, :bath, :description
   geocoded_by :address
 
   def garden
@@ -108,6 +110,14 @@ class Property < ActiveRecord::Base
 
   def glazing
     self.glazing? ? "Yes" : "No"
+  end
+
+  def pets
+    self.pets? ? "Yes" : "No"
+  end
+
+  def ensuite
+    self.ensuite? ? "Yes" : "No"
   end
   
 end
