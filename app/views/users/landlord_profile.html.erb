@@ -1,0 +1,159 @@
+<!--Start Content-->
+<div id="content">
+    <!--Start Main Title-->
+  <div class="news-carousel-wrapper">
+    <dl id="news-carousel" class="news-carousel-style">
+      <%= render 'properties/news_carousel'%>
+    </dl>
+  </div>
+  <div class="container" style="width:1230px">
+    <div class="panel">
+      <div class="box-line">
+        <h3 class="title-heading">Please complete the form</h3>
+      </div>
+      <%= form_for @user, html: { multipart: true,class: "proper-form-step" },:style=>"" do |f| %>
+        <div class="proper-form-step-area">
+          <h4>Personal Information</h4>
+          <div class="row-fluid">
+            <div class="span2">
+              <%= f.label :title %>
+              <%= f.text_field :title, class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label :firstname %>
+              <%= f.text_field :firstname, class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label :lastname %>
+              <%= f.text_field :lastname, class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label :address1 %>
+              <%= f.text_field :address1, class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label :address2 %>
+              <%= f.text_field :address2, class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label :address3 %>
+              <%= f.text_field :address3, class: "input-block-level", required: "true" %>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="span2">
+              <%= f.label :postcode %>
+              <%= f.text_field :postcode, class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label :mobile %>
+              <%= f.text_field :mobile, class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label :home %>
+              <%= f.text_field :phone, class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label :email %>
+              <%= f.text_field :email, class: "input-block-level", required: "true", disabled: "true" %>
+            </div>
+            <div class="span2" style="width:31.8% !important">
+              <%= f.label "Date Of Birth" %>
+              <%= f.date_select :dob, class: "input-block-level", required: "true" %>
+            </div>
+          </div>
+          <h4>Rental Information</h4>
+          <div class="row-fluid">
+            <div class="span2">
+              <%= f.label :price %>
+              <%= f.number_field :price, class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label :deposit %>
+              <%= f.text_field :deposit, class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label "Tenancy Length (months)" %>
+              <%= f.number_field :tenancy, class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label :student %>
+              <%= f.select :student,['No','Yes'], class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label "Benefits Claimant" %>
+              <%= f.select :benefit,['No','Yes'], class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label "Pets allowed" %>
+              <%= f.select :pets,['No','Yes'], class: "input-block-level", required: "true" %>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="span2">
+              <%= f.label "Smokers allowed" %>
+              <%= f.select :smoker,['No','Yes'], class: "input-block-level", required: "true" %>
+            </div>
+          </div>
+          <h4>Property Details</h4>
+          <div class="row-fluid">
+            <div class="span2">
+              <%= f.label :property_type %>
+              <%= f.select :property_type,["Lower Flat", "Upper Flat", "Maisonette", "Terrace House", "Semi-Detached", "Detached", "Studio", "Apartment", "Commercial", "Land"], class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label "Number of Bedrooms" %>
+              <%= f.number_field :beds, class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label "Number of Bathrooms" %>
+              <%= f.number_field :bath, class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label :garden %>
+              <%= f.select :garden,['No','Yes'], class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label :parking %>
+              <%= f.select :parking,['No','Yes'], class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label :gas_ch %>
+              <%= f.select :gas_ch,['No','Yes'], class: "input-block-level", required: "true" %>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="span2">
+              <%= f.label :dg %>
+              <%= f.select :dg,['No','Yes'], class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label "En-suite" %>
+              <%= f.select :ensuite,['No','Yes'], class: "input-block-level", required: "true" %>
+            </div>
+            <div class="span2">
+              <%= f.label "Furnished" %>
+              <%= f.select :furnished,['No','Yes'], class: "input-block-level", required: "true" %>
+            </div>
+          </div>
+        </div>
+        <%= f.submit 'Save', class: "btn btn-proper btn-large" %>
+      <%end%><!-- End Form Step -->
+    </div>
+  </div>
+</div><!--EndContent-->
+
+<style type="text/css">
+  select{
+    width: 100% !important;
+  }
+  #user_dob_1i{
+    width: 35% !important;
+  }
+  #user_dob_2i{
+    width: 39% !important;
+  }
+  #user_dob_3i{
+    width: 26% !important;
+  }
+</script>

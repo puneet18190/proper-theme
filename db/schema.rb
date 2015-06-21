@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150620154853) do
+ActiveRecord::Schema.define(version: 20150621051820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -367,6 +367,34 @@ ActiveRecord::Schema.define(version: 20150620154853) do
     t.string   "fb_token"
     t.string   "plan",                   default: "free"
     t.datetime "validity"
+    t.string   "title"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "address3"
+    t.string   "postcode"
+    t.integer  "mobile"
+    t.string   "employment"
+    t.integer  "price"
+    t.string   "deposit"
+    t.integer  "tenancy"
+    t.string   "student"
+    t.string   "benefit"
+    t.string   "pets"
+    t.string   "smoker"
+    t.string   "property_type"
+    t.integer  "beds"
+    t.integer  "bath"
+    t.integer  "max_price"
+    t.string   "furnished"
+    t.string   "garden"
+    t.string   "ensuite"
+    t.string   "parking"
+    t.string   "gas_ch"
+    t.string   "dg"
+    t.string   "tenancy_type"
+    t.date     "dob"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

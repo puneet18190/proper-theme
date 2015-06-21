@@ -28,6 +28,34 @@
 #  fb_token               :string(255)
 #  plan                   :string(255)      default("free")
 #  validity               :datetime
+#  title                  :string(255)
+#  firstname              :string(255)
+#  lastname               :string(255)
+#  address1               :string(255)
+#  address2               :string(255)
+#  address3               :string(255)
+#  postcode               :string(255)
+#  mobile                 :integer
+#  employment             :string(255)
+#  price                  :integer
+#  deposit                :string(255)
+#  tenancy                :integer
+#  student                :string(255)
+#  benefit                :string(255)
+#  pets                   :string(255)
+#  smoker                 :string(255)
+#  property_type          :string(255)
+#  beds                   :integer
+#  bath                   :integer
+#  max_price              :integer
+#  furnished              :string(255)
+#  garden                 :string(255)
+#  ensuite                :string(255)
+#  parking                :string(255)
+#  gas_ch                 :string(255)
+#  dg                     :string(255)
+#  tenancy_type           :string(255)
+#  dob                    :date
 #
 # Indexes
 #
