@@ -12,7 +12,7 @@
     <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.address1}"%></b></center></div>
     <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.address2}"%></b></center></div>
     <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.address3}"%></b></center></div>
-    <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.postcode}"%></b></center></div>
+    <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.postcode.to_s+@properties.postcode1.to_s}"%></b></center></div>
   </div>
 
   <div class="desc-type for-sale" style="height:50px;width:125px;position:absolute;top:530px; padding:5px;left:202px;color:white;font-size:30px;background: #FF6666;font-weight: bold;z-index:1;opacity:0.8"><%=(@properties.category == "rent" || @properties.category == "Rent") ? "To Rent" : "To Sale" %></div>

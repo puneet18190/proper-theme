@@ -60,7 +60,7 @@
 #  ensuite           :string(255)      default("No")
 #  town              :string(255)
 #  status            :string(255)
-#  postcode1         :integer
+#  postcode1         :string(255)
 #  qualifier         :string(255)
 #  summary           :text
 #  furnished         :string(255)

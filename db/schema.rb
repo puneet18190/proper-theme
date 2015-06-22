@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150621051820) do
+ActiveRecord::Schema.define(version: 20150622161138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -292,7 +292,7 @@ ActiveRecord::Schema.define(version: 20150621051820) do
     t.string   "ensuite",           default: "No"
     t.string   "town"
     t.string   "status"
-    t.integer  "postcode1"
+    t.string   "postcode1"
     t.string   "qualifier"
     t.text     "summary"
     t.string   "furnished"
