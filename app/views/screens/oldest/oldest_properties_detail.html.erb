@@ -56,7 +56,9 @@
                     <p>
                       <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= @data.beds %></span>
                       <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= @data.bath %></span>
-                      <span class="label"><i class="icon-circle-arrow-right"></i> Garden : <%= @data.garden %></span>
+                      <% if @data.garden == "Yes" %>
+                        <span class="label"><i class="icon-circle-arrow-right"></i> Garden : <%= @data.garden %></span>
+                      <%end%>  
                       <% unless @data.parking_status == "none" %>
                         <span class="label"><i class="icon-circle-arrow-right"></i> Parking : <%= @data.parking_status %></span>
                       <%end%>
