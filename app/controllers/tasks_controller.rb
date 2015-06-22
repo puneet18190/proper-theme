@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   layout proc { false if request.xhr? }	
   respond_to :html, :xml, :json,:mobile
   def index
-    if is_mobile_device? == false
+    #if is_mobile_device? != false
       @properties = Property.where({payment: true, visibility: true, approve: true})
 
       if !params[:q].nil? && params[:q][:radius]!="Select"
@@ -26,14 +26,15 @@ class TasksController < ApplicationController
       @agents= Agent.all
       @news= News.all
       @settings = Setting.all.first
-    else
-      @tasks = Property.where({payment: true, visibility: true, approve: true}).take(3)
-      # @search = @properties.search(params[:q])
-      # @tasks = @search.result
-      @agents= Agent.all
-      @news= News.all
-      render "mobile_page.html.erb", :layout => false
-    end  
+      respond_with(@properties,@search,@tasks,@agents,@news,@settings)
+    # else
+    #   @tasks = Property.where({payment: true, visibility: true, approve: true}).take(3)
+    #   # @search = @properties.search(params[:q])
+    #   # @tasks = @search.result
+    #   @agents= Agent.all
+    #   @news= News.all
+    #   render "mobile/index.html.erb"
+    # end  
   end
 
   def home_simple
@@ -42,16 +43,17 @@ class TasksController < ApplicationController
     @tasks = @search.result
     @agents= Agent.all
     @news= News.all
+    respond_with(@properties,@search,@tasks,@agents,@news)
     # render "mobile_page.html.erb", :layout => false
   end
 
   def properties_detail
-    if is_mobile_device?
-      @data = Property.friendly.find(params[:id])
-      @agents = Agent.find_by_id(@data.agent_id)
-      @contact_agent = ContactAgent.new
-      render "properties_detail.html.erb"
-    else  
+    # if is_mobile_device?
+    #   @data = Property.friendly.find(params[:id])
+    #   @agents = Agent.find_by_id(@data.agent_id)
+    #   @contact_agent = ContactAgent.new
+    #   render "properties_detail.html.erb"
+    # else  
       begin
         @data = Property.friendly.find(params[:id])
         @agents = Agent.find_by_id(@data.agent_id)
@@ -64,7 +66,8 @@ class TasksController < ApplicationController
       rescue Exception => e
         redirect_to root_url, alert: "No Property Found"
       end
-    end  
+      respond_with(@data,@agents,@contact_agent)
+    # end  
   end
 
   def properties_filter
@@ -74,11 +77,13 @@ class TasksController < ApplicationController
       @data = Property.order("price asc").includes(:agent)
     end  
     @agents = Agent.all
+    respond_with(@data,@agents)
   end
 
   def properties_map
     @prop = Property.all
     @agents = Agent.all
+    respond_with(@prop,@agents)
   end
 
   def upload_step1
@@ -110,10 +115,12 @@ class TasksController < ApplicationController
 
   def agents
     @agents=  Agent.includes(:properties)
+    respond_with(@agents)
   end
 
   def contact
     @contact = Contact.new
+    respond_with(@contact)
   end
 
   def con
@@ -158,6 +165,7 @@ class TasksController < ApplicationController
 
   def testimonials
     @testimonials = Testimonial.all
+    respond_with(@testimonials)
   end
 
   private
