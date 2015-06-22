@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   respond_to :html, :xml, :json,:mobile
   def index
     if is_mobile_device? == false
-      @properties = Property.where({payment: true, visibility: true})
+      @properties = Property.where({payment: true, visibility: true, approve: true})
 
       if !params[:q].nil? && params[:q][:radius]!="Select"
         @properties = @properties.near(params[:q][:postcode_eq],params[:q][:radius].to_f)
@@ -27,7 +27,7 @@ class TasksController < ApplicationController
       @news= News.all
       @settings = Setting.all.first
     else
-      @tasks = Property.where({payment: true, visibility: true}).take(3)
+      @tasks = Property.where({payment: true, visibility: true, approve: true}).take(3)
       # @search = @properties.search(params[:q])
       # @tasks = @search.result
       @agents= Agent.all
@@ -37,7 +37,7 @@ class TasksController < ApplicationController
   end
 
   def home_simple
-    @properties = Property.where({payment: true, visibility: true})
+    @properties = Property.where({payment: true, visibility: true, approve: true})
     @search = @properties.search(params[:q])
     @tasks = @search.result
     @agents= Agent.all
@@ -86,7 +86,7 @@ class TasksController < ApplicationController
   end
 
   def search_results
-    @properties = Property.where({payment: true, visibility: true})
+    @properties = Property.where({payment: true, visibility: true, approve: true})
     if params[:q][:postcode_cont] != ""
       address2 = @properties.search(:address2_cont => params[:q][:postcode_cont])
       unless address2.result.empty?
