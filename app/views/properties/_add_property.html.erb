@@ -79,8 +79,8 @@
                   <%= f.text_field :postcode1, :style=>"width:90px;margin-top:-68px;margin-left:175px"%>
                 </div>
                 <div class="field">
-                  <%= f.label :type %>
-                  <%= f.select :property_type,["Lower Flat", "Upper Flat", "Maisonette", "Terrace House", "Semi-Detached", "Detached", "Studio", "Apartment", "Commercial", "Land"]%>
+                  <%= f.label "PROP SUB ID",:style=>"width:53px" %>
+                  <%= f.select :property_type,["Lower Flat", "Upper Flat", "Maisonette", "Terrace House", "Semi-Detached", "Detached", "Studio", "Apartment", "Commercial", "Land"],:style=>"margin-top:-42px"%>
                 </div>
 
                 <h3 style="margin-top:10px;padding:5px"><b>Marketing</b></h3>
@@ -89,16 +89,16 @@
                   <%= f.select :category, ["Rent","Sale"] %>
                 </div><br/>
                 <div class="field">
-                  <%= f.label :status %>
-                  <%= f.text_field :status %>
+                  <%= f.label "Status ID" %>
+                  <%= f.select :status,['Available','SSTC','SSTCM','Under Offer','Reserved','Let Agreed'] %>
                 </div>
                 <div class="field">
                   <%= f.label :price %>
                   <%= f.text_field :price %>
                 </div>
                 <div class="field">
-                  <%= f.label :qualifier %>
-                  <%= f.text_field :qualifier %>
+                  <%= f.label "PRICE_QUALIFIER",:style=>"width:50px" %>
+                  <%= f.select :qualifier,['Default', 'POA', 'Guide Price', 'Fixed Price', 'Offers in Excess of', 'OIRO', 'Sale by Tender','From (new homes and commercial only)', 'Shared Ownership', 'Offers Over', 'Part Buy Part Rent', 'Shared Equity','Equity Loan','Offers Invited'],:style=>"margin-top:-48px" %>
                 </div>
                 <div class="field">
                   <%= f.label :agent_id %>
