@@ -80,7 +80,7 @@
                 </div>
                 <div class="field">
                   <%= f.label "PROP SUB ID",:style=>"width:53px" %>
-                  <%= f.select :property_type,["Lower Flat", "Upper Flat", "Maisonette", "Terrace House", "Semi-Detached", "Detached", "Studio", "Apartment", "Commercial", "Land"],:style=>"margin-top:-42px"%>
+                  <%= f.select :property_type,['Not Specified','Terraced','End of Terrace','Semi-Detached','Detached','Mews','Cluster House','Ground Flat','Flat','Studio','Ground Maisonette','Maisonette','Bungalow','Terraced Bungalow','Semi-Detached Bungalow','Detached Bungalow','Mobile Home','Land','Link Detached House','Town House','Cottage','Chalet','Villa','Apartment','Penthouse','Finca','Barn Conversion','Serviced Apartments','Parking','Sheltered','Housing','Retirement Property','House Share','Flat Share','Park Home','Garages','Farm House','Equestrian','Facility','Duplex','Triplex','Longere','Gite','Barn','Trulli','Mill','Ruins','Restaurant','Cafe','Mill','Castle','Village House','Cave House','Cortijo','Farm Land','Plot','Country House','Stone House','Caravan','Lodge','Log Cabin','Manor House','Stately Home','Off-Plan','Semi-detached Villa','Detached Villa','Bar / Nightclub','Shop','Riad','House Boat','Hotel Room','Block of Apartments','Private Halls','Office','Business Park','Serviced Office','Retail Property (high street)','Retail Property (out of town)','Convenience Store','Garage','Hairdresser / Barber Shop','Hotel','Petrol Station','Post Office','Pub','Workshop','Distribution Warehouse','Factory','Heavy Industrial','Industrial Park','Light Industrial','Storage','Showroom','Warehouse','Land','Commercial Development','Industrial Development','Residential Development','Commercial Property','Data Centre','Farm','Healthcare Facility','Marine Property','Mixed Use','Research & Development Facility','Science Park','Guest House','Hospitality','Leisure Facility','Takeaway','Childcare Facility','Smallholding','Place of Worship','Trade Counter','Coach House'],:style=>"margin-top:-42px"%>
                 </div>
 
                 <h3 style="margin-top:10px;padding:5px"><b>Marketing</b></h3>
@@ -98,7 +98,7 @@
                 </div>
                 <div class="field">
                   <%= f.label "PRICE_QUALIFIER",:style=>"width:50px" %>
-                  <%= f.select :qualifier,['Default', 'POA', 'Guide Price', 'Fixed Price', 'Offers in Excess of', 'OIRO', 'Sale by Tender','From (new homes and commercial only)', 'Shared Ownership', 'Offers Over', 'Part Buy Part Rent', 'Shared Equity','Equity Loan','Offers Invited'],:style=>"margin-top:-48px" %>
+                  <%= f.select :qualifier,['Default', 'POA', 'Guide Price', 'Fixed Price', 'Offers in Excess of', 'OIRO', 'Sale by Tender','From (new homes and commercial only)', 'Shared Ownership', 'Offers Over', 'Part Buy Part Rent', 'Shared Equity','Equity Loan','Offers Invited'],:id=>"qualifier" %>
                 </div>
                 <div class="field">
                   <%= f.label :agent_id %>
@@ -231,7 +231,7 @@
                 </div>  
                 <br/><br/><br/>
               </div>
-              <div style="padding:10px;margin-top:780px;">
+              <div style="padding:10px;margin-top:950px;">
                 <%= f.submit (params[:action]=="edit" ? "Update" : "Create"), class: "btn btn-proper btn-large", :style=>"margin:0" %>
               </div>
             </div>  
@@ -261,5 +261,11 @@
   }
   .cleditorMain iframe {
     height: 248px !important;
+  }
+  #property_qualifier{
+    margin-top: -48px !important
+  }
+  #property_status{
+    margin-top: -38px !important
   }
 <style>
