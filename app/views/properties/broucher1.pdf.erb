@@ -72,6 +72,6 @@
 
   <div style="">
     <center><%=wicked_pdf_image_tag("contact_info.png", :height=> "55") %></center>
-    <div style="font-size:15px;margin:0px;font-family:arial"><center><b>Seal Partnership Limited T/A Seal Properties. Registered Company No: 8589070</b></center></div>
+    <div style="font-size:15px;margin:0px;font-family:arial;margin-left:80px"><center><b>Seal Partnership Limited T/A Seal Properties. Registered Company No: 8589070<span style="float:right"><%="SP"+@properties.created_at.year.to_s.split(//).last(2).join()+@properties.created_at.month.to_s.rjust(2,'0')+@properties.id.to_s.rjust(4,'0')%></span></b></center></div>
   </div>
 </div>
