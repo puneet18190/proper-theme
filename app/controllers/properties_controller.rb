@@ -3,6 +3,7 @@ class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
   load_and_authorize_resource
+  require "open-uri"
   #protect_from_forgery except: [:disconnect_fb] 
   def index
     if current_user.status == "admin"
@@ -461,6 +462,20 @@ class PropertiesController < ApplicationController
   def blm
     @data = Property.all
     render layout: false
+  end
+
+  def download_blm
+    remote_data = open('http://www.sealproperties.co.uk/blm').read
+    # my_local_file = open("my-downloaded-page.html", "w") 
+
+    # my_local_file.write(remote_data)
+    # my_local_file.close
+    remote_data = remote_data.gsub("<pre>","")
+    remote_data = remote_data.gsub("</pre>","")
+    remote_data = remote_data.gsub("&lt;","<")
+    remote_data = remote_data.gsub("&gt;",">")
+    remote_data = remote_data.gsub("&quot;","'")
+    send_data( remote_data, :filename => "my_file.txt" )
   end
 
   private
