@@ -80,7 +80,11 @@ AGENT_REF^ADDRESS_1^ADDRESS_2^ADDRESS_3^TOWN^POSTCODE1^POSTCODE2^FEATURE1^FEATUR
 <% @BEDROOMS = obj.beds %>
 <% @PRICE = obj.price %>
 <% @PRICE_QUALIFIER = obj.qualifier %>
+<%if PropertyType.where(:p_type=> obj.property_type).first.nil?%>
 <% @PROP_SUB_ID = nil %>
+<%else%>
+<% @PROP_SUB_ID = PropertyType.where(:p_type=> obj.property_type).first.id %>
+<%end%>
 <% @CREATE_DATE = obj.created_at %>
 <% @UPDATE_DATE = obj.updated_at %>
 <% @DISPLAY_ADDRESS = obj.address2+obj.address3 %>
