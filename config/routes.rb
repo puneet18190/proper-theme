@@ -151,6 +151,7 @@ Rails.application.routes.draw do
   match '/mail_merge_uploadfile',   to: 'screens#mail_merge_uploadfile', via: 'post'
   get "sitemap.xml" => "tasks#sitemap", as: "sitemap", defaults: { format: "xml" }
   match '/api_for_dashing',   to: 'screens#api_for_dashing', via: 'get'
+  match '/blm',   to: 'properties#blm', via: 'get'
   
   resources :users do
     collection do 

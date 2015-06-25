@@ -458,6 +458,11 @@ class PropertiesController < ApplicationController
     end    
   end  
 
+  def blm
+    @data = Property.all
+    render layout: false
+  end
+
   private
     def set_property
       @property = Property.friendly.find(params[:id])
