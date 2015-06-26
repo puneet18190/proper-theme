@@ -467,7 +467,7 @@ class PropertiesController < ApplicationController
 
   def download_blm
     @data = Property.all
-    remote_data = render_to_string "blm", :layout => false
+    remote_data = render_to_string "download_blm", :layout => false
     remote_data = remote_data.gsub("<pre>","")
     remote_data = remote_data.gsub("</pre>","")
     remote_data = remote_data.gsub("&lt;","<")
