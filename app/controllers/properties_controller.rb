@@ -4,6 +4,7 @@ class PropertiesController < ApplicationController
   respond_to :html, :xml, :json
   load_and_authorize_resource
   require "open-uri"
+  require 'nokogiri'
   #protect_from_forgery except: [:disconnect_fb] 
   def index
     if current_user.status == "admin"
@@ -465,17 +466,18 @@ class PropertiesController < ApplicationController
   end
 
   def download_blm
-    remote_data = open('http://www.sealproperties.co.uk/blm').read
-    # my_local_file = open("my-downloaded-page.html", "w") 
+    remote_data = Nokogiri::HTML(open("http://www.sealproperties.co.uk/blm"))
+    remote_data = remote_data.css("body").text
+    # my_local_file = open("my.txt", "w") 
 
     # my_local_file.write(remote_data)
     # my_local_file.close
-    remote_data = remote_data.gsub("<pre>","")
-    remote_data = remote_data.gsub("</pre>","")
-    remote_data = remote_data.gsub("&lt;","<")
-    remote_data = remote_data.gsub("&gt;",">")
-    remote_data = remote_data.gsub("&quot;","'")
-    send_data( remote_data, :filename => "my_file.txt" )
+    # remote_data = remote_data.gsub("<pre>","")
+    # remote_data = remote_data.gsub("</pre>","")
+    # remote_data = remote_data.gsub("&lt;","<")
+    # remote_data = remote_data.gsub("&gt;",">")
+    # remote_data = remote_data.gsub("&quot;","'")
+    send_data( remote_data, :filename => "my_file" )
   end
 
   private
