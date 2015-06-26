@@ -466,18 +466,27 @@ class PropertiesController < ApplicationController
   end
 
   def download_blm
-    remote_data = Nokogiri::HTML(open("http://www.sealproperties.co.uk/blm"))
-    remote_data = remote_data.css("body").text
-    # my_local_file = open("my.txt", "w") 
+    @data = Property.all
+    remote_data = render_to_string "blm", :layout => false
+    remote_data = remote_data.gsub("<pre>","")
+    remote_data = remote_data.gsub("</pre>","")
+    remote_data = remote_data.gsub("&lt;","<")
+    remote_data = remote_data.gsub("&gt;",">")
+    remote_data = remote_data.gsub("&quot;","'")
+    send_data( remote_data, :filename => "my_file.blm" )
 
-    # my_local_file.write(remote_data)
-    # my_local_file.close
-    # remote_data = remote_data.gsub("<pre>","")
-    # remote_data = remote_data.gsub("</pre>","")
-    # remote_data = remote_data.gsub("&lt;","<")
-    # remote_data = remote_data.gsub("&gt;",">")
-    # remote_data = remote_data.gsub("&quot;","'")
-    send_data( remote_data, :filename => "my_file" )
+    # remote_data = Nokogiri::HTML(open("http://www.sealproperties.co.uk/blm"))
+    # remote_data = remote_data.css("body").text
+    # # my_local_file = open("my.txt", "w") 
+
+    # # my_local_file.write(remote_data)
+    # # my_local_file.close
+    # # remote_data = remote_data.gsub("<pre>","")
+    # # remote_data = remote_data.gsub("</pre>","")
+    # # remote_data = remote_data.gsub("&lt;","<")
+    # # remote_data = remote_data.gsub("&gt;",">")
+    # # remote_data = remote_data.gsub("&quot;","'")
+    # send_data( remote_data, :filename => "my_file" )
   end
 
   private
