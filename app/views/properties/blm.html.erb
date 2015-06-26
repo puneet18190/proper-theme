@@ -8,17 +8,18 @@ Property Count : <%=@data.count%>
 Generated Date : <%=DateTime.now.strftime("%d-%b-%Y %H:%M")%>
 
 #DEFINITION#
-AGENT_REF^ADDRESS_1^ADDRESS_2^ADDRESS_3^TOWN^POSTCODE1^POSTCODE2^FEATURE1^FEATURE2^FEATURE3^FEATURE4^FEATURE5^FEATURE6^FEATURE7^FEATURE8^FEATURE9^FEATURE10^SUMMARY^DESCRIPTION^BRANCH_ID^STATUS_ID^BEDROOMS^PRICE^PRICE_QUALIFIER^PROP_SUB_ID^CREATE_DATE^UPDATE_DATE^DISPLAY_ADDRESS^PUBLISHED_FLAG^LET_DATE_AVAILABLE^LET_BOND^LET_TYPE_ID^LET_FURN_ID^LET_RENT_FREQUENCY^TENURE_TYPE_ID^TRANS_TYPE_ID^NEW_HOME_FLAG^MEDIA_IMAGE_00^MEDIA_IMAGE_TEXT_00^MEDIA_IMAGE_01^MEDIA_IMAGE_TEXT_01^MEDIA_IMAGE_02^MEDIA_IMAGE_TEXT_02^MEDIA_IMAGE_03^MEDIA_IMAGE_TEXT_03^MEDIA_IMAGE_04^MEDIA_IMAGE_TEXT_04^MEDIA_IMAGE_05^MEDIA_IMAGE_TEXT_05^MEDIA_IMAGE_06^MEDIA_IMAGE_TEXT_06^MEDIA_IMAGE_07^MEDIA_IMAGE_TEXT_07^MEDIA_IMAGE_08^MEDIA_IMAGE_TEXT_08^MEDIA_IMAGE_09^MEDIA_IMAGE_TEXT_09^MEDIA_IMAGE_60^MEDIA_IMAGE_TEXT_60^MEDIA_DOCUMENT_50^MEDIA_DOCUMENT_TEXT_50^|
+AGENT_REF^ADDRESS_1^ADDRESS_2^ADDRESS_3^TOWN^POSTCODE1^POSTCODE2^FEATURE1^FEATURE2^FEATURE3^FEATURE4^FEATURE5^FEATURE6^FEATURE7^FEATURE8^FEATURE9^FEATURE10^SUMMARY^DESCRIPTION^BRANCH_ID^STATUS_ID^BEDROOMS^BATHROOMS^PRICE^PRICE_QUALIFIER^PROP_SUB_ID^CREATE_DATE^UPDATE_DATE^DISPLAY_ADDRESS^PUBLISHED_FLAG^LET_DATE_AVAILABLE^LET_BOND^LET_TYPE_ID^LET_FURN_ID^LET_RENT_FREQUENCY^TENURE_TYPE_ID^TRANS_TYPE_ID^NEW_HOME_FLAG^MEDIA_IMAGE_00^MEDIA_IMAGE_TEXT_00^MEDIA_IMAGE_01^MEDIA_IMAGE_TEXT_01^MEDIA_IMAGE_02^MEDIA_IMAGE_TEXT_02^MEDIA_IMAGE_03^MEDIA_IMAGE_TEXT_03^MEDIA_IMAGE_04^MEDIA_IMAGE_TEXT_04^MEDIA_IMAGE_05^MEDIA_IMAGE_TEXT_05^MEDIA_IMAGE_06^MEDIA_IMAGE_TEXT_06^MEDIA_IMAGE_07^MEDIA_IMAGE_TEXT_07^MEDIA_IMAGE_08^MEDIA_IMAGE_TEXT_08^MEDIA_IMAGE_09^MEDIA_IMAGE_TEXT_09^MEDIA_IMAGE_60^MEDIA_IMAGE_TEXT_60^MEDIA_DOCUMENT_50^MEDIA_DOCUMENT_TEXT_50^|
 
 #DATA#
 <%@data.each_with_index do |obj,n|%>
-<% @AGENT_REF = "39545_2751_"+n.to_s %>
-<% @ADDRESS_1 = obj.address1 %>
-<% @ADDRESS_2 = obj.address2 %>
-<% @ADDRESS_3 = obj.address3 %>
-<% @TOWN = obj.town %>
-<% @POSTCODE1 = obj.postcode %>
-<% @POSTCODE2 = obj.postcode1 %>
+<% sp = "SP"+obj.created_at.year.to_s.split(//).last(2).join()+obj.created_at.month.to_s.rjust(2,'0')+obj.id.to_s.rjust(4,'0')%>
+<% @AGENT_REF = "39545_"+sp.to_s %>
+<% @ADDRESS_1 = obj.address1.strip() %>
+<% @ADDRESS_2 = obj.address2.strip() %>
+<% @ADDRESS_3 = obj.address3.strip() %>
+<% @TOWN = obj.town.nil? ? nil : obj.town.strip() %>
+<% @POSTCODE1 = obj.postcode.nil? ? nil : obj.postcode.strip() %>
+<% @POSTCODE2 = obj.postcode1.nil? ? nil : obj.postcode1.strip() %>
 <% @FEATURE1 = obj.beds.to_s+' bedrooms' %>
 <%if obj.ensuite == "No"%>
 <% @FEATURE2 = obj.bath.to_s+' bathrooms' %>
@@ -77,17 +78,54 @@ AGENT_REF^ADDRESS_1^ADDRESS_2^ADDRESS_3^TOWN^POSTCODE1^POSTCODE2^FEATURE1^FEATUR
 <%elsif obj.status == "Let Agreed"%>
 <% @STATUS_ID = 5 %>					
 <%end%>
-<% @BEDROOMS = obj.beds %>
-<% @PRICE = obj.price %>
-<% @PRICE_QUALIFIER = obj.qualifier %>
-<%if PropertyType.where(:p_type=> obj.property_type).first.nil?%>
-<% @PROP_SUB_ID = nil %>
+<%if obj.beds > 1 %>
+	<% @BEDROOMS = obj.beds.to_s+" bedrooms" %>
 <%else%>
-<% @PROP_SUB_ID = PropertyType.where(:p_type=> obj.property_type).first.id %>
+	<% @BEDROOMS = "1 bedroom" %>
 <%end%>
-<% @CREATE_DATE = obj.created_at %>
-<% @UPDATE_DATE = obj.updated_at %>
-<% @DISPLAY_ADDRESS = obj.address2+obj.address3 %>
+<%if obj.bath > 1 %>
+	<% @BATHROOMS = obj.bath.to_s+" bathrooms" %>
+<%else%>
+	<% @BATHROOMS = "1 bathroom" %>
+<%end%>	
+<% @PRICE = obj.price.to_i %>
+<%if obj.qualifier == "Default"%>
+	<% @PRICE_QUALIFIER = 0 %>
+<%elsif obj.qualifier == "POA"%>
+	<% @PRICE_QUALIFIER = 1 %>
+<%elsif obj.qualifier == "Guide Price"%>
+	<% @PRICE_QUALIFIER = 2 %>
+<%elsif obj.qualifier == "Fixed Price"%>
+	<% @PRICE_QUALIFIER = 3 %>
+<%elsif obj.qualifier == "Offers in Excess of"%>
+	<% @PRICE_QUALIFIER = 4 %>
+<%elsif obj.qualifier == "OIRO"%>
+	<% @PRICE_QUALIFIER = 5 %>
+<%elsif obj.qualifier == "Sale by Tender"%>
+	<% @PRICE_QUALIFIER = 6 %>
+<%elsif obj.qualifier == "From (new homes and commercial only)"%>
+	<% @PRICE_QUALIFIER = 7 %>
+<%elsif obj.qualifier == "Shared Ownership"%>
+	<% @PRICE_QUALIFIER = 9 %>
+<%elsif obj.qualifier == "Offers Over"%>
+	<% @PRICE_QUALIFIER = 10 %>
+<%elsif obj.qualifier == "Part Buy Part Rent"%>
+	<% @PRICE_QUALIFIER = 11 %>
+<%elsif obj.qualifier == "Shared Equity"%>
+	<% @PRICE_QUALIFIER = 12 %>
+<%elsif obj.qualifier == "Equity Loan"%>
+	<% @PRICE_QUALIFIER = 14 %>
+<%elsif obj.qualifier == "Offers Invited"%>
+	<% @PRICE_QUALIFIER = 15 %>
+<%end%>	
+<%#if PropertyType.where(:p_type=> obj.property_type).first.nil?%>
+<% @PROP_SUB_ID = nil %>
+<%#else%>
+<%# @PROP_SUB_ID = PropertyType.where(:p_type=> obj.property_type).first.p_id %>
+<%#end%>
+<% @CREATE_DATE = obj.created_at.strftime("%F %H:%M:%S") %>
+<% @UPDATE_DATE = obj.updated_at.strftime("%F %H:%M:%S") %>
+<% @DISPLAY_ADDRESS = "#{obj.address2} #{obj.address3} #{obj.town} #{obj.postcode} #{obj.postcode1}" %>
 <%if obj.visibility == true %>
 <% @PUBLISHED_FLAG = 1 %>
 <%else%>
@@ -95,8 +133,28 @@ AGENT_REF^ADDRESS_1^ADDRESS_2^ADDRESS_3^TOWN^POSTCODE1^POSTCODE2^FEATURE1^FEATUR
 <%end%>
 <% @LET_DATE_AVAILABLE = nil %>
 <% @LET_BOND = nil %>
-<% @LET_TYPE_ID = nil %>
-<% @LET_FURN_ID = nil %>
+<%if obj.let_type_id == 'Not Specified'%>
+<% @LET_TYPE_ID = 0 %>
+<%elsif obj.let_type_id == 'Long Term'%>
+<% @LET_TYPE_ID = 1 %>
+<%elsif obj.let_type_id == 'Short Term'%>
+<% @LET_TYPE_ID = 2 %>
+<%elsif obj.let_type_id == 'Student'%>
+<% @LET_TYPE_ID = 3 %>
+<%elsif obj.let_type_id == 'Commercial'%>
+<% @LET_TYPE_ID = 4 %>
+<%end%>
+<%if obj.let_furn_id == 'Furnished'%>
+<% @LET_FURN_ID = 0 %>
+<%elsif obj.let_furn_id == 'Part Furnished'%>
+<% @LET_FURN_ID = 1 %>
+<%elsif obj.let_furn_id == 'Unfurnished'%>
+<% @LET_FURN_ID = 2 %>
+<%elsif obj.let_furn_id == 'Not Specified'%>
+<% @LET_FURN_ID = 3 %>
+<%elsif obj.let_furn_id == 'Furnished/Un Furnished'%>
+<% @LET_FURN_ID = 4 %>
+<%end%>
 <% @LET_RENT_FREQUENCY = nil %>
 <% @TENURE_TYPE_ID = nil %>
 <%if obj.category == "Rent"%>
@@ -129,7 +187,7 @@ AGENT_REF^ADDRESS_1^ADDRESS_2^ADDRESS_3^TOWN^POSTCODE1^POSTCODE2^FEATURE1^FEATUR
 <% @MEDIA_IMAGE_TEXT_60 = nil %>
 <% @MEDIA_DOCUMENT_50 = nil %>
 <% @MEDIA_DOCUMENT_TEXT_50 = nil %>
-<%= @AGENT_REF %>^<%= @ADDRESS_1 %>^<%= @ADDRESS_2 %>^<%= @ADDRESS_3 %>^<%= @TOWN %>^<%= @POSTCODE1 %>^<%= @POSTCODE2 %>^<%= @FEATURE1 %>^<%= @FEATURE2 %>^<%= @FEATURE3 %>^<%= @FEATURE4 %>^<%= @FEATURE5 %>^<%= @FEATURE6 %>^<%= @FEATURE7 %>^<%= @FEATURE8 %>^<%= @FEATURE9 %>^<%= @FEATURE10 %>^<%= @SUMMARY %>^<%= @DESCRIPTION %>^<%= @BRANCH_ID %>^<%= @STATUS_ID %>^<%= @BEDROOMS %>^<%= @PRICE %>^<%= @PRICE_QUALIFIER %>^<%= @PROP_SUB_ID %>^<%= @CREATE_DATE %>^<%= @UPDATE_DATE %>^<%= @DISPLAY_ADDRESS %>^<%= @PUBLISHED_FLAG %>^<%= @LET_DATE_AVAILABLE %>^<%= @LET_BOND %>^<%= @LET_TYPE_ID %>^<%= @LET_FURN_ID %>^<%= @LET_RENT_FREQUENCY %>^<%= @TENURE_TYPE_ID %>^<%= @TRANS_TYPE_ID %>^<%= @NEW_HOME_FLAG %>^<%= @MEDIA_IMAGE_00 %>^<%= @MEDIA_IMAGE_TEXT_00 %>^<%= @MEDIA_IMAGE_01 %>^<%= @MEDIA_IMAGE_TEXT_01 %>^<%= @MEDIA_IMAGE_02 %>^<%= @MEDIA_IMAGE_TEXT_02 %>^<%= @MEDIA_IMAGE_03 %>^<%= @MEDIA_IMAGE_TEXT_03 %>^<%= @MEDIA_IMAGE_04 %>^<%= @MEDIA_IMAGE_TEXT_04 %>^<%= @MEDIA_IMAGE_05 %>^<%= @MEDIA_IMAGE_TEXT_05 %>^<%= @MEDIA_IMAGE_06 %>^<%= @MEDIA_IMAGE_TEXT_06 %>^<%= @MEDIA_IMAGE_07 %>^<%= @MEDIA_IMAGE_TEXT_07 %>^<%= @MEDIA_IMAGE_08 %>^<%= @MEDIA_IMAGE_TEXT_08 %>^<%= @MEDIA_IMAGE_09 %>^<%= @MEDIA_IMAGE_TEXT_09 %>^<%= @MEDIA_IMAGE_60 %>^<%= @MEDIA_IMAGE_TEXT_60 %>^<%= @MEDIA_DOCUMENT_50 %>^<%= @MEDIA_DOCUMENT_TEXT_50 %>^|
+<%= @AGENT_REF %>^<%= @ADDRESS_1 %>^<%= @ADDRESS_2 %>^<%= @ADDRESS_3 %>^<%= @TOWN %>^<%= @POSTCODE1 %>^<%= @POSTCODE2 %>^<%= @FEATURE1 %>^<%= @FEATURE2 %>^<%= @FEATURE3 %>^<%= @FEATURE4 %>^<%= @FEATURE5 %>^<%= @FEATURE6 %>^<%= @FEATURE7 %>^<%= @FEATURE8 %>^<%= @FEATURE9 %>^<%= @FEATURE10 %>^<%= @SUMMARY %>^<%= @DESCRIPTION %>^<%= @BRANCH_ID %>^<%= @STATUS_ID %>^<%= @BEDROOMS %>^<%= @BATHROOMS %>^<%= @PRICE %>^<%= @PRICE_QUALIFIER %>^<%= @PROP_SUB_ID %>^<%= @CREATE_DATE %>^<%= @UPDATE_DATE %>^<%= @DISPLAY_ADDRESS %>^<%= @PUBLISHED_FLAG %>^<%= @LET_DATE_AVAILABLE %>^<%= @LET_BOND %>^<%= @LET_TYPE_ID %>^<%= @LET_FURN_ID %>^<%= @LET_RENT_FREQUENCY %>^<%= @TENURE_TYPE_ID %>^<%= @TRANS_TYPE_ID %>^<%= @NEW_HOME_FLAG %>^<%= @MEDIA_IMAGE_00 %>^<%= @MEDIA_IMAGE_TEXT_00 %>^<%= @MEDIA_IMAGE_01 %>^<%= @MEDIA_IMAGE_TEXT_01 %>^<%= @MEDIA_IMAGE_02 %>^<%= @MEDIA_IMAGE_TEXT_02 %>^<%= @MEDIA_IMAGE_03 %>^<%= @MEDIA_IMAGE_TEXT_03 %>^<%= @MEDIA_IMAGE_04 %>^<%= @MEDIA_IMAGE_TEXT_04 %>^<%= @MEDIA_IMAGE_05 %>^<%= @MEDIA_IMAGE_TEXT_05 %>^<%= @MEDIA_IMAGE_06 %>^<%= @MEDIA_IMAGE_TEXT_06 %>^<%= @MEDIA_IMAGE_07 %>^<%= @MEDIA_IMAGE_TEXT_07 %>^<%= @MEDIA_IMAGE_08 %>^<%= @MEDIA_IMAGE_TEXT_08 %>^<%= @MEDIA_IMAGE_09 %>^<%= @MEDIA_IMAGE_TEXT_09 %>^<%= @MEDIA_IMAGE_60 %>^<%= @MEDIA_IMAGE_TEXT_60 %>^<%= @MEDIA_DOCUMENT_50 %>^<%= @MEDIA_DOCUMENT_TEXT_50 %>^|
 
 <%end%>
 #END#

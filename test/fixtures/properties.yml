@@ -66,6 +66,8 @@
 #  feature1          :string(255)
 #  feature2          :string(255)
 #  property_type     :integer
+#  let_type_id       :integer
+#  let_furn_id       :integer
 #
 # Indexes
 #
