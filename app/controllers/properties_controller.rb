@@ -499,7 +499,7 @@ class PropertiesController < ApplicationController
         (0..9).each do |n|
           unless item.send("image#{n+1}").url.nil?
             sp = "39545_SP"+item.created_at.year.to_s.split(//).last(2).join()+item.created_at.month.to_s.rjust(2,'0')+item.id.to_s.rjust(4,'0')
-            z.put_next_entry(sp+"_img_"+n.to_s.rjust(2,'0')+"."+item.image1.path.split(".").last)
+            z.put_next_entry(sp+"_img_"+n.to_s.rjust(2,'0')+"."+item.send("image#{n+1}").path.split(".").last)
             url1 = item.send("image#{n+1}").url(:large)
             url1_data = open(url1.gsub('https','http')).read
             z.print url1_data
