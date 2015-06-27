@@ -498,7 +498,6 @@ class PropertiesController < ApplicationController
       @data.each do |item|
         z.put_next_entry("images")
         url1 = item.image1.url(:thumb)
-        binding.pry
         url1_data = open(url1.gsub('https','http'))
         z.print IO.read(url1_data)
       end
