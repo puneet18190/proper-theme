@@ -495,8 +495,8 @@ class PropertiesController < ApplicationController
     @data = Property.all
     t = Tempfile.new("my-temp-filename-#{Time.now}")
     Zip::OutputStream.open(t.path) do |z|
-      @data.each do |item|
-        z.put_next_entry("images")
+      @data.each_with_index do |item,i|
+        z.put_next_entry("images_"+i.to_s)
         url1 = item.image1.url(:thumb)
         url1_data = open(url1.gsub('https','http')).read
         z.print url1_data#IO.read(url1_data)
