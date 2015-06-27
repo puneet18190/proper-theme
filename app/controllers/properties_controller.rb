@@ -5,6 +5,8 @@ class PropertiesController < ApplicationController
   load_and_authorize_resource
   require "open-uri"
   require 'nokogiri'
+  require 'rubygems'
+  require 'zip'
   #protect_from_forgery except: [:disconnect_fb] 
   def index
     if current_user.status == "admin"
@@ -487,6 +489,24 @@ class PropertiesController < ApplicationController
     # # remote_data = remote_data.gsub("&gt;",">")
     # # remote_data = remote_data.gsub("&quot;","'")
     # send_data( remote_data, :filename => "my_file" )
+  end
+
+  def zip_blm
+    @data = Property.all
+    t = Tempfile.new("my-temp-filename-#{Time.now}")
+    Zip::OutputStream.open(t.path) do |z|
+      @data.each do |item|
+        z.put_next_entry("images")
+        url1 = item.image1.url(:thumb)
+        binding.pry
+        url1_data = open(url1.gsub('https','http'))
+        z.print IO.read(url1_data)
+      end
+    end
+    send_file t.path, :type => 'application/zip',:disposition => 'attachment',
+    :filename => "List.zip"
+    t.close
+    # render :nothing=> true
   end
 
   private
