@@ -496,12 +496,15 @@ class PropertiesController < ApplicationController
     t = Tempfile.new("my-temp-filename-#{Time.now}")
     Zip::OutputStream.open(t.path) do |z|
       @data.each_with_index do |item,i|
-        sp = "39545_SP"+item.created_at.year.to_s.split(//).last(2).join()+item.created_at.month.to_s.rjust(2,'0')+item.id.to_s.rjust(4,'0')
-        z.put_next_entry(sp+"_img_"+i.to_s.rjust(2,'0')+"."+item.image1.path.split(".").last)
-        url1 = item.image1.url(:thumb)
-        url1_data = open(url1.gsub('https','http')).read
-        
-        z.print url1_data#IO.read(url1_data)
+        (0..9).each do |n|
+          unless item.send("image#{n+1}").url.nil?
+            sp = "39545_SP"+item.created_at.year.to_s.split(//).last(2).join()+item.created_at.month.to_s.rjust(2,'0')+item.id.to_s.rjust(4,'0')
+            z.put_next_entry(sp+"_img_"+n.to_s.rjust(2,'0')+"."+item.image1.path.split(".").last)
+            url1 = item.send("image#{n+1}").url(:thumb)
+            url1_data = open(url1.gsub('https','http')).read
+            z.print url1_data
+          end
+        end
       end
       z.put_next_entry("file.blm")
       remote_data = render_to_string "download_blm", :layout => false
