@@ -499,8 +499,17 @@ class PropertiesController < ApplicationController
         z.put_next_entry("images_"+i.to_s)
         url1 = item.image1.url(:thumb)
         url1_data = open(url1.gsub('https','http')).read
+        
         z.print url1_data#IO.read(url1_data)
       end
+      z.put_next_entry("file.blm")
+      remote_data = render_to_string "download_blm", :layout => false
+      remote_data = remote_data.gsub("<pre>","")
+      remote_data = remote_data.gsub("</pre>","")
+      remote_data = remote_data.gsub("&lt;","<")
+      remote_data = remote_data.gsub("&gt;",">")
+      remote_data = remote_data.gsub("&quot;","'")
+      z.print remote_data
     end
     send_file t.path, :type => 'application/zip',:disposition => 'attachment',
     :filename => "List.zip"
