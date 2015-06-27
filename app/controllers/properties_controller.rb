@@ -463,12 +463,12 @@ class PropertiesController < ApplicationController
   end  
 
   def blm
-    @data = Property.all
+    @data = Property.where(:visibility=>true,:approve=>true)
     render layout: false
   end
 
   def download_blm
-    @data = Property.all
+    @data = Property.where(:visibility=>true,:approve=>true)
     remote_data = render_to_string "download_blm", :layout => false
     remote_data = remote_data.gsub("<pre>","")
     remote_data = remote_data.gsub("</pre>","")
@@ -492,7 +492,7 @@ class PropertiesController < ApplicationController
   end
 
   def zip_blm
-    @data = Property.all
+    @data = Property.where(:visibility=>true,:approve=>true)
     t = Tempfile.new("my-temp-filename-#{Time.now}")
     Zip::OutputStream.open(t.path) do |z|
       @data.each_with_index do |item,i|
@@ -500,13 +500,16 @@ class PropertiesController < ApplicationController
           unless item.send("image#{n+1}").url.nil?
             sp = "39545_SP"+item.created_at.year.to_s.split(//).last(2).join()+item.created_at.month.to_s.rjust(2,'0')+item.id.to_s.rjust(4,'0')
             z.put_next_entry(sp+"_img_"+n.to_s.rjust(2,'0')+"."+item.image1.path.split(".").last)
-            url1 = item.send("image#{n+1}").url(:thumb)
+            url1 = item.send("image#{n+1}").url
             url1_data = open(url1.gsub('https','http')).read
             z.print url1_data
           end
         end
       end
-      z.put_next_entry("file.blm")
+      d=DateTime.now
+      seq = "01"
+      f_name = "39545_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+seq
+      z.put_next_entry("#{f_name}.blm")
       remote_data = render_to_string "download_blm", :layout => false
       remote_data = remote_data.gsub("<pre>","")
       remote_data = remote_data.gsub("</pre>","")
@@ -516,7 +519,7 @@ class PropertiesController < ApplicationController
       z.print remote_data
     end
     send_file t.path, :type => 'application/zip',:disposition => 'attachment',
-    :filename => "List.zip"
+    :filename => "39545.zip"
     t.close
     # render :nothing=> true
   end
