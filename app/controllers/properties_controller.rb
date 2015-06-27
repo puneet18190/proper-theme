@@ -498,8 +498,8 @@ class PropertiesController < ApplicationController
       @data.each do |item|
         z.put_next_entry("images")
         url1 = item.image1.url(:thumb)
-        url1_data = open(url1.gsub('https','http'))
-        z.print IO.read(url1_data)
+        url1_data = open(url1.gsub('https','http')).read
+        z.print url1_data#IO.read(url1_data)
       end
     end
     send_file t.path, :type => 'application/zip',:disposition => 'attachment',
