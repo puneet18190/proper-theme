@@ -555,6 +555,7 @@ class PropertiesController < ApplicationController
     end
     require 'net/ftp'
     Net::FTP.open('feeds.agentsmutual.co.uk', 'sealproperties', 'Pwx85N8zAK8wHC5') do |ftp|
+      ftp.passive = true
       ftp.chdir("/live/upload")
       ftp.putbinaryfile(t.path,"39545.zip")
     end
