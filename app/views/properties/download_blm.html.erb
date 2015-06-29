@@ -26,7 +26,7 @@ AGENT_REF^ADDRESS_1^ADDRESS_2^ADDRESS_3^TOWN^POSTCODE1^POSTCODE2^FEATURE1^FEATUR
 <%else%>
 <% @FEATURE2 = obj.bath.to_s+' bathrooms, ensuite' %>
 <%end%>
-<% @FEATURE3 = obj.furnished %>
+<% @FEATURE3 = nil %>
 <%if obj.parking_status != "None"%>
 <% @FEATURE4 = obj.parking_status+", "+obj.car.to_s+" car" %>
 <%else%>

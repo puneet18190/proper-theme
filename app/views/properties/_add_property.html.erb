@@ -103,7 +103,7 @@
                 <div class="field">
                   <%= f.label :agent_id %>
                   <% arr = Agent.all.map { |ag| [ag.name, ag.id ] } %>
-                  <%= f.select :agent_id, (arr), :selected => '0' %>
+                  <%= f.select :agent_id, (arr), :selected => @property.agent_id %>
                 </div><br/>
                 <div class="field">
                   <%= f.label :seal %>
@@ -190,10 +190,10 @@
                     <%= f.label "En-suite" %>
                     <%= f.select :ensuite, [['No', 'No'],['Yes', 'Yes']] %>
                   </div><br/>
-                  <div class="field">
-                    <%= f.label :furnished %>
-                    <%= f.select :furnished, ['Furnished','Unfurnished'] %>
-                  </div><br/>
+                  <!-- <div class="field">
+                    <%#= f.label :furnished %>
+                    <%#= f.select :furnished, ['Furnished','Unfurnished'] %>
+                  </div><br/> -->
                   <div class="field">
                     <%= f.label "LET_TYPE_ID" %>
                     <%= f.select :let_type_id, ['Not Specified','Long Term','Short Term','Student','Commercial'] %>
