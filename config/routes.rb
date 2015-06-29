@@ -154,6 +154,7 @@ Rails.application.routes.draw do
   match '/blm',   to: 'properties#blm', via: 'get'
   match '/download_blm',   to: 'properties#download_blm', via: 'get'
   match '/zip_blm',   to: 'properties#zip_blm', via: 'get'
+  match '/upload_blm',   to: 'properties#upload_blm', via: 'get'
   
   resources :users do
     collection do 
