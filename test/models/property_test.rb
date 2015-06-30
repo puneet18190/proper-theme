@@ -68,6 +68,7 @@
 #  property_type     :integer
 #  let_type_id       :integer
 #  let_furn_id       :integer
+#  epc               :string(255)
 #
 # Indexes
 #
