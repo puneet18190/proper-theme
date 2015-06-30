@@ -492,6 +492,7 @@ class PropertiesController < ApplicationController
   end
 
   def zip_blm
+    Thread.new do
     @data = Property.where(:visibility=>true,:approve=>true)
     t = Tempfile.new("my-temp-filename-#{Time.now}")
     Zip::OutputStream.open(t.path) do |z|
@@ -524,7 +525,8 @@ class PropertiesController < ApplicationController
     send_file t.path, :type => 'application/zip',:disposition => 'attachment',
     :filename => "39545.zip"
     t.close
-    # render :nothing=> true
+    end
+     render :nothing=> true
   end
 
   def upload_blm
