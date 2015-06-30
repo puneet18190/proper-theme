@@ -506,8 +506,8 @@ class PropertiesController < ApplicationController
             z.print url1_data
           end
         end
-        z.put_next_entry("#{sp}_DOC_00.pdf")
-        z.print open("http://www.sealproperties.co.uk/broucher.pdf?id="+item.id.to_s).read
+        # z.put_next_entry("#{sp}_DOC_00.pdf")
+        # z.print open("http://www.sealproperties.co.uk/broucher.pdf?id="+item.id.to_s).read
       end
       d=DateTime.now
       seq = "01"
