@@ -496,9 +496,9 @@ class PropertiesController < ApplicationController
     t = Tempfile.new("my-temp-filename-#{Time.now}")
     Zip::OutputStream.open(t.path) do |z|
       @data.each_with_index do |item,i|
+        sp = "39545_SP"+item.created_at.year.to_s.split(//).last(2).join()+item.created_at.month.to_s.rjust(2,'0')+item.id.to_s.rjust(4,'0')
         (0..9).each do |n|
           if !item.send("image#{n+1}").url.nil? && !item.send("image#{n+1}").path.nil?
-            sp = "39545_SP"+item.created_at.year.to_s.split(//).last(2).join()+item.created_at.month.to_s.rjust(2,'0')+item.id.to_s.rjust(4,'0')
             puts item.send("image#{n+1}").path
             z.put_next_entry(sp+"_IMG_"+n.to_s.rjust(2,'0')+"."+item.send("image#{n+1}").path.split(".").last.downcase)
             url1 = item.send("image#{n+1}").url(:large)
@@ -506,6 +506,8 @@ class PropertiesController < ApplicationController
             z.print url1_data
           end
         end
+        z.put_next_entry("#{sp}_DOC_00.pdf")
+        z.print open("http://www.sealproperties.co.uk/broucher.pdf?id="+item.id).read
       end
       d=DateTime.now
       seq = "01"
