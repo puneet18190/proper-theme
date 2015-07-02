@@ -40,9 +40,8 @@
       <th>Action</th>
       <th>PDF</th>
       <th>Brochure</th>
-<!--       <th>Brochure A3</th>
-      <th>Brochure A4</th>
- -->      <th>Approval</th>
+      <th>Brochure Upload</th>
+      <th>Approval</th>
     </tr>
   </thead>
 
@@ -73,6 +72,7 @@
         <%else%>
           <td><%= link_to 'N/A',"#" %></td>
         <%end%>
+        <td><button class="btn btn-primary pdf_upload" id="<%= property.id%>"><%= property.brochure_link.nil? ? "Upload": "Delete Pdf" %></button></td>
           <% if current_user.status == "admin" %>
             <td>  <div class="add_loader" id= <%="approve_#{property.id}"%>>  <%= button_to (property.approve == false ? 'Approve' : 'Unapprove'), {:controller => "properties", :action => "approve", :id => property.id, :status => property.approve == false ? 'Approve' : 'Unapprove'},:class=>property.approve == false ? 'btn btn-danger' : 'btn btn-success', :method=>:post, :remote=>true %>  </div> </td>
           <% elsif current_user.status == "landlord" %>
@@ -188,6 +188,30 @@ $( ".disconnect_fb" )
             $("#myModal").css("z-index",10000)
       <% end %>
     });
+
+    $(".pdf_upload").click(function(){
+      var src = $(this)
+      var id = src.attr('id')
+      var url = ""
+      if(src.html() == "Upload"){
+        url = "/upload_pdf?id="+id
+      }else{
+        url = "/delete_pdf?id="+id
+      }
+      $.ajax({
+        type: "get",
+        url: url,
+        success: function(res){
+          if(res.status == "ok"){
+            if(src.html() == "Upload"){
+              src.html("Delete Pdf")  
+            }else{
+              src.html("Upload")
+            }
+          }
+        }
+      })
+    })
 
 </script>
 

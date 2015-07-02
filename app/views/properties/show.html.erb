@@ -164,6 +164,10 @@
       <strong>En-suite:</strong>
       <%= @property.ensuite %>
     </p>
+    <p>
+      <strong>Brochure Url:</strong>
+      <%= @property.brochure_link %>
+    </p>
     <% if can? :update, @project %>
       <%= link_to 'Edit', edit_property_path(@property) %> |
     <% end %>

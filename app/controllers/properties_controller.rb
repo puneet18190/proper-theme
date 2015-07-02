@@ -572,6 +572,34 @@ class PropertiesController < ApplicationController
      render :nothing=> true
   end
 
+  def upload_pdf
+    @property = Property.find(params[:id])
+    sp = "sp"+@property.created_at.year.to_s.split(//).last(2).join()+@property.created_at.month.to_s.rjust(2,'0')+@property.id.to_s.rjust(4,'0')
+    data = open("http://www.sealproperties.co.uk/broucher.pdf?id"+params[:id])
+    service = S3::Service.new(:access_key_id => "AKIAI42ZRYRPLOREEEDQ",:secret_access_key => "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")
+    bucket = service.buckets.find("sealpropertiesus")
+    object = bucket.objects.build("broucher_"+sp+".pdf")
+    object.content = data
+    object.save
+    @property.brochure_link = "http://sealpropertiesus.s3.amazonaws.com/broucher_"+sp+".pdf"
+    @property.save
+    render :json => {:status => "ok"}
+  end
+
+  def delete_pdf
+    @property = Property.find(params[:id])
+    sp = "sp"+@property.created_at.year.to_s.split(//).last(2).join()+@property.created_at.month.to_s.rjust(2,'0')+@property.id.to_s.rjust(4,'0')
+    service = S3::Service.new(:access_key_id => "AKIAI42ZRYRPLOREEEDQ",:secret_access_key => "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")
+    bucket = service.buckets.find("sealpropertiesus")
+    object = bucket.objects.find("broucher_"+sp+".pdf")
+    if object
+      object.destroy
+      @property.brochure_link = nil
+      @property.save
+    end 
+    render :json => {:status => "ok"}
+  end
+
   private
     def set_property
       @property = Property.friendly.find(params[:id])

@@ -69,6 +69,7 @@
 #  let_type_id       :integer
 #  let_furn_id       :integer
 #  epc               :string(255)
+#  brochure_link     :string(255)
 #
 # Indexes
 #
