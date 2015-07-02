@@ -575,7 +575,7 @@ class PropertiesController < ApplicationController
   def upload_pdf
     @property = Property.find(params[:id])
     sp = "sp"+@property.created_at.year.to_s.split(//).last(2).join()+@property.created_at.month.to_s.rjust(2,'0')+@property.id.to_s.rjust(4,'0')
-    data = open("http://www.sealproperties.co.uk/broucher.pdf?id"+params[:id])
+    data = open("http://www.sealproperties.co.uk/broucher.pdf?id="+params[:id])
     service = S3::Service.new(:access_key_id => "AKIAI42ZRYRPLOREEEDQ",:secret_access_key => "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")
     bucket = service.buckets.find("sealpropertiesus")
     object = bucket.objects.build("broucher_"+sp+".pdf")
