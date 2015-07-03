@@ -573,19 +573,20 @@ class PropertiesController < ApplicationController
   end
 
   def upload_pdf
+    Thread.new do
     @property = Property.find(params[:id])
     sp = "sp"+@property.created_at.year.to_s.split(//).last(2).join()+@property.created_at.month.to_s.rjust(2,'0')+@property.id.to_s.rjust(4,'0')
-    puts "-------------------------------------------------------------------------"
-    puts "http://www.sealproperties.co.uk/broucher.pdf?id="+params[:id].to_s
-    puts "-------------------------------------------------------------------------"
-    # data = open("http://www.sealproperties.co.uk/broucher.pdf?id="+params[:id].to_s)
+    data = open("http://www.sealproperties.co.uk/broucher.pdf?id="+params[:id])
+    puts data
     service = S3::Service.new(:access_key_id => "AKIAI42ZRYRPLOREEEDQ",:secret_access_key => "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")
     bucket = service.buckets.find("sealpropertiesus")
     object = bucket.objects.build("broucher_"+sp+".pdf")
-    object.content = open("http://www.sealproperties.co.uk/broucher.pdf?id="+params[:id].to_s)
+    puts object
+    object.content = data
     object.save
     @property.brochure_link = "http://sealpropertiesus.s3.amazonaws.com/broucher_"+sp+".pdf"
     @property.save
+    end
     render :json => {:status => "ok"}
   end
 
