@@ -578,14 +578,14 @@ class PropertiesController < ApplicationController
     puts "-------------------------------------------------------------------------"
     puts "http://www.sealproperties.co.uk/broucher.pdf?id="+params[:id].to_s
     puts "-------------------------------------------------------------------------"
-    data = open("http://www.sealproperties.co.uk/broucher.pdf?id="+params[:id].to_s)
+    # data = open("http://www.sealproperties.co.uk/broucher.pdf?id="+params[:id].to_s)
     puts "-------------------------------------------------------------------------"
     puts data
     puts "-------------------------------------------------------------------------"
     service = S3::Service.new(:access_key_id => "AKIAI42ZRYRPLOREEEDQ",:secret_access_key => "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")
     bucket = service.buckets.find("sealpropertiesus")
     object = bucket.objects.build("broucher_"+sp+".pdf")
-    object.content = data
+    object.content = open("http://www.sealproperties.co.uk/broucher.pdf?id="+params[:id].to_s)
     object.save
     @property.brochure_link = "http://sealpropertiesus.s3.amazonaws.com/broucher_"+sp+".pdf"
     @property.save
