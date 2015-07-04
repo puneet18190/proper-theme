@@ -543,8 +543,8 @@ class PropertiesController < ApplicationController
             z.print url1_data
           end
         end
-        z.put_next_entry("#{sp}_DOC_00.pdf")
-        z.print open("http://www.sealproperties.co.uk/broucher.pdf?id="+item.id.to_s).read
+        # z.put_next_entry("#{sp}_DOC_00.pdf")
+        # z.print open("http://www.sealproperties.co.uk/broucher.pdf?id="+item.id.to_s).read
       end
       d=DateTime.now
       seq = "01"
@@ -569,7 +569,8 @@ class PropertiesController < ApplicationController
     #:filename => "39545.zip"
     t.close
   end
-     render :nothing=> true
+  redirect_to root_url, notice: "Uploading is start...."
+     # render :nothing=> true
   end
 
   def upload_pdf
