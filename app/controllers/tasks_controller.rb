@@ -28,11 +28,8 @@ class TasksController < ApplicationController
       @settings = Setting.all.first
       respond_with(@properties,@search,@tasks,@agents,@news,@settings)
     else
-      @tasks = Property.where({payment: true, visibility: true, approve: true}).take(3)
-      # @search = @properties.search(params[:q])
-      # @tasks = @search.result
+      @properties = Property.where({payment: true, visibility: true, approve: true}).take(3)
       @agents= Agent.all
-      @news= News.all
       render "mobile/index.html.erb",:layout => "mobile"
     end  
   end

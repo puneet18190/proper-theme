@@ -14,12 +14,10 @@
         <!--    News Carousel-->
         <div class="news-carousel-wrapper">
             <dl id="news-carousel" class="news-carousel-style">
-                <dt><a href="#">News Link Here</a></dt>
-                <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
-                <dt><a href="#">Promo Link Here</a></dt>
-                <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
-                <dt><a href="#">Another Link Here</a></dt>
-                <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+                <% @properties.each do |obj| %>
+                  <dt><a href=<%="/properties_detail/#{obj.id}"%>>Latest Property</a></dt>
+                  <dd><%= obj.name %> - <%= obj.tag_line %></dd>
+                <%end%>
             </dl>
         </div>
         <!--    End News Carousel-->
@@ -166,7 +164,7 @@
                         </div>
 
                         <!--Start New List-->
-                        <h2 class="main-heading bottom-line top-line "><span class="main-circle-icon"><i class="icon-book"></i></span> News</h2>   
+                       <!--  <h2 class="main-heading bottom-line top-line "><span class="main-circle-icon"><i class="icon-book"></i></span> News</h2>   
                         <div class=" news right-space">
                             <div class="media box-white">
                                 <a class="pull-left" href="#">
@@ -190,7 +188,7 @@
                                     <a href="#" class="btn-proper btn btn-small ">Read More</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!--End News List-->
                     </div>
                 </div>
@@ -283,46 +281,22 @@
                         <!--Start List Our Agent-->
                         <h3 class="bottom-line  line-before main-heading"><span class="main-circle-icon"><i class="icon-list"></i></span>  Our Agents</h3>
                         <div class="list-items ">
-
-                            <div class="item">
-                                <div class="img-preview">
-                                    <img src="/assets/agents/thum_list/a2.jpg" alt="Corin Langpost" />
-                                </div>
-                                <div class="item-desk">
-                                    <div class="title">
-                                        <h3><a href="#">Angelina Cos</a></h3>
+                            <% @agents.each do |obj| %>
+                                <div class="item">
+                                    <div class="img-preview">
+                                        <!-- <img src="/assets/agents/thum_list/a2.jpg" alt="Corin Langpost" /> -->
+                                        <%=  image_tag responsive_image(obj.image) %>
                                     </div>
-                                    <div class="location">Palo Alto CA</div>
-                                    <a href="#" class="btn-proper btn-mini btn">Profile Page</a>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="item">
-                                <div class="img-preview">
-                                    <img src="/assets/agents/thum_list/a1.jpg" alt="Corin Langpost" />
-                                </div>
-                                <div class="item-desk">
-                                    <div class="title">
-                                        <h3><a href="#">Angelina Cos</a></h3>
+                                    <div class="item-desk">
+                                        <div class="title">
+                                            <h3><a href="#"><%=obj.name%></a></h3>
+                                        </div>
+                                        <div class="location"><%=obj.address%></div>
+                                        <a href="#" class="btn-proper btn-mini btn">Profile Page</a>
                                     </div>
-                                    <div class="location">Palo Alto CA</div>
-                                    <a href="#" class="btn-proper btn-mini btn">Profile Page</a>
+                                    <div class="clearfix"></div>
                                 </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="item">
-                                <div class="img-preview">
-                                    <img src="http://placehold.it/100x80" alt="Corin Langpost" />
-                                </div>
-                                <div class="item-desk">
-                                    <div class="title">
-                                        <h3><a href="#">Angelina Cos</a></h3>
-                                    </div>
-                                    <div class="location">Palo Alto CA</div>
-                                    <a href="#" class="btn-proper btn-mini btn">Profile Page</a>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
+                            <% end %>
                         </div>
                         <!--End List Our AGents -->
                     </div>
