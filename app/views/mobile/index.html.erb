@@ -31,133 +31,31 @@
                         <div class="featured-grid right-space">
                             <div class="box-white">
                                 <div class="grid-item grid-style-properties">
-                                    <div class="item">
-                                        <a href="#" class="with-hover">
-                                            <div class="for_rent_banner"></div>
-                                            <img alt='images' src="/assets/properties/p2.jpg" class="full"/><span class="mask_hover"></span>
-                                        </a>
-                                        <h4 class=" ">34 Central Park</h4>
-                                        <div class="preview-properties ">
-                                            <div class="box-detail"> 
-                                                <p class="text-center short-detail">
-                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Bath : 2</span>
-                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Beds : 2</span>
-                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Pool : 2</span>
-                                                    <span class="price">$380,000</span>
-                                                </p>
-                                                <div class="clearfix">
-                                                    <a href="#" class="btn-proper btn btn-small pull-left">See Detail</a>
-                                                    <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
+                                    <% @properties.each do |obj| %>
+                                        <div class="item">
+                                            <a href=<%="/properties_detail/#{obj.slug}"%> class="with-hover">
+                                                <div class="for_rent_banner"></div>
+                                                <!-- <img alt='images' src="/assets/properties/p2.jpg" class="full"/> -->
+                                                <%=  image_tag (responsive_image(obj.image1)), class: "full"%>
+                                                <span class="mask_hover"></span>
+                                            </a>
+                                            <h4 class=" "><%= obj.name %></h4>
+                                            <div class="preview-properties ">
+                                                <div class="box-detail"> 
+                                                    <p class="text-center short-detail">
+                                                        <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= obj.bath  %></span>
+                                                        <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= obj.beds  %></span>
+                                                        <!-- <span class="label"><i class="icon-circle-arrow-right"></i> Pool : 2</span> -->
+                                                        <span class="price">£<%= obj.price.to_i %></span>
+                                                    </p>
+                                                    <div class="clearfix">
+                                                        <a href=<%="/properties_detail/#{obj.slug}"%> class="btn-proper btn btn-small pull-left">See Detail</a>
+                                                        <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="item">
-                                        <a href="#" class="with-hover">
-                                            <div class="for_rent_banner"></div>
-                                            <img alt='images' src="/assets/properties/p3.jpg" class="full"/><span class="mask_hover"></span>
-                                        </a>
-                                        <h4 class="">34 Central Park</h4>
-                                        <div class="preview-properties ">
-                                            <div class="box-detail"> 
-                                                <p class="text-center short-detail">
-                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Bath : 2</span>
-                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Beds : 2</span>
-                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Pool : 2</span>
-                                                    <span class="price">$380,000</span>
-                                                </p>
-                                                <div class="clearfix">
-                                                    <a href="#" class="btn-proper btn btn-small pull-left">See Detail</a>
-                                                    <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <a href="#" class="with-hover">
-                                            <div class="for_sale_banner"></div>
-                                            <img alt='images' src="/assets/properties/p4.jpg" class="full"/><span class="mask_hover"></span>
-                                        </a>
-                                        <h4 class="">34 Central Park</h4>
-                                        <div class="preview-properties ">
-                                            <div class="box-detail"> 
-                                                <p class="text-center short-detail">
-                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Bath : 2</span>
-                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Beds : 2</span>
-                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Pool : 2</span>
-                                                    <span class="price">$380,000</span>
-                                                </p>
-                                                <div class="clearfix">
-                                                    <a href="#" class="btn-proper btn btn-small pull-left">See Detail</a>
-                                                    <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <a href="#" class="with-hover">
-                                            <div class="for_sale_banner"></div>
-                                            <img alt='images' src="/assets/properties/p5.jpg" class="full"/><span class="mask_hover"></span>
-                                        </a>
-                                        <h4 class="">34 Central Park</h4>
-                                        <div class="preview-properties ">
-                                            <div class="box-detail"> 
-                                                <p class="text-center short-detail">
-                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Bath : 2</span>
-                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Beds : 2</span>
-                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Pool : 2</span>
-                                                    <span class="price">$390,000</span>
-                                                </p>
-                                                <div class="clearfix">
-                                                    <a href="#" class="btn-proper btn btn-small pull-left">See Detail</a>
-                                                    <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <a href="#" class="with-hover">
-                                            <div class="for_sale_banner"></div>
-                                            <img alt='images' src="/assets/properties/p6.jpg" class="full"/><span class="mask_hover"></span>
-                                        </a>
-                                        <h4 class="">34 Central Park</h4>
-                                        <div class="preview-properties ">
-                                            <div class="box-detail"> 
-                                                <p class="text-center short-detail">
-                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Bath : 2</span>
-                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Beds : 2</span>
-                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Pool : 2</span>
-                                                    <span class="price">$190,000</span>
-                                                </p>
-                                                <div class="clearfix">
-                                                    <a href="#" class="btn-proper btn btn-small pull-left">See Detail</a>
-                                                    <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>	
-                                    <div class="item">
-                                        <a href="#" class="with-hover">
-                                            <div class="for_rent_banner"></div>
-                                            <img alt='images' src="/assets/properties/p7.jpg" class="full"/><span class="mask_hover"></span>
-                                        </a>
-                                        <h4 class="">34 Central Park</h4>
-                                        <div class="preview-properties ">
-                                            <div class="box-detail"> 
-                                                <p class="text-center short-detail">
-                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Bath : 2</span>
-                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Beds : 2</span>
-                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Pool : 2</span>
-                                                    <span class="price">$590,000</span>
-                                                </p>
-                                                <div class="clearfix">
-                                                    <a href="#" class="btn-proper btn btn-small pull-left">See Detail</a>
-                                                    <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>		
-
+                                    <%end%>
                                 </div>
                             </div>
                             <!--End Grid Featured-->
