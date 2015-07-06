@@ -94,10 +94,16 @@
                     <div class="panel">
                         <!--Start Form Search Properties-->
                         <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-search"></i></span>  Find Properties</h3>    
-                        <form class="bottom-line line-before" action="?" method="get">
-                            <label>Location</label>
-                            <input type="text" placeholder="Type Your Location" name="" value="" class="input-block-level" required=""/>
-                            <label>Radius</label>
+                        <form class="bottom-line line-before" action="/search_results" method="get">
+                            <%= search_form_for Property.search(params[:q]) do |f| %>
+                            <%= f.label :category_cont, "Category" %>
+<!--                             <input type="text" placeholder="Type Your Location" name="" value="" class="input-block-level" required=""/> -->
+                            <%= f.select :category_cont, ["Rent","Sale"], class: "input-block-level" %>
+                            <br/><br/>
+                            <%= f.label :type, "Type" %>
+                            <%= f.search_field :property_type_cont %>
+                            
+<!--                             <label>Radius</label>
                             <select name="" class="input-block-level" required="">
                                 <option value="">This area only</option>
                                 <option value="">Within 1/4 mile</option>
@@ -110,37 +116,41 @@
                                 <option value="">Within 20 miles</option>
                                 <option value="">Within 30 miles</option>
                                 <option value="">Within 40 miles</option>
-                            </select>
+                            </select> -->
                             <div class="control-group-form">
                                 <div class="control-group half pull-left">
-                                    <label class="control-label" >Min Price</label>
+                                    <%= f.label :price_lteq, "Min Price",class: "control-label" %>
+                                    <!-- <label class="control-label" >Min Price</label> -->
                                     <div class="controls">
-                                        <select name="" class="input-block-level" required="">
+                                        <%= f.search_field :price_gteq,:style=>"width:80px" %>
+                                        <!-- <select name="" class="input-block-level" required="">
                                             <option value="">All</option>
                                             <option value="1">1000</option>
                                             <option value="9">2000</option>
                                             <option value="9">3000</option>
                                             <option value="9">4000</option>
                                             <option value="9">5000+</option>
-                                        </select>
+                                        </select> -->
                                     </div>
                                 </div>
                                 <div class="control-group half text-right pull-right">
-                                    <label class="control-label">Max Price</label>
+                                    <%= f.label :price_gteq, "Max Price", class: "control-label" %>
+                                    <!-- <label class="control-label">Max Price</label> -->
                                     <div class="controls">
-                                        <select name=""   class="input-block-level" required="">
+                                        <%= f.search_field :price_lteq,:style=>"width:80px" %>
+                                        <!-- <select name=""   class="input-block-level" required="">
                                             <option value="">All</option>
                                             <option value="1">10000</option>
                                             <option value="9">20000</option>
                                             <option value="9">30000</option>
                                             <option value="9">40000</option>
                                             <option value="9">50000+</option>
-                                        </select>
+                                        </select> -->
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
-                            <div class="control-group-form">
+                            <!-- <div class="control-group-form">
                                 <div class="control-group half pull-left">
                                     <label class="checkbox">
                                         <input type="checkbox" > Rent Property
@@ -152,8 +162,22 @@
                                     </label>
                                 </div>
                                 <div class="clearfix"></div>
-                            </div>
-                            <label>Bath</label>
+                            </div> -->
+                            <%= f.label :beds_eq, "Number of Bedrooms" %>
+                            <!-- <label>Bath</label> -->
+                            <%=f.select :beds_eq, ["1","2","3","4","5+"], class: "input-block-level" %>
+                            <!-- <select name=""  class="input-block-level " required="">
+                                <option value="">All</option>
+                                <option value="1">1</option>
+                                <option value="9">2</option>
+                                <option value="9">3</option>
+                                <option value="9">4</option>
+                                <option value="9">5+</option>
+                            </select> -->
+                            <br/><br/>
+                            <%= f.label :location %>
+                            <%= f.search_field :postcode_cont %>
+                            <!-- <label>Beds</label>
                             <select name=""  class="input-block-level " required="">
                                 <option value="">All</option>
                                 <option value="1">1</option>
@@ -161,18 +185,11 @@
                                 <option value="9">3</option>
                                 <option value="9">4</option>
                                 <option value="9">5+</option>
-                            </select>
-                            <label>Beds</label>
-                            <select name=""  class="input-block-level " required="">
-                                <option value="">All</option>
-                                <option value="1">1</option>
-                                <option value="9">2</option>
-                                <option value="9">3</option>
-                                <option value="9">4</option>
-                                <option value="9">5+</option>
-                            </select>
+                            </select> -->
 
-                            <button type="submit" class="input-block-level btn-proper btn btn-large"> Search</button>
+                            <!-- <button type="submit" class="input-block-level btn-proper btn btn-large"> Search</button> -->
+                            <%= f.submit "Search", :class=>"input-block-level btn-proper btn btn-large" %>
+                            <%end%>
                         </form>
                         <!--End Form Search Properties-->
 
