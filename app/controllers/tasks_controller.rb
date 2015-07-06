@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   layout proc { false if request.xhr? }	
   respond_to :html, :xml, :json,:mobile
   def index
-    #if is_mobile_device? != false
+    if is_mobile_device? == false
       @properties = Property.where({payment: true, visibility: true, approve: true})
 
       if !params[:q].nil? && params[:q][:radius]!="Select"
@@ -27,14 +27,14 @@ class TasksController < ApplicationController
       @news= News.all
       @settings = Setting.all.first
       respond_with(@properties,@search,@tasks,@agents,@news,@settings)
-    # else
-    #   @tasks = Property.where({payment: true, visibility: true, approve: true}).take(3)
-    #   # @search = @properties.search(params[:q])
-    #   # @tasks = @search.result
-    #   @agents= Agent.all
-    #   @news= News.all
-    #   render "mobile/index.html.erb"
-    # end  
+    else
+      @tasks = Property.where({payment: true, visibility: true, approve: true}).take(3)
+      # @search = @properties.search(params[:q])
+      # @tasks = @search.result
+      @agents= Agent.all
+      @news= News.all
+      render "mobile/index.html.erb",:layout => "mobile"
+    end  
   end
 
   def home_simple
