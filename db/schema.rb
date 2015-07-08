@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702174703) do
+ActiveRecord::Schema.define(version: 20150708174525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -298,8 +298,8 @@ ActiveRecord::Schema.define(version: 20150702174703) do
     t.string   "feature1"
     t.string   "feature2"
     t.integer  "property_type"
-    t.integer  "let_type_id"
-    t.integer  "let_furn_id"
+    t.string   "let_type_id",       default: "Not Specified"
+    t.string   "let_furn_id",       default: "Not Specified"
     t.string   "epc"
     t.string   "brochure_link"
   end

@@ -66,8 +66,8 @@
 #  feature1          :string(255)
 #  feature2          :string(255)
 #  property_type     :integer
-#  let_type_id       :integer
-#  let_furn_id       :integer
+#  let_type_id       :string(255)      default("Not Specified")
+#  let_furn_id       :string(255)      default("Not Specified")
 #  epc               :string(255)
 #  brochure_link     :string(255)
 #
