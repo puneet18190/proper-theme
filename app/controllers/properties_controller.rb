@@ -514,6 +514,8 @@ class PropertiesController < ApplicationController
         # z.put_next_entry("#{sp}_DOC_00.pdf")
         # z.print open("http://www.sealproperties.co.uk/broucher.pdf?id="+item.id.to_s).read
       end
+      z.put_next_entry("coming_soon.jpg")
+      z.print  File.open("#{Rails.root}/app/assets/images/default_images/no.jpg").read
       d=DateTime.now
       seq = "01"
       f_name = "39545_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+seq
@@ -551,6 +553,8 @@ class PropertiesController < ApplicationController
         # z.put_next_entry("#{sp}_DOC_00.pdf")
         # z.print open("http://www.sealproperties.co.uk/broucher.pdf?id="+item.id.to_s).read
       end
+      z.put_next_entry("coming_soon.jpg")
+      z.print  File.open("#{Rails.root}/app/assets/images/default_images/no.jpg").read
       d=DateTime.now
       seq = "01"
       f_name = "39545_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+seq
