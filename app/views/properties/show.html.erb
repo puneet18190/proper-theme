@@ -168,6 +168,14 @@
       <strong>Brochure Url:</strong>
       <%= @property.brochure_link %>
     </p>
+    <p>
+      <strong>Let Furn ID:</strong>
+      <%= @property.let_furn_id %>
+    </p>
+    <p>
+      <strong>Let Type ID:</strong>
+      <%= @property.let_type_id %>
+    </p>
     <% if can? :update, @project %>
       <%= link_to 'Edit', edit_property_path(@property) %> |
     <% end %>
