@@ -467,6 +467,11 @@ class PropertiesController < ApplicationController
     render layout: false
   end
 
+  def test_blm
+    @data = Property.where(:visibility=>true,:approve=>true)
+    render layout: false
+  end
+
   def download_blm
     @data = Property.where(:visibility=>true,:approve=>true)
     remote_data = render_to_string "download_blm", :layout => false

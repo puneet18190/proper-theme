@@ -1,0 +1,191 @@
+<table border="1">
+<th>AGENT_REF</th><th>ADDRESS_1</th><th>ADDRESS_2</th><th>ADDRESS_3</th><th>TOWN</th><th>POSTCODE1</th><th>POSTCODE2</th><th>FEATURE1</th><th>FEATURE2</th><th>FEATURE3</th><th>FEATURE4</th><th>FEATURE5</th><th>FEATURE6</th><th>FEATURE7</th><th>FEATURE8</th><th>FEATURE9</th><th>FEATURE10</th><th>SUMMARY</th><th>DESCRIPTION</th><th>BRANCH_ID</th><th>STATUS_ID</th><th>BEDROOMS</th><th>BATHROOMS</th><th>PRICE</th><th>PRICE_QUALIFIER</th><th>PROP_SUB_ID</th><th>CREATE_DATE</th><th>UPDATE_DATE</th><th>DISPLAY_ADDRESS</th><th>PUBLISHED_FLAG</th><th>LET_DATE_AVAILABLE</th><th>LET_BOND</th><th>LET_TYPE_ID</th><th>LET_FURN_ID</th><th>LET_RENT_FREQUENCY</th><th>TENURE_TYPE_ID</th><th>TRANS_TYPE_ID</th><th>NEW_HOME_FLAG</th><th>MEDIA_IMAGE_00</th><th>MEDIA_IMAGE_TEXT_00</th><th>MEDIA_IMAGE_01</th><th>MEDIA_IMAGE_TEXT_01</th><th>MEDIA_IMAGE_02</th><th>MEDIA_IMAGE_TEXT_02</th><th>MEDIA_IMAGE_03</th><th>MEDIA_IMAGE_TEXT_03</th><th>MEDIA_IMAGE_04</th><th>MEDIA_IMAGE_TEXT_04</th><th>MEDIA_IMAGE_05</th><th>MEDIA_IMAGE_TEXT_05</th><th>MEDIA_IMAGE_06</th><th>MEDIA_IMAGE_TEXT_06</th><th>MEDIA_IMAGE_07</th><th>MEDIA_IMAGE_TEXT_07</th><th>MEDIA_IMAGE_08</th><th>MEDIA_IMAGE_TEXT_08</th><th>MEDIA_IMAGE_09</th><th>MEDIA_IMAGE_TEXT_09</th><th>MEDIA_DOCUMENT_50</th><th>MEDIA_DOCUMENT_TEXT_50</th><th>MEDIA_DOCUMENT_00</th>
+
+<%@data.each_with_index do |obj,n|%>
+<% sp = "SP"+obj.created_at.year.to_s.split(//).last(2).join()+obj.created_at.month.to_s.rjust(2,'0')+obj.id.to_s.rjust(4,'0')%>
+<% @AGENT_REF = "39545_"+sp.to_s %>
+<% @ADDRESS_1 = obj.address1.strip() %>
+<% @ADDRESS_2 = obj.address2.strip() %>
+<% @ADDRESS_3 = obj.address3.strip() %>
+<% @TOWN = obj.town.nil? ? nil : obj.town.strip() %>
+<% @POSTCODE1 = obj.postcode.nil? ? nil : obj.postcode.strip() %>
+<% @POSTCODE2 = obj.postcode1.nil? ? nil : obj.postcode1.strip() %>
+<%if obj.beds > 1 %>
+	<% @FEATURE1 = obj.beds.to_s+' Bedrooms' %>
+<%else%>
+	<% @FEATURE1 = "1 Bedroom" %>
+<%end%>
+<%if obj.ensuite == "No"%>
+<% @FEATURE2 = obj.bath > 1 ? (obj.bath.to_s+' Bathrooms') : ('1 Bathroom') %>
+<%else%>
+<% @FEATURE2 = obj.bath > 1 ? (obj.bath.to_s+' Bathrooms, Ensuite') : ('1 Bathroom, Ensuite') %>
+<%end%>
+<% @FEATURE3 = nil %>
+<%if obj.parking_status == "On Street"%>
+<% @FEATURE4 = obj.parking_status %>
+<%elsif obj.parking_status == "Off Street"%>
+<% @FEATURE4 = obj.parking_status+", "+obj.car.to_s+" Car" %>
+<%else%>
+<% @FEATURE4 = nil %>
+<%end%>
+<%if obj.garden =="Yes"%>
+<% @FEATURE5 = "Garden" %>
+<%else%>
+<% @FEATURE5 = nil %>
+<%end%>
+<%if obj.gas_ch =="Yes"%>
+<% @FEATURE6 = "Gas Central Heating" %>
+<%else%>
+<% @FEATURE6 = nil %>
+<%end%>
+<%if obj.dg !="No"%>
+<% @FEATURE7 = "Double Glazed" %>
+<%else%>
+<% @FEATURE7 = nil %>
+<%end%>
+<%if obj.pets == "Yes"%>
+<% @FEATURE8 = "Pets" %>
+<%else%>
+<% @FEATURE8 = nil %>
+<%end%>
+<%if obj.feature1 != ""%>
+<% @FEATURE9 = obj.feature1 %>
+<%else%>
+<% @FEATURE9 = nil %>
+<%end%>
+<%if obj.feature1 != ""%>
+<% @FEATURE10 = obj.feature1 %>
+<%else%>
+<% @FEATURE10 = nil %>
+<%end%>
+<% @SUMMARY = obj.summary %>
+<% @DESCRIPTION = obj.description %>
+<% @BRANCH_ID = 39545 %>
+<%if obj.status == "Available"%>
+<% @STATUS_ID = 0 %>
+<%elsif obj.status == "SSTC"%>
+<% @STATUS_ID = 1 %>
+<%elsif obj.status == "SSTCM"%>
+<% @STATUS_ID = 2 %>
+<%elsif obj.status == "Under Offer"%>
+<% @STATUS_ID = 3 %>
+<%elsif obj.status == "Reserved"%>
+<% @STATUS_ID = 4 %>
+<%elsif obj.status == "Let Agreed"%>
+<% @STATUS_ID = 5 %>					
+<%end%>
+<%if obj.beds > 1 %>
+	<% @BEDROOMS = obj.beds.to_s+" bedrooms" %>
+<%else%>
+	<% @BEDROOMS = "1 bedroom" %>
+<%end%>
+<%if obj.bath > 1 %>
+	<% @BATHROOMS = obj.bath.to_s+" bathrooms" %>
+<%else%>
+	<% @BATHROOMS = "1 bathroom" %>
+<%end%>	
+<% @PRICE = obj.price.to_i %>
+<%if obj.qualifier == "Default"%>
+	<% @PRICE_QUALIFIER = 0 %>
+<%elsif obj.qualifier == "POA"%>
+	<% @PRICE_QUALIFIER = 1 %>
+<%elsif obj.qualifier == "Guide Price"%>
+	<% @PRICE_QUALIFIER = 2 %>
+<%elsif obj.qualifier == "Fixed Price"%>
+	<% @PRICE_QUALIFIER = 3 %>
+<%elsif obj.qualifier == "Offers in Excess of"%>
+	<% @PRICE_QUALIFIER = 4 %>
+<%elsif obj.qualifier == "OIRO"%>
+	<% @PRICE_QUALIFIER = 5 %>
+<%elsif obj.qualifier == "Sale by Tender"%>
+	<% @PRICE_QUALIFIER = 6 %>
+<%elsif obj.qualifier == "From (new homes and commercial only)"%>
+	<% @PRICE_QUALIFIER = 7 %>
+<%elsif obj.qualifier == "Shared Ownership"%>
+	<% @PRICE_QUALIFIER = 9 %>
+<%elsif obj.qualifier == "Offers Over"%>
+	<% @PRICE_QUALIFIER = 10 %>
+<%elsif obj.qualifier == "Part Buy Part Rent"%>
+	<% @PRICE_QUALIFIER = 11 %>
+<%elsif obj.qualifier == "Shared Equity"%>
+	<% @PRICE_QUALIFIER = 12 %>
+<%elsif obj.qualifier == "Equity Loan"%>
+	<% @PRICE_QUALIFIER = 14 %>
+<%elsif obj.qualifier == "Offers Invited"%>
+	<% @PRICE_QUALIFIER = 15 %>
+<%end%>	
+<%if PropertyType.where(:p_type=> obj.property_type).first.nil?%>
+<% @PROP_SUB_ID = nil %>
+<%else%>
+<% @PROP_SUB_ID = PropertyType.where(:p_type=> obj.property_type).first.p_id %>
+<%end%>
+<% @CREATE_DATE = obj.created_at.strftime("%F %H:%M:%S") %>
+<% @UPDATE_DATE = obj.updated_at.strftime("%F %H:%M:%S") %>
+<% @DISPLAY_ADDRESS = "#{obj.address2} #{obj.address3} #{obj.town} #{obj.postcode} #{obj.postcode1}" %>
+<%if obj.visibility == true %>
+<% @PUBLISHED_FLAG = 1 %>
+<%else%>
+<% @PUBLISHED_FLAG = 0 %>
+<%end%>
+<% @LET_DATE_AVAILABLE = nil %>
+<% @LET_BOND = nil %>
+<%if obj.let_type_id == 'Not Specified'%>
+<% @LET_TYPE_ID = 0 %>
+<%elsif obj.let_type_id == 'Long Term'%>
+<% @LET_TYPE_ID = 1 %>
+<%elsif obj.let_type_id == 'Short Term'%>
+<% @LET_TYPE_ID = 2 %>
+<%elsif obj.let_type_id == 'Student'%>
+<% @LET_TYPE_ID = 3 %>
+<%elsif obj.let_type_id == 'Commercial'%>
+<% @LET_TYPE_ID = 4 %>
+<%end%>
+<%if obj.let_furn_id == 'Furnished'%>
+<% @LET_FURN_ID = 0 %>
+<%elsif obj.let_furn_id == 'Part Furnished'%>
+<% @LET_FURN_ID = 1 %>
+<%elsif obj.let_furn_id == 'Unfurnished'%>
+<% @LET_FURN_ID = 2 %>
+<%elsif obj.let_furn_id == 'Not Specified'%>
+<% @LET_FURN_ID = 3 %>
+<%elsif obj.let_furn_id == 'Furnished/Un Furnished'%>
+<% @LET_FURN_ID = 4 %>
+<%end%>
+<% @LET_RENT_FREQUENCY = nil %>
+<% @TENURE_TYPE_ID = nil %>
+<%if obj.category == "Rent"%>
+<% @TRANS_TYPE_ID = 2 %>
+<%else%>
+<% @TRANS_TYPE_ID = 1 %>
+<%end%>		
+<% @NEW_HOME_FLAG = nil %>
+<%img = "39545_SP"+obj.created_at.year.to_s.split(//).last(2).join()+obj.created_at.month.to_s.rjust(2,'0')+obj.id.to_s.rjust(4,'0')%>
+<% @MEDIA_IMAGE_00 = obj.image1.url.nil? ? nil : img+"_IMG_00."+obj.image1.url.split(".").last.downcase %>
+<% @MEDIA_IMAGE_TEXT_00 = nil %>
+<% @MEDIA_IMAGE_01 = obj.image2.url.nil? ? nil : img+"_IMG_01."+obj.image2.url.split(".").last.downcase %>
+<% @MEDIA_IMAGE_TEXT_01 = nil %>
+<% @MEDIA_IMAGE_02 = obj.image3.url.nil? ? nil : img+"_IMG_02."+obj.image3.url.split(".").last.downcase %>
+<% @MEDIA_IMAGE_TEXT_02 = nil %>
+<% @MEDIA_IMAGE_03 = obj.image4.url.nil? ? nil : img+"_IMG_03."+obj.image4.url.split(".").last.downcase %>
+<% @MEDIA_IMAGE_TEXT_03 = nil %>
+<% @MEDIA_IMAGE_04 = obj.image5.url.nil? ? nil : img+"_IMG_04."+obj.image5.url.split(".").last.downcase %>
+<% @MEDIA_IMAGE_TEXT_04 = nil %>
+<% @MEDIA_IMAGE_05 = obj.image6.url.nil? ? nil : img+"_IMG_05."+obj.image6.url.split(".").last.downcase %>
+<% @MEDIA_IMAGE_TEXT_05 = nil %>
+<% @MEDIA_IMAGE_06 = obj.image7.url.nil? ? nil : img+"_IMG_06."+obj.image7.url.split(".").last.downcase %>
+<% @MEDIA_IMAGE_TEXT_06 = nil %>
+<% @MEDIA_IMAGE_07 = obj.image8.url.nil? ? nil : img+"_IMG_07."+obj.image8.url.split(".").last.downcase %>
+<% @MEDIA_IMAGE_TEXT_07 = nil %>
+<% @MEDIA_IMAGE_08 = obj.image9.url.nil? ? nil : img+"_IMG_08."+obj.image9.url.split(".").last.downcase %>
+<% @MEDIA_IMAGE_TEXT_08 = nil %>
+<% @MEDIA_IMAGE_09 = obj.image10.url.nil? ? nil : img+"_IMG_09."+obj.image10.url.split(".").last.downcase %>
+<% @MEDIA_IMAGE_TEXT_09 = nil %>
+<% @MEDIA_DOCUMENT_50 = obj.epc %>
+<% @MEDIA_DOCUMENT_TEXT_50 = nil %>
+<% @MEDIA_DOCUMENT_00 = obj.brochure_link %>
+<tr>
+<td><%= @AGENT_REF %></td><td><%= @ADDRESS_1 %></td><td><%= @ADDRESS_2 %></td><td><%= @ADDRESS_3 %></td><td><%= @TOWN %></td><td><%= @POSTCODE1 %></td><td><%= @POSTCODE2 %></td><td><%= @FEATURE1 %></td><td><%= @FEATURE2 %></td><td><%= @FEATURE3 %></td><td><%= @FEATURE4 %></td><td><%= @FEATURE5 %></td><td><%= @FEATURE6 %></td><td><%= @FEATURE7 %></td><td><%= @FEATURE8 %></td><td><%= @FEATURE9 %></td><td><%= @FEATURE10 %></td><td><%= @SUMMARY %></td><td><%= @DESCRIPTION %></td><td><%= @BRANCH_ID %></td><td><%= @STATUS_ID %></td><td><%= @BEDROOMS %></td><td><%= @BATHROOMS %></td><td><%= @PRICE %></td><td><%= @PRICE_QUALIFIER %></td><td><%= @PROP_SUB_ID %></td><td><%= @CREATE_DATE %></td><td><%= @UPDATE_DATE %></td><td><%= @DISPLAY_ADDRESS %></td><td><%= @PUBLISHED_FLAG %></td><td><%= @LET_DATE_AVAILABLE %></td><td><%= @LET_BOND %></td><td><%= @LET_TYPE_ID %></td><td><%= @LET_FURN_ID %></td><td><%= @LET_RENT_FREQUENCY %></td><td><%= @TENURE_TYPE_ID %></td><td><%= @TRANS_TYPE_ID %></td><td><%= @NEW_HOME_FLAG %></td><td><%= @MEDIA_IMAGE_00 %></td><td><%= @MEDIA_IMAGE_TEXT_00 %></td><td><%= @MEDIA_IMAGE_01 %></td><td><%= @MEDIA_IMAGE_TEXT_01 %></td><td><%= @MEDIA_IMAGE_02 %></td><td><%= @MEDIA_IMAGE_TEXT_02 %></td><td><%= @MEDIA_IMAGE_03 %></td><td><%= @MEDIA_IMAGE_TEXT_03 %></td><td><%= @MEDIA_IMAGE_04 %></td><td><%= @MEDIA_IMAGE_TEXT_04 %></td><td><%= @MEDIA_IMAGE_05 %></td><td><%= @MEDIA_IMAGE_TEXT_05 %></td><td><%= @MEDIA_IMAGE_06 %></td><td><%= @MEDIA_IMAGE_TEXT_06 %></td><td><%= @MEDIA_IMAGE_07 %></td><td><%= @MEDIA_IMAGE_TEXT_07 %></td><td><%= @MEDIA_IMAGE_08 %></td><td><%= @MEDIA_IMAGE_TEXT_08 %></td><td><%= @MEDIA_IMAGE_09 %></td><td><%= @MEDIA_IMAGE_TEXT_09 %></td><td><%= @MEDIA_DOCUMENT_50 %></td><td><%= @MEDIA_DOCUMENT_TEXT_50 %></td><td><%= @MEDIA_DOCUMENT_00 %></td>
+
+</tr>
+<%end%>
+</table>
