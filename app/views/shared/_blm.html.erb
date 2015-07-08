@@ -137,7 +137,7 @@ AGENT_REF^ADDRESS_1^ADDRESS_2^ADDRESS_3^TOWN^POSTCODE1^POSTCODE2^FEATURE1^FEATUR
 <%else%>
 <% @PUBLISHED_FLAG = 0 %>
 <%end%>
-<% @LET_DATE_AVAILABLE = nil %>
+<% @LET_DATE_AVAILABLE = obj.let_date_available.nil? ? nil : obj.let_date_available.strftime("%F %H:%M:%S") %>
 <% @LET_BOND = nil %>
 <%if obj.let_type_id == 'Not Specified'%>
 <% @LET_TYPE_ID = 0 %>

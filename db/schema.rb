@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150708174525) do
+ActiveRecord::Schema.define(version: 20150708184936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -264,8 +264,8 @@ ActiveRecord::Schema.define(version: 20150708174525) do
     t.date     "l_date"
     t.date     "r_date"
     t.integer  "user_id"
-    t.boolean  "approve",           default: false
-    t.boolean  "payment",           default: false
+    t.boolean  "approve",            default: false
+    t.boolean  "payment",            default: false
     t.string   "slug"
     t.datetime "validity"
     t.string   "coordinates"
@@ -277,18 +277,18 @@ ActiveRecord::Schema.define(version: 20150708174525) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "radius"
-    t.string   "approval_status",   default: "false"
+    t.string   "approval_status",    default: "false"
     t.text     "short_description"
-    t.string   "gas_ch",            default: "No"
-    t.boolean  "glazing",           default: false
-    t.string   "parking_status",    default: "none"
+    t.string   "gas_ch",             default: "No"
+    t.boolean  "glazing",            default: false
+    t.string   "parking_status",     default: "none"
     t.integer  "car"
     t.text     "tag_line"
-    t.string   "garden",            default: "No"
-    t.string   "dg",                default: false
-    t.boolean  "seal_approved",     default: false
-    t.string   "pets",              default: "No"
-    t.string   "ensuite",           default: "No"
+    t.string   "garden",             default: "No"
+    t.string   "dg",                 default: false
+    t.boolean  "seal_approved",      default: false
+    t.string   "pets",               default: "No"
+    t.string   "ensuite",            default: "No"
     t.string   "town"
     t.string   "status"
     t.string   "postcode1"
@@ -298,10 +298,11 @@ ActiveRecord::Schema.define(version: 20150708174525) do
     t.string   "feature1"
     t.string   "feature2"
     t.integer  "property_type"
-    t.string   "let_type_id",       default: "Not Specified"
-    t.string   "let_furn_id",       default: "Not Specified"
+    t.string   "let_type_id",        default: "Not Specified"
+    t.string   "let_furn_id",        default: "Not Specified"
     t.string   "epc"
     t.string   "brochure_link"
+    t.datetime "let_date_available"
   end
 
   add_index "properties", ["slug"], name: "index_properties_on_slug", unique: true, using: :btree
