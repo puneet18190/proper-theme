@@ -94,9 +94,9 @@ Rails.application.routes.draw do
 
   match 'search_results', to: 'tasks#search_results', via: [:get, :post]
   match 'pdf_handle', to: 'properties#pdf_handle', via: 'get'
-  match 'broucher', to: 'properties#broucher', via: 'get'
-  match 'broucher1', to: 'properties#broucher1', via: 'get'
-  match 'broucher2', to: 'properties#broucher2', via: 'get'
+  match 'brochure', to: 'properties#brochure', via: 'get'
+  match 'brochure1', to: 'properties#brochure1', via: 'get'
+  match 'brochure2', to: 'properties#brochure2', via: 'get'
   match 'con', to: 'tasks#con', via: [:get, :post]
   match 'contact_agent', to: 'tasks#contact_agent', via: 'post'
   match '/pricing_tenant',   to: 'tasks#pricing_tenant',   via: 'get'

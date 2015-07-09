@@ -340,12 +340,12 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def broucher
+  def brochure
     @properties = Property.find(params[:id])
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "broucher",
+        render pdf: "brochure",
                page_size: "A3"      
       end
     end
@@ -358,24 +358,24 @@ class PropertiesController < ApplicationController
     # end
   end
 
-  def broucher1
+  def brochure1
     @properties = Property.find(params[:id])
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "broucher",
+        render pdf: "brochure",
                page_size: "A3",
                orientation: "Landscape"
       end
     end
   end
 
-  def broucher2
+  def brochure2
     @properties = Property.find(params[:id])
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "broucher",
+        render pdf: "brochure",
                page_size: "A4"
       end
     end
@@ -586,15 +586,15 @@ class PropertiesController < ApplicationController
     Thread.new do
     @property = Property.find(params[:id])
     sp = "sp"+@property.created_at.year.to_s.split(//).last(2).join()+@property.created_at.month.to_s.rjust(2,'0')+@property.id.to_s.rjust(4,'0')
-    data = open("http://www.sealproperties.co.uk/broucher.pdf?id="+params[:id])
+    data = open("http://www.sealproperties.co.uk/brochure.pdf?id="+params[:id])
     puts data
     service = S3::Service.new(:access_key_id => "AKIAI42ZRYRPLOREEEDQ",:secret_access_key => "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")
     bucket = service.buckets.find("sealpropertiesus")
-    object = bucket.objects.build("broucher_"+sp+".pdf")
+    object = bucket.objects.build("brochure_"+sp+".pdf")
     puts object
     object.content = data
     object.save
-    @property.brochure_link = "http://sealpropertiesus.s3.amazonaws.com/broucher_"+sp+".pdf"
+    @property.brochure_link = "http://sealpropertiesus.s3.amazonaws.com/brochure_"+sp+".pdf"
     @property.save
     end
     render :json => {:status => "ok"}
@@ -605,7 +605,7 @@ class PropertiesController < ApplicationController
     sp = "sp"+@property.created_at.year.to_s.split(//).last(2).join()+@property.created_at.month.to_s.rjust(2,'0')+@property.id.to_s.rjust(4,'0')
     service = S3::Service.new(:access_key_id => "AKIAI42ZRYRPLOREEEDQ",:secret_access_key => "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")
     bucket = service.buckets.find("sealpropertiesus")
-    object = bucket.objects.find("broucher_"+sp+".pdf")
+    object = bucket.objects.find("brochure_"+sp+".pdf")
     if object
       object.destroy
       @property.brochure_link = nil

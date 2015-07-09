@@ -66,9 +66,9 @@
 
         <% if current_user.status == "admin" || (current_user.status == "landlord" && current_user.plan != "free") %>
           <td><%= link_to 'Download', pdf_handle_path(:id => property.id, format: 'pdf') %></td>
-          <td><%= link_to 'Main', broucher_path(:id => property.id, format: 'pdf') %>
-          <%= link_to 'A3', broucher1_path(:id => property.id, format: 'pdf') %>
-          <%= link_to 'A4', broucher2_path(:id => property.id, format: 'pdf') %></td>
+          <td><%= link_to 'Main', brochure_path(:id => property.id, format: 'pdf') %>
+          <%= link_to 'A3', brochure1_path(:id => property.id, format: 'pdf') %>
+          <%= link_to 'A4', brochure2_path(:id => property.id, format: 'pdf') %></td>
         <%else%>
           <td><%= link_to 'N/A',"#" %></td>
         <%end%>
