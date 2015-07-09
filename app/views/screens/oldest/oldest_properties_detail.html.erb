@@ -73,6 +73,9 @@
                       <%end%>
                       <% if @data.ensuite == "Yes" %>
                         <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> En-suite : <%= @data.ensuite %></span>
+                      <%end%>
+                      <% if @data.furnished != "Not Specified" %>
+                        <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> En-suite : <%= @data.furnished %></span>
                       <%end%>  
                     </p>
                   </div>
