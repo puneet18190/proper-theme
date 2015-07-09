@@ -1,3 +1,17 @@
-AWS_ACCESS_KEY: "AKIAI42ZRYRPLOREEEDQ"
-AWS_SECRET_KEY: "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"
-AWS_BUCKET: "sealpropertiesus"
+defaults: &defaults
+
+development:
+  <<: *defaults
+  AWS_ACCESS_KEY: "AKIAI42ZRYRPLOREEEDQ"
+  AWS_SECRET_KEY: "LBhT9lD3MF2r3VYjg5zLlh4mM6ImKukuxjbYT3t"
+  AWS_BUCKET: "sealpropertiesus"
+
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  AWS_ACCESS_KEY: "AKIAI42ZRYRPLOREEEDQ"
+  AWS_SECRET_KEY: "LBhT9lD3MF2r3VYjg5zLlh4mM6ImKukuxjbYT3t"
+  AWS_BUCKET: "sealpropertiesus"
