@@ -198,7 +198,7 @@ class ScreensController < ApplicationController
 	end	
 
 	def delete_file_from_s3
-		service = S3::Service.new(:access_key_id => "AKIAI42ZRYRPLOREEEDQ",:secret_access_key => "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")
+		service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
 		bucket = service.buckets.find("sealpropertiesus")
 
 		begin
@@ -236,7 +236,7 @@ class ScreensController < ApplicationController
   				r.add_field('BODY', "#{user}")
 			end
 
-			service = S3::Service.new(:access_key_id => "AKIAI42ZRYRPLOREEEDQ",:secret_access_key => "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")
+			service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
 			bucket = service.buckets.find("sealpropertiesus")
 			a=DateTime.now
 			a=a.year.to_s+a.month.to_s.rjust(2,'0')+a.day.to_s.rjust(2,'0')+a.hour.to_s+a.minute.to_s+a.second.to_s
