@@ -108,6 +108,7 @@ class Property < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 20 }
   #validates_presence_of :address1, :address2, :address3, :price, :postcode, :beds, :bath, :description
   geocoded_by :address
+  attr_accessor :search_criteria
 
   # def garden
   #   self.garden? ? "Yes" : "No"

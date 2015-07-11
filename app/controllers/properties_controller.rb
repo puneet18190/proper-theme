@@ -614,6 +614,10 @@ class PropertiesController < ApplicationController
     render :json => {:status => "ok"}
   end
 
+  def search_criteria
+    @data = PropertyType.where(search: params[:search])
+  end
+
   private
     def set_property
       @property = Property.friendly.find(params[:id])

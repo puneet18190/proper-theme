@@ -79,8 +79,21 @@
                   <%= f.text_field :postcode1, :style=>"width:90px;margin-top:-68px;margin-left:175px"%>
                 </div>
                 <div class="field">
+                  <%= f.label "Search Criteria",:style=>"width:53px" %>
+                  <% if params[:action] == "edit" %>
+                    <%= f.select :search_criteria,['Not Specified','Bungalows','Retirement Property','House / Flat Share','Garage / Parking','Flats / Apartments','Houses','Land','Mobile / Park Homes','Character Property','Commercial Property'],:style=>"margin-top:-42px", :selected => "#{PropertyType.where(:p_id=>f.object.property_type).first.search}"%>
+                  <%else%>
+                    <%= f.select :search_criteria,['Not Specified','Bungalows','Retirement Property','House / Flat Share','Garage / Parking','Flats / Apartments','Houses','Land','Mobile / Park Homes','Character Property','Commercial Property'],:style=>"margin-top:-42px"%>
+                  <%end%>
+                </div>
+                <div class="field">
                   <%= f.label "PROP SUB ID",:style=>"width:53px" %>
-                  <%= f.select :property_type,['Not Specified','Terraced','End of Terrace','Semi-Detached','Detached','Mews','Cluster House','Ground Flat','Flat','Studio','Ground Maisonette','Maisonette','Bungalow','Terraced Bungalow','Semi-Detached Bungalow','Detached Bungalow','Mobile Home','Land','Link Detached House','Town House','Cottage','Chalet','Villa','Apartment','Penthouse','Finca','Barn Conversion','Serviced Apartments','Parking','Sheltered','Housing','Retirement Property','House Share','Flat Share','Park Home','Garages','Farm House','Equestrian','Facility','Duplex','Triplex','Longere','Gite','Barn','Trulli','Mill','Ruins','Restaurant','Cafe','Mill','Castle','Village House','Cave House','Cortijo','Farm Land','Plot','Country House','Stone House','Caravan','Lodge','Log Cabin','Manor House','Stately Home','Off-Plan','Semi-detached Villa','Detached Villa','Bar / Nightclub','Shop','Riad','House Boat','Hotel Room','Block of Apartments','Private Halls','Office','Business Park','Serviced Office','Retail Property (high street)','Retail Property (out of town)','Convenience Store','Garage','Hairdresser / Barber Shop','Hotel','Petrol Station','Post Office','Pub','Workshop','Distribution Warehouse','Factory','Heavy Industrial','Industrial Park','Light Industrial','Storage','Showroom','Warehouse','Land','Commercial Development','Industrial Development','Residential Development','Commercial Property','Data Centre','Farm','Healthcare Facility','Marine Property','Mixed Use','Research & Development Facility','Science Park','Guest House','Hospitality','Leisure Facility','Takeaway','Childcare Facility','Smallholding','Place of Worship','Trade Counter','Coach House'],:style=>"margin-top:-42px"%>
+                  <%#= f.select :property_type,['Not Specified','Terraced','End of Terrace','Semi-Detached','Detached','Mews','Cluster House','Ground Flat','Flat','Studio','Ground Maisonette','Maisonette','Bungalow','Terraced Bungalow','Semi-Detached Bungalow','Detached Bungalow','Mobile Home','Land','Link Detached House','Town House','Cottage','Chalet','Villa','Apartment','Penthouse','Finca','Barn Conversion','Serviced Apartments','Parking','Sheltered','Housing','Retirement Property','House Share','Flat Share','Park Home','Garages','Farm House','Equestrian','Facility','Duplex','Triplex','Longere','Gite','Barn','Trulli','Mill','Ruins','Restaurant','Cafe','Mill','Castle','Village House','Cave House','Cortijo','Farm Land','Plot','Country House','Stone House','Caravan','Lodge','Log Cabin','Manor House','Stately Home','Off-Plan','Semi-detached Villa','Detached Villa','Bar / Nightclub','Shop','Riad','House Boat','Hotel Room','Block of Apartments','Private Halls','Office','Business Park','Serviced Office','Retail Property (high street)','Retail Property (out of town)','Convenience Store','Garage','Hairdresser / Barber Shop','Hotel','Petrol Station','Post Office','Pub','Workshop','Distribution Warehouse','Factory','Heavy Industrial','Industrial Park','Light Industrial','Storage','Showroom','Warehouse','Land','Commercial Development','Industrial Development','Residential Development','Commercial Property','Data Centre','Farm','Healthcare Facility','Marine Property','Mixed Use','Research & Development Facility','Science Park','Guest House','Hospitality','Leisure Facility','Takeaway','Childcare Facility','Smallholding','Place of Worship','Trade Counter','Coach House'],:style=>"margin-top:-42px"%>
+                  <% if params[:action] == "edit" %>
+                    <%= f.select :property_type,[["#{PropertyType.where(:p_id=>f.object.property_type).first.p_type}",f.object.property_type]],:style=>"margin-top:-42px", :selected => "#{PropertyType.where(:p_id=>f.object.property_type).first.p_type}" %>
+                  <%else%>
+                    <%= f.select :property_type,[['Not Specified',0]],:style=>"margin-top:-42px" %>
+                  <%end%>
                 </div>
 
                 <h3 style="margin-top:10px;padding:5px"><b>Marketing</b></h3>
@@ -262,6 +275,17 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $('.long_desc').cleditor();
+    $("#property_search_criteria").on('change', function() {
+      var search = $("#property_search_criteria option:selected").text()
+      $.ajax({
+        type: "get",
+        url: '/search_criteria',
+        data: 'search='+search,
+        success: function(res){
+          $("#property_property_type").html(res)
+        }
+      })
+    })
   })
   <% if current_user.status == "landlord" && current_user.plan == "free" %>
     $(".alert_popup").click(function(e) {
