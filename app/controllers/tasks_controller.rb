@@ -112,7 +112,11 @@ class TasksController < ApplicationController
 
   def agents
     @agents=  Agent.includes(:properties)
-    respond_with(@agents)
+    if is_mobile_device?
+      render "tasks/agents.html.erb",:layout => "mobile"
+    else
+      respond_with(@agents)
+    end
   end
 
   def contact
