@@ -27,8 +27,10 @@ class ApplicationController < ActionController::Base
 
   def layout_by_resource
     if is_mobile_device?
+      puts "============mobile===================="
       "mobile"
     else
+      puts "============application===================="
       "application"
     end
   end
