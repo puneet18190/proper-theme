@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   post 'properties/approve'
   # post 'properties/confirm_payment'
   # post 'properties/payment_confirmation'
+  get "/404" => "errors#not_found"
+  get "/500" => "errors#internal_server_error"
   post 'properties/payment'
   match '/add',   to: 'tasks#add',   via: 'get'
   match '/index',   to: 'tasks#index',   via: 'get'
