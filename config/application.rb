@@ -53,8 +53,8 @@ module Proper
     :storage => :s3,
     :s3_credentials => {
       :bucket => "sealpropertiesus",
-      :access_key_id => "AKIAI42ZRYRPLOREEEDQ",
-      :secret_access_key => "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"
+      :access_key_id => "AKIAJH6OPC5MWSQX6VLQ",
+      :secret_access_key => "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"
     }
   }
 

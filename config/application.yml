@@ -2,8 +2,8 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  AWS_ACCESS_KEY: "AKIAI42ZRYRPLOREEEDQ"
-  AWS_SECRET_KEY: "LBhT9lD3MF2r3VYjg5zLlh4mM6ImKukuxjbYT3t"
+  AWS_ACCESS_KEY: "AKIAJH6OPC5MWSQX6VLQ"
+  AWS_SECRET_KEY: "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"
   AWS_BUCKET: "sealpropertiesus"
 
 
@@ -12,6 +12,6 @@ test:
 
 production:
   <<: *defaults
-  AWS_ACCESS_KEY: "AKIAI42ZRYRPLOREEEDQ"
-  AWS_SECRET_KEY: "LBhT9lD3MF2r3VYjg5zLlh4mM6ImKukuxjbYT3t"
+  AWS_ACCESS_KEY: "AKIAJH6OPC5MWSQX6VLQ"
+  AWS_SECRET_KEY: "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"
   AWS_BUCKET: "sealpropertiesus"
