@@ -211,13 +211,13 @@
                     <%#= f.label :furnished %>
                     <%#= f.select :furnished, ['Furnished','Unfurnished'] %>
                   </div><br/> -->
-                  <div class="field">
-                    <%= f.label "LET_TYPE_ID" %>
+                  <div class="field" style=<%="display:none" if (params[:action]=='edit' && @property.category == 'Sale' )%> >
+                    <%= f.label "LET_TYPE_ID", style: "margin-left:-10px" %>
                     <%= f.select :let_type_id, ['Not Specified','Long Term','Short Term','Student','Commercial'] %>
                   </div><br/>
                   <div class="field">
                     <%= f.label "Furnished" %>
-                    <%= f.select :let_furn_id, ['Furnished','Part Furnished','Unfurnished','Not Specified','Furnished/Un Furnished'] %>
+                    <%= f.select :let_furn_id, ['Not Specified','Furnished','Part Furnished','Unfurnished','Furnished/Un Furnished'] %>
                   </div><br/>
                   <div class="field" style="width:305px !important">
                     <%= f.label "Let Date Available" %>
@@ -285,6 +285,14 @@
           $("#property_property_type").html(res)
         }
       })
+    })
+    $("#property_category").on('change', function() {
+      var search = $("#property_category option:selected").text()
+      if($("#property_category option:selected").text() == "Sale"){
+        $("#property_let_type_id").parent().css("display","none")
+      }else{
+        $("#property_let_type_id").parent().css("display","block")
+      }
     })
   })
   <% if current_user.status == "landlord" && current_user.plan == "free" %>

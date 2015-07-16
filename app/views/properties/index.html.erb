@@ -38,8 +38,9 @@
       <th>Action</th>
       <th>Action</th>
       <th>Action</th>
-      <th>PDF</th>
+      <!-- <th>PDF</th> -->
       <th>Brochure</th>
+      <th>Seal Approved</th>
       <th>Brochure Upload</th>
       <th>Approval</th>
     </tr>
@@ -63,12 +64,12 @@
         <% if can? :destroy, @property %>
           <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %> </td>
         <% end %>
-
         <% if current_user.status == "admin" || (current_user.status == "landlord" && current_user.plan != "free") %>
-          <td><%= link_to 'Download', pdf_handle_path(:id => property.id, format: 'pdf') %></td>
+          <!-- <td><%#= link_to 'Download', pdf_handle_path(:id => property.id, format: 'pdf') %></td> -->
           <td><%= link_to 'Main', brochure_path(:id => property.id, format: 'pdf') %>
           <%= link_to 'A3', brochure1_path(:id => property.id, format: 'pdf') %>
           <%= link_to 'A4', brochure2_path(:id => property.id, format: 'pdf') %></td>
+          <td><%=property.seal_approved ? 'Yes' : 'No'%></td>
         <%else%>
           <td><%= link_to 'N/A',"#" %></td>
         <%end%>

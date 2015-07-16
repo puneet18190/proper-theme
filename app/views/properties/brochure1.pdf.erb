@@ -39,35 +39,27 @@
     <div style="font-size:20px;font-family:arial"><center><b><%="#{@properties.short_description}"%></b></center></div>
   </div>
 
-  <div style="height:330px;margin-top:10px">
-    <div style="width:355px;height:330px;float:left">
-      <center>
-        <% unless @properties.image3.url(:large).nil? %>
-          <%=image_tag(@properties.image3.url(:large).gsub("https","http"),:width=>"355",:height=>"330") %>
-        <% end %>
-      </center>
-    </div>
-    <div style="width:355px;height:330px;float:left;margin-left:9px">
-      <center>
-        <% unless @properties.image4.url(:large).nil? %>
-          <%=image_tag(@properties.image4.url(:large).gsub("https","http"),:width=>"355",:height=>"330") %>
-        <% end %>  
-      </center>
-    </div>
-    <div style="width:355px;height:330px;float:left;margin-left:9px">
-      <center>
-        <% unless @properties.image5.url(:large).nil? %>
-          <%=image_tag(@properties.image5.url(:large).gsub("https","http"),:width=>"355",:height=>"330") %>
-        <% end %>  
-      </center>
-    </div>
-    <div style="width:355px;height:330px;float:left;margin-left:9px">
-      <center>
-        <% unless @properties.image6.url(:large).nil? %>
-          <%=image_tag(@properties.image6.url(:large).gsub("https","http"),:width=>"355",:height=>"330") %>
-        <% end %>  
-      </center>
-    </div>
+  <div style="height:330px;margin-top:10px;text-align: center;">
+    <span class="image">
+      <% unless @properties.image3.url(:large).nil? %>
+        <%=image_tag(@properties.image3.url(:large).gsub("https","http"),:width=>"355",:height=>"329") %>
+      <% end %>
+    </span>
+    <span class="image">
+      <% unless @properties.image4.url(:large).nil? %>
+        <%=image_tag(@properties.image4.url(:large).gsub("https","http"),:width=>"355",:height=>"329") %>
+      <% end %>  
+    </span>
+    <span class="image">
+      <% unless @properties.image5.url(:large).nil? %>
+        <%=image_tag(@properties.image5.url(:large).gsub("https","http"),:width=>"355",:height=>"329") %>
+      <% end %>  
+    </span>
+    <span class="image">
+      <% unless @properties.image6.url(:large).nil? %>
+        <%=image_tag(@properties.image6.url(:large).gsub("https","http"),:width=>"355",:height=>"329") %>
+      <% end %>  
+    </span>
   </div>  
 
   <div style="">
@@ -75,3 +67,9 @@
     <div style="font-size:15px;margin:0px;font-family:arial;margin-left:80px"><center><b>Seal Partnership Limited T/A Seal Properties. Registered Company No: 8589070<span style="float:right"><%="SP"+@properties.created_at.year.to_s.split(//).last(2).join()+@properties.created_at.month.to_s.rjust(2,'0')+@properties.id.to_s.rjust(4,'0')%></span></b></center></div>
   </div>
 </div>
+
+<style type="text/css">
+  .image{
+    margin-left:9px
+  }
+</style>

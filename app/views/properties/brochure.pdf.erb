@@ -34,29 +34,29 @@
     <b><center><%=@properties.tag_line%></center></b>
   </div>
 
-  <div style="position:absolute; top:1550px;height:80px;width:1300px;">
-    <span style="width:120px;height:50px;font-weight: normal;display:inline-block;padding-left:10px;font-size:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px;margin-left:20px;border-radius:10px">Beds : <%= @properties.beds %></span>
+  <div style="position:absolute; top:1550px;height:80px;width:1300px;text-align: center;">
+    <span class="tag">Beds : <%= @properties.beds %></span>
     
-    <span style="width:120px;height:50px;color:black;font-weight: normal;display:inline-block;padding-left:10px;font-size:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px;border-radius:10px">Bath : <%= @properties.bath %></span>
+    <span class="tag">Bath : <%= @properties.bath %></span>
     
     <% if @properties.garden == "Yes" %>
-      <span style="width:190px;height:50px;font-weight: normal;display:inline-block;padding-left:10px;font-size:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px;border-radius:10px">Garden : <%= @properties.garden %></span>
+      <span class="tag">Garden : <%= @properties.garden %></span>
     <%end%>
     
     <% if @properties.parking_status != "None" %>
-      <span style="width:270px;height:50px;font-weight: normal;display:inline-block;padding-left:10px;font-size:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px;border-radius:10px">Parking : <%= @properties.parking_status %></span>
+      <span class="tag">Parking : <%= @properties.parking_status %></span>
     <%end%>  
     
     <% if @properties.gas_ch == "Yes" %>
-      <span style="width:190px;height:50px;font-weight: normal;display:inline-block;padding-left:10px;font-size:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;vertical-align:baseline;background-color:#999;margin:10px;padding-top:15px;border-radius:10px">Gas CH : <%= @properties.gas_ch %></span>
+      <span class="tag">Gas CH : <%= @properties.gas_ch %></span>
     <%end%>  
     
     <% if @properties.dg == "Yes" %>
-      <span style="width:130px;height:50px;font-weight: normal;display:inline-block;padding-left:10px;font-size:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;background-color:#999;margin:10px;padding-top:15px;border-radius:10px">DG : <%= @properties.dg %></span>
+      <span class="tag">DG : <%= @properties.dg %></span>
     <%end%>
 
     <% if @properties.furnished != "Not Specified" %>
-      <span style="width:180px;height:50px;font-weight: normal;display:inline-block;padding-left:10px;font-size:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);white-space:nowrap;background-color:#999;margin:10px;padding-top:15px;border-radius:10px"><%= @properties.furnished %></span>
+      <span class="tag"><%= @properties.furnished %></span>
     <%end%>  
   </div>
 
@@ -129,11 +129,31 @@
 <div style="width:1300px;height:1875px;border:1px solid #903c9e">
   <div style="height:60px;color:white;font-size:40px;background-color:#903c9e;padding-top:10px;padding-left:570px"><b>Gallery</b></div>
 
-  <div style="position:relative;width:1300px;padding:5px"><%=image_tag(@properties.image2.present? ? @properties.image2.url(:large).gsub("https","http") : no_image, :height=> "680",:width=>"1290") %></div>
-  <div style="float:left;width:625px;margin:5px;margin-top:25px"><%=image_tag(@properties.image4.present? ? @properties.image4.url(:large).gsub("https","http") : no_image, :height=> "525",:width=>"625") %></div>
-  <div style="float:right;width:625px;margin:5px;margin-top:25px"><%=image_tag(@properties.image5.present? ? @properties.image5.url(:large).gsub("https","http") : no_image, :height=> "525",:width=>"625") %></div>
-  <div style="float:left;width:625px;margin:5px;margin-top:25px"><%=image_tag(@properties.image6.present? ? @properties.image6.url(:large).gsub("https","http") : no_image, :height=> "525",:width=>"625") %></div>
-  <div style="float:right;width:625px;margin:5px;margin-top:25px"><%=image_tag(@properties.image7.present? ? @properties.image7.url(:large).gsub("https","http") : no_image, :height=> "525",:width=>"625") %></div>
+  <% unless @properties.image2.url(:large).nil? %>
+    <div style="position:relative;width:1300px;padding:5px">
+      <%=image_tag(@properties.image2.url(:large).gsub("https","http"), :height=> "680",:width=>"1290") %>
+    </div>
+  <%end%>
+  <% unless @properties.image3.url(:large).nil? %>
+    <div style="float:right;width:625px;margin:5px;margin-top:25px">
+      <%=image_tag(@properties.image3.url(:large).gsub("https","http"), :height=> "525",:width=>"625") %>
+    </div>
+  <%end%>
+  <% unless @properties.image4.url(:large).nil? %>
+    <div style="float:left;width:625px;margin:5px;margin-top:25px">
+      <%=image_tag(@properties.image4.url(:large).gsub("https","http"), :height=> "525",:width=>"625") %>
+    </div>
+  <%end%>
+  <% unless @properties.image5.url(:large).nil? %>
+    <div style="float:right;width:625px;margin:5px;margin-top:25px">
+      <%=image_tag(@properties.image5.url(:large).gsub("https","http"), :height=> "525",:width=>"625") %>
+    </div>
+  <%end%>
+  <% unless @properties.image6.url(:large).nil? %>
+    <div style="float:left;width:625px;margin:5px;margin-top:25px">
+      <%=image_tag(@properties.image6.url(:large).gsub("https","http"), :height=> "525",:width=>"625") %>
+    </div>
+  <%end%>
 </div>  
 
 <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
@@ -145,3 +165,21 @@
   <div class="" style="height:60px;color:white;font-size:40px;background-color:#903c9e;padding-top:15px;padding-left:550px;margin-top:30px"><b>Specification</b></div>
   <div  style="height:1120px;border:1px solid #903c9e;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;"><center><b><%=@properties.description.html_safe%></b></center></div>
 </div>  
+
+<style type="text/css">
+  .tag{
+    width:auto;
+    height:40px;
+    font-weight: normal;
+    display:inline-block;
+    font-size:30px;
+    color:#fff;
+    text-shadow:0 -1px 0 rgba(0,0,0,0.25);
+    white-space:nowrap;
+    vertical-align:baseline;
+    background-color:#999;
+    margin:5px;
+    padding:15px;
+    border-radius:10px;
+  }
+</style>

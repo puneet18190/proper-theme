@@ -72,10 +72,10 @@
                         <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> Pets : <%= @data.pets %></span>
                       <%end%>
                       <% if @data.ensuite == "Yes" %>
-                        <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> En-suite : <%= @data.ensuite %></span>
+                        <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> En-suite : <%= @data.ensuite %>,<%= @data.bath %> Bathrooms</span>
                       <%end%>
-                      <% if @data.furnished != "Not Specified" %>
-                        <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> En-suite : <%= @data.furnished %></span>
+                      <% unless @data.let_furn_id == "Not Specified" %>
+                        <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> <%= @data.let_furn_id %></span>
                       <%end%>  
                     </p>
                   </div>

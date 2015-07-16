@@ -34,20 +34,20 @@
             </div>
             <div class="list_image_detail">
               <ul id="list_images_property">
-                <li><a href="#" data-bigimage="<%=responsive_image(@data.image2)%>"><%= image_tag responsive_image(@data.image2), alt: "Thum"%></a></li>
-                <li><a href="#" data-bigimage="<%=responsive_image(@data.image3)%>"><%= image_tag responsive_image(@data.image3), alt: "Thum"%></a></li>
-                <li><a href="#" data-bigImage="<%=responsive_image(@data.image4)%>"><%= image_tag responsive_image(@data.image4), alt: "Thum"%></a></li>
-                <li><a href="#" data-bigimage="<%=responsive_image(@data.image5)%>"><%= image_tag responsive_image(@data.image5), alt: "Thum"%></a></li>
-                <li><a href="#" data-bigimage="<%=responsive_image(@data.image6)%>"><%= image_tag responsive_image(@data.image6), alt: "Thum"%></a></li>
-                <li><a href="#" data-bigimage="<%=responsive_image(@data.image7)%>"><%= image_tag responsive_image(@data.image7), alt: "Thum"%></a></li>
-                <li><a href="#" data-bigimage="<%=responsive_image(@data.image8)%>"><%= image_tag responsive_image(@data.image8), alt: "Thum"%></a></li>
+                <%unless @data.image2.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image2.url(:medium)%>"><%= image_tag @data.image2.url(:medium), alt: "Thum"%></a></li><%end%>
+                <%unless @data.image3.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image3.url(:medium)%>"><%= image_tag @data.image3.url(:medium), alt: "Thum"%></a></li><%end%>
+                <%unless @data.image4.url(:medium).nil? %><li><a href="#" data-bigImage="<%=@data.image4.url(:medium)%>"><%= image_tag @data.image4.url(:medium), alt: "Thum"%></a></li><%end%>
+                <%unless @data.image5.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image5.url(:medium)%>"><%= image_tag @data.image5.url(:medium), alt: "Thum"%></a></li><%end%>
+                <%unless @data.image6.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image6.url(:medium)%>"><%= image_tag @data.image6.url(:medium), alt: "Thum"%></a></li><%end%>
+                <%unless @data.image7.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image7.url(:medium)%>"><%= image_tag @data.image7.url(:medium), alt: "Thum"%></a></li><%end%>
+                <%unless @data.image8.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image8.url(:medium)%>"><%= image_tag responsive_image(@data.image8), alt: "Thum"%></a></li><%end%>
               </ul>
               <div class="clearfix"></div>
               <a id="prev2" class="prev" href="#">&lt;</a>
               <a id="next2" class="next" href="#">&gt;</a>
             </div>
             
-            <h3 style="margin-top:40px">Property Description<a class="btn btn-proper" href="<%=brochure_path(:id => @data.id, format: 'pdf')%>" style="float:right" target="_blank">Download Brochure</a></h3>
+            <h3 style="margin-top:40px">Property Description<a class="btn btn-proper" href="<%=brochure_path(:id => @data.id, format: 'pdf')%>" style="float:right;color:white" target="_blank">Download Brochure</a></h3>
             <p> <%= raw(@data.short_description) %>  </p>
             <div class="property-details" style="width:100%;">
               <p>
