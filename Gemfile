@@ -126,6 +126,6 @@ group :development do
 end	
 
 gem 'jquery-datatables-rails', '~> 3.3.0'
-group :development do
+group :production do
 	gem 'thin'
 end
