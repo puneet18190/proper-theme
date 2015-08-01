@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  layout :layout_by_resource
+  # layout :layout_by_resource
   before_filter :configure_devise_params, if: :devise_controller?
   has_mobile_fu
   def configure_devise_params
@@ -23,17 +23,17 @@ class ApplicationController < ActionController::Base
     redirect_to request.referer || path
   end
 
-  protected
+  # protected
 
-  def layout_by_resource
-    if is_mobile_device?
-      puts "============mobile===================="
-      "mobile"
-    else
-      puts "============application===================="
-      "application"
-    end
-  end
+  # def layout_by_resource
+  #   if is_mobile_device?
+  #     puts "============mobile===================="
+  #     "mobile"
+  #   else
+  #     puts "============application===================="
+  #     "application"
+  #   end
+  # end
 
 end
 

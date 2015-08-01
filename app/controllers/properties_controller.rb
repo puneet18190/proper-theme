@@ -1,7 +1,7 @@
 class PropertiesController < ApplicationController
   layout proc { false if request.xhr? }
   before_action :set_property, only: [:show, :edit, :update, :destroy]
-  respond_to :html, :xml, :json
+  respond_to :html, :xml, :json, :mobile
   load_and_authorize_resource
   require "open-uri"
   require 'nokogiri'

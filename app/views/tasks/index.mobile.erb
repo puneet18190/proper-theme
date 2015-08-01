@@ -98,10 +98,10 @@
                             <%= search_form_for Property.search(params[:q]) do |f| %>
                             <%= f.label :category_cont, "Category" %>
 <!--                             <input type="text" placeholder="Type Your Location" name="" value="" class="input-block-level" required=""/> -->
-                            <%= f.select :category_cont, ["Rent","Sale"], class: "input-block-level" %>
+                            <%= f.select :category_cont, ["Rent","Sale"],{}, class: "input-block-level" %>
                             <br/><br/>
                             <%= f.label :type, "Type" %>
-                            <%= f.search_field :property_type_cont %>
+                            <%= f.search_field :property_type_cont,class: "input-block-level",style: "min-height: 0;padding-left:0;padding-right:0" %>
                             
 <!--                             <label>Radius</label>
                             <select name="" class="input-block-level" required="">
@@ -122,7 +122,7 @@
                                     <%= f.label :price_lteq, "Min Price",class: "control-label" %>
                                     <!-- <label class="control-label" >Min Price</label> -->
                                     <div class="controls">
-                                        <%= f.search_field :price_gteq,:style=>"width:80px" %>
+                                        <%= f.search_field :price_gteq,:style=>"width:80px;min-height:0",class: "input-block-level" %>
                                         <!-- <select name="" class="input-block-level" required="">
                                             <option value="">All</option>
                                             <option value="1">1000</option>
@@ -137,7 +137,7 @@
                                     <%= f.label :price_gteq, "Max Price", class: "control-label" %>
                                     <!-- <label class="control-label">Max Price</label> -->
                                     <div class="controls">
-                                        <%= f.search_field :price_lteq,:style=>"width:80px" %>
+                                        <%= f.search_field :price_lteq,:style=>"width:80px;min-height:0;padding-left:0;padding-right:0",class: "input-block-level" %>
                                         <!-- <select name=""   class="input-block-level" required="">
                                             <option value="">All</option>
                                             <option value="1">10000</option>
@@ -165,7 +165,7 @@
                             </div> -->
                             <%= f.label :beds_eq, "Number of Bedrooms" %>
                             <!-- <label>Bath</label> -->
-                            <%=f.select :beds_eq, ["1","2","3","4","5+"], class: "input-block-level" %>
+                            <%=f.select :beds_eq, ["1","2","3","4","5+"],{}, class: "input-block-level" %>
                             <!-- <select name=""  class="input-block-level " required="">
                                 <option value="">All</option>
                                 <option value="1">1</option>
@@ -176,7 +176,7 @@
                             </select> -->
                             <br/><br/>
                             <%= f.label :location %>
-                            <%= f.search_field :postcode_cont %>
+                            <%= f.search_field :postcode_cont,class: "input-block-level",style: "min-height: 0;padding-left:0;padding-right:0" %>
                             <!-- <label>Beds</label>
                             <select name=""  class="input-block-level " required="">
                                 <option value="">All</option>

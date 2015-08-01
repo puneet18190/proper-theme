@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :properties
   resources :mails
   # resources :advertisements
-  devise_for :users, controllers: { confirmations: "confirmations" }
+  devise_for :users, controllers: { confirmations: "confirmations", sessions: "sessions" }
 
   root 'tasks#index'
   post 'properties/approve'
