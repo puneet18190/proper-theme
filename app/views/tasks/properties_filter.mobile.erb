@@ -1,138 +1,260 @@
+<!--Start Content-->
 <div id="content">
-  <div id="main-title-content" class="no-padding">
-    <img src="assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
-    <div class="container">
-      <div class="panel">
-        <h1>Properties</h1>
-        <p>Sub Title Here</p>
-      </div>
-    </div>
-  </div>
-  <div class="news-carousel-wrapper">
-    <dl id="news-carousel" class="news-carousel-style">
-      <%= render 'properties/news_carousel'%>
-    </dl>
-  </div>
-  <div class="container" style="width:1030px">
-    <div class="row-fluid">
-      <div class="span9">
-        <div class="panel right-line">
-          <div class="row-fluid">
-            <div class="span6">
-              <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span> Properties List</h2>   
+    <!--Start Main Title-->
+    <div id="main-title-content" class="no-padding">
+        <img src="/assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
+        <div class="container">
+            <div class="panel">
+                <h1>Properties</h1>    
+                <p>Sub Title Here</p>    
             </div>
-            <div class="span6 ">
-              <div class="main-heading bottom-line line-before filterarea">
-                <form class="filterform">
-                  <p></p>
-                    <select class="sort">
-                        <option class="asc active" id="asc">Asc</option>
-                        <option class="desc" id="desc">Desc</option>
-                    </select>
-                    <select class="condition">
-                        <option class="price active" id="price">Price</option>
-                        <option class="name" id="name">Name</option>
-                    </select>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="filter_data">
-          <% if @data.empty? %>
-            <div class="item" >
-              <a href="#" class="with-hover">
-                <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
-              </a>
-            </div>
-          <% else %>
-            <% @data.each do |task| %>
-              <% if task.visibility== true %>
-                <div class="list-properties right-space">
-                  <div class="property ">
-                    <div class="row-fluid">
-                      <div class="span6">
-                        <div class="property-images">
-                          <a href="#">
-                            <div class="mask">
-                              <div class="desc-type for-sale">To <%= task.category %></div>
-                              <div class="price">&pound; <%= task.price.to_i %></div>
-                            </div>
-                            <%= image_tag responsive_image(task.image1), :style=>"height:250px;width:500px;" %>
-                          </a>
-                        </div>
-                      </div>
-                      <div class="span6">
-                        <div class="property-details">
-                          <h3><a href="#"><%=task.name%></a></h3>
-                          <p><%= task.short_description %></p>
-                          <p>
-                            <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= task.beds %></span>
-                            <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= task.bath %></span>
-                            <span class="label"><i class="icon-circle-arrow-right"></i> Garden : <%= task.garden %></span>
-                            <% unless task.parking_status == "none" %>
-                              <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> Parking : <%= task.parking_status %></span>
-                            <%end%>
-                            <% if task.gas_ch == "Yes" %>
-                              <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> Gas CH : <%= task.gas_ch %></span>
-                            <%end%>
-                            <% if task.dg == "Yes" %>
-                              <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> DG : <%= task.dg %></span>
-                            <%end%>  
-                          </p>
-                          <div class="agent-preview">
-                            <div class="agent-image pull-left"  ><a href="#"><%= image_tag responsive_image(task.agent.image), :style=>"height:80px;width:200px;" %></a></div>
-                            <div class="agent-contant pull-right">
-                              <ul class="unstyled">
-                                <li><i class="icon-phone"></i><%=task.agent.phone%></li>
-                                <li><i class="icon-envelope"></i><%=task.agent.email_id%></li>
-                                <li><i class="icon-facebook"></i><%=task.agent.fb_id%></li>
-                                <li><i class="icon-twitter"></i><%=task.agent.twitter_id%></li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-            <% end %>
-          <% end %>
         </div>
-        </div>
-      </div>
-      <div class="span3">
-        <div class="panel">
-          <%= render 'shared/property_search'%>
-          <h3 class="bottom-line  line-before main-heading">
-            <span class="main-circle-icon"><i class="icon-list"></i></span>  Our Agents
-          </h3>
-          <div class="list-items ">
-            <% @agents.each do |agent| %>
-              <div class="item">
-                <%=  image_tag responsive_image(agent.image), alt: "Corin Langpost", class: "img-preview" %>
-                  <div class="item-desk">
-                    <div class="title">
-                      <h3><a href="#"><%=agent.name%></a></h3>
-                    </div>
-                    <div class="location"><%=agent.address%></div>
-                    <a href="#" class="btn-proper btn-mini btn">Profile Page</a>
-                  </div>
-                <div class="clearfix"></div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    </div> <!--End Main Title-->
 
+    <!--    News Carousel -->
+    <div class="news-carousel-wrapper">
+        <dl id="news-carousel" class="news-carousel-style">
+            <%= render 'properties/news_carousel'%>
+        </dl>
+    </div><!--  End News Carousel -->
+
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span9">
+                <div class="panel right-line">
+                    <!--  Start List Properties -->
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span> Properties List</h2>   
+                        </div>
+                        <div class="span6 ">
+                            <div class="main-heading bottom-line line-before filterarea">
+                                <form class="filterform">
+                                  <!-- <p></p> -->
+                                    <select class="sort">
+                                        <option class="asc active" id="asc">Asc</option>
+                                        <option class="desc" id="desc">Desc</option>
+                                    </select>
+                                    <select class="condition">
+                                        <option class="price active" id="price">Price</option>
+                                        <option class="name" id="name">Name</option>
+                                    </select>
+                                </form>
+
+                                <div class="clearfix"></div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="list-properties right-space filter_data">
+                        <% if @data.empty? %>
+                            <div class="item" >
+                              <a href="#" class="with-hover">
+                                <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
+                              </a>
+                            </div>
+                          <% else %>
+                            <% @data.each do |task| %>
+                              <% if task.visibility== true %>
+                                <div class="property ">
+                                    <div class="row-fluid">
+                                        <div class="span6">
+                                            <div class="property-images">
+                                                <a href="#">
+                                                    <div class="mask">
+                                                        <div class="desc-type for-sale">To <%= task.category %></div>
+                                                        <div class="price">&pound; <%= task.price.to_i %></div>
+                                                    </div>
+                                                    <%= image_tag responsive_image(task.image1), :style=>"height:250px;width:500px;" %>
+                                                    <!-- <img src="/assets/properties/p1.jpg" alt="property"/> -->
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="span6">
+                                            <div class="property-details">
+                                                <h3><a href="#"><%=task.name%></a></h3>
+                                                <p><%= task.short_description %></p>
+                                                <p>
+                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= task.beds %></span>
+                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= task.bath %></span>
+                                                    <span class="label"><i class="icon-circle-arrow-right"></i> Garden : <%= task.garden %></span>
+                                                    <% unless task.parking_status == "none" %>
+                                                      <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> Parking : <%= task.parking_status %></span>
+                                                    <%end%>
+                                                    <% if task.gas_ch == "Yes" %>
+                                                      <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> Gas CH : <%= task.gas_ch %></span>
+                                                    <%end%>
+                                                    <% if task.dg == "Yes" %>
+                                                      <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> DG : <%= task.dg %></span>
+                                                    <%end%>
+                                                </p>
+                                                <div class="agent-preview">
+                                                    <div class="agent-image pull-left"  ><a href="#"><%= image_tag responsive_image(task.agent.image), :style=>"height:80px;width:200px;" %></a></div>
+                                                    <div class="agent-contant pull-right">
+                                                      <ul class="unstyled">
+                                                        <li><i class="icon-phone"></i><%=task.agent.phone%></li>
+                                                        <li><i class="icon-envelope"></i><%=task.agent.email_id%></li>
+                                                        <li><i class="icon-facebook"></i><%=task.agent.fb_id%></li>
+                                                        <li><i class="icon-twitter"></i><%=task.agent.twitter_id%></li>
+                                                      </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                              <% end %>
+                            <% end %>
+                          <% end %>
+                    </div><!--  End  List Properties -->
+                    <!--  Start Pagination -->
+                    <!-- <div class="pagination pagination-large">
+                        <ul>
+                            <li><a href="#"><i class=" icon-angle-left"></i></a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#"><i class=" icon-angle-right"></i></a></li>
+                        </ul>
+                    </div> -->
+                </div>
+            </div>
+            <div class="span3">
+                    <div class="panel">
+                        <!--Start Form Search Properties-->
+                        <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-search"></i></span>  Find Properties</h3>    
+                        <form class="bottom-line line-before" action="/search_results" method="get">
+                            <%= search_form_for Property.search(params[:q]) do |f| %>
+                            <%= f.label :category_cont, "Category" %>
+<!--                             <input type="text" placeholder="Type Your Location" name="" value="" class="input-block-level" required=""/> -->
+                            <%= f.select :category_cont, ["Rent","Sale"],{}, class: "input-block-level" %>
+                            <br/><br/>
+                            <%= f.label :type, "Type" %>
+                            <%= f.search_field :property_type_cont,class: "input-block-level",style: "min-height: 0;padding-left:0;padding-right:0" %>
+                            
+<!--                             <label>Radius</label>
+                            <select name="" class="input-block-level" required="">
+                                <option value="">This area only</option>
+                                <option value="">Within 1/4 mile</option>
+                                <option value="">Within 1/2 mile</option>
+                                <option value="">Within 1 mile</option>
+                                <option value="">Within 3 miles</option>
+                                <option value="">Within 5 miles</option>
+                                <option value="">Within 10 miles</option>
+                                <option value="">Within 15 miles</option>
+                                <option value="">Within 20 miles</option>
+                                <option value="">Within 30 miles</option>
+                                <option value="">Within 40 miles</option>
+                            </select> -->
+                            <div class="control-group-form">
+                                <div class="control-group half pull-left">
+                                    <%= f.label :price_lteq, "Min Price",class: "control-label" %>
+                                    <!-- <label class="control-label" >Min Price</label> -->
+                                    <div class="controls">
+                                        <%= f.search_field :price_gteq,:style=>"width:80px;min-height:0",class: "input-block-level" %>
+                                        <!-- <select name="" class="input-block-level" required="">
+                                            <option value="">All</option>
+                                            <option value="1">1000</option>
+                                            <option value="9">2000</option>
+                                            <option value="9">3000</option>
+                                            <option value="9">4000</option>
+                                            <option value="9">5000+</option>
+                                        </select> -->
+                                    </div>
+                                </div>
+                                <div class="control-group half text-right pull-right">
+                                    <%= f.label :price_gteq, "Max Price", class: "control-label" %>
+                                    <!-- <label class="control-label">Max Price</label> -->
+                                    <div class="controls">
+                                        <%= f.search_field :price_lteq,:style=>"width:80px;min-height:0;padding-left:0;padding-right:0",class: "input-block-level" %>
+                                        <!-- <select name=""   class="input-block-level" required="">
+                                            <option value="">All</option>
+                                            <option value="1">10000</option>
+                                            <option value="9">20000</option>
+                                            <option value="9">30000</option>
+                                            <option value="9">40000</option>
+                                            <option value="9">50000+</option>
+                                        </select> -->
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <!-- <div class="control-group-form">
+                                <div class="control-group half pull-left">
+                                    <label class="checkbox">
+                                        <input type="checkbox" > Rent Property
+                                    </label>
+                                </div>
+                                <div class="control-group half text-right pull-right">
+                                    <label class="checkbox">
+                                        <input type="checkbox"> Sell Property
+                                    </label>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div> -->
+                            <%= f.label :beds_eq, "Number of Bedrooms" %>
+                            <!-- <label>Bath</label> -->
+                            <%=f.select :beds_eq, ["1","2","3","4","5+"],{}, class: "input-block-level" %>
+                            <!-- <select name=""  class="input-block-level " required="">
+                                <option value="">All</option>
+                                <option value="1">1</option>
+                                <option value="9">2</option>
+                                <option value="9">3</option>
+                                <option value="9">4</option>
+                                <option value="9">5+</option>
+                            </select> -->
+                            <br/><br/>
+                            <%= f.label :location %>
+                            <%= f.search_field :postcode_cont,class: "input-block-level",style: "min-height: 0;padding-left:0;padding-right:0" %>
+                            <!-- <label>Beds</label>
+                            <select name=""  class="input-block-level " required="">
+                                <option value="">All</option>
+                                <option value="1">1</option>
+                                <option value="9">2</option>
+                                <option value="9">3</option>
+                                <option value="9">4</option>
+                                <option value="9">5+</option>
+                            </select> -->
+
+                            <!-- <button type="submit" class="input-block-level btn-proper btn btn-large"> Search</button> -->
+                            <%= f.submit "Search", :class=>"input-block-level btn-proper btn btn-large" %>
+                            <%end%>
+                        </form>
+                        <!--End Form Search Properties-->
+
+                        <!--Start List Our Agent-->
+                        <h3 class="bottom-line  line-before main-heading"><span class="main-circle-icon"><i class="icon-list"></i></span>  Our Agents</h3>
+                        <div class="list-items ">
+                            <% @agents.each do |obj| %>
+                                <div class="item">
+                                    <div class="img-preview">
+                                        <!-- <img src="/assets/agents/thum_list/a2.jpg" alt="Corin Langpost" /> -->
+                                        <%=  image_tag responsive_image(obj.image) %>
+                                    </div>
+                                    <div class="item-desk">
+                                        <div class="title">
+                                            <h3><a href="#"><%=obj.name%></a></h3>
+                                        </div>
+                                        <div class="location"><%=obj.address%></div>
+                                        <a href="#" class="btn-proper btn-mini btn">Profile Page</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            <% end %>
+                        </div>
+                        <!--End List Our AGents -->
+                    </div>
+                </div>
+        </div>
+    </div>
+</div><!--EndContent-->
 <script type="text/javascript">
   $(document).ready(function() {
     $(".condition, .sort").click(function(){
       target = document.getElementById('loading')
-      spinner = new Spinner({radius: 80,width:25,length:60}).spin(target)
+      // spinner = new Spinner({radius: 80,width:25,length:60}).spin(target)
       var src = $( "."+$(this).attr("class")+" option:selected" )
       if(src.attr("id") == "asc" || src.attr("id") == "desc"){
         condition = $(".condition .active").attr("id")
@@ -149,10 +271,10 @@
         data: "condition="+condition+"&sort="+sort,
         success: function(res){
           $(".filter_data").html($(res).find(".filter_data").html())
-          target.removeChild(spinner.el)
+          // target.removeChild(spinner.el)
         },
         error: function(){
-          target.removeChild(spinner.el)
+          // target.removeChild(spinner.el)
         }
       })
     })

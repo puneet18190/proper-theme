@@ -73,7 +73,7 @@ class TasksController < ApplicationController
 
   def properties_filter
     if request.xhr?
-      @data = Property.order("#{params["condition"]} #{params["sort"]}")
+      @data = Property.order("#{params["condition"]} #{params["sort"]}").includes(:agent)
     else  
       @data = Property.order("price asc").includes(:agent)
     end  
