@@ -47,13 +47,13 @@
                               <li><a href="#" data-bigimage="/assets/interior/i6.jpg" data-title="Interior 06" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="/assets/interior/i6.jpg" alt="Thum"/></a></li>
                               <li><a href="#" data-bigimage="/assets/interior/i7.jpg" data-title="Interior 07" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="/assets/interior/i7.jpg" alt="Thum"/></a></li>
                               <li><a href="#" data-bigimage="/assets/interior/i8.jpg" data-title="Interior 08" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="/assets/interior/i8.jpg" alt="Thum"/></a></li> -->
-                              <%unless @data.image2.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image2.url(:medium)%>"><%= image_tag @data.image2.url(:medium), alt: "Thum"%></a></li><%end%>
-                              <%unless @data.image3.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image3.url(:medium)%>"><%= image_tag @data.image3.url(:medium), alt: "Thum"%></a></li><%end%>
-                              <%unless @data.image4.url(:medium).nil? %><li><a href="#" data-bigImage="<%=@data.image4.url(:medium)%>"><%= image_tag @data.image4.url(:medium), alt: "Thum"%></a></li><%end%>
-                              <%unless @data.image5.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image5.url(:medium)%>"><%= image_tag @data.image5.url(:medium), alt: "Thum"%></a></li><%end%>
-                              <%unless @data.image6.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image6.url(:medium)%>"><%= image_tag @data.image6.url(:medium), alt: "Thum"%></a></li><%end%>
-                              <%unless @data.image7.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image7.url(:medium)%>"><%= image_tag @data.image7.url(:medium), alt: "Thum"%></a></li><%end%>
-                              <%unless @data.image8.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image8.url(:medium)%>"><%= image_tag responsive_image(@data.image8), alt: "Thum"%></a></li><%end%>
+                              <%unless @data.image2.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image2.url(:large)%>"><%= image_tag @data.image2.url(:medium), alt: "Thum"%></a></li><%end%>
+                              <%unless @data.image3.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image3.url(:large)%>"><%= image_tag @data.image3.url(:medium), alt: "Thum"%></a></li><%end%>
+                              <%unless @data.image4.url(:medium).nil? %><li><a href="#" data-bigImage="<%=@data.image4.url(:large)%>"><%= image_tag @data.image4.url(:medium), alt: "Thum"%></a></li><%end%>
+                              <%unless @data.image5.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image5.url(:large)%>"><%= image_tag @data.image5.url(:medium), alt: "Thum"%></a></li><%end%>
+                              <%unless @data.image6.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image6.url(:large)%>"><%= image_tag @data.image6.url(:medium), alt: "Thum"%></a></li><%end%>
+                              <%unless @data.image7.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image7.url(:large)%>"><%= image_tag @data.image7.url(:medium), alt: "Thum"%></a></li><%end%>
+                              <%unless @data.image8.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image8.url(:large)%>"><%= image_tag responsive_image(@data.image8), alt: "Thum"%></a></li><%end%>
                           </ul>
                           <div class="clearfix"></div>
                           <a id="prev2" class="prev" href="#">&lt;</a>
@@ -81,7 +81,7 @@
                             <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> Pets : <%= @data.pets %></span>
                           <%end%>
                           <% if @data.ensuite == "Yes" %>
-                            <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> En-suite : <%= @data.ensuite %></span>
+                            <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> En-suite : <%= @data.ensuite %>, <%= @data.bath %> Bathrooms</span>
                           <%end%>  
                         </p>
                       </div>

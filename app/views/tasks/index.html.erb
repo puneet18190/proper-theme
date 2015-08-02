@@ -134,14 +134,15 @@
             latLng:[54.9484992,-1.6144501],
             data:{
               img_preview: img_p, 
-              properties_name:"SEAL Properties 0191 5805900",
+              properties_name:"SEAL Properties Office <br> 0191 5805900",
               properties_desc:"Opening times Mon-fri Sat",
               properties_link:"#", 
               zip:"009800",
               city:"167/169 Saltwell Road, Gateshead, NE8 4TJ",
               id: '0',
-              price: '',
-              slug: '/contact'
+              price: 'Price',
+              slug: '/contact',
+              bed: 'No Bedrooms'
             }, 
             options:{
               icon: icon_hotel //Image or icon of shop want to display on map
@@ -161,8 +162,9 @@
                 zip:'<%=obj.postcode%>', 
                 city:'<%=obj.address3%>',
                 id: '<%=obj.id%>',
-                price: "&pound;<%=obj.price.to_i%>",
-                slug: '/properties_detail/<%=obj.slug%>'
+                price: "Price: &pound;<%=obj.price.to_i%>",
+                slug: '/properties_detail/<%=obj.slug%>',
+                bed: '<%=obj.beds%> Bedrooms'
               }, 
               options:{
                 icon: icon_villa
@@ -186,6 +188,7 @@
                     + context.data.properties_name +
                     "</a></h4>"+
                     "<a href='"+context.data.slug+"'><img src='"+ context.data.img_preview +"' width='90' style='height:75px'></a>"+
+                    context.data.bed +'<br/>'+
                     context.data.price +
                     "<br/><br/><a href='"+context.data.slug +"'class='btn btn-proper btn-small'>See Detail</a></div>" +
                     "</div>" +
@@ -209,5 +212,9 @@
 <style>
   select#q_radius{
     width:90px;
+  }
+  #googleMap .info-location {
+    height: 145px;
+    margin-top: -110px
   }
 </style>

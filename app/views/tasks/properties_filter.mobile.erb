@@ -6,7 +6,7 @@
         <div class="container">
             <div class="panel">
                 <h1>Properties</h1>    
-                <p>Sub Title Here</p>    
+                <p>Currently Available</p>    
             </div>
         </div>
     </div> <!--End Main Title-->
@@ -61,7 +61,7 @@
                                     <div class="row-fluid">
                                         <div class="span6">
                                             <div class="property-images">
-                                                <a href="#">
+                                                <a href=<%= "/properties_detail/"+task.slug%>>
                                                     <div class="mask">
                                                         <div class="desc-type for-sale">To <%= task.category %></div>
                                                         <div class="price">&pound; <%= task.price.to_i %></div>
@@ -73,7 +73,7 @@
                                         </div>
                                         <div class="span6">
                                             <div class="property-details">
-                                                <h3><a href="#"><%=task.name%></a></h3>
+                                                <h3><a href=<%= "/properties_detail/"+task.slug%>><%=task.name%></a></h3>
                                                 <p><%= task.short_description %></p>
                                                 <p>
                                                     <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= task.beds %></span>
