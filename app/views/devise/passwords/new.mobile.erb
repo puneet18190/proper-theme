@@ -1,0 +1,24 @@
+<div id="content">
+  <div class="news-carousel-wrapper">
+    <dl id="news-carousel" class="news-carousel-style" >
+      <%= render 'properties/news_carousel'%>
+    </dl>
+  </div>
+  <div class="panel proper-form-bg" style="background-image:none">
+
+	<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+		<div class="proper-login">
+			<%= devise_error_messages! %>
+			<h4>Forgot your password?</h4>
+		 	<div class="field">
+				<%= f.label :email %>
+				<%= f.email_field :email, autofocus: true %>
+			</div>
+			<div class="actions">
+				<%= f.submit "Send me reset password instructions" %>
+			</div>
+			<%= render "devise/shared/links" %>
+		</div>
+	<%end%>
+  </div>
+</div>  
