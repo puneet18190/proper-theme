@@ -75,7 +75,7 @@
             <%#= link_to 'Download Broucher', broucher_path(:id => @data.id, format: 'pdf') %>
             <br/>
             <h3>Property Specification</h3>
-            <%=raw(@data.description)%>
+            <p><%=raw(ActionView::Base.full_sanitizer.sanitize(@data.description.gsub("<br>","|")).gsub("|","<br>") )%></p>
             <div class="addthis_toolbox addthis_default_style addthis_16x16_style" style="margin-top:20px">
               <a href="/facebook_share/<%=@data.id %>"><img src="/assets/fb_share.jpg" height="5" style="height: 24px;padding: 5px;margin-top: -8px;width: 70px;"></a>
               <a class="addthis_button_twitter"></a>

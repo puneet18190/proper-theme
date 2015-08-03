@@ -62,7 +62,7 @@
                       <a class="btn btn-proper" href="<%=brochure_path(:id => @data.id, format: 'pdf')%>" style="float:right;color:white" target="_blank">Download Brochure</a>
                       <!-- END SLIDER -->
                       <h3>Property Description</h3>
-                      <p><%= raw(@data.short_description) %></p>
+                      <p><%=raw(ActionView::Base.full_sanitizer.sanitize(@data.description.gsub("<br>","|")).gsub("|","<br>") )%></p>
                       <div class="property-details" style="width:100%;">
                         <p>
                           <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= @data.beds %></span>
