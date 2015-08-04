@@ -58,7 +58,7 @@
         <td><%= property.property_type %></td>
         <td><%= link_to 'Show', "/properties_detail/"+property.slug %></td>
         <% if can? :update, @property %>
-          <td><%= link_to 'Edit', edit_property_path(property) %> </td>
+          <td><%= link_to 'Edit', edit_property_path(property),onClick: "$('.long_desc').cleditor();" %> </td>
         <% end %>
         
         <% if can? :destroy, @property %>
