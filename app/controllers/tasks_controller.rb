@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   layout proc { false if request.xhr? }	
-  respond_to :html, :xml, :json,:mobile
+  respond_to :html, :xml, :json,:mobile, :tablet
   def index
     # if is_mobile_device? == false
       @properties = Property.where({payment: true, visibility: true, approve: true})

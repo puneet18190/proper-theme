@@ -1,0 +1,78 @@
+<div id="content">
+    <div id="main-title-content">
+        <img src="assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
+        <div class="container">
+            <div class="panel">
+                <h1>News</h1>    
+                <p>Agency and Industry News</p>    
+            </div>
+        </div>
+    </div>
+    <div class="news-carousel-wrapper">
+        <dl id="news-carousel" class="news-carousel-style">
+          <%= render 'properties/news_carousel'%>
+        </dl>
+    </div>
+    <div class="container">
+        <div class="panel">
+            <div class="row-fluid bottom-line">
+                <div class="span12">
+                    <h2 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-check"></i></span> News</h2>
+                    <section class="">
+                        <ul class="nav nav-tabs bot-tab" >
+                            <li class="active"><a href="#home">Our News</a></li>
+                            <li><a href="#industry">Industry News</a></li>
+                        </ul>
+                        <div class="tab-content custom-tab">
+                            <div class="tab-pane active" id="home">
+                                <div class=" news right-space">
+                                    <% @news.each do |news| %>
+                                        <div class="media box-white" style="margin-top:20px">
+                                            <%unless news.image.url=="default_images/no.jpg"%>
+                                                <a class="pull-left" href="#">
+                                                    <img alt="images" class="media-object" src="<%=news.image.url(:thumb)%>" style="width:180px;height:100px">
+                                                </a>
+                                            <%end%>    
+                                            <div class="media-body">
+                                                <h4 class="media-heading"><%=news.title%></h4>
+                                                <p><%=news.description%></p>
+                                            </div>
+                                        </div>
+                                    <%end%>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="industry">
+                                <div class=" news right-space">
+                                    <% @p_title.each_with_index do |a,i| %>
+                                        <div class="media box-white" style="margin-top:20px">
+                                            <a class="pull-left news_img" href="#">
+                                                <%= raw(@p_image[i+1]) %>
+                                            </a>
+                                            <div class="media-body">
+                                                <h4 class="media-heading"><%= @p_title[i+1] %></h4>
+                                                <p><%= raw(@p_description[i+1]) %></p>
+                                            </div>
+                                        </div>
+                                    <%end%>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        init_tabs();
+    })
+</script>
+
+<style>
+    .news_img img{
+        width:180px;
+        height: 100px
+    }
+</style>

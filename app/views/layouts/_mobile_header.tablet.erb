@@ -1,0 +1,107 @@
+<!-- Start Wrapper-->
+        <div id="wrapper">
+<!-- start breadcrumb -->
+<div id="breadcrumb-wrapper">
+    <div class="container">
+        <div class="pull-left"><%= Time.now.strftime("%A, %d %B %Y") %></div>
+        <div class="pull-right">
+            <% if user_signed_in? %>
+              <% if current_user.status == "admin" %>
+                <%= link_to "Admin", properties_path %>
+                <%= link_to "Admin Mails", mails_path %>
+              <% elsif current_user.status == "landlord" %>
+                <%= link_to "Profile", "/users/profile" %>
+                <%= link_to "List Properties", properties_path %>
+                <%= link_to "Click here to Add Property", new_property_path %>
+                <%= link_to "List Conversations", conversations_path %>
+                <%= link_to "My Plans", my_plan_path %>
+                <%= link_to "Tenant Search", tenant_searching_path %>
+              <% else %>
+                <%= link_to "Profile", "/users/profile" %>
+                <%= link_to "Payment", payment_property_path %>
+                <%= link_to "Search Properties", search_property_path %>
+                <%= link_to "List Conversations", conversations_path %>
+                <%= link_to "My Plans", my_plan_path %>
+              <% end %>
+              Logged in as <strong><%= current_user.email %></strong>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+            <% else %>
+              <%= link_to "Sign up", new_user_registration_path %> |
+              <%= link_to "Login", new_user_session_path %>
+            <% end %>
+        </div>
+    </div>
+</div><!-- end breadcrumb -->
+<!-- start header-wrapper -->
+<div id="header-wrapper" style="background-color:white">
+    <div class="container">
+        <div class="panel">
+            <div class="row-fluid">
+                <!-- <div class="span9 right-line">
+                    <a class="brand" href="index.html" ><h1 class="font-caly"><img src="/assets/logo.png" width="40" alt="logo"> Proper <small class="visible-desktop visible-tablet">Real Esatate Template</small></h1></a>
+                </div> -->
+                <div class="span9 right-line" style=" min-height: 120px;">
+                    <div><a class="brand" href="/index" ><img src="/assets/seal_logo.png" style="margin: 10px; height: 100px; width: 830px;"></a> </div>
+                    <small class="visible-desktop visible-tablet"></small>
+                  </div>
+                <div class="span3 ">
+                    <div class="clearfix">
+                        <!--<div class="language_curency">Curency: <a href="#">$</a> | <a href="#">&euro;</a> &nbsp; lang: <a href="#">En</a> | <a href="#">Ina</a> | <a href="#">Jpn</a></div>-->
+                        <form method="get" class="form-search">
+                            <div class="input-append">
+                                <input title="Keywords." class="search-query form-text input-block-level" placeholder="Search" type="text" name="">
+                                <button type="submit" class="btn"><i class="icon-search"></i></button>
+                            </div><!-- /.input-append -->
+                        </form>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div><!-- End header-wrapper -->
+<!-- start Navigation -->
+<div id="navigation">
+    <div class="container">
+        <div class="navbar navbar-inverse">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <span class="brand visible-phone visible-tablet">Navbar</span>
+                    <!--.nav-collapse -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/index">Home With Map</a></li>
+                                    <li><a href="/home_simple">Home Simple</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/properties_filter">Properties</a></li>
+                            <li><a href="/agents">Agents</a></li>
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Additional Information<b class="caret"></b></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="/about_us">About Us</a></li>
+                                <li><a href="/testimonials">Testimonials</a></li>
+                                <li><a href="/faq">FAQ</a></li>
+                                <li><a href="/career">Career</a></li>
+                              </ul>
+                            </li>
+                            <li><a href="/news">News</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                            <li><a href="/pricing">Landlord</a></li>
+                            <li><a href="/pricing_tenant">Tenant</a></li>
+                        </ul>
+                        <!-- <a class="pull-right mylisting" href="upload_step1.html"><i class=" icon-folder-close-alt"></i> Upload Items</a> -->
+
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- end Navigation -->

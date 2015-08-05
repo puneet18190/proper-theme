@@ -1,0 +1,214 @@
+<div id="content">
+  <!--Start Main Title-->
+  <div id="main-title-content">
+      <img src="/assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
+      <div class="container">
+          <div class="panel">
+              <h1>Property Details</h1>
+              <p><%= @data.name %></p>    
+          </div>
+      </div>
+  </div> <!--End Main Title-->
+   <!--    News Carousel-->
+  <div class="news-carousel-wrapper">
+      <dl id="news-carousel" class="news-carousel-style">
+          <%= render 'properties/news_carousel'%>
+      </dl>
+  </div>
+  <!--    End News Carousel-->
+  <div class="container">
+      <div class="row-fluid">
+          <div class="span9">
+              <div class="panel right-line">
+                  <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span> Property</h2>   
+                <!-- START DETAIL-->
+                  <div class="detail-properties right-space">
+                      <!-- START SLIDER -->
+                      <div class="big-image text-center">
+                          <div class="preloader"></div>
+                          <!-- <div class="desc-image">
+                              <h3>Central Park 023</h3>
+                              <p>In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque. </p>
+                          </div> -->
+                          <div class="desc-type for-sale" style="height: 30px;width: 100px;position:absolute;top: 0; padding: 5px;left: 0px;color:white;font-size: 25px;background: #FF6666;font-weight: bold;z-index:1;opacity:0.8;padding-top: 15px;"><%=(@data.category == "rent" || @data.category == "Rent") ? "To Rent" : "To Sale" %></div>
+                          <%= image_tag responsive_image(@data.image1), id: "big-image-preview", alt: "big-image-preview", style: "width:100%;height:100%" %>
+                          <!-- <img src="/assets/properties/p1.jpg" id="big-image-preview" alt="big-image-preview"> -->
+                          <div style="height: 25px;width: 100px;position:absolute;font-weight: bold;background-color: rgba(0,0,0,0.6);font-size: 35px;color:white;padding: 10px;bottom: 0;left: 0;padding-top: 20px;">
+                            &pound; <%= @data.price.to_i %>
+                          </div>
+                      </div>
+                      <div class="list_image_detail">
+                          <ul id="list_images_property">
+                              <!-- <li><a href="#" data-bigimage="/assets/interior/i1.jpg" data-title="Interior 01" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="/assets/interior/i1.jpg" alt="Thum"/></a></li>
+                              <li><a href="#" data-bigimage="/assets/interior/i2.jpg" data-title="Interior 02" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="/assets/interior/i2.jpg" alt="Thum"/></a></li>
+                              <li><a href="#" data-bigimage="/assets/interior/i3.jpg" data-title="Interior 03" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="/assets/interior/i3.jpg" alt="Thum"/></a></li>
+                              <li><a href="#" data-bigImage="/assets/interior/i4.jpg" data-title="Interior 04" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="/assets/interior/i4.jpg" alt="Thum"/></a></li>
+                              <li><a href="#" data-bigimage="/assets/interior/i5.jpg" data-title="Interior 05" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="/assets/interior/i5.jpg" alt="Thum"/></a></li>
+                              <li><a href="#" data-bigimage="/assets/interior/i6.jpg" data-title="Interior 06" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="/assets/interior/i6.jpg" alt="Thum"/></a></li>
+                              <li><a href="#" data-bigimage="/assets/interior/i7.jpg" data-title="Interior 07" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="/assets/interior/i7.jpg" alt="Thum"/></a></li>
+                              <li><a href="#" data-bigimage="/assets/interior/i8.jpg" data-title="Interior 08" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="/assets/interior/i8.jpg" alt="Thum"/></a></li> -->
+                              <%unless @data.image2.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image2.url(:large)%>"><%= image_tag @data.image2.url(:medium), alt: "Thum"%></a></li><%end%>
+                              <%unless @data.image3.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image3.url(:large)%>"><%= image_tag @data.image3.url(:medium), alt: "Thum"%></a></li><%end%>
+                              <%unless @data.image4.url(:medium).nil? %><li><a href="#" data-bigImage="<%=@data.image4.url(:large)%>"><%= image_tag @data.image4.url(:medium), alt: "Thum"%></a></li><%end%>
+                              <%unless @data.image5.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image5.url(:large)%>"><%= image_tag @data.image5.url(:medium), alt: "Thum"%></a></li><%end%>
+                              <%unless @data.image6.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image6.url(:large)%>"><%= image_tag @data.image6.url(:medium), alt: "Thum"%></a></li><%end%>
+                              <%unless @data.image7.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image7.url(:large)%>"><%= image_tag @data.image7.url(:medium), alt: "Thum"%></a></li><%end%>
+                              <%unless @data.image8.url(:medium).nil? %><li><a href="#" data-bigimage="<%=@data.image8.url(:large)%>"><%= image_tag responsive_image(@data.image8), alt: "Thum"%></a></li><%end%>
+                          </ul>
+                          <div class="clearfix"></div>
+                          <a id="prev2" class="prev" href="#">&lt;</a>
+                          <a id="next2" class="next" href="#">&gt;</a>
+                      </div>
+                      <a class="btn btn-proper" href="<%=brochure_path(:id => @data.id, format: 'pdf')%>" style="float:right;color:white" target="_blank">Download Brochure</a>
+                      <!-- END SLIDER -->
+                      <h3>Property Description</h3>
+                      <p><%=raw(ActionView::Base.full_sanitizer.sanitize(@data.description.gsub("<br>","|")).gsub("|","<br>") )%></p>
+                      <div class="property-details" style="width:100%;">
+                        <p>
+                          <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= @data.beds %></span>
+                          <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= @data.bath %></span>
+                          <span class="label"><i class="icon-circle-arrow-right"></i> Garden : <%= @data.garden %></span>
+                          <% unless @data.parking_status == "none" %>
+                            <span class="label"><i class="icon-circle-arrow-right"></i> Parking : <%= @data.parking_status %></span>
+                          <%end%>
+                          <% if @data.gas_ch == "Yes" %>
+                            <span class="label"><i class="icon-circle-arrow-right"></i> Gas CH : <%= @data.gas_ch %></span>
+                          <%end%>
+                          <% if @data.dg == "Yes" %>
+                            <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> DG : <%= @data.dg %></span>
+                          <%end%>
+                          <% if @data.pets == "Yes" %>
+                            <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> Pets : <%= @data.pets %></span>
+                          <%end%>
+                          <% if @data.ensuite == "Yes" %>
+                            <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> En-suite : <%= @data.ensuite %>, <%= @data.bath %> Bathrooms</span>
+                          <%end%>  
+                        </p>
+                      </div>
+                      
+                      <!-- <h3>Property Feature</h3>
+                      <ul class="clear">
+                          <li>FMLS #: 3918702</li>
+                          <li>Subdivision: 3</li>
+                          <li>Bedrooms: 3</li>
+                          <li>Bathrooms: Full: 3, Half: 1</li>
+                          <li>Year Built: 2000</li>
+                          <li>Type: Condo/Townhouse</li>
+                          <li>Country: COBB</li>
+                          <li>Status: Active</li>
+                      </ul> -->
+                      <h3>Property Specification</h3>
+                      <p><%=raw(@data.description)%></p>
+                      <!-- AddThis Button BEGIN -->
+                      <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
+                          <a class="addthis_button_facebook"></a>
+                          <a class="addthis_button_twitter"></a>
+                          <a class="addthis_button_pinterest_share"></a>
+                          <a class="addthis_button_google_plusone_share"></a>
+                          <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+                      </div>
+                      <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51965a0e6903b31d"></script>
+                      <!-- AddThis Button END -->
+                  </div>
+                 <!-- END DETAIL-->
+
+              </div>
+          </div>
+          <div class="span3">
+              <div class="panel">
+                  <!-- MAP LOCATION-->
+                  <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-map-marker"></i></span>  Location</h3>    
+                  <div class="bottom-line line-before">
+                    <div id="googleMap" class="" style="height:300px;margin-bottom:25px"></div>
+                      <!-- <iframe id="map-location"  width="100%" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=id&amp;geocode=&amp;q=arvada&amp;aq=&amp;sll=39.777936,-105.074272&amp;sspn=0.149605,0.338173&amp;ie=UTF8&amp;hq=&amp;hnear=Arvada,+Jefferson,+Colorado&amp;ll=39.802764,-105.087484&amp;spn=0.299124,0.676346&amp;t=m&amp;z=11&amp;output=embed"></iframe>    -->
+                  </div><!-- END MAP LOCATION -->
+                  <!-- Detail Agent -->
+                  <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-user"></i></span> Agent</h3>
+                  <div class="agent-panel bottom-line line-before">
+                      <a href="#" class="agent-image ">
+                        <%=  image_tag responsive_image(@agents.image), class: "img-polaroid" %>
+                          <!-- <img src="/assets/agents/circle/a1.jpg" class="img-polaroid" alt="agent"> -->
+                      </a>
+                      <ul class="unstyled margin20">
+                        <li><i class="icon-phone"></i><%= @agents.phone %></li>
+                        <li><i class="icon-envelope"></i><%= @agents.email_id %></li>
+                        <li><i class="icon-facebook"></i><%= @agents.fb_id %></li>
+                        <li><i class="icon-twitter"></i><%= @agents.twitter_id %></li>
+                      </ul>
+                  </div><!-- END Detail Agent -->
+                  <!-- FORM CONTACT -->
+                  <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-envelope-alt"></i></span> Contact Agent</h3>
+                  <%= form_for @contact_agent, :url => contact_agent_path  do |f| %>
+                    <%= f.label :name %>
+                    <%= f.text_field :name, :class=> "input-block-level", :placeholder=>"Enter Your Name"%>
+                    <%= f.label :email %>
+                    <%= f.text_field :email, :class=> "input-block-level", :placeholder=>"Enter Your Email"%>
+                    <%= f.label :message %>
+                    <%= f.text_area :message, :class=> "input-block-level", :placeholder=>"Your Message"%>
+                    <%= f.hidden_field :agent_id, :value => @agents.id %>
+                    <%= f.submit "Send", class: "btn-proper btn" %>
+                <% end %>
+                  <!-- END FORM CONTACT -->
+              </div>
+
+          </div>
+      </div>
+  </div>
+</div><!--EndContent-->
+<script type="text/javascript">
+$(document).ready(function() {
+  init_slider();
+  init_gmap3();
+})
+
+function init_gmap3(){
+  $(function(){
+      var icon_villa = "/assets/map/hostel_0star.png"
+      var icon_hotel = "/assets/map/villa.png"
+      var img_p = "assets/properties/p1.jpg"
+      $("#googleMap").gmap3({
+          map:{
+            <% address =  "#{@data.address1} #{@data.address2} #{@data.address3}"%>
+              // CENTRAL MAP DEFAULT
+              address:'<%= address %>',
+              options:{
+                  zoom:12,
+                  scaleControl: false,
+                  scrollwheel: false,
+                  mapTypeId: google.maps.MapTypeId.ROADMAP,
+                  mapTypeControl: true,
+                  mapTypeControlOptions: {
+                      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+                  }
+              }
+          },
+          marker:{
+              // DATA LOCATION
+              values:[
+              {
+                
+                <% a = @data.coordinates%>
+                <%lat = (a.nil? ? "" : a.split(",")[0].to_f) %>
+                <%lng = (a.nil? ? "" : a.split(",")[1].to_f) %>
+
+                  latLng:[<%= lat%>,<%= lng%>], 
+                  data:{
+                      img_preview: img_p, 
+                      properties_name:'<%= @data.name%>',
+                      properties_desc:'',
+                      properties_link:"#", 
+                      zip:'<%=@data.postcode%>', 
+                      city:'<%=@data.address3%>'
+                  }, 
+                  options:{
+                      icon: icon_hotel //Image or icon of shop want to display on map
+                  }
+              }
+              ],
+              
+          }
+    
+      });
+  });
+}
+</script>
