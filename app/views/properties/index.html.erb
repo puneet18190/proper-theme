@@ -43,6 +43,7 @@
       <th>Seal Approved</th>
       <th>Brochure Upload</th>
       <th>Approval</th>
+      <th style="display:none">Approval</th>
     </tr>
   </thead>
 
@@ -84,6 +85,7 @@
               <!--<td>  <div class="add_loader" id= <%#="payment_#{property.id}"%> >  <%#= button_to (property.payment == false ? 'Confirm Payment' : 'Confirmed'), {:controller => "properties", :action => "landlord_payment", :id => property.id}, :method=>:get,:disabled =>(property.payment == false ? false : true) %>  </div> </td>-->
               <%#end%>
           <% end %>
+          <td style="display:none"><%=property.created_at%></td>
       </tr>
     <% end %>
   </tbody>
@@ -98,7 +100,9 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-      $("#prop_info").dataTable()
+      $("#prop_info").dataTable({
+         "order": [[ 14, "asc" ]]
+      })
     })
     $(".add_loader").click(function(e){
       if($(this).hasClass('block_loader') == false){

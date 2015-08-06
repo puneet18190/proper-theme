@@ -55,7 +55,7 @@
       <span class="tag">DG : <%= @properties.dg %></span>
     <%end%>
 
-    <% if @properties.furnished != "Not Specified" %>
+    <% if @properties.furnished != "Not Specified" && !@properties.nil? %>
       <span class="tag"><%= @properties.furnished %></span>
     <%end%>  
   </div>
