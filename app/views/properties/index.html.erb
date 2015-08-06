@@ -48,7 +48,7 @@
   </thead>
 
   <tbody>
-    <% @properties.each do |property| %>
+    <% @properties.each_with_index do |property,i| %>
       <tr>
         <td><%= property.name %></td>
         <td>£<%= property.price.to_i %></td>
@@ -85,7 +85,7 @@
               <!--<td>  <div class="add_loader" id= <%#="payment_#{property.id}"%> >  <%#= button_to (property.payment == false ? 'Confirm Payment' : 'Confirmed'), {:controller => "properties", :action => "landlord_payment", :id => property.id}, :method=>:get,:disabled =>(property.payment == false ? false : true) %>  </div> </td>-->
               <%#end%>
           <% end %>
-          <td style="display:none"><%=property.created_at%></td>
+          <td style="display:none"><%=i%></td>
       </tr>
     <% end %>
   </tbody>
