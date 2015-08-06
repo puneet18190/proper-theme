@@ -10,7 +10,13 @@ class PropertiesController < ApplicationController
   #protect_from_forgery except: [:disconnect_fb] 
   def index
     if current_user.status == "admin"
-      @properties = Property.order("created_at DESC")
+      @properties = []
+      @properties << Property.where(sold: false, let: false).order("created_at DESC")
+      @properties << Property.where(sold: true, let: false).order("created_at DESC")
+      @properties << Property.where(sold: false, let: true).order("created_at DESC")
+      @properties << Property.where(sold: true, let: true).order("created_at DESC")
+      @properties = @properties.flatten.uniq
+      # @properties = Property.order("created_at DESC")
     elsif current_user.status == "landlord"
       @properties = Property.where(:user_id => current_user.id).order("created_at DESC")
     else
