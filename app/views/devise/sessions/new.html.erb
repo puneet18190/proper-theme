@@ -7,6 +7,8 @@
   <div class="panel proper-form-bg" style="background-image:none">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="proper-login">
+        <h1 class=""><i class="icon-user"></i> Sign In</h1>
+        <hr>
         <!-- <div class="member-login">
           <img src="/assets/agents/a3.jpg" class="img-polaroid" width="90" alt="image-login"/>
           <div class="member-desc">
@@ -32,7 +34,7 @@
             <%= f.label :remember_me,:style=>"margin-top:-16px;margin-left:20px" %>
           </div>
         <% end -%>
-
+        <hr>
         <div class="actions">
           <%= f.submit "Log in", class: "btn-proper btn" %>
         </div>

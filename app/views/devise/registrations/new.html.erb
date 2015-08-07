@@ -1,3 +1,7 @@
+<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+<!-- <div id="signup_loading"></div> -->
+<div id="signup_loading" style="position: fixed;z-index: 1;margin-left: 635px;margin-top:180px"></div>
 <div id="content">
   <div class="news-carousel-wrapper">
     <dl id="news-carousel" class="news-carousel-style" >
@@ -11,47 +15,41 @@
           <div class="proper-singup">
               <%= devise_error_messages! %>
               <h1 class=""><i class="icon-user"></i> Sign Up</h1>
-
-              <div class="field">
-                <%= f.label :username %>
-                <%= f.text_field :username, autofocus: true %>
-              </div>
-              <div class="field">
-               <%= f.label :email %>
-               <%= f.email_field :email, placeholder: "Email Address" %>
-              </div>
-              <div class="field">
-                <%= f.label :address %>
-                <%= f.text_area :address, placeholder: "Address" %>
-              </div>
-              <div class="field">
-                <%= f.label :phone %>
-                <%= f.number_field :phone, placeholder: "Phone Number" %>
-              </div>
-              <div class="field">
-                <%= f.label :password %>
-                <% if @validatable %>
+              <hr>
+              
+              <%= f.label :first_name %>
+              <%= f.text_field :first_name, autofocus: true, required: true,class: "input-block-level" %>
+            
+              <%= f.label :last_name %>
+              <%= f.text_field :last_name, required: true,class: "input-block-level" %>
+              
+              <%= f.label :email %>
+              <%= f.email_field :email, placeholder: "Email Address", required: true,class: "input-block-level" %>
+              
+              <%= f.label :phone %>
+              <%= f.number_field :phone, placeholder: "Phone Number", required: true,class: "input-block-level" %>
+              
+              <%= f.label :password %>
+              <% if @validatable %>
                 <em>(<%= @minimum_password_length %> characters minimum)</em>
-                <% end %>
-                <%= f.password_field :password, autocomplete: "off" %>
-              </div>
-              <div class="field">
-                <%= f.label :password_confirmation %>
-                <%= f.password_field :password_confirmation, autocomplete: "off" %>
-              </div>
-              <div class="field">
-                <%= f.label :tenant %>
-                <%= f.radio_button :status, 'tenant', :checked => true %>
-              </div>
-              <div class="field1">
-                <%= f.label :landlord %>
-                <%= f.radio_button :status, 'landlord' %>
-              </div>
-              <br>
-              <div class="actions">
-                <%= f.submit "Register" , class: "btn-proper btn"%>
-                <h4>Already have an account?</h4>
-              </div>
+              <% end %>
+              <%= f.password_field :password, autocomplete: "off", required: true,class: "input-block-level" %>
+              
+              <%= f.label :password_confirmation %>
+              <%= f.password_field :password_confirmation, autocomplete: "off", required: true,class: "input-block-level" %>
+              
+              <%= f.label "I am a ..." %>
+              <!-- <h5>I am a ...</h5> -->
+              <%= f.select :status,[['Tenant','tenant'], ['Landlord','landlord']], class: "input-block-level", required: "true"%>
+              <%#= f.label :tenant %>
+              <%#= f.radio_button :status, 'tenant', :checked => true %>
+            
+              <%#= f.label :landlord %>
+              <%#= f.radio_button :status, 'landlord' %>
+              <br/>
+              <%= f.submit "Register" , class: "btn-proper btn"%>
+              <h4>Already have an account?</h4>
+              
               <%= render "devise/shared/links" %>
           </div>
         <% end %>
@@ -59,3 +57,59 @@
     </div>
   </div>
 </div>
+
+<style type="text/css">
+  #error_explanation {
+    width: 310px
+  }
+  select{
+    width: 100% !important;
+  }
+  .error{
+    color: red
+  }
+</style>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    history.pushState('data', '', '/users/sign_up');
+  })
+    $(".btn-proper").click(function(e){
+      if($("#new_user").valid()){
+        var opts = {
+            lines: 17, // The number of lines to draw
+            length: 40, // The length of each line
+            width: 22, // The line thickness
+            radius: 60, // The radius of the inner circle
+            corners: 1, // Corner roundness (0..1)
+            rotate: 90, // The rotation offset
+            direction: 1, // 1: clockwise, -1: counterclockwise
+            color: '#000', // #rgb or #rrggbb or array of colors
+            speed: 1.3, // Rounds per second
+            trail: 96, // Afterglow percentage
+            shadow: false, // Whether to render a shadow
+            hwaccel: false, // Whether to use hardware acceleration
+            className: 'spinner', // The CSS class to assign to the spinner
+            zIndex: 2e9, // The z-index (defaults to 2000000000)
+            top: '50%', // Top position relative to parent
+            left: '50%' // Left position relative to parent
+        };
+        var target = document.getElementById('signup_loading');
+        var spinner = new Spinner(opts).spin(target);
+        target.appendChild(spinner.el);
+        $("#new_user")[0].submit()
+      }  
+    })
+</script>
+
+<script>
+jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
+});
+var form = $( "#new_user" );
+form.validate();
+// $( "button" ).click(function() {
+//   alert( "Valid: " + form.valid() );
+// });
+</script>

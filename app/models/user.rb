@@ -19,7 +19,7 @@
 #  unconfirmed_email      :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
-#  username               :string(255)
+#  first_name             :string(255)
 #  address                :string(255)
 #  phone                  :string(255)
 #  status                 :string(255)
@@ -56,6 +56,7 @@
 #  dg                     :string(255)
 #  tenancy_type           :string(255)
 #  dob                    :date
+#  last_name              :string(255)
 #
 # Indexes
 #

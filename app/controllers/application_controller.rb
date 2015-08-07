@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   has_mobile_fu
   def configure_devise_params
     devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit(:email, :password, :password_confirmation, :username, :address, :phone, :status)
+      u.permit(:email, :password, :password_confirmation, :first_name, :address, :phone, :status, :last_name)
     end
   end
   # Prevent CSRF attacks by raising an exception.

@@ -1,3 +1,16 @@
-<p>Welcome <%= @email %>!</p>
-<p>You can confirm your account email through the link below:</p>
+<p>Hi <%= "#{@resource.first_name} #{@resource.last_name}" %></p>
+
+<p>Welcome to Seal Properties.</p>
+
+<p>Please click the link below to confirm your account:</p>
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>Regards,</p>
+<p>SEAL Properties</p>
+<p>0191 5805900</p>
+<p>info@sealproperties.co.uk</p>
+<p>www.sealproperties.co.uk</p>
+<!-- <p>Welcome <%#= @email %>!</p>
+<p>You can confirm your account email through the link below:</p>
+<p><%#= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+ -->
