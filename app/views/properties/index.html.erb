@@ -39,9 +39,9 @@
       <th>Action</th>
       <th>Action</th>
       <!-- <th>PDF</th> -->
-      <% if current_user.status == "admin" %><th>Brochure</th><%end%>
+      <th>Brochure</th>
       <th>Seal Approved</th>
-      <th>Brochure Upload</th>
+      <% if current_user.status == "admin" %><th>Brochure Upload</th><%end%>
       <th>Approval</th>
       <th style="display:none">Approval</th>
     </tr>
