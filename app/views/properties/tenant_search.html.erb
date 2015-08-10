@@ -1,3 +1,50 @@
+<div id="content">
+  <div class="news-carousel-wrapper">
+    <dl id="news-carousel" class="news-carousel-style">
+      <%= render 'properties/news_carousel'%>
+    </dl>
+  </div>
+  <div class="container" style="width:1230px">
+    <div class="panel">
+      <div class="box-line">
+        <h3 class="title-heading">Please complete the form</h3>
+      </div>
+      <form class="proper-form-step" action="/tenant_search_result" method="get">
+      <%= search_form_for Property.search(params[:q]), html: { multipart: true,class: "proper-form-step" } do |f| %>
+      <%#= form_for @user, html: { multipart: true,class: "proper-form-step" },:style=>"" do |f| %>
+        <div class="proper-form-step-area">
+          <h4>My Property Requirements</h4>
+          <h5><b>Tell us what you are looking for and we will start searching for your new home.</b></h5>
+          <br/>
+          <div class="row-fluid">
+            <div class="span2">
+              <%= f.label "Location" %>
+              <%= f.search_field :address1_or_address2_or_address3_cont, class: "input-block-level", style: "padding:0 6px" %>
+            </div>
+            <div class="span2">
+              <%= f.label :property_type %>
+              <%= f.select :property_type,["Not Specified", "Character Property", "Mobile / Park Homes", "Land", "Houses", "Commercial Property", "Flats / Apartments"], class: "input-block-level" %>
+            </div>
+            <div class="span2">
+              <%= f.label :beds_eq, "Number of Bedrooms" %>
+              <%= f.select :beds_eq, ["Not Specified","1","2","3","4","5+"], class: "input-block-level" %>
+            </div>
+            <div class="span2">
+              <%= f.label :price_lteq, "Max Price" %>
+              <%= f.search_field :price_lteq, class: "input-block-level", style: "padding:0 6px" %>
+            </div>
+          </div>
+        </div>
+        <%= f.submit 'Submit', class: "btn btn-proper btn-large" %>
+      <%end%>
+    </form>
+    </div>
+  </div>
+</div>
+
+
+<%
+=begin%>
       <!--Start Content-->
       <div id="content">
         <!--Start Main Title-->
@@ -71,5 +118,12 @@
               </form>
           </div>
         </div>
-      </div><!--EndContent-->
+      </div>
+<%
+=end%>
 
+<style type="text/css">
+  select{
+    width: 100% !important;
+  }
+</style>

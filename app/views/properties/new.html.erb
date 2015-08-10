@@ -1,6 +1,9 @@
 <% if current_user.status == "admin" %>
   <%= render :partial => "add_property" %>
-<% else %>  
+<% else#if current_user.status == "landlord" %>  
+  <%= render :partial => "landlord_add_property" %>
+<%
+=begin%>
   <div id="content">
     <div id="main-title-content">
       <img src="/assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
@@ -213,4 +216,7 @@
       height: 300px !important;
     }
   </style>
+<%
+=end%>
+
 <% end %>

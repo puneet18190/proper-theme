@@ -109,7 +109,19 @@ class Property < ActiveRecord::Base
   #validates_presence_of :address1, :address2, :address3, :price, :postcode, :beds, :bath, :description
   geocoded_by :address
   attr_accessor :search_criteria
+  attr_accessor :address
 
+  # getter
+  def address
+    return "#{address1}, #{address2}, #{address3}"
+    # @address
+  end
+
+  # setter
+  # def address=(val)
+  #   return "#{address1}, #{address2}, #{address3}"
+  #   # @address = val
+  # end
   # def garden
   #   self.garden? ? "Yes" : "No"
   # end

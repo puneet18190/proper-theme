@@ -49,7 +49,7 @@
 
   <tbody>
     <% @properties.each_with_index do |property,i| %>
-      <tr>
+      <tr class="<%= 'bg_color' if property.user.status == 'landlord'%>">
         <td><%= property.name %></td>
         <td>£<%= property.price.to_i %></td>
         <td><%= property.beds %></td>
@@ -235,5 +235,8 @@ $( ".disconnect_fb" )
   }
   tr{
     background-color: #eee !important;
+  }
+  .bg_color{
+    background-color: papayawhip !important
   }
 </style>

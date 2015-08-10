@@ -2,6 +2,9 @@ class TasksController < ApplicationController
   layout proc { false if request.xhr? }	
   respond_to :html, :xml, :json,:mobile, :tablet
   def index
+    if !current_user.nil? && current_user.sign_in_count == 0
+      redirect_to "/users/profile"
+    else
     # if is_mobile_device? == false
       @properties = Property.where({payment: true, visibility: true, approve: true})
 
@@ -31,7 +34,8 @@ class TasksController < ApplicationController
     #   @properties = Property.where({payment: true, visibility: true, approve: true}).take(3)
     #   @agents= Agent.all
     #   render "mobile/index.html.erb"#,:layout => "mobile"
-    # end  
+    # end
+    end  
   end
 
   def home_simple

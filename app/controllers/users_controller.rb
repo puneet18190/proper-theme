@@ -10,7 +10,12 @@ class UsersController < ApplicationController
 
 	def update
 		current_user.update(user_params)
-		redirect_to root_url
+		# redirect_to root_url
+		if current_user.status == "tenant"
+			redirect_to "/tenant_search"
+		else current_user.status == "landlord"
+			redirect_to "/properties/new"
+		end
 	end
 
 	private
@@ -20,7 +25,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(
-      	:title,:firstname,:lastname, :address1, :address2, :address3,:postcode,:mobile,
+      	:title,:first_name,:last_name, :address1, :address2, :address3,:postcode,:mobile,
       	:phone,:dob,:price,:deposit,:tenancy,:student,:benefit,:pets,:smoker,:property_type,
       	:beds,:bath,:garden,:parking,:gas_ch,:dg,:ensuite,:furnished,:employment,
       	:tenancy_type,:max_price

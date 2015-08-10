@@ -20,12 +20,12 @@
               <%= f.text_field :title, class: "input-block-level", required: "true" %>
             </div>
             <div class="span2">
-              <%= f.label :firstname %>
-              <%= f.text_field :firstname, class: "input-block-level", required: "true" %>
+              <%= f.label :first_name %>
+              <%= f.text_field :first_name, class: "input-block-level", required: "true" %>
             </div>
             <div class="span2">
-              <%= f.label :lastname %>
-              <%= f.text_field :lastname, class: "input-block-level", required: "true" %>
+              <%= f.label :last_name %>
+              <%= f.text_field :last_name, class: "input-block-level", required: "true" %>
             </div>
             <div class="span2">
               <%= f.label :address1 %>
@@ -46,12 +46,12 @@
               <%= f.text_field :postcode, class: "input-block-level", required: "true" %>
             </div>
             <div class="span2">
-              <%= f.label :mobile %>
-              <%= f.text_field :mobile, class: "input-block-level", required: "true" %>
+              <%= f.label "Phone" %>
+              <%= f.text_field :phone, class: "input-block-level", required: "true" %>
             </div>
             <div class="span2">
-              <%= f.label :home %>
-              <%= f.text_field :phone, class: "input-block-level", required: "true" %>
+              <%= f.label "Alternate Phone" %>
+              <%= f.text_field :mobile, class: "input-block-level", required: "true" %>
             </div>
             <div class="span2">
               <%= f.label :email %>
@@ -62,6 +62,8 @@
               <%= f.date_select :dob, class: "input-block-level", required: "true" %>
             </div>
           </div>
+<%
+=begin%>          
           <h4>Rental Information</h4>
           <div class="row-fluid">
             <div class="span2">
@@ -136,6 +138,8 @@
               <%= f.select :furnished,['No','Yes'], class: "input-block-level", required: "true" %>
             </div>
           </div>
+<%
+=end%>
         </div>
         <%= f.submit 'Save', class: "btn btn-proper btn-large" %>
       <%end%><!-- End Form Step -->
@@ -156,4 +160,4 @@
   #user_dob_3i{
     width: 26% !important;
   }
-</script>
+</style>

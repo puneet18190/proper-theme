@@ -117,8 +117,31 @@ class PropertiesController < ApplicationController
 
   def tenant_search_result
     @user = current_user
-    @search = Property.search(params[:q])
+    # @search = Property.search(params[:q])
+    # @properties = @search.result
+    if params[:q][:beds_eq] == "Not Specified"
+      params[:q].delete("beds_eq")
+    end    
+
+    if params[:q][:property_type] == "Not Specified"
+      params[:q].delete("property_type")
+      @search = Property.search(params[:q])
+    else
+      a=PropertyType.where(search: params[:q][:property_type])
+      ids = []
+      a.each do |o|
+        ids << o.p_id
+      end
+      ids.each do |o|
+        data = Property.where(property_type: o)
+        @properties << data unless data.empty?
+      end
+      @search = @properties.search(params[:q])
+    end
+
     @properties = @search.result
+    @tasks = @properties.uniq
+
     @request = request.host_with_port
     @abc = params[:q]
     name = @abc[:name_cont]
@@ -130,6 +153,8 @@ class PropertiesController < ApplicationController
     @user.search = "#{name},#{category},#{price_less_than},#{price_greater_than},#{beds},#{bath}"
     @user.search.downcase
     @user.save
+
+    render "/tasks/search_results"
     UserMailer.tenant_result_property(@user, @properties, @request).deliver
   end
 
