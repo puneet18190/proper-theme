@@ -39,7 +39,7 @@
       <th>Action</th>
       <th>Action</th>
       <!-- <th>PDF</th> -->
-      <th>Brochure</th>
+      <% if current_user.status == "admin" %><th>Brochure</th><%end%>
       <th>Seal Approved</th>
       <th>Brochure Upload</th>
       <th>Approval</th>
@@ -70,11 +70,13 @@
           <td><%= link_to 'Main', brochure_path(:id => property.id, format: 'pdf') %>
           <%= link_to 'A3', brochure1_path(:id => property.id, format: 'pdf') %>
           <%= link_to 'A4', brochure2_path(:id => property.id, format: 'pdf') %></td>
-          <td><%=property.seal_approved ? 'Yes' : 'No'%></td>
         <%else%>
           <td><%= link_to 'N/A',"#" %></td>
         <%end%>
-        <td><button class="btn btn-primary pdf_upload" id="<%= property.id%>"><%= property.brochure_link.nil? ? "Upload": "Delete Pdf" %></button></td>
+        <td><%=property.seal_approved ? 'Yes' : 'No'%></td>
+        <% if current_user.status == "admin" %>
+          <td><button class="btn btn-primary pdf_upload" id="<%= property.id%>"><%= property.brochure_link.nil? ? "Upload": "Delete Pdf" %></button></td>
+        <%end%>
           <% if current_user.status == "admin" %>
             <td>  <div class="add_loader" id= <%="approve_#{property.id}"%>>  <%= button_to (property.approve == false ? 'Approve' : 'Unapprove'), {:controller => "properties", :action => "approve", :id => property.id, :status => property.approve == false ? 'Approve' : 'Unapprove'},:class=>property.approve == false ? 'btn btn-danger' : 'btn btn-success', :method=>:post, :remote=>true %>  </div> </td>
           <% elsif current_user.status == "landlord" %>
