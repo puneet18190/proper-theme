@@ -23,11 +23,11 @@
               <%= f.label :last_name %>
               <%= f.text_field :last_name, required: true,class: "input-block-level" %>
               
+              <%= f.label :phone %>
+              <%= f.text_field :phone, placeholder: "Phone Number", required: true,class: "input-block-level" %>
+
               <%= f.label :email %>
               <%= f.email_field :email, placeholder: "Email Address", required: true,class: "input-block-level" %>
-              
-              <%= f.label :phone %>
-              <%= f.number_field :phone, placeholder: "Phone Number", required: true,class: "input-block-level" %>
               
               <%= f.label :password %>
               <% if @validatable %>
@@ -40,7 +40,7 @@
               
               <%= f.label "I am a ..." %>
               <!-- <h5>I am a ...</h5> -->
-              <%= f.select :status,[['Tenant','tenant'], ['Landlord','landlord']], class: "input-block-level", required: "true"%>
+              <%= f.select :status,[['', ''], ['Tenant','tenant'], ['Landlord','landlord']], class: "input-block-level required", required: "true"%>
               <%#= f.label :tenant %>
               <%#= f.radio_button :status, 'tenant', :checked => true %>
             
