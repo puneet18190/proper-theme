@@ -58,10 +58,10 @@ class Image1Uploader < CarrierWave::Uploader::Base
    process :resize_to_fit =>  [120, 120]
  end
 
- version :seal do
-   process :resize_to_fit =>  [500, 500]
-   process :watermark
- end
+ # version :seal do
+ #   process :resize_to_fit =>  [500, 500]
+ #   process :watermark
+ # end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
