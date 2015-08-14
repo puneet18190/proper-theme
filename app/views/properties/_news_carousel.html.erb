@@ -1,5 +1,5 @@
 <% @prop = [] %>
-<% @prop = Property.where({payment: true, visibility: true, approve: true}) %>
+<% @prop = Property.where(:visibility=>true,:approve=>true).last(5) %>
 
 <% (0..4).each do |n| %>
   <dt><a href=<%="/properties_detail/#{@prop[n].id}"%>>Latest Property</a></dt>
