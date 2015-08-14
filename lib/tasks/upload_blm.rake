@@ -5,7 +5,7 @@ task :upload_blm => :environment do
   
   Thread.new do
     puts "===============Upload Start========================="
-    @data = Property.where(:visibility=>true,:approve=>true)
+    @data = Property.where(:visibility=>true,:approve=>true, :otm=>true)
     t = Tempfile.new("39545")
     Zip::OutputStream.open(t.path) do |z|
       @data.each_with_index do |item,i|

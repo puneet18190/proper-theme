@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150807153312) do
+ActiveRecord::Schema.define(version: 20150814164112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -303,6 +303,7 @@ ActiveRecord::Schema.define(version: 20150807153312) do
     t.string   "epc"
     t.string   "brochure_link"
     t.datetime "let_date_available"
+    t.boolean  "otm",                default: false
   end
 
   add_index "properties", ["slug"], name: "index_properties_on_slug", unique: true, using: :btree

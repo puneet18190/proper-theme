@@ -71,6 +71,7 @@
 #  epc                :string(255)
 #  brochure_link      :string(255)
 #  let_date_available :datetime
+#  otm                :boolean          default(FALSE)
 #
 # Indexes
 #
