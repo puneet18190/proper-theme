@@ -24,7 +24,8 @@
                       <% if @data.image1.url.empty? %>
                            <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
                       <% else %>
-                        <%= image_tag @data.seal_approved? ? @data.image1.url(:seal) : @data.image1.url(:large), id: "big-image-preview", alt: "big-image-preview",style: "height:500px" %>
+                        <%= image_tag "sealmark.png", style: "width:100px;height:100px;float: right;z-index: 1;overflow: none;position: absolute;margin-top: -40px;margin-left: 357px;-webkit-box-shadow:none" if @data.seal_approved == true%>
+                        <%= image_tag @data.image1.url(:large), id: "big-image-preview", alt: "big-image-preview",style: "height:500px" %>
                       <% end %>
                     </a>
                     <% if !@data.image2.url.nil? || !@data.image3.url.nil? || !@data.image4.url.nil?%>
