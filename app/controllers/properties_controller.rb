@@ -293,7 +293,7 @@ class PropertiesController < ApplicationController
     @property = Property.find(params[:property_id])
     name =         @property.name
     page_link =    request.referer
-    caption =     "#{@property.description} | #{@property.address3}"
+    caption =     "#{@property.short_description} | #{@property.address3}"
     description =  @property.description || "N.A."
     picture_url =  "http://"+request.host_with_port+"/assets/seal_logo.png"
 
