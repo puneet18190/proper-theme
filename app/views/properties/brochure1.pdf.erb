@@ -25,7 +25,7 @@
       <div style="font-size:30px;margin:5px;font-family:arial"><center><b><%="#{@properties.address3}"%></b></center></div>
       <div style="font-size:30px;margin:5px;font-family:arial"><center><b><%="#{@properties.town}"%></b></center></div>
       <div style="font-size:30px;margin:5px;font-family:arial"><center><b><%="#{@properties.postcode.to_s} #{@properties.postcode1.to_s}"%></b></center></div>
-      <div style="font-size:40px;margin:5px;font-family:arial;margin-top:10px"><center><b>&pound; <%= @properties.price.to_i %></b></center></div>
+      <div style="font-size:40px;margin:5px;font-family:arial;margin-top:10px"><center><b>&pound; <%= @properties.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></b></center></div>
     </div>
 
     <div style="width:550px;height:300px;float:right;margin-right:1px">

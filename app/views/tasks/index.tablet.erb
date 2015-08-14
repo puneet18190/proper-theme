@@ -46,7 +46,7 @@
                                                         <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= obj.bath  %></span>
                                                         <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= obj.beds  %></span>
                                                         <!-- <span class="label"><i class="icon-circle-arrow-right"></i> Pool : 2</span> -->
-                                                        <span class="price">£<%= obj.price.to_i %></span>
+                                                        <span class="price">£<%= obj.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></span>
                                                     </p>
                                                     <div class="clearfix">
                                                         <a href=<%="/properties_detail/#{obj.slug}"%> class="btn-proper btn btn-small pull-left">See Detail</a>

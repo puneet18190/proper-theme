@@ -27,7 +27,7 @@
   </div>
 
   <div style="height:70px;width:<%=(@properties.category == "rent" || @properties.category == "Rent") ? "130px" : "230px" %>;position:absolute;font-weight: bold;background-color: rgba(0,0,0,0.6);font-size: 50px;color:white;padding:10px;top:1141px;left:202px">
-    &pound; <%= @properties.price.to_i %>
+    &pound; <%= @properties.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %>
   </div>
 
   <div style="position:absolute; top:1300px;height:450px;width:1300px;">

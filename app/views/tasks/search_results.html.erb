@@ -47,7 +47,7 @@
                                   <i class="icon-circle-arrow-right"></i>Beds :<%= task.beds %>
                                 </span>
                                 <span class="price">
-                                  £<%= task.price.to_i %>
+                                  £<%= task.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %>
                                 </span>
                               </p>
                               <div class="clearfix">

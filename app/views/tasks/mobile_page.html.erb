@@ -181,7 +181,7 @@
                                                                 <p class="text-center short-detail">
                                                                     <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= task.bath %></span>
                                                                     <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= task.beds %></span>
-                                                                    <span class="price">£<%= task.price.to_i %></span>
+                                                                    <span class="price">£<%= task.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></span>
                                                                 </p>
                                                                 <div class="clearfix">
                                                                     <a href=<%="/properties_detail/#{task.slug}"%> class="btn-proper btn btn-small pull-left">See Detail</a>
