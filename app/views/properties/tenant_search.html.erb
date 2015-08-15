@@ -10,6 +10,58 @@
         <h3 class="title-heading">Please complete the form</h3>
       </div>
       <form class="proper-form-step" action="/tenant_search_result" method="get">
+        <!-- <h3 class="main-heading bottom-line line-before">
+          <span class="main-circle-icon"><i class="icon-search"></i></span>Find Properties
+        </h3> -->
+        <%= search_form_for @search do |f| %>
+          <div class="proper-form-step-area">
+          <h4>My Property Requirements</h4>
+          <h5><b>Tell us what you are looking for and we will start searching for your new home.</b></h5>
+          <br/>
+            <div class="row-fluid">
+              <div class="span2">
+                <%= f.label :category_cont, "Category" %>
+                <%= f.select :category_cont, ["Rent","Sale"], class: "input-block-level", selected: "#{@category unless @data.nil?}" %>
+              </div>
+            </div>
+            <div class="row-fluid">
+              <div class="span2">
+                <%= f.label :type, "Type" %>
+                <%= f.select :property_type,["Not Specified", "Character Property", "Mobile / Park Homes", "Land", "Houses", "Commercial Property", "Flats / Apartments"], class: "input-block-level", selected: "#{@type unless @data.nil?}" %>
+                <%#= f.search_field :property_type_cont, class: "input-block-level", value: "#{@type unless @data.nil?}" %>
+              </div>
+            </div>
+            <div class="row-fluid">
+              <div class="span2">
+                <%= f.label :price_lteq, "Min Price" %>
+                <%= f.search_field :price_gteq, class: "input-block-level", value: "#{@price_greater_than unless @data.nil?}" %>
+              </div>
+            </div>
+            <div class="row-fluid">
+              <div class="span2">
+                <%= f.label :price_gteq, "Max Price" %>
+                <%= f.search_field :price_lteq, class: "input-block-level", value: "#{@price_less_than unless @data.nil?}" %>
+              </div>
+            </div>
+            <div class="row-fluid">
+              <div class="span2">
+                <%= f.label :beds_eq, "Number of Bedrooms" %>
+                <%= f.select :beds_eq, ["Not Specified","1","2","3","4","5+"], class: "input-block-level", selected: "#{@beds unless @data.nil?}" %>
+              </div>
+            </div>
+            <div class="row-fluid">
+              <div class="span2">
+                <%= f.label :location %>
+                <%= f.search_field :address1_or_address2_or_address3_cont, class: "input-block-level", value: "#{@location unless @data.nil?}" %>
+              </div>
+            </div>
+          </div>
+          <%= f.submit 'Submit', class: "btn btn-proper btn-large" %>
+        <%end%>
+
+<%
+=begin%>
+      <form class="proper-form-step" action="/tenant_search_result" method="get">
       <%= search_form_for Property.search(params[:q]), html: { multipart: true,class: "proper-form-step" } do |f| %>
       <%#= form_for @user, html: { multipart: true,class: "proper-form-step" },:style=>"" do |f| %>
         <div class="proper-form-step-area">
@@ -38,6 +90,8 @@
         <%= f.submit 'Submit', class: "btn btn-proper btn-large" %>
       <%end%>
     </form>
+<%
+=end%>
     </div>
   </div>
 </div>
@@ -123,7 +177,11 @@
 =end%>
 
 <style type="text/css">
-  select{
+/*  select{
     width: 100% !important;
+  }
+*/  .input-block-level{
+    min-height: 25px;
+    width: 206px !important;
   }
 </style>

@@ -108,6 +108,16 @@ class PropertiesController < ApplicationController
   def search_property
     @search = Property.search(params[:q])
     @properties = @search.result
+    @data =  current_user.search
+    unless @data.nil?
+      @category = @data.split("|")[0]
+      @type = @data.split("|")[1]
+      @price_less_than = @data.split("|")[2]
+      @price_greater_than = @data.split("|")[3]
+      @beds = @data.split("|")[4]
+      @location = @data.split("|")[5]
+    end
+
     if current_user.status == "tenant" && current_user.payment==false
       render :tenant_payment
     elsif current_user.status == "tenant" && current_user.payment==true
@@ -116,9 +126,40 @@ class PropertiesController < ApplicationController
   end
 
   def tenant_search_result
+
+    @request = request.host_with_port
+    @abc = params[:q]
+    category = @abc[:category_cont]
+    type = @abc[:property_type]
+    price_less_than = @abc[:price_lteq]
+    price_greater_than = @abc[:price_gteq]
+    beds = @abc[:beds_eq]
+    location = @abc[:address1_or_address2_or_address3_cont]
+
     @user = current_user
     # @search = Property.search(params[:q])
     # @properties = @search.result
+    # @properties = Property.where({visibility: true, approve: true})
+    # if params[:q][:postcode_cont] != ""
+    #   address2 = @properties.search(:address2_cont => params[:q][:postcode_cont])
+    #   unless address2.result.empty?
+    #     params[:q][:address2_cont] = params[:q][:postcode_cont]
+    #   end
+
+    #   address3 = @properties.search(:address3_cont => params[:q][:postcode_cont])
+    #   unless address3.result.empty?
+    #     params[:q][:address3_cont] = params[:q][:postcode_cont]
+    #   end
+
+    #   postcode = @properties.search(:postcode_cont => params[:q][:postcode_cont])
+    #   if postcode.result.empty?
+    #     params[:q].delete("postcode_cont")
+    #   end
+    # end
+
+    # @search = @properties.search(params[:q])
+    # @tasks = @search.result
+
     if params[:q][:beds_eq] == "Not Specified"
       params[:q].delete("beds_eq")
     end    
@@ -143,14 +184,15 @@ class PropertiesController < ApplicationController
     @tasks = @properties.uniq
 
     @request = request.host_with_port
-    @abc = params[:q]
-    name = @abc[:name_cont]
-    category = @abc[:category_cont]
-    price_less_than = @abc[:price_lteq]
-    price_greater_than = @abc[:price_gteq]
-    beds = @abc[:beds_eq]
-    bath = @abc[:bath_eq]
-    @user.search = "#{name},#{category},#{price_less_than},#{price_greater_than},#{beds},#{bath}"
+    # @abc = params[:q]
+    # name = @abc[:name_cont]
+    # category = @abc[:category_cont]
+    # price_less_than = @abc[:price_lteq]
+    # price_greater_than = @abc[:price_gteq]
+    # beds = @abc[:beds_eq]
+    # bath = @abc[:bath_eq]
+    # @user.search = "#{name},#{category},#{price_less_than},#{price_greater_than},#{beds},#{bath}"
+    @user.search = "#{category}|#{type}|#{price_less_than}|#{price_greater_than}|#{beds}|#{location}"
     @user.search.downcase
     @user.save
 
