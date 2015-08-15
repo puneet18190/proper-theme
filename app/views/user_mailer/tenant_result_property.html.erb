@@ -1,7 +1,35 @@
-Hi <%= @user.first_name %>
-<br/>
-Your searching results are:
-<br/>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Proper - Real Estate Responsive Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="Real Estate Template" />
+        <meta name="description" content="Proper - Real Estate Responsive HTML5 Template">
+        <meta name="author" content="yobio.indiewebstyle.com">
+        
+        <link href="https://sealpropertiesus.s3.amazonaws.com/uploads%2F1439661178241-3kltk4mgsxg8pvi-56ef62e28db49e5d8891aa03888fbabe%2Fbootstrap-responsive.min.css" rel="stylesheet" media="screen">
+        <!-- <link href="https://sealpropertiesus.s3.amazonaws.com/uploads%2F1439663402013-o53zw4qsn990ms4i-8e834cbeaa8d4d263e96094b73d2a7e4%2Ffont-awesome.css" rel="stylesheet" media="screen">
+ -->
+        <link href="https://sealpropertiesus.s3.amazonaws.com/uploads%2F1439661178222-1vdnwbu8pulyp66r-56ef62e28db49e5d8891aa03888fbabe%2Fbootstrap.min.css" rel="stylesheet">
+        <link href="https://sealpropertiesus.s3.amazonaws.com/uploads%2F1439661178258-ffccp0gsxrgdgqfr-56ef62e28db49e5d8891aa03888fbabe%2Fstyle.css" rel="stylesheet" media="screen">
+        
+        <!-- <link rel="stylesheet" href="https://sealpropertiesus.s3.amazonaws.com/uploads%2F1439661178252-7ezzmnu04kg9zfr-56ef62e28db49e5d8891aa03888fbabe%2Fcolorbox.css"/> -->
+
+        <script src='https://sealpropertiesus.s3.amazonaws.com/uploads%2F1439662161274-kt5ydmsu0mwe9udi-56ef62e28db49e5d8891aa03888fbabe%2Fjquery.js'></script>
+        <script src='https://sealpropertiesus.s3.amazonaws.com/uploads%2F1439662161278-yjszc4hbptaz6w29-56ef62e28db49e5d8891aa03888fbabe%2Fproper.js'></script>
+        <script src='https://sealpropertiesus.s3.amazonaws.com/uploads%2F1439662161266-zlkqo1ygozyhw7b9-56ef62e28db49e5d8891aa03888fbabe%2Fjquery.grid-a-licious.min.js'></script>
+        <script src='https://sealpropertiesus.s3.amazonaws.com/uploads%2F1439663198695-i3yu091b3wuyp66r-8e834cbeaa8d4d263e96094b73d2a7e4%2Fjquery.colorbox-min.js'></script>
+        <script src='https://sealpropertiesus.s3.amazonaws.com/uploads%2F1439663215259-fleoqrnsb63cjtt9-8e834cbeaa8d4d263e96094b73d2a7e4%2Fbootstrap-tooltip.js'></script>
+    </head>
+    <body>
+<h2>
+    Hi <%= @user.first_name %>
+    <br/>
+    Here are few properties we thought you might like:
+    <br/>
+</h2>
+<%
+=begin%>
 <% @properties.each do |task| %>
   Property name : <%= task.name %>,
   Bath : <%= task.bath  %>,
@@ -9,3 +37,82 @@ Your searching results are:
   Price :<%= task.price %>
   <%= link_to "Click on the link to view the details", "http://#{@request}/properties_detail/#{task.id}" %><br/>
 <% end %>
+
+<%
+=end%>
+<%@tasks = @properties%>
+<div id="content" style="border-bottom:none">
+  <div class="container">
+    <div class="row-fluid" style="width:110%">
+      <div class="span9">
+        <div class="panel">
+          <div class="featured-grid">
+            <div class="" style="height:auto">
+              <div class="box-white">
+                <div class="grid-item grid-style-properties">
+                  <% if @tasks.empty? %>
+                    <div class="item" >
+                      <a href="#" class="with-hover">
+                        No Property Found.
+                        <!-- <img alt='images' src="assets/default_images/no.jpg" class="full"/> -->
+                        <span class="mask_hover"></span>
+                      </a>
+                    </div>
+                  <% else %>
+                    <% @tasks.each do |task| %>
+                      <% if task.visibility== true %>
+                        <div class="item">
+                          <a href="#" class="with-hover property">
+                            <% if (task.category=="rent" || task.category=="Rent") %>
+                                <div class="desc-type for-sale" style="opacity:0.8">To Rent</div>
+                            <% else %>
+                                <div class="desc-type for-sale" style="opacity:0.8">For Sale</div>
+                            <% end %>
+                            <a href=<%="http://sealproperties.co.uk/properties_detail/#{task.slug}"%>>
+                                <%= image_tag (task.image1.url(:large)), class: "full", class: "mask_hover" %>
+                            </a>
+                          </a>
+                          <h4 class=" "><%= task.name %></h4>
+                          <div class="preview-properties ">
+                            <div class="box-detail">
+                              <p class="text-center short-detail">
+                                <span class="label">
+                                  <!-- <i class="icon-circle-arrow-right"></i> -->
+                                  Bath : <%= task.bath  %>
+                                </span>
+                                 <span class="label">
+                                  <!-- <i class="icon-circle-arrow-right"> -->
+                                  </i>Beds :<%= task.beds %>
+                                </span>
+                                <span class="price">
+                                  £<%= task.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %>
+                                </span>
+                              </p>
+                              <div class="clearfix">
+                                <div class="btn-proper btn btn-small pull-left">
+                                  <a href=<%="/properties_detail/#{task.slug}"%>>More Details</a>
+                                </div>
+                                <!-- <a href="#" class="btn-proper btn btn-small pull-right">Compare</a> -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    init_grid()
+  });
+</script>
+</body>
