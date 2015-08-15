@@ -22,12 +22,12 @@
         <script src='https://sealpropertiesus.s3.amazonaws.com/uploads%2F1439663215259-fleoqrnsb63cjtt9-8e834cbeaa8d4d263e96094b73d2a7e4%2Fbootstrap-tooltip.js'></script>
     </head>
     <body>
-<h2>
+<h3>
     Hi <%= @user.first_name %>
     <br/>
     Here are few properties we thought you might like:
     <br/>
-</h2>
+</h3>
 <%
 =begin%>
 <% @properties.each do |task| %>
@@ -109,6 +109,12 @@
     </div>
   </div>
 </div>
+<h3>
+<p>For more information or to arrange a viewing call 0191 5805900 or email emma@sealproperties.co.uk.</p>
+<p>Regards,</p>
+<p>Sealproperties</p>
+<%= image_tag "http://www.sealproperties.co.uk/assets/seal_logo.png", style: "width:200px;height:70px" %>
+</h3>
 
 <script type="text/javascript">
   $(document).ready(function() {
