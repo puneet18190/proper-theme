@@ -49,7 +49,7 @@
 
   <tbody>
     <% @properties.each_with_index do |property,i| %>
-      <tr class="<%= 'bg_color' if property.user.status == 'landlord'%>" style="<%= 'color:red' if (property.sold == true || property.let == true)%>">
+      <tr class="<%= 'bg_color' if property.user.status == 'landlord'%>" style="<%= 'color:red' if (property.status == "SSTC" || property.status == "SSTCM" || property.status == "Let Agreed")%>">
         <td><%= property.name %></td>
         <td>£<%= property.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></td>
         <td><%= property.beds %></td>
