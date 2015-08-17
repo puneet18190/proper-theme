@@ -3,7 +3,7 @@ task :upload_blm => :environment do
   require 'nokogiri'
   require 'zip'
   
-  Thread.new do
+  # Thread.new do
     puts "===============Upload Start========================="
     UserMailer.blm_status("Upload Start").deliver
     @data = Property.where(:visibility=>true,:approve=>true, :otm=>true)
@@ -44,5 +44,5 @@ task :upload_blm => :environment do
     t.close
     UserMailer.blm_status("Upload Completed").deliver
     puts "===============Upload Complete========================="
-  end
+  # end
 end
