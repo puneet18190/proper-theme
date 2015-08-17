@@ -11,10 +11,10 @@ class PropertiesController < ApplicationController
   def index
     if current_user.status == "admin"
       @properties = []
-      @properties << Property.where(sold: false, let: false).order("created_at DESC")
-      @properties << Property.where(sold: true, let: false).order("created_at DESC")
-      @properties << Property.where(sold: false, let: true).order("created_at DESC")
-      @properties << Property.where(sold: true, let: true).order("created_at DESC")
+      @properties << Property.where(status: "SSTC").order("created_at DESC")
+      @properties << Property.where(status: "SSTCM").order("created_at DESC")
+      @properties << Property.where(status: "Let Agreed").order("created_at DESC")
+      # @properties << Property.where(sold: true, let: true).order("created_at DESC")
       @properties = @properties.flatten.uniq
       # @properties = Property.order("created_at DESC")
     elsif current_user.status == "landlord"
