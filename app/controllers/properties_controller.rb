@@ -537,17 +537,17 @@ class PropertiesController < ApplicationController
   end  
 
   def blm
-    @data = Property.where(:visibility=>true,:approve=>true)
+    @data = Property.where(:visibility=>true,:approve=>true, :otm=>true)
     render layout: false
   end
 
   def test_blm
-    @data = Property.where(:visibility=>true,:approve=>true)
+    @data = Property.where(:visibility=>true,:approve=>true, :otm=>true)
     render layout: false
   end
 
   def download_blm
-    @data = Property.where(:visibility=>true,:approve=>true)
+    @data = Property.where(:visibility=>true,:approve=>true, :otm=>true)
     remote_data = render_to_string "download_blm", :layout => false
     remote_data = remote_data.gsub("<pre>","")
     remote_data = remote_data.gsub("</pre>","")
@@ -571,7 +571,7 @@ class PropertiesController < ApplicationController
   end
 
   def zip_blm
-    @data = Property.where(:visibility=>true,:approve=>true)
+    @data = Property.where(:visibility=>true,:approve=>true, :otm=>true)
     t = Tempfile.new("my-temp-filename-#{Time.now}")
     Zip::OutputStream.open(t.path) do |z|
       @data.each_with_index do |item,i|

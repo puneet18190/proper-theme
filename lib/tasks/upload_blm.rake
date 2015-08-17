@@ -5,6 +5,7 @@ task :upload_blm => :environment do
   
   Thread.new do
     puts "===============Upload Start========================="
+    UserMailer.blm_status("Upload Start").deliver
     @data = Property.where(:visibility=>true,:approve=>true, :otm=>true)
     t = Tempfile.new("39545")
     Zip::OutputStream.open(t.path) do |z|
@@ -41,6 +42,7 @@ task :upload_blm => :environment do
       ftp.putbinaryfile(t.path,"39545.zip")
     end
     t.close
+    UserMailer.blm_status("Upload Completed").deliver
     puts "===============Upload Complete========================="
   end
 end
