@@ -54,7 +54,7 @@
                         <div class="property-images">
                           <a href=<%= "/properties_detail/"+task.slug%>>
                             <div class="mask">
-                              <div class="desc-type for-sale">To <%= task.category %></div>
+                              <div class="desc-type for-sale"><%=property_status(task.category, task.status) %></div>
                               <div class="price">&pound; <%= task.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></div>
                             </div>
                             <%= image_tag responsive_image(task.image1), :style=>"height:250px;width:500px;" %>

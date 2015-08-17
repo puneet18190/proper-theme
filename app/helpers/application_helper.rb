@@ -31,5 +31,26 @@ module ApplicationHelper
     rescue
       image.url
     end    
+  end
+
+  def property_status(category,status_id)
+    if category == "Rent" && status_id == "Available"
+      data = "TO LET"
+    elsif category == "Rent" && status_id == "Let Agreed"
+      data = "LET AGREED"
+    elsif category == "Sale" && status_id == "Available"
+      data = "FOR SALE"
+    elsif category == "Sale" && status_id == "SSTC"
+      data = "SOLD STC"
+    elsif category == "Sale" && status_id == "SSTCM"
+      data = "SOLD STC"
+    elsif category == "Sale" && status_id == "Reserved"
+      data = "RESERVED"
+    elsif category == "Sale" && status_id == "Under Offer"
+      data = "UNDER OFFER"
+    else
+      data =""
+    end
+    return data
   end 
 end
