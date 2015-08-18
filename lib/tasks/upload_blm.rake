@@ -27,7 +27,8 @@ task :upload_blm => :environment do
       seq = "01"
       f_name = "39545_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+seq
       z.put_next_entry("#{f_name}.blm")
-      remote_data = render_to_string "download_blm", :layout => false
+      ac = ApplicationController.new()
+      remote_data = ac.render_to_string "properties/download_blm", :locals => {:@data => @data}, :layout=>false
       remote_data = remote_data.gsub("<pre>","")
       remote_data = remote_data.gsub("</pre>","")
       remote_data = remote_data.gsub("&lt;","<")
