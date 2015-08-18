@@ -35,19 +35,19 @@ module ApplicationHelper
 
   def property_status(category,status_id)
     if category == "Rent" && status_id == "Available"
-      data = "TO LET"
+      data = "To Let"
     elsif category == "Rent" && status_id == "Let Agreed"
-      data = "LET AGREED"
+      data = "Let Agreed"
     elsif category == "Sale" && status_id == "Available"
-      data = "FOR SALE"
+      data = "For Sale"
     elsif category == "Sale" && status_id == "SSTC"
-      data = "SOLD STC"
+      data = "Sold STC"
     elsif category == "Sale" && status_id == "SSTCM"
-      data = "SOLD STC"
+      data = "Sold STC"
     elsif category == "Sale" && status_id == "Reserved"
-      data = "RESERVED"
+      data = "Reserved"
     elsif category == "Sale" && status_id == "Under Offer"
-      data = "UNDER OFFER"
+      data = "Under Offer"
     else
       data =""
     end
