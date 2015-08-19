@@ -20,6 +20,8 @@ task :upload_blm => :environment do
             z.print url1_data
           end
         end
+        z.put_next_entry("#{sp}_DOC_00.pdf")
+        z.print open("http://www.sealproperties.co.uk/brochure.pdf?id="+item.id.to_s).read
       end
       z.put_next_entry("coming_soon.jpg")
       z.print  File.open("#{Rails.root}/app/assets/images/default_images/no.jpg").read
