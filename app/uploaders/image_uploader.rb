@@ -10,6 +10,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   #storage :file
    storage :fog
+   process :watermark
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -58,6 +59,24 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
   def extension_white_list
     %w(jpg jpeg gif png)
+  end
+
+  def watermark(opacity = 0.7, size = 's')
+    manipulate! do |img|
+      logo = Magick::Image.read("#{Rails.root}/app/assets/images/sp_logo1.png").first
+      logo.alpha(Magick::ActivateAlphaChannel) 
+
+      white_canvas = Magick::Image.new(logo.columns, logo.rows) { self.background_color = "none" }
+      white_canvas.alpha(Magick::ActivateAlphaChannel)
+      white_canvas.opacity = Magick::QuantumRange - (Magick::QuantumRange * opacity)
+
+      # Important: DstIn composite operation (white canvas + watermark)
+      logo_opacity = logo.composite(white_canvas, Magick::SouthEastGravity, 0, 0, Magick::DstInCompositeOp)
+      logo_opacity.alpha(Magick::ActivateAlphaChannel)
+
+      # Important: Over composite operation (original image + white canvas watermarked)
+      img = img.composite(logo_opacity, Magick::SouthEastGravity, 0, 0, Magick::OverCompositeOp)
+    end
   end
 
   # Override the filename of the uploaded files:

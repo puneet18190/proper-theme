@@ -15,7 +15,7 @@ class Image1Uploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   # process :resize_to_fill => [850, 315]
   process :convert => 'png'
-  # process :watermark
+  process :watermark
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
@@ -69,26 +69,44 @@ class Image1Uploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png)
   end
 
- def watermark
-   manipulate! do |img|
-     logo = Magick::Image.read("#{Rails.root}/app/assets/images/watermark.jpg").first
-     img = img.composite(logo, Magick::NorthEastGravity, 15, 0, Magick::OverCompositeOp)
-   end
+  def watermark(opacity = 0.7, size = 's')
+    manipulate! do |img|
+      logo = Magick::Image.read("#{Rails.root}/app/assets/images/sp_logo1.png").first
+      logo.alpha(Magick::ActivateAlphaChannel) 
 
-   # // for addition of text watermark #
+      white_canvas = Magick::Image.new(logo.columns, logo.rows) { self.background_color = "none" }
+      white_canvas.alpha(Magick::ActivateAlphaChannel)
+      white_canvas.opacity = Magick::QuantumRange - (Magick::QuantumRange * opacity)
 
-   # if model.name.present?
-   #   manipulate! do |img|
-   #     text = Magick::Draw.new
-   #     text.gravity = Magick::CenterGravity
-   #     text.fill = 'white'
-   #     text.pointsize = 40
-   #     text.stroke = 'none'
-   #     text.annotate(img, 0, 0, 0, 0, "#{model.name}")
-   #     img
-   #   end
-   # end
- end
+      # Important: DstIn composite operation (white canvas + watermark)
+      logo_opacity = logo.composite(white_canvas, Magick::SouthEastGravity, 0, 0, Magick::DstInCompositeOp)
+      logo_opacity.alpha(Magick::ActivateAlphaChannel)
+
+      # Important: Over composite operation (original image + white canvas watermarked)
+      img = img.composite(logo_opacity, Magick::SouthEastGravity, 0, 0, Magick::OverCompositeOp)
+    end
+  end
+
+ # def watermark
+ #   manipulate! do |img|
+ #     logo = Magick::Image.read("#{Rails.root}/app/assets/images/watermark.jpg").first
+ #     img = img.composite(logo, Magick::NorthEastGravity, 15, 0, Magick::OverCompositeOp)
+ #   end
+
+ #   # // for addition of text watermark #
+
+ #   # if model.name.present?
+ #   #   manipulate! do |img|
+ #   #     text = Magick::Draw.new
+ #   #     text.gravity = Magick::CenterGravity
+ #   #     text.fill = 'white'
+ #   #     text.pointsize = 40
+ #   #     text.stroke = 'none'
+ #   #     text.annotate(img, 0, 0, 0, 0, "#{model.name}")
+ #   #     img
+ #   #   end
+ #   # end
+ # end
 
 
 
