@@ -72,6 +72,14 @@ class PropertiesController < ApplicationController
   end
 
   def create
+    unless params[:property][:epc].nil?
+      service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
+      bucket = service.buckets.find("sealpropertiesus")
+      object = bucket.objects.build(params[:property][:epc].original_filename)
+      object.content = params[:property][:epc].tempfile
+      object.save
+      params[:property][:epc] = "https://sealpropertiesus.s3.amazonaws.com/"+params[:property][:epc].original_filename
+    end
     @user = current_user
     @property = @user.properties.new(property_params)
     @property.category.downcase
@@ -87,6 +95,19 @@ class PropertiesController < ApplicationController
   end
 
   def update
+    unless params[:property][:epc].nil?
+      service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
+      bucket = service.buckets.find("sealpropertiesus")
+      unless @property.epc.empty? || @property.epc.nil?
+        a= @property.epc.split("https://sealpropertiesus.s3.amazonaws.com/").last
+        object = bucket.objects.find(a)
+        object.destroy if object
+      end
+      object = bucket.objects.build(params[:property][:epc].original_filename)
+      object.content = params[:property][:epc].tempfile
+      object.save
+      params[:property][:epc] = "https://sealpropertiesus.s3.amazonaws.com/"+params[:property][:epc].original_filename
+    end
     @property.update(property_params)
     if @property.let_changed?
       @property.l_date = Time.now
