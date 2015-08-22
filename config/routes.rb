@@ -161,6 +161,7 @@ Rails.application.routes.draw do
   match '/delete_pdf',   to: 'properties#delete_pdf', via: 'get'
   match '/test_blm',   to: 'properties#test_blm', via: 'get'
   match '/search_criteria',   to: 'properties#search_criteria', via: 'get'
+  match '/help',   to: 'phones#help',   via: 'get'
   
   resources :users do
     collection do 
