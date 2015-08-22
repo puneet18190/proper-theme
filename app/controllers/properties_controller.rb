@@ -350,7 +350,7 @@ class PropertiesController < ApplicationController
   end
 
   def tenant_search
-
+    @search = Property.search(params[:q])
   end
 
   def facebook_share

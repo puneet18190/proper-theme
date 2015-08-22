@@ -28,7 +28,7 @@ class UserMailer < ActionMailer::Base
     @request = request
     @user = user
     @property = property
-    mail( :to => @user.email, :subject => 'Searching results')
+    mail( :to => @user.email, :subject => 'Searching results',:cc => "emma@sealproperties.co.uk")
   end
 
   def query_message(contact_agent)
