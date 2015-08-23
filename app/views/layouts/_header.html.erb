@@ -5,7 +5,9 @@
       <div class="pull-right">
         <% if user_signed_in? %>
           <% if current_user.status == "admin" %>
-            <%= link_to "Admin", properties_path %>
+            <%= link_to "LANDLORDS", landlords_path %>
+            <%= link_to "TENANTS", tenants_path %>
+            <%= link_to "PROPERTIES", properties_path %>
             <%= link_to "Admin Mails", mails_path %>
           <% elsif current_user.status == "landlord" %>
             <%= link_to "Profile", "/users/profile" %>

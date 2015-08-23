@@ -1,0 +1,71 @@
+<div id="content">
+  <div class="news-carousel-wrapper">
+    <dl id="news-carousel" class="news-carousel-style">
+      <%= render 'properties/news_carousel'%>
+    </dl>
+  </div>
+  <div class="container" style="width:1230px">
+    <div class="panel">
+      <div class="box-line">
+        <h3 class="title-heading">Please complete the form</h3>
+      </div>
+      <%if params[:action]=="edit"%>
+        <% url = tenant_path(@tenant) %>
+      <%else%>
+        <% url = tenants_path%>
+      <%end%>
+      <%= form_for @tenant,url: url, html: { multipart: true,class: "proper-form-step" },:style=>"" do |f| %>
+        <div class="proper-form-step-area">
+          <h4>Personal Information</h4>
+          <div style="width:300px">
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name, class: "input-block-level", required: "true" %>
+            
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name, class: "input-block-level", required: "true" %>
+            
+            <%= f.label :address1 %>
+            <%= f.text_field :address1, class: "input-block-level", required: "true" %>
+            
+            <%= f.label :address2 %>
+            <%= f.text_field :address2, class: "input-block-level", required: "true" %>
+            
+            <%= f.label :address3 %>
+            <%= f.text_field :address3, class: "input-block-level", required: "true" %>
+        
+            <%= f.label :postcode %>
+            <%= f.text_field :postcode, class: "input-block-level", required: "true" %>
+
+            <%= f.label "Phone" %>
+            <%= f.text_field :phone, class: "input-block-level", required: "true" %>
+
+            <%= f.label "Alternate Phone" %>
+            <%= f.text_field :mobile, class: "input-block-level", required: "true" %>
+
+            <%= f.label :email %>
+            <%= f.text_field :email, class: "input-block-level", required: "true", disabled: "true" %>
+
+            <%= f.label "Date Of Birth" %>
+            <%= f.date_select :dob, class: "input-block-level", required: "true" %>
+          </div>
+        </div>
+        <%= f.submit 'Save', class: "btn btn-proper btn-large" %>
+      <%end%>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+  select{
+    width: 100% !important;
+  }
+  #user_dob_1i{
+    width: 35% !important;
+  }
+  #user_dob_2i{
+    width: 39% !important;
+  }
+  #user_dob_3i{
+    width: 26% !important;
+  }
+</style>

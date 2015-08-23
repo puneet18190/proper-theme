@@ -1,0 +1,79 @@
+<div id="content">
+    <div class="news-carousel-wrapper">
+        <dl id="news-carousel" class="news-carousel-style">
+            <%= render 'properties/news_carousel'%>
+        </dl>
+    </div>
+    <div class="cont" style="max-width:1200px">
+        <h3><b>TENANT</b></h3>
+   
+        <% if current_user.fb_token.nil? %>
+            <%= button_to "Connect Facebook","/connect_facebook",:class=>"btn btn-primary"%>
+        <%else%>
+            <a class= "btn disconnect_fb btn-primary" href="/disconnect_fb">Connected with Facebook</a>
+        <%end%>  
+   
+        <%= button_to "New Tenant", "/tenants/new", :method=>:get, :class=>"btn btn-warning", :style=>"margin-left:1000px;margin-top:-90px;"%>
+
+        <table id="tenant_info">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Address</th>
+              <th>Phone</th>
+              <th>Action</th>
+              <th>Action</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @tenants.each_with_index do |l,i| %>
+              <tr>
+                <td><%= "#{l.first_name} #{l.last_name}" %></td>
+                <td><%= l.email %></td>
+                <td><%= "#{l.address1} #{l.address2} #{l.address3}" %></td>
+                <td><%= l.phone %></td>
+                <td><%= link_to 'Show', tenant_path(l) %></td>
+                <td><%= link_to 'Edit', edit_tenant_path(l) %> </td>
+                <td><%= link_to 'Destroy', tenant_path(l), method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      $("#tenant_info").dataTable()
+    })
+
+    $( ".disconnect_fb" )
+    .mouseenter(function() {
+        $( this ).html("Disconnect Facebook");
+    })
+    .mouseleave(function() {
+        $( this ).html("Connected with Facebook");
+    });
+
+</script>
+
+<style type="text/css">
+  .dataTables_paginate .next{
+    position: relative;
+    bottom: 0;
+    color: white !important;
+  }
+  select{
+    width: 70px;
+    float: none;
+  }
+  tr{
+    background-color: #eee !important;
+  }
+  .bg_color{
+    background-color: papayawhip !important
+  }
+</style>
