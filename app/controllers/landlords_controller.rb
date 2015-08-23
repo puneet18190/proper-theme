@@ -5,11 +5,17 @@ class LandlordsController < ApplicationController
 	end
 
 	def new
-		@landlord = User.new(status: "landlord", password: "12345678", password_confirmation: "12345678")
+		@landlord = User.new
 	end
 
 	def create
-
+		params[:user][:status] = "landlord"
+		params[:user][:password] = "12345678"
+		params[:user][:password_confirmation] = "12345678"
+		@user = User.new(landlord_params)
+		@user.skip_confirmation!
+		@user.save!
+		redirect_to landlords_path
 	end
 
 	def edit
@@ -32,6 +38,6 @@ class LandlordsController < ApplicationController
 	    end
 
 	    def landlord_params
-	      params.require(:user).permit(:first_name,:last_name, :address1, :address2, :address3,:phone,:postcode,:mobile,:dob)
+	      params.require(:user).permit(:first_name,:last_name, :address1, :address2, :address3,:phone,:postcode,:mobile,:dob,:status,:password,:password_confirmation,:email)
 	    end
 end

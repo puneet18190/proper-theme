@@ -9,7 +9,13 @@ class TenantsController < ApplicationController
 	end
 
 	def create
-
+		params[:user][:status] = "tenant"
+		params[:user][:password] = "12345678"
+		params[:user][:password_confirmation] = "12345678"
+		@user = User.new(tenant_params)
+		@user.skip_confirmation!
+		@user.save!
+		redirect_to tenants_path
 	end
 
 	def edit
@@ -32,6 +38,6 @@ class TenantsController < ApplicationController
 	    end
 
 	    def tenant_params
-	      params.require(:user).permit(:first_name,:last_name, :address1, :address2, :address3,:phone,:postcode,:mobile,:dob)
+	      params.require(:user).permit(:first_name,:last_name, :address1, :address2, :address3,:phone,:postcode,:mobile,:dob,:status,:password,:password_confirmation,:email)
 	    end
 end

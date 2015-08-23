@@ -43,7 +43,11 @@
             <%= f.text_field :mobile, class: "input-block-level", required: "true" %>
 
             <%= f.label :email %>
-            <%= f.text_field :email, class: "input-block-level", required: "true", disabled: "true" %>
+            <%if params[:action]=="edit"%>
+              <%= f.text_field :email, class: "input-block-level", required: "true", disabled: "true" %>
+            <%else%>
+              <%= f.text_field :email, class: "input-block-level", required: "true" %>
+            <%end%>
 
             <%= f.label "Date Of Birth" %>
             <%= f.date_select :dob, class: "input-block-level", required: "true" %>
