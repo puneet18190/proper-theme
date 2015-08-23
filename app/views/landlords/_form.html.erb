@@ -50,7 +50,7 @@
             <%end%>
 
             <%= f.label "Date Of Birth" %>
-            <%= f.date_select :dob, class: "input-block-level", required: "true" %>
+            <%= f.date_select :dob, class: "input-block-level", required: "true", start_year: 1980,end_year: 2015, :order => [:day, :month, :year] %>
           </div>
         </div>
         <%= f.submit 'Save', class: "btn btn-proper btn-large" %>
