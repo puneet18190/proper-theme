@@ -180,7 +180,7 @@ class TasksController < ApplicationController
   end
 
   def contact_agent_params
-    params.require(:contact_agent).permit(:name, :email, :message, :agent_id)
+    params.require(:contact_agent).permit(:name, :email, :message, :agent_id, :page_link)
   end
 
 end

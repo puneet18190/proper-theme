@@ -9,6 +9,7 @@
 #  created_at :datetime
 #  updated_at :datetime
 #  agent_id   :integer
+#  page_link  :string(255)
 #
 
 class ContactAgent < ActiveRecord::Base

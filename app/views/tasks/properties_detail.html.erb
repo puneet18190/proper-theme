@@ -120,6 +120,7 @@
               <%= f.label :message %>
               <%= f.text_area :message, :class=> "input-block-level", :placeholder=>"Your Message"%>
               <%= f.hidden_field :agent_id, :value => @agents.id %>
+              <%= f.hidden_field :page_link, :value => request.url %>
               <%= f.submit "Send", class: "btn-proper btn" %>
           <% end %>
         </div>
