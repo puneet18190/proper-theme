@@ -142,7 +142,7 @@ class TasksController < ApplicationController
     @contact_agent = ContactAgent.new(contact_agent_params)
     @contact_agent.save
     UserMailer.query_message(@contact_agent).deliver
-    redirect_to :back, notice: "Thank You for posting your query, we will come back to you soon......"
+    redirect_to :back, notice: "We will be in touch shortly."
   end
 
   def sitemap
