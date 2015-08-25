@@ -32,11 +32,11 @@
             </div>
             <div class="span5">
               <%= f.label :address2 %>
-              <%= f.text_field :address2, class: "input-block-level", required: "true" %>
+              <%= f.text_field :address2, class: "input-block-level" %>
             </div>
             <div class="span5">
               <%= f.label :address3 %>
-              <%= f.text_field :address3, class: "input-block-level", required: "true" %>
+              <%= f.text_field :address3, class: "input-block-level" %>
             </div>
             <div class="span5">
               <%= f.label :postcode %>
@@ -47,8 +47,8 @@
               <%= f.text_field :phone, class: "input-block-level", required: "true" %>
             </div>
             <div class="span5">
-              <%= f.label "Alternate Phone" %>
-              <%= f.text_field :mobile, class: "input-block-level", required: "true" %>
+              <%= f.label "Alternative Phone" %>
+              <%= f.text_field :mobile, class: "input-block-level" %>
             </div>
             <div class="span5">
               <%= f.label :email %>
@@ -60,7 +60,7 @@
             </div>
             <div class="span5">
               <%= f.label "Date Of Birth" %>
-              <%= f.date_select :dob, class: "input-block-level", required: "true", start_year: 1980,end_year: 2015, :order => [:day, :month, :year] %>
+              <%= f.date_select :dob, class: "input-block-level", required: "true", start_year: 1960,end_year: 2015 %>
             </div>
           </div>
         </div>
@@ -96,5 +96,8 @@
   #user_dob_3i{
     width: 15% !important;
     float: right;
+  }
+  .span5{
+    margin-left: 0
   }
 </style>
