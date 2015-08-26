@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   layout proc { false if request.xhr? }	
   respond_to :html, :xml, :json,:mobile, :tablet
   def index
-    if !current_user.nil? && current_user.sign_in_count == 0
+    if !current_user.nil? && current_user.sign_in_count == 1
       redirect_to "/users/profile"
     else
     # if is_mobile_device? == false
@@ -61,9 +61,9 @@ class TasksController < ApplicationController
     # else  
       begin
         @data = Property.friendly.find(params[:id])
-        @agents = Agent.find_by_id(@data.agent_id)
+        @agents = @data.agent
         @contact_agent = ContactAgent.new
-        redirect_to root_url, alert: "No Property Found" unless @data.payment == true
+        # redirect_to root_url, alert: "No Property Found" unless @data.payment == true
         # respond_to do |format|
         #   format.html
         #   format.mobile

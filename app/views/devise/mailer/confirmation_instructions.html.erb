@@ -1,8 +1,8 @@
 <p>Hi <%= "#{@resource.first_name} #{@resource.last_name}" %></p>
 
-<p>Welcome to Seal Properties.</p>
+<p>Welcome to SEAL Properties.</p>
 
-<p>Please click the link below to confirm your account:</p>
+<p>Please click the link below to confirm your account and complete the registration process.</p>
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token, "user[email]" => @resource.email) %></p>
 
 <p>Regards,</p>

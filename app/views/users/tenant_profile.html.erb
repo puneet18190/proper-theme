@@ -77,7 +77,7 @@
           <div class="row-fluid">
             <div class="span4" style="width:31.8% !important">
               <%= f.label "Date Of Birth" %>
-              <%= f.date_select :dob, class: "input-block-level", required: "true", start_year: 1980,end_year: 2015, :order => [:day, :month, :year] %>
+              <%= f.date_select :dob, class: "input-block-level", required: "true", start_year: 1930,end_year: 2015, :order => [:day, :month, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' } %>
             </div>
           </div>
 <%

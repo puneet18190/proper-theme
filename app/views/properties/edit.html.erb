@@ -1,6 +1,9 @@
 <% if current_user.status == "admin" %>
   <%= render :partial => "add_property" %>
 <% else %>
+  <%= render :partial => "landlord_add_property" %>
+<%
+=begin%>
   <div id="content">
     <div class="news-carousel-wrapper">
       <dl id="news-carousel" class="news-carousel-style">
@@ -175,4 +178,7 @@
   <script type="text/javascript">
     $('.desc').cleditor();
   </script>
+  <%
+=end%>
+
 <%end%>

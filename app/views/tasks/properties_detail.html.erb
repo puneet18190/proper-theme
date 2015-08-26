@@ -101,14 +101,14 @@
           </div>
           <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-user"></i></span> Agent</h3>
           <div class="agent-panel bottom-line line-before">
-            <a href="#" class="agent-image ">
-              <%=  image_tag responsive_image(@agents.image), class: "img-polaroid" %>
+            <a href="#" class="agent-image">
+              <%= image_tag @agents.nil? ? "noimage.gif" : responsive_image(@agents.image), class: "img-polaroid" %>
             </a>
             <ul class="unstyled margin20">
-              <li><i class="icon-phone"></i><%= @agents.phone %></li>
-              <li><i class="icon-envelope"></i><%= @agents.email_id %></li>
-              <li><i class="icon-facebook"></i><%= @agents.fb_id %></li>
-              <li><i class="icon-twitter"></i><%= @agents.twitter_id %></li>
+              <li><i class="icon-phone"></i><%= @agents.nil? ? @data.user.phone : @agents.phone %></li>
+              <li><i class="icon-envelope"></i><%= @agents.nil? ? "" : @agents.email_id %></li>
+              <li><i class="icon-facebook"></i><%= @agents.nil? ? "" : @agents.fb_id %></li>
+              <li><i class="icon-twitter"></i><%= @agents.nil? ? "" : @agents.twitter_id %></li>
             </ul>
           </div>
           <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-envelope-alt"></i></span> Contact Agent</h3>
@@ -119,7 +119,7 @@
               <%= f.text_field :email, :class=> "input-block-level", :placeholder=>"Enter Your Email"%>
               <%= f.label :message %>
               <%= f.text_area :message, :class=> "input-block-level", :placeholder=>"Your Message"%>
-              <%= f.hidden_field :agent_id, :value => @agents.id %>
+              <%= f.hidden_field :agent_id, :value => @agents.nil? ? "" : @agents.id %>
               <%= f.hidden_field :page_link, :value => request.url %>
               <%= f.submit "Send", class: "btn-proper btn" %>
           <% end %>

@@ -1,0 +1,278 @@
+<!--Start Content-->
+<div id="content">
+    <!--Start Main Title-->
+    <div class="container" style="width:1200px">
+        <div class="panel">
+            <div class="box-line">
+                <h3 class="title-heading">Please complete the form</h3>
+            </div>
+            <!-- Start List Step Upload-->
+            <!-- <ul class="unstyled proper-step">
+                <li><a href="upload_step1.html" class="active"><span>1</span></a></li>
+                <li><a href="upload_step2.html" ><span>2</span></a></li>
+                <li><a href="upload_step3.html"><span>3</span></a></li>
+            </ul> -->
+            <div class="clearfix"></div>
+            <!-- Start Form Step -->
+            <%= form_for @property, html: { multipart: true , class: "proper-form-step"} do |f| %>
+                <div class="proper-form-step-area">
+                    <div class="" style="width:385px;height:522px;float:left">
+                       <h4>My Property</h4>                
+                        <div class="span4">
+                            <%= f.label :name %>
+                            <%= f.text_field :name,class: "input-block-level",required: true %>
+                        </div>
+                        <div class="span4">
+                            <%= f.label :address1 %>
+                            <%= f.text_field :address1,class: "input-block-level",required: true %>
+                        </div>
+                        <% [:address2, :address3].each do |obj| %>
+                            <div class="span4">
+                                <%= f.label obj %>
+                                <%= f.text_field obj,class: "input-block-level" %>
+                            </div>
+                        <%end%>
+                        <div class="span4">
+                            <%= f.label :town %>
+                            <%= f.text_field :town,class: "input-block-level",required: true %>
+                        </div>
+                        <div class="span4">
+                            <%= f.label :postcode1 %>
+                            <%= f.text_field :postcode,class: "input-block-level",required: true %>
+                        </div>
+                        <div class="span4">
+                            <%= f.label :postcode2 %>
+                            <%= f.text_field :postcode1,class: "input-block-level",required: true %>
+                        </div>
+                        <div class="span4">
+                          <%= f.label :search_criteria %>
+                          <%= f.select :search_criteria,['Not Specified','Bungalows','Retirement Property','House / Flat Share','Garage / Parking','Flats / Apartments','Houses','Land','Mobile / Park Homes','Character Property','Commercial Property'], class: "input-block-level", required: "true"%>
+                        </div>
+                        <div class="span4">
+                          <%= f.label "PROP SUB ID" %>
+                          <%= f.select :property_type,[['Not Specified',0]], class: "input-block-level", required: "true" %>
+                        </div>
+                        <div class="span4">                    
+                            <h4 >Marketing</h4>
+                        </div>
+                        <div class="span4">
+                          <%= f.label :category %>
+                          <%= f.select :category, ["Rent","Sale"], class: "input-block-level", required: "true" %>
+                        </div>
+                        <div class="span4">
+                          <%= f.label "Status ID" %>
+                          <%= f.select :status,['Available','Let Agreed'], class: "input-block-level", required: "true" %>
+                        </div>
+                        <div class="span4">
+                          <%= f.label :price %>
+                          <%= f.text_field :price, class: "input-block-level", required: "true" %>
+                        </div>
+                    </div>
+                    <div class="property_images" style="width:300px;height:522px;float:left">
+                        <h4>Property Images</h4>
+                        <div class="span4">
+                            <label>Main Image</label>
+                            <%if params[:action]=="edit" %>
+                                <%= f.file_field :image1 %>
+                                <%= @property.image1.file.filename %>
+                            <%else%>
+                                <%= f.file_field :image1 %>
+                            <%end%>
+                        </div>
+                        <%(2..4).each do |n|%>
+                            <div class="span4">
+                                <label for="property_image<%=n%>" style="margin:0">Image <%=n-1%>
+                                </label>
+                                <%if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
+                                    <%= f.file_field ("image"+n.to_s).to_sym %>
+                                    <%= @property.image1.file.filename %>
+                                <%else%>
+                                    <%= f.file_field ("image"+n.to_s).to_sym %>
+                                <%end%>
+                              </div>
+                        <%end%>
+                        <%(5..7).each do |n|%>
+                            <div class="span4">
+                                <label for="property_image<%=n%>" style="margin:0">Image <%=n-1%>
+                                </label>
+                                <%if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
+                                    <%= f.file_field ("image"+n.to_s).to_sym %>
+                                    <%= @property.image1.file.filename %>
+                                <%else%>
+                                    <%= f.file_field ("image"+n.to_s).to_sym %>
+                                <%end%>
+                            </div>
+                        <%end%>
+                        <%(8..10).each do |n|%>
+                            <div class="span4">
+                                <label for="property_image<%=n%>" style="margin:0">Image <%=n-1%>
+                                </label>
+                                <%if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
+                                    <%= f.file_field ("image"+n.to_s).to_sym %>
+                                    <%= @property.image1.file.filename %>
+                                <%else%>
+                                    <%= f.file_field ("image"+n.to_s).to_sym %>
+                                <%end%>
+                            </div>
+                        <%end%>
+                    </div>
+                    <div class="" style="width:430px;height:522px;float:right">
+<%
+=begin%>
+                        <div class="span4" style="width:440px">
+                            <h4>Tag Line</h4>
+                          <%#= f.label :tag_line %>
+                          <h6>A single sentence highlighting your properties best features</h6>
+                          <%= f.text_field :tag_line, class: "input-block-level", required: "true",style: "width:440px !important" %>
+                        </div>
+                        <div class="span4" style="width:440px">
+                          <h4>Summary</h4>
+                          <%#= f.label :summary %>
+                          <h6>A short summary of 300 characters for your On The Market Advert</h6>
+                          <%= f.text_area :summary,:maxlength => 300, class: "input-block-level", required: "true",style: "width:440px !important" %>
+                        </div>
+                        <div class="span4" style="width:440px">
+                          <h4>Short Description</h4>
+                          <%#= f.label :short_description %>
+                          <h6>Please provide a brief description of your property</h6>
+                          <%= f.text_area :short_description, style: "height:60px;width:440px !important",:maxlength => 900, class: "input-block-level", required: "true" %>
+                        </div>
+                        <div class="span4" style="width:440px">
+                          <h4>Description</h4>
+                          <%#= f.label :description %>
+                          <h6>Please provide a full description of your property using the template</h6>
+                          <%= f.text_area :description, style: "height:100px;width:440px !important", class: "long_desc input-block-level", required: "true" %>
+                        </div>
+<%
+=end%>                    
+                        <h4>Key Features</h4>
+                        <div class="span4">
+                          <%= f.label :beds %>
+                          <%= f.number_field :beds, :min => 0, class: "input-block-level", required: "true" %>
+                        </div>
+                        <div class="span4">
+                          <%= f.label :bath %>
+                          <%= f.number_field :bath, :min => 0, class: "input-block-level", required: "true" %>
+                        </div>
+
+                        <div class="span4">
+                          <%= f.label :parking %>
+                          <%= f.select :parking_status, ["None","On Street","Off Street"], class: "input-block-level", required: "true" %>
+                        </div>
+                        <div class="span4">
+                          <%= f.label "Cars" %>
+                          <%= f.number_field :car, :min => 0, class: "input-block-level", required: "true" %>
+                        </div>
+                        <div class="span4">
+                          <%= f.label "En-suite" %>
+                          <%= f.select :ensuite, [['No', 'No'],['Yes', 'Yes']], class: "input-block-level", required: "true" %>
+                        </div>
+                        <div class="span4">
+                          <%= f.label "LET_TYPE_ID", style: "margin-left:-10px" %>
+                          <%= f.select :let_type_id, ['Not Specified','Long Term','Short Term','Student','Commercial'], class: "input-block-level", required: "true" %>
+                        </div>
+                        <div class="span4">
+                          <%= f.label "Furnished" %>
+                          <%= f.select :let_furn_id, ['Not Specified','Furnished','Part Furnished','Unfurnished','Furnished/Un Furnished'], class: "input-block-level", required: "true" %>
+                        </div>
+                        <div class="span4">
+                          <%= f.label :gas_CH %>
+                          <%= f.select :gas_ch, [['No', 'No'],['Yes', 'Yes']], class: "input-block-level", required: "true" %>
+                        </div>
+                        <div class="span4">
+                          <%= f.label :garden %>
+                          <%= f.select :garden, [['No', 'No'],['Yes', 'Yes']], class: "input-block-level", required: "true" %>
+                        </div>
+                        <div class="span4">
+                          <%= f.label :dg, "DG" %>
+                          <%= f.select :dg, ["Full", "Partial", "No"], class: "input-block-level", required: "true" %>
+                        </div>
+                        <div class="span4">
+                          <%= f.label :pets %>
+                          <%= f.select :pets, [['No', 'No'],['Yes', 'Yes']], class: "input-block-level", required: "true" %>
+                        </div>
+                        <div class="span4">
+                          <%= f.label :feature1 %>
+                          <%= f.text_field :feature1, class: "input-block-level" %>
+                        </div>
+                        <div class="span4">
+                          <%= f.label :feature2 %>
+                          <%= f.text_field :feature2, class: "input-block-level" %>
+                        </div>
+                        <div class="span4">
+                          <%= f.label :epc %>
+                          <%= f.text_field :epc, class: "input-block-level", required: "true" %>
+                        </div>
+                    </div>
+                </div>
+
+                <button  class="btn btn-proper btn-large">Submit <i class="icon-arrow-right"></i></button>
+            <%end%>
+        </div>
+
+    </div>
+</div><!--EndContent-->
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.long_desc').cleditor();
+    $("#property_search_criteria").on('change', function() {
+      var search = $("#property_search_criteria option:selected").text()
+      $.ajax({
+        type: "get",
+        url: '/search_criteria',
+        data: 'search='+search,
+        success: function(res){
+          $("#property_property_type").html(res)
+        }
+      })
+    })
+    $("#property_category").on('change', function() {
+      var search = $("#property_category option:selected").text()
+      if($("#property_category option:selected").text() == "Sale"){
+        $("#property_let_type_id").parent().css("display","none")
+      }else{
+        $("#property_let_type_id").parent().css("display","block")
+      }
+    })
+  })
+  <% if current_user.status == "landlord" && current_user.plan == "free" %>
+    $(".alert_popup").click(function(e) {
+      e.preventDefault();
+      $("#myModal").modal();
+      $("#myModal").css("z-index",10000)
+    });
+  <% end %>
+</script>
+
+<style type="text/css">
+  select{
+    width: 71.5% !important;
+    float: right;
+  }
+  .cleditorMain{
+    width: 98% !important;
+    /*height: 300px !important;*/
+  }
+  .input-block-level{
+    display: inline-block;
+    width: 250px !important;
+    float: right;
+  }
+  label{
+    display: inline-block;
+    width: auto;
+    margin: 5px;
+    margin-left: 0;
+  }
+  .span4{
+    margin-left: 0;
+    width: 350px;
+  }
+  .property_images .span4{
+    margin: 8px;
+  }
+  .property_images .span4 input{
+    float: right;
+  }
+
+</style>
