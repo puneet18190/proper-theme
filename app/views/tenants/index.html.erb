@@ -32,7 +32,7 @@
             <% @tenants.each_with_index do |l,i| %>
               <tr>
                 <td><%= "#{l.first_name} #{l.last_name}" %></td>
-                <td><%= l.email %></td>
+                <td><%= l.email.include?("@dummy.com") ? "" : l.email %></td>
                 <td><%= "#{l.address1} #{l.address2} #{l.address3}" %></td>
                 <td><%= l.phone %></td>
                 <td><%= link_to 'Show', tenant_path(l) %></td>
