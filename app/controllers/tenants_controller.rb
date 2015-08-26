@@ -12,6 +12,7 @@ class TenantsController < ApplicationController
 		params[:user][:status] = "tenant"
 		params[:user][:password] = "12345678"
 		params[:user][:password_confirmation] = "12345678"
+		params[:user][:email] = "#{Time.now.to_i}@gmail.com" if params[:user][:email].empty?
 		@user = User.new(tenant_params)
 		@user.skip_confirmation!
 		@user.save!

@@ -52,15 +52,11 @@
             </div>
             <div class="span5">
               <%= f.label :email %>
-              <%if params[:action]=="edit"%>
-                <%= f.text_field :email, class: "input-block-level", required: "true", disabled: "true" %>
-              <%else%>
-                <%= f.text_field :email, class: "input-block-level", required: "true" %>
-              <%end%>
+                <%= f.text_field :email, class: "input-block-level" %>
             </div>
             <div class="span5">
               <%= f.label "Date Of Birth" %>
-              <%= f.date_select :dob, class: "input-block-level", required: "true", start_year: 1960,end_year: 2015 %>
+              <%= f.date_select :dob, class: "input-block-level", required: "true", start_year: 1930,end_year: 2015 %>
             </div>
           </div>
         </div>
