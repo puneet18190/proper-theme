@@ -155,7 +155,7 @@ class ScreensController < ApplicationController
 		if request.ip == "82.68.0.86" || request.ip == "82.68.180.14" 
 			@data = DirectoryEntry.all.select(:Name, :Telephone)
 		else
-			redirect_to root_url, alert: "IP: #{request.ip} is not Authorized." 
+			redirect_to root_url, alert: "IP: #{request.ip} is not Authorized. " 
 		end			
 	end	
 
@@ -170,7 +170,7 @@ class ScreensController < ApplicationController
 		if request.ip == "82.68.0.86" || request.ip == "82.68.180.14" 
 			@data = User.all.where("status = ?", "landlord")
 		else
-			redirect_to root_url, alert: "IP: #{request.ip} is not Authorized." 
+			redirect_to root_url, alert: "IP: #{request.ip} is not Authorized. " 
 		end	
 	end
 	
@@ -178,7 +178,7 @@ class ScreensController < ApplicationController
 		if request.ip == "82.68.0.86" || request.ip == "82.68.180.14" 
 			@data = User.all.where("status = ?", "tenant")
 		else
-			redirect_to root_url, alert: "IP: #{request.ip} is not Authorized." 
+			redirect_to root_url, alert: "IP: #{request.ip} is not Authorized. " 
 		end	
 	end	
 
@@ -193,7 +193,7 @@ class ScreensController < ApplicationController
 		if request.ip == "82.68.0.86" || request.ip == "82.68.180.14" 
 			@data = Service.all.select(:name, :telephone)
 		else
-			redirect_to root_url, alert: "IP: #{request.ip} is not Authorized." 
+			redirect_to root_url, alert: "IP: #{request.ip} is not Authorized. " 
 		end					
 	end	
 

@@ -69,7 +69,7 @@ class TasksController < ApplicationController
         #   format.mobile
         # end
       rescue Exception => e
-        redirect_to root_url, alert: "No Property Found"
+        redirect_to root_url, alert: "No Property Found. "
       end
       respond_with(@data,@agents,@contact_agent)
     # end  
@@ -142,7 +142,7 @@ class TasksController < ApplicationController
     @contact_agent = ContactAgent.new(contact_agent_params)
     @contact_agent.save
     UserMailer.query_message(@contact_agent).deliver
-    redirect_to :back, notice: "We will be in touch shortly."
+    redirect_to :back, notice: "We will be in touch shortly. "
   end
 
   def sitemap
