@@ -139,11 +139,11 @@ class PropertiesController < ApplicationController
       @location = @data.split("|")[5]
     end
 
-    if current_user.status == "tenant" && current_user.payment==false
-      render :tenant_payment
-    elsif current_user.status == "tenant" && current_user.payment==true
+    # if current_user.status == "tenant" && current_user.payment==false
+    #   render :tenant_payment
+    # elsif current_user.status == "tenant" && current_user.payment==true
       render :tenant_search
-    end
+    # end
   end
 
   def tenant_search_result

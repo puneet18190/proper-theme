@@ -14,7 +14,7 @@
             </ul> -->
             <div class="clearfix"></div>
             <!-- Start Form Step -->
-            <%= form_for @property, html: { multipart: true , class: "proper-form-step", style: "height:800px"} do |f| %>
+            <%= form_for @property, html: { multipart: true , class: "proper-form-step", style: "height:910px"} do |f| %>
                 <div class="proper-form-step-area">
                     <div class="" style="width:385px;height:770px;float:left">
                        <h4>My Property</h4>                
@@ -23,23 +23,26 @@
                             <%= f.text_field :name,class: "input-block-level",required: true, placeholder: "A Unique Name for your Property" %>
                         </div>
                         <div class="span4">
-                            <%= f.label :address1 %>
+                            <%= f.label "House Number" %>
                             <%= f.text_field :address1,class: "input-block-level",required: true %>
                         </div>
-                        <% [:address2, :address3].each do |obj| %>
-                            <div class="span4">
-                                <%= f.label obj %>
-                                <%= f.text_field obj,class: "input-block-level" %>
-                            </div>
-                        <%end%>
+                        <div class="span4">
+                            <%= f.label "Street" %>
+                            <%= f.text_field :address2,class: "input-block-level",required: true %>
+                        </div>
+                        <div class="span4">
+                            <%= f.label " " %>
+                            <%= f.text_field :address3,class: "input-block-level" %>
+                        </div>
                         <div class="span4">
                             <%= f.label :town %>
                             <%= f.text_field :town,class: "input-block-level",required: true %>
                         </div>
                         <div class="span4">
                             <%= f.label "Postcode" %>
-                            <%= f.text_field :postcode,class: "input-block-level",required: true, style: "width: 35% !important;margin-left:5px", placeholder: "XXX" %>
-                            <%= f.text_field :postcode1,class: "input-block-level",required: true, style: "width: 35% !important", placeholder: "XXX" %>
+                            <%= f.text_field :postcode1,class: "input-block-level",required: true, style: "width: 35% !important;margin-left:5px", placeholder: "4TJ" %>
+                            <%= f.text_field :postcode,class: "input-block-level",required: true, style: "width: 35% !important;", placeholder: "NE8" %>
+                            
                         </div>
                         <div class="span4">
                           <%= f.label :search_criteria %>
@@ -68,7 +71,7 @@
                           </div>
                           <div class="span2">
                             <%= f.label "Cars" %>
-                            <%= f.number_field :car, :min => 0, class: "input-block-level", required: "true" %>
+                            <%= f.number_field :car, :min => 0, class: "input-block-level", required: "true", value: 0 %>
                           </div>
                           <div class="span2">
                             <%= f.label "En-suite" %>
@@ -76,11 +79,11 @@
                           </div>
                           <div class="span2" style="width:175px">
                             <%= f.label "LET_TYPE" %>
-                            <%= f.select :let_type_id, ['Not Specified','Long Term','Short Term','Student','Commercial'], class: "input-block-level", required: "true",:style=>"width: 110px !important" %>
+                            <%= f.select :let_type_id, ['Not Specified','Long Term','Short Term','Student','Commercial'], class: "input-block-level",:style=>"width: 110px !important" %>
                           </div>
                           <div class="span2" style="width:175px">
                             <%= f.label "Furnished" %>
-                            <%= f.select :let_furn_id, ['Not Specified','Furnished','Part Furnished','Unfurnished','Furnished/Un Furnished'], class: "input-block-level", required: "true",style: "width:110px !important" %>
+                            <%= f.select :let_furn_id, ['Not Specified','Furnished','Part Furnished','Unfurnished','Furnished/Un Furnished'], class: "input-block-level",style: "width:110px !important" %>
                           </div>
 <!--                           <div class="span4" style="width:375px">
                             <%#= f.label :epc %>
@@ -115,7 +118,7 @@
                           
                         </div>
                     </div>
-                    <div class="property_images" style="width:300px;height:715px;float:left;margin-left:15px">
+                    <div class="property_images" style="width:300px;height:815px;float:left;margin-left:15px">
                         <h4>Property Images</h4>
                         <div class="span4">
                             <label>Main Image</label>
@@ -162,14 +165,17 @@
                                 <%end%>
                             </div>
                         <%end%>
-
+                        <div class="span4">                    
+                            <h4>EPC Upload</h4>
+                            <h6>Please Upload EPC</h6>
+                        </div>
                         <div class="span4">
-                            <label>EPC Upload</label>
+                            <!-- <label>EPC Upload</label> -->
                             <%if params[:action]=="edit" && !@property.epc.nil? %>
-                                <%= f.file_field :epc %>
+                                <%= f.file_field :epc, style: "float:left" %>
                                 <%= @property.epc.file.filename %>
                             <%else%>
-                                <%= f.file_field :epc %>
+                                <%= f.file_field :epc, style: "float:left" %>
                             <%end%>
                         </div>
                         <div class="span4">                    
@@ -188,7 +194,7 @@
                           <%= f.text_field :price, class: "input-block-level", required: "true",style: "width:71.5% !important" %>
                         </div>
                     </div>
-                    <div class="" style="width:430px;height:770px;float:right">
+                    <div class="" style="width:430px;height:900px;float:right">
 
                         <div class="span4" style="width:440px">
                             <h4>Tag Line</h4>
@@ -374,7 +380,7 @@
     margin-left: 0;
     width: 175px !important;
   }
-  #property_let_type_id,#property_let_furn_id{
+  /*#property_let_type_id,#property_let_furn_id{
     width: 108px !important;
-  }
+  }*/
 </style>

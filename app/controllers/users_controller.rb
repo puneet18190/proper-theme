@@ -12,7 +12,11 @@ class UsersController < ApplicationController
 		current_user.update(user_params)
 		# redirect_to root_url
 		if current_user.status == "tenant"
-			redirect_to "/tenant_search"
+			if current_user.sign_in_count == 1
+				redirect_to "/tenant_search"
+			else
+				redirect_to root_url, notice: "Profile updated Sucessfully."
+			end
 		else current_user.status == "landlord"
 			redirect_to "/properties/new"
 		end
