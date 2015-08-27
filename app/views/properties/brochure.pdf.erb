@@ -73,9 +73,9 @@
     <div style="float:left;margin-left:30px;margin-top:50px">
       <div style="font-size:40px;padding:10px"><center><b>Agent Information</b></center></div>
       <div style="margin-top:40px;margin:10px">
-        <div style="font-size:40px;margin:10px"><center><b><%=@properties.agent.name%></b></center></div>
-        <div style="font-size:40px;margin:10px"><center><b><%=@properties.agent.phone%></b></center></div>
-        <div style="font-size:40px;margin:10px"><center><b><%=@properties.agent.name.downcase%>@sealproperties.co.uk</b></center></div>
+        <div style="font-size:40px;margin:10px"><center><b><%=agent_name(@properties)%></b></center></div>
+        <div style="font-size:40px;margin:10px"><center><b><%=agent_phone(@properties)%></b></center></div>
+        <div style="font-size:40px;margin:10px"><center><b><%=agent_email(@properties)%></b></center></div>
         
         <div style="font-size:40px;margin:10px"><center><b>167/169 Saltwell Road</b></center></div>
         <div style="font-size:40px;margin:10px"><center><b>Gateshead, NE8
@@ -85,7 +85,7 @@
     </div>
 
     <div style="float:right;margin-right:30px;margin-top:25px">
-      <div style="width:520px;"><center><%=image_tag(@properties.agent.image.present? ? @properties.agent.image.url(:large).gsub("https","http") : no_image, :height=> "500",:width=>"500") %></center></div>
+      <div style="width:520px;"><center><%=image_tag(agent_image(@properties), :height=> "500",:width=>"500") %></center></div>
     </div>
   </div>
 

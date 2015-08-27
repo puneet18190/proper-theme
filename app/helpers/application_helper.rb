@@ -53,4 +53,20 @@ module ApplicationHelper
     end
     return data
   end 
+
+  def agent_name(property)
+    property.agent.nil? ? property.user.first_name.capitalize : property.agent.name
+  end
+
+  def agent_phone(property)
+    property.agent.nil? ? property.user.phone : property.agent.phone
+  end
+
+  def agent_email(property)
+    property.agent.nil? ? "" : "#{property.agent.name.downcase}@sealproperties.co.uk"
+  end
+
+  def agent_image(property)
+    property.agent.nil? ? "noimage.gif" : property.agent.image.url(:large).gsub("https","http")
+  end
 end

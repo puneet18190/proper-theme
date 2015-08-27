@@ -322,6 +322,16 @@
       $("#myModal").css("z-index",10000)
     });
   <% end %>
+
+  $(".btn-proper").click(function(e){
+    if($("#property_epc").val() == ""){
+      e.preventDefault()
+      var x = confirm("EPC is a legal requirement, please provide us with a copy as soon as it is Available.")
+      if (x==true){
+        $(".proper-form-step").submit()        
+      }
+    }
+  })
 </script>
 
 <style type="text/css">

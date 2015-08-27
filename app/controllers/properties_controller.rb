@@ -57,14 +57,14 @@ class PropertiesController < ApplicationController
 
 
   def new
-    if (current_user.status == "landlord" && current_user.plan == "free" && current_user.properties.count >=3)
-      redirect_to root_url, alert: "Please Upgrade Your Plan to Continue" 
-    else  
+    # if (current_user.status == "landlord" && current_user.plan == "free" && current_user.properties.count >=3)
+    #   redirect_to root_url, alert: "Please Upgrade Your Plan to Continue" 
+    # else  
       unless current_user.status == "tenant"
         @property = current_user.properties.new  
         respond_with(@property)
       end
-    end    
+    # end    
   end
 
   def edit
@@ -118,7 +118,7 @@ class PropertiesController < ApplicationController
     if @property.featured_changed?
       @property.r_date = Time.now
     end
-    respond_with(@property)
+    redirect_to "/properties"
   end
 
   def destroy
