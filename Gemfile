@@ -129,3 +129,6 @@ gem 'jquery-datatables-rails', '~> 3.3.0'
 group :production do
 	gem 'thin'
 end
+# gem "letter_opener", :group => :development
+gem 'roadie'
+gem 'roadie-rails'

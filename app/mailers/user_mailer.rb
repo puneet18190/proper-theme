@@ -1,4 +1,5 @@
 class UserMailer < ActionMailer::Base
+  include Roadie::Rails::Automatic
   default :from => 'donotreply@sealproperties.co.uk'
   def deliver_payment_method(property)
     @property = property
