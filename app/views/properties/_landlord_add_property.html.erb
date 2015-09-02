@@ -23,7 +23,7 @@
                             <%= f.text_field :name,class: "input-block-level",required: true, placeholder: "A Unique Name for your Property" %>
                         </div>
                         <div class="span4">
-                            <%= f.label "House Number" %>
+                            <%= f.label "House Number /Name",style: "width:25%" %>
                             <%= f.text_field :address1,class: "input-block-level",required: true %>
                         </div>
                         <div class="span4">
@@ -134,10 +134,10 @@
                                 <label for="property_image<%=n%>" style="margin:0">Image <%=n-1%>
                                 </label>
                                 <%if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
-                                    <%= f.file_field ("image"+n.to_s).to_sym %>
+                                    <%= f.file_field ("image"+n.to_s).to_sym, class: "file_check" %>
                                     <%= @property.image1.file.filename %>
                                 <%else%>
-                                    <%= f.file_field ("image"+n.to_s).to_sym %>
+                                    <%= f.file_field ("image"+n.to_s).to_sym, class: "file_check" %>
                                 <%end%>
                               </div>
                         <%end%>
@@ -146,10 +146,10 @@
                                 <label for="property_image<%=n%>" style="margin:0">Image <%=n-1%>
                                 </label>
                                 <%if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
-                                    <%= f.file_field ("image"+n.to_s).to_sym %>
+                                    <%= f.file_field ("image"+n.to_s).to_sym, class: "file_check" %>
                                     <%= @property.image1.file.filename %>
                                 <%else%>
-                                    <%= f.file_field ("image"+n.to_s).to_sym %>
+                                    <%= f.file_field ("image"+n.to_s).to_sym, class: "file_check" %>
                                 <%end%>
                             </div>
                         <%end%>
@@ -158,10 +158,10 @@
                                 <label for="property_image<%=n%>" style="margin:0">Image <%=n-1%>
                                 </label>
                                 <%if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
-                                    <%= f.file_field ("image"+n.to_s).to_sym %>
+                                    <%= f.file_field ("image"+n.to_s).to_sym, class: "file_check" %>
                                     <%= @property.image1.file.filename %>
                                 <%else%>
-                                    <%= f.file_field ("image"+n.to_s).to_sym %>
+                                    <%= f.file_field ("image"+n.to_s).to_sym, class: "file_check" %>
                                 <%end%>
                             </div>
                         <%end%>
@@ -292,7 +292,7 @@
                     </div>
                 </div>
 
-                <button class="btn btn-proper btn-large" style="margin:20px">Submit <i class="icon-arrow-right"></i></button>
+                <button class="btn btn-proper btn-large" style="margin:20px">Save <i class="icon-arrow-right"></i></button>
             <%end%>
         </div>
 
@@ -338,6 +338,13 @@
       }
     }
   })
+
+  <% if current_user.status == "landlord" && current_user.plan == "basic" %>
+    $(".file_check").click(function(e) {
+      e.preventDefault();
+      alert("As per your Basic Plan, you can upload only Main Image. Please upgrade your plan.")
+    });
+  <% end %>
 </script>
 
 <style type="text/css">

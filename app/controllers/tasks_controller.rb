@@ -174,6 +174,10 @@ class TasksController < ApplicationController
     respond_with(@testimonials)
   end
 
+  def seal_approved
+
+  end
+
   private
   def con_params
     params.require(:contact).permit(:first_name, :last_name, :email_id, :contact_number, :comments)

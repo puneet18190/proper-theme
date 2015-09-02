@@ -11,8 +11,9 @@ class PropertiesController < ApplicationController
   def index
     if current_user.status == "admin"
       @properties = []
-      @properties << Property.where.not("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC")
-      @properties << Property.where("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC")
+      @data = Property.where.not("approval_status = ?", "none")
+      @properties << @data.where.not("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC")
+      @properties << @data.where("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC")
       # @properties << Property.where(sold: false, let: true).order("created_at DESC")
       # @properties << Property.where(sold: true, let: true).order("created_at DESC")
       @properties = @properties.flatten.uniq
@@ -228,37 +229,37 @@ class PropertiesController < ApplicationController
     @property = Property.find(params[:id])
     @status = params[:status]
     @property_id  = params[:id]
-    if params[:status] == "Approve"
-      @property.update_attributes(:approve=>true)
-      @property.update_attributes(:approval_status=>"Approved")
-      property_id = "SP"+@property.created_at.year.to_s.split(//).last(2).join()+@property.created_at.month.to_s.rjust(2,'0')+@property.id.to_s.rjust(4,'0')
-      unless current_user.fb_token.nil?
-        @api = Koala::Facebook::API.new(current_user.fb_token)
-        @api.put_connections("sealproperties", "feed", {
-          :message => "New Property:#{property_id} #{@property.name} has been Added.",
-          :picture => @property.image1.url(:large),
-          :link => "http://#{request.host_with_port}/properties_detail/#{@property.id}",
-          :name => @property.name,
-          :description => "#{@property.description}, Price: #{@property.price}",
-          :location => @property.address3})
-      end
+    if params[:status] == "approved"
+      # @property.update_attributes(:approve=>true)
+      @property.update_attributes(:approval_status=>"approved")
+      # property_id = "SP"+@property.created_at.year.to_s.split(//).last(2).join()+@property.created_at.month.to_s.rjust(2,'0')+@property.id.to_s.rjust(4,'0')
+      # unless current_user.fb_token.nil?
+      #   @api = Koala::Facebook::API.new(current_user.fb_token)
+      #   @api.put_connections("sealproperties", "feed", {
+      #     :message => "New Property:#{property_id} #{@property.name} has been Added.",
+      #     :picture => @property.image1.url(:large),
+      #     :link => "http://#{request.host_with_port}/properties_detail/#{@property.id}",
+      #     :name => @property.name,
+      #     :description => "#{@property.description}, Price: #{@property.price}",
+      #     :location => @property.address3})
+      # end
 
-      client = Twitter::REST::Client.new do |config|
-        config.consumer_key        = "g6n3F8YmIIpK9NbpicuLlcDfl"
-        config.consumer_secret     = "uCMstIIJUHbzb9kF1odq0zQTFrC0yII3T0Rm4xIeQgVcERiWM9"
-        config.access_token        = "2964161159-uXFWcovn9C9gwSeneAmvGmATfC5mvfqdQgdGodm"
-        config.access_token_secret = "i9Ws9DjyEmyC9fip50Prgo0L2exARNfhDz7IMbMq8L7M7"
-      end  
+      # client = Twitter::REST::Client.new do |config|
+      #   config.consumer_key        = "g6n3F8YmIIpK9NbpicuLlcDfl"
+      #   config.consumer_secret     = "uCMstIIJUHbzb9kF1odq0zQTFrC0yII3T0Rm4xIeQgVcERiWM9"
+      #   config.access_token        = "2964161159-uXFWcovn9C9gwSeneAmvGmATfC5mvfqdQgdGodm"
+      #   config.access_token_secret = "i9Ws9DjyEmyC9fip50Prgo0L2exARNfhDz7IMbMq8L7M7"
+      # end  
 
-      img=open(@property.image1.url(:large))
-      if img.is_a?(StringIO)
-        client.update("New Property:#{property_id} #{@property.name} has been Added. \nPrice:  #{@property.price} \nhttp://#{request.host_with_port}/properties_detail/#{@property.id}")
-      else
-        client.update_with_media("New Property:#{property_id} #{@property.name} has been Added.  \nPrice:  #{@property.price} \nhttp://#{request.host_with_port}/properties_detail/#{@property.id}", img)
-      end  
+      # img=open(@property.image1.url(:large))
+      # if img.is_a?(StringIO)
+      #   client.update("New Property:#{property_id} #{@property.name} has been Added. \nPrice:  #{@property.price} \nhttp://#{request.host_with_port}/properties_detail/#{@property.id}")
+      # else
+      #   client.update_with_media("New Property:#{property_id} #{@property.name} has been Added.  \nPrice:  #{@property.price} \nhttp://#{request.host_with_port}/properties_detail/#{@property.id}", img)
+      # end  
       
     else
-      @property.update_attributes(:approve=>false)
+      @property.update_attributes(:approval_status=>"unapprove")
     end
     UserMailer.property_approval(@user, @property, @status).deliver
     respond_to do |format|
@@ -477,12 +478,11 @@ class PropertiesController < ApplicationController
   end
 
    def approve_property
-    @user = current_user
     @property = Property.find(params[:id])
     @status = params[:status]
-    @property_id  = params[:id]
-    if @status == "Click here for approval"
-      @property.update_attributes(:approval_status=>"wait")
+    @property_id = params[:id]
+    if @status == "waiting"
+      @property.update_attributes(:approval_status=>"waiting")
       @property.save
     end
     respond_to do |format|

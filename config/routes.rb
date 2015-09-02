@@ -171,6 +171,7 @@ Rails.application.routes.draw do
 
   resources :landlords
   resources :tenants  
+  match '/seal_approved',   to: 'tasks#seal_approved',   via: 'get'
   #match '/uploadfile',   to: 'screens#uploadfile', via: 'post'
   # See how all your routes lay out with "rake routes".
 

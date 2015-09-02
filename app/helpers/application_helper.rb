@@ -69,4 +69,46 @@ module ApplicationHelper
   def agent_image(property)
     property.agent.nil? ? "noimage.gif" : property.agent.image.url(:large).gsub("https","http")
   end
+
+  def approve_btn(property)
+    if property.approval_status == "approved"
+      return "Approved"
+    elsif property.approval_status == "waiting"
+      return "Waiting for Approval"
+    elsif property.approval_status == "submit"
+      return "Waiting for Approval"
+    elsif property.approval_status == "unapprove"
+      return "Unapproved"
+    elsif property.approval_status == "none"
+      return "Submit for Approval"
+    end
+  end
+
+  def approve_btn_class(property)
+    if property.approval_status == "approved"
+      return "btn btn-success approval-btn"
+    elsif property.approval_status == "waiting"
+      return "btn btn-danger"
+    elsif property.approval_status == "submit"
+      return "btn btn-primary approval-btn"
+    elsif property.approval_status == "unapprove"
+      return "btn btn-primary"
+    elsif property.approval_status == "none"
+      return "btn btn-primary approval-btn"
+    end
+  end
+
+  def approve_status(property)
+    if property.approval_status == "approved"
+      return "approved"
+    elsif property.approval_status == "waiting"
+      return ""
+    elsif property.approval_status == "submit"
+      return ""
+    elsif property.approval_status == "unapprove"
+      return "submit"
+    elsif property.approval_status == "none"
+      return "waiting"
+    end
+  end 
 end

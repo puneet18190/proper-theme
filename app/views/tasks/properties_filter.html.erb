@@ -80,13 +80,18 @@
                             <%end%>  
                           </p>
                           <div class="agent-preview">
-                            <div class="agent-image pull-left"  ><a href="#"><%= image_tag responsive_image(task.agent.image), :style=>"height:80px;width:200px;" %></a></div>
+                            <div class="agent-image pull-left"  ><a href="#"><%= image_tag task.agent.nil? ? "noimage.gif" :responsive_image(task.agent.image), :style=>"height:80px;width:200px;" %></a></div>
                             <div class="agent-contant pull-right">
                               <ul class="unstyled">
-                                <li><i class="icon-phone"></i><%=task.agent.phone%></li>
-                                <li><i class="icon-envelope"></i><%=task.agent.email_id%></li>
-                                <li><i class="icon-facebook"></i><%=task.agent.fb_id%></li>
-                                <li><i class="icon-twitter"></i><%=task.agent.twitter_id%></li>
+                                <%if task.agent.nil? %>
+                                  <li style="font-size:15px"><b><%= task.user.first_name %></b></li>
+                                  <li style="font-size:15px"><b>Private Landlord</b></li>
+                                <%else%>
+                                  <li><i class="icon-phone"></i><%=task.agent.phone%></li>
+                                  <li><i class="icon-envelope"></i><%=task.agent.email_id%></li>
+                                  <li><i class="icon-facebook"></i><%=task.agent.fb_id%></li>
+                                  <li><i class="icon-twitter"></i><%=task.agent.twitter_id%></li>
+                                <%end%>
                               </ul>
                             </div>
                           </div>
@@ -122,6 +127,15 @@
               </div>
             <% end %>
           </div>
+        </div>
+        <h3 class="bottom-line line-before main-heading top-line">
+          <span><%= image_tag "sealmark.png", style: "width:55px;height:60px" %></span><a href="/seal_approved" id="seal_approve">  SEAL Approved</a>
+        </h3>
+        <div class="list-items">
+          <p>
+          Properties which are marked with the Seal of Approval are marketed by SEAL Properties on behalf of the Landlord or Vendor who have commissioned our traditional estate agency services under our Pro or Pro Plus+ plans.</p>
+          <p> 
+          Properties not displaying the seal are marketed by the Landlord or Vendor themselves under our Basic and Basic Plus+ plans which allow Landlords and Vendors the opportunity to self-promote their properties using our marketing infrastructure.</p>
         </div>
       </div>
     </div>

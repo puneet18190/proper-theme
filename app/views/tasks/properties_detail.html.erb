@@ -83,6 +83,10 @@
             <p><%#=raw(ActionView::Base.full_sanitizer.sanitize(@data.description.gsub("<br>","|")).gsub("|","<br>") )%>
             <div class="abc"><%=raw(@data.description)%></div>
             </p>
+            <h3>Disclaimer</h3>
+            <p>
+              This property does not have the Seal of Approval instead it has been marketed by the Landlord or Vendor themselves under our Basic and Basic Plus+ plans which allow Landlords and Vendors the opportunity to self-promote their properties using our marketing infrastructure. SEAL Properties endeavors to moderate these listings but cannot take responsibility for the contents of these adverts, the actual condition of a property or any contractual agreements subsequently entered into between the parties. Prospective tenants and Landlords can communicate directly, as can buyers and sellers, but SEAL Properties advise you to take all necessary precautions.
+            </p>
             <div class="addthis_toolbox addthis_default_style addthis_16x16_style" style="margin-top:20px">
               <a href="/facebook_share/<%=@data.id %>"><img src="/assets/fb_share.jpg" height="5" style="height: 24px;padding: 5px;margin-top: -8px;width: 70px;"></a>
               <a class="addthis_button_twitter"></a>
@@ -99,19 +103,24 @@
           <div class="bottom-line line-before">
               <div id="googleMap" class="" style="height:300px;margin-bottom:25px"></div>
           </div>
-          <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-user"></i></span> Agent</h3>
+          <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-user"></i></span> <%= @agents.nil? ? "Landlord" : "Agent" %></h3>
           <div class="agent-panel bottom-line line-before">
             <a href="#" class="agent-image">
               <%= image_tag @agents.nil? ? "noimage.gif" : responsive_image(@agents.image), class: "img-polaroid" %>
             </a>
             <ul class="unstyled margin20">
-              <li><i class="icon-phone"></i><%= @agents.nil? ? @data.user.phone : @agents.phone %></li>
-              <li><i class="icon-envelope"></i><%= @agents.nil? ? "" : @agents.email_id %></li>
-              <li><i class="icon-facebook"></i><%= @agents.nil? ? "" : @agents.fb_id %></li>
-              <li><i class="icon-twitter"></i><%= @agents.nil? ? "" : @agents.twitter_id %></li>
+              <%if @agents.nil? %>
+                <li style="font-size:15px"><b><%= @data.user.first_name %></b></li>
+                <li style="font-size:15px"><b>Private Landlord</b></li>
+              <%else%>
+                <li><i class="icon-phone"></i><%= @agents.nil? ? @data.user.phone : @agents.phone %></li>
+                <li><i class="icon-envelope"></i><%= @agents.nil? ? "" : @agents.email_id %></li>
+                <li><i class="icon-facebook"></i><%= @agents.nil? ? "" : @agents.fb_id %></li>
+                <li><i class="icon-twitter"></i><%= @agents.nil? ? "" : @agents.twitter_id %></li>
+              <%end%>
             </ul>
           </div>
-          <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-envelope-alt"></i></span> Contact Agent</h3>
+          <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-envelope-alt"></i></span> <%= @agents.nil? ? "Contact Landlord" : "Contact Agent" %></h3>
           <%= form_for @contact_agent, :url => contact_agent_path  do |f| %>
               <%= f.label :name %>
               <%= f.text_field :name, :class=> "input-block-level", :placeholder=>"Enter Your Name"%>

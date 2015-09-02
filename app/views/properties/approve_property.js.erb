@@ -1,4 +1,4 @@
-<% if @status == "Click here for approval"%>
+<% if @status == "waiting"%>
 	$($("<%="#approve_#{@property.id}"%> input")[0]).val("Waiting for approval").removeClass('btn-primary').addClass('btn-danger')
 	$("#approve_<%="#{@property.id}"%> form").attr("action","/properties/approve?id=<%="#{@property.id}"%>&status=Waiting for approval")
 	$('#loading').html('')
