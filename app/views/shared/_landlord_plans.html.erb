@@ -1,6 +1,6 @@
 <div class="row pricing-style1">
     <div class="span3">
-      <a href= <%="#{user_signed_in? ? '' : '/landlord_free_plan' }" %>>
+      <a href="#" <%#="#{user_signed_in? ? '' : '/landlord_free_plan' }" %>>
         <div class="well" style="height:379px">
             <h3 class="title">Basic</h3>
             <p class="price"><span class="">Free!</span></p>
@@ -13,12 +13,18 @@
             </ul>
             <% unless user_signed_in? %>
                 <a class="btn btn-proper" href="/users/sign_up" style="margin-top:37%">Sign Up</a>
+            <%else%>
+                <%if current_user.plan == "basic"%>
+                    <a class="btn btn-proper" href="#" style="margin-top:37%">My Current Plan</a>
+                <%else%>
+                    <a class="btn btn-proper" href="/landlord_free_plan" style="margin-top:37%">More Details</a>
+                <%end%>    
             <% end %> 
         </div>
       </a>  
     </div>
     <div class="span3">
-      <a href= <%= "#{user_signed_in? ? '/pay_plans?plan=Pro' : '/landlord_pro_plan' }" %>>
+      <a href="#" <%#= "#{user_signed_in? ? '/pay_plans?plan=Pro' : '/landlord_pro_plan' }" %>>
         <div class="well active" style="height:379px">
             <h3 class="title"><span class="em">Pro</span></h3>
             <p class="price"><span class="currency">£</span> <span class="digits">199</span></p>
@@ -33,12 +39,18 @@
             </ul>
             <% unless user_signed_in? %>
                 <a class="btn btn-proper" href="/users/sign_up" style="margin-top:10.5%">Sign Up</a>
-            <% end %> 
+            <%else%>
+                <%if current_user.plan == "pro"%>
+                    <a class="btn btn-proper" href="#" style="">My Current Plan</a>
+                <%else%>
+                    <a class="btn btn-proper" href="/landlord_pro_plan" style="">More Details</a>
+                <%end%>    
+            <% end %>
         </div>  
       </a>    
     </div>
     <div class="span3">
-      <a href= <%= "#{user_signed_in? ? '/pay_plans?plan=Pro Plus' : '/landlord_pro_plus_plan' }" %>>
+      <a href="#" <%#= "#{user_signed_in? ? '/pay_plans?plan=Pro Plus' : '/landlord_pro_plus_plan' }" %>>
         <div class="well active" style="height:377px">
             <h3 class="title"><span class="em">Pro Plus+</span></h3>
             <p class="price">Only <span class="currency">£</span> <span class="digits">30</span> <span class="term">/Month</span></p>
@@ -49,12 +61,18 @@
             </ul>
             <% unless user_signed_in? %>
                 <a class="btn btn-proper" href="/users/sign_up" style="margin-top:63%">Sign Up</a>
+            <%else%>
+                <%if current_user.plan == "pro_plus"%>
+                    <a class="btn btn-proper" href="#" style="margin-top:63%">My Current Plan</a>
+                <%else%>
+                    <a class="btn btn-proper" href="/landlord_pro_plus_plan" style="margin-top:63%">More Details</a>
+                <%end%>    
             <% end %>    
         </div> 
       </a>  
     </div>
     <div class="span3">
-      <a href= <%= "#{user_signed_in? ? '/pay_plans?plan=Basic Plus' : '/landlord_basic_plus_plan' }" %>>  
+      <a href="#" <%#= "#{user_signed_in? ? '/pay_plans?plan=Basic Plus' : '/landlord_basic_plus_plan' }" %>>  
       <div class="well" style="height:377px">
         <h3 class="title"><span class="">Basic Plus+</span></h3>
         <p class="price"><span class="currency">£</span> <span class="digits">19<span>.99</span></span> <span class="term">/Month</span></p>
@@ -68,7 +86,13 @@
         </ul>
         <% unless user_signed_in? %>
             <a class="btn btn-proper" href="/users/sign_up" style="margin-top:14%">Sign Up</a>
-        <% end %> 
+        <%else%>
+            <%if current_user.plan == "basic_plus"%>
+                <a class="btn btn-proper" href="#" style="margin-top:13%">My Current Plan</a>
+            <%else%>
+                <a class="btn btn-proper" href="/pay_plans?plan=Basic Plus" style="margin-top:13%">Upgrade Now</a>
+            <%end%>    
+        <% end %>
       </div>
       </a>  
     </div>
