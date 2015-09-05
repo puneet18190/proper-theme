@@ -195,18 +195,18 @@
         // }else 
         if(<%= DateTime.now.month %> == m && <%= DateTime.now.day %> >= d){
           e.preventDefault();
-          alert("Future Date cant be selected1.")
+          alert("Future Date cant be selected.")
         }else{
           $(".proper-form-step").submit()
         }
       }else{
         e.preventDefault();
-        alert("Future Date cant be selected2.")  
+        alert("Future Date cant be selected.")  
       }
       
     }else{
       e.preventDefault();
-      alert("Future Date cant be selected3.")
+      alert("Future Date cant be selected.")
     }
   })
 </script>
