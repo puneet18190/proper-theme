@@ -118,6 +118,7 @@
                           
                         </div>
                     </div>
+                    <%= f.hidden_field :approval_status, value: "none" if params[:action] == "new"%>
                     <div class="property_images" style="width:300px;height:815px;float:left;margin-left:15px">
                         <h4>Property Images</h4>
                         <div class="span4">
