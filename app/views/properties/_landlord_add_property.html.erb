@@ -351,7 +351,7 @@
     }
   })
 
-  <% if current_user.status == "landlord" && current_user.plan == "basic" %>
+  <% if current_user.status == "landlord" && (current_user.plan == "basic" || current_user.plan == "free") %>
     $(".file_check").click(function(e) {
       e.preventDefault();
       alert("As per your Basic Plan, you can upload only Main Image. Please upgrade your plan.")

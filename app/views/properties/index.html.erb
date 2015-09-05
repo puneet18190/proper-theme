@@ -217,7 +217,7 @@ $( ".disconnect_fb" )
     // <% end %>
 
     $(".new_property").click(function(e) {
-      <% if current_user.status == "landlord" && current_user.plan == "basic" && current_user.properties.count >= 3 %>
+      <% if current_user.status == "landlord" && (current_user.plan == "basic" || current_user.plan == "free")  && current_user.properties.count >= 3 %>
             e.preventDefault();
             e.stopPropagation();
             $('#loading').html('');
