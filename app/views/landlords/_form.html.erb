@@ -27,15 +27,15 @@
               <%= f.text_field :last_name, class: "input-block-level", required: "true" %>
             </div>
             <div class="span5">
-              <%= f.label :address1 %>
+              <%= f.label "Address 1" %>
               <%= f.text_field :address1, class: "input-block-level", required: "true" %>
             </div>
             <div class="span5">
-              <%= f.label :address2 %>
+              <%= f.label "Address 2" %>
               <%= f.text_field :address2, class: "input-block-level" %>
             </div>
             <div class="span5">
-              <%= f.label :address3 %>
+              <%= f.label "Address 3" %>
               <%= f.text_field :address3, class: "input-block-level" %>
             </div>
             <div class="span5">
@@ -47,7 +47,7 @@
               <%= f.text_field :phone, class: "input-block-level", required: "true" %>
             </div>
             <div class="span5">
-              <%= f.label "Alternative Phone" %>
+              <%= f.label :mobile, "Alternative Phone" %>
               <%= f.text_field :mobile, class: "input-block-level" %>
             </div>
             <div class="span5">
@@ -97,3 +97,33 @@
     margin-left: 0
   }
 </style>
+<script type="text/javascript">
+  $(".btn-proper").click(function(e){
+    var d = parseInt($("#user_dob_3i option:selected" ).text())
+    var m = parseInt($("#user_dob_2i option:selected" ).val())
+    var y = parseInt($("#user_dob_1i option:selected" ).text())
+    if(isNaN(d) || isNaN(m) || isNaN(y)){
+      e.preventDefault();
+      alert("Please Enter your Date of Birth")
+    }else if (<%= DateTime.now.year %> >= y ){
+      if(<%= DateTime.now.month %> >= m ){
+        // if(<%= DateTime.now.day %> >= d){
+        //   $(".proper-form-step").submit()
+        // }else 
+        if(<%= DateTime.now.month %> == m && <%= DateTime.now.day %> >= d){
+          e.preventDefault();
+          alert("Future Date cant be selected1.")
+        }else{
+          $(".proper-form-step").submit()
+        }
+      }else{
+        e.preventDefault();
+        alert("Future Date cant be selected2.")  
+      }
+      
+    }else{
+      e.preventDefault();
+      alert("Future Date cant be selected3.")
+    }
+  })
+</script>

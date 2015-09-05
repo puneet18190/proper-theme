@@ -332,10 +332,21 @@
   $(".btn-proper").click(function(e){
     if($("#property_epc").val() == ""){
       e.preventDefault()
-      var x = confirm("EPC is a legal requirement, please provide us with a copy as soon as it is Available.")
-      if (x==true){
-        $(".proper-form-step").submit()        
-      }
+      $.confirm({
+          title: 'Confirm!',
+          confirmButton: 'I Understand',
+          content: 'An Energy Performance Certificate (EPC) is a legal requirement for all properties marketed to let. An EPC must be made available to prospective tenants and a copy of the certificate given to any tenant who moves into the property. Please acknowledge you understand your obligations and provide a copy of your properties EPC promptly.',
+          confirm: function () {
+              $(".proper-form-step").submit()
+          },
+          cancel: function () {
+              // alert('Canceled!')
+          }
+      });
+      // var x = confirm("An Energy Performance Certificate (EPC) is a legal requirement for all properties marketed to let. An EPC must be made available to prospective tenants and a copy of the certificate given to any tenant who moves into the property. Please acknowledge you understand your obligations and provide a copy of your properties EPC promptly.")
+      // if (x==true){
+      //   $(".proper-form-step").submit()        
+      // }
     }
   })
 
