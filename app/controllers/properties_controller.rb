@@ -58,6 +58,10 @@ class PropertiesController < ApplicationController
 
 
   def new
+    if current_user.status == "landlord" && (current_user.plan == "basic" || current_user.plan == "free")  && current_user.properties.count >= 3
+      session[:plan] = true
+      redirect_to "/properties"
+    else
     # if (current_user.status == "landlord" && current_user.plan == "free" && current_user.properties.count >=3)
     #   redirect_to root_url, alert: "Please Upgrade Your Plan to Continue" 
     # else  
@@ -65,7 +69,8 @@ class PropertiesController < ApplicationController
         @property = current_user.properties.new  
         respond_with(@property)
       end
-    # end    
+    # end
+    end    
   end
 
   def edit

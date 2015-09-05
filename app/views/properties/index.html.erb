@@ -135,6 +135,12 @@
       $("#prop_info").dataTable({
          "order": [[ 13, "asc" ]]
       })
+
+      <% if session.has_key?('plan') %>
+        <%session.delete('plan')%>
+            $("#myModal").modal();
+            $("#myModal").css("z-index",10000)
+      <% end %>
     })
     $(".add_loader").click(function(e){
       if($(this).find('.btn').hasClass('btn-success') || $(this).find('.btn').hasClass('btn-primary')){
