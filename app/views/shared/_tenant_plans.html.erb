@@ -22,9 +22,10 @@
             <h3 class="title"><span class="em">Pro</span></h3>
             <p class="price"><span class="currency">£</span> <span class="digits">199</span></p>
             <ul class="unstyled points">
+                <li>No Let - No Fee</li>
                 <li>Fully Managed Property Find</li>
                 <li>Vetted Tenants</li>
-                <li>SEAL of Approval</li>
+                <!-- <li>SEAL of Approval</li> -->
                 <li>Attractive for Landlords</li>
             </ul>
             <% unless user_signed_in? %>
@@ -48,10 +49,10 @@
     <div class="span3">
       <a href= <%= "#{user_signed_in? ? '/pay_plans?plan=Basic Plus' : '/tenant_basic_plus_plan' }" %>>
         <div class="well" style="height:326px">
-            <h3 class="title"><span class="">Basic Plus</span></h3>
+            <h3 class="title"><span class="">Basic Plus+</span></h3>
             <p class="price"><span class="currency">£</span> <span class="digits">19<span>.99</span></span> <span class="term">/Month</span></p>
             <ul class="unstyled points">
-                <li>Create a Profile</li>
+                <li>Create an Extended Profile</li>
                 <li>Specify Property Requirements</li>
                 <li>Emailed Property Matches</li>
                 <li>View Property Details</li>
