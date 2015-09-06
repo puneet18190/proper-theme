@@ -57,6 +57,9 @@
 #  tenancy_type           :string(255)
 #  dob                    :date
 #  last_name              :string(255)
+#  avatar                 :string(255)
+#  additional_info        :text
+#  supporting_doc         :string(255)
 #
 # Indexes
 #
@@ -79,6 +82,8 @@ class User < ActiveRecord::Base
 
   validates_inclusion_of :status, in: %w{tenant landlord admin}
   after_initialize :set_default_state, if: :new_record?
+
+  mount_uploader :avatar, AvatarUploader
 
 
   def set_default_state

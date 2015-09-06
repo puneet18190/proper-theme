@@ -84,6 +84,7 @@ class Property < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :agent
+  has_many :property_changes
   mount_uploader :image1, Image1Uploader
   mount_uploader :image2, Image2Uploader
   mount_uploader :image3, Image3Uploader

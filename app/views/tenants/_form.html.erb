@@ -19,11 +19,11 @@
           <h4>Personal Information</h4>
           <div style="width:300px;height:400px">
             <div class="span5">
-              <%= f.label :first_name %>
+              <%= f.label :first_name, "First Name" %>
               <%= f.text_field :first_name, class: "input-block-level", required: "true" %>
             </div>
             <div class="span5">
-              <%= f.label :last_name %>
+              <%= f.label :last_name, "Last Name" %>
               <%= f.text_field :last_name, class: "input-block-level", required: "true" %>
             </div>
             <div class="span5">
@@ -55,7 +55,7 @@
                 <%= f.text_field :email, class: "input-block-level" %>
             </div>
             <div class="span5">
-              <%= f.label "Date Of Birth" %>
+              <%= f.label :dob, "Date of Birth" %>
               <%= f.date_select :dob, class: "input-block-level", required: "true", start_year: 1930,end_year: 2015 %>
             </div>
           </div>

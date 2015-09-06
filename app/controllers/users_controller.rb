@@ -32,7 +32,7 @@ class UsersController < ApplicationController
       	:title,:first_name,:last_name, :address1, :address2, :address3,:postcode,:mobile,
       	:phone,:dob,:price,:deposit,:tenancy,:student,:benefit,:pets,:smoker,:property_type,
       	:beds,:bath,:garden,:parking,:gas_ch,:dg,:ensuite,:furnished,:employment,
-      	:tenancy_type,:max_price
+      	:tenancy_type,:max_price, :avatar, :supporting_doc, :additional_info
       )
     end
 
