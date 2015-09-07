@@ -57,6 +57,9 @@
 #  tenancy_type           :string(255)
 #  dob                    :date
 #  last_name              :string(255)
+#  avatar                 :string(255)
+#  additional_info        :text
+#  supporting_doc         :string(255)
 #
 # Indexes
 #

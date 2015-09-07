@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824154833) do
+ActiveRecord::Schema.define(version: 20150907164116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -239,6 +239,8 @@ ActiveRecord::Schema.define(version: 20150824154833) do
     t.string   "callerid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "call_action"
+    t.string   "dataname"
   end
 
   create_table "properties", force: true do |t|
@@ -314,6 +316,41 @@ ActiveRecord::Schema.define(version: 20150824154833) do
   end
 
   add_index "properties", ["slug"], name: "index_properties_on_slug", unique: true, using: :btree
+
+  create_table "property_changes", force: true do |t|
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "address3"
+    t.string   "postcode"
+    t.string   "postcode1"
+    t.integer  "property_type"
+    t.integer  "beds"
+    t.integer  "bath"
+    t.string   "parking_status",    default: "none"
+    t.integer  "car"
+    t.string   "ensuite",           default: "No"
+    t.string   "let_type_id",       default: "Not Specified"
+    t.string   "let_furn_id",       default: "Not Specified"
+    t.string   "gas_ch",            default: "No"
+    t.string   "garden",            default: "No"
+    t.string   "dg"
+    t.string   "pets",              default: "No"
+    t.string   "feature1"
+    t.string   "feature2"
+    t.string   "category"
+    t.string   "status"
+    t.decimal  "price"
+    t.text     "tag_line"
+    t.text     "summary"
+    t.text     "short_description"
+    t.text     "description"
+    t.integer  "property_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "property_changes", ["property_id"], name: "index_property_changes_on_property_id", using: :btree
 
   create_table "property_types", force: true do |t|
     t.string   "p_type"
@@ -417,6 +454,9 @@ ActiveRecord::Schema.define(version: 20150824154833) do
     t.string   "tenancy_type"
     t.date     "dob"
     t.string   "last_name"
+    t.string   "avatar"
+    t.text     "additional_info"
+    t.string   "supporting_doc"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
