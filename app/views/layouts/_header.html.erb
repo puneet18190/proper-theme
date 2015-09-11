@@ -16,12 +16,14 @@
             <%= link_to "List Conversations", conversations_path %>
             <%= link_to "My Plans", my_plan_path %>
             <%= link_to "Tenant Search", tenant_searching_path %>
+            <%= link_to "My Matches", "/matches" %>
           <% else %>
             <%= link_to "Profile", "/users/profile" %>
             <%= link_to "Payment", payment_property_path %>
             <%= link_to "My Property Requirements", search_property_path %>
             <%= link_to "List Conversations", conversations_path %>
             <%= link_to "My Plans", my_plan_path %>
+            <%= link_to "My Matches", "/matches" %>
           <% end %>
           Logged in as <strong><%= current_user.email %></strong>
           <%= link_to "Logout", destroy_user_session_path %>

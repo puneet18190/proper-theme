@@ -22,7 +22,116 @@ class UsersController < ApplicationController
 		end
 	end
 
-	private
+    def matches
+    	if current_user.status == "landlord"
+	    	@data = []
+		    @properties = current_user.properties
+		    @tenants = User.where(:status => "tenant")
+		    @agents = Agent.all
+		    @news = News.all
+		    @properties.each do |p|
+		      @tenants.each do |t|
+		        unless t.search.nil?
+		          @string = t.search
+		          @words = @string.split('|')
+		          @category = @words[0]
+		          @type = @words[1]
+		          @price_l = @words[2]
+		          @price_g = @words[3]
+		          @beds = @words[4]
+		          @location = @words[5]
+		          if @category != "Not Specified" && !@category.nil? && !@category.empty?
+		          	status1 = p.category.include?(@category) ? true : false
+		          else
+		          	status1 = true
+		          end
+		          if @beds != "Not Specified" && !@beds.nil? && !@beds.empty?
+		          	status2 = p.beds.equal?(@beds) ? true : false
+		          else
+		          	status2 = true
+		          end
+		          if @location != "Not Specified" && !@location.nil? && !@location.empty?
+		          	status3 = (p.address1.include?(@location) || p.address2.include?(@location) || p.address3.include?(@location) || p.town.include?(@location)) ? true : false
+		          else
+		          	status3 = true
+		          end
+		          if (@price_l != "Not Specified" && !@price_l.nil? && !@price_l.empty?) && (@price_g != "Not Specified" && !@price_g.nil? && !@price_g.empty?)
+		          	status4 = (@price_l.to_i..@price_g.to_i).cover?(p.price) ? true : false
+		          elsif (@price_l != "Not Specified" && !@price_l.nil? && !@price_l.empty?)
+		          	status4 = p.price < @price_l.to_i ? true : false
+		          elsif (@price_g != "Not Specified" && !@price_g.nil? && !@price_g.empty?)
+		          	status4 = p.price > @price_g.to_i ? true : false
+		          else
+		          	status4 = true
+		          end
+		          if @type != "Not Specified" && !@type.nil? && !@type.empty? && !PropertyType.where(p_id: p.property_type)[0].nil?
+		          	status5 = PropertyType.where(p_id: p.property_type)[0].p_type.equal?(@type) ? true : false
+		          else
+		          	status5 = true
+		          end
+
+		          if status1 == true && status2 == true && status3 == true && status4 == true && status5 == true
+		          	@data << t
+		          end
+		          @data = @data.uniq
+		          # if p.category.include?(@category) && (@price_l.to_i..@price_g.to_i).cover?(p.price) && p.beds.equal?(@beds.to_i) && p.bath.equal?(@bath.to_i)
+		          #   @data << t
+		          # end 
+		        end 
+		      end
+		    end
+		elsif current_user.status == "tenant"
+			@agents = Agent.all
+			@string = current_user.search
+        	@words = @string.split('|')
+        	category = @words[0]
+        	type = @words[1]
+        	price_less_than = @words[2]
+        	price_greater_than = @words[3]
+        	beds = @words[4]
+        	location = @words[5]
+
+			# @abc = params[:q]
+		    params={}
+		    @abc={}
+		    category = @abc[:category_cont]= @words[0]
+		    type = @abc[:property_type]= @words[1]
+		    price_less_than = @abc[:price_lteq]= @words[2]
+		    price_greater_than = @abc[:price_gteq]= @words[3]
+		    beds = @abc[:beds_eq]= @words[4]
+		    location = @abc[:address1_or_address2_or_address3_cont]= @words[5]
+		    params[:q] = @abc
+
+		    if params[:q][:beds_eq] == "Not Specified"
+		      params[:q].delete(:beds_eq)
+		    end    
+
+		    if params[:q][:property_type] == "Not Specified"
+		      params[:q].delete(:property_type)
+		      @search = Property.search(params[:q])
+		    else
+		      a=PropertyType.where(search: params[:q][:property_type])
+		      ids = []
+		      a.each do |o|
+		        ids << o.p_id
+		      end
+		      ids.each do |o|
+		        data = Property.where(property_type: o)
+		        @properties << data unless data.empty?
+		      end
+		      @search = @properties.search(params[:q])
+		    end
+
+		    @properties = @search.result
+		    @data = []
+		    @properties.includes(:user).each do |obj|
+		    	@data << obj.user
+		    end
+		    @data = @data.uniq
+		end	
+    end
+
+    private
     def set_user
       @user = User.find(params[:id])
     end
