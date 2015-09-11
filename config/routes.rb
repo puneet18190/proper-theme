@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :properties
+  resources :property_changes
   resources :mails
   # resources :advertisements
   devise_for :users, controllers: { confirmations: "confirmations", sessions: "sessions" }
@@ -172,6 +173,7 @@ Rails.application.routes.draw do
   resources :landlords
   resources :tenants  
   match '/seal_approved',   to: 'tasks#seal_approved',   via: 'get'
+  match '/matches',   to: 'users#matches',   via: 'get'
   #match '/uploadfile',   to: 'screens#uploadfile', via: 'post'
   # See how all your routes lay out with "rake routes".
 
