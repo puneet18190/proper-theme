@@ -49,17 +49,26 @@
 
   <tbody>
     <% @properties.each_with_index do |property,i| %>
+      <% if current_user.status=="landlord" && !property.property_changes.empty?%>
+        <% data = property.property_changes.last%>
+      <%else%>
+        <% data = property%>
+      <%end%>
       <tr class="<%= 'bg_color' if property.user.status == 'landlord'%>" style="<%= 'color:red' if (property.status == "SSTC" || property.status == "SSTCM" || property.status == "Let Agreed")%>">
-        <td><%= property.name %></td>
-        <td>£<%= property.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></td>
-        <td><%= property.beds %></td>
-        <td><%= property.bath %></td>
-        <td><%= property.category %></td>
+        <td><%= data.name %></td>
+        <td>£<%= data.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></td>
+        <td><%= data.beds %></td>
+        <td><%= data.bath %></td>
+        <td><%= data.category %></td>
         <td><%= property.payment %></td>
-        <td><%= property.property_type %></td>
+        <td><%= data.property_type %></td>
         <td><%= link_to 'Show', "/properties_detail/"+property.slug %></td>
         <% if can? :update, @property %>
-          <td><%= link_to 'Edit', edit_property_path(property), :method=>:get %> </td>
+          <%if property.approval_status=="waiting" && !property.property_changes.empty?%>
+           <td><%= link_to 'View Changes', change_property_path(property), :method=>:get %> </td>
+          <%else%>
+            <td><%= link_to 'Edit', edit_property_path(property), :method=>:get, id: "edit_#{property.id}", class: "#{property.approval_status} edit_property" %> </td>
+          <%end%>
         <% end %>
         
         <% if can? :destroy, @property %>
@@ -256,6 +265,14 @@ $( ".disconnect_fb" )
       })
     })
 
+    // $('.edit_property').click(function(e){
+    //   <%# if current_user.status == "landlord" %>
+    //     if($(this).hasClass("waiting")){
+    //       e.preventDefault()
+    //       alert('You cannot edit the property until admin approve/unapprove it.')  
+    //     }
+    //   <%#end%>
+    // })
 </script>
 
 

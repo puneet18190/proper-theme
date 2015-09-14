@@ -4,6 +4,7 @@
 	$('#loading').html('')
 	$($("<%="#approve_#{@property.id}"%> input")[0]).attr("disabled","disabled")
 	$("#approve_<%="#{@property.id}"%> form").parent().addClass("block_loader")
+	$("#edit_<%="#{@property.id}"%>").addClass("waiting")
 <%else%>
 	$($("<%="#approve_#{@property.id}"%> input")[0]).val("Click here for approval")
 	$("#approve_<%="#{@property.id}"%> form").attr("action","/properties/approve?id=<%="#{@property.id}"%>&status=Click here for approval")

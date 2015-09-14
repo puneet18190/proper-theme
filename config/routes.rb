@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :properties
+  resources :properties do
+    member do 
+      get 'change'
+    end
+  end
   resources :property_changes
   resources :mails
   # resources :advertisements

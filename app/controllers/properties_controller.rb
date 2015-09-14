@@ -1,6 +1,6 @@
 class PropertiesController < ApplicationController
   layout proc { false if request.xhr? }
-  before_action :set_property, only: [:show, :edit, :update, :destroy]
+  before_action :set_property, only: [:show, :edit, :update, :destroy, :change]
   respond_to :html, :xml, :json, :mobile
   load_and_authorize_resource
   require "open-uri"
@@ -19,7 +19,7 @@ class PropertiesController < ApplicationController
       @properties = @properties.flatten.uniq
       # @properties = Property.order("created_at DESC")
     elsif current_user.status == "landlord"
-      @properties = Property.where(:user_id => current_user.id).order("created_at DESC")
+      @properties = Property.where(:user_id => current_user.id).order("created_at DESC").includes(:property_changes).includes(:user)
     else
       @properties = Property.order("created_at DESC")
     end
@@ -74,7 +74,13 @@ class PropertiesController < ApplicationController
   end
 
   def edit
+    # if @property.approval_status == "none" && !@property.property_changes.empty?
+    #   @property = @property.property_changes.last
+    # end
+  end
 
+  def change
+    @property = @property.property_changes.last
   end
 
   def create
@@ -114,15 +120,26 @@ class PropertiesController < ApplicationController
       object.save
       params[:property][:epc] = "https://sealpropertiesus.s3.amazonaws.com/"+params[:property][:epc].original_filename
     end
-    @property.update(property_params)
-    if @property.let_changed?
-      @property.l_date = Time.now
-    end
-    if @property.sold_changed?
-      @property.s_date = Time.now
-    end
-    if @property.featured_changed?
-      @property.r_date = Time.now
+    if current_user.status == "landlord"
+      ['image1','image2','image3','image4','image5','image6','image7','image8','image9','image10'].each do |obj|
+        if params[:property].has_key?(obj)
+          @property.update_attributes(obj.to_sym => params[:property][obj.to_sym]) 
+          params[:property].delete(obj)
+        end
+      end
+      @property.property_changes.find_or_create_by(property_params)
+      @property.update_attributes(approval_status: "none")
+    else
+      @property.update(property_params)
+      if @property.let_changed?
+        @property.l_date = Time.now
+      end
+      if @property.sold_changed?
+        @property.s_date = Time.now
+      end
+      if @property.featured_changed?
+        @property.r_date = Time.now
+      end
     end
     redirect_to "/properties"
   end
@@ -232,11 +249,18 @@ class PropertiesController < ApplicationController
   def approve
     @user = current_user
     @property = Property.find(params[:id])
+    changes = @property.property_changes.last
     @status = params[:status]
     @property_id  = params[:id]
     if params[:status] == "approved"
       # @property.update_attributes(:approve=>true)
-      @property.update_attributes(:approval_status=>"approved")
+      if !@property.property_changes.empty? 
+        @property.update_attributes(:approval_status=>"approved")
+        ['name','address1','address2','address3','postcode','postcode1','property_type','beds','bath','parking_status','car','ensuite','let_type_id','let_furn_id','gas_ch','garden','dg','pets','feature1','feature2','category','status','price','tag_line','summary','short_description','description','created_at','updated_at','town','image1','image2','image3','image4','image5','image6','image7','image8','image9','image10','epc'].each do |obj|
+          @property.update_attributes(obj.to_sym => changes.send(obj)) if @property.send(obj) != changes.send(obj)
+        end
+        @property.property_changes.delete_all
+      end
       # property_id = "SP"+@property.created_at.year.to_s.split(//).last(2).join()+@property.created_at.month.to_s.rjust(2,'0')+@property.id.to_s.rjust(4,'0')
       # unless current_user.fb_token.nil?
       #   @api = Koala::Facebook::API.new(current_user.fb_token)
@@ -265,6 +289,7 @@ class PropertiesController < ApplicationController
       
     else
       @property.update_attributes(:approval_status=>"unapprove")
+      @property.property_changes.delete_all
     end
     UserMailer.property_approval(@user, @property, @status).deliver
     respond_to do |format|
@@ -725,6 +750,14 @@ class PropertiesController < ApplicationController
 
     def property_params
       params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status)
+    end
+
+    def property_changes_params
+      params.require(:property_changes).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :description, :price,:user_id,:gas_ch,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:let_type_id,:let_furn_id)
+    end
+
+    def property_image_params
+      params.require(:property).permit(:image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10,:epc)
     end
 
 end

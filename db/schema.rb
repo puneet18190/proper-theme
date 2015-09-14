@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150906150509) do
+ActiveRecord::Schema.define(version: 20150907174455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -239,6 +239,8 @@ ActiveRecord::Schema.define(version: 20150906150509) do
     t.string   "callerid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "call_action"
+    t.string   "dataname"
   end
 
   create_table "properties", force: true do |t|
@@ -346,6 +348,18 @@ ActiveRecord::Schema.define(version: 20150906150509) do
     t.integer  "property_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "town"
+    t.string   "image1"
+    t.string   "image2"
+    t.string   "image3"
+    t.string   "image4"
+    t.string   "image5"
+    t.string   "image6"
+    t.string   "image7"
+    t.string   "image8"
+    t.string   "image9"
+    t.string   "image10"
+    t.string   "epc"
   end
 
   add_index "property_changes", ["property_id"], name: "index_property_changes_on_property_id", using: :btree

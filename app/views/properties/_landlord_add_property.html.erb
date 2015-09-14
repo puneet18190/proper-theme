@@ -14,7 +14,7 @@
             </ul> -->
             <div class="clearfix"></div>
             <!-- Start Form Step -->
-            <%= form_for @property, html: { multipart: true , class: "proper-form-step", style: "height:910px"} do |f| %>
+            <%= form_for @property, html: { multipart: true , class: "proper-form-step", style: "height:910px"}, action: params[:action] == "edit" ? property_path(@property) : "/properties" do |f| %>
                 <div class="proper-form-step-area">
                     <div class="" style="width:385px;height:770px;float:left">
                        <h4>My Property</h4>                
@@ -123,7 +123,7 @@
                         <h4>Property Images</h4>
                         <div class="span4">
                             <label>Main Image</label>
-                            <%if params[:action]=="edit" && !@property.image1.file.nil?  %>
+                            <%if params[:action]=="edit" && !@property.image1.nil? && !@property.image1.file.nil? %>
                                 <%= f.file_field :image1 %>
                                 <%= @property.image1.file.filename %>
                             <%else%>
@@ -134,9 +134,9 @@
                             <div class="span4">
                                 <label for="property_image<%=n%>" style="margin:0">Image <%=n-1%>
                                 </label>
-                                <%if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
+                                <%if params[:action]=="edit" && !@property.send("image"+n.to_s).nil? && !@property.send("image"+n.to_s).file.nil?%>
                                     <%= f.file_field ("image"+n.to_s).to_sym, class: "file_check" %>
-                                    <%= @property.image1.file.filename %>
+                                    <%= @property.send("image"+n.to_s).file.filename %>
                                 <%else%>
                                     <%= f.file_field ("image"+n.to_s).to_sym, class: "file_check" %>
                                 <%end%>
@@ -146,9 +146,9 @@
                             <div class="span4">
                                 <label for="property_image<%=n%>" style="margin:0">Image <%=n-1%>
                                 </label>
-                                <%if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
+                                <%if params[:action]=="edit" && !@property.send("image"+n.to_s).nil? && !@property.send("image"+n.to_s).file.nil?%>
                                     <%= f.file_field ("image"+n.to_s).to_sym, class: "file_check" %>
-                                    <%= @property.image1.file.filename %>
+                                    <%= @property.send("image"+n.to_s).file.filename %>
                                 <%else%>
                                     <%= f.file_field ("image"+n.to_s).to_sym, class: "file_check" %>
                                 <%end%>
@@ -158,9 +158,9 @@
                             <div class="span4">
                                 <label for="property_image<%=n%>" style="margin:0">Image <%=n-1%>
                                 </label>
-                                <%if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
+                                <%if params[:action]=="edit" && !@property.send("image"+n.to_s).nil? && !@property.send("image"+n.to_s).file.nil?%>
                                     <%= f.file_field ("image"+n.to_s).to_sym, class: "file_check" %>
-                                    <%= @property.image1.file.filename %>
+                                    <%= @property.send("image"+n.to_s).file.filename %>
                                 <%else%>
                                     <%= f.file_field ("image"+n.to_s).to_sym, class: "file_check" %>
                                 <%end%>

@@ -33,6 +33,18 @@
 #  property_id       :integer
 #  created_at        :datetime
 #  updated_at        :datetime
+#  town              :string(255)
+#  image1            :string(255)
+#  image2            :string(255)
+#  image3            :string(255)
+#  image4            :string(255)
+#  image5            :string(255)
+#  image6            :string(255)
+#  image7            :string(255)
+#  image8            :string(255)
+#  image9            :string(255)
+#  image10           :string(255)
+#  epc               :string(255)
 #
 # Indexes
 #
