@@ -78,7 +78,7 @@ gem 'prawn'
 gem 'meta-tags'
 gem 'cleditor_rails'
 gem 'htmlentities'
-gem 'recaptcha'
+gem "recaptcha", :require => "recaptcha/rails"
 gem 'active_admin_editor'
 gem 'geocoder'
 # gem install thinking-sphinx -v "~> 3.1.0"
