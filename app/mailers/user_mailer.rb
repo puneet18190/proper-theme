@@ -49,8 +49,7 @@ class UserMailer < ActionMailer::Base
 
   def blm_status(message)
     @message = message
-    mail( :to => "puneetgupta18190@gmail.com", :subject => "BLM status",
-          :cc => "steve@sealproperties.co.uk" )
+    mail( :to => "steve@sealproperties.co.uk", :subject => "BLM status" )
   end
 
 end
