@@ -152,7 +152,7 @@
       <% end %>
     })
     $(".add_loader").click(function(e){
-      if($(this).find('.btn').hasClass('btn-success') || $(this).find('.btn').hasClass('btn-primary')){
+      if($(this).hasClass('btn-success') || $(this).hasClass('btn-primary') || $(this).hasClass('btn-danger')){
         var opts = {
             lines: 17, // The number of lines to draw
             length: 40, // The length of each line

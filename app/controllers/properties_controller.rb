@@ -12,8 +12,8 @@ class PropertiesController < ApplicationController
     if current_user.status == "admin"
       @properties = []
       @data = Property.where.not("approval_status = ?", "none")
-      @properties << @data.where.not("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC")
-      @properties << @data.where("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC")
+      @properties << @data.where.not("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC").includes(:user)
+      @properties << @data.where("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC").includes(:user)
       # @properties << Property.where(sold: false, let: true).order("created_at DESC")
       # @properties << Property.where(sold: true, let: true).order("created_at DESC")
       @properties = @properties.flatten.uniq
@@ -255,12 +255,12 @@ class PropertiesController < ApplicationController
     if params[:status] == "approved"
       # @property.update_attributes(:approve=>true)
       if !@property.property_changes.empty? 
-        @property.update_attributes(:approval_status=>"approved")
         ['name','address1','address2','address3','postcode','postcode1','property_type','beds','bath','parking_status','car','ensuite','let_type_id','let_furn_id','gas_ch','garden','dg','pets','feature1','feature2','category','status','price','tag_line','summary','short_description','description','created_at','updated_at','town','image1','image2','image3','image4','image5','image6','image7','image8','image9','image10','epc'].each do |obj|
           @property.update_attributes(obj.to_sym => changes.send(obj)) if @property.send(obj) != changes.send(obj)
         end
         @property.property_changes.delete_all
       end
+      @property.update_attributes(:approval_status=>"approved")
       # property_id = "SP"+@property.created_at.year.to_s.split(//).last(2).join()+@property.created_at.month.to_s.rjust(2,'0')+@property.id.to_s.rjust(4,'0')
       # unless current_user.fb_token.nil?
       #   @api = Koala::Facebook::API.new(current_user.fb_token)
@@ -291,7 +291,7 @@ class PropertiesController < ApplicationController
       @property.update_attributes(:approval_status=>"unapprove")
       @property.property_changes.delete_all
     end
-    UserMailer.property_approval(@user, @property, @status).deliver
+    # UserMailer.property_approval(@user, @property, @status).deliver
     respond_to do |format|
       format.js
     end

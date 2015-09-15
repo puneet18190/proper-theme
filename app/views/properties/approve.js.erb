@@ -1,13 +1,13 @@
 <% if @status == "approved"%>
-	$($("<%="#approve_#{@property.id}"%> input")[0]).val("Unapprove").removeClass('btn-danger').addClass('btn-success')
+	$("#approve_<%="#{@property.id}"%> form").find('.btn-danger').val("Unapprove").removeClass('btn-danger').addClass('btn-success')
 	$("#approve_<%="#{@property.id}"%> form").attr("action","/properties/approve?id=<%="#{@property.id}"%>&status=unapprove")
     $('#loading').html('')
-    $('body').find('.unapprove').parent().parent().remove()
-    $('body').find('.approve').removeClass("approve")
+    $("#approve_<%="#{@property.id}"%> form").find('.unapprove').parent().parent().remove()
+    $("#approve_<%="#{@property.id}"%> form").find('.approve').removeClass("approve").addClass('unapprove')
 <%else%>
-	$($("<%="#approve_#{@property.id}"%> input")[0]).val("Approve").removeClass('btn-success').addClass('btn-danger')
+	$("#approve_<%="#{@property.id}"%> form").find('.btn-success').val("Approve").removeClass('btn-success').addClass('btn-danger')
 	$("#approve_<%="#{@property.id}"%> form").attr("action","/properties/approve?id=<%="#{@property.id}"%>&status=approved")
     $('#loading').html('')
-    $('body').find('.approve').parent().parent().remove()
-    $('body').find('.unapprove').removeClass("unapprove")
+    $("#approve_<%="#{@property.id}"%> form").find('.approve').parent().parent().remove()
+    $("#approve_<%="#{@property.id}"%> form").find('.unapprove').removeClass("unapprove").addClass('approve')
 <%end%>
