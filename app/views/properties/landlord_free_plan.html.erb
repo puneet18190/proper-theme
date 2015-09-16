@@ -4,7 +4,59 @@
       <%= render 'properties/news_carousel'%>
     </dl>
   </div>
-  <div class="container">
+  <div class="container" style="width:1200px">
+    <div class="box-line"> 
+        <h1 class="title-heading">Basic Plan</h1>
+    </div>
+    <% a = ['Free!', "3 Free Property Ads", "1 Photo per Property", "Digital Sign Airtime", "Matching Tenants", "View Matching Tenants"] %>
+    <% b = ["This plan is completely <b>free</b>, the only cost to you is the time it takes for you to complete the form.", "With this plan you can upload <b>3 free property ads</b> from the comfort of your own home by simply filling out the online form.", "You can upload <b>one photo per property.</b> To upload more photos, and increase the let-ability of your property you will need to upgrade your package subscription.", "Your ad will be displayed on our website and on our digital signs in the branch. The <b>digital sign airtime</b> your property receives will provide another platform to promote your property.", "You will be emailed a list of <b>matching tenants</b> that you can look over.","With this plan you will be able to <b>view matching tenants</b>  however you will not be able to contact any matches unless one party, either the landlord or tenant, subscribes to the Basic Plus+ package."] %>
+
+  <div class="row pricing-style1" style="position: absolute">
+    <div class="span3">
+      <a href="/landlord_free_plan" <%#="#{user_signed_in? ? '' : '/landlord_free_plan' }" %>>
+        <div class="well" style="height:400px">
+            <h3 class="title">Basic</h3>
+            <p class="price"><span class="">Free!</span></p>
+            <ul class="unstyled points">
+                <li>3 Free Property Ads</li>
+                <li>1 Photo/Property</li>
+                <li>Digital Sign airtime</li>
+                <li>View Matching Tenants</li>
+                <li>Matches Emailed</li>
+            </ul>
+            <% unless user_signed_in? %>
+                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:50%">Sign Up</a>
+            <%else%>
+                <%if current_user.plan == "basic"%>
+                    <a class="btn btn-proper" href="#" style="margin-top:50%">My Current Plan</a>
+                <%else%>
+                    <a class="btn btn-proper" href="/landlord_free_plan" style="margin-top:50%">More Details</a>
+                <%end%>    
+            <% end %> 
+        </div>
+      </a>  
+    </div>
+  </div>
+    <%a.each_with_index do |n,i|%>
+    <div class="row-fluid" style="margin-left:25%;width:75%">
+        <div class="span12">
+            <div class="new-list ">
+                <div class="item panel" style="padding-bottom:0px">
+                    <h3 class="title-heading" style="margin-bottom:0;margin-top:5px"><%=n%></h3>
+                    <div class="box-panel" style="padding:10px;">
+                        <div class="clearfix decs-meta" style="margin:0">
+                            <span class="italic pull-left">
+                                <h4><%=b[i].html_safe%></h4>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%end%>
+<%
+=begin%>    
     <div class="row-fluid" style="width:1100px;">
       <div class="panel right-line" itemscope="" itemtype="http://schema.org/Property">
         <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span><b>Plan: Basic </b></h2>
@@ -104,5 +156,7 @@
 
       </div>
     </div>
+<%
+=end%>
   </div>
 </div>
