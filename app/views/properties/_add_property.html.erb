@@ -176,13 +176,14 @@
                   </div>
                 <%end%>
                 <label style="margin:0">EPC
-                  <%if params[:action]=="edit" && !@property.epc.nil?%>
-                  <span style="margin-left:132px"><%= @property.epc %></span><%end%>
                 </label>
                 <%if params[:action]=="edit" %>
                   <%= f.file_field :epc,:style=>"width:95px;line-height:0;" %>
                 <%else%>
                   <%= f.file_field :epc,:style=>"line-height:0;" %>
+                <%end%>
+                <%if params[:action]=="edit" && !@property.epc.nil?%>
+                  <span style=""><%= @property.epc %></span>
                 <%end%>
                 <%#= f.label :epc %>
                 <%#= f.file_field :epc %>

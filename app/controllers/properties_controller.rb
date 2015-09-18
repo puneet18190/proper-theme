@@ -98,10 +98,12 @@ class PropertiesController < ApplicationController
     unless params[:property][:epc].nil?
       service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
       bucket = service.buckets.find("sealpropertiesus")
-      unless @property.epc.empty? || @property.epc.nil?
-        a= @property.epc.split("https://sealpropertiesus.s3.amazonaws.com/").last
-        object = bucket.objects.find(a)
-        object.destroy if object
+      if !@property.epc.nil?
+        if !@property.epc.empty?
+          a= @property.epc.split("https://sealpropertiesus.s3.amazonaws.com/").last
+          object = bucket.objects.find(a)
+          object.destroy if object
+        end
       end
       object = bucket.objects.build(params[:property][:epc].original_filename)
       object.content = params[:property][:epc].tempfile
