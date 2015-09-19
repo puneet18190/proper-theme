@@ -24,7 +24,7 @@
                     </div>
                   <% else %>
                     <% @tasks.each do |task| %>
-                      <% task = task.first if @tasks.kind_of?(Array) %>
+                      <% task = task.first if @tasks.kind_of?(Array) && @status %>
                       <% puts task %>
                       <% if !task.nil? && task.visibility== true%>
                         <div class="item">

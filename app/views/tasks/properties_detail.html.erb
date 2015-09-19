@@ -151,7 +151,7 @@ function init_gmap3(){
       var img_p = "assets/properties/p1.jpg"
       $("#googleMap").gmap3({
           map:{
-            <% address =  "#{@data.address1} #{@data.address2} #{@data.address3}"%>
+            <% address =  "#{@data.address1} #{@data.address2} #{@data.address3} #{@data.town}"%>
               // CENTRAL MAP DEFAULT
               address:'<%= address %>',
               options:{

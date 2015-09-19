@@ -6,7 +6,7 @@ class TasksController < ApplicationController
       redirect_to "/users/profile"
     else
     # if is_mobile_device? == false
-      @properties = Property.where({payment: true, visibility: true, approve: true})
+      @properties = Property.where({payment: true, visibility: true, approve: true}).order("created_at DESC")
 
       if !params[:q].nil? && params[:q][:radius]!="Select"
         @properties = @properties.near(params[:q][:postcode_eq],params[:q][:radius].to_f)
@@ -42,7 +42,7 @@ class TasksController < ApplicationController
     if  request.format.symbol == :mobile
       redirect_to "/"
     else
-      @properties = Property.where({payment: true, visibility: true, approve: true})
+      @properties = Property.where({payment: true, visibility: true, approve: true}).order("created_at DESC")
       @search = @properties.search(params[:q])
       @tasks = @search.result
       @agents= Agent.all
@@ -86,7 +86,7 @@ class TasksController < ApplicationController
   end
 
   def properties_map
-    @prop = Property.all
+    @prop = Property.all.order("created_at DESC")
     @agents = Agent.all
     respond_with(@prop,@agents)
   end
@@ -96,26 +96,35 @@ class TasksController < ApplicationController
   end
 
   def search_results
-    @properties = Property.where({payment: true, visibility: true, approve: true})
-    if params[:q][:postcode_cont] != ""
-      address2 = @properties.search(:address2_cont => params[:q][:postcode_cont])
-      unless address2.result.empty?
-        params[:q][:address2_cont] = params[:q][:postcode_cont]
+    @properties = Property.where({payment: true, visibility: true, approve: true}).order("created_at DESC")
+    @tasks = []
+    if !params[:q][:name_cont].nil?
+      @properties.each do |p|
+        string  = "#{p.name}|#{p.address1}|#{p.address2}|#{p.address3}|#{p.town}|#{p.beds} beds|#{p.bath} bath"
+        @tasks << p if string.include? params[:q][:name_cont]
       end
+      @status = false
+    else
+      if params[:q][:postcode_cont] != ""
+        address2 = @properties.search(:address2_cont => params[:q][:postcode_cont])
+        unless address2.result.empty?
+          params[:q][:address2_cont] = params[:q][:postcode_cont]
+        end
 
-      address3 = @properties.search(:address3_cont => params[:q][:postcode_cont])
-      unless address3.result.empty?
-        params[:q][:address3_cont] = params[:q][:postcode_cont]
-      end
+        address3 = @properties.search(:address3_cont => params[:q][:postcode_cont])
+        unless address3.result.empty?
+          params[:q][:address3_cont] = params[:q][:postcode_cont]
+        end
 
-      postcode = @properties.search(:postcode_cont => params[:q][:postcode_cont])
-      if postcode.result.empty?
-        params[:q].delete("postcode_cont")
+        postcode = @properties.search(:postcode_cont => params[:q][:postcode_cont])
+        if postcode.result.empty?
+          params[:q].delete("postcode_cont")
+        end
       end
+      @search = @properties.search(params[:q])
+      @tasks = @search.result
+      @status = true
     end
-
-    @search = @properties.search(params[:q])
-    @tasks = @search.result
   end
 
   def agents
