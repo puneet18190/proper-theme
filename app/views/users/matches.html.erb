@@ -39,7 +39,11 @@
           </div>
           <div class="filter_data">
             <%if @data.nil? || @data.empty?%>
-              No Date To Display.
+              <%if current_user.status == "tenant" && @status == false%>
+                Please submit your Property Requirements.
+              <%else%>  
+                No Data To Display.
+              <%end%>
             <%else%>
               <% @data.each do |task| %>
                 <div class="list-properties right-space">

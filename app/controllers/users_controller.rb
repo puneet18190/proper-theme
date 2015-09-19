@@ -46,7 +46,7 @@ class UsersController < ApplicationController
 		          	status1 = true
 		          end
 		          if @beds != "Not Specified" && !@beds.nil? && !@beds.empty?
-		          	status2 = p.beds.equal?(@beds) ? true : false
+		          	status2 = p.beds.equal?(@beds.to_i) ? true : false
 		          else
 		          	status2 = true
 		          end
@@ -82,52 +82,58 @@ class UsersController < ApplicationController
 		    end
 		elsif current_user.status == "tenant"
 			@agents = Agent.all
-			@string = current_user.search
-        	@words = @string.split('|')
-        	category = @words[0]
-        	type = @words[1]
-        	price_less_than = @words[2]
-        	price_greater_than = @words[3]
-        	beds = @words[4]
-        	location = @words[5]
+			if current_user.search.nil?
+				@data = nil
+				@status = false
+			else
+				@string = current_user.search
+	        	@words = @string.split('|')
+	        	category = @words[0]
+	        	type = @words[1]
+	        	price_less_than = @words[2]
+	        	price_greater_than = @words[3]
+	        	beds = @words[4]
+	        	location = @words[5]
 
-			# @abc = params[:q]
-		    params={}
-		    @abc={}
-		    category = @abc[:category_cont]= @words[0]
-		    type = @abc[:property_type]= @words[1]
-		    price_less_than = @abc[:price_lteq]= @words[2]
-		    price_greater_than = @abc[:price_gteq]= @words[3]
-		    beds = @abc[:beds_eq]= @words[4]
-		    location = @abc[:address1_or_address2_or_address3_cont]= @words[5]
-		    params[:q] = @abc
+				# @abc = params[:q]
+			    params={}
+			    @abc={}
+			    category = @abc[:category_cont]= @words[0]
+			    type = @abc[:property_type]= @words[1]
+			    price_less_than = @abc[:price_lteq]= @words[2]
+			    price_greater_than = @abc[:price_gteq]= @words[3]
+			    beds = @abc[:beds_eq]= @words[4]
+			    location = @abc[:address1_or_address2_or_address3_cont]= @words[5]
+			    params[:q] = @abc
 
-		    if params[:q][:beds_eq] == "Not Specified"
-		      params[:q].delete(:beds_eq)
-		    end    
+			    if params[:q][:beds_eq] == "Not Specified"
+			      params[:q].delete(:beds_eq)
+			    end    
 
-		    if params[:q][:property_type] == "Not Specified"
-		      params[:q].delete(:property_type)
-		      @search = Property.search(params[:q])
-		    else
-		      a=PropertyType.where(search: params[:q][:property_type])
-		      ids = []
-		      a.each do |o|
-		        ids << o.p_id
-		      end
-		      ids.each do |o|
-		        data = Property.where(property_type: o)
-		        @properties << data unless data.empty?
-		      end
-		      @search = @properties.search(params[:q])
-		    end
+			    if params[:q][:property_type] == "Not Specified"
+			      params[:q].delete(:property_type)
+			      @search = Property.search(params[:q])
+			    else
+			      a=PropertyType.where(search: params[:q][:property_type])
+			      ids = []
+			      a.each do |o|
+			        ids << o.p_id
+			      end
+			      ids.each do |o|
+			        data = Property.where(property_type: o)
+			        @properties << data unless data.empty?
+			      end
+			      @search = @properties.search(params[:q])
+			    end
 
-		    @properties = @search.result
-		    @data = []
-		    @properties.includes(:user).each do |obj|
-		    	@data << obj.user
-		    end
-		    @data = @data.uniq
+			    @properties = @search.result
+			    @data = []
+			    @properties.includes(:user).each do |obj|
+			    	@data << obj.user
+			    end
+			    @data = @data.uniq
+			    @status = true
+			end
 		end	
     end
 
