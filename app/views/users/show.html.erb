@@ -1,0 +1,28 @@
+<div id="content">
+    <div class="container" style="width:1230px">
+        <div class="panel">
+            <div class="box-line">
+                <h3 class="title-heading">Personal Information</h3>
+            </div>
+            <%= button_to "Edit Profile", "/users/profile",:class=>"btn btn-warning", :style=>"float:right" if user_signed_in? && current_user.id == @user.id%>
+            <div class="proper-form-step-area">
+                <div style="float:left;width:25%">
+                    <div class="row-fluid">
+                        <%= image_tag @user.avatar.url(:thumb), style: "width:200px;height:200px" %>
+                    </div>
+                </div>
+                <div class="" style="float:right;width:74%">
+                    <h2><%= "#{@user.first_name} #{@user.last_name}" %></h2>
+                    <h3>Address: </h3>
+                    <h4><%= @user.address1 %></h4>
+                    <h4><%= @user.address2 %></h4>
+                    <h4><%= @user.address3 %></h4>
+                    <h4><%= @user.postcode %></h4>
+                    <h3>Phone: <%= @user.phone %></h3>
+                    <h3>Email: <%= @user.email %></h3>
+                    <h3>Date of Birth: <%= @user.dob.strftime("%d-%m-%Y") %></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -10,7 +10,7 @@
             <%= link_to "PROPERTIES", properties_path %>
             <%= link_to "Admin Mails", mails_path %>
           <% elsif current_user.status == "landlord" %>
-            <%= link_to "Profile", "/users/profile" %>
+            <%= link_to "Profile", "/users/#{current_user.id}" %>
             <%= link_to "Properties", properties_path %>
             <%= link_to "Click here to Add Property", new_property_path, :method=>:get %>
             <%= link_to "List Conversations", conversations_path %>
@@ -18,7 +18,7 @@
             <%= link_to "Tenant Search", tenant_searching_path %>
             <%= link_to "My Matches", "/matches" %>
           <% else %>
-            <%= link_to "Profile", "/users/profile" %>
+            <%= link_to "Profile", "/users/#{current_user.id}" %>
             <%= link_to "Payment", payment_property_path %>
             <%= link_to "My Property Requirements", search_property_path %>
             <%= link_to "List Conversations", conversations_path %>
