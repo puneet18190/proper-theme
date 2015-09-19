@@ -4,42 +4,50 @@
       <%= render 'properties/news_carousel'%>
     </dl>
   </div>
-  <div class="container">
-    <div class="row-fluid" style="width:1100px;">
-      <div class="panel right-line" itemscope="" itemtype="http://schema.org/Property">
-        <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span><b>Plan: Free! </b></h2>
-        <div class="row pricing-style1">
-          <div class="span11" style="margin:20px">
-            <a href="/landlord_free_plan">
-              <div class="well" style="">
-                  <!-- <h3 class="title">Basic</h3> -->
-                  <p class="price">
-                    <span class="price" style="width: 136px;margin: 0;display: inline;padding: 20px;float: left;margin-top: -18px;color:black">Free!</span>
-                    <span style="color:black;line-height:25px;margin-bottom: 44px !important;">This plan is completely <b>free</b>, the only cost to you is the time it takes for you to complete the form</span>
-                  </p>
+  <div class="container" style="width:1200px">
+    <div class="box-line"> 
+        <h1 class="title-heading">Free Plan</h1>
+    </div>
+    <% a = ["Free!", "Create your own Basic Profile", "Property Requirements", "Property Matches will be Emailed", "View Property Details"] %>
 
-                  <p class="price">
-                    <span class="price" style="width: 214px;margin: 0;display: inline;padding: 20px;float: left;margin-top: -18px;color:black">Create your own Basic Profile</span>
-                    <span style="color:black;line-height:25px;margin-bottom: 44px !important;">With this plan you can <b>create your own basic profile</b> that Landlords can view.</span>
-                  </p>
-                  <p class="price">
-                    <span class="price" style="width: 180px;margin: 0;display: inline;padding: 20px;float: left;margin-top: -18px;color:black">Property Requirements</span>
-                    <span style="color:black;line-height:25px;margin-bottom: 44px !important;">You can specify your <b>property requirements</b>, searching our database for your dream home.</span>
-                  </p>
-                  <p class="price">
-                    <span class="price" style="width: 240px;margin: 0;display: inline;padding: 20px;float: left;margin-top: -18px;color:black">Property Matches will be Emailed</span>
-                    <span style="color:black;line-height:25px;margin-bottom: 44px !important;"><b>Property matches will be emailed</b> to you regularly to show you what we currently have available.</span>
-                  </p>
-                  <p class="price">
-                    <span class="price" style="width: 136px;margin: 0;display: inline;padding: 20px;float: left;margin-top: -18px;color:black">View Property Details</span>
-                    <span style="color:black;line-height:25px;margin-bottom: 44px !important;">You are free to <b>view property details</b>, however you will not be able to contact any Landlords regarding any property matches unless one party, either the landlord or tenant, subscribes to the Basic+ package.</span>
-                  </p>
-                  <a class="btn btn-proper" href="/pricing_tenant" style="width:100px">All Plans</a>
-              </div>
-            </a>  
+    <% b = ["This plan is completely <b>free</b>, the only cost to you is the time it takes for you to complete the form", "With this plan you can <b>create your own basic profile</b> that Landlords can view.", "You can specify your <b>property requirements</b>, searching our database for your dream home.", "<b>Property matches will be emailed</b> to you regularly to show you what we currently have available.", "You are free to <b>view property details</b>, however you will not be able to contact any Landlords regarding any property matches unless one party, either the landlord or tenant, subscribes to the Basic+ package."] %>
+
+    <div class="row pricing-style1" style="position: absolute">
+      <div class="span3">
+        <a href= '/tenant_free_plan'>
+          <div class="well" style="height:326px">
+              <h3 class="title">Basic</h3>
+              <p class="price"><span class="">Free!</span></p>
+              <ul class="unstyled points">
+                  <li>Create a Profile</li>
+                  <li>Specify Property Requirements</li>
+                  <li>Emailed Property Matches</li>
+                  <li>View Property Details</li>
+              </ul>
+              <% unless user_signed_in? %>
+                  <a class="btn btn-proper" href="/users/sign_up" style="margin-top:19%">Sign Up</a>
+              <% end %> 
           </div>
-        </div>
+        </a>  
       </div>
     </div>
+    <%a.each_with_index do |n,i|%>
+    <div class="row-fluid" style="margin-left:25%;width:75%">
+        <div class="span12">
+            <div class="new-list ">
+                <div class="item panel" style="padding-bottom:0px">
+                    <h3 class="title-heading" style="margin-bottom:0;margin-top:5px"><%=n%></h3>
+                    <div class="box-panel" style="padding:10px;">
+                        <div class="clearfix decs-meta" style="margin:0">
+                            <span class="pull-left">
+                                <h4><%=b[i].html_safe%></h4>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%end%>
   </div>
 </div>

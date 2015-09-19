@@ -4,33 +4,51 @@
       <%= render 'properties/news_carousel'%>
     </dl>
   </div>
-  <div class="container">
-    <div class="row-fluid" style="width:1100px;">
-      <div class="panel right-line" itemscope="" itemtype="http://schema.org/Property">
-        <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span><b>Plan: Pro </b></h2>
-        <div class="row pricing-style1">
-          <div class="span11" style="margin:20px">
-            <a href="/landlord_free_plan">
-              <div class="well" style="">
-                  <!-- <h3 class="title">Pro</h3> -->
-                  <p class="price">
-                    <span class="price" style="width: 136px;margin: 0;display: inline;padding: 20px;float: left;margin-top: -18px;color:black">No Let-No Fee</span>
-                    <span style="color:black;line-height:25px;margin-bottom: 44px !important;">This plan is £199 but is based on a <b>'no let-no fee'</b> guarantee, so there is nothing to pay until SEAL Properties find you your dream home.</span>
-                  </p>
-                  <p class="price">
-                    <span class="price" style="width: 165px;margin: 0;display: inline;padding: 20px;float: left;margin-top: -18px;color:black">Fully Managed Service</span>
-                    <span style="color:black;line-height:25px;margin-bottom: 44px !important;">This is a <b>fully managed service</b> in which we will find you your ideal property based on your requirements.</span>
-                  </p>
-                  <p class="price">
-                    <span class="price" style="width: 136px;margin: 0;display: inline;padding: 20px;float: left;margin-top: -18px;color:black">Vetting Process</span>
-                    <span style="color:black;line-height:25px;margin-bottom: 44px !important;">We will assist you with the <b>vetting process</b>, increasing your appeal to landlords.</span>
-                  </p>
-                  <a class="btn btn-proper" href="/pricing_tenant" style="width:100px">All Plans</a>
-              </div>
-            </a>  
+  <div class="container" style="width:1200px">
+    <div class="box-line"> 
+        <h1 class="title-heading">Free Plan</h1>
+    </div>
+    <% a = ["No Let-No Fee", "Fully Managed Service", "Vetting Process"] %>
+
+    <% b = ["This plan is £199 but is based on a <b>'no let-no fee'</b> guarantee, so there is nothing to pay until SEAL Properties find you your dream home.", "This is a <b>fully managed service</b> in which we will find you your ideal property based on your requirements.", "We will assist you with the <b>vetting process</b>, increasing your appeal to landlords."] %>
+
+    <div class="row pricing-style1" style="position: absolute">
+      <div class="span3">
+        <a href='/tenant_pro_plan' <%#= "#{user_signed_in? ? '/pay_plans?plan=Pro' : '/tenant_pro_plan' }" %>>
+          <div class="well active" style="height:326px">
+              <h3 class="title"><span class="em">Pro</span></h3>
+              <p class="price"><span class="currency">£</span> <span class="digits">199</span></p>
+              <ul class="unstyled points">
+                  <li>No Let - No Fee</li>
+                  <li>Fully Managed Property Find</li>
+                  <li>Vetted Tenants</li>
+                  <!-- <li>SEAL of Approval</li> -->
+                  <li>Attractive for Landlords</li>
+              </ul>
+              <% unless user_signed_in? %>
+                  <a class="btn btn-proper" href="/users/sign_up" style="margin-top:29%">Sign Up</a>
+              <% end %> 
           </div>
-        </div>
+        </a>  
       </div>
     </div>
+    <%a.each_with_index do |n,i|%>
+    <div class="row-fluid" style="margin-left:25%;width:75%">
+        <div class="span12">
+            <div class="new-list ">
+                <div class="item panel" style="padding-bottom:0px">
+                    <h3 class="title-heading" style="margin-bottom:0;margin-top:5px"><%=n%></h3>
+                    <div class="box-panel" style="padding:10px;">
+                        <div class="clearfix decs-meta" style="margin:0">
+                            <span class="pull-left">
+                                <h4><%=b[i].html_safe%></h4>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%end%>
   </div>
 </div>
