@@ -63,7 +63,7 @@ class TasksController < ApplicationController
         @data = Property.friendly.find(params[:id])
         @agents = Agent.find_by_id(@data.agent_id)
         @contact_agent = ContactAgent.new
-        redirect_to root_url, alert: "No Property Found" unless @data.payment == true
+        # redirect_to root_url, alert: "No Property Found" unless @data.payment == true
         # respond_to do |format|
         #   format.html
         #   format.mobile
@@ -97,25 +97,34 @@ class TasksController < ApplicationController
 
   def search_results
     @properties = Property.where({payment: true, visibility: true, approve: true})
-    if params[:q][:postcode_cont] != ""
-      address2 = @properties.search(:address2_cont => params[:q][:postcode_cont])
-      unless address2.result.empty?
-        params[:q][:address2_cont] = params[:q][:postcode_cont]
+    @tasks = []
+    if !params[:q][:name_cont].nil?
+      @properties.each do |p|
+        string  = "#{p.name}|#{p.address1}|#{p.address2}|#{p.address3}|#{p.town}|#{p.beds} beds|#{p.bath} bath"
+        @tasks << p if string.include? params[:q][:name_cont]
       end
+      @status = false
+    else
+      if params[:q][:postcode_cont] != ""
+        address2 = @properties.search(:address2_cont => params[:q][:postcode_cont])
+        unless address2.result.empty?
+          params[:q][:address2_cont] = params[:q][:postcode_cont]
+        end
 
-      address3 = @properties.search(:address3_cont => params[:q][:postcode_cont])
-      unless address3.result.empty?
-        params[:q][:address3_cont] = params[:q][:postcode_cont]
-      end
+        address3 = @properties.search(:address3_cont => params[:q][:postcode_cont])
+        unless address3.result.empty?
+          params[:q][:address3_cont] = params[:q][:postcode_cont]
+        end
 
-      postcode = @properties.search(:postcode_cont => params[:q][:postcode_cont])
-      if postcode.result.empty?
-        params[:q].delete("postcode_cont")
+        postcode = @properties.search(:postcode_cont => params[:q][:postcode_cont])
+        if postcode.result.empty?
+          params[:q].delete("postcode_cont")
+        end
       end
+      @search = @properties.search(params[:q])
+      @tasks = @search.result
+      @status = true
     end
-
-    @search = @properties.search(params[:q])
-    @tasks = @search.result
   end
 
   def agents
