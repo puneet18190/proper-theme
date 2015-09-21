@@ -79,7 +79,7 @@ class TasksController < ApplicationController
     if request.xhr?
       @data = Property.order("#{params["condition"]} #{params["sort"]}").includes(:agent)
     else  
-      @data = Property.order("price asc").includes(:agent)
+      @data = Property.order("price asc").includes(:agent).order("created_at DESC")
     end  
     @agents = Agent.all
     respond_with(@data,@agents)
@@ -141,7 +141,7 @@ class TasksController < ApplicationController
     @contact = Contact.new(con_params)
     if verify_recaptcha
       @contact.save!
-      redirect_to "/contact", notice: "Thank You for posting your query, we will come back to you soon......"
+      redirect_to "/contact", notice: "Thank you for your enquiry. We will be in touch shortly."
     else
       redirect_to "/contact", alert: "Please re-enter captcha......"
     end
