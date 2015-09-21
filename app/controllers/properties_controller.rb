@@ -93,7 +93,7 @@ class PropertiesController < ApplicationController
       params[:property][:epc] = "https://sealpropertiesus.s3.amazonaws.com/"+params[:property][:epc].original_filename
     end
     @user = current_user
-    @property = @user.properties.new(property_params)
+    @property = Property.new(property_params)
     @property.category.downcase
     @property.name.downcase
     address =  params[:property][:address1]+" "+params[:property][:address2]+" "+params[:property][:address3]

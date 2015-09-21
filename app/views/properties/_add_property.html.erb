@@ -53,6 +53,7 @@
             <div class="proper-singup" style="max-width:100%;margin:0;padding:0;height:100%">
               <div style="float:left;margin:10px;width:23%">
                 <h3 class=""><b>Property</b></h3>
+                <%= f.hidden_field :user_id, value: params[:user_id].nil? ? current_user.id : params[:user_id] if params[:action]=="new"%>
                 <div class="field">
                   <%= f.label :name %>
                   <%= f.text_field :name %>

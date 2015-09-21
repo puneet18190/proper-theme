@@ -14,7 +14,8 @@
       <%else%>
         <% url = landlords_path%>
       <%end%>
-      <%= form_for @landlord,url: url, html: { multipart: true,class: "proper-form-step" },:style=>"" do |f| %>
+      <div class="proper-form-step">
+      <%= form_for @landlord,url: url, html: { multipart: true,class: "" },:style=>"" do |f| %>
         <div class="proper-form-step-area">
           <h4>Personal Information</h4>
           <div style="width:300px;height:400px">
@@ -60,8 +61,47 @@
             </div>
           </div>
         </div>
+
         <%= f.submit 'Save', class: "btn btn-proper btn-large" %>
       <%end%>
+      <%if params[:action]=="edit"%>
+        <div class="proper-form-step-area">
+          <h4>Properties</h4>
+          <%= button_to new_property_path(), :method=>:get, :class=>"btn btn-warning", :style=>"float: right;margin: 8px" do %>
+            <%=hidden_field_tag :user_id,@landlord.id%> Add Property
+          <%end%>
+          <table id="landlord_info" class="table table-bordered">
+              <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Beds</th>
+                <th>Bath</th>
+                <th>Category</th>
+                <th>Action</th>
+                <th>Action</th>
+                <th>Action</th>
+              </tr>
+
+              <%if @landlord.properties.empty?%>
+                <tr><td>No Record.</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <%else%>
+                <% @landlord.properties.each_with_index do |p,i| %>
+                  <tr>
+                    <td><%= p.name %></td>
+                    <td>£<%= p.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></td>
+                    <td><%= p.beds %></td>
+                    <td><%= p.bath %></td>
+                    <td><%= p.category %></td>
+                    <td><%= link_to 'Show', "/properties_detail/"+p.slug %></td>
+                    <td><%= link_to 'Edit', edit_property_path(p), :method=>:get %> </td>
+                    <td><%= link_to 'Destroy', p, method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+                  </tr>
+                <% end %>
+              <%end%>
+          </table>
+        </div>
+      <%end%>
+      </div>
     </div>
   </div>
 </div>
