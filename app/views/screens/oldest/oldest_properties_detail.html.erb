@@ -162,7 +162,7 @@ $(document).ready(function() {
         var icon_hotel = "/assets/map/villa.png"
         var img_p = "assets/properties/p1.jpg"
         $("#googleMap").gmap3({
-            <% address =  "#{@data.address1} #{@data.address2} #{@data.address3} #{@data.town}"%>
+            <% address =  "#{@data.address1} #{@data.address2} #{@data.address3} #{@data.town} #{@data.postcode}#{@data.postcode1}"%>
             map:{
                 // CENTRAL MAP DEFAULT
                 address:'<%= address %>',
