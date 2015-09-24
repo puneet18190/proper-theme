@@ -67,6 +67,7 @@
           <%= search_form_for Property.search(params[:q]) do |f| %>
             <div class="proper-form-step-area">
             <h4>Property Requirements</h4>
+              <%=f.hidden_field :user_id, value: params[:id]%>
               <div class="span5">
                 <%= f.label :category_cont, "Category" %>
                 <%= f.select :category_cont, ["Rent","Sale"], class: "input-block-level", selected: "#{@category unless @data.nil?}" %>
