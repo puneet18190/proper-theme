@@ -20,7 +20,16 @@ class TenantsController < ApplicationController
 	end
 
 	def edit
-
+		@search = Property.search(params[:q])
+	    @data =  User.find(params[:id]).search
+	    unless @data.nil?
+	      @category = @data.split("|")[0]
+	      @type = @data.split("|")[1]
+	      @price_less_than = @data.split("|")[2]
+	      @price_greater_than = @data.split("|")[3]
+	      @beds = @data.split("|")[4]
+	      @location = @data.split("|")[5]
+	    end
 	end
 
 	def update

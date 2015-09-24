@@ -172,7 +172,6 @@ class PropertiesController < ApplicationController
   end
 
   def tenant_search_result
-
     @request = request.host_with_port
     @abc = params[:q]
     category = @abc[:category_cont]
@@ -182,7 +181,7 @@ class PropertiesController < ApplicationController
     beds = @abc[:beds_eq]
     location = @abc[:address1_or_address2_or_address3_cont]
 
-    @user = current_user
+    @user = current_user.status == "admin" ? User.find(params[:q][:user_id].to_i) : current_user
     # @search = Property.search(params[:q])
     # @properties = @search.result
     # @properties = Property.where({visibility: true, approve: true})
