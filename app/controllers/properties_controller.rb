@@ -244,7 +244,7 @@ class PropertiesController < ApplicationController
 
     render "/tasks/search_results"
     @properties = @properties.empty? ? Property.all.last(5) : @properties
-    UserMailer.tenant_result_property(@user, @properties, @request).deliver
+    UserMailer.tenant_result_property(@user, @properties, @request).deliver unless request.referer.split('/').last == "edit"
   end
 
 
