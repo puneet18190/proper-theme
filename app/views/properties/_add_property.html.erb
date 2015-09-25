@@ -81,7 +81,7 @@
                 </div>
                 <div class="field">
                   <%= f.label "Search Criteria",:style=>"width:53px" %>
-                  <% if params[:action] == "edit" %>
+                  <% if params[:action] == "edit" && !PropertyType.where(:p_id=>f.object.property_type).first.nil?%>
                     <%= f.select :search_criteria,['Not Specified','Bungalows','Retirement Property','House / Flat Share','Garage / Parking','Flats / Apartments','Houses','Land','Mobile / Park Homes','Character Property','Commercial Property'],:style=>"margin-top:-42px", :selected => "#{PropertyType.where(:p_id=>f.object.property_type).first.search}"%>
                   <%else%>
                     <%= f.select :search_criteria,['Not Specified','Bungalows','Retirement Property','House / Flat Share','Garage / Parking','Flats / Apartments','Houses','Land','Mobile / Park Homes','Character Property','Commercial Property'],:style=>"margin-top:-42px"%>
