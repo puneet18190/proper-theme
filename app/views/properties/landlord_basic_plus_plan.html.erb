@@ -14,7 +14,7 @@
 
     <div class="row pricing-style1" style="position: absolute">
       <div class="span3">
-          <a href="/landlord_basic_plus_plan" <%#= "#{user_signed_in? ? '/pay_plans?plan=Basic Plus' : '/landlord_basic_plus_plan' }" %>>  
+          <a href=<%="#{user_signed_in? ? '#' : '/users/sign_up' }" %>>  
           <div class="well" style="height:400px">
             <h3 class="title"><span class="">Basic Plus+</span></h3>
             <p class="price"><span class="currency">£</span> <span class="digits">19<span>.99</span></span> <span class="term">/Month</span></p>
@@ -32,7 +32,8 @@
                 <%if current_user.plan == "basic_plus"%>
                     <a class="btn btn-proper" href="#" style="margin-top:25%">My Current Plan</a>
                 <%else%>
-                    <a class="btn btn-proper" href="/pay_plans?plan=Basic Plus" style="margin-top:25%">Upgrade Now</a>
+                    <a class="btn btn-proper" href="/users/sign_up" style="margin-top:25%">Sign Up</a>
+                    <!-- <a class="btn btn-proper" href="/pay_plans?plan=Basic Plus" style="margin-top:25%">Upgrade Now</a> -->
                 <%end%>    
             <% end %>
           </div>

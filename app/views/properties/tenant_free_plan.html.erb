@@ -14,7 +14,7 @@
 
     <div class="row pricing-style1" style="position: absolute">
       <div class="span3">
-        <a href= '/tenant_free_plan'>
+        <a href=<%="#{user_signed_in? ? '#' : '/users/sign_up' }" %>>
           <div class="well" style="height:326px">
               <h3 class="title">Basic</h3>
               <p class="price"><span class="">Free!</span></p>
@@ -26,6 +26,12 @@
               </ul>
               <% unless user_signed_in? %>
                   <a class="btn btn-proper" href="/users/sign_up" style="margin-top:19%">Sign Up</a>
+              <%else%>
+                <%if current_user.plan == "tenant_free_plan"%>
+                    <a class="btn btn-proper" href="#" style="margin-top:20%">My Current Plan</a>
+                <%else%>
+                    <a class="btn btn-proper" href="/users/sign_up" style="margin-top:20%">Sign Up</a>
+                <%end%>    
               <% end %> 
           </div>
         </a>  

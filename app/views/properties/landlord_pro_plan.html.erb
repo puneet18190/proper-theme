@@ -8,7 +8,7 @@
     <div class="box-line"> 
         <h1 class="title-heading">Pro Plan</h1>
     </div>
-    <% a = ["no let-no fee", "Free Market Appraisal", "Professional Photos", "Tenant Find only", "Vetted Tenants", "Agent Escorted Viewings", "Extensive Marketing", "Digital Sign Airtime"] %>
+    <% a = ["No Let-No Fee", "Free Market Appraisal", "Professional Photos", "Tenant Find only", "Vetted Tenants", "Agent Escorted Viewings", "Extensive Marketing", "Digital Sign Airtime"] %>
 
     <% b = ["This plan is £199 but is based on a <b>'no let-no fee'</b> guarantee, so there is nothing to pay until SEAL Properties find you a suitable tenant.",
     "With this plan, we offer you a <b>free market appraisal</b> of your property, offering you tips on how to increase your properties appeal.",
@@ -21,7 +21,7 @@
 
     <div class="row pricing-style1" style="position: absolute">
       <div class="span3">
-      <a href="/landlord_pro_plan" <%#= "#{user_signed_in? ? '/pay_plans?plan=Pro' : '/landlord_pro_plan' }" %>>
+      <a href=<%="#{user_signed_in? ? '#' : '/users/sign_up' }" %>>
         <div class="well active" style="height:400px">
             <h3 class="title"><span class="em">Pro</span></h3>
             <p class="price"><span class="currency">£</span> <span class="digits">199</span></p>
@@ -41,7 +41,7 @@
                 <%if current_user.plan == "pro"%>
                     <a class="btn btn-proper" href="#" style="">My Current Plan</a>
                 <%else%>
-                    <a class="btn btn-proper" href="/landlord_pro_plan" style="">More Details</a>
+                    <a class="btn btn-proper" href="/users/sign_up" style="">Sign Up</a>
                 <%end%>    
             <% end %>
         </div>  
