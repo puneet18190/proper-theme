@@ -20,7 +20,9 @@
                     <h4><%= @user.postcode %></h4>
                     <h3>Phone: <%= @user.phone %></h3>
                     <h3>Email: <%= @user.email %></h3>
-                    <h3>Date of Birth: <%= @user.dob.strftime("%d-%m-%Y") %></h3>
+                    <%unless @user.dob.nil?%>
+                        <h3>Date of Birth: <%= @user.dob.strftime("%d-%m-%Y") %></h3>
+                    <%end%>
                 </div>
             </div>
         </div>
