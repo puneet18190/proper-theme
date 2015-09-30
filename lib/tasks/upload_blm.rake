@@ -44,6 +44,11 @@ task :upload_blm => :environment do
       ftp.chdir("/live/upload")
       ftp.putbinaryfile(t.path,"39545.zip")
     end
+    Net::FTP.open('mouseprice.net', 'SealProp', 'SealProp77') do |ftp|
+      ftp.passive = true
+      # ftp.chdir("/")
+      ftp.putbinaryfile(t.path,"39545.zip")
+    end
     t.close
     UserMailer.blm_status("BLM Uploaded Successfully.").deliver
     puts "===============Upload Complete========================="
