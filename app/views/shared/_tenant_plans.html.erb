@@ -15,9 +15,10 @@
             <%else%>
                 <%if current_user.status == "tenant" && current_user.plan == "free"%>
                     <a class="btn btn-proper" href="#" style="margin-top:23%">My Current Plan</a>
-                <%else%>
-                    <!-- <a class="btn btn-proper" href="/users/sign_up" style="margin-top:23%">Sign Up</a> -->
+                <%elsif current_user.status == "tenant" && current_user.plan != "free"%>
                     <a class="btn btn-proper" href="/pay_plans?plan=basic" style="margin-top:23%">Upgrade Now</a>
+                <%else%>
+                    <a class="btn btn-proper" href="/users/sign_up" style="margin-top:23%">Sign Up</a>
                 <%end%>
             <% end %> 
         </div>
@@ -40,26 +41,15 @@
             <%else%>
                 <%if current_user.status == "tenant" && current_user.plan == "pro"%>
                     <a class="btn btn-proper" href="#" style="margin-top:23%">My Current Plan</a>
-                <%else%>
+                <%elsif current_user.status == "tenant" && current_user.plan != "pro"%>
                     <a class="btn btn-proper" href="/pay_plans?plan=pro" style="margin-top:23%">Upgrade Now</a>
-                    <!-- <a class="btn btn-proper" href="/users/sign_up" style="margin-top:23%">Sign Up</a>     -->
+                <%else%>
+                    <a class="btn btn-proper" href="/users/sign_up" style="margin-top:23%">Sign Up</a>    
                 <%end%>
             <% end %> 
         </div>
       </a>  
     </div>
-    <!-- <div class="span3">
-        <div class="well active">
-            <h3 class="title"><span class="em">Biz</span> <span class="">Plus</span></h3>
-            <p class="price"><span class="currency">£</span> <span class="digits">299<span>.95</span></span> <span class="term">/MO</span></p>
-            <ul class="unstyled points">
-                <li>Unlimited Properties</li>
-                <li>Unlimited Free space</li>
-                <li>Unlimited Agent</li>
-                <li>Featured Properties</li>
-            </ul>
-            <a class="btn btn-proper">Sign Up</a> </div>
-    </div> -->
     <div class="span3">
       <a href=/tenant_basic_plus_plan <%#= "#{user_signed_in? ? '/pay_plans?plan=Basic Plus' : '/tenant_basic_plus_plan' }" %>>
         <div class="well" style="height:326px">
@@ -77,14 +67,13 @@
             <%else%>
                 <%if current_user.status == "tenant" && current_user.plan == "basic_plus"%>
                     <a class="btn btn-proper" href="#" style="margin-top:9%">My Current Plan</a>
-                <%else%>
+                <%elsif current_user.status == "tenant" && current_user.plan != "basic_plus"%>
                     <a class="btn btn-proper" href="/pay_plans?plan=basic_plus" style="margin-top:9%">Upgrade Now</a>
-                    <!-- <a class="btn btn-proper" href="/users/sign_up" style="margin-top:9%">Sign Up</a> -->
+                <%else%>
+                    <a class="btn btn-proper" href="/users/sign_up" style="margin-top:9%">Sign Up</a>
                 <%end%>
             <% end %> 
         </div>
       </a>  
     </div>
 </div>
-
-
