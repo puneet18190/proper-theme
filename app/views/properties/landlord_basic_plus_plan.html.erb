@@ -29,7 +29,7 @@
             <% unless user_signed_in? %>
                 <a class="btn btn-proper" href="/users/sign_up" style="margin-top:25%">Sign Up</a>
             <%else%>
-                <%if current_user.plan == "basic_plus"%>
+                <%if current_user.status == "landlord" && current_user.plan == "basic_plus"%>
                     <a class="btn btn-proper" href="#" style="margin-top:25%">My Current Plan</a>
                 <%else%>
                     <a class="btn btn-proper" href="/users/sign_up" style="margin-top:25%">Sign Up</a>

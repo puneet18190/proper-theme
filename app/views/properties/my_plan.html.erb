@@ -1,54 +1,47 @@
+<div id="content">
+    <div id="main-title-content">
+        <img src="/assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
+        <div class="container">
+            <div class="panel">
+                <h1>Pricing</h1>
+                <!-- <p>Sub Title Here</p> -->
+            </div>
+        </div>
+    </div>
+    <div class="news-carousel-wrapper">
+        <dl id="news-carousel" class="news-carousel-style">
+          <%= render 'properties/news_carousel'%>
+        </dl>
+    </div>
 
-                <!--Start Content-->
-                <div id="content">
-                    <!--Start Main Title-->
-                    <div id="main-title-content">
-                        <img src="/assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
-                        <div class="container">
-                            <div class="panel">
-                                <h1>Upload Items</h1>
-                                <p>Sub Title Here</p>
-                            </div>
-                        </div>
-                    </div> <!--End Main Title-->
-                    <!--    News Carousel-->
-                    <div class="news-carousel-wrapper">
-                        <dl id="news-carousel" class="news-carousel-style">
-                          <%= render 'properties/news_carousel'%>
-                        </dl>
-                    </div>
-                    <!--    End News Carousel-->
-                    <div class="container" style="width:1200px;">
-                      <div class="panel">
-                      <br>  <h2><b><center>My Current Plan is: <%= current_user.plan%></center></b></h2>
-                      <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-body" style="overflow-y:hidden;max-height:450px">
-                        <div class="box-line">
-                            <h2 class="title-heading">Please Upgrade your Plan to Continue.</h2>
-                        </div>
-                      <% if current_user.status == "landlord" %>
-                        <%= render 'shared/landlord_plans' %>
-                      <% else %>
-                        <%= render 'shared/tenant_plans' %>
-                      <% end %>  
-                      </div>
-                    </div>
-                      </div>
-                    </div>
-                  </div> 
-                </div><!--EndContent-->
+    <div class="container" style="width:1200px;">
+      <div class="panel">
+        <!-- <br>
+        <h2><b><center>My Current Plan is: <%#= current_user.plan%></center></b></h2> -->
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body" style="overflow-y:hidden;max-height:520px">
+              <div class="box-line">
+                  <h2 class="title-heading">Choose your Plan</h2>
+              </div>
+              <% if current_user.status == "landlord" %>
+                <%= render 'shared/landlord_plans' %>
+              <% else %>
+                <%= render 'shared/tenant_plans' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+</div>
 
-                <script type="text/javascript">
-                    <%# if current_user.status == "landlord" %>
-                    // $(".bttn").click(function(e) {
-                    //   e.preventDefault();
-                    //   $("#myModal").modal();
-                    //   $("#myModal").css("z-index",10000)
-                    // });
-                  <%# end %>
-                </script>
-
-                
-
-                
+<script type="text/javascript">
+    <%# if current_user.status == "landlord" %>
+    // $(".bttn").click(function(e) {
+    //   e.preventDefault();
+    //   $("#myModal").modal();
+    //   $("#myModal").css("z-index",10000)
+    // });
+  <%# end %>
+</script>

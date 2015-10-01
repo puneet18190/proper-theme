@@ -11,7 +11,14 @@
                 <li>View Property Details</li>
             </ul>
             <% unless user_signed_in? %>
-                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:19%">Sign Up</a>
+                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:23%">Sign Up</a>
+            <%else%>
+                <%if current_user.status == "tenant" && current_user.plan == "free"%>
+                    <a class="btn btn-proper" href="#" style="margin-top:23%">My Current Plan</a>
+                <%else%>
+                    <!-- <a class="btn btn-proper" href="/users/sign_up" style="margin-top:23%">Sign Up</a> -->
+                    <a class="btn btn-proper" href="/pay_plans?plan=basic" style="margin-top:23%">Upgrade Now</a>
+                <%end%>
             <% end %> 
         </div>
       </a>  
@@ -29,7 +36,14 @@
                 <li>Attractive for Landlords</li>
             </ul>
             <% unless user_signed_in? %>
-                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:29%">Sign Up</a>
+                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:23%">Sign Up</a>
+            <%else%>
+                <%if current_user.status == "tenant" && current_user.plan == "pro"%>
+                    <a class="btn btn-proper" href="#" style="margin-top:23%">My Current Plan</a>
+                <%else%>
+                    <a class="btn btn-proper" href="/pay_plans?plan=pro" style="margin-top:23%">Upgrade Now</a>
+                    <!-- <a class="btn btn-proper" href="/users/sign_up" style="margin-top:23%">Sign Up</a>     -->
+                <%end%>
             <% end %> 
         </div>
       </a>  
@@ -59,7 +73,14 @@
                 <li>Free to Contact Landlord</li>
             </ul>
             <% unless user_signed_in? %>
-                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:0">Sign Up</a>
+                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:9%">Sign Up</a>
+            <%else%>
+                <%if current_user.status == "tenant" && current_user.plan == "basic_plus"%>
+                    <a class="btn btn-proper" href="#" style="margin-top:9%">My Current Plan</a>
+                <%else%>
+                    <a class="btn btn-proper" href="/pay_plans?plan=basic_plus" style="margin-top:9%">Upgrade Now</a>
+                    <!-- <a class="btn btn-proper" href="/users/sign_up" style="margin-top:9%">Sign Up</a> -->
+                <%end%>
             <% end %> 
         </div>
       </a>  
