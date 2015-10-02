@@ -522,30 +522,46 @@ class PropertiesController < ApplicationController
   end
 
   def pay_plans
-    if params[:plan] == "Pro"
-      @pay = 99
-    elsif params[:plan] == "Pro Plus"
-      @pay = 30
+    if current_user.status == "landlord"
+      if params[:plan] == "pro"
+        @pay = 199
+      elsif params[:plan] == "pro_plus"
+        @pay = 30
+      elsif params[:plan] == "Basic Plus"
+        @pay = 19.99
+      else
+        @pay = 0
+      end
     else
-      @pay = 19.99
+      if params[:plan] == "pro"
+        @pay = 199
+      elsif params[:plan] == "basic_plus"
+        @pay = 19.99
+      else
+        @pay = 0
+      end
     end       
   end  
 
   def pay
     begin
       if current_user.status == "landlord"
-        if params[:amount] == "99"
-          plan = "Pro"
+        if params[:amount] == "199"
+          plan = "pro"
         elsif params[:amount] == "30"
-          plan = "Pro Plus"
+          plan = "pro_plus"
+        elsif params[:amount] == "19.99"
+          plan = "basic_plus"
         else
-          plan = "Basic Plus"    
+          plan = "free"    
         end
       else
-        if params[:amount] == "99"
-          plan = "Pro1"
+        if params[:amount] == "199"
+          plan = "pro"
+        elsif params[:amount] == "19.99"
+          plan = "basic_plus"
         else
-          plan = "Basic Plus1"    
+          plan = "free"    
         end
       end   
       Stripe.api_key = "sk_test_RsHCMpYllmYNshcj4p81bmfC"
