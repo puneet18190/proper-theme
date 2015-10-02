@@ -51,14 +51,14 @@
                     <div class="row-fluid">
                       <div class="span6">
                         <div class="property-images">
-                          <a href="#">
-                            <%= image_tag "noimage.gif", :style=>"height:250px;width:500px;" %>
+                          <a href="/users/<%=task.id%>">
+                            <%= image_tag task.avatar.url, :style=>"height:250px;width:500px;" %>
                           </a>
                         </div>
                       </div>
                       <div class="span6">
                         <div class="property-details">
-                          <h3><a href="#" ><%="#{task.first_name} #{task.last_name}"%></a></h3>
+                          <h3><a href="/users/<%=task.id%>" ><%="#{task.first_name} #{task.last_name}"%></a></h3>
                           <%if current_user.status=="landlord"%>
                             <p>
                               <% t = task.search.split('|') %>
@@ -72,10 +72,10 @@
                                 <span class="label"><i class="icon-circle-arrow-right"></i> Category : <%= t[0] %></span>
                               <%end%>
                               <% if t[2] != "Not Specified" && !t[2].nil? && !t[2].empty? %>
-                                <span class="label"><i class="icon-circle-arrow-right"></i> Min Price : <%= t[2] %></span>
+                                <span class="label"><i class="icon-circle-arrow-right"></i> Max Price : <%= t[2] %></span>
                               <%end%>
                               <% if t[3] != "Not Specified" && !t[3].nil? && !t[3].empty? %>
-                                <span class="label"><i class="icon-circle-arrow-right"></i> Max Price : <%= t[3] %></span>
+                                <span class="label"><i class="icon-circle-arrow-right"></i> Min Price : <%= t[3] %></span>
                               <%end%>
                               <% if t[5] != "Not Specified" && !t[5].nil? && !t[5].empty? %>
                                 <span class="label"><i class="icon-circle-arrow-right"></i> Location : <%= t[5] %></span>

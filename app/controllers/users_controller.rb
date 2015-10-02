@@ -56,7 +56,7 @@ class UsersController < ApplicationController
 		          	status3 = true
 		          end
 		          if (@price_l != "Not Specified" && !@price_l.nil? && !@price_l.empty?) && (@price_g != "Not Specified" && !@price_g.nil? && !@price_g.empty?)
-		          	status4 = (@price_l.to_i..@price_g.to_i).cover?(p.price) ? true : false
+		          	status4 = (@price_g.to_i..@price_l.to_i).cover?(p.price) ? true : false
 		          elsif (@price_l != "Not Specified" && !@price_l.nil? && !@price_l.empty?)
 		          	status4 = p.price < @price_l.to_i ? true : false
 		          elsif (@price_g != "Not Specified" && !@price_g.nil? && !@price_g.empty?)
