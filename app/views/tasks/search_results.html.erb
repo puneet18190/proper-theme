@@ -26,7 +26,7 @@
                     <% @tasks.each do |task| %>
                       <% task = task.first if @tasks.kind_of?(Array) && @status %>
                       <% puts task %>
-                      <% if !task.nil? && task.visibility== true%>
+                      <% if !task.nil?%>
                         <div class="item">
                           <a href="#" class="with-hover">
                             <% if (task.category=="rent" || task.category=="Rent") %>
