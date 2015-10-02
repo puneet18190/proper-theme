@@ -90,7 +90,7 @@
               </div>
               <div class="span5">
                 <%= f.label :location %>
-                <%= f.search_field :address1_or_address2_or_address3_cont, class: "input-block-level", value: "#{@location unless @data.nil?}" %>
+                <%= f.search_field :address1_or_address2_or_address3_cont_or_town_cont, class: "input-block-level", value: "#{@location unless @data.nil?}" %>
               </div>
               <div class="span5">
                 <%= f.submit 'Search', class: "btn btn-proper btn-large", style: "margin:10%;margin-left:50%" %>
