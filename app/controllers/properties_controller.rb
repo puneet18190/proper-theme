@@ -179,7 +179,7 @@ class PropertiesController < ApplicationController
     price_less_than = @abc[:price_lteq]
     price_greater_than = @abc[:price_gteq]
     beds = @abc[:beds_eq]
-    location = @abc[:address1_or_address2_or_address3_cont]
+    location = @abc[:address1_or_address2_or_address3_cont_or_town_cont]
 
     @user = current_user.status == "admin" ? User.find(params[:q][:user_id].to_i) : current_user
     # @search = Property.search(params[:q])
