@@ -58,10 +58,10 @@ class Image1Uploader < CarrierWave::Uploader::Base
    process :resize_to_fit =>  [120, 120]
  end
 
- # version :seal do
- #   process :resize_to_fit =>  [500, 500]
- #   process :watermark
- # end
+ version :seal do
+   process :resize_to_fit =>  [500, 500]
+   process :seal_watermark
+ end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
@@ -87,26 +87,26 @@ class Image1Uploader < CarrierWave::Uploader::Base
     end
   end
 
- # def watermark
- #   manipulate! do |img|
- #     logo = Magick::Image.read("#{Rails.root}/app/assets/images/watermark.jpg").first
- #     img = img.composite(logo, Magick::NorthEastGravity, 15, 0, Magick::OverCompositeOp)
- #   end
+ def seal_watermark
+   manipulate! do |img|
+     logo = Magick::Image.read("#{Rails.root}/app/assets/images/sp_logo1.png").first
+     img = img.composite(logo, Magick::SouthEastGravity, 15, 0, Magick::OverCompositeOp)
+   end
 
- #   # // for addition of text watermark #
+   # // for addition of text watermark #
 
- #   # if model.name.present?
- #   #   manipulate! do |img|
- #   #     text = Magick::Draw.new
- #   #     text.gravity = Magick::CenterGravity
- #   #     text.fill = 'white'
- #   #     text.pointsize = 40
- #   #     text.stroke = 'none'
- #   #     text.annotate(img, 0, 0, 0, 0, "#{model.name}")
- #   #     img
- #   #   end
- #   # end
- # end
+   # if model.name.present?
+   #   manipulate! do |img|
+   #     text = Magick::Draw.new
+   #     text.gravity = Magick::CenterGravity
+   #     text.fill = 'white'
+   #     text.pointsize = 40
+   #     text.stroke = 'none'
+   #     text.annotate(img, 0, 0, 0, 0, "#{model.name}")
+   #     img
+   #   end
+   # end
+ end
 
 
 
