@@ -15,7 +15,7 @@ class Image1Uploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   # process :resize_to_fill => [850, 315]
   process :convert => 'png'
-  process :watermark
+  # process :watermark
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
