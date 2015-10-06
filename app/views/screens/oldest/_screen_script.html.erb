@@ -4,6 +4,9 @@ $(document).ready(function() {
 	<% @properties.each do |n|%>
 		ids.push(<%=n.id%>)
 	<%end%>	
+	<% if params[:action] == 'newest' %>
+		ids.push(0)
+	<%end%>
 	var index=0
 	run_script(ids,ids[0],index);
 })	
@@ -26,7 +29,11 @@ function run_script(ids,property_id,index){
 				$(".main_container").html(response);
 				$(".main_container").toggle( "fast")
 				console.log(randomColor)
-				$("body").css("background-color",randomColor)
+				if (property_id == 0){
+					$("body").css("background-color","white")
+				}else{
+					$("body").css("background-color",randomColor)
+				}
 				init_slider();
 				var num = index + 1
 				var delay = 65000;
@@ -74,7 +81,11 @@ function run_script_by_cookie(index,ids){
 			index = index + 1;
 			$(".main_container").toggle( "fast")
 			$(".screen_num").html("<%=page%>:Page "+(index))
-			$("body").css("background-color",randomColor)
+			if (index == ids.length){
+				$("body").css("background-color",'white')
+			}else{
+				$("body").css("background-color",randomColor)
+			}
 			$(".main_container").toggle( "fast")
 			if (index == ids.length){
 				index = 0;
