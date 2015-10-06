@@ -348,6 +348,18 @@ ActiveRecord::Schema.define(version: 20151005182226) do
     t.integer  "property_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "town"
+    t.string   "image1"
+    t.string   "image2"
+    t.string   "image3"
+    t.string   "image4"
+    t.string   "image5"
+    t.string   "image6"
+    t.string   "image7"
+    t.string   "image8"
+    t.string   "image9"
+    t.string   "image10"
+    t.string   "epc"
   end
 
   add_index "property_changes", ["property_id"], name: "index_property_changes_on_property_id", using: :btree
