@@ -10,7 +10,7 @@ class Image10Uploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   # storage :file
   storage :fog
-  process :watermark
+  # process :watermark
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -37,18 +37,22 @@ class Image10Uploader < CarrierWave::Uploader::Base
   version :thumb do
     # process :manualcrop
     process :resize_to_fill => [200, 200]
+    process :seal_watermark1
   end
 
   version :large do
     process :resize_to_fit => [500, 500]
+    process :seal_watermark
   end
 
   version :medium do
     process :resize_to_fit => [300, 300]
+    process :seal_watermark1
   end
 
   version :small do
     process :resize_to_fit =>  [120, 120]
+    process :seal_watermark1
   end
 
   def watermark(opacity = 0.7, size = 's')
@@ -69,6 +73,19 @@ class Image10Uploader < CarrierWave::Uploader::Base
     end
   end
 
+  def seal_watermark
+    manipulate! do |img|
+      logo = Magick::Image.read("#{Rails.root}/app/assets/images/sp_logo1.png").first
+      img = img.composite(logo, Magick::SouthEastGravity, 0, 0, Magick::OverCompositeOp)
+    end
+  end
+
+  def seal_watermark1
+    manipulate! do |img|
+      logo = Magick::Image.read("#{Rails.root}/app/assets/images/sp_logo2.png").first
+      img = img.composite(logo, Magick::SouthEastGravity, 0, 0, Magick::OverCompositeOp)
+    end
+  end
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_white_list

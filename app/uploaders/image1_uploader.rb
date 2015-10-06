@@ -15,7 +15,7 @@ class Image1Uploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   # process :resize_to_fill => [850, 315]
   process :convert => 'png'
-  process :watermark
+  # process :watermark
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
@@ -44,24 +44,23 @@ class Image1Uploader < CarrierWave::Uploader::Base
   version :thumb do
     # process :manualcrop
     process :resize_to_fill => [200, 200]
+    process :seal_watermark1
   end
 
   version :large do
     process :resize_to_fit => [500, 500]
+    process :seal_watermark
   end
 
   version :medium do
     process :resize_to_fit => [300, 300]
+    process :seal_watermark1
   end
 
  version :small do
    process :resize_to_fit =>  [120, 120]
+   process :seal_watermark1
  end
-
- # version :seal do
- #   process :resize_to_fit =>  [500, 500]
- #   process :watermark
- # end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
@@ -87,28 +86,33 @@ class Image1Uploader < CarrierWave::Uploader::Base
     end
   end
 
- # def watermark
- #   manipulate! do |img|
- #     logo = Magick::Image.read("#{Rails.root}/app/assets/images/watermark.jpg").first
- #     img = img.composite(logo, Magick::NorthEastGravity, 15, 0, Magick::OverCompositeOp)
- #   end
+ def seal_watermark
+   manipulate! do |img|
+     logo = Magick::Image.read("#{Rails.root}/app/assets/images/sp_logo1.png").first
+     img = img.composite(logo, Magick::SouthEastGravity, 0, 0, Magick::OverCompositeOp)
+   end
 
- #   # // for addition of text watermark #
+   # // for addition of text watermark #
 
- #   # if model.name.present?
- #   #   manipulate! do |img|
- #   #     text = Magick::Draw.new
- #   #     text.gravity = Magick::CenterGravity
- #   #     text.fill = 'white'
- #   #     text.pointsize = 40
- #   #     text.stroke = 'none'
- #   #     text.annotate(img, 0, 0, 0, 0, "#{model.name}")
- #   #     img
- #   #   end
- #   # end
- # end
+   # if model.name.present?
+   #   manipulate! do |img|
+   #     text = Magick::Draw.new
+   #     text.gravity = Magick::CenterGravity
+   #     text.fill = 'white'
+   #     text.pointsize = 40
+   #     text.stroke = 'none'
+   #     text.annotate(img, 0, 0, 0, 0, "#{model.name}")
+   #     img
+   #   end
+   # end
+ end
 
-
+ def seal_watermark1
+   manipulate! do |img|
+     logo = Magick::Image.read("#{Rails.root}/app/assets/images/sp_logo2.png").first
+     img = img.composite(logo, Magick::SouthEastGravity, 0, 0, Magick::OverCompositeOp)
+   end
+ end
 
    # def manualcrop
    #   return unless model.cropping?

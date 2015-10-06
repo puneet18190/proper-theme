@@ -10,7 +10,7 @@ class Image2Uploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   #storage :file
    storage :fog
-   process :watermark
+   # process :watermark
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -36,18 +36,22 @@ class Image2Uploader < CarrierWave::Uploader::Base
   # Create different versions of your uploaded files:
   version :thumb do
     process :resize_to_limit => [200, 200]
+    process :seal_watermark1
   end
 
    version :large do
      process :resize_to_fit => [500, 500]
+     process :seal_watermark
    end
 
    version :medium do
      process :resize_to_fit => [300, 300]
+     process :seal_watermark1
    end
 
    version :small do
      process :resize_to_fit =>  [120, 120]
+     process :seal_watermark1
    end
 
   def watermark(opacity = 0.7, size = 's')
@@ -65,6 +69,20 @@ class Image2Uploader < CarrierWave::Uploader::Base
 
       # Important: Over composite operation (original image + white canvas watermarked)
       img = img.composite(logo_opacity, Magick::SouthEastGravity, 0, 0, Magick::OverCompositeOp)
+    end
+  end
+
+  def seal_watermark
+    manipulate! do |img|
+      logo = Magick::Image.read("#{Rails.root}/app/assets/images/sp_logo1.png").first
+      img = img.composite(logo, Magick::SouthEastGravity, 0, 0, Magick::OverCompositeOp)
+    end
+  end
+
+  def seal_watermark1
+    manipulate! do |img|
+      logo = Magick::Image.read("#{Rails.root}/app/assets/images/sp_logo2.png").first
+      img = img.composite(logo, Magick::SouthEastGravity, 0, 0, Magick::OverCompositeOp)
     end
   end
 
