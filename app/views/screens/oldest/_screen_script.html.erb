@@ -29,14 +29,21 @@ function run_script(ids,property_id,index){
 				$(".main_container").html(response);
 				$(".main_container").toggle( "fast")
 				console.log(randomColor)
+				<% if params[:action] == 'newest' %>
 				if (property_id == 0){
 					$("body").css("background-color","white")
+					var delay = 180000;
 				}else{
 					$("body").css("background-color",randomColor)
+					var delay = 65000;
 				}
+				<%else%>
+					$("body").css("background-color",randomColor)
+					var delay = 65000;
+				<%end%>
 				init_slider();
 				var num = index + 1
-				var delay = 65000;
+				
 				$(".screen_num").html("<%=page%> :Page "+num)
 				$.localStorage.set('p'+index,response);
 				index = index+1;
@@ -69,7 +76,15 @@ function run_script(ids,property_id,index){
 }
 
 function run_script_by_cookie(index,ids){
-	var delay = 65000;
+	<% if params[:action] == 'newest' %>
+	if (index == 0){
+		var delay = 180000;
+	}else{
+		var delay = 65000;
+	}
+	<%else%>
+		var delay = 65000;
+	<%end%>
 	if($.localStorage.isSet('p'+index)){
 		setTimeout(
 		  function() 
