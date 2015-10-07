@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005182226) do
+ActiveRecord::Schema.define(version: 20151007155437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -400,6 +400,16 @@ ActiveRecord::Schema.define(version: 20151005182226) do
     t.datetime "updated_at"
     t.text     "property_description"
     t.string   "screen_text"
+    t.boolean  "newest_screen"
+    t.string   "newest_screen_text"
+    t.boolean  "oldest_screen"
+    t.string   "oldest_screen_text"
+    t.boolean  "featured_screen"
+    t.string   "featured_screen_text"
+    t.boolean  "cycle_screen"
+    t.string   "cycle_screen_text"
+    t.boolean  "random_screen"
+    t.string   "random_screen_text"
   end
 
   create_table "testimonials", force: true do |t|

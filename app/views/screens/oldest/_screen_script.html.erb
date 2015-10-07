@@ -4,7 +4,7 @@ $(document).ready(function() {
 	<% @properties.each do |n|%>
 		ids.push(<%=n.id%>)
 	<%end%>	
-	<% if params[:action] == 'newest' %>
+	<% if @status  %>
 		ids.push(0)
 	<%end%>
 	var index=0
@@ -22,14 +22,14 @@ function run_script(ids,property_id,index){
 		$.ajax({
 			type : 'get',
 			url : 'screens/oldest_properties_detail/'+property_id,
-			data : 'page=<%=page%>',
+			data : 'screen=<%=params[:action]%>&page=<%=page%>',
 			async: false,
 			success : function(response){
 				$(".main_container").toggle( "fast")
 				$(".main_container").html(response);
 				$(".main_container").toggle( "fast")
 				console.log(randomColor)
-				<% if params[:action] == 'newest' %>
+				<% if @status %>
 				if (property_id == 0){
 					$("body").css("background-color","white")
 					var delay = 180000;
@@ -76,7 +76,7 @@ function run_script(ids,property_id,index){
 }
 
 function run_script_by_cookie(index,ids){
-	<% if params[:action] == 'newest' %>
+	<% if @status %>
 	if (index == 0){
 		var delay = 180000;
 	}else{

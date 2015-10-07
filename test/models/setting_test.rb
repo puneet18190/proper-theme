@@ -9,6 +9,16 @@
 #  updated_at           :datetime
 #  property_description :text
 #  screen_text          :string(255)
+#  newest_screen        :boolean
+#  newest_screen_text   :string(255)
+#  oldest_screen        :boolean
+#  oldest_screen_text   :string(255)
+#  featured_screen      :boolean
+#  featured_screen_text :string(255)
+#  cycle_screen         :boolean
+#  cycle_screen_text    :string(255)
+#  random_screen        :boolean
+#  random_screen_text   :string(255)
 #
 
 require 'test_helper'
