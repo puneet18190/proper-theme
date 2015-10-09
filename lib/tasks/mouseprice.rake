@@ -1,4 +1,4 @@
-task :upload_blm => :environment do
+task :mouseprice => :environment do
   require "open-uri"
   require 'nokogiri'
   require 'zip'
