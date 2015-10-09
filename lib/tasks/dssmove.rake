@@ -30,7 +30,7 @@ task :dssmove => :environment do
       f_name = "8266149499_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+seq
       z.put_next_entry("#{f_name}.blm")
       ac = ApplicationController.new()
-      remote_data = ac.render_to_string "properties/download_blm", :locals => {:@data => @data}, :layout=>false
+      remote_data = ac.render_to_string "properties/download_blm2", :locals => {:@data => @data}, :layout=>false
       remote_data = remote_data.gsub("<pre>","")
       remote_data = remote_data.gsub("</pre>","")
       remote_data = remote_data.gsub("&lt;","<")
