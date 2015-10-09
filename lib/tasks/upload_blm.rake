@@ -5,7 +5,7 @@ task :upload_blm => :environment do
   
   # Thread.new do
     puts "===============Upload Start========================="
-    UserMailer.blm_status("BLM Upload Start").deliver
+    UserMailer.blm_status("BLM Upload on OnTheMarket Start").deliver
     @data = Property.where(:visibility=>true,:approve=>true, :otm=>true)
     t = Tempfile.new("39545")
     Zip::OutputStream.open(t.path) do |z|
