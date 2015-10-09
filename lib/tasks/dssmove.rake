@@ -27,7 +27,7 @@ task :dssmove => :environment do
       z.print  File.open("#{Rails.root}/app/assets/images/default_images/no.jpg").read
       d=DateTime.now
       seq = "01"
-      f_name = "39545_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+seq
+      f_name = "8266149499_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+seq
       z.put_next_entry("#{f_name}.blm")
       ac = ApplicationController.new()
       remote_data = ac.render_to_string "properties/download_blm", :locals => {:@data => @data}, :layout=>false
