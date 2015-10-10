@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007155437) do
+ActiveRecord::Schema.define(version: 20151010141034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -410,6 +410,16 @@ ActiveRecord::Schema.define(version: 20151007155437) do
     t.string   "cycle_screen_text"
     t.boolean  "random_screen"
     t.string   "random_screen_text"
+    t.string   "newest_inside_text"
+    t.boolean  "newest_inside"
+    t.string   "oldest_inside_text"
+    t.boolean  "oldest_inside"
+    t.string   "featured_inside_text"
+    t.boolean  "featured_inside"
+    t.string   "cycle_inside_text"
+    t.boolean  "cycle_inside"
+    t.string   "random_inside_text"
+    t.boolean  "random_inside"
   end
 
   create_table "testimonials", force: true do |t|

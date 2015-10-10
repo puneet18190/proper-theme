@@ -1,0 +1,112 @@
+<script type="text/javascript">
+$(document).ready(function() {
+	var ids = []
+	<% @properties.each do |n|%>
+		ids.push(<%=n.id%>)
+	<%end%>	
+	<% if @status  %>
+		ids.push(0)
+	<%end%>
+	var index=0
+	run_script(ids,ids[0],index);
+})	
+
+var color = ["#F0F8FF", "#FAEBD7","#00FFFF","#7FFFD4","#F0FFFF","#F5F5DC","#FFE4C4","#FFEBCD","#DEB887","#5F9EA0","#7FFF00","#6495ED","#FF7F50","#FFF8DC","#00FFFF","#A9A9A9","#BDB76B","#FF8C00","#E9967A","#8FBC8F","#00CED1","#FF1493","#00BFFF","#1E90FF","#FFFAF0","#FF00FF","#DCDCDC","#F8F8FF","#FFD700","#DAA520","#ADFF2F","#F0FFF0","#FF69B4","#FFFFF0","#F0E68C","#E6E6FA","#FFF0F5","#7CFC00","#FFFACD","#ADD8E6","#F08080","#E0FFFF","#FAFAD2","#D3D3D3","#90EE90","#FFB6C1","#FFA07A","#20B2AA","#87CEFA","#B0C4DE","#FFFFE0","#00FF00","#32CD32","#FAF0E6","#FF00FF","#66CDAA","#3CB371","#00FA9A","#48D1CC","#F5FFFA","#FFE4E1","#FFE4B5","#FFDEAD","#FDF5E6","#FFA500","#EEE8AA","#98FB98","#AFEEEE","#FFEFD5","#FFDAB9","#FFC0CB","#DDA0DD","#B0E0E6","#FA8072","#F4A460","#FFF5EE","#C0C0C0","#87CEEB","#FFFAFA","#00FF7F","#D2B48C","#D8BFD8","#40E0D0","#EE82EE","#F5DEB3","#FFFF00","#9ACD32"]
+var randomColor = color[Math.floor(Math.random() * color.length)]
+
+function run_script(ids,property_id,index){
+	$("body").css("background-image","none")
+	if(index != ids.length){
+		//randomColor = Math.floor(Math.random()*16777215).toString(16);
+		randomColor = color[Math.floor(Math.random() * color.length)]
+		$.ajax({
+			type : 'get',
+			url : 'screens/inside_properties_detail/'+property_id,
+			data : 'screen=<%=params[:action]%>&page=<%=page%>',
+			async: false,
+			success : function(response){
+				$(".main_container").toggle( "fast")
+				$(".main_container").html(response);
+				$(".main_container").toggle( "fast")
+				console.log(randomColor)
+				<% if @status %>
+				if (property_id == 0){
+					$("body").css("background-color","white")
+					var delay = 180000;
+				}else{
+					$("body").css("background-color",randomColor)
+					var delay = 65000;
+				}
+				<%else%>
+					$("body").css("background-color",randomColor)
+					var delay = 65000;
+				<%end%>
+				init_slider();
+				var num = index + 1
+				
+				$(".screen_num").html("<%=page%> :Page "+num)
+				$.localStorage.set('p'+index,response);
+				index = index+1;
+				console.log(index)
+				if (index == ids.length){
+					run_script(ids,ids[index],index);
+				}else{
+					setTimeout(
+					  function() 
+					  {
+					    run_script(ids,ids[index],index);
+					  }, delay);
+				}
+			},
+			error : function(){
+				var ids = []
+				<% @properties.each do |n|%>
+					ids.push(<%=n.id%>)
+				<%end%>	
+				var index=0
+				run_script(ids,ids[0],index);
+				init_slider();
+			}
+		})
+	}else{
+		run_script_by_cookie(0,ids)
+		init_slider();
+
+	}	
+}
+
+function run_script_by_cookie(index,ids){
+	<% if @status %>
+	if (index == 0){
+		var delay = 180000;
+	}else{
+		var delay = 65000;
+	}
+	<%else%>
+		var delay = 65000;
+	<%end%>
+	if($.localStorage.isSet('p'+index)){
+		setTimeout(
+		  function() 
+		  {
+		  	//randomColor = Math.floor(Math.random()*16777215).toString(16);
+		  	randomColor = color[Math.floor(Math.random() * color.length)]
+		  	$(".main_container").html($.localStorage.get('p'+index));
+		  	init_slider();
+			index = index + 1;
+			$(".main_container").toggle( "fast")
+			$(".screen_num").html("<%=page%>:Page "+(index))
+			if (index == ids.length){
+				$("body").css("background-color",'white')
+			}else{
+				$("body").css("background-color",randomColor)
+			}
+			$(".main_container").toggle( "fast")
+			if (index == ids.length){
+				index = 0;
+			}
+			run_script_by_cookie(index,ids);
+		  }, delay);
+	}
+}
+</script>
