@@ -38,11 +38,6 @@ class ScreensController < ApplicationController
 		end	
 	end
 
-	def newest
-		@properties = Property.where(:visibility=>true,:approve=>true).last(5)
-		render '/screens/oldest/newest', :layout => "screen_layout"
-	end
-
 	def newest_properties_detail
 		@data = Property.find(params[:property_id])
 		@postcode = Pat.get(@data.postcode.to_s)
@@ -83,28 +78,49 @@ class ScreensController < ApplicationController
 	    render '/properties/advertisements', :layout => "screen_layout"
 	end
 
+	def newest
+		@text = Setting.all[0].newest_screen_text
+		@status = Setting.all[0].newest_screen
+		@properties = Property.where(:visibility=>true,:approve=>true).last(5)
+		render '/screens/oldest/newest', :layout => "screen_layout"
+	end
+
 	def featured_properties
+		@text = Setting.all[0].featured_screen_text
+		@status = Setting.all[0].featured_screen
 		@properties = Property.where(:featured=>true,:approve=>true).last(5)
 		render '/screens/oldest/featured', :layout => "screen_layout"
 	end	
 
 	def random_properties
+		@text = Setting.all[0].random_screen_text
+		@status = Setting.all[0].random_screen
 		@properties = Property.where(:visibility=>true,:approve=>true).sample(5)
 		render '/screens/oldest/random', :layout => "screen_layout"
 	end	
 	def cycle
+		@text = Setting.all[0].cycle_screen_text
+		@status = Setting.all[0].cycle_screen
 		@properties = Property.where(:visibility => true,:approve=>true)
 		render '/screens/oldest/cycle', :layout => "screen_layout"
 	end	
 
 	def oldest
+		@text = Setting.all[0].oldest_screen_text
+		@status = Setting.all[0].oldest_screen
 		@properties = Property.where(:visibility=>true,:approve=>true).first(10)
 		render '/screens/oldest/oldest', :layout => "screen_layout"
 	end	
 
 	def oldest_properties_detail
 		if params[:property_id] == "0"
-			@text = Setting.all[0].screen_text 
+			if params[:screen] == "featured_properties"
+				@text = Setting.all[0].featured_screen_text
+			elsif params[:screen] == "random_properties"
+				@text = Setting.all[0].random_screen_text
+			else
+				@text = Setting.all[0].send("#{params[:screen]}_screen_text")
+			end
 			render '/screens/newest/screen_html'#, :layout => false
 		else
 		@data = Property.find(params[:property_id])
@@ -113,6 +129,61 @@ class ScreensController < ApplicationController
 		url = "http://#{request.host_with_port}/properties_detail/#{@data.id}"
 		@qr = RQRCode::QRCode.new(url,:size => 10).to_img.resize(200, 200).to_data_url
 		render '/screens/oldest/oldest_properties_detail'
+		end
+	end
+
+	def newest_inside
+		@text = Setting.all[0].newest_inside_text
+		@status = Setting.all[0].newest_inside
+		@properties = Property.where(:visibility=>true,:approve=>true).last(5)
+		render '/screens/inside/newest', :layout => "screen_layout"
+	end
+
+	def featured_inside
+		@text = Setting.all[0].featured_inside_text
+		@status = Setting.all[0].featured_inside
+		@properties = Property.where(:featured=>true,:approve=>true).last(5)
+		render '/screens/inside/featured', :layout => "screen_layout"
+	end	
+
+	def random_inside
+		@text = Setting.all[0].random_inside_text
+		@status = Setting.all[0].random_inside
+		@properties = Property.where(:visibility=>true,:approve=>true).sample(5)
+		render '/screens/inside/random', :layout => "screen_layout"
+	end	
+
+	def cycle_inside
+		@text = Setting.all[0].cycle_inside_text
+		@status = Setting.all[0].cycle_inside
+		@properties = Property.where(:visibility => true,:approve=>true)
+		render '/screens/inside/cycle', :layout => "screen_layout"
+	end	
+
+	def oldest_inside
+		@text = Setting.all[0].oldest_inside_text
+		@status = Setting.all[0].oldest_inside
+		@properties = Property.where(:visibility=>true,:approve=>true).first(10)
+		render '/screens/inside/oldest', :layout => "screen_layout"
+	end	
+
+	def inside_properties_detail
+		if params[:property_id] == "0"
+			# if params[:screen] == "featured_properties"
+			# 	@text = Setting.all[0].featured_screen_text
+			# elsif params[:screen] == "random_properties"
+			# 	@text = Setting.all[0].random_screen_text
+			# else
+				@text = Setting.all[0].send("#{params[:screen]}_text")
+			# end
+			render '/screens/newest/screen_html'#, :layout => false
+		else
+		@data = Property.find(params[:property_id])
+		@postcode = Pat.get(@data.postcode.to_s)
+		@datapat = JSON.parse(@postcode.body)
+		url = "http://#{request.host_with_port}/properties_detail/#{@data.id}"
+		@qr = RQRCode::QRCode.new(url,:size => 10).to_img.resize(200, 200).to_data_url
+		render '/screens/inside/inside_properties_detail'
 		end
 	end
 

@@ -21,7 +21,7 @@ function run_script(ids,property_id,index){
 		randomColor = color[Math.floor(Math.random() * color.length)]
 		$.ajax({
 			type : 'get',
-			url : 'screens/oldest_properties_detail/'+property_id,
+			url : 'screens/inside_properties_detail/'+property_id,
 			data : 'screen=<%=params[:action]%>&page=<%=page%>',
 			async: false,
 			success : function(response){

@@ -1,0 +1,209 @@
+<div id="content">
+  <div class="container" style="width:90%">
+    <div class="row-fluid">
+      <div class="span9">
+        <div class="panel right-line" style="height:880px">
+          <h2 class="main-heading bottom-line">
+            <span class="main-circle-icon"><i class="icon-building"></i></span> 
+            <%=@data.name%>
+          </h2>
+          <div class="detail-properties right-space">
+            <div class="property ">
+              <div class="row-fluid">
+                <div class="span6">
+                  <div class="property-images" style="120%">
+                    <a href="#">
+                      <div class="mask">
+                          <div class="desc-type for-sale"><%=property_status(@data.category, @data.status) %></div>
+                          <div class="price" style="z-index:1px;margin-bottom:20px;top:452px;position:relative;width:150px">&pound; <%= @data.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></div>
+                      </div>
+                      <% if @data.image1.url.empty? %>
+                           <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
+                      <% else %>
+                        <%= image_tag "sealmark.png", style: "width:100px;height:100px;float: right;z-index: 1;overflow: none;position: absolute;margin-top: -7%;margin-left: 89%;-webkit-box-shadow:none" if @data.seal_approved == true%>
+                        <%= image_tag @data.image1.url(:large), id: "big-image-preview", alt: "big-image-preview",style: "height:500px" %>
+                      <% end %>
+                    </a>
+                    <% if !@data.image2.url.nil? || !@data.image3.url.nil? || !@data.image4.url.nil?%>
+                    <div class="list_image_detail" style="width:198%;margin-top:20px;height:250px">
+                      <ul id="list_images_property" style="height:250px">
+                        <%unless @data.image2.url.nil?%><li style="margin:2px;height:240px"><a href="#" data-title="Interior 02" ><img src=<%= @data.image2.url(:large)%> style="min-height:100%"></a></li><%end%>
+                        <%unless @data.image3.url.nil?%><li style="margin:2px;height:240px"><a href="#" data-title="Interior 03" ><img src=<%= @data.image3.url(:large)%> style="min-height:100%"></a></li><%end%>
+                        <%unless @data.image4.url.nil?%><li style="margin:2px;height:240px"><a href="#" data-title="Interior 04" ><img src=<%= @data.image4.url(:large)%> style="min-height:100%"></a></li><%end%>
+                        <%unless @data.image5.url.nil?%><li style="margin:2px;height:240px"><a href="#" data-title="Interior 05" ><img src=<%= @data.image5.url(:large)%> style="min-height:100%"></a></li><%end%>
+                        <%unless @data.image6.url.nil?%><li style="margin:2px;height:240px"><a href="#" data-title="Interior 06" ><img src=<%= @data.image6.url(:large)%> style="min-height:100%"></a></li><%end%>
+                        <%unless @data.image7.url.nil?%><li style="margin:2px;height:240px"><a href="#" data-title="Interior 06" ><img src=<%= @data.image7.url(:large)%> style="min-height:100%"></a></li><%end%>
+                        <%unless @data.image8.url.nil?%><li style="margin:2px;height:240px"><a href="#" data-title="Interior 06" ><img src=<%= @data.image8.url(:large)%> style="min-height:100%"></a></li><%end%>
+                        <%unless @data.image9.url.nil?%><li style="margin:2px;height:240px"><a href="#" data-title="Interior 06" ><img src=<%= @data.image9.url(:large)%> style="min-height:100%"></a></li><%end%>
+                        <%unless @data.image10.url.nil?%><li style="margin:2px;height:240px"><a href="#" data-title="Interior 06" ><img src=<%= @data.image10.url(:large)%> style="min-height:100%"></a></li><%end%>
+                      </ul>
+                      <div class="clearfix"></div>
+                      <%unless @data.image2.url.nil?%>
+                        <a id="prev2" class="prev" href="#">&lt;</a>
+                        <a id="next2" class="next" href="#">&gt;</a>
+                      <%end%>
+                    </div>
+                    <%end%>
+                  </div>
+                </div>
+                <div class="span6">
+                  <div class="property-details" style="width:84%;margin-left:80px">
+                    <h3><a href="#"><%="SP"+@data.created_at.year.to_s.split(//).last(2).join()+@data.created_at.month.to_s.rjust(2,'0')+@data.id.to_s.rjust(4,'0')%> <%= @data.name %></a></h3>
+                    <p style="font-size:21px;line-height:26px"><%= @data.short_description %></p>
+                    <p>
+                      <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= @data.beds %></span>
+                      <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= @data.bath %></span>
+                      <% if @data.garden == "Yes" %>
+                        <span class="label"><i class="icon-circle-arrow-right"></i> Garden : <%= @data.garden %></span>
+                      <%end%>  
+                      <% unless @data.parking_status == "none" %>
+                        <span class="label"><i class="icon-circle-arrow-right"></i> Parking : <%= @data.parking_status %></span>
+                      <%end%>
+                      <% if @data.gas_ch == "Yes" %>
+                        <span class="label"><i class="icon-circle-arrow-right"></i> Gas CH : <%= @data.gas_ch %></span>
+                      <%end%>
+                      <% if @data.dg == "Yes" %>
+                        <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> DG : <%= @data.dg %></span>
+                      <%end%>
+                      <% if @data.pets == "Yes" %>
+                        <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> Pets : <%= @data.pets %></span>
+                      <%end%>
+                      <% if @data.ensuite == "Yes" %>
+                        <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> En-suite : <%= @data.ensuite %>,<%= @data.bath %> Bathrooms</span>
+                      <%end%>
+                      <% unless @data.let_furn_id == "Not Specified" %>
+                        <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> <%= @data.let_furn_id %></span>
+                      <%end%>  
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="span3">
+        <div class="panel">
+          <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-map-marker"></i></span>  Location</h3>    
+          <div class="bottom-line line-before">
+            <div id="googleMap" class="" style="height:200px;margin-bottom:5px"></div>
+            <p>
+              Ward: <%=  (@datapat["code"] ==404 || @datapat["code"] ==nil) ? "" : (@datapat["administrative"]["ward"].nil? ? "" : "#{@datapat["administrative"]["ward"]["title"]}")   %>
+              <br/>
+              Council: <%=  (@datapat["code"] ==404 || @datapat["code"] ==nil) ? "" : "#{@datapat["administrative"]["council"]["title"]}"   %>
+            </p>
+          </div>
+          <h3 class="main-heading bottom-line line-before" style="padding:10px 0;margin-bottom: 5px;"><span class="main-circle-icon"><i class="icon-user"></i></span> Agent</h3>
+          <div class="agent-panel bottom-line line-before">
+              <% @agent = @data.agent %>
+              <% unless @agent.nil? %>
+                <a href="#" class="agent-image ">
+                    <img src="<%=@agent.image.url%>" class="img-polaroid" alt="agent" style = "max-height:140px;margin-bottom:5px">
+                </a>
+                <ul class="unstyled margin20" style="position:absolute;top:0;left:148px;width:180px">
+                  <li><i class="icon-phone"></i><%= @agent.phone %></li>
+                  <li><i class="icon-envelope"></i><%= @agent.email_id %></li>
+                  <li><i class="icon-facebook"></i><%= @agent.fb_id %></li>
+                  <li><i class="icon-twitter"></i><%= @agent.twitter_id %></li>
+                </ul>
+              <%else%>
+                No Agent  
+              <%end%>  
+          </div>
+          <h3 class="main-heading bottom-line line-before" style="padding:10px 0;margin-bottom: 5px;"><span class="main-circle-icon"><i class="icon-user"></i></span> Scan Me</h3>
+          <div class="agent-panel bottom-line line-before">
+            <a href="#" class="agent-image ">
+              <%= image_tag @qr,:style => "max-height:140px" %>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  init_gmap3()
+  <%if (Time.utc(2015, 10,19).to_i..Time.utc(2015, 10,31).to_i).cover?(DateTime.now.to_i) %>
+    <%5.times.each do |n|%>
+    /*! JS Bat 2013 - v1.2 - Eric Grange - www.delphitools.info */
+      ;(function () {
+      var r=Math.random,n=0,d=document,w=window,
+        i=d.createElement('img'),
+        z=d.createElement('div'),
+        zs=z.style,
+        a=w.innerWidth*r(),b=w.innerHeight*r();
+      zs.position="fixed";
+      zs.left=0;
+      zs.top=0;
+      zs.opacity=0;
+      z.appendChild(i);
+      i.src='data:image/gif;base64,R0lGODlhMAAwAJECAAAAAEJCQv///////yH/C05FVFNDQVBFMi4wAwEAAAAh+QQJAQACACwAAAAAMAAwAAACdpSPqcvtD6NcYNpbr4Z5ewV0UvhRohOe5UE+6cq0carCgpzQuM3ut16zvRBAH+/XKQ6PvaQyCFs+mbnWlEq0FrGi15XZJSmxP8OTRj4DyWY1lKdmV8fyLL3eXOPn6D3f6BcoOEhYaHiImKi4yNjo+AgZKTl5WAAAIfkECQEAAgAsAAAAADAAMAAAAnyUj6nL7Q+jdCDWicF9G1vdeWICao05ciUVpkrZIqjLwCdI16s+5wfck+F8JOBiR/zZZAJk0mAsDp/KIHRKvVqb2KxTu/Vdvt/nGFs2V5Bpta3tBcKp8m5WWL/z5PpbtH/0B/iyNGh4iJiouMjY6PgIGSk5SVlpeYmZqVkAACH5BAkBAAIALAAAAAAwADAAAAJhlI+py+0Po5y02ouz3rz7D4biSJbmiabq6gCs4B5AvM7GTKv4buby7vsAbT9gZ4h0JYmZpXO4YEKeVCk0QkVUlw+uYovE8ibgaVBSLm1Pa3W194rL5/S6/Y7P6/f8vp9SAAAh+QQJAQACACwAAAAAMAAwAAACZZSPqcvtD6OctNqLs968+w+G4kiW5omm6ooALeCusAHHclyzQs3rOz9jAXuqIRFlPJ6SQWRSaIQOpUBqtfjEZpfMJqmrHIFtpbGze2ZywWu0aUwWEbfiZvQdD4sXuWUj7gPos1EAACH5BAkBAAIALAAAAAAwADAAAAJrlI+py+0Po5y02ouz3rz7D4ZiCIxUaU4Amjrr+rDg+7ojXTdyh+e7kPP0egjabGg0EIVImHLJa6KaUam1aqVynNNsUvPTQjO/J84cFA3RzlaJO2495TF63Y7P6/f8vv8PGCg4SFhoeIg4UQAAIfkEBQEAAgAsAAAAADAAMAAAAnaUj6nL7Q+jXGDaW6+GeXsFdFL4UaITnuVBPunKtHGqwoKc0LjN7rdes70QQB/v1ykOj72kMghbPpm51pRKtBaxoteV2SUpsT/Dk0Y+A8lmNZSnZlfH8iy93lzj5+g93+gXKDhIWGh4iJiouMjY6PgIGSk5eVgAADs=';
+      d.body.appendChild(z);
+      function R(o,m){return Math.max(Math.min(o+(r()-.5)*400,m-50),50)}
+      function A(){
+        var x=R(a,w.innerWidth),y=R(b,w.innerHeight),
+          d=5*Math.sqrt((a-x)*(a-x)+(b-y)*(b-y));
+        zs.opacity=n;n=1;
+        zs.transition=zs.webkitTransition=d/1e3+'s linear';
+        zs.transform=zs.webkitTransform='translate('+x+'px,'+y+'px)';
+        i.style.transform=i.style.webkitTransform=(a>x)?'':'scaleX(-1)';
+        a=x;b=y;
+        setTimeout(A,d);
+      };setTimeout(A,r()*3e3);
+      })();
+    <%end%>
+  <%end%>
+})  
+  function init_gmap3(){
+    $(function(){
+        var icon_villa = "/assets/map/hostel_0star.png"
+        var icon_hotel = "/assets/map/villa.png"
+        var img_p = "assets/properties/p1.jpg"
+        $("#googleMap").gmap3({
+            <% address =  "#{@data.address1} #{@data.address2} #{@data.address3} #{@data.town} #{@data.postcode}#{@data.postcode1}"%>
+            map:{
+                // CENTRAL MAP DEFAULT
+                address:'<%= address %>',
+                options:{
+                    zoom:12,
+                    scaleControl: false,
+                    scrollwheel: false,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    mapTypeControl: true,
+                    mapTypeControlOptions: {
+                        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+                    }
+                }
+            },
+            marker:{
+                // DATA LOCATION
+                values:[
+                {
+                  
+                  <% a=@data.coordinates%>
+                  <%lat = (a.nil? ? "" : a.split(",")[0].to_f) %>
+                  <%lng = (a.nil? ? "" : a.split(",")[1].to_f) %>
+
+                    latLng:[<%= lat%>,<%= lng%>], 
+                    data:{
+                        img_preview: img_p, 
+                        properties_name:'<%= @data.name%>',
+                        properties_desc:'',
+                        properties_link:"#", 
+                        zip:'<%=@data.postcode%>', 
+                        city:'<%=@data.address3%>'
+                    }, 
+                    options:{
+                        icon: icon_hotel //Image or icon of shop want to display on map
+                    }
+                }
+                ],
+                
+            }
+      
+        });
+    });
+}
+</script>

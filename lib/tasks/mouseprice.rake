@@ -1,13 +1,13 @@
-task :upload_blm => :environment do
+task :mouseprice => :environment do
   require "open-uri"
   require 'nokogiri'
   require 'zip'
   
   # Thread.new do
     puts "===============Upload Start========================="
-    UserMailer.blm_status("BLM Upload on OnTheMarket Start").deliver
+    UserMailer.blm_status("BLM Upload on MousePrice Start").deliver
     @data = Property.where(:visibility=>true,:approve=>true, :otm=>true)
-    t = Tempfile.new("39545")
+    t = Tempfile.new("SP39545")
     Zip::OutputStream.open(t.path) do |z|
       @data.each_with_index do |item,i|
         sp = "39545_SP"+item.created_at.year.to_s.split(//).last(2).join()+item.created_at.month.to_s.rjust(2,'0')+item.id.to_s.rjust(4,'0')
@@ -27,10 +27,10 @@ task :upload_blm => :environment do
       z.print  File.open("#{Rails.root}/app/assets/images/default_images/no.jpg").read
       d=DateTime.now
       seq = "01"
-      f_name = "39545_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+seq
+      f_name = "SP39545_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+seq
       z.put_next_entry("#{f_name}.blm")
       ac = ApplicationController.new()
-      remote_data = ac.render_to_string "properties/download_blm", :locals => {:@data => @data}, :layout=>false
+      remote_data = ac.render_to_string "properties/download_blm1", :locals => {:@data => @data}, :layout=>false
       remote_data = remote_data.gsub("<pre>","")
       remote_data = remote_data.gsub("</pre>","")
       remote_data = remote_data.gsub("&lt;","<")
@@ -39,18 +39,18 @@ task :upload_blm => :environment do
       z.print remote_data
     end
     require 'net/ftp'
-    Net::FTP.open('feeds.agentsmutual.co.uk', 'sealproperties', 'Pwx85N8zAK8wHC5') do |ftp|
-      ftp.passive = true
-      ftp.chdir("/live/upload")
-      ftp.putbinaryfile(t.path,"39545.zip")
-    end
-    # Net::FTP.open('mouseprice.net', 'SealProp', 'SealProp77') do |ftp|
+    # Net::FTP.open('feeds.agentsmutual.co.uk', 'sealproperties', 'Pwx85N8zAK8wHC5') do |ftp|
     #   ftp.passive = true
-    #   # ftp.chdir("/")
-    #   ftp.putbinaryfile(t.path,"SP39545.zip")
+    #   ftp.chdir("/live/upload")
+    #   ftp.putbinaryfile(t.path,"39545.zip")
     # end
+    Net::FTP.open('mouseprice.net', 'SealProp', 'SealProp77') do |ftp|
+      ftp.passive = true
+      # ftp.chdir("/")
+      ftp.putbinaryfile(t.path,"SP39545.zip")
+    end
     t.close
-    UserMailer.blm_status("BLM Uploaded Successfully on OnTheMarket.").deliver
+    UserMailer.blm_status("BLM Uploaded Successfully on MousePrice.").deliver
     puts "===============Upload Complete========================="
   # end
 end

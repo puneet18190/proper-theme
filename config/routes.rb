@@ -178,6 +178,13 @@ Rails.application.routes.draw do
   resources :tenants  
   match '/seal_approved',   to: 'tasks#seal_approved',   via: 'get'
   match '/matches',   to: 'users#matches',   via: 'get'
+  match 'featured_inside', to: 'screens#featured_inside', via: 'get'
+  match 'random_inside', to: 'screens#random_inside', via: 'get'
+  match 'cycle_inside', to: 'screens#cycle_inside', via: 'get'
+  match 'oldest_inside', to: 'screens#oldest_inside', via: 'get'
+  match 'newest_inside', to: 'screens#newest_inside', via: 'get'
+  match 'screens/inside_properties_detail/:property_id',   to: 'screens#inside_properties_detail',   via: 'get'
+
   #match '/uploadfile',   to: 'screens#uploadfile', via: 'post'
   # See how all your routes lay out with "rake routes".
 
