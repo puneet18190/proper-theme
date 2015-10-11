@@ -99,10 +99,11 @@ class TasksController < ApplicationController
     @properties = Property.where({payment: true, visibility: true, approve: true}).order("created_at DESC")
     @tasks = []
     if !params[:q][:name_cont].nil?
-      @properties.each do |p|
-        string  = "#{p.name}|#{p.address1}|#{p.address2}|#{p.address3}|#{p.town}|#{p.beds} beds|#{p.bath} bath"
-        @tasks << p if string.include? params[:q][:name_cont]
+      # c=['address1', 'address2', 'address3','amount', 'amount','bath','beds','parking','description','category','price','name','postcode','short_description','tag_line','town','postcode1','summary']
+      params[:q][:name_cont].split.each do |z|
+        @tasks << Property.where("address1  LIKE ? OR address2 LIKE ? OR address3 LIKE ? OR description LIKE ? OR category LIKE ? OR name LIKE ? OR short_description LIKE ? OR tag_line LIKE ? OR town LIKE ? OR price = ? OR postcode = ? OR postcode1 = ? OR bath = ? OR beds = ?", "%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","#{z.to_i}","#{z.to_i}","#{z.to_i}","#{z.to_i}","#{z.to_i}" )
       end
+      @tasks = @tasks.flatten.uniq
       @status = false
     else
       if params[:q][:postcode_cont] != ""
