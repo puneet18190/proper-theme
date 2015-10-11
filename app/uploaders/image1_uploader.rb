@@ -16,6 +16,7 @@ class Image1Uploader < CarrierWave::Uploader::Base
   # process :resize_to_fill => [850, 315]
   process :convert => 'png'
   # process :watermark
+  process :seal_watermark
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
