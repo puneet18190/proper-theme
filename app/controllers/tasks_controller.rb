@@ -101,7 +101,7 @@ class TasksController < ApplicationController
     if !params[:q][:name_cont].nil?
       # c=['address1', 'address2', 'address3','amount', 'amount','bath','beds','parking','description','category','price','name','postcode','short_description','tag_line','town','postcode1','summary']
       params[:q][:name_cont].split.each do |z|
-        @tasks << Property.where("address1  LIKE ? OR address2 LIKE ? OR address3 LIKE ? OR description LIKE ? OR category LIKE ? OR name LIKE ? OR short_description LIKE ? OR tag_line LIKE ? OR town LIKE ? OR price = ? OR postcode = ? OR postcode1 = ? OR bath = ? OR beds = ?", "%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","#{z.to_i}","#{z.to_i}","#{z.to_i}","#{z.to_i}","#{z.to_i}" )
+        @tasks << Property.where("address1  ILIKE ? OR address2 ILIKE ? OR address3 ILIKE ? OR description ILIKE ? OR category ILIKE ? OR name ILIKE ? OR short_description ILIKE ? OR tag_line ILIKE ? OR town ILIKE ? OR price = ? OR postcode = ? OR postcode1 = ? OR bath = ? OR beds = ?", "%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","#{z.to_i}","#{z.to_i}","#{z.to_i}","#{z.to_i}","#{z.to_i}" )
       end
       @tasks = @tasks.flatten.uniq
       @status = false
