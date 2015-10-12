@@ -610,12 +610,12 @@ class PropertiesController < ApplicationController
   end
 
   def blm1
-    @data = Property.where(:visibility=>true,:approve=>true, :otm=>true)
+    @data = Property.where(:visibility=>true,:approve=>true)
     render layout: false
   end
 
   def blm2
-    @data = Property.where(:visibility=>true,:approve=>true, :otm=>true)
+    @data = Property.where(:visibility=>true,:approve=>true)
     render layout: false
   end
 
