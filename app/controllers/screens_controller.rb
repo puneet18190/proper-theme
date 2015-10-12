@@ -81,34 +81,34 @@ class ScreensController < ApplicationController
 	def newest
 		@text = Setting.all[0].newest_screen_text
 		@status = Setting.all[0].newest_screen
-		@properties = Property.where(:visibility=>true,:approve=>true).last(5)
+		@properties = Property.where(:visibility=>true,:approval_status=>"approved").last(5)
 		render '/screens/oldest/newest', :layout => "screen_layout"
 	end
 
 	def featured_properties
 		@text = Setting.all[0].featured_screen_text
 		@status = Setting.all[0].featured_screen
-		@properties = Property.where(:featured=>true,:approve=>true).last(5)
+		@properties = Property.where(:featured=>true,:approval_status=>"approved").last(5)
 		render '/screens/oldest/featured', :layout => "screen_layout"
 	end	
 
 	def random_properties
 		@text = Setting.all[0].random_screen_text
 		@status = Setting.all[0].random_screen
-		@properties = Property.where(:visibility=>true,:approve=>true).sample(5)
+		@properties = Property.where(:visibility=>true,:approval_status=>"approved").sample(5)
 		render '/screens/oldest/random', :layout => "screen_layout"
 	end	
 	def cycle
 		@text = Setting.all[0].cycle_screen_text
 		@status = Setting.all[0].cycle_screen
-		@properties = Property.where(:visibility => true,:approve=>true)
+		@properties = Property.where(:visibility => true,:approval_status=>"approved")
 		render '/screens/oldest/cycle', :layout => "screen_layout"
 	end	
 
 	def oldest
 		@text = Setting.all[0].oldest_screen_text
 		@status = Setting.all[0].oldest_screen
-		@properties = Property.where(:visibility=>true,:approve=>true).first(10)
+		@properties = Property.where(:visibility=>true,:approval_status=>"approved").first(10)
 		render '/screens/oldest/oldest', :layout => "screen_layout"
 	end	
 
@@ -135,35 +135,35 @@ class ScreensController < ApplicationController
 	def newest_inside
 		@text = Setting.all[0].newest_inside_text
 		@status = Setting.all[0].newest_inside
-		@properties = Property.where(:visibility=>true,:approve=>true).last(5)
+		@properties = Property.where(:visibility=>true,:approval_status=>"approved").last(5)
 		render '/screens/inside/newest', :layout => "screen_layout"
 	end
 
 	def featured_inside
 		@text = Setting.all[0].featured_inside_text
 		@status = Setting.all[0].featured_inside
-		@properties = Property.where(:featured=>true,:approve=>true).last(5)
+		@properties = Property.where(:featured=>true,:approval_status=>"approved").last(5)
 		render '/screens/inside/featured', :layout => "screen_layout"
 	end	
 
 	def random_inside
 		@text = Setting.all[0].random_inside_text
 		@status = Setting.all[0].random_inside
-		@properties = Property.where(:visibility=>true,:approve=>true).sample(5)
+		@properties = Property.where(:visibility=>true,:approval_status=>"approved").sample(5)
 		render '/screens/inside/random', :layout => "screen_layout"
 	end	
 
 	def cycle_inside
 		@text = Setting.all[0].cycle_inside_text
 		@status = Setting.all[0].cycle_inside
-		@properties = Property.where(:visibility => true,:approve=>true)
+		@properties = Property.where(:visibility => true,:approval_status=>"approved")
 		render '/screens/inside/cycle', :layout => "screen_layout"
 	end	
 
 	def oldest_inside
 		@text = Setting.all[0].oldest_inside_text
 		@status = Setting.all[0].oldest_inside
-		@properties = Property.where(:visibility=>true,:approve=>true).first(10)
+		@properties = Property.where(:visibility=>true,:approval_status=>"approved").first(10)
 		render '/screens/inside/oldest', :layout => "screen_layout"
 	end	
 

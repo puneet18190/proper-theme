@@ -6,7 +6,7 @@ task :mouseprice => :environment do
   # Thread.new do
     puts "===============Upload Start========================="
     UserMailer.blm_status("BLM Upload on MousePrice Start").deliver
-    @data = Property.where(:visibility=>true,:approve=>true)
+    @data = Property.where(:approval_status=>"approved", :otm=>true)
     t = Tempfile.new("SP39545")
     Zip::OutputStream.open(t.path) do |z|
       @data.each_with_index do |item,i|

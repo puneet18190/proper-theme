@@ -254,7 +254,7 @@ class PropertiesController < ApplicationController
     @status = params[:status]
     @property_id  = params[:id]
     if params[:status] == "approved"
-      # @property.update_attributes(:approve=>true)
+      # @property.update_attributes(:approval_status=>"approved")
       if !@property.property_changes.empty? 
         ['name','address1','address2','address3','postcode','postcode1','property_type','beds','bath','parking_status','car','ensuite','let_type_id','let_furn_id','gas_ch','garden','dg','pets','feature1','feature2','category','status','price','tag_line','summary','short_description','description','created_at','updated_at','town','image1','image2','image3','image4','image5','image6','image7','image8','image9','image10','epc'].each do |obj|
           @property.update_attributes(obj.to_sym => changes.send(obj)) if @property.send(obj) != changes.send(obj)
@@ -605,27 +605,27 @@ class PropertiesController < ApplicationController
   end  
 
   def blm
-    @data = Property.where(:visibility=>true,:approve=>true, :otm=>true)
+    @data = Property.where(:approval_status=>"approved", :otm=>true)
     render layout: false
   end
 
   def blm1
-    @data = Property.where(:visibility=>true,:approve=>true)
+    @data = Property.where(:approval_status=>"approved", :otm=>true)
     render layout: false
   end
 
   def blm2
-    @data = Property.where(:visibility=>true,:approve=>true)
+    @data = Property.where(:approval_status=>"approved", :otm=>true)
     render layout: false
   end
 
   def test_blm
-    @data = Property.where(:visibility=>true,:approve=>true, :otm=>true)
+    @data = Property.where(:approval_status=>"approved", :otm=>true)
     render layout: false
   end
 
   def download_blm
-    @data = Property.where(:visibility=>true,:approve=>true, :otm=>true)
+    @data = Property.where(:approval_status=>"approved", :otm=>true)
     remote_data = render_to_string "download_blm", :layout => false
     remote_data = remote_data.gsub("<pre>","")
     remote_data = remote_data.gsub("</pre>","")
@@ -649,7 +649,7 @@ class PropertiesController < ApplicationController
   end
 
   def zip_blm
-    @data = Property.where(:visibility=>true,:approve=>true, :otm=>true)
+    @data = Property.where(:approval_status=>"approved", :otm=>true)
     t = Tempfile.new("my-temp-filename-#{Time.now}")
     Zip::OutputStream.open(t.path) do |z|
       @data.each_with_index do |item,i|
@@ -688,7 +688,7 @@ class PropertiesController < ApplicationController
 
   def upload_blm
     Thread.new do
-    @data = Property.where(:visibility=>true,:approve=>true, :otm=>true)
+    @data = Property.where(:approval_status=>"approved", :otm=>true)
     t = Tempfile.new("39545")
     Zip::OutputStream.open(t.path) do |z|
       @data.each_with_index do |item,i|
