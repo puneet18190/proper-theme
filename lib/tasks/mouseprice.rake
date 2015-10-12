@@ -10,7 +10,7 @@ task :mouseprice => :environment do
     t = Tempfile.new("SP39545")
     Zip::OutputStream.open(t.path) do |z|
       @data.each_with_index do |item,i|
-        sp = "39545_SP"+item.created_at.year.to_s.split(//).last(2).join()+item.created_at.month.to_s.rjust(2,'0')+item.id.to_s.rjust(4,'0')
+        sp = "SP39545_SP"+item.created_at.year.to_s.split(//).last(2).join()+item.created_at.month.to_s.rjust(2,'0')+item.id.to_s.rjust(4,'0')
         (0..9).each do |n|
           if !item.send("image#{n+1}").url.nil? && !item.send("image#{n+1}").path.nil?
             puts item.send("image#{n+1}").path

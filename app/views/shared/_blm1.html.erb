@@ -13,7 +13,7 @@ AGENT_REF^ADDRESS_1^ADDRESS_2^ADDRESS_3^TOWN^POSTCODE1^POSTCODE2^FEATURE1^FEATUR
 #DATA#
 <%@data.each_with_index do |obj,n|%>
 <% sp = "SP"+obj.created_at.year.to_s.split(//).last(2).join()+obj.created_at.month.to_s.rjust(2,'0')+obj.id.to_s.rjust(4,'0')%>
-<% @AGENT_REF = "39545_"+sp.to_s %>
+<% @AGENT_REF = "SP39545_"+sp.to_s %>
 <% @ADDRESS_1 = obj.address1.strip() %>
 <% @ADDRESS_2 = obj.address2.strip() %>
 <% @ADDRESS_3 = obj.address3.strip() %>
@@ -169,7 +169,7 @@ AGENT_REF^ADDRESS_1^ADDRESS_2^ADDRESS_3^TOWN^POSTCODE1^POSTCODE2^FEATURE1^FEATUR
 <% @TRANS_TYPE_ID = 1 %>
 <%end%>		
 <% @NEW_HOME_FLAG = nil %>
-<%img = "39545_SP"+obj.created_at.year.to_s.split(//).last(2).join()+obj.created_at.month.to_s.rjust(2,'0')+obj.id.to_s.rjust(4,'0')%>
+<%img = "SP39545_SP"+obj.created_at.year.to_s.split(//).last(2).join()+obj.created_at.month.to_s.rjust(2,'0')+obj.id.to_s.rjust(4,'0')%>
 <% @MEDIA_IMAGE_00 = obj.image1.url.nil? ? "coming_soon.jpg" : img+"_IMG_00."+obj.image1.url.split(".").last.downcase %>
 <% @MEDIA_IMAGE_TEXT_00 = nil %>
 <% @MEDIA_IMAGE_01 = obj.image2.url.nil? ? nil : img+"_IMG_01."+obj.image2.url.split(".").last.downcase %>
