@@ -609,6 +609,16 @@ class PropertiesController < ApplicationController
     render layout: false
   end
 
+  def blm1
+    @data = Property.where(:visibility=>true,:approve=>true, :otm=>true)
+    render layout: false
+  end
+
+  def blm2
+    @data = Property.where(:visibility=>true,:approve=>true, :otm=>true)
+    render layout: false
+  end
+
   def test_blm
     @data = Property.where(:visibility=>true,:approve=>true, :otm=>true)
     render layout: false

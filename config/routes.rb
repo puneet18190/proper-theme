@@ -159,6 +159,8 @@ Rails.application.routes.draw do
   get "sitemap.xml" => "tasks#sitemap", as: "sitemap", defaults: { format: "xml" }
   match '/api_for_dashing',   to: 'screens#api_for_dashing', via: 'get'
   match '/blm',   to: 'properties#blm', via: 'get'
+  match '/blm1',   to: 'properties#blm1', via: 'get'
+  match '/blm2',   to: 'properties#blm2', via: 'get'
   match '/download_blm',   to: 'properties#download_blm', via: 'get'
   match '/zip_blm',   to: 'properties#zip_blm', via: 'get'
   match '/upload_blm',   to: 'properties#upload_blm', via: 'get'
