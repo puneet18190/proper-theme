@@ -1,5 +1,5 @@
 <% @prop = [] %>
-<% @prop = Property.where(:visibility=>true,:approval_status=>"approved").last(5) %>
+<% @prop = Property.where(:visibility=>true,:approval_status=>"approved").where.not(category: "Let Agreed").last(5) %>
 
 <% (0..4).each do |n| %>
   <dt><a href=<%="/properties_detail/#{@prop[n].id}"%>>Latest Property</a></dt>
