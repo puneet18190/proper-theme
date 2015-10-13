@@ -142,7 +142,7 @@ class ScreensController < ApplicationController
 	def featured_inside
 		@text = Setting.all[0].featured_inside_text
 		@status = Setting.all[0].featured_inside
-		@properties = Property.where(:featured=>true,:approval_status=>"approved":visibility=>true).last(5)
+		@properties = Property.where(:featured=>true,:approval_status=>"approved",:visibility=>true).last(5)
 		render '/screens/inside/featured', :layout => "screen_layout"
 	end	
 
