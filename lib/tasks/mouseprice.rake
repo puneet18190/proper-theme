@@ -27,7 +27,7 @@ task :mouseprice => :environment do
       z.print  File.open("#{Rails.root}/app/assets/images/default_images/no.jpg").read
       d=DateTime.now
       seq = "01"
-      f_name = "SP39545_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+seq
+      f_name = "39545_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+d.hour.to_s.rjust(2,'0')+d.minute.to_s.rjust(2,'0')
       z.put_next_entry("#{f_name}.blm")
       ac = ApplicationController.new()
       remote_data = ac.render_to_string "properties/download_blm1", :locals => {:@data => @data}, :layout=>false
@@ -47,7 +47,7 @@ task :mouseprice => :environment do
     Net::FTP.open('mouseprice.net', 'SealProp', 'SealProp77') do |ftp|
       ftp.passive = true
       # ftp.chdir("/")
-      ftp.putbinaryfile(t.path,"SP39545.zip")
+      ftp.putbinaryfile(t.path,"SP#{f_name}.zip")
     end
     t.close
     UserMailer.blm_status("BLM Uploaded Successfully on MousePrice.").deliver
