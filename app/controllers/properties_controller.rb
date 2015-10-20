@@ -774,9 +774,11 @@ class PropertiesController < ApplicationController
       #   ftp.chdir("/live/upload")
       #   ftp.putbinaryfile(t.path,"39545.zip")
       # end
+      d=DateTime.now
       Net::FTP.open('mouseprice.net', 'SealProp', 'SealProp77') do |ftp|
         ftp.passive = true
-        # ftp.chdir("/")
+        # ftp.chdir("/")        
+        f_name = "39545_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+d.hour.to_s.rjust(2,'0')+d.minute.to_s.rjust(2,'0')
         ftp.putbinaryfile(t.path,"SP#{f_name}.zip")
       end
       t.close
