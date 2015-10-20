@@ -164,6 +164,8 @@ Rails.application.routes.draw do
   match '/download_blm',   to: 'properties#download_blm', via: 'get'
   match '/zip_blm',   to: 'properties#zip_blm', via: 'get'
   match '/upload_blm',   to: 'properties#upload_blm', via: 'get'
+  match '/upload_blm_mouseprice',   to: 'properties#upload_blm_mouseprice', via: 'get'
+  match '/upload_blm_dssmove',   to: 'properties#upload_blm_dssmove', via: 'get'
   match '/upload_pdf',   to: 'properties#upload_pdf', via: 'get'
   match '/delete_pdf',   to: 'properties#delete_pdf', via: 'get'
   match '/test_blm',   to: 'properties#test_blm', via: 'get'
