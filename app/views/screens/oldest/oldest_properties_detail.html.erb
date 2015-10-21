@@ -87,11 +87,15 @@
           <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-map-marker"></i></span>  Location</h3>    
           <div class="bottom-line line-before">
             <div id="googleMap" class="" style="height:200px;margin-bottom:5px"></div>
+<%
+=begin%>
             <p>
               Ward: <%=  (@datapat["code"] ==404 || @datapat["code"] ==nil) ? "" : (@datapat["administrative"]["ward"].nil? ? "" : "#{@datapat["administrative"]["ward"]["title"]}")   %>
               <br/>
               Council: <%=  (@datapat["code"] ==404 || @datapat["code"] ==nil) ? "" : "#{@datapat["administrative"]["council"]["title"]}"   %>
             </p>
+<%
+=end%>
           </div>
           <h3 class="main-heading bottom-line line-before" style="padding:10px 0;margin-bottom: 5px;"><span class="main-circle-icon"><i class="icon-user"></i></span> Agent</h3>
           <div class="agent-panel bottom-line line-before">
