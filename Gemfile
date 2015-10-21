@@ -107,7 +107,7 @@ gem 'whenever', :require => false
 gem 'tty-screen'
 # gem 'sextant'
 gem 'rails_db_info' #http://localhost:3000/rails/info/db
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 

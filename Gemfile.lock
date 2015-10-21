@@ -383,7 +383,6 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
     netrc (0.8.0)
-    newrelic_rpm (3.9.8.273)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     ntlm-http (0.1.1)
@@ -641,7 +640,6 @@ DEPENDENCIES
   mechanize
   meta-tags
   mobile-fu
-  newrelic_rpm
   odf-report!
   paperclip (~> 3.0)
   pat
