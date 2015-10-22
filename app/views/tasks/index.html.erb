@@ -40,6 +40,7 @@
                             <%# else %>
                                 <div class="desc-type for-sale" style="opacity:0.8"><%=property_status(task.category, task.status)%></div>
                             <%# end %>
+                            <%= image_tag "sealmark.png", style: "width:50px !important;height:50px !important;z-index: 1;overflow: none;position: absolute;top: -21px;right: -14px;box-shadow: none" if task.seal_approved == true%>
                             <a href=<%="/properties_detail/#{task.slug}"%>><%=  image_tag (responsive_image(task.image1)), class: "full", class: "mask_hover" %></a>
                           </a>
                           <h4 class=" "><%= task.name %></h4>

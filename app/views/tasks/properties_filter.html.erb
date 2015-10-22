@@ -57,6 +57,7 @@
                               <div class="desc-type for-sale"><%=property_status(task.category, task.status) %></div>
                               <div class="price">&pound; <%= task.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></div>
                             </div>
+                            <%= image_tag "sealmark.png", style: "width:50px;height:50px;z-index: 1;overflow: none;position: absolute;top: -21px;right: -7px;box-shadow: none" if task.seal_approved == true%>
                             <%= image_tag responsive_image(task.image1), :style=>"height:250px;width:500px;" %>
                           </a>
                         </div>
