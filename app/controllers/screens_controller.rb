@@ -179,8 +179,8 @@ class ScreensController < ApplicationController
 			render '/screens/newest/screen_html'#, :layout => false
 		else
 		@data = Property.find(params[:property_id])
-		@postcode = Pat.get(@data.postcode.to_s)
-		@datapat = JSON.parse(@postcode.body)
+		# @postcode = Pat.get(@data.postcode.to_s)
+		# @datapat = JSON.parse(@postcode.body)
 		url = "http://#{request.host_with_port}/properties_detail/#{@data.id}"
 		@qr = RQRCode::QRCode.new(url,:size => 10).to_img.resize(200, 200).to_data_url
 		render '/screens/inside/inside_properties_detail'
