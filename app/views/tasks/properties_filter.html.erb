@@ -66,6 +66,7 @@
                           <h3><a href=<%= "/properties_detail/"+task.slug%> ><%=task.name%></a></h3>
                           <p><%= task.short_description %></p>
                           <p>
+                            <span class="label"><i class="icon-circle-arrow-right"></i> REF : <%= "SP"+task.created_at.year.to_s.split(//).last(2).join()+task.created_at.month.to_s.rjust(2,'0')+task.id.to_s.rjust(4,'0') %></span>
                             <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= task.beds %></span>
                             <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= task.bath %></span>
                             <span class="label"><i class="icon-circle-arrow-right"></i> Garden : <%= task.garden %></span>

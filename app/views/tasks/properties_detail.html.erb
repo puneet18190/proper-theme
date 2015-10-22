@@ -56,6 +56,7 @@
             <p> <%= raw(@data.short_description) %>  </p>
             <div class="property-details" style="width:100%;">
               <p>
+                <span class="label"><i class="icon-circle-arrow-right"></i> REF : <%= "SP"+@data.created_at.year.to_s.split(//).last(2).join()+@data.created_at.month.to_s.rjust(2,'0')+@data.id.to_s.rjust(4,'0') %></span>
                 <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= @data.beds %></span>
                 <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= @data.bath %></span>
                 <span class="label"><i class="icon-circle-arrow-right"></i> Garden : <%= @data.garden %></span>
