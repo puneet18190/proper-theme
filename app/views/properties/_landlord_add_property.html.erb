@@ -40,9 +40,8 @@
                         </div>
                         <div class="span4">
                             <%= f.label "Postcode" %>
-                            <%= f.text_field :postcode1,class: "input-block-level",required: true, style: "width: 35% !important;margin-left:5px", placeholder: "4TJ" %>
-                            <%= f.text_field :postcode,class: "input-block-level",required: true, style: "width: 35% !important;", placeholder: "NE8" %>
-                            
+                            <%= f.text_field :postcode,class: "input-block-level",required: true, style: "width: 35% !important;float:none;margin-left:37px", placeholder: "NE8" %>
+                            <%= f.text_field :postcode1,class: "input-block-level",required: true, style: "width: 35% !important;", placeholder: "4TJ" %>
                         </div>
                         <div class="span4">
                           <%= f.label :search_criteria %>
@@ -174,7 +173,7 @@
                             <!-- <label>EPC Upload</label> -->
                             <%if params[:action]=="edit" && !@property.epc.nil? %>
                                 <%= f.file_field :epc, style: "float:left" %>
-                                <%= @property.epc.file.filename %>
+                                <%= @property.epc %>
                             <%else%>
                                 <%= f.file_field :epc, style: "float:left" %>
                             <%end%>
@@ -201,25 +200,25 @@
                             <h4>Tag Line</h4>
                           <%#= f.label :tag_line %>
                           <h6>A single sentence highlighting your properties best features</h6>
-                          <%= f.text_field :tag_line, class: "input-block-level", required: "true",style: "width:440px !important" %>
+                          <%= f.text_field :tag_line, class: "input-block-level",style: "width:440px !important" %>
                         </div>
                         <div class="span4" style="width:440px">
                           <h4>Summary</h4>
                           <%#= f.label :summary %>
                           <h6>A short summary of 300 characters for your On The Market Advert</h6>
-                          <%= f.text_area :summary,:maxlength => 300, class: "input-block-level", required: "true",style: "width:440px !important" %>
+                          <%= f.text_area :summary,:maxlength => 300, class: "input-block-level",style: "width:440px !important" %>
                         </div>
                         <div class="span4" style="width:440px">
                           <h4>Short Description</h4>
                           <%#= f.label :short_description %>
                           <h6>Please provide a brief description of your property</h6>
-                          <%= f.text_area :short_description, style: "height:60px;width:440px !important",:maxlength => 900, class: "input-block-level", required: "true" %>
+                          <%= f.text_area :short_description, style: "height:60px;width:440px !important",:maxlength => 900, class: "input-block-level" %>
                         </div>
                         <div class="span4" style="width:440px">
                           <h4>Description</h4>
                           <%#= f.label :description %>
                           <h6>Please provide a full description of your property using the template</h6>
-                          <%= f.text_area :description, style: "height:100px;width:440px !important", class: "long_desc input-block-level", required: "true" %>
+                          <%= f.text_area :description, style: "height:100px;width:440px !important", class: "long_desc input-block-level", :value => Setting.first.property_description %>
                         </div>
 
 <%
@@ -399,7 +398,7 @@
     margin-left: 0;
     width: 175px !important;
   }
-  /*#property_let_type_id,#property_let_furn_id{
+  #property_let_type_id,#property_let_furn_id{
     width: 108px !important;
-  }*/
+  }
 </style>

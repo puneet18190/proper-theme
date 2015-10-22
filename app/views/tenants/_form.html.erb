@@ -147,23 +147,7 @@
     if(isNaN(d) || isNaN(m) || isNaN(y)){
       e.preventDefault();
       alert("Please Enter your Date of Birth")
-    }else if (<%= DateTime.now.year %> >= y ){
-      if(<%= DateTime.now.month %> >= m ){
-        // if(<%= DateTime.now.day %> >= d){
-        //   $(".proper-form-step").submit()
-        // }else 
-        if(<%= DateTime.now.month %> == m && <%= DateTime.now.day %> >= d){
-          e.preventDefault();
-          alert("cannot be future date")
-        }else{
-          $(".proper-form-step").submit()
-        }
-      }else{
-        e.preventDefault();
-        alert("cannot be future date")  
-      }
-      
-    }else{
+    }else if (new Date(y,m-1,d).getTime() > new Date().getTime() ){
       e.preventDefault();
       alert("cannot be future date")
     }

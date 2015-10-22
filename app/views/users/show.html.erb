@@ -4,7 +4,7 @@
             <div class="box-line">
                 <h3 class="title-heading">Personal Information</h3>
             </div>
-            <%= button_to "Edit Profile", "/users/profile",:class=>"btn btn-warning", :style=>"float:right" if user_signed_in? && current_user.id == @user.id%>
+            <%= button_to "Edit Profile", "/users/profile",:class=>"btn btn-warning",method: :get, :style=>"float:right" if user_signed_in? && current_user.id == @user.id%>
             <div class="proper-form-step-area">
                 <div style="float:left;width:25%">
                     <div class="row-fluid">
