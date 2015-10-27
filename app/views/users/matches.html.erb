@@ -52,7 +52,7 @@
                       <div class="span6">
                         <div class="property-images">
                           <a href="/users/<%=task.id%>">
-                            <%= image_tag task.avatar.url, :style=>"height:250px;width:500px;" %>
+                            <%= image_tag task.avatar.nil? ? "noimage.gif" : task.avatar.url, :style=>"height:250px;width:500px;" %>
                           </a>
                         </div>
                       </div>

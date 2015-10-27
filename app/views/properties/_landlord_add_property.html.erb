@@ -17,6 +17,7 @@
             <%= form_for @property, html: { multipart: true , class: "proper-form-step", style: "height:910px"}, action: params[:action] == "edit" ? property_path(@property) : "/properties" do |f| %>
                 <div class="proper-form-step-area">
                     <div class="" style="width:385px;height:770px;float:left">
+                      <%= f.hidden_field :user_id, value: current_user.id %>
                        <h4>My Property</h4>                
                         <div class="span4">
                             <%= f.label :name %>

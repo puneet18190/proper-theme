@@ -20,15 +20,15 @@
           <h4>Personal Information</h4>
           <div style="width:300px;height:400px">
             <div class="span5">
-              <%= f.label :first_name, "First Name" %>
+              <%= f.label :first_name, "<span style='color:red'>*</span>First Name".html_safe %>
               <%= f.text_field :first_name, class: "input-block-level", required: "true" %>
             </div>
             <div class="span5">
-              <%= f.label :last_name, "Last Name" %>
+              <%= f.label :last_name, "<span style='color:red'>*</span>Last Name".html_safe %>
               <%= f.text_field :last_name, class: "input-block-level", required: "true" %>
             </div>
             <div class="span5">
-              <%= f.label "Address 1" %>
+              <%= f.label :address1, "<span style='color:red'>*</span>Address 1".html_safe %>
               <%= f.text_field :address1, class: "input-block-level", required: "true" %>
             </div>
             <div class="span5">
@@ -40,11 +40,11 @@
               <%= f.text_field :address3, class: "input-block-level" %>
             </div>
             <div class="span5">
-              <%= f.label :postcode %>
+              <%= f.label :postcode, "<span style='color:red'>*</span>Postcode".html_safe %>
               <%= f.text_field :postcode, class: "input-block-level", required: "true" %>
             </div>
             <div class="span5">
-              <%= f.label "Phone" %>
+              <%= f.label :phone, "<span style='color:red'>*</span>Phone".html_safe %>
               <%= f.text_field :phone, class: "input-block-level", required: "true" %>
             </div>
             <div class="span5">

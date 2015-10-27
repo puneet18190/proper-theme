@@ -28,12 +28,8 @@
                       <% puts task %>
                       <% if !task.nil?%>
                         <div class="item">
-                          <a href="#" class="with-hover">
-                            <% if (task.category=="rent" || task.category=="Rent") %>
-                                <div class="for_rent_banner"></div>
-                            <% else %>
-                                <div class="for_sale_banner"></div>
-                            <% end %>
+                          <a href="#" class="with-hover property">
+                            <div class="desc-type for-sale" style="opacity:0.8"><%=property_status(task.category, task.status)%></div>
                             <a href=<%="/properties_detail/#{task.slug}"%>><%=  image_tag (responsive_image(task.image1)), class: "full", class: "mask_hover" %></a>
                           </a>
                           <h4 class=" "><%= task.name %></h4>

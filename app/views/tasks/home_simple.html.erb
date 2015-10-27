@@ -41,6 +41,7 @@
                             <% else %>
                                 <div class="desc-type for-sale" style="opacity:0.8">For Sale</div>
                             <% end %>
+                            <%= image_tag "sealmark.png", style: "z-index: 1; overflow: none; position: absolute; top: -21px; right: -14px; box-shadow: none;", class: "seal_image" if task.seal_approved == true%>
                             <a href=<%="/properties_detail/#{task.slug}"%>><%=  image_tag (responsive_image(task.image1)), class: "full", class: "mask_hover" %></a>
                           </a>
                           <h4 class=" "><%= task.name %></h4>
@@ -107,3 +108,9 @@
     init_grid()
   });
 </script>
+<style>
+.seal_image{
+    width:50px !important;
+    max-height:50px !important;
+  }
+</style>

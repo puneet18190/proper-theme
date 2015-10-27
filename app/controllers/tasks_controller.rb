@@ -6,7 +6,7 @@ class TasksController < ApplicationController
       redirect_to "/users/profile"
     else
     # if is_mobile_device? == false
-      @properties = Property.where({visibility: true, approval_status: "approved"}).order("created_at DESC")
+      @properties = Property.where({visibility: true, approval_status: "approved"}).order("status ASC,created_at DESC")
 
       if !params[:q].nil? && params[:q][:radius]!="Select"
         @properties = @properties.near(params[:q][:postcode_eq],params[:q][:radius].to_f)
@@ -42,7 +42,7 @@ class TasksController < ApplicationController
     if  request.format.symbol == :mobile
       redirect_to "/"
     else
-      @properties = Property.where({visibility: true, approval_status: "approved"}).order("created_at DESC")
+      @properties = Property.where({visibility: true, approval_status: "approved"}).order("status ASC,created_at DESC")
       @search = @properties.search(params[:q])
       @tasks = @search.result
       @agents= Agent.all
@@ -79,7 +79,7 @@ class TasksController < ApplicationController
     if request.xhr?
       @data = Property.order("#{params["condition"]} #{params["sort"]}").includes(:agent)
     else  
-      @data = Property.order("price asc").includes(:agent).order("created_at DESC")
+      @data = Property.order("price asc").includes(:agent).order("status ASC,created_at DESC")
     end  
     @agents = Agent.all
     respond_with(@data,@agents)
