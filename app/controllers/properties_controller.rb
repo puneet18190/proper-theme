@@ -182,6 +182,7 @@ class PropertiesController < ApplicationController
     location = @abc[:address1_or_address2_or_address3_cont_or_town_cont]
 
     @user = current_user.status == "admin" ? User.find(params[:q][:user_id].to_i) : current_user
+    @all_property = Property.where({visibility: true, approval_status: "approved"})
     # @search = Property.search(params[:q])
     # @properties = @search.result
     # @properties = Property.where({visibility: true, approve: true})
@@ -211,7 +212,7 @@ class PropertiesController < ApplicationController
 
     if params[:q][:property_type] == "Not Specified"
       params[:q].delete("property_type")
-      @search = Property.search(params[:q])
+      @search = @all_property.search(params[:q])
     else
       a=PropertyType.where(search: params[:q][:property_type])
       ids = []
@@ -219,7 +220,7 @@ class PropertiesController < ApplicationController
         ids << o.p_id
       end
       ids.each do |o|
-        data = Property.where(property_type: o)
+        data = @all_property.where(property_type: o)
         @properties << data unless data.empty?
       end
       @search = @properties.search(params[:q])
@@ -242,7 +243,7 @@ class PropertiesController < ApplicationController
     @user.save
 
     render "/tasks/search_results"
-    @properties = @properties.empty? ? Property.all.last(5) : @properties
+    @properties = @properties.empty? ? @all_property.all.last(5) : @properties
     UserMailer.tenant_result_property(@user, @properties, @request).deliver unless request.referer.split('/').last == "edit"
   end
 
