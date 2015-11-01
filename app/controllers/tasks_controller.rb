@@ -99,16 +99,18 @@ class TasksController < ApplicationController
     @properties = Property.where({visibility: true, approval_status: "approved"}).order("created_at DESC")
     @tasks = []
     if !params[:q][:name_cont].nil?
+      z=params[:q][:name_cont]
+      @tasks << @properties.where("address1  ILIKE ? OR address2 ILIKE ? OR address3 ILIKE ? OR description ILIKE ? OR category ILIKE ? OR name ILIKE ? OR short_description ILIKE ? OR tag_line ILIKE ? OR town ILIKE ? OR price = ? OR postcode = ? OR postcode1 = ?", "%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","#{z.to_i}","#{z.to_i}","#{z.to_i}" ) if (z.to_i == 0 && !z.include?('bed') && !z.include?('bath') )
       # c=['address1', 'address2', 'address3','amount', 'amount','bath','beds','parking','description','category','price','name','postcode','short_description','tag_line','town','postcode1','summary']
-      params[:q][:name_cont].split.each do |z|
-        # @tasks << Property.where("address1  ILIKE ? OR address2 ILIKE ? OR address3 ILIKE ? OR description ILIKE ? OR category ILIKE ? OR name ILIKE ? OR short_description ILIKE ? OR tag_line ILIKE ? OR town ILIKE ? OR price = ? OR postcode = ? OR postcode1 = ? OR bath = ? OR beds = ?", "%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","#{z.to_i}","#{z.to_i}","#{z.to_i}","#{z.to_i}","#{z.to_i}" )
-        @tasks << @properties.where("address1  ILIKE ? OR address2 ILIKE ? OR address3 ILIKE ? OR description ILIKE ? OR category ILIKE ? OR name ILIKE ? OR short_description ILIKE ? OR tag_line ILIKE ? OR town ILIKE ? OR price = ? OR postcode = ? OR postcode1 = ?", "%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","#{z.to_i}","#{z.to_i}","#{z.to_i}" ) if (z.to_i == 0 && !z.include?('bed') && !z.include?('bath') )
+      if @tasks.empty?
+        params[:q][:name_cont].split.each do |z|
+          # @tasks << Property.where("address1  ILIKE ? OR address2 ILIKE ? OR address3 ILIKE ? OR description ILIKE ? OR category ILIKE ? OR name ILIKE ? OR short_description ILIKE ? OR tag_line ILIKE ? OR town ILIKE ? OR price = ? OR postcode = ? OR postcode1 = ? OR bath = ? OR beds = ?", "%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","#{z.to_i}","#{z.to_i}","#{z.to_i}","#{z.to_i}","#{z.to_i}" )
+          @tasks << @properties.where("address1  ILIKE ? OR address2 ILIKE ? OR address3 ILIKE ? OR description ILIKE ? OR category ILIKE ? OR name ILIKE ? OR short_description ILIKE ? OR tag_line ILIKE ? OR town ILIKE ? OR price = ? OR postcode = ? OR postcode1 = ?", "%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","%#{z}%","#{z.to_i}","#{z.to_i}","#{z.to_i}" ) if (z.to_i == 0 && !z.include?('bed') && !z.include?('bath') )
+        end
+        s= params[:q][:name_cont]
+        @tasks << @properties.where("beds = ?" ,"#{s.split(' bed')[0].last.to_i}" ) if s.split(' bed')[0].last.to_i != 0
+        @tasks << @properties.where("bath = ?" ,"#{s.split(' bath')[0].last.to_i}" ) if s.split(' bath')[0].last.to_i != 0
       end
-      s= params[:q][:name_cont]
-      @tasks << @properties.where("beds = ?" ,"#{s.split(' bed')[0].last.to_i}" ) if s.split(' bed')[0].last.to_i != 0
-
-      @tasks << @properties.where("bath = ?" ,"#{s.split(' bath')[0].last.to_i}" ) if s.split(' bath')[0].last.to_i != 0
-
 
       @tasks = @tasks.flatten.uniq
       @status = false
