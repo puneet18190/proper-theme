@@ -74,6 +74,12 @@ class PropertiesController < ApplicationController
   end
 
   def edit
+    if current_user.status == "tenant"
+      redirect_to root_url, alert: "You are not authorized."
+    elsif current_user.status == "landlord" && Property.where(slug: params[:id]).first.user.id != current_user.id
+      redirect_to root_url, alert: "You are not authorized."
+    end
+      
     # if @property.approval_status == "none" && !@property.property_changes.empty?
     #   @property = @property.property_changes.last
     # end
