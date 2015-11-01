@@ -1,4 +1,18 @@
 <body style="width: 100%; overflow-x: hidden;-webkit-font-smoothing: antialiased;background-color: #DDD;color: #707070;font-size: 13px;height: 100%;margin: 0px;padding: 0px;font-family: 'Roboto', sans-serif;background-image: url('http:sealproperties.co.uk/assets/pattern/diagonal-noise.png'); ">
+    <div id="header-wrapper" style="background-color:white">
+    <div class="container">
+      <div class="panel">
+        <div class="row-fluid">
+          <div class="span9 right-line" style=" min-height: 120px;">
+            <div><a class="brand" href="http://www.sealproperties.co.uk">
+                <center><img src="http://www.sealproperties.co.uk/assets/seal_logo.png"></a></center>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <div class="main_container">
         <div id="content" style="border-bottom: 1px solid #858585;margin-bottom: 0px;">
             <div class="container" style="width: auto;margin-right: auto;margin-left: auto;*zoom: 1;">
@@ -9,12 +23,12 @@
                             <!-- <span class="main-circle-icon" style="color: #eee;display: inline-block;background: #5C5C5C;width: 35px;text-align: center;position: relative;margin-right: 10px;padding: 5px;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;box-shadow: 0 1px 1px #858585;text-shadow: none;">
                                 <i class="icon-building"></i>
                             </span> -->
-                            Hello <%=@user.first_name%><br/>
+                            Hello <%=@user.first_name%>,<br/>
                              Here are few properties we thought you might like. 
                             </h2>
               
                             <div class="featured-grid right-space" style="margin-right: 30px;margin-bottom: 20px;">
-                                <div class="scroll" style="height: 882px;width: 670px;">
+                                <div class="scroll" style="height: 100%;width: 100%;">
                                   <div class="box-white" style="background: white;box-shadow: 0 1px 1px #858585;padding: 10px;margin-bottom: 10px;">
                                     <div class="grid-item grid-style-properties gridalicious" style="margin-top: 10px;">
                                         <div class="galcolumn" id="item080SLV" style="width: 49.2125984251969%; padding-left: 10px; padding-bottom: 10px; float: left; box-sizing: border-box;"></div>
@@ -24,10 +38,30 @@
                                             <% (0..(@properties.count/2).to_i).each do |p|%>
                                               <% p = @properties[p]%>
                                                 <div class="item" style="margin-bottom: 10px; zoom: 1; opacity: 1;">
-                                                    <!-- <a href="#" class="with-hover property" style="text-decoration: none;color: #707070;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;margin-bottom: 30px;position: relative;display: block;">
-                                                    <div class="desc-type for-sale" style="opacity: 0.8;position: absolute;top: 0;padding: 10px;left: 0;color: white;font-size: 18px;background: #FF6666;"></div>
-                                                    </a> -->
-                                                    <a href=<%="/properties_detail/#{p.slug}"%> style="text-decoration: none;color: #707070;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;"><img alt="Large woody close" class="mask_hover" src=<%="#{p.image1.url(:large)}"%> style="width: 100%;height: auto;display: block;margin-left: auto;margin-right: auto;vertical-align: middle;border: 0;-ms-interpolation-mode: bicubic;page-break-inside: avoid;max-width: 100%!important;"></a>
+                                                    <%
+                                                            if p.category == "Rent" && p.status == "Available"
+                                                              data = "To Let"
+                                                            elsif p.category == "Rent" && p.status == "Let Agreed"
+                                                              data = "Let Agreed"
+                                                            elsif p.category == "Sale" && p.status == "Available"
+                                                              data = "For Sale"
+                                                            elsif p.category == "Sale" && p.status == "SSTC"
+                                                              data = "Sold STC"
+                                                            elsif p.category == "Sale" && p.status == "SSTCM"
+                                                              data = "Sold STC"
+                                                            elsif p.category == "Sale" && p.status == "Reserved"
+                                                              data = "Reserved"
+                                                            elsif p.category == "Sale" && p.status == "Under Offer"
+                                                              data = "Under Offer"
+                                                            else
+                                                              data =""
+                                                            end
+
+                                                    %>
+                                                    <a href="#" class="with-hover property" style="text-decoration: none;color: #707070;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;margin-bottom: 30px;position: relative;display: block;">
+                                                    <div class="desc-type for-sale" style="opacity: 0.8;position: absolute;top: 0;padding: 10px;left: 0;color: white;font-size: 18px;background: #FF6666;float:left;margin-bottom:-41px"><%=data%></div>
+                                                    </a>
+                                                    <a href=<%="http://www.sealproperties.co.uk/properties_detail/#{p.slug}"%> style="text-decoration: none;color: #707070;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;"><img alt="Large woody close" class="mask_hover" src=<%="#{p.image1.url(:large)}"%> style="width: 100%;height: auto;display: block;margin-left: auto;margin-right: auto;vertical-align: middle;border: 0;-ms-interpolation-mode: bicubic;page-break-inside: avoid;max-width: 100%!important;"></a>
                                                           
                                                     <h4 class=" " style="margin: 0;font-family: inherit;font-weight: 300;line-height: 20px;color: white;text-rendering: optimizelegibility;font-size: 17.5px;padding: 10px;background: #3D3D3D;text-align: center;"><%=p.name%></h4>
                                                       
@@ -45,8 +79,8 @@
                                                                 </span>
                                                             </p>
                                                             <div class="clearfix" style="*zoom: 1;">
-                                                                <div class="btn-proper btn btn-small pull-left" style="display: inline-block;*display: inline;padding: 2px 10px;margin-bottom: 0;*margin-left: 0;font-size: 11.9px;line-height: 20px;color: white;text-align: center;text-shadow: none;vertical-align: middle;cursor: pointer;background-color: #f5f5f5;*background-color: #e6e6e6;background-image: linear-gradient(to bottom,#fff,#e6e6e6);background-repeat: repeat-x;border: solid 1px #141414;*border: 0;border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);border-bottom-color: #b3b3b3;-webkit-border-radius: 0;-moz-border-radius: 0;border-radius: 0;filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);*zoom: 1;-webkit-box-shadow: inset 0 0 0px 0 #000;-moz-box-shadow: inset 0 0 0px 0 #000;box-shadow: inset 0 0 0px 0 #000;float: left;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;font-weight: normal;background: #353535 !important;">
-                                                                <a href=<%="/properties_detail/#{p.slug}"%> style="text-decoration: none;color: #707070;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;">More Details</a>
+                                                                <div class="btn-proper btn btn-small pull-left" style="display: inline-block;*display: inline;padding: 2px 10px;margin-bottom: 0;*margin-left: 0;font-size: 11.9px;line-height: 20px;color: white;text-align: center;text-shadow: none;vertical-align: middle;cursor: pointer;background-color: #f5f5f5;*background-color: #e6e6e6;background-image: linear-gradient(to bottom,#fff,#e6e6e6);background-repeat: repeat-x;border: solid 1px #141414;*border: 0;border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);border-bottom-color: #b3b3b3;-webkit-border-radius: 0;-moz-border-radius: 0;border-radius: 0;filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);*zoom: 1;-webkit-box-shadow: inset 0 0 0px 0 #000;-moz-box-shadow: inset 0 0 0px 0 #000;box-shadow: inset 0 0 0px 0 #000;float: left;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;font-weight: normal;background: #353535 !important;margin-top: -20px">
+                                                                <a href=<%="http://www.sealproperties.co.uk/properties_detail/#{p.slug}"%> style="text-decoration: none;color: #707070;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;">More Details</a>
                                                                 </div>
                                                                 <!-- <a href="#" class="btn-proper btn btn-small pull-right" style="text-decoration: none;color: white;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;display: inline-block;*display: inline;padding: 2px 10px;margin-bottom: 0;*margin-left: .3em;font-size: 11.9px;line-height: 20px;text-align: center;text-shadow: none;vertical-align: middle;cursor: pointer;background-color: #f5f5f5;*background-color: #e6e6e6;background-image: linear-gradient(to bottom,#fff,#e6e6e6);background-repeat: repeat-x;border: solid 1px #141414;*border: 0;border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);border-bottom-color: #b3b3b3;-webkit-border-radius: 0;-moz-border-radius: 0;border-radius: 0;filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);*zoom: 1;-webkit-box-shadow: inset 0 0 0px 0 #000;-moz-box-shadow: inset 0 0 0px 0 #000;box-shadow: inset 0 0 0px 0 #000;float: right;font-weight: normal;background: #353535 !important;">Compare</a> -->
                                                             </div>
@@ -59,11 +93,31 @@
                                             <%(((@properties.count/2) + 1)..(@properties.count-1)).each do |p|%>
                                               <% p = @properties[p]%>
                                                 <div class="item" style="margin-bottom: 10px; zoom: 1; opacity: 1;">
-                                                  <!-- <a href="#" class="with-hover property" style="text-decoration: none;color: #707070;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;margin-bottom: 30px;position: relative;display: block;">
+                                                    <%
+                                                            if p.category == "Rent" && p.status == "Available"
+                                                              data = "To Let"
+                                                            elsif p.category == "Rent" && p.status == "Let Agreed"
+                                                              data = "Let Agreed"
+                                                            elsif p.category == "Sale" && p.status == "Available"
+                                                              data = "For Sale"
+                                                            elsif p.category == "Sale" && p.status == "SSTC"
+                                                              data = "Sold STC"
+                                                            elsif p.category == "Sale" && p.status == "SSTCM"
+                                                              data = "Sold STC"
+                                                            elsif p.category == "Sale" && p.status == "Reserved"
+                                                              data = "Reserved"
+                                                            elsif p.category == "Sale" && p.status == "Under Offer"
+                                                              data = "Under Offer"
+                                                            else
+                                                              data =""
+                                                            end
+
+                                                    %>
+                                                  <a href="#" class="with-hover property" style="text-decoration: none;color: #707070;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;margin-bottom: 30px;position: relative;display: block;">
                                                         
-                                                        <div class="desc-type for-sale" style="opacity: 0.8;position: absolute;top: 0;padding: 10px;left: 0;color: white;font-size: 18px;background: #FF6666;"></div>
-                                                    </a> -->
-                                                    <a href=<%="/properties_detail/#{p.slug}"%> style="text-decoration: none;color: #707070;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;"><img alt="Large dsc 0027" class="mask_hover" src=<%="#{p.image1.url(:large)}"%> style="width: 100%;height: auto;display: block;margin-left: auto;margin-right: auto;vertical-align: middle;border: 0;-ms-interpolation-mode: bicubic;page-break-inside: avoid;max-width: 100%!important;"></a>
+                                                        <div class="desc-type for-sale" style="opacity: 0.8;position: absolute;top: 0;padding: 10px;left: 0;color: white;font-size: 18px;background: #FF6666;float:left;margin-bottom:-41px"><%=data%></div>
+                                                    </a>
+                                                    <a href=<%="http://www.sealproperties.co.uk/properties_detail/#{p.slug}"%> style="text-decoration: none;color: #707070;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;"><img alt="Large dsc 0027" class="mask_hover" src=<%="#{p.image1.url(:large)}"%> style="width: 100%;height: auto;display: block;margin-left: auto;margin-right: auto;vertical-align: middle;border: 0;-ms-interpolation-mode: bicubic;page-break-inside: avoid;max-width: 100%!important;"></a>
                                                   
                                                   <h4 class=" " style="margin: 0;font-family: inherit;font-weight: 300;line-height: 20px;color: white;text-rendering: optimizelegibility;font-size: 17.5px;padding: 10px;background: #3D3D3D;text-align: center;"><%=p.name%></h4>
                                                   <div class="preview-properties " style="border: 1px solid #ccc;padding: 10px;">
@@ -80,8 +134,8 @@
                                                         </span>
                                                       </p>
                                                       <div class="clearfix" style="*zoom: 1;">
-                                                        <div class="btn-proper btn btn-small pull-left" style="display: inline-block;*display: inline;padding: 2px 10px;margin-bottom: 0;*margin-left: 0;font-size: 11.9px;line-height: 20px;color: white;text-align: center;text-shadow: none;vertical-align: middle;cursor: pointer;background-color: #f5f5f5;*background-color: #e6e6e6;background-image: linear-gradient(to bottom,#fff,#e6e6e6);background-repeat: repeat-x;border: solid 1px #141414;*border: 0;border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);border-bottom-color: #b3b3b3;-webkit-border-radius: 0;-moz-border-radius: 0;border-radius: 0;filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);*zoom: 1;-webkit-box-shadow: inset 0 0 0px 0 #000;-moz-box-shadow: inset 0 0 0px 0 #000;box-shadow: inset 0 0 0px 0 #000;float: left;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;font-weight: normal;background: #353535 !important;">
-                                                          <a href=<%="/properties_detail/#{p.slug}"%> style="text-decoration: none;color: #707070;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;">More Details</a>
+                                                        <div class="btn-proper btn btn-small pull-left" style="display: inline-block;*display: inline;padding: 2px 10px;margin-bottom: 0;*margin-left: 0;font-size: 11.9px;line-height: 20px;color: white;text-align: center;text-shadow: none;vertical-align: middle;cursor: pointer;background-color: #f5f5f5;*background-color: #e6e6e6;background-image: linear-gradient(to bottom,#fff,#e6e6e6);background-repeat: repeat-x;border: solid 1px #141414;*border: 0;border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);border-bottom-color: #b3b3b3;-webkit-border-radius: 0;-moz-border-radius: 0;border-radius: 0;filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);*zoom: 1;-webkit-box-shadow: inset 0 0 0px 0 #000;-moz-box-shadow: inset 0 0 0px 0 #000;box-shadow: inset 0 0 0px 0 #000;float: left;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;font-weight: normal;background: #353535 !important;margin-top: -20px">
+                                                          <a href=<%="http://www.sealproperties.co.uk/properties_detail/#{p.slug}"%> style="text-decoration: none;color: #707070;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;">More Details</a>
                                                         </div>
                                                         <!-- <a href="#" class="btn-proper btn btn-small pull-right" style="text-decoration: none;color: white;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;display: inline-block;*display: inline;padding: 2px 10px;margin-bottom: 0;*margin-left: .3em;font-size: 11.9px;line-height: 20px;text-align: center;text-shadow: none;vertical-align: middle;cursor: pointer;background-color: #f5f5f5;*background-color: #e6e6e6;background-image: linear-gradient(to bottom,#fff,#e6e6e6);background-repeat: repeat-x;border: solid 1px #141414;*border: 0;border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);border-bottom-color: #b3b3b3;-webkit-border-radius: 0;-moz-border-radius: 0;border-radius: 0;filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);*zoom: 1;-webkit-box-shadow: inset 0 0 0px 0 #000;-moz-box-shadow: inset 0 0 0px 0 #000;box-shadow: inset 0 0 0px 0 #000;float: right;font-weight: normal;background: #353535 !important;">Compare</a> -->
                                                       </div>
@@ -101,11 +155,11 @@
             </div>
         </div>
     </div>
-    <h2>
+    <h2 style="margin:20px">
         <p>For more information or to arrange a viewing call 01915805900 or email emma@sealproperties.co.uk.</p>
         <p>Regards,</p>
         <p>Sealproperties</p>
-        <p><%= image_tag "http://www.sealproperties.co.uk/assets/seal_logo.png", style: "width:200px;height:70px" %></p>
+        <!-- <p><%#= image_tag "http://www.sealproperties.co.uk/assets/seal_logo.png", style: "width:200px;height:70px" %></p> -->
     </h2>
     <div id="footer-wrapper" style="text-shadow: 0 1px 0 black;color: #C2C2C2;background: #5C5C5C;min-height: 70px;border-top: 30px solid #CCC;">
         <div class="container" style="width: auto;margin-right: auto;margin-left: auto;*zoom: 1;">
@@ -132,7 +186,7 @@
                     <a href="http://gb.pinterest.com/sealpropert0356/" class="btn-proper btn" target="_blank" style="text-decoration: none;color: #C2C2C2;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;display: inline-block;*display: inline;padding: 4px 12px;margin-bottom: 0;*margin-left: .3em;font-size: 14px;line-height: 20px;text-align: center;text-shadow: none;vertical-align: middle;cursor: pointer;background-color: #f5f5f5;*background-color: #e6e6e6;background-image: linear-gradient(to bottom,#fff,#e6e6e6);background-repeat: repeat-x;border: solid 1px #141414;*border: 0;border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);border-bottom-color: #b3b3b3;-webkit-border-radius: 0;-moz-border-radius: 0;border-radius: 0;filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);*zoom: 1;-webkit-box-shadow: inset 0 0 0px 0 #000;-moz-box-shadow: inset 0 0 0px 0 #000;box-shadow: inset 0 0 0px 0 #000;font-weight: normal;background: #353535 !important;"><i class="icon-pinterest"></i></a> -->
                   </div>
                 </div>
-                <div class="span5" style="margin-left: 6%;width: 40.42553191489362%;*width: 40.37234042553192%;">
+                <div class="span5" style="width: 40.42553191489362%;*width: 40.37234042553192%;">
                   <div class="panel" style="padding-bottom: 0;padding: 20px;">
                     <h4 style="margin: 10px 0;font-family: inherit;font-weight: 300;line-height: 20px;color: white;text-rendering: optimizelegibility;font-size: 17.5px;border-bottom: 1px solid #707070;padding-bottom: 10px;padding-top: 0px;"><i class="icon-briefcase" style="background-position: -432px -144px;"></i> Company Information</h4>
                     <ul class="unstyled" style="padding: 0;margin: 0 0 10px 25px;margin-left: 0;list-style: none;">
@@ -169,7 +223,7 @@
         </div>
         <div id="footer" class="text-center" style="text-align: center;font-size: 11px;background: #141414;">
             <div class="panel" style="padding-bottom: 0;padding: 20px;">
-              <p style="orphans: 3;widows: 3;margin: 0;padding: 5px 0;">Copyright © <a href="#" style="text-decoration: none;color: white;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;">SEAL Properties 2014 - 2015 v950</a> - <a href="/index" style="text-decoration: none;color: white;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;">Home</a> | <a href="/about_us" style="text-decoration: none;color: white;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;">About Us</a> | <a href="/faq" style="text-decoration: none;color: white;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;">FAQ</a> | <a href="/contact" style="text-decoration: none;color: white;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;">Contact Us</a> | <a href="/career" style="text-decoration: none;color: white;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;">Careers</a></p>
+              <p style="orphans: 3;widows: 3;margin: 0;padding: 5px 0;">Copyright © <a href="#" style="text-decoration: none;color: white;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;">SEAL Properties 2014 - 2015 v950</a> - <a href="http://www.sealproperties.co.uk/index" style="text-decoration: none;color: white;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;">Home</a> | <a href="http://www.sealproperties.co.uk/about_us" style="text-decoration: none;color: white;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;">About Us</a> | <a href="http://www.sealproperties.co.uk/faq" style="text-decoration: none;color: white;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;">FAQ</a> | <a href="http://www.sealproperties.co.uk/contact" style="text-decoration: none;color: white;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;">Contact Us</a> | <a href="http://www.sealproperties.co.uk/career" style="text-decoration: none;color: white;-webkit-transition: all 0.25s ease-out 0s;-moz-transition: all 0.25s ease-out 0s;-ms-transition: all 0.25s ease-out 0s;-o-transition: all 0.25s ease-out 0s;transition: all 0.25s ease-out 0s;">Careers</a></p>
             </div>
         </div>
     </div>
