@@ -10,14 +10,14 @@
   </div>
   <div style="height:280px;width:1300px;">
     <%if @properties.address1.to_i == 0 %>
-      <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.address1}"%></b></center></div>
-      <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.address2}"%></b></center></div>
+      <div style="font-size:40px;margin:10px;font-family:arial;font-weight: bold"><center><b><%="#{@properties.address1}"%></b></center></div>
+      <div style="font-size:40px;margin:10px;font-family:arial;font-weight: bold"><center><b><%="#{@properties.address2}"%></b></center></div>
     <%else%>
-      <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.address1} #{@properties.address2}"%></b></center></div>
+      <div style="font-size:40px;margin:10px;font-family:arial;font-weight: bold"><center><b><%="#{@properties.address1} #{@properties.address2}"%></b></center></div>
     <%end%>  
-    <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.address3}"%></b></center></div>
-    <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.town}"%></b></center></div>
-    <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.postcode.to_s} #{@properties.postcode1.to_s}"%></b></center></div>
+    <div style="font-size:40px;margin:10px;font-family:arial;font-weight: bold"><center><b><%="#{@properties.address3}"%></b></center></div>
+    <div style="font-size:40px;margin:10px;font-family:arial;font-weight: bold"><center><b><%="#{@properties.town}"%></b></center></div>
+    <div style="font-size:40px;margin:10px;font-family:arial;font-weight: bold"><center><b><%="#{@properties.postcode.to_s} #{@properties.postcode1.to_s}"%></b></center></div>
   </div>
 
   <div class="desc-type for-sale" style="height:auto;width:auto;position:absolute;top:530px; padding:25px;left:202px;color:white;font-size:30px;background: #FF6666;font-weight: bold;z-index:1;opacity:0.8"><%=property_status(@properties.category, @properties.status) %></div>
@@ -31,12 +31,12 @@
   </div>
 
   <div style="position:absolute; top:1300px;height:450px;width:1300px;">
-      <div style="font-size:40px;font-family:arial"><center><b><%="#{@properties.short_description}"%></b></center></div>
+      <div style="font-size:40px;font-family:arial;font-weight: bold"><center><b><%="#{@properties.short_description}"%></b></center></div>
   </div>
 
   <div style="position:absolute;top:1780px;left:60px;">
     <center><%=wicked_pdf_image_tag("contact_info.png", :height=> "80", :width => "1200") %></center>
-    <div style="font-size:15px;margin:0px;font-family:arial;margin-left:80px"><center><b>Seal Partnership Limited T/A Seal Properties. Registered Company No: 8589070<span style="float:right"><%="SP"+@properties.created_at.year.to_s.split(//).last(2).join()+@properties.created_at.month.to_s.rjust(2,'0')+@properties.id.to_s.rjust(4,'0')%></span></b></center></div>
+    <div style="font-size:15px;margin:0px;font-family:arial;margin-left:80px;font-weight: bold"><center><b>Seal Partnership Limited T/A Seal Properties. Registered Company No: 8589070<span style="float:right"><%="SP"+@properties.created_at.year.to_s.split(//).last(2).join()+@properties.created_at.month.to_s.rjust(2,'0')+@properties.id.to_s.rjust(4,'0')%></span></b></center></div>
   </div>
 </div>
 <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
@@ -69,6 +69,6 @@
   <%end%>
   <div style="left:60px;margin-top:10px;bottom:0;position:absolute;">
     <center><%=wicked_pdf_image_tag("contact_info.png", :height=> "80", :width => "1200") %></center>
-    <div style="font-size:15px;margin:0px;font-family:arial"><center><b>Seal Partnership Limited T/A Seal Properties. Registered Company No: 8589070</b></center></div>
+    <div style="font-size:15px;margin:0px;font-family:arial;font-weight: bold"><center><b>Seal Partnership Limited T/A Seal Properties. Registered Company No: 8589070</b></center></div>
   </div>
 </div>

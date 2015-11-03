@@ -10,14 +10,14 @@
   </div>
   <div style="height:280px;width:1300px;">
     <%if @properties.address1.to_i == 0 %>
-      <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.address1}"%></b></center></div>
-      <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.address2}"%></b></center></div>
+      <div style="font-size:40px;margin:10px;font-family:arial;font-weight: bold"><center><b><%="#{@properties.address1}"%></b></center></div>
+      <div style="font-size:40px;margin:10px;font-family:arial;font-weight: bold"><center><b><%="#{@properties.address2}"%></b></center></div>
     <%else%>
-      <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.address1} #{@properties.address2}"%></b></center></div>
+      <div style="font-size:40px;margin:10px;font-family:arial;font-weight: bold"><center><b><%="#{@properties.address1} #{@properties.address2}"%></b></center></div>
     <%end%>  
-    <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.address3} #{@properties.town}"%></b></center></div>
+    <div style="font-size:40px;margin:10px;font-family:arial;font-weight: bold"><center><b><%="#{@properties.address3} #{@properties.town}"%></b></center></div>
     <!-- <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%#="#{@properties.town}"%></b></center></div> -->
-    <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%="#{@properties.postcode.to_s} #{@properties.postcode1.to_s}"%></b></center></div>
+    <div style="font-size:40px;margin:10px;font-family:arial;font-weight: bold"><center><b><%="#{@properties.postcode.to_s} #{@properties.postcode1.to_s}"%></b></center></div>
   </div>
 
   <div class="desc-type for-sale" style="height:auto;width:auto;position:absolute;top:530px; padding:25px;left:202px;color:white;font-size:30px;background: #FF6666;font-weight: bold;z-index:1;opacity:0.8"><%=property_status(@properties.category, @properties.status) %></div>
@@ -30,7 +30,7 @@
     &pound; <%= @properties.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %>
   </div>
 
-  <div style="height:80px;width:1300px;background-color:#903c9e;font-size:40px;color:white;font-family:arial;position:relative; top:800px;padding-top:20px">
+  <div style="height:80px;width:1300px;background-color:#903c9e;font-size:40px;color:white;font-family:arial;position:relative; top:800px;padding-top:20px;font-weight: bold">
     <b><center><%=@properties.tag_line%></center></b>
   </div>
 
@@ -67,20 +67,20 @@
 <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
 
 <div style="position:relative;width:1300px;height:1875px;border:1px solid transparent">
-  <div style="height:80px;color:white;font-size:40px;background-color:#903c9e;padding-top:20px;padding-left:560px;"><b>Contact Us</b></div>
+  <div style="height:80px;color:white;font-size:40px;background-color:#903c9e;padding-top:20px;padding-left:560px;font-weight: bold"><b>Contact Us</b></div>
 
   <div style="height:550px;border:1px solid #903c9e;vertical-align:middle; padding:20px;font-family:arial;margin-bottom:30px">
     <div style="float:left;margin-left:30px;margin-top:50px">
-      <div style="font-size:40px;padding:10px"><center><b>Agent Information</b></center></div>
+      <div style="font-size:40px;padding:10px;font-weight: bold"><center><b>Agent Information</b></center></div>
       <div style="margin-top:40px;margin:10px">
-        <div style="font-size:40px;margin:10px"><center><b><%=agent_name(@properties)%></b></center></div>
-        <div style="font-size:40px;margin:10px"><center><b><%=agent_phone(@properties)%></b></center></div>
-        <div style="font-size:40px;margin:10px"><center><b><%=agent_email(@properties)%></b></center></div>
+        <div style="font-size:40px;margin:10px;font-weight: bold"><center><b><%=agent_name(@properties)%></b></center></div>
+        <div style="font-size:40px;margin:10px;font-weight: bold"><center><b><%=agent_phone(@properties)%></b></center></div>
+        <div style="font-size:40px;margin:10px;font-weight: bold"><center><b><%=agent_email(@properties)%></b></center></div>
         
-        <div style="font-size:40px;margin:10px"><center><b>167/169 Saltwell Road</b></center></div>
-        <div style="font-size:40px;margin:10px"><center><b>Gateshead, NE8
+        <div style="font-size:40px;margin:10px;font-weight: bold"><center><b>167/169 Saltwell Road</b></center></div>
+        <div style="font-size:40px;margin:10px;font-weight: bold"><center><b>Gateshead, NE8
 4TJ</b></center></div>
-        <div style="font-size:40px;margin:10px"><center><b>www.sealproperties.co.uk</b></center></div>
+        <div style="font-size:40px;margin:10px;font-weight: bold"><center><b>www.sealproperties.co.uk</b></center></div>
       </div>
     </div>
 
@@ -91,9 +91,9 @@
 
   <div style="height:490px;vertical-align:middle;font-family:arial;margin-bottom:30px">
     <div style="float:left;width:620px;">
-      <div style="height:80px;color:white;font-size:40px;background-color:#903c9e;padding-top:20px;padding-left:240px;"><b>Scan Me</b></div>
+      <div style="height:80px;color:white;font-size:40px;background-color:#903c9e;padding-top:20px;padding-left:240px;font-weight: bold"><b>Scan Me</b></div>
       <div style="height:350px;border:1px solid #903c9e;vertical-align:middle; padding:20px;font-family:arial;">
-        <div style="font-size:30px;margin:5px"><center><b>Scan Me For Property Details</b></center></div>
+        <div style="font-size:30px;margin:5px;font-weight: bold"><center><b>Scan Me For Property Details</b></center></div>
         <div style="">
           <% qr = RQRCode::QRCode.new("http://#{request.host_with_port}/properties_detail/#{@properties.id}",:size => 10).to_img.resize(200, 200).to_data_url %>
           <div style="width:350px;height:320px;margin-left:120px;"><center><%=image_tag(qr, :height=> "320",:width=>"350") %></center></div>  
@@ -102,18 +102,18 @@
     </div>
 
     <div style="float:right;width:620px;">
-      <div style="height:80px;color:white;font-size:40px;background-color:#903c9e;padding-top:20px;padding-left:240px;"><b>Quote Me</b></div>
+      <div style="height:80px;color:white;font-size:40px;background-color:#903c9e;padding-top:20px;padding-left:240px;font-weight: bold"><b>Quote Me</b></div>
       <div style="height:350px;border:1px solid #903c9e;vertical-align:middle; padding:20px;font-family:arial;">
-        <div style="font-size:30px;margin:5px;"><center><b>Quote This Reference Number For More Information</b></center></div>
+        <div style="font-size:30px;margin:5px;font-weight: bold"><center><b>Quote This Reference Number For More Information</b></center></div>
         <div style="">
-          <div style="font-size:40px;margin-top:100px"><center><b><%="SP"+@properties.created_at.year.to_s.split(//).last(2).join()+@properties.created_at.month.to_s.rjust(2,'0')+@properties.id.to_s.rjust(4,'0')%></b></center></div>
+          <div style="font-size:40px;margin-top:100px;font-weight: bold"><center><b><%="SP"+@properties.created_at.year.to_s.split(//).last(2).join()+@properties.created_at.month.to_s.rjust(2,'0')+@properties.id.to_s.rjust(4,'0')%></b></center></div>
         </div>
       </div>
     </div>
   </div>
 
-  <div style="height:80px;color:white;font-size:40px;margin-top:30px;background-color:#903c9e;padding-top:20px;padding-left:560px"><b>Disclaimer</b></div>
-  <div  style="height:490px;border:1px solid #903c9e;margin:0px;vertical-align:middle;padding:20px;font-family:arial;font-size:30px"><center><b>
+  <div style="height:80px;color:white;font-size:40px;margin-top:30px;background-color:#903c9e;padding-top:20px;padding-left:560px;font-weight: bold"><b>Disclaimer</b></div>
+  <div  style="height:490px;border:1px solid #903c9e;margin:0px;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;font-weight: bold"><center><b>
     <p>
       Whilst every effort is made to ensure the contents of this brochure are accurate and true, the particulars are set out as a general outline for guidance purposes only and do not constitute any part of an offer or contract. Interested Parties should not rely on them as statements of representation of fact, but instead must satisfy themselves by inspection or otherwise as to their accuracy.
     </p>   
@@ -127,7 +127,7 @@
 <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
 
 <div style="width:1300px;height:1875px;border:1px solid #903c9e">
-  <div style="height:60px;color:white;font-size:40px;background-color:#903c9e;padding-top:10px;padding-left:570px"><b>Gallery</b></div>
+  <div style="height:60px;color:white;font-size:40px;background-color:#903c9e;padding-top:10px;padding-left:570px;font-weight: bold"><b>Gallery</b></div>
 
   <% unless @properties.image2.url(:large).nil? %>
     <div style="position:relative;width:1300px;padding:5px">
@@ -159,10 +159,10 @@
 <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
 
 <div style="position:relative;height:1875px;width:1300px;">
-  <div class="" style="height:60px;color:white;font-size:40px;background-color:#903c9e;padding-top:15px;padding-left:550px"><b>Description</b></div>
-  <div style="height:500px;border:1px solid #903c9e;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;"><center><b><%=@properties.short_description%></b></center></div>
+  <div class="" style="height:60px;color:white;font-size:40px;background-color:#903c9e;padding-top:15px;padding-left:550px;font-weight: bold"><b>Description</b></div>
+  <div style="height:500px;border:1px solid #903c9e;vertical-align:middle;padding:20px;font-family:arial;font-size:30px;font-weight: bold"><center><b><%=@properties.short_description%></b></center></div>
 
-  <div class="" style="height:60px;color:white;font-size:40px;background-color:#903c9e;padding-top:15px;padding-left:550px;margin-top:30px"><b>Specification</b></div>
+  <div class="" style="height:60px;color:white;font-size:40px;background-color:#903c9e;padding-top:15px;padding-left:550px;margin-top:30px;font-weight: bold"><b>Specification</b></div>
   <div  style="height:1120px;border:1px solid #903c9e;vertical-align:middle;padding:20px;font-family:arial;"><center><%=@properties.description.html_safe%></center></div>
 </div>  
 
