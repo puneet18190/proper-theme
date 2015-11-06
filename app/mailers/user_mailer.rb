@@ -12,9 +12,10 @@ class UserMailer < ActionMailer::Base
     mail( :to => @property.user.email, :subject => 'Status of Property Approval' )
   end
 
-  def payment_remainder(property)
-  	@property = property
-    mail( :to => @property.user.email, :subject => 'Payment Remainder' )
+  def payment_remainder(user, days)
+  	@user = user
+    @days = days
+    mail( :to => user.email, :subject => 'Payment Remainder' )
   end	
 
   def tenant_result_property(user, properties,request)

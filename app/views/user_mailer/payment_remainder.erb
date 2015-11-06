@@ -1,5 +1,9 @@
-Hi <%= @property.user.first_name %>, 
+Hi <%= @user.first_name %>, 
 <br/>
-Your Subscription is going to expire, please renew your subscription.
+<% if @days > 0 %>
+	Your Subscription is going to expire in <%= "#{@days} days" %>, please renew your subscription.
+<% else %>
+	Today, Your Subscription is going to expire, please renew your subscription.
+<%end%>
 <br/>
 Admin
