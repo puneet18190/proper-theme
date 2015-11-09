@@ -86,7 +86,11 @@
             </p>
             <h3>Disclaimer</h3>
             <p>
+              <% if @data.seal_approved %>
+              This property is SEAL Approved and is marketed by SEAL Properties on behalf of the Landlord or Vendor who have commissioned our traditional estate agency services under our Pro or Pro Plus+ plans. We have personally visited these properties for a market appraisal and have ensured the properties are of a good standard, meeting current legal requirements and are marked with our Seal of Approval. All communication in regards to SEAL Approved properties is via SEAL Properties. Applications for tenancies in these properties will require prospective tenants to under go extensive vetting.
+              <%else%>
               This property does not have the Seal of Approval instead it has been marketed by the Landlord or Vendor themselves under our Basic and Basic Plus+ plans which allow Landlords and Vendors the opportunity to self-promote their properties using our marketing infrastructure. SEAL Properties endeavors to moderate these listings but cannot take responsibility for the contents of these adverts, the actual condition of a property or any contractual agreements subsequently entered into between the parties. Prospective tenants and Landlords can communicate directly, as can buyers and sellers, but SEAL Properties advise you to take all necessary precautions.
+              <%end%>
             </p>
             <div class="addthis_toolbox addthis_default_style addthis_16x16_style" style="margin-top:20px">
               <a href="/facebook_share/<%=@data.id %>"><img src="/assets/fb_share.jpg" height="5" style="height: 24px;padding: 5px;margin-top: -8px;width: 70px;"></a>
