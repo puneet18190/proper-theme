@@ -109,7 +109,11 @@ class PropertiesController < ApplicationController
     @property.longitude = @a.lng
     @property.save
     @property.update_attributes(:payment=>true) if current_user.status == "admin"
-    redirect_to "/properties" 
+    if current_user.status == "landlord"
+      redirect_to "/properties", notice: "Once you have finished editing your property, please submit it for approval."
+    else
+      redirect_to "/properties"
+    end
   end
 
   def update
@@ -137,6 +141,7 @@ class PropertiesController < ApplicationController
       end
       @property.property_changes.find_or_create_by(property_params)
       @property.update_attributes(approval_status: "none")
+      redirect_to "/properties", notice: "Once you have finished editing your property, please submit it for approval."
     else
       @property.update(property_params)
       if @property.let_changed?
@@ -148,8 +153,9 @@ class PropertiesController < ApplicationController
       if @property.featured_changed?
         @property.r_date = Time.now
       end
+      redirect_to "/properties"
     end
-    redirect_to "/properties"
+    
   end
 
   def destroy
