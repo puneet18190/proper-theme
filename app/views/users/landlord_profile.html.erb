@@ -199,7 +199,7 @@
 <%
 =end%>
         </div>
-        <%= f.submit 'Save', class: "btn btn-proper btn-large", style: "margin-left:50%" %>
+        <%= f.submit 'Save', class: "btn btn-proper btn-large add_loader", style: "margin-left:50%" %>
       <%end%><!-- End Form Step -->
     </div>
   </div>
@@ -223,6 +223,30 @@
   }
 </style>
 <script type="text/javascript">
+  $(".add_loader").click(function(e){
+    var opts = {
+        lines: 17, // The number of lines to draw
+        length: 40, // The length of each line
+        width: 22, // The line thickness
+        radius: 60, // The radius of the inner circle
+        corners: 1, // Corner roundness (0..1)
+        rotate: 90, // The rotation offset
+        direction: 1, // 1: clockwise, -1: counterclockwise
+        color: '#000', // #rgb or #rrggbb or array of colors
+        speed: 1.3, // Rounds per second
+        trail: 96, // Afterglow percentage
+        shadow: false, // Whether to render a shadow
+        hwaccel: false, // Whether to use hardware acceleration
+        className: 'spinner', // The CSS class to assign to the spinner
+        zIndex: 2e9, // The z-index (defaults to 2000000000)
+        top: '50%', // Top position relative to parent
+        left: '50%' // Left position relative to parent
+    };
+    var target = document.getElementById('loading');
+    var spinner = new Spinner(opts).spin(target);
+    target.appendChild(spinner.el);
+  })
+
   $(".btn-proper").click(function(e){
     var d = parseInt($("#user_dob_3i option:selected" ).text())
     var m = parseInt($("#user_dob_2i option:selected" ).val())
