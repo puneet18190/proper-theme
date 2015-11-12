@@ -191,7 +191,7 @@ class PropertiesController < ApplicationController
     price_less_than = @abc[:price_lteq]
     price_greater_than = @abc[:price_gteq]
     beds = @abc[:beds_eq]
-    location = @abc[:address1_or_address2_or_address3_cont_or_town_cont]
+    location = @abc[:address1_or_address2_or_address3_or_town_cont]
 
     @user = current_user.status == "admin" ? User.find(params[:q][:user_id].to_i) : current_user
     @all_property = Property.where({visibility: true, approval_status: "approved"})
@@ -208,6 +208,7 @@ class PropertiesController < ApplicationController
     #   unless address3.result.empty?
     #     params[:q][:address3_cont] = params[:q][:postcode_cont]
     #   end
+
 
     #   postcode = @properties.search(:postcode_cont => params[:q][:postcode_cont])
     #   if postcode.result.empty?
