@@ -117,6 +117,7 @@ class PropertiesController < ApplicationController
   end
 
   def update
+    begin
     unless params[:property][:epc].nil?
       service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
       bucket = service.buckets.find("sealpropertiesus")
@@ -155,7 +156,9 @@ class PropertiesController < ApplicationController
       end
       redirect_to "/properties"
     end
-    
+    rescue Exception => e
+      redirect_to "/properties", alert: e.message
+    end
   end
 
   def destroy
