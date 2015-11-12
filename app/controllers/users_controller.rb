@@ -9,8 +9,22 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		current_user.update(user_params)
-		# redirect_to root_url
+		unless params[:user][:supporting_doc].nil?
+	      service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
+	      bucket = service.buckets.find("sealpropertiesus")
+	      if !current_user.supporting_doc.nil?
+	        if !current_user.supporting_doc.empty?
+	          a= current_user.supporting_doc.split("https://sealpropertiesus.s3.amazonaws.com/").last
+	          object = bucket.objects.find(a)
+	          object.destroy if object
+	        end
+	      end
+	      object = bucket.objects.build(params[:user][:supporting_doc].original_filename)
+	      object.content = params[:user][:supporting_doc].tempfile
+	      object.save
+	      params[:user][:supporting_doc] = "https://sealpropertiesus.s3.amazonaws.com/"+params[:user][:supporting_doc].original_filename
+	    end
+    	current_user.update(user_params)
 		if current_user.status == "tenant"
 			if current_user.sign_in_count == 1
 				redirect_to "/tenant_search"

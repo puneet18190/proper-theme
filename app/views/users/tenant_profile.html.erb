@@ -101,6 +101,14 @@
               <div class="span4">
                 <%= f.file_field :supporting_doc %>
               </div>
+              <%if !current_user.supporting_doc.nil?%>
+                <style>
+                  #user_supporting_doc{
+                    width: 95px
+                  }
+                </style>
+                <span style=""><%= current_user.supporting_doc %></span>
+              <%end%>
             </div>
             <br/>
             <h4>Additional Information</h4>
