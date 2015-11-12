@@ -1,7 +1,7 @@
 Hi <%= @user.first_name %>, 
 <br/>
 <% if @days > 0 %>
-	Your Subscription is going to expire in <%= "#{@days} days" %>, please renew your subscription.
+	Your Subscription is going to expire in <%= "#{@days.to_i} days" %>, please renew your subscription.
 <% else %>
 	Today, Your Subscription is going to expire, please renew your subscription.
 <%end%>

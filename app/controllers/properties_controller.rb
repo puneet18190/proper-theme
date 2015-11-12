@@ -581,7 +581,8 @@ class PropertiesController < ApplicationController
       card_token = Stripe::Token.create( :card => { :name => params[:name_on_card], :number => params[:card_number], :exp_month => params[:exp_month], :exp_year => params[:exp_year], :cvc => params[:card_id] })
       customer_params = {:card => card_token[:id], :plan => plan, :email => current_user.email}
       stripe_customer = Stripe::Customer.create(customer_params) 
-      old_validity = current_user.validity || DateTime.now
+      # old_validity = current_user.validity || DateTime.now
+      old_validity = (current_user.validity.to_i < DateTime.now.to_i) ? DateTime.now : current_user.validity
       current_user.update_attributes(:plan => plan, :validity=>(old_validity + 30.days), :payment => true)
       redirect_to root_url, notice: "Payment confirmed. Thanks"
       rescue Stripe::CardError => e
