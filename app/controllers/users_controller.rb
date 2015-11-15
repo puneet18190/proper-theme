@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 	    	@data = []
 		    @properties = current_user.properties
 		    @tenants = User.where(:status => "tenant")
-		    @agents = Agent.all
+		    @agents = Agent.all.first 2
 		    @news = News.all
 		    @properties.each do |p|
 		      @tenants.each do |t|
@@ -95,7 +95,7 @@ class UsersController < ApplicationController
 		      end
 		    end
 		elsif current_user.status == "tenant"
-			@agents = Agent.all
+			@agents = Agent.all.first 2
 			if current_user.search.nil?
 				@data = nil
 				@status = false

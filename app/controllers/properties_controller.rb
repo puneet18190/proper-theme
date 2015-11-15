@@ -603,7 +603,7 @@ class PropertiesController < ApplicationController
     @data = []
     @properties = Property.all
     @tenants = User.where(:status => "tenant")
-    @agents = Agent.all
+    @agents = Agent.all.first 2
     @news = News.all
     @properties.each do |p|
       @tenants.each do |t|

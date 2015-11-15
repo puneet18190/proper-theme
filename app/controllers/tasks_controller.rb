@@ -26,7 +26,7 @@ class TasksController < ApplicationController
         @tasks = @search.result
 
       # end
-      @agents= Agent.all
+      @agents= Agent.all.first 2
       @news= News.all
       @settings = Setting.all.first
       respond_with(@properties,@search,@tasks,@agents,@news,@settings)
@@ -45,7 +45,7 @@ class TasksController < ApplicationController
       @properties = Property.where({visibility: true, approval_status: "approved"}).order("status ASC,created_at DESC")
       @search = @properties.search(params[:q])
       @tasks = @search.result
-      @agents= Agent.all
+      @agents= Agent.all.first 2
       @news= News.all
       respond_with(@properties,@search,@tasks,@agents,@news)
     end
@@ -81,13 +81,13 @@ class TasksController < ApplicationController
     else  
       @data = Property.order("price asc").includes(:agent).order("status ASC,created_at DESC")
     end  
-    @agents = Agent.all
+    @agents = Agent.all.first 2
     respond_with(@data,@agents)
   end
 
   def properties_map
     @prop = Property.all.order("created_at DESC")
-    @agents = Agent.all
+    @agents = Agent.all.first 2
     respond_with(@prop,@agents)
   end
 
