@@ -107,6 +107,7 @@ class PropertiesController < ApplicationController
     @property.coordinates = "#{@a.lat},#{@a.lng}"
     @property.latitude = @a.lat
     @property.longitude = @a.lng
+    @property.agent_id = Agent.where(name: "Landlord").first.id if current_user.status == "landlord"
     @property.save
     @property.update_attributes(:payment=>true) if current_user.status == "admin"
     if current_user.status == "landlord"
@@ -140,7 +141,7 @@ class PropertiesController < ApplicationController
           params[:property].delete(obj)
         end
       end
-      @property.property_changes.find_or_create_by(property_params)
+      @property.property_changes.find_or_create_by(property_changes_params)
       @property.update_attributes(approval_status: "none")
       redirect_to "/properties", notice: "Once you have finished editing your property, please submit it for approval."
     else
@@ -895,7 +896,7 @@ class PropertiesController < ApplicationController
     end
 
     def property_changes_params
-      params.require(:property_changes).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :description, :price,:user_id,:gas_ch,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:let_type_id,:let_furn_id)
+      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status)
     end
 
     def property_image_params

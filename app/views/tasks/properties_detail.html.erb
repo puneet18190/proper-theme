@@ -108,13 +108,13 @@
           <div class="bottom-line line-before">
               <div id="googleMap" class="" style="height:300px;margin-bottom:25px"></div>
           </div>
-          <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-user"></i></span> <%= @agents.nil? ? "Landlord" : "Agent" %></h3>
+          <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-user"></i></span> <%= (@agents.nil? || @agents.name == "Landlord") ? "Landlord" : "Agent" %></h3>
           <div class="agent-panel bottom-line line-before">
-            <a href=<%= @agents.nil? ? "/users/#{@data.user.id}" : '/agents' %> class="agent-image">
-              <%= image_tag @agents.nil? ? (@data.user.avatar.nil? ? "noimage.gif" : @data.user.avatar.url(:large)) : responsive_image(@agents.image), class: "img-polaroid" %>
+            <a href=<%= (@agents.nil? || @agents.name == "Landlord") ? "/users/#{@data.user.id}" : '/agents' %> class="agent-image">
+              <%= image_tag (@agents.nil? || @agents.name == "Landlord") ? (@data.user.avatar.nil? ? "noimage.gif" : @data.user.avatar.url(:large)) : responsive_image(@agents.image), class: "img-polaroid" %>
             </a>
             <ul class="unstyled margin20">
-              <%if @agents.nil? %>
+              <%if (@agents.nil? || @agents.name == "Landlord") %>
                 <li style="font-size:15px"><b><%= @data.user.first_name %></b></li>
                 <li style="font-size:15px"><b>Private Landlord</b></li>
               <%else%>
@@ -125,7 +125,7 @@
               <%end%>
             </ul>
           </div>
-          <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-envelope-alt"></i></span> <%= @agents.nil? ? "Contact Landlord" : "Contact Agent" %></h3>
+          <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-envelope-alt"></i></span> <%= (@agents.nil? || @agents.name == "Landlord") ? "Contact Landlord" : "Contact Agent" %></h3>
           <%= form_for @contact_agent, :url => contact_agent_path  do |f| %>
               <%= f.label :name %>
               <%= f.text_field :name, :class=> "input-block-level", :placeholder=>"Enter Your Name"%>
@@ -133,7 +133,7 @@
               <%= f.text_field :email, :class=> "input-block-level", :placeholder=>"Enter Your Email"%>
               <%= f.label :message %>
               <%= f.text_area :message, :class=> "input-block-level", :placeholder=>"Your Message"%>
-              <%= f.hidden_field :agent_id, :value => @agents.nil? ? "" : @agents.id %>
+              <%= f.hidden_field :agent_id, :value => (@agents.nil? || @agents.name == "Landlord") ? "" : @agents.id %>
               <%= f.hidden_field :page_link, :value => request.url %>
               <%= f.submit "Send", class: "btn-proper btn" %>
           <% end %>
