@@ -97,7 +97,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :messages, only: [:new, :create]
+  resources :messages, only: [:new, :create] do
+    collection do
+      post :contact_landlord
+    end
+  end
 
   match 'search_results', to: 'tasks#search_results', via: [:get, :post]
   match 'pdf_handle', to: 'properties#pdf_handle', via: 'get'

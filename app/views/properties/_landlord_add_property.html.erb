@@ -292,8 +292,8 @@
 =end%>
                     </div>
                 </div>
-
-                <button class="btn btn-proper btn-large" style="margin:20px">Save <i class="icon-arrow-right"></i></button>
+                <%= f.submit "Save", class: "btn btn-proper btn-large", :style=>"margin:20px" %>
+                <!-- <button class="btn btn-proper btn-large" style="margin:20px">Save <i class="icon-arrow-right"></i></button> -->
             <%end%>
         </div>
 
@@ -330,14 +330,17 @@
     });
   <% end %>
 
-  $(".btn-proper").click(function(e){
-    if($("#property_epc").val() == ""){
+  var flag = false
+  $(".proper-form-step").submit(function(e){
+    
+    if($("#property_epc").val() == "" && (flag == false)){
       e.preventDefault()
       $.confirm({
           title: 'Confirm!',
           confirmButton: 'I Understand',
           content: 'An Energy Performance Certificate (EPC) is a legal requirement for all properties marketed to let. An EPC must be made available to prospective tenants and a copy of the certificate given to any tenant who moves into the property. Please acknowledge you understand your obligations and provide a copy of your properties EPC promptly.',
           confirm: function () {
+              flag = true
               $(".proper-form-step").submit()
           },
           cancel: function () {

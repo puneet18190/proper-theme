@@ -12,7 +12,7 @@
                     <%= gravatar_for message.sender, 45, message.sender.name %>
                 </div>
                 <div class="media-body">
-                    <h6 class="media-heading"><%= message.sender.name %> says at <%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %></h6><%= message.body %>
+                    <h6 class="media-heading"><%= message.sender.name %> says at <%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %></h6><%= message.body.html_safe %>
                 </div>
             </div>
         <% end %>

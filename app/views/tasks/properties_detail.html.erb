@@ -126,6 +126,20 @@
             </ul>
           </div>
           <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-envelope-alt"></i></span> <%= (@agents.nil? || @agents.name == "Landlord") ? "Contact Landlord" : "Contact Agent" %></h3>
+          <% if @agents.nil? || @agents.name == "Landlord" %>
+            <%= form_tag contact_landlord_messages_path, method: :post do %>
+                <%= label_tag :name %>
+                <%= text_field_tag :name, nil, class: 'input-block-level', :placeholder=>"Enter Your Name" %>
+
+                <%= label_tag :email %>
+                <%= text_field_tag :email,nil, :class=> "input-block-level", :placeholder=>"Enter Your Email"%>
+
+               <%= label_tag :message %>
+               <%= text_area_tag :message,nil, :class=> "input-block-level", :placeholder=>"Your Message"%>
+               <%= hidden_field_tag :user_id, @data.user.id %>
+              <%= submit_tag "Send", class: "btn-proper btn" %>
+            <% end %>
+          <%else%>
           <%= form_for @contact_agent, :url => contact_agent_path  do |f| %>
               <%= f.label :name %>
               <%= f.text_field :name, :class=> "input-block-level", :placeholder=>"Enter Your Name"%>
@@ -137,6 +151,7 @@
               <%= f.hidden_field :page_link, :value => request.url %>
               <%= f.submit "Send", class: "btn-proper btn" %>
           <% end %>
+          <%end%>
         </div>
       </div>
     </div>
