@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 				redirect_to root_url, notice: "Profile updated sucessfully."
 			end
 		else current_user.status == "landlord"
-			redirect_to "/properties/new"
+			redirect_to :back , notice: "Profile updated sucessfully."
 		end
 	end
 

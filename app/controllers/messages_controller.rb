@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
 
   def new
     @recipient = User.where(id: params['recipients'])
+    @user = params[:user]
   end
 
   def create
@@ -16,9 +17,8 @@ class MessagesController < ApplicationController
   def contact_landlord
     recipients = User.where(id: params['user_id'])
     user = User.where(status: "admin").first
-    params[:message] = "Name: #{params[:name]} <br/> Email: #{params[:email]} <br/> Message: #{params[:message]}"
+    params[:message] = "Name: #{params[:name]} <br/> Email: #{params[:email]} <br/> Message: #{params[:message]} <br/> <a href='mailto:#{params[:email]}' target='_top'>Click here to reply.</a>"
     conversation = user.send_message(recipients, params[:message], "New Message").conversation
-    flash[:success] = "Message has been sent!"
-    redirect_to root_url
+    redirect_to :back, notice: "Your message has been sent to the Landlord."
   end
 end

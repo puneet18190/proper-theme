@@ -11,7 +11,7 @@ class Image9Uploader < CarrierWave::Uploader::Base
   # storage :file
   storage :fog
   # process :watermark
-  process :seal_watermark
+  # process :seal_watermark
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:

@@ -1,30 +1,57 @@
 <div id="content">
     <div class="container" style="width:1230px">
-        <div class="panel">
-            <div class="box-line">
-                <h3 class="title-heading">Personal Information</h3>
-            </div>
-            <%= button_to "Edit Profile", "/users/profile",:class=>"btn btn-warning",method: :get, :style=>"float:right" if user_signed_in? && current_user.id == @user.id%>
-            <div class="proper-form-step-area">
+        <div class="box-line">
+            <h3 class="title-heading">About Landlord</h3>
+        </div>
+        <div class="panel proper-form-step">
+            <div class="proper-form-step-area" style="height: 200px">
+                <%= button_to "Edit Profile", "/users/profile",:class=>"btn btn-warning",method: :get, :style=>"float:right;" if user_signed_in? && current_user.id == @user.id%>
+                <%= button_to "Contact", "/messages/new",:class=>"btn btn-primary",method: :get, :style=>"float:right;margin-right:20px" if user_signed_in? %>
                 <div style="float:left;width:25%">
                     <div class="row-fluid">
                         <%= image_tag @user.avatar.url(:thumb), style: "width:200px;height:200px" %>
                     </div>
                 </div>
                 <div class="" style="float:right;width:74%">
-                    <h2><%= "#{@user.first_name} #{@user.last_name}" %></h2>
-                    <h3>Address: </h3>
-                    <h4><%= @user.address1 %></h4>
-                    <h4><%= @user.address2 %></h4>
-                    <h4><%= @user.address3 %></h4>
-                    <h4><%= @user.postcode %></h4>
-                    <h3>Phone: <%= @user.phone %></h3>
-                    <h3>Email: <%= @user.email %></h3>
-                    <%unless @user.dob.nil?%>
-                        <h3>Date of Birth: <%= @user.dob.strftime("%d-%m-%Y") %></h3>
+                    <h2><%= "#{@user.first_name} #{@user.last_name[0]}" %></h2><h5><%="(Member since #{@user.created_at.strftime("%m/%y")})"%></h5>
+                    <%unless @user.additional_info.blank?%>
+                        <h4>Additional Information:</h4>
+                        <p><%=@user.additional_info%></p>
                     <%end%>
                 </div>
+            </div>
+            <div class="proper-form-step-area">
+                <h4>Properties</h4>
+                <table id="landlord_info" class="table table-bordered">
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Beds</th>
+                        <th>Bath</th>
+                        <th>Category</th>
+                    </tr>
+
+                    <%if @user.properties.empty?%>
+                        <tr><td>No Record.</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <%else%>
+                        <% @user.properties.each_with_index do |p,i| %>
+                          <tr>
+                            <td><%= p.name %></td>
+                            <td>£<%= p.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></td>
+                            <td><%= p.beds %></td>
+                            <td><%= p.bath %></td>
+                            <td><%= p.category %></td>
+                          </tr>
+                        <% end %>
+                    <%end%>
+                </table>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    form.button_to{
+        padding-bottom: 0
+    }
+</style>

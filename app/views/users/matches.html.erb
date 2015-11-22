@@ -128,11 +128,15 @@
                                 <%end%>  
                               </p>
                               <div class="agent-preview">
-                                <div class="agent-image pull-left"  ><a href="#"><%= image_tag task.agent.nil? ? "noimage.gif" :responsive_image(task.agent.image), :style=>"height:80px;width:200px;" %></a></div>
+                                <div class="agent-image pull-left">
+                                  <a href=<%= (task.agent.nil? || task.agent.name == "Landlord") ? "/users/#{task.user.id}" : '/agents' %> >
+                                    <%= image_tag (task.agent.nil? || task.agent.name == "Landlord") ? (task.user.avatar.nil? ? "noimage.gif" : task.user.avatar.url(:large)) : responsive_image(task.agent.image), :style=>"height:80px;width:200px;" %>
+                                  </a>
+                                </div>
                                 <div class="agent-contant pull-right">
                                   <ul class="unstyled">
                                     <%if task.agent.nil? %>
-                                      <li style="font-size:15px"><b><%= task.user.first_name %></b></li>
+                                      <li style="font-size:15px"><b><%= "#{task.user.first_name} #{task.user.last_name[0]}" %></b></li>
                                       <li style="font-size:15px"><b>Private Landlord</b></li>
                                     <%else%>
                                       <li><i class="icon-phone"></i><%=task.agent.phone%></li>

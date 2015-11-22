@@ -99,6 +99,7 @@ class PropertiesController < ApplicationController
       params[:property][:epc] = "https://sealpropertiesus.s3.amazonaws.com/"+params[:property][:epc].original_filename
     end
     @user = current_user
+    params[:property][:price] = params[:property][:price].scan(/\d+/).first.to_i
     @property = Property.new(property_params)
     @property.category.downcase
     @property.name.downcase
@@ -141,6 +142,7 @@ class PropertiesController < ApplicationController
           params[:property].delete(obj)
         end
       end
+      params[:property][:price] = params[:property][:price].scan(/\d+/).first.to_i
       @property.property_changes.find_or_create_by(property_changes_params)
       @property.update_attributes(approval_status: "none")
       redirect_to "/properties", notice: "Once you have finished editing your property, please submit it for approval."

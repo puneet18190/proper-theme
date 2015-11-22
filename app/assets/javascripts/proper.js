@@ -9,7 +9,7 @@ $( document ).ready(function() {
     /*google map Config*/
     //init_gmap3();
     /*backgroung Config*/
-    init_bgswitch();
+    // init_bgswitch();
     /*light box Config*/
     init_color_box();
     /*Slider Config*/

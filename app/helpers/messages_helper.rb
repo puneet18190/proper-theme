@@ -1,7 +1,8 @@
 module MessagesHelper
-  def recipients_options
+  def recipients_options(user)
     s = ''
-    User.all.each do |user|
+    @user = user.blank? ? User.all : User.where(email: user)
+    @user.all.each do |user|
       s << "<option value='#{user.id}'>#{user.name}</option>"
     end
     s.html_safe

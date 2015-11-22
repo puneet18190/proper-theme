@@ -30,6 +30,7 @@
           <th>Category</th>
           <% if current_user.status == "admin" %>
             <th>Landlord</th>
+            <th>Agent</th>
             <th>Plan</th>
           <%end%>
           <th>Action</th>
@@ -69,13 +70,14 @@
             
             <% if current_user.status == "admin" %>
               <td><a href=<%="/users/#{property.user.id}"%>><%= "#{property.user.first_name} #{property.user.last_name}" %></a></td>
+              <td><%= (property.agent.nil? || property.agent.name=="Landlord") ? "" : "#{property.agent.name}" %></td>
               <td><%= property.user.plan.humanize %></td>
             <%end%>        
             
             <td>
               <%= link_to 'Show', "/properties_detail/"+property.slug %>
               <%if property.approval_status=="waiting" && !property.property_changes.empty?%>
-                <%= link_to 'View Changes', change_property_path(property), :method=>:get %>
+                <%= link_to 'View Changes', change_property_path(property), :method=>:get, id: "changes_#{property.id}" %>
               <%else%>
                 <%= link_to 'Edit', edit_property_path(property), :method=>:get, id: "edit_#{property.id}", class: "#{property.approval_status} edit_property" %>
               <%end%>
@@ -143,7 +145,7 @@
       <% if current_user.status == "landlord" %>
         "order": [[ 8, "asc" ]]
       <%else%>
-        "order": [[ 12, "asc" ]]
+        "order": [[ 13, "asc" ]]
       <%end%> 
     })
 

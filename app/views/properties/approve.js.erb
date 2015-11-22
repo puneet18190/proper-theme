@@ -4,10 +4,12 @@
     $('#loading').html('')
     $("#approve_<%="#{@property.id}"%> form").find('.unapprove').parent().parent().remove()
     $("#approve_<%="#{@property.id}"%> form").find('.approve').removeClass("approve").addClass('unapprove')
+    $("#approve_<%="#{@property.id}"%>").parent().parent().find('#changes_<%="#{@property.id}"%>').html('Edit').attr('href', '<%="/properties/#{@property.slug}/edit"%>')
 <%else%>
 	$("#approve_<%="#{@property.id}"%> form").find('.btn-success').val("Approve").removeClass('btn-success').addClass('btn-danger')
 	$("#approve_<%="#{@property.id}"%> form").attr("action","/properties/approve?id=<%="#{@property.id}"%>&status=approved")
     $('#loading').html('')
     $("#approve_<%="#{@property.id}"%> form").find('.approve').parent().parent().remove()
     $("#approve_<%="#{@property.id}"%> form").find('.unapprove').removeClass("unapprove").addClass('approve')
+    $("#approve_<%="#{@property.id}"%>").parent().parent().find('#changes_<%="#{@property.id}"%>').html('Edit').attr('href', '<%="/properties/#{@property.slug}/edit"%>')
 <%end%>
