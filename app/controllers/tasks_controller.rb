@@ -76,11 +76,9 @@ class TasksController < ApplicationController
   end
 
   def properties_filter
-    if request.xhr?
-      @data = Property.order("#{params["condition"]} #{params["sort"]}").includes(:agent)
-    else  
-      @data = Property.order("price asc").includes(:agent).order("status ASC,created_at DESC")
-    end  
+    condition = params[:condition].blank? ? "price" : params[:condition]
+    sort = params[:sort].blank? ? "asc" : params[:sort]
+    @data = Property.where({visibility: true, approval_status: "approved"}).page(params[:page].blank? ? 1 : params[:page]).per(10).order("#{condition} #{sort}").includes(:agent).includes(:user).order("status ASC,created_at DESC")
     @agents = Agent.all.first 2
     respond_with(@data,@agents)
   end

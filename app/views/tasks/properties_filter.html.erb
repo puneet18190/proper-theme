@@ -26,12 +26,14 @@
                 <form class="filterform">
                   <p></p>
                     <select class="sort">
-                        <option class="asc active" id="asc">Asc</option>
-                        <option class="desc" id="desc">Desc</option>
+                        <%sort = params[:sort].blank? ? 'asc' : params[:sort]%>
+                        <option class='asc' id="asc" <% if sort=='asc'%> selected<%end%>>Asc</option>
+                        <option class="desc active" id="desc" <% if sort=='desc'%> selected<%end%> >Desc</option>
                     </select>
                     <select class="condition">
-                        <option class="price active" id="price">Price</option>
-                        <option class="name" id="name">Name</option>
+                        <%condition = params[:condition].blank? ? 'price' : params[:condition]%>
+                        <option class="price active" id="price" <% if condition=='price'%> selected<%end%>>Price</option>
+                        <option class="name" id="name" <% if condition=='name'%> selected<%end%>>Name</option>
                     </select>
                 </form>
               </div>
@@ -46,7 +48,7 @@
             </div>
           <% else %>
             <% @data.each do |task| %>
-              <% if task.visibility== true %>
+              <%# if task.visibility== true %>
                 <div class="list-properties right-space">
                   <div class="property ">
                     <div class="row-fluid">
@@ -106,8 +108,12 @@
                     </div>
                   </div>
                 </div>
-              <% end %>
+              <%# end %>
             <% end %>
+            <div class="pagination pagination-large">
+                <%= paginate @data %>
+            </div>
+            
           <% end %>
         </div>
         </div>
@@ -154,13 +160,15 @@
       target = document.getElementById('loading')
       spinner = new Spinner({radius: 80,width:25,length:60}).spin(target)
       var src = $( "."+$(this).attr("class")+" option:selected" )
-      if(src.attr("id") == "asc" || src.attr("id") == "desc"){
-        condition = $(".condition .active").attr("id")
-        sort = src.attr("id")
-      }else{
-        sort = $(".sort .active").attr("id")
-        condition = src.attr("id")
-      }
+      // if(src.attr("id") == "asc" || src.attr("id") == "desc"){
+      //   condition = $(".condition .active").attr("id")
+      //   sort = src.attr("id")
+      // }else{
+      //   sort = $(".sort .active").attr("id")
+      //   condition = src.attr("id")
+      // }
+      condition = $(".condition").find("option:selected")[0].id
+      sort = $(".sort").find("option:selected")[0].id
       src.parent().find("option").removeClass("active")
       src.addClass("active");
       $.ajax({
@@ -178,3 +186,46 @@
     })
   })  
 </script>
+
+<style>
+.pagination span {
+  display: inline-block;
+  *display: inline;
+  margin-bottom: 0;
+  margin-left: 0;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  *zoom: 1;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.pagination span {
+  display: inline;
+}
+
+.pagination span {
+  float: left;
+  padding: 4px 12px;
+  line-height: 20px;
+  text-decoration: none;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-left-width: 0;
+}
+
+.pagination-large span {
+  padding: 11px 19px;
+  font-size: 17.5px;
+}
+.pagination span.current {
+  background-color: #f5f5f5;
+  cursor: default;
+}
+.next{
+  position: inherit;
+}
+.next:hover{color: white;text-decoration: none;border: none;background: white;}
+</style>

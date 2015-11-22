@@ -123,10 +123,11 @@ group :development do
 	gem 'awesome_print'
 	gem 'hirb' #displat table in boxes in console
 	gem 'pry-rails'
+	gem 'letter_opener_web', '~> 1.2.0'
 end	
 
 gem 'jquery-datatables-rails', '~> 3.3.0'
 group :production do
 	gem 'thin'
 end
-gem "letter_opener", :group => :development
+gem 'kaminari'
