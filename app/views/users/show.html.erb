@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="" style="float:right;width:74%">
-                    <h2><%= "#{@user.first_name} #{@user.last_name[0]}" %></h2><h5><%="(Member since #{@user.created_at.strftime("%m/%y")})"%></h5>
+                    <h2><%= "#{@user.first_name} #{@user.last_name[0] unless @user.last_name.blank?}" %></h2><h5><%="(Member since #{@user.created_at.strftime("%m/%y")})"%></h5>
                     <%unless @user.additional_info.blank?%>
                         <h4>Additional Information:</h4>
                         <p><%=@user.additional_info%></p>

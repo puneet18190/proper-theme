@@ -136,7 +136,7 @@
                                 <div class="agent-contant pull-right">
                                   <ul class="unstyled">
                                     <%if task.agent.nil? %>
-                                      <li style="font-size:15px"><b><%= "#{task.user.first_name} #{task.user.last_name[0]}" %></b></li>
+                                      <li style="font-size:15px"><b><%= "#{task.user.first_name} #{task.user.last_name[0] unless task.user.last_name.blank?}" %></b></li>
                                       <li style="font-size:15px"><b>Private Landlord</b></li>
                                     <%else%>
                                       <li><i class="icon-phone"></i><%=task.agent.phone%></li>

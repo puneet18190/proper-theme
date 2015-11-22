@@ -115,7 +115,7 @@
             </a>
             <ul class="unstyled margin20">
               <%if (@agents.nil? || @agents.name == "Landlord") %>
-                <li style="font-size:15px"><b><%= "#{@data.user.first_name} #{@data.user.last_name[0]}" %></b></li>
+                <li style="font-size:15px"><b><%= "#{@data.user.first_name} #{@data.user.last_name[0] unless @data.user.last_name.blank?}" %></b></li>
                 <li style="font-size:15px"><b>Private Landlord</b></li>
               <%else%>
                 <li><i class="icon-phone"></i><%= @agents.nil? ? @data.user.phone : @agents.phone %></li>
