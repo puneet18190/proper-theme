@@ -21,6 +21,7 @@
                 </div>
             </div>
             <div class="proper-form-step-area">
+                <% if @user.status == "landlord"%>
                 <h4>Properties</h4>
                 <table id="landlord_info" class="table table-bordered">
                     <tr>
@@ -45,6 +46,13 @@
                         <% end %>
                     <%end%>
                 </table>
+                <% elsif current_user.status == "tenant"%>
+                    <h4>Property Requirement</h4>
+                    <% arr = ['Category', 'Type', 'Min Price', 'Max Price', 'Number of Beds', 'Number of Bath'] %>
+                    <%@user.search.split('|').each_with_index do |a,i| %>
+                        <p><%="#{arr[i]}: #{a}"%></p>
+                    <%end%>
+                <%end%>
             </div>
         </div>
     </div>
