@@ -35,11 +35,7 @@
                       <% if task.visibility== true %>
                         <div class="item">
                           <a href="#" class="with-hover property">
-                            <%# if (task.category=="rent" || task.category=="Rent") %>
-                                <!-- <div class="desc-type for-sale" style="opacity:0.8">To Rent</div> -->
-                            <%# else %>
-                                <div class="desc-type for-sale" style="opacity:0.8"><%=property_status(task.category, task.status)%></div>
-                            <%# end %>
+                            <div class="desc-type for-sale" style="opacity:0.8"><%=property_status(task.category, task.status)%></div>
                             <%= image_tag "sealmark.png", style: "z-index: 1; overflow: none; position: absolute; top: -21px; right: -14px; box-shadow: none;", class: "seal_image" if task.seal_approved == true%>
                             <a href=<%="/properties_detail/#{task.slug}"%>><%=  image_tag (responsive_image(task.image1)), class: "full", class: "mask_hover" %></a>
                           </a>

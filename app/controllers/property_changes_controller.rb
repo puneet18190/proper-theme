@@ -13,10 +13,6 @@ class PropertyChangesController < ApplicationController
       @property = PropertyChange.find(params[:id])
     end
 
-    # def property_params
-    #   params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status)
-    # end
-
     def property_changes_params
       params.require(:property_change).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :description, :price,:user_id,:gas_ch,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:let_type_id,:let_furn_id, :image1,:image2,:image3, :image4,:image5,:image6, :image7, :image8, :image9, :image10, :epc)
     end

@@ -48,67 +48,65 @@
             </div>
           <% else %>
             <% @data.each do |task| %>
-              <%# if task.visibility== true %>
-                <div class="list-properties right-space">
-                  <div class="property ">
-                    <div class="row-fluid">
-                      <div class="span6">
-                        <div class="property-images">
-                          <a href=<%= "/properties_detail/"+task.slug%>>
-                            <div class="mask">
-                              <div class="desc-type for-sale"><%=property_status(task.category, task.status) %></div>
-                              <div class="price">&pound; <%= task.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></div>
-                            </div>
-                            <%= image_tag "sealmark.png", style: "width:50px;height:50px;z-index: 1;overflow: none;position: absolute;top: -21px;right: -7px;box-shadow: none" if task.seal_approved == true%>
-                            <%= image_tag responsive_image(task.image1), :style=>"height:250px;width:500px;" %>
-                          </a>
-                        </div>
+              <div class="list-properties right-space">
+                <div class="property ">
+                  <div class="row-fluid">
+                    <div class="span6">
+                      <div class="property-images">
+                        <a href=<%= "/properties_detail/"+task.slug%>>
+                          <div class="mask">
+                            <div class="desc-type for-sale"><%=property_status(task.category, task.status) %></div>
+                            <div class="price">&pound; <%= task.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></div>
+                          </div>
+                          <%= image_tag "sealmark.png", style: "width:50px;height:50px;z-index: 1;overflow: none;position: absolute;top: -21px;right: -7px;box-shadow: none" if task.seal_approved == true%>
+                          <%= image_tag responsive_image(task.image1), :style=>"height:250px;width:500px;" %>
+                        </a>
                       </div>
-                      <div class="span6">
-                        <div class="property-details">
-                          <h3><a href=<%= "/properties_detail/"+task.slug%> ><%=task.name%></a></h3>
-                          <p><%= task.short_description %></p>
-                          <p>
-                            <span class="label"><i class="icon-circle-arrow-right"></i> REF : <%= "SP"+task.created_at.year.to_s.split(//).last(2).join()+task.created_at.month.to_s.rjust(2,'0')+task.id.to_s.rjust(4,'0') %></span>
-                            <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= task.beds %></span>
-                            <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= task.bath %></span>
-                            <span class="label"><i class="icon-circle-arrow-right"></i> Garden : <%= task.garden %></span>
-                            <% unless task.parking_status == "none" %>
-                              <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> Parking : <%= task.parking_status %></span>
-                            <%end%>
-                            <% if task.gas_ch == "Yes" %>
-                              <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> Gas CH : <%= task.gas_ch %></span>
-                            <%end%>
-                            <% if task.dg == "Yes" %>
-                              <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> DG : <%= task.dg %></span>
-                            <%end%>  
-                          </p>
-                          <div class="agent-preview">
-                            <div class="agent-image pull-left">
-                              <a href=<%= (task.agent.nil? || task.agent.name == "Landlord") ? "/users/#{task.user.id}" : '/agents' %> >
-                                <%= image_tag (task.agent.nil? || task.agent.name == "Landlord") ? (task.user.avatar.nil? ? "noimage.gif" : task.user.avatar.url(:large)) : responsive_image(task.agent.image), :style=>"height:80px;width:200px;" %>
-                              </a>
-                            </div>
-                            <div class="agent-contant pull-right">
-                              <ul class="unstyled">
-                                <%if (task.agent.nil? || task.agent.name == "Landlord") %>
-                                  <li style="font-size:15px"><b><%= "#{task.user.first_name} #{task.user.last_name[0] unless task.user.last_name.blank?}" %></b></li>
-                                  <li style="font-size:15px"><b>Private Landlord</b></li>
-                                <%else%>
-                                  <li><i class="icon-phone"></i><%=task.agent.phone%></li>
-                                  <li><i class="icon-envelope"></i><%=task.agent.email_id%></li>
-                                  <li><i class="icon-facebook"></i><%=task.agent.fb_id%></li>
-                                  <li><i class="icon-twitter"></i><%=task.agent.twitter_id%></li>
-                                <%end%>
-                              </ul>
-                            </div>
+                    </div>
+                    <div class="span6">
+                      <div class="property-details">
+                        <h3><a href=<%= "/properties_detail/"+task.slug%> ><%=task.name%></a></h3>
+                        <p><%= task.short_description %></p>
+                        <p>
+                          <span class="label"><i class="icon-circle-arrow-right"></i> REF : <%= "SP"+task.created_at.year.to_s.split(//).last(2).join()+task.created_at.month.to_s.rjust(2,'0')+task.id.to_s.rjust(4,'0') %></span>
+                          <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= task.beds %></span>
+                          <span class="label"><i class="icon-circle-arrow-right"></i> Bath : <%= task.bath %></span>
+                          <span class="label"><i class="icon-circle-arrow-right"></i> Garden : <%= task.garden %></span>
+                          <% unless task.parking_status == "none" %>
+                            <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> Parking : <%= task.parking_status %></span>
+                          <%end%>
+                          <% if task.gas_ch == "Yes" %>
+                            <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> Gas CH : <%= task.gas_ch %></span>
+                          <%end%>
+                          <% if task.dg == "Yes" %>
+                            <span class="label" style="margin-top:5px"><i class="icon-circle-arrow-right"></i> DG : <%= task.dg %></span>
+                          <%end%>  
+                        </p>
+                        <div class="agent-preview">
+                          <div class="agent-image pull-left">
+                            <a href=<%= (task.agent.nil? || task.agent.name == "Landlord") ? "/users/#{task.user.id}" : '/agents' %> >
+                              <%= image_tag (task.agent.nil? || task.agent.name == "Landlord") ? (task.user.avatar.nil? ? "noimage.gif" : task.user.avatar.url(:large)) : responsive_image(task.agent.image), :style=>"height:80px;width:200px;" %>
+                            </a>
+                          </div>
+                          <div class="agent-contant pull-right">
+                            <ul class="unstyled">
+                              <%if (task.agent.nil? || task.agent.name == "Landlord") %>
+                                <li style="font-size:15px"><b><%= "#{task.user.first_name} #{task.user.last_name[0] unless task.user.last_name.blank?}" %></b></li>
+                                <li style="font-size:15px"><b>Private Landlord</b></li>
+                              <%else%>
+                                <li><i class="icon-phone"></i><%=task.agent.phone%></li>
+                                <li><i class="icon-envelope"></i><%=task.agent.email_id%></li>
+                                <li><i class="icon-facebook"></i><%=task.agent.fb_id%></li>
+                                <li><i class="icon-twitter"></i><%=task.agent.twitter_id%></li>
+                              <%end%>
+                            </ul>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              <%# end %>
+              </div>
             <% end %>
             <div class="pagination pagination-large">
                 <%= paginate @data %>

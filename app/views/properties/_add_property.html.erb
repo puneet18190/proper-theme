@@ -10,20 +10,6 @@
 </style>
 
 <div id="content">
-  <!-- <div id="main-title-content">
-    <img src="/assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
-    <div class="container">
-      <div class="panel">
-        <h1>Upload Items</h1>
-        <p>Sub Title Here</p>
-      </div>
-    </div>
-  </div> -->
-  <!-- <div class="news-carousel-wrapper">
-    <dl id="news-carousel" class="news-carousel-style">
-      <%#= render 'properties/news_carousel'%>
-    </dl>
-  </div> -->
   <div class="container" style="margin:0;width:100%">
     <div class="panel" style="padding-bottom:0">
       <% if current_user.status == "landlord"%>
@@ -89,7 +75,6 @@
                 </div>
                 <div class="field">
                   <%= f.label "PROP SUB ID",:style=>"width:53px" %>
-                  <%#= f.select :property_type,['Not Specified','Terraced','End of Terrace','Semi-Detached','Detached','Mews','Cluster House','Ground Flat','Flat','Studio','Ground Maisonette','Maisonette','Bungalow','Terraced Bungalow','Semi-Detached Bungalow','Detached Bungalow','Mobile Home','Land','Link Detached House','Town House','Cottage','Chalet','Villa','Apartment','Penthouse','Finca','Barn Conversion','Serviced Apartments','Parking','Sheltered','Housing','Retirement Property','House Share','Flat Share','Park Home','Garages','Farm House','Equestrian','Facility','Duplex','Triplex','Longere','Gite','Barn','Trulli','Mill','Ruins','Restaurant','Cafe','Mill','Castle','Village House','Cave House','Cortijo','Farm Land','Plot','Country House','Stone House','Caravan','Lodge','Log Cabin','Manor House','Stately Home','Off-Plan','Semi-detached Villa','Detached Villa','Bar / Nightclub','Shop','Riad','House Boat','Hotel Room','Block of Apartments','Private Halls','Office','Business Park','Serviced Office','Retail Property (high street)','Retail Property (out of town)','Convenience Store','Garage','Hairdresser / Barber Shop','Hotel','Petrol Station','Post Office','Pub','Workshop','Distribution Warehouse','Factory','Heavy Industrial','Industrial Park','Light Industrial','Storage','Showroom','Warehouse','Land','Commercial Development','Industrial Development','Residential Development','Commercial Property','Data Centre','Farm','Healthcare Facility','Marine Property','Mixed Use','Research & Development Facility','Science Park','Guest House','Hospitality','Leisure Facility','Takeaway','Childcare Facility','Smallholding','Place of Worship','Trade Counter','Coach House'],:style=>"margin-top:-42px"%>
                   <% if params[:action] == "edit" && !PropertyType.where(:p_id=>f.object.property_type).first.nil?%>
                     <%= f.select :property_type,[["#{PropertyType.where(:p_id=>f.object.property_type).first.p_type}",f.object.property_type]],:style=>"margin-top:-42px", :selected => "#{PropertyType.where(:p_id=>f.object.property_type).first.p_type}" %>
                   <%else%>
@@ -135,16 +120,6 @@
                   <%= f.label :otm%>
                   <%= f.check_box :otm %>
                 </div>
-                <!-- <div class="field" style="margin-top:-53px;margin-left:175px">
-                  <%#= f.label :let%>
-                  <%#= f.check_box :let %>
-                </div>
-                <div class="field" style="margin-top:-53px;margin-left:130px">
-                  <div class="sol">
-                    <%#= f.label :sold %>
-                    <%#= f.check_box :sold%>
-                  </div>
-                </div> --> 
                 <div class="field" style="margin-top:40px">
                   <%= f.label :tag_line %>
                   <%= f.text_field :tag_line,:style=>"width:500px" %>
@@ -186,10 +161,8 @@
                 <%if params[:action]=="edit" && !@property.epc.nil?%>
                   <span style=""><%= @property.epc %></span>
                 <%end%>
-                <%#= f.label :epc %>
-                <%#= f.file_field :epc %>
               </div>  
-              <div style="float:right;width:48%;margin:10px;">  
+              <div style="float:right;width:48%;margin:10px;">
                 <div class="field" >
                   <%= f.label :summary %>
                   <%= f.text_area :summary, style: "width:98%;height:50px",:maxlength => 300 %>
@@ -224,10 +197,6 @@
                     <%= f.label "En-suite" %>
                     <%= f.select :ensuite, [['No', 'No'],['Yes', 'Yes']] %>
                   </div><br/>
-                  <!-- <div class="field">
-                    <%#= f.label :furnished %>
-                    <%#= f.select :furnished, ['Furnished','Unfurnished'] %>
-                  </div><br/> -->
                   <div class="field" style=<%="display:none" if (params[:action]=='edit' && @property.category == 'Sale' )%> >
                     <%= f.label "LET_TYPE_ID", style: "margin-left:-10px" %>
                     <%= f.select :let_type_id, ['Not Specified','Long Term','Short Term','Student','Commercial'] %>
@@ -246,11 +215,7 @@
                     <%= f.label :gas_CH %>
                     <%= f.select :gas_ch, [['No', 'No'],['Yes', 'Yes']] %>
                   </div><br/>
-<!--                   <div class="field">
-                    <%#= f.label :glazing %>
-                    <%#= f.select :glazing, [['False', false],['True', true]] %>
-                  </div><br/>
- -->              <div class="field">
+                  <div class="field">
                     <%= f.label :garden %>
                     <%= f.select :garden, [['No', 'No'],['Yes', 'Yes']] %>
                   </div><br/>
@@ -270,11 +235,6 @@
                     <%= f.label :feature2 %>
                     <%= f.text_field :feature2 %>
                   </div>
-                  <!-- <div class="field">
-                    <%#= f.label :epc %>
-                    <%#= f.text_field :epc %>
-                  </div><br/>
- -->                  
                 </div>  
                 <br/><br/><br/>
               </div>

@@ -55,20 +55,12 @@ class ScreensController < ApplicationController
   	end
 
 	def community
-  #   	@advertisements = []
-  #   	@advertisements = Advertisement.all
-  #   	@advertisements_l = @advertisements[0..1]
-  #   	@advertisements_m = @advertisements[2..3]
-  #   	@advertisements_r = @advertisements[4..5]
-  #   	@advertisements_x = @advertisements[6..7]
-		# render '/screens/community/community_detail', :layout => "screen_layout"
 		@advertisements = []
 	    @advertisements_t = []
 	    @advertisements_b = []
 	    @advertisements = Advertisement.all
 	    @total = @advertisements.count
 	    @half = @total/2
-	    # @count_lt = @total < 3 ? (3-@total) : 0
 	    (0..(@half-1)).each do |rec|
 	      @advertisements_t << @advertisements[rec]
 	    end
@@ -121,7 +113,7 @@ class ScreensController < ApplicationController
 			else
 				@text = Setting.all[0].send("#{params[:screen]}_screen_text")
 			end
-			render '/screens/newest/screen_html'#, :layout => false
+			render '/screens/newest/screen_html'
 		else
 		@data = Property.find(params[:property_id])
 		# @postcode = Pat.get(@data.postcode.to_s)
@@ -169,21 +161,15 @@ class ScreensController < ApplicationController
 
 	def inside_properties_detail
 		if params[:property_id] == "0"
-			# if params[:screen] == "featured_properties"
-			# 	@text = Setting.all[0].featured_screen_text
-			# elsif params[:screen] == "random_properties"
-			# 	@text = Setting.all[0].random_screen_text
-			# else
-				@text = Setting.all[0].send("#{params[:screen]}_text")
-			# end
-			render '/screens/newest/screen_html'#, :layout => false
+			@text = Setting.all[0].send("#{params[:screen]}_text")
+			render '/screens/newest/screen_html'
 		else
-		@data = Property.find(params[:property_id])
-		# @postcode = Pat.get(@data.postcode.to_s)
-		# @datapat = JSON.parse(@postcode.body)
-		url = "http://#{request.host_with_port}/properties_detail/#{@data.id}"
-		@qr = RQRCode::QRCode.new(url,:size => 10).to_img.resize(200, 200).to_data_url
-		render '/screens/inside/inside_properties_detail'
+			@data = Property.find(params[:property_id])
+			# @postcode = Pat.get(@data.postcode.to_s)
+			# @datapat = JSON.parse(@postcode.body)
+			url = "http://#{request.host_with_port}/properties_detail/#{@data.id}"
+			@qr = RQRCode::QRCode.new(url,:size => 10).to_img.resize(200, 200).to_data_url
+			render '/screens/inside/inside_properties_detail'
 		end
 	end
 
@@ -211,7 +197,6 @@ class ScreensController < ApplicationController
 	      @p_description.push(t.text)
 	    end
 	    render :layout => "test_layout"
-
 	end  
 
 	def provisioning
@@ -265,6 +250,7 @@ class ScreensController < ApplicationController
 		# 	redirect_to root_url, alert: "IP: #{request.ip} is not Authorized." 
 		# end			
 	end
+
 	def services
 		if request.ip == "82.68.0.86" || request.ip == "82.68.180.14" 
 			@data = Service.all.select(:name, :telephone)
@@ -298,7 +284,7 @@ class ScreensController < ApplicationController
 		rescue
 			redirect_to :back
 		end	
-	end	
+	end
 
 	def mail_merge
 		@data = MailMerge.all

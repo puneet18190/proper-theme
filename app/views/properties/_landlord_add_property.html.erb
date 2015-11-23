@@ -6,19 +6,14 @@
             <div class="box-line">
                 <h3 class="title-heading">Please complete the form</h3>
             </div>
-            <!-- Start List Step Upload-->
-            <!-- <ul class="unstyled proper-step">
-                <li><a href="upload_step1.html" class="active"><span>1</span></a></li>
-                <li><a href="upload_step2.html" ><span>2</span></a></li>
-                <li><a href="upload_step3.html"><span>3</span></a></li>
-            </ul> -->
+            
             <div class="clearfix"></div>
             <!-- Start Form Step -->
             <%= form_for @property, html: { multipart: true , class: "proper-form-step", style: "height:910px"}, action: params[:action] == "edit" ? property_path(@property) : "/properties" do |f| %>
                 <div class="proper-form-step-area">
                     <div class="" style="width:385px;height:770px;float:left">
                       <%= f.hidden_field :user_id, value: current_user.id %>
-                       <h4>My Property</h4>                
+                       <h4>My Property</h4>
                         <div class="span4">
                             <%= f.label :name %>
                             <%= f.text_field :name,class: "input-block-level",required: true, placeholder: "A Unique Name for your Property" %>
@@ -85,11 +80,7 @@
                             <%= f.label "Furnished" %>
                             <%= f.select :let_furn_id, ['Not Specified','Furnished','Part Furnished','Unfurnished','Furnished/Un Furnished'], class: "input-block-level",style: "width:110px !important" %>
                           </div>
-<!--                           <div class="span4" style="width:375px">
-                            <%#= f.label :epc %>
-                            <%#= f.text_field :epc, class: "input-block-level", required: "true",style: "width:308px !important" %>
-                          </div>
- -->                        </div>
+                       </div>
                         <div class="key_fea" style="width:195x;height:280px;">
                           <div class="span2">
                             <%= f.label :gas_CH %>
@@ -115,7 +106,6 @@
                             <%= f.label :feature2 %>
                             <%= f.text_field :feature2, class: "input-block-level" %>
                           </div>
-                          
                         </div>
                     </div>
                     <%= f.hidden_field :approval_status, value: "none" if params[:action] == "new"%>
@@ -166,12 +156,11 @@
                                 <%end%>
                             </div>
                         <%end%>
-                        <div class="span4">                    
+                        <div class="span4">
                             <h4>EPC Upload</h4>
                             <h6>Please Upload EPC</h6>
                         </div>
                         <div class="span4">
-                            <!-- <label>EPC Upload</label> -->
                             <%if params[:action]=="edit" && !@property.epc.nil? %>
                                 <%= f.file_field :epc, style: "float:left" %>
                                 <%= @property.epc %>
@@ -179,7 +168,7 @@
                                 <%= f.file_field :epc, style: "float:left" %>
                             <%end%>
                         </div>
-                        <div class="span4">                    
+                        <div class="span4">
                             <h4 >Marketing</h4>
                         </div>
                         <div class="span3">
@@ -199,104 +188,29 @@
 
                         <div class="span4" style="width:440px">
                             <h4>Tag Line</h4>
-                          <%#= f.label :tag_line %>
                           <h6>A single sentence highlighting your properties best features</h6>
                           <%= f.text_field :tag_line, class: "input-block-level",style: "width:440px !important" %>
                         </div>
                         <div class="span4" style="width:440px">
                           <h4>Summary</h4>
-                          <%#= f.label :summary %>
                           <h6>A short summary of 300 characters for your On The Market Advert</h6>
                           <%= f.text_area :summary,:maxlength => 300, class: "input-block-level",style: "width:440px !important" %>
                         </div>
                         <div class="span4" style="width:440px">
                           <h4>Short Description</h4>
-                          <%#= f.label :short_description %>
                           <h6>Please provide a brief description of your property</h6>
                           <%= f.text_area :short_description, style: "height:60px;width:440px !important",:maxlength => 900, class: "input-block-level" %>
                         </div>
                         <div class="span4" style="width:440px">
                           <h4>Description</h4>
-                          <%#= f.label :description %>
                           <h6>Please provide a full description of your property using the template</h6>
                           <%= f.text_area :description, style: "height:100px;width:440px !important", class: "long_desc input-block-level", :value => Setting.first.property_description %>
                         </div>
-
-<%
-=begin%>                    
-                        <div class="span4">
-                          <h4>Key Features</h4>
-                        </div>
-                        <div class="key_fea" style="width:200px;height:280px;float:left">
-                          <div class="span2">
-                            <%= f.label :beds %>
-                            <%= f.number_field :beds, :min => 0, class: "input-block-level", required: "true" %>
-                          </div>
-                          <div class="span2">
-                            <%= f.label :bath %>
-                            <%= f.number_field :bath, :min => 0, class: "input-block-level", required: "true" %>
-                          </div>
-
-                          <div class="span2">
-                            <%= f.label :parking %>
-                            <%= f.select :parking_status, ["None","On Street","Off Street"], class: "input-block-level", required: "true" %>
-                          </div>
-                          <div class="span2">
-                            <%= f.label "Cars" %>
-                            <%= f.number_field :car, :min => 0, class: "input-block-level", required: "true" %>
-                          </div>
-                          <div class="span2">
-                            <%= f.label "En-suite" %>
-                            <%= f.select :ensuite, [['No', 'No'],['Yes', 'Yes']], class: "input-block-level", required: "true" %>
-                          </div>
-                          <div class="span2" style="width:175px">
-                            <%= f.label "LET_TYPE_ID", style: "margin-left:-10px" %>
-                            <%= f.select :let_type_id, ['Not Specified','Long Term','Short Term','Student','Commercial'], class: "input-block-level", required: "true",:style=>"width: 110px !important" %>
-                          </div>
-                          <div class="span2" style="width:175px">
-                            <%= f.label "Furnished" %>
-                            <%= f.select :let_furn_id, ['Not Specified','Furnished','Part Furnished','Unfurnished','Furnished/Un Furnished'], class: "input-block-level", required: "true",style: "width:110px !important" %>
-                          </div>
-                        </div>
-                        <div class="key_fea" style="width:200x;height:280px;">
-                          <div class="span2">
-                            <%= f.label :gas_CH %>
-                            <%= f.select :gas_ch, [['No', 'No'],['Yes', 'Yes']], class: "input-block-level", required: "true" %>
-                          </div>
-                          <div class="span2">
-                            <%= f.label :garden %>
-                            <%= f.select :garden, [['No', 'No'],['Yes', 'Yes']], class: "input-block-level", required: "true" %>
-                          </div>
-                          <div class="span2">
-                            <%= f.label :dg, "DG" %>
-                            <%= f.select :dg, ["Full", "Partial", "No"], class: "input-block-level", required: "true" %>
-                          </div>
-                          <div class="span2">
-                            <%= f.label :pets %>
-                            <%= f.select :pets, [['No', 'No'],['Yes', 'Yes']], class: "input-block-level", required: "true" %>
-                          </div>
-                          <div class="span2">
-                            <%= f.label :feature1 %>
-                            <%= f.text_field :feature1, class: "input-block-level" %>
-                          </div>
-                          <div class="span2">
-                            <%= f.label :feature2 %>
-                            <%= f.text_field :feature2, class: "input-block-level" %>
-                          </div>
-                          <div class="span2">
-                            <%= f.label :epc %>
-                            <%= f.text_field :epc, class: "input-block-level", required: "true" %>
-                          </div>
-                        </div>
-<%
-=end%>
                     </div>
                 </div>
                 <%= f.submit "Save", class: "btn btn-proper btn-large", :style=>"margin:20px" %>
-                <!-- <button class="btn btn-proper btn-large" style="margin:20px">Save <i class="icon-arrow-right"></i></button> -->
             <%end%>
         </div>
-
     </div>
 </div><!--EndContent-->
 <script type="text/javascript">
@@ -347,10 +261,6 @@
               // alert('Canceled!')
           }
       });
-      // var x = confirm("An Energy Performance Certificate (EPC) is a legal requirement for all properties marketed to let. An EPC must be made available to prospective tenants and a copy of the certificate given to any tenant who moves into the property. Please acknowledge you understand your obligations and provide a copy of your properties EPC promptly.")
-      // if (x==true){
-      //   $(".proper-form-step").submit()        
-      // }
     }
   })
 

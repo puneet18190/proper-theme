@@ -23,7 +23,7 @@ class TasksController < ApplicationController
       #   @result.push(@locations) unless @locations.nil?
       #   @tasks = @result.flatten
       # else
-        @tasks = @search.result
+      @tasks = @search.result
 
       # end
       @agents= Agent.all.first 2
@@ -49,30 +49,17 @@ class TasksController < ApplicationController
       @news= News.all
       respond_with(@properties,@search,@tasks,@agents,@news)
     end
-    # render "mobile_page.html.erb", :layout => false
   end
 
   def properties_detail
-    # if is_mobile_device?
-    #   @data = Property.friendly.find(params[:id])
-    #   @agents = Agent.find_by_id(@data.agent_id)
-    #   @contact_agent = ContactAgent.new
-    #   render "properties_detail.html.erb"
-    # else  
       begin
         @data = Property.friendly.find(params[:id])
         @agents = @data.agent
         @contact_agent = ContactAgent.new
-        # redirect_to root_url, alert: "No Property Found" unless @data.payment == true
-        # respond_to do |format|
-        #   format.html
-        #   format.mobile
-        # end
       rescue Exception => e
         redirect_to root_url, alert: "No Property Found. "
       end
       respond_with(@data,@agents,@contact_agent)
-    # end  
   end
 
   def properties_filter
@@ -203,5 +190,4 @@ class TasksController < ApplicationController
   def contact_agent_params
     params.require(:contact_agent).permit(:name, :email, :message, :agent_id, :page_link)
   end
-
 end

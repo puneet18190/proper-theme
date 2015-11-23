@@ -20,14 +20,8 @@
           <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span>Property</h2>
           <div class="detail-properties right-space" itemscope="" itemtype="http://schema.org/Product">
             <div itemprop="name" style="display:none"><%= @data.name %></div>
-            <%#= image_tag "sealmark.png", style: "width:100px;height:100px;float: right;z-index: 1;overflow: none;position: relative;margin-top: -34px;margin-right: -25px;" if @data.seal_approved == true%>
             <div class="big-image text-center">
-              <div class="preloader"></div>
-              <!-- <div class="desc-image" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
-                <h3><%#= @data.name %></h3> <br>
-                <p>£<%#= @data.price %> </p>
-              </div> -->
-              
+              <div class="preloader"></div>              
               <div class="desc-type for-sale" style="height: auto;width: auto;position:absolute;top: 0; padding: 10px;left: 0px;color:white;font-size: 25px;background: #FF6666;z-index:1;opacity:0.8;">
                 <%=property_status(@data.category, @data.status) %>
               </div>
@@ -78,7 +72,6 @@
               </p>
             </div>
             <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51965a0e6903b31d"></script>
-            <%#= link_to 'Download Broucher', broucher_path(:id => @data.id, format: 'pdf') %>
             <br/>
             <h3>Property Specification</h3>
             <p><%#=raw(ActionView::Base.full_sanitizer.sanitize(@data.description.gsub("<br>","|")).gsub("|","<br>") )%>

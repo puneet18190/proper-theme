@@ -115,79 +115,10 @@
             <h5><b>Please add anything  you feel may be relevant here such as more about yourself</b></h5>
             <div class="row-fluid">
               <div class="span4">
-                <%#= f.label :additional_info %>
                 <%= f.text_area :additional_info, class: "input-block-level", style: "height:200px;width:450px !important" %>
               </div>
             </div>
           </div>
-<%
-=begin%>
-          <h4>Background Information</h4>
-          <div class="row-fluid">
-            <div class="span2">
-              <%= f.label "Employment Status" %>
-              <%= f.text_field :employment, class: "input-block-level", required: "true" %>
-            </div>
-            <div class="span2">
-              <%= f.label :student %>
-              <%= f.select :student,['No','Yes'], class: "input-block-level", required: "true" %>
-            </div>
-            <div class="span2">
-              <%= f.label "Benefits Claimant" %>
-              <%= f.select :benefit,['No','Yes'], class: "input-block-level", required: "true" %>
-            </div>
-            <div class="span2">
-              <%= f.label "Tenancy Type" %>
-              <%= f.select :tenancy_type,['Joint','Single'], class: "input-block-level", required: "true" %>
-            </div>
-          </div>
-          <h4>Property Details</h4>
-          <div class="row-fluid">
-            <div class="span2">
-              <%= f.label :property_type %>
-              <%= f.select :property_type,["Lower Flat", "Upper Flat", "Maisonette", "Terrace House", "Semi-Detached", "Detached", "Studio", "Apartment", "Commercial", "Land"], class: "input-block-level", required: "true" %>
-            </div>
-            <div class="span2">
-              <%= f.label "Number of Bedrooms" %>
-              <%= f.number_field :beds, class: "input-block-level", required: "true" %>
-            </div>
-            <div class="span2">
-              <%= f.label "Number of Bathrooms" %>
-              <%= f.number_field :bath, class: "input-block-level", required: "true" %>
-            </div>
-            <div class="span2">
-              <%= f.label :max_price %>
-              <%= f.number_field :max_price, class: "input-block-level", required: "true" %>
-            </div>
-            <div class="span2">
-              <%= f.label :garden %>
-              <%= f.select :garden,['No','Yes'], class: "input-block-level", required: "true" %>
-            </div>
-            <div class="span2">
-              <%= f.label :parking %>
-              <%= f.select :parking,['No','Yes'], class: "input-block-level", required: "true" %>
-            </div>
-          </div>
-          <div class="row-fluid">
-            <div class="span2">
-              <%= f.label :gas_ch %>
-              <%= f.select :gas_ch,['No','Yes'], class: "input-block-level", required: "true" %>
-            </div>            
-            <div class="span2">
-              <%= f.label :dg %>
-              <%= f.select :dg,['No','Yes'], class: "input-block-level", required: "true" %>
-            </div>
-            <div class="span2">
-              <%= f.label "En-suite" %>
-              <%= f.select :ensuite,['No','Yes'], class: "input-block-level", required: "true" %>
-            </div>
-            <div class="span2">
-              <%= f.label "Furnished" %>
-              <%= f.select :furnished,['No','Yes'], class: "input-block-level", required: "true" %>
-            </div>
-          </div>
-<%
-=end%>
         </div>
         <%= f.submit 'Save', class: "btn btn-proper btn-large add_loader", style: "margin-left:50%" %>
       <%end%><!-- End Form Step -->
@@ -208,10 +139,6 @@
   #user_dob_3i{
     width: 26% !important;
   }
-  /*.input-block-level{
-    margin-top: -40px;
-    margin-left: 75px
-  }*/
 </style>
 
 <script type="text/javascript">

@@ -7,69 +7,47 @@ class PropertiesController < ApplicationController
   require 'nokogiri'
   require 'rubygems'
   require 'zip'
-  #protect_from_forgery except: [:disconnect_fb] 
+
   def index
     if current_user.status == "admin"
       @properties = []
       @data = Property.where.not("approval_status = ?", "none")
       @properties << @data.where.not("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC").includes(:user)
       @properties << @data.where("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC").includes(:user)
-      # @properties << Property.where(sold: false, let: true).order("created_at DESC")
-      # @properties << Property.where(sold: true, let: true).order("created_at DESC")
       @properties = @properties.flatten.uniq
-      # @properties = Property.order("created_at DESC")
     elsif current_user.status == "landlord"
       @properties = Property.where(:user_id => current_user.id).order("created_at DESC").includes(:property_changes).includes(:user)
     else
       @properties = Property.order("created_at DESC")
     end
 
-    # if current_user.status == "landlord"
-    #   @properties.each do |obj|
-    #     if (obj.payment == true && (obj.validity - DateTime.now.in_time_zone("UTC")) < 0)
-    #         obj.update_attributes(:payment => false,:visibility=>false,:validity=>nil)
-    #     end
+    @users = User.all
+    # if current_user.status != "admin"
+    #   @users.each do |obj|
+    #     unless obj.validity == nil
+    #       if (obj.payment == true && (obj.validity - DateTime.now.in_time_zone("UTC") < 0))
+    #         obj.update_attributes(:payment => false,:validity=>nil)
+    #       end
+    #     end  
     #   end
     # end
-    @users = User.all
-    if current_user.status != "admin"
-      @users.each do |obj|
-        unless obj.validity == nil
-          if (obj.payment == true && (obj.validity - DateTime.now.in_time_zone("UTC") < 0))
-            obj.update_attributes(:payment => false,:validity=>nil)
-          end
-        end  
-      end
-    end
 
     respond_with(@properties)
-    # respond_to do |format|
-    #   format.html
-    #   format.pdf do
-    #     pdf = ReportPdf.new(@properties)
-    #     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
-    #   end
-    # end
   end
 
   def show
     respond_with(@property)
   end
 
-
   def new
     if current_user.status == "landlord" && (current_user.plan == "basic" || current_user.plan == "free")  && current_user.properties.count >= 3
       session[:plan] = true
       redirect_to "/properties"
     else
-    # if (current_user.status == "landlord" && current_user.plan == "free" && current_user.properties.count >=3)
-    #   redirect_to root_url, alert: "Please Upgrade Your Plan to Continue" 
-    # else  
       unless current_user.status == "tenant"
-        @property = current_user.properties.new  
+        @property = current_user.properties.new
         respond_with(@property)
       end
-    # end
     end    
   end
 
@@ -79,10 +57,6 @@ class PropertiesController < ApplicationController
     elsif current_user.status == "landlord" && Property.where(slug: params[:id]).first.user.id != current_user.id
       redirect_to root_url, alert: "You are not authorized."
     end
-      
-    # if @property.approval_status == "none" && !@property.property_changes.empty?
-    #   @property = @property.property_changes.last
-    # end
   end
 
   def change
@@ -182,11 +156,7 @@ class PropertiesController < ApplicationController
       @location = @data.split("|")[5]
     end
 
-    # if current_user.status == "tenant" && current_user.payment==false
-    #   render :tenant_payment
-    # elsif current_user.status == "tenant" && current_user.payment==true
-      render :tenant_search
-    # end
+    render :tenant_search
   end
 
   def tenant_search_result
@@ -370,8 +340,8 @@ class PropertiesController < ApplicationController
           category = @result[1].empty? ? "false" : @result[1]
           price_less_than = @result[2].empty? ? "false" : @result[2]
           price_greater_than = @result[3].empty? ? "false" : @result[3]
-          beds = @result[4] #.empty? ? "false" : @result[4]
-          bath = @result[5] #.empty? ? "false" : @result[5]
+          beds = @result[4]
+          bath = @result[5]
           if @property.name.include?(name) or @property.category.include?(category) or (price_less_than.to_i..price_greater_than.to_i).cover?(@property.price) or @property.beds.equal?(beds) or @property.bath.equal?(bath)
             UserMailer.property_search_match(@user, @property, @request).deliver
           end
@@ -433,7 +403,6 @@ class PropertiesController < ApplicationController
   def disconnect_fb
     current_user.update_attributes(:fb_token=>nil)
     redirect_to :back
-    # render :json=>{:status=>true}.to_json
   end
 
   def get_fb_token
@@ -467,7 +436,6 @@ class PropertiesController < ApplicationController
     @ad = []
     @ad = Advertisement.all
     @section = (@ad.count)/5
-    # binding.pry
     # @section.times do |section|
     #   (1..5).each do |count|   (@ad.count)+1
     #     section = section * 5
@@ -654,19 +622,6 @@ class PropertiesController < ApplicationController
     remote_data = remote_data.gsub("&gt;",">")
     remote_data = remote_data.gsub("&quot;","'")
     send_data( remote_data, :filename => "my_file.blm" )
-
-    # remote_data = Nokogiri::HTML(open("http://www.sealproperties.co.uk/blm"))
-    # remote_data = remote_data.css("body").text
-    # # my_local_file = open("my.txt", "w") 
-
-    # # my_local_file.write(remote_data)
-    # # my_local_file.close
-    # # remote_data = remote_data.gsub("<pre>","")
-    # # remote_data = remote_data.gsub("</pre>","")
-    # # remote_data = remote_data.gsub("&lt;","<")
-    # # remote_data = remote_data.gsub("&gt;",">")
-    # # remote_data = remote_data.gsub("&quot;","'")
-    # send_data( remote_data, :filename => "my_file" )
   end
 
   def zip_blm
@@ -704,55 +659,50 @@ class PropertiesController < ApplicationController
     send_file t.path, :type => 'application/zip',:disposition => 'attachment',
     :filename => "39545.zip"
     t.close
-    # render :nothing=> true
   end
 
   def upload_blm
     Thread.new do
-    @data = Property.where(:approval_status=>"approved", :otm=>true)
-    t = Tempfile.new("39545")
-    Zip::OutputStream.open(t.path) do |z|
-      @data.each_with_index do |item,i|
-        sp = "39545_SP"+item.created_at.year.to_s.split(//).last(2).join()+item.created_at.month.to_s.rjust(2,'0')+item.id.to_s.rjust(4,'0')
-        (0..9).each do |n|
-          if !item.send("image#{n+1}").url.nil? && !item.send("image#{n+1}").path.nil?
-            puts item.send("image#{n+1}").path
-            z.put_next_entry(sp+"_IMG_"+n.to_s.rjust(2,'0')+"."+item.send("image#{n+1}").path.split(".").last.downcase)
-            url1 = item.send("image#{n+1}").url(:large)
-            url1_data = open(url1.gsub('https','http')).read
-            z.print url1_data
+      @data = Property.where(:approval_status=>"approved", :otm=>true)
+      t = Tempfile.new("39545")
+      Zip::OutputStream.open(t.path) do |z|
+        @data.each_with_index do |item,i|
+          sp = "39545_SP"+item.created_at.year.to_s.split(//).last(2).join()+item.created_at.month.to_s.rjust(2,'0')+item.id.to_s.rjust(4,'0')
+          (0..9).each do |n|
+            if !item.send("image#{n+1}").url.nil? && !item.send("image#{n+1}").path.nil?
+              puts item.send("image#{n+1}").path
+              z.put_next_entry(sp+"_IMG_"+n.to_s.rjust(2,'0')+"."+item.send("image#{n+1}").path.split(".").last.downcase)
+              url1 = item.send("image#{n+1}").url(:large)
+              url1_data = open(url1.gsub('https','http')).read
+              z.print url1_data
+            end
           end
+          # z.put_next_entry("#{sp}_DOC_00.pdf")
+          # z.print open("http://www.sealproperties.co.uk/broucher.pdf?id="+item.id.to_s).read
         end
-        # z.put_next_entry("#{sp}_DOC_00.pdf")
-        # z.print open("http://www.sealproperties.co.uk/broucher.pdf?id="+item.id.to_s).read
+        z.put_next_entry("coming_soon.jpg")
+        z.print  File.open("#{Rails.root}/app/assets/images/default_images/no.jpg").read
+        d=DateTime.now
+        seq = "01"
+        f_name = "39545_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+seq
+        z.put_next_entry("#{f_name}.blm")
+        remote_data = render_to_string "download_blm", :layout => false
+        remote_data = remote_data.gsub("<pre>","")
+        remote_data = remote_data.gsub("</pre>","")
+        remote_data = remote_data.gsub("&lt;","<")
+        remote_data = remote_data.gsub("&gt;",">")
+        remote_data = remote_data.gsub("&quot;","'")
+        z.print remote_data
       end
-      z.put_next_entry("coming_soon.jpg")
-      z.print  File.open("#{Rails.root}/app/assets/images/default_images/no.jpg").read
-      d=DateTime.now
-      seq = "01"
-      f_name = "39545_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+seq
-      z.put_next_entry("#{f_name}.blm")
-      remote_data = render_to_string "download_blm", :layout => false
-      remote_data = remote_data.gsub("<pre>","")
-      remote_data = remote_data.gsub("</pre>","")
-      remote_data = remote_data.gsub("&lt;","<")
-      remote_data = remote_data.gsub("&gt;",">")
-      remote_data = remote_data.gsub("&quot;","'")
-      z.print remote_data
+      require 'net/ftp'
+      Net::FTP.open('feeds.agentsmutual.co.uk', 'sealproperties', 'Pwx85N8zAK8wHC5') do |ftp|
+        ftp.passive = true
+        ftp.chdir("/live/upload")
+        ftp.putbinaryfile(t.path,"39545.zip")
+      end
+      t.close
     end
-    require 'net/ftp'
-    Net::FTP.open('feeds.agentsmutual.co.uk', 'sealproperties', 'Pwx85N8zAK8wHC5') do |ftp|
-      ftp.passive = true
-      ftp.chdir("/live/upload")
-      ftp.putbinaryfile(t.path,"39545.zip")
-    end
-
-    #send_file t.path, :type => 'application/zip',:disposition => 'attachment',
-    #:filename => "39545.zip"
-    t.close
-  end
-  redirect_to root_url, notice: "Onthemarket Uploading is start...."
-     # render :nothing=> true
+    redirect_to root_url, notice: "Onthemarket Uploading is start...."
   end
 
   def upload_blm_mouseprice
@@ -844,7 +794,6 @@ class PropertiesController < ApplicationController
       require 'net/ftp'
       Net::FTP.open('80.175.35.42', 'ftpdss_user', 'gmBbqQ12A8a9TrReaE17') do |ftp|
         ftp.passive = true
-        # ftp.chdir("/")
         ftp.putbinaryfile(t.path,"8266149499.zip")
       end
       t.close
@@ -904,5 +853,4 @@ class PropertiesController < ApplicationController
     def property_image_params
       params.require(:property).permit(:image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10,:epc)
     end
-
 end
