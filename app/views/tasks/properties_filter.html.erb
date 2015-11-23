@@ -59,14 +59,27 @@
                             <div class="price">&pound; <%= task.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></div>
                           </div>
                           <%= image_tag "sealmark.png", style: "width:50px;height:50px;z-index: 1;overflow: none;position: absolute;top: -21px;right: -7px;box-shadow: none" if task.seal_approved == true%>
-                          <%= image_tag responsive_image(task.image1), :style=>"height:250px;width:500px;" %>
+                          <%= image_tag responsive_image(task.image1), :style=>"height:265px;width:500px;" %>
                         </a>
                       </div>
                     </div>
                     <div class="span6">
                       <div class="property-details">
                         <h3><a href=<%= "/properties_detail/"+task.slug%> ><%=task.name%></a></h3>
-                        <p><%= task.short_description %></p>
+                        <p>
+                          <% if task.short_description.length > 190 %>
+                            <%= truncate(task.short_description, length: 190) %>
+                            <%= link_to '...Read more', '', class: "read-more-#{task.id}" %>
+                            <script>
+                              $('.read-more-<%= task.id %>').on('click', function(e) {
+                                e.preventDefault()
+                                $(this).parent().html('<%= escape_javascript task.short_description %>')
+                              })
+                            </script>
+                          <% else %>
+                            <%= task.short_description %>
+                          <% end %>
+                        </p>
                         <p>
                           <span class="label"><i class="icon-circle-arrow-right"></i> REF : <%= "SP"+task.created_at.year.to_s.split(//).last(2).join()+task.created_at.month.to_s.rjust(2,'0')+task.id.to_s.rjust(4,'0') %></span>
                           <span class="label"><i class="icon-circle-arrow-right"></i> Beds : <%= task.beds %></span>
