@@ -123,7 +123,7 @@ class TasksController < ApplicationController
   end
 
   def agents
-    @agents=  Agent.all.first 2.includes(:properties)
+    @agents=  Agent.all.includes(:properties).first(2)
     respond_with(@agents)
   end
 
