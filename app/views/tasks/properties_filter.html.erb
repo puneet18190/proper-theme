@@ -16,7 +16,7 @@
   <div class="container" style="width:1030px">
     <div class="row-fluid">
       <div class="span9">
-        <div class="panel right-line">
+        <div class="panel right-line" style="margin-right:7px">
           <div class="row-fluid">
             <div class="span6">
               <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span> Properties List</h2>   
@@ -67,7 +67,7 @@
                       <div class="property-details">
                         <h3><a href=<%= "/properties_detail/"+task.slug%> ><%=task.name%></a></h3>
                         <p>
-                          <% if task.short_description.length > 190 %>
+                          <% if !task.short_description.blank? && task.short_description.length > 190 %>
                             <%= truncate(task.short_description, length: 190) %>
                             <%= link_to '...Read more', '', class: "read-more-#{task.id}" %>
                             <script>
@@ -121,7 +121,7 @@
                 </div>
               </div>
             <% end %>
-            <div class="pagination pagination-large">
+            <div class="pagination pagination-large" style="padding:20px">
                 <%= paginate @data %>
             </div>
             
@@ -135,7 +135,7 @@
           <h3 class="bottom-line  line-before main-heading">
             <span class="main-circle-icon"><i class="icon-list"></i></span>  Our Agents
           </h3>
-          <div class="list-items ">
+          <div class="list-items bottom-line line-before main-heading" style="padding-bottom:20px">
             <% @agents.each do |agent| %>
               <div class="item">
                 <%=  image_tag responsive_image(agent.image), alt: "Corin Langpost", class: "img-preview" %>
@@ -150,15 +150,15 @@
               </div>
             <% end %>
           </div>
-        </div>
-        <h3 class="bottom-line line-before main-heading top-line">
-          <span><%= image_tag "sealmark.png", style: "width:55px;height:60px" %></span><a href="/seal_approved" id="seal_approve">  SEAL Approved</a>
-        </h3>
-        <div class="list-items">
-          <p>
-          Properties which are marked with the Seal of Approval are marketed by SEAL Properties on behalf of the Landlord or Vendor who have commissioned our traditional estate agency services under our Pro or Pro Plus+ plans.</p>
-          <p> 
-          Properties not displaying the seal are marketed by the Landlord or Vendor themselves under our Basic and Basic Plus+ plans which allow Landlords and Vendors the opportunity to self-promote their properties using our marketing infrastructure.</p>
+          <h3 class="bottom-line line-before main-heading" style="padding-top:0">
+            <span><%= image_tag "sealmark.png", style: "width:55px;height:60px" %></span><a href="/seal_approved" id="seal_approve">  SEAL Approved</a>
+          </h3>
+          <div class="list-items">
+            <p>
+            Properties which are marked with the Seal of Approval are marketed by SEAL Properties on behalf of the Landlord or Vendor who have commissioned our traditional estate agency services under our Pro or Pro Plus+ plans.</p>
+            <p> 
+            Properties not displaying the seal are marketed by the Landlord or Vendor themselves under our Basic and Basic Plus+ plans which allow Landlords and Vendors the opportunity to self-promote their properties using our marketing infrastructure.</p>
+          </div>
         </div>
       </div>
     </div>
