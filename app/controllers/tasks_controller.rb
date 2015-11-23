@@ -65,7 +65,7 @@ class TasksController < ApplicationController
   def properties_filter
     condition = params[:condition].blank? ? "price" : params[:condition]
     sort = params[:sort].blank? ? "asc" : params[:sort]
-    @data = Property.where({visibility: true, approval_status: "approved"}).page(params[:page].blank? ? 1 : params[:page]).per(10).order("#{condition} #{sort}").includes(:agent).includes(:user).order("status ASC,created_at DESC")
+    @data = Property.where({visibility: true, approval_status: "approved"}).page(params[:page].blank? ? 1 : params[:page]).per(5).order("#{condition} #{sort}").includes(:agent).includes(:user).order("status ASC,created_at DESC")
     @agents = Agent.all.first 2
     respond_with(@data,@agents)
   end
