@@ -53,7 +53,7 @@
                   <div class="row-fluid">
                     <div class="span6">
                       <div class="property-images">
-                        <a href=<%= "/properties_detail/"+task.slug%>>
+                        <a href=<%= "/properties_detail/"+task.slug%> style="font-family: verdana, arial, helvetica, sans-serif">
                           <div class="mask">
                             <div class="desc-type for-sale"><%=property_status(task.category, task.status) %></div>
                             <div class="price">&pound; <%= task.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></div>
@@ -106,11 +106,13 @@
                               <%if (task.agent.nil? || task.agent.name == "Landlord") %>
                                 <li style="font-size:15px"><b><%= "#{task.user.first_name} #{task.user.last_name[0] unless task.user.last_name.blank?}" %></b></li>
                                 <li style="font-size:15px"><b>Private Landlord</b></li>
+                                <li><%= button_to "Contact", "/messages/new",:class=>"btn btn-primary",method: :get, :style=>"margin-right:20px" %></li>
                               <%else%>
                                 <li><i class="icon-phone"></i><%=task.agent.phone%></li>
                                 <li><i class="icon-envelope"></i><%=task.agent.email_id%></li>
                                 <li><i class="icon-facebook"></i><%=task.agent.fb_id%></li>
                                 <li><i class="icon-twitter"></i><%=task.agent.twitter_id%></li>
+                                <li><%= button_to "Contact", "/messages/new",:class=>"btn btn-primary",method: :get, :style=>"margin-right:20px" %></li>
                               <%end%>
                             </ul>
                           </div>
@@ -144,7 +146,7 @@
                       <h3><a href="#"><%=agent.name%></a></h3>
                     </div>
                     <div class="location" style="font-size:38%"><%=agent.address%></div>
-                    <a href="#" class="btn-proper btn-mini btn" style="color:white">Profile Page</a>
+                    <a href="/agents" class="btn-proper btn-mini btn" style="color:white">Profile Page</a>
                   </div>
                 <div class="clearfix"></div>
               </div>
