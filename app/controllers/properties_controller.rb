@@ -213,7 +213,7 @@ class PropertiesController < ApplicationController
         data = @all_property.where(property_type: o.to_s)
         @properties_data << data unless data.empty?
       end
-      @search = @properties_data.search(params[:q])
+      @search = @properties_data.flatten.search(params[:q])
     end
 
     @properties = @search.result
