@@ -210,7 +210,7 @@ class PropertiesController < ApplicationController
       end
       @properties_data = []
       ids.each do |o|
-        data = @all_property.where(property_type: o)
+        data = @all_property.where(property_type: o.to_s)
         @properties_data << data unless data.empty?
       end
       @search = @properties_data.search(params[:q])
