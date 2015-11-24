@@ -206,14 +206,14 @@ class PropertiesController < ApplicationController
       a=PropertyType.where(search: params[:q][:property_type])
       ids = []
       a.each do |o|
-        ids << o.p_id
+        ids << o.p_id.to_s
       end
-      @properties_data = []
-      ids.each do |o|
-        data = @all_property.where(property_type: o.to_s)
-        @properties_data << data unless data.empty?
-      end
-      @search = @properties_data.flatten.search(params[:q])
+      @properties = @all_property.where(property_type: ids)
+      # ids.each do |o|
+      #   data = @all_property.where(property_type: o)
+      #   @properties << data unless data.empty?
+      # end
+      @search = @properties.search(params[:q])
     end
 
     @properties = @search.result
