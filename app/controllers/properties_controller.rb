@@ -213,6 +213,7 @@ class PropertiesController < ApplicationController
       #   data = @all_property.where(property_type: o)
       #   @properties << data unless data.empty?
       # end
+      @properties = @all_property if @properties.blank?
       @search = @properties.search(params[:q])
     end
 

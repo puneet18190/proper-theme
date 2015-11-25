@@ -119,6 +119,7 @@ class UsersController < ApplicationController
 			    beds = @abc[:beds_eq]= @words[4]
 			    location = @abc[:address1_or_address2_or_address3_cont]= @words[5]
 			    params[:q] = @abc
+			    @all_property = Property.where({visibility: true, approval_status: "approved"})
 
 			    if params[:q][:beds_eq] == "Not Specified"
 			      params[:q].delete(:beds_eq)
@@ -126,18 +127,19 @@ class UsersController < ApplicationController
 
 			    if params[:q][:property_type] == "Not Specified"
 			      params[:q].delete(:property_type)
-			      @search = Property.search(params[:q])
+			      @search = @all_property.search(params[:q])
 			    else
 			      a=PropertyType.where(search: params[:q][:property_type])
 			      ids = []
 			      a.each do |o|
 			        ids << o.p_id
 			      end
-			      @properties = Property.where(property_type: ids)
+			      @properties = @all_property.where(property_type: ids)
 			      # ids.each do |o|
 			      #   data = Property.where(property_type: o)
 			      #   @properties << data unless data.empty?
 			      # end
+			      @properties = @all_property if @properties.blank?
 			      @search = @properties.search(params[:q])
 			    end
 
