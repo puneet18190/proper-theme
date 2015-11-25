@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
 
   def new
     @recipient = User.where(id: params['recipients'])
-    @user = params[:user]
+    @user = User.where(id: params['user']).first
   end
 
   def create

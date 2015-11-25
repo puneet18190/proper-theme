@@ -133,10 +133,11 @@ class UsersController < ApplicationController
 			      a.each do |o|
 			        ids << o.p_id
 			      end
-			      ids.each do |o|
-			        data = Property.where(property_type: o)
-			        @properties << data unless data.empty?
-			      end
+			      @properties = Property.where(property_type: ids)
+			      # ids.each do |o|
+			      #   data = Property.where(property_type: o)
+			      #   @properties << data unless data.empty?
+			      # end
 			      @search = @properties.search(params[:q])
 			    end
 

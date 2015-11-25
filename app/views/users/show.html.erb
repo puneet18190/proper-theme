@@ -6,7 +6,11 @@
         <div class="panel proper-form-step">
             <div class="proper-form-step-area" style="height: 200px">
                 <%= button_to "Edit Profile", "/users/profile",:class=>"btn btn-warning",method: :get, :style=>"float:right;" if user_signed_in? && current_user.id == @user.id%>
-                <%= button_to "Contact", "/messages/new",:class=>"btn btn-primary",method: :get, :style=>"float:right;margin-right:20px" if user_signed_in? %>
+                <%if user_signed_in? %>
+                    <%= button_to "/messages/new",:class=>"btn btn-primary",method: :get, :style=>"margin-right:20px;float:right" do %>
+                        <%=hidden_field_tag :user,@user.id %> Contact
+                    <%end%>
+                <%end%>
                 <div style="float:left;width:25%">
                     <div class="row-fluid">
                         <%= image_tag @user.avatar.url(:thumb), style: "width:200px;height:200px" %>
