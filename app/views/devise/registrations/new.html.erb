@@ -18,7 +18,7 @@
               <hr>
               
               <%= f.label :first_name %>
-              <%= f.text_field :first_name, autofocus: true, required: true,class: "input-block-level" %>
+              <%= f.text_field :first_name, autofocus: true, required: true,class: "input-block-level", value: session[:name] %>
             
               <%= f.label :last_name %>
               <%= f.text_field :last_name, required: true,class: "input-block-level" %>
@@ -27,8 +27,10 @@
               <%= f.text_field :phone, placeholder: "Phone Number", required: true,class: "input-block-level" %>
 
               <%= f.label :email %>
-              <%= f.email_field :email, placeholder: "Email Address", required: true,class: "input-block-level" %>
-              
+              <%= f.email_field :email, placeholder: "Email Address", required: true,class: "input-block-level", value: session[:email] %>
+              <%session.delete(:name) if session.has_key?(:name) %>
+              <%session.delete(:email) if session.has_key?(:email) %>
+
               <%= f.label :password %>
               <% if @validatable %>
                 <em>(<%= @minimum_password_length %> characters minimum)</em>

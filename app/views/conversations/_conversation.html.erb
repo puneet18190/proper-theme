@@ -1,4 +1,5 @@
 <li class="list-group-item clearfix">
+    <% if (current_user.plan == "basic_plus") || (User.find(conversation.last_message.sender_id).plan == "basic_plus")%>
     <%= link_to conversation.subject, conversation_path(conversation) %>
 
     <div class="btn-group-vertical pull-right">
@@ -17,4 +18,7 @@
 
     <p><%= conversation.last_message.body.html_safe %>
     <small>(<span class="text-muted"><%= conversation.last_message.created_at.strftime("%-d %B %Y, %H:%M:%S") %></span>)</small></p>
+    <%else%>
+        <p>You have a message from ?, upgrade now to view this message.</p>
+    <%end%>
 </li>

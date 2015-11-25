@@ -15,10 +15,16 @@ class MessagesController < ApplicationController
   end
 
   def contact_landlord
-    recipients = User.where(id: params['user_id'])
-    user = User.where(status: "admin").first
-    params[:message] = "Name: #{params[:name]} <br/> Email: #{params[:email]} <br/> Message: #{params[:message]} <br/> <a href='mailto:#{params[:email]}' target='_top'>Click here to reply.</a>"
-    conversation = user.send_message(recipients, params[:message], "An External Mail Client").conversation
-    redirect_to :back, notice: "Your message has been sent to the Landlord."
+    if user_signed_in?
+      recipients = User.where(id: params['user_id'])
+      # user = User.where(status: "admin").first
+      # params[:message] = "Name: #{params[:name]} <br/> Email: #{params[:email]} <br/> Message: #{params[:message]} <br/> <a href='mailto:#{params[:email]}' target='_top'>Click here to reply.</a>"
+      conversation = current_user.send_message(recipients, params[:message], "An External Mail Client").conversation
+      redirect_to :back, notice: "Your message has been sent to the Landlord."
+    else
+      session[:name] = params[:name]
+      session[:email] = params[:email]
+      redirect_to "/users/sign_up"
+    end
   end
 end
