@@ -132,7 +132,7 @@ class UsersController < ApplicationController
 			      a=PropertyType.where(search: params[:q][:property_type])
 			      ids = []
 			      a.each do |o|
-			        ids << o.p_id
+			        ids << o.p_id.to_s
 			      end
 			      @properties = @all_property.where(property_type: ids)
 			      # ids.each do |o|
