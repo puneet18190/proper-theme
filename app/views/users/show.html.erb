@@ -7,7 +7,7 @@
             <div class="proper-form-step-area" style="height: 200px">
                 <%= button_to "Edit Profile", "/users/profile",:class=>"btn btn-warning",method: :get, :style=>"float:right;" if user_signed_in? && current_user.id == @user.id%>
                 <%if user_signed_in? %>
-                    <%= button_to "/messages/new",:class=>"btn btn-primary",method: :get, :style=>"margin-right:20px;float:right" do %>
+                    <%= button_to "/messages/new",:class=>"btn btn-proper",method: :get, :style=>"margin-right:20px;float:right" do %>
                         <%=hidden_field_tag :user,@user.id %> Contact
                     <%end%>
                 <%end%>
