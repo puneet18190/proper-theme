@@ -10,7 +10,7 @@
             <%# if conversation.is_unread?(current_user) %>
                 <%#= link_to 'Mark as read', mark_as_read_conversation_path(conversation), class: 'btn btn-xs btn-info', :style => "color:white;border-radius:4px 4px 4px 4px;", method: :post %>
             <%# end %>
-            <%= link_to 'Reply', "/messages/new?user=#{conversation.last_message.sender_id}", class: 'btn btn-xs btn-success', :style => "color:white;border-radius:4px 4px 4px 4px;margin-top: 10px", method: :get %>
+            <%= link_to 'Reply', conversation_path(conversation), class: 'btn btn-xs btn-success', :style => "color:white;border-radius:4px 4px 4px 4px;margin-top: 10px", method: :get %>
         <% end %>
     </div>
 
