@@ -3,7 +3,7 @@
   <div class="form-group">
     <%= label_tag 'recipients', @user ? 'Recipient' : 'Choose recipients' %>
     <% if @user %>
-      <%= text_field_tag 'recipients', @user.email, class: 'form-control', required: true, :style => "height:34px;border-radius: 4px;", disabled: true%>
+      <%= text_field_tag 'recipients', "#{@user.first_name} #{@user.last_name[0] unless @user.last_name.blank?}", class: 'form-control', required: true, :style => "height:34px;border-radius: 4px;", disabled: true%>
     <%else%>
       <%= select_tag 'recipients', recipients_options(@user), multiple: true, class: 'form-control chosen-it' %>
     <%end%>

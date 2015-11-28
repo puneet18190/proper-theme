@@ -148,18 +148,18 @@
                                 <div class="agent-contant pull-right">
                                   <ul class="unstyled">
                                     <%if (task.agent.nil? || task.agent.name == "Landlord") %>
-                                      <li style="font-size:15px"><b><%= "#{task.user.first_name} #{task.user.last_name[0] unless task.user.last_name.blank?}" %></b></li>
-                                      <li style="font-size:15px"><b>Private Landlord</b></li>
+                                      <li style="font-size:15px"><%= "#{task.user.first_name} #{task.user.last_name[0] unless task.user.last_name.blank?}" %></li>
+                                      <li style="font-size:15px">Private Landlord</li>
                                       <li>
                                         <%= button_to "/messages/new",:class=>"btn btn-proper",method: :get, :style=>"margin-right:20px" do %>
                                           <%=hidden_field_tag :user,task.user.id %> Contact
                                         <%end%>
                                       </li>
                                     <%else%>
+                                      <li>SEAL Properties</li>
+                                      <li>Agent - <%=task.agent.name%></li>
                                       <li><i class="icon-phone"></i><%=task.agent.phone%></li>
                                       <li><i class="icon-envelope"></i><%=task.agent.email_id%></li>
-                                      <li><i class="icon-facebook"></i><%=task.agent.fb_id%></li>
-                                      <li><i class="icon-twitter"></i><%=task.agent.twitter_id%></li>
                                       <li><%= button_to "Contact", "/messages/new",:class=>"btn btn-proper",method: :get, :style=>"margin-right:20px" %></li>
                                     <%end%>
                                   </ul>
