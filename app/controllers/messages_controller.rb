@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   layout 'message_layout'
-  before_action :authenticate_user!, except: "contact_landlord"
+  before_action :authenticate_user!, except: ["contact_landlord", "contact_agent"]
 
   def new
     @recipient = User.where(id: params['recipients'])
@@ -26,5 +26,10 @@ class MessagesController < ApplicationController
       session[:email] = params[:email]
       redirect_to "/users/sign_up"
     end
+  end
+
+  def contact_agent
+    @agent = Agent.find params[:agent_id]
+    @contact_agent = ContactAgent.new
   end
 end

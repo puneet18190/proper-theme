@@ -100,6 +100,7 @@ Rails.application.routes.draw do
   resources :messages, only: [:new, :create] do
     collection do
       post :contact_landlord
+      get :contact_agent
     end
   end
 

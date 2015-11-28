@@ -160,7 +160,10 @@
                                       <li>Agent - <%=task.agent.name%></li>
                                       <li><i class="icon-phone"></i><%=task.agent.phone%></li>
                                       <li><i class="icon-envelope"></i><%=task.agent.email_id%></li>
-                                      <li><%= button_to "Contact", "/messages/new",:class=>"btn btn-proper",method: :get, :style=>"margin-right:20px" %></li>
+                                      <li><%= button_to "/messages/contact_agent",:class=>"btn btn-proper",method: :get, :style=>"margin-right:20px" do %>
+                                          <%=hidden_field_tag :agent_id,task.agent.id %> Contact
+                                        <%end%>
+                                      </li>
                                     <%end%>
                                   </ul>
                                 </div>
