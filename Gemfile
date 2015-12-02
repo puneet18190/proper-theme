@@ -131,3 +131,4 @@ group :production do
 	gem 'thin'
 end
 gem 'kaminari'
+gem 'browserlog', '~> 0.0.2' #/logs/development

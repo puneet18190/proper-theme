@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get 'change'
     end
   end
+  mount Browserlog::Engine => '/logs'
   resources :property_changes
   resources :mails
   # resources :advertisements
