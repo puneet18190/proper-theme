@@ -261,16 +261,16 @@ class ScreensController < ApplicationController
 
 	def delete_file_from_s3
 		service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
-		bucket = service.buckets.find("sealpropertiesus")
+		bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
 
 		begin
-			a= params[:url].split("https://sealpropertiesus.s3.amazonaws.com/").last
+			a= params[:url].split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last
 			object = bucket.objects.find(a)
 			if object
 				object.destroy
 				if params[:mailmerge]
 					MailMerge.find_by_id(params[:id]).mail_merge_items.each do |obj|
-						bucket.objects.find(obj.url.split("https://sealpropertiesus.s3.amazonaws.com/").last).destroy
+						bucket.objects.find(obj.url.split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last).destroy
 						obj.delete
 					end	
 					MailMerge.find_by_id(params[:id]).delete
@@ -299,15 +299,15 @@ class ScreensController < ApplicationController
 			end
 
 			service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
-			bucket = service.buckets.find("sealpropertiesus")
+			bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
 			a=DateTime.now
 			a=a.year.to_s+a.month.to_s.rjust(2,'0')+a.day.to_s.rjust(2,'0')+a.hour.to_s+a.minute.to_s+a.second.to_s
 			object = bucket.objects.build(a+"file#{i}.odt")
 			object.content = report.generate()
 			object.save
-			response = HTTParty.get("http://online.verypdf.com/api/?apikey=BF8763B8F38C40FEC5DB3F109FA034AE10F66497&app=doc2any&infile=https://sealpropertiesus.s3.amazonaws.com/#{a}file#{i}.odt&outfile=#{a}file#{i}.pdf")
+			response = HTTParty.get("http://online.verypdf.com/api/?apikey=BF8763B8F38C40FEC5DB3F109FA034AE10F66497&app=doc2any&infile=https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/#{a}file#{i}.odt&outfile=#{a}file#{i}.pdf")
 			pdf_url = response.body.split("[Output]").last.gsub("<br>","")
-			@data.mail_merge_items.create(:filename => a+"file#{i}.odt", :url=>"https://sealpropertiesus.s3.amazonaws.com/"+a+"file#{i}.odt",:m_type=>"item", :pdf_url => pdf_url)			    
+			@data.mail_merge_items.create(:filename => a+"file#{i}.odt", :url=>"https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+a+"file#{i}.odt",:m_type=>"item", :pdf_url => pdf_url)			    
 		end	
 		respond_to do |format|
 	      format.js

@@ -11,10 +11,10 @@ class UsersController < ApplicationController
 	def update
 		unless params[:user][:supporting_doc].nil?
 	      service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
-	      bucket = service.buckets.find("sealpropertiesus")
+	      bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
 	      if !current_user.supporting_doc.nil?
 	        if !current_user.supporting_doc.empty?
-	          a= current_user.supporting_doc.split("https://sealpropertiesus.s3.amazonaws.com/").last
+	          a= current_user.supporting_doc.split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last
 	          object = bucket.objects.find(a)
 	          object.destroy if object
 	        end
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 	      object = bucket.objects.build(params[:user][:supporting_doc].original_filename)
 	      object.content = params[:user][:supporting_doc].tempfile
 	      object.save
-	      params[:user][:supporting_doc] = "https://sealpropertiesus.s3.amazonaws.com/"+params[:user][:supporting_doc].original_filename
+	      params[:user][:supporting_doc] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:user][:supporting_doc].original_filename
 	    end
     	current_user.update(user_params)
 		if current_user.status == "tenant"
