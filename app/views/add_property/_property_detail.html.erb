@@ -1,0 +1,184 @@
+<div id="property_details" class="tab-pane fade in active" style="width:100%;height:100%">
+	<div style="float:left;margin:10px;width:25%">
+    <h3 class=""><b>Property</b></h3>
+    <%= f.hidden_field :user_id, value: params[:user_id].nil? ? current_user.id : params[:user_id] if params[:action]=="new"%>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :address1 %>
+      <%= f.text_field :address1 %>
+    </div>
+    <div class="field">
+      <%= f.label :address2 %>
+      <%= f.text_field :address2 %>
+    </div>
+    <div class="field">
+      <%= f.label :address3 %>
+      <%= f.text_field :address3 %>
+    </div>
+    <div class="field">
+      <%= f.label :town %>
+      <%= f.text_field :town %>
+    </div>
+    <div class="field">
+      <%= f.label :postcode %>
+      <%= f.text_field :postcode, :style=>"width:90px"%>
+      <%= f.text_field :postcode1, :style=>"width:90px;margin-top:-68px;margin-left:175px"%>
+    </div>
+    <h3 class=""><b>Images</b></h3>
+    <div class="field">
+      <label for="property_image1" style="margin:0">Main
+        <%if params[:action]=="edit" && !@property.image1.file.nil?%>
+        <span style="margin-left:132px"><%= @property.image1.file.filename %></span><%end%>
+      </label>
+      <%if params[:action]=="edit" %>
+        <%= f.file_field :image1,:style=>"width:95px;line-height:0;" %>
+      <%else%>
+        <%= f.file_field :image1,:style=>"line-height:0;" %>
+      <%end%>
+    </div>
+    <%(2..10).each do |n|%>
+      <div class="field alert_popup">
+        <label for="property_image<%=n%>" style="margin:0">Image <%=n-1%>
+          <%if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
+          <span style="margin-left:114px"><%= @property.send("image"+n.to_s).file.filename %></span><%end%>
+        </label>
+        <%if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
+          <%= f.file_field ("image"+n.to_s).to_sym,:style=>"width:95px;line-height:0;" %>
+        <%else%>
+          <%= f.file_field ("image"+n.to_s).to_sym,:style=>"line-height:0;" %>
+        <%end%>
+      </div>
+    <%end%>
+
+    <label style="margin:0">EPC</label>
+    
+    <%if params[:action]=="edit" %>
+      <%= f.file_field :epc,:style=>"width:95px;line-height:0;" %>
+    <%else%>
+      <%= f.file_field :epc,:style=>"line-height:0;" %>
+    <%end%>
+    
+    <%if params[:action]=="edit" && !@property.epc.nil?%>
+      <span style=""><%= @property.epc %></span>
+    <%end%>
+
+    <label style="margin:0">CP12</label>
+    
+    <%if params[:action]=="edit" %>
+      <%= f.file_field :cp12,:style=>"width:95px;line-height:0;" %>
+    <%else%>
+      <%= f.file_field :cp12,:style=>"line-height:0;" %>
+    <%end%>
+
+    <%if params[:action]=="edit" && !@property.cp12.nil?%>
+      <span style=""><%= @property.cp12 %></span>
+    <%end%>
+
+    <label style="margin:0">ESC</label>
+    
+    <%if params[:action]=="edit" %>
+      <%= f.file_field :esc,:style=>"width:95px;line-height:0;" %>
+    <%else%>
+      <%= f.file_field :esc,:style=>"line-height:0;" %>
+    <%end%>
+
+    <%if params[:action]=="edit" && !@property.esc.nil?%>
+      <span style=""><%= @property.esc %></span>
+    <%end%>
+  </div>
+
+  <div style="float:left;width:25%;margin:10px;height:95%">
+    <h3 class=""><b>Key Features</b></h3>
+    <div class="field">
+      <%= f.label :beds %>
+      <%= f.number_field :beds, :min => 0 %>
+    </div>
+    <div class="field">
+      <%= f.label :bath %>
+      <%= f.number_field :bath, :min => 0 %>
+    </div>
+    <div class="field">
+      <%= f.label "En-suite" %>
+      <%= f.select :ensuite, [['No', 'No'],['Yes', 'Yes']] %>
+    </div><br/>
+    <div class="field">
+      <%= f.label :parking %>
+      <%= f.select :parking_status, ["None","On Street","Off Street"] %>
+    </div><br/>
+    <div class="field">
+      <%= f.label "Cars" %>
+      <%= f.number_field :car, :min => 0, value: 0 %>
+    </div>
+    <div class="field">
+      <%= f.label :garden %>
+      <%= f.select :garden, [['No', 'No'],['Yes', 'Yes']] %>
+    </div><br/>
+    <div class="field">
+      <%= f.label :gas_CH %>
+      <%= f.select :gas_ch, [['No', 'No'],['Yes', 'Yes']] %>
+    </div><br/>
+    <div class="field">
+      <%= f.label :dg, "DG" %>
+      <%= f.select :dg, ["Full", "Partial", "No"] %>
+    </div><br/>
+    <div class="field">
+      <%= f.label :feature1 %>
+      <%= f.text_field :feature1 %>
+    </div>
+    <div class="field">
+      <%= f.label :feature2 %>
+      <%= f.text_field :feature2 %>
+    </div>
+    <div class="field">
+      <%= f.label :licensed %>
+      <%= f.select :licensed, [['No', 'No'],['Yes', 'Yes']] %>
+    </div><br/>
+    <div class="field">
+      <%= f.label :accredited, style: "margin-left:-5px" %>
+      <%= f.select :accredited, [['No', 'No'],['Yes', 'Yes']] %>
+    </div><br/>
+    <div class="field">
+      <%= f.label :tenant_criteria, style: "width:50px" %>
+      <%= f.select :tenant_criteria, ['Professionals only, No DSS', 'Professionals preferred, DSS welcome', 'No Preference'] %>
+    </div><br/>
+    <div class="field">
+      <%= f.label :pets %>
+      <%= f.select :pets, [['No', 'No'],['Yes', 'Yes']] %>
+    </div><br/>
+    <div class="field">
+      <%= f.label "Furnished" %>
+      <%= f.select :let_furn_id, ['Not Specified','Furnished','Part Furnished','Unfurnished','Furnished/Un Furnished'] %>
+    </div><br/>
+    <div class="field" style=<%="display:none" if (params[:action]=='edit' && @property.category == 'Sale' )%> >
+      <%= f.label "LET_TYPE" %>
+      <%= f.select :let_type_id, ['Not Specified','Long Term','Short Term','Student','Commercial'] %>
+    </div><br/>
+    <div class="field">
+      <%= f.label "Let Date Available", style: "width:50px" %>
+      <%= f.date_select :let_date_available %>
+    </div>
+  </div>  
+  
+  <div style="float:right;width:45%;margin:10px;">
+  	<h3><b>Description</b></h3>
+  	<div class="field">
+      <%= f.label :tag_line %>
+      <%= f.text_area :tag_line, style: "width:98%;height:25px" %>
+    </div>
+    <div class="field" >
+      <%= f.label :summary %>
+      <%= f.text_area :summary, style: "width:98%;height:50px",:maxlength => 300 %>
+    </div>
+    <div class="field" >
+      <%= f.label :short_description, "Short Description" %>
+      <%= f.text_area :short_description, style: "width:98%;height:60px",:maxlength => 900 %>
+    </div>
+    <div class="field" >
+      <%= f.label :description, "Main Description" %>
+      <%= f.text_area :description, :class=>"long_desc" %>
+    </div>
+  </div>
+</div>

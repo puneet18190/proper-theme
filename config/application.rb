@@ -52,9 +52,9 @@ module Proper
     config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :bucket => "sealpropertiesus",
-      :access_key_id => "AKIAJH6OPC5MWSQX6VLQ",
-      :secret_access_key => "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"
+      :bucket => ENV['AWS_BUCKET'],
+      :access_key_id => ENV['AWS_ACCESS_KEY'],
+      :secret_access_key => ENV['AWS_SECRET_KEY']
     }
   }
 

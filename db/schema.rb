@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151010141034) do
+ActiveRecord::Schema.define(version: 20160109200515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -313,6 +313,16 @@ ActiveRecord::Schema.define(version: 20151010141034) do
     t.string   "brochure_link"
     t.datetime "let_date_available"
     t.boolean  "otm",                default: false
+    t.boolean  "accredited"
+    t.boolean  "licensed"
+    t.string   "tenant_criteria"
+    t.string   "cp12"
+    t.string   "esc"
+    t.string   "bond"
+    t.text     "deal"
+    t.string   "stage"
+    t.boolean  "managed"
+    t.boolean  "board"
   end
 
   add_index "properties", ["slug"], name: "index_properties_on_slug", unique: true, using: :btree

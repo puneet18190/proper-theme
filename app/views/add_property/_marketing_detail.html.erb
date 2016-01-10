@@ -1,0 +1,91 @@
+<div id="marketing_details" class="tab-pane fade" style="width:100%;height:100%">
+	<div style="float:left;margin:10px;width:40%; padding-left:40px">
+    <h3 style="margin-top:10px;padding:5px"><b>Searching</b></h3>
+    <div class="field">
+      <%= f.label :category %>
+      <%= f.select :category, ["Rent","Sale"] %>
+    </div><br/>
+    <div class="field">
+      <%= f.label "Search Criteria",:style=>"width:53px" %>
+      <% if params[:action] == "edit" && !PropertyType.where(:p_id=>f.object.property_type).first.nil?%>
+        <%= f.select :search_criteria,['Not Specified','Bungalows','Retirement Property','House / Flat Share','Garage / Parking','Flats / Apartments','Houses','Land','Mobile / Park Homes','Character Property','Commercial Property'],:style=>"margin-top:-42px", :selected => "#{PropertyType.where(:p_id=>f.object.property_type).first.search}"%>
+      <%else%>
+        <%= f.select :search_criteria,['Not Specified','Bungalows','Retirement Property','House / Flat Share','Garage / Parking','Flats / Apartments','Houses','Land','Mobile / Park Homes','Character Property','Commercial Property'],:style=>"margin-top:-42px"%>
+      <%end%>
+    </div>
+    <div class="field">
+      <%= f.label "PROP SUB ID",:style=>"width:53px" %>
+      <% if params[:action] == "edit" && !PropertyType.where(:p_id=>f.object.property_type).first.nil?%>
+        <%= f.select :property_type,[["#{PropertyType.where(:p_id=>f.object.property_type).first.p_type}",f.object.property_type]],:style=>"margin-top:-42px", :selected => "#{PropertyType.where(:p_id=>f.object.property_type).first.p_type}" %>
+      <%else%>
+        <%= f.select :property_type,[['Not Specified',0]],:style=>"margin-top:-42px" %>
+      <%end%>
+    </div>
+
+    <h3 style="margin-top:20px;padding:5px"><b>Pricing</b></h3>
+    <div class="field">
+      <%= f.label :price %>
+      <%= f.text_field :price %>
+    </div>
+    <div class="field">
+      <%= f.label "PRICE_QUALIFIER",:style=>"width:50px" %>
+      <%= f.select :qualifier,['Default', 'POA', 'Guide Price', 'Fixed Price', 'Offers in Excess of', 'OIRO', 'Sale by Tender','From (new homes and commercial only)', 'Shared Ownership', 'Offers Over', 'Part Buy Part Rent', 'Shared Equity','Equity Loan','Offers Invited'],:id=>"qualifier" %>
+    </div>
+    <div class="field">
+      <%= f.label :bond %>
+      <%= f.text_field :bond %>
+    </div>
+    <div class="field">
+      <%= f.label :deal %>
+      <%= f.text_area :deal, style: "width:56%;height:60px" %>
+    </div>
+  </div>
+  <div style="float:right;margin:10px;width:40%">
+    <h3 style="margin-top:10px;padding:5px"><b>Marketing</b></h3>
+    <div class="field">
+      <%= f.label :agent_id %>
+      <% arr = Agent.all.map { |ag| [ag.name, ag.id ] } %>
+      <%= f.select :agent_id, (arr), :selected => @property.agent_id %>
+    </div><br/>
+    <div class="field">
+      <%= f.label :seal %>
+      <%= f.select :seal_approved, [['True', true], ['False', false]] %>
+    </div><br/>
+    <div class="field">
+      <%= f.label :featured %>
+      <%= f.select :featured, [['False', false],['True', true]] %>
+    </div><br/>
+    <div class="field">
+      <%= f.label :otm%>
+      <%= f.select :otm, [['True', true], ['False', false]] %>
+    </div><br/>
+    <div class="field">
+      <%= f.label :board %>
+      <%= f.select :board, [['Yes', true], ['No', false]] %>
+    </div> 
+
+    <h3 style="margin-top:20px;padding:5px"><b>Status</b></h3>
+    <div class="field">
+    	<%= f.label "Status ID" %>
+    	<%= f.select :status,['Available','SSTC','SSTCM','Under Offer','Reserved','Let Agreed'] %>
+  	</div><br/>
+  	<div class="field">
+      <%= f.label :visibility%>
+      <%= f.select :visibility, [['True', true], ['False', false]] %>
+    </div><br/>
+    <div class="field">
+	    <%= f.label :stage %>
+	    <%= f.select :stage,['Available','On Hold', 'Awaiting Referencing', 'Subject to Tenancy', 'Let Agreed'] %>
+	  </div><br/>
+	  <div class="field">
+      <%= f.label :managed %>
+      <%= f.select :managed, [['Yes', true], ['No', false]] %>
+    </div>
+  </div>                  
+</div>
+
+<style>
+	#property_category{
+		width: 220px
+	}
+</style>

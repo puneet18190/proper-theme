@@ -1,0 +1,97 @@
+<div id="content">
+  <div class="news-carousel-wrapper">
+    <dl id="news-carousel" class="news-carousel-style">
+      <%= render 'properties/news_carousel'%>
+    </dl>
+  </div>
+  <div class="cont" style="max-width:1200px">
+    <h3><b>Management</b></h3>
+    <%if current_user.status == "admin"%>
+      <% if current_user.fb_token.nil? %>
+        <%= button_to "Connect Facebook","/connect_facebook",:class=>"btn btn-primary"%>
+      <%else%>
+        <a class= "btn disconnect_fb btn-primary" href="/disconnect_fb">Connected with Facebook</a>
+      <%end%>  
+    <%end%>
+
+    <% if can? :create, @property %>
+      <%= button_to "New Property", "/properties/new", :method=>:get, :class=>"btn btn-warning new_property", 
+      :style=>"margin-left:1000px;margin-top:-90px;"%>
+    <% end %>
+
+    <table id="prop_info">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Landlord</th>
+          <th>Tenant</th>
+          <th>Agent</th>
+          <th>Tenancy Renewal Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @properties.each_with_index do |property,i| %>
+          <% data = property%>
+          
+          <tr class="<%= 'bg_color' if property.user.status == 'landlord'%>">
+            
+            <td><%= data.name %></td>
+            <td><%= "#{data.address1} #{data.address2} #{data.address3} #{data.town} #{data.postcode} #{data.postcode1}" %></td>
+            
+            <td><a href=<%="/users/#{property.user.id}"%>><%= "#{property.user.first_name} #{property.user.last_name}" %></a></td>
+            <td></td>
+            <td><%= (property.agent.nil? || property.agent.name=="Landlord") ? "" : "#{property.agent.name}" %></td>
+            <td></td>
+            <td>
+              <%= link_to 'Show', "/properties_detail/"+property.slug %>
+              <%if property.approval_status=="waiting" && !property.property_changes.empty?%>
+                <%= link_to 'View Changes', change_property_path(property), :method=>:get, id: "changes_#{property.id}" %>
+              <%else%>
+                <%= link_to 'Edit', edit_property_path(property), :method=>:get, id: "edit_#{property.id}", class: "#{property.approval_status} edit_property" %>
+              <%end%>
+
+              <%= link_to 'Delete', property, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%= render 'shared/plans'%>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#prop_info").dataTable()
+  })
+
+  $( ".disconnect_fb" )
+  .mouseenter(function() {
+    $( this ).html("Disconnect Facebook");
+  })
+  .mouseleave(function() {
+    $( this ).html("Connected with Facebook");
+  });
+</script>
+
+<style type="text/css">
+  .dataTables_paginate .next{
+    position: relative;
+    bottom: 0;
+    color: white !important;
+  }
+  select{
+    width: 70px;
+    float: none;
+  }
+  tr{
+    background-color: #eee !important;
+  }
+  .bg_color{
+    background-color: papayawhip !important
+  }
+</style>

@@ -22,9 +22,10 @@
               <th>Email</th>
               <th>Address</th>
               <th>Phone</th>
+              <th>Status</th>
               <th>Action</th>
-              <th>Action</th>
-              <th>Action</th>
+              <th>Plan</th>
+              <th>Requirements</th>
             </tr>
           </thead>
 
@@ -35,9 +36,24 @@
                 <td><%= l.email.include?("@dummy.com") ? "" : l.email %></td>
                 <td><%= "#{l.address1} #{l.address2} #{l.address3}" %></td>
                 <td><%= l.phone %></td>
-                <td><%= link_to 'Show', "/users/#{l.id}" %></td>
-                <td><%= link_to 'Edit', edit_tenant_path(l) %> </td>
-                <td><%= link_to 'Destroy', tenant_path(l), method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+                <td></td>
+                <td>
+                  <%= link_to 'Show', "/users/#{l.id}" %>
+                  <%= link_to 'Edit', edit_tenant_path(l) %>
+                  <%= link_to 'Destroy', tenant_path(l), method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
+                <td><%= l.plan.humanize %></td>
+                <td>
+                  <%if l.search.blank? %>
+                    None
+                  <%else%>
+                    <%=raw("Category: #{l.search.split('|')[0]} <br/>") if l.search.split('|')[0] !="Not Specified"%>
+                    <%=raw("Type: #{l.search.split('|')[1]} <br/>") if l.search.split('|')[1] !="Not Specified"%>
+                    <%=raw("Max Price: #{l.search.split('|')[2]} <br/>") if l.search.split('|')[2] !="Not Specified"%>
+                    <%=raw("Min Price: #{l.search.split('|')[3]} <br/>") if l.search.split('|')[3] !="Not Specified"%>
+                    <%=raw("Bedroom: #{l.search.split('|')[4]} <br/>") if l.search.split('|')[4] !="Not Specified"%>
+                  <%end%>
+                </td>
               </tr>
             <% end %>
           </tbody>

@@ -23,8 +23,7 @@
               <th>Address</th>
               <th>Phone</th>
               <th>Action</th>
-              <th>Action</th>
-              <th>Action</th>
+              <th>Plan</th>
             </tr>
           </thead>
 
@@ -35,9 +34,12 @@
                 <td><%= l.email.include?("@dummy.com") ? "" : l.email %></td>
                 <td><%= "#{l.address1} #{l.address2} #{l.address3}" %></td>
                 <td><%= l.phone %></td>
-                <td><%= link_to 'Show', "/users/#{l.id}" %></td>
-                <td><%= link_to 'Edit', edit_landlord_path(l) %> </td>
-                <td><%= link_to 'Destroy', landlord_path(l), method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+                <td>
+                  <%= link_to 'Show', "/users/#{l.id}" %>
+                  <%= link_to 'Edit', edit_landlord_path(l) %>
+                  <%= link_to 'Destroy', landlord_path(l), method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
+                <td><%= l.plan.humanize %></td>
               </tr>
             <% end %>
           </tbody>

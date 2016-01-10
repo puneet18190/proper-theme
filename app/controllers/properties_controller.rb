@@ -66,11 +66,27 @@ class PropertiesController < ApplicationController
   def create
     unless params[:property][:epc].nil?
       service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
-      bucket = service.buckets.find("sealpropertiesus")
+      bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
       object = bucket.objects.build(params[:property][:epc].original_filename)
       object.content = params[:property][:epc].tempfile
       object.save
-      params[:property][:epc] = "https://sealpropertiesus.s3.amazonaws.com/"+params[:property][:epc].original_filename
+      params[:property][:epc] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:epc].original_filename
+    end
+    unless params[:property][:cp12].nil?
+      service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
+      bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
+      object = bucket.objects.build(params[:property][:cp12].original_filename)
+      object.content = params[:property][:cp12].tempfile
+      object.save
+      params[:property][:cp12] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:cp12].original_filename
+    end
+    unless params[:property][:esc].nil?
+      service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
+      bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
+      object = bucket.objects.build(params[:property][:esc].original_filename)
+      object.content = params[:property][:esc].tempfile
+      object.save
+      params[:property][:esc] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:esc].original_filename
     end
     @user = current_user
     params[:property][:price] = params[:property][:price].scan(/\d+/).first.to_i
@@ -96,19 +112,46 @@ class PropertiesController < ApplicationController
     begin
     unless params[:property][:epc].nil?
       service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
-      bucket = service.buckets.find("sealpropertiesus")
-      if !@property.epc.nil?
-        if !@property.epc.empty?
-          a= @property.epc.split("https://sealpropertiesus.s3.amazonaws.com/").last
-          object = bucket.objects.find(a)
-          object.destroy if object
-        end
+      bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
+      if !@property.epc.blank?
+        a= @property.epc.split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last
+        object = bucket.objects.find(a)
+        object.destroy if object
       end
       object = bucket.objects.build(params[:property][:epc].original_filename)
       object.content = params[:property][:epc].tempfile
       object.save
-      params[:property][:epc] = "https://sealpropertiesus.s3.amazonaws.com/"+params[:property][:epc].original_filename
+      params[:property][:epc] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:epc].original_filename
     end
+
+    unless params[:property][:cp12].nil?
+      service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
+      bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
+      if !@property.cp12.blank?
+        a= @property.cp12.split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last
+        object = bucket.objects.find(a)
+        object.destroy if object
+      end
+      object = bucket.objects.build(params[:property][:cp12].original_filename)
+      object.content = params[:property][:cp12].tempfile
+      object.save
+      params[:property][:cp12] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:cp12].original_filename
+    end
+
+    unless params[:property][:esc].nil?
+      service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
+      bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
+      if !@property.esc.blank?
+        a= @property.esc.split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last
+        object = bucket.objects.find(a)
+        object.destroy if object
+      end
+      object = bucket.objects.build(params[:property][:esc].original_filename)
+      object.content = params[:property][:esc].tempfile
+      object.save
+      params[:property][:esc] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:esc].original_filename
+    end
+
     if current_user.status == "landlord"
       ['image1','image2','image3','image4','image5','image6','image7','image8','image9','image10'].each do |obj|
         if params[:property].has_key?(obj)
@@ -810,12 +853,12 @@ class PropertiesController < ApplicationController
     data = open("http://www.sealproperties.co.uk/brochure.pdf?id="+params[:id])
     puts data
     service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
-    bucket = service.buckets.find("sealpropertiesus")
+    bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
     object = bucket.objects.build("brochure_"+sp+".pdf")
     puts object
     object.content = data
     object.save
-    @property.brochure_link = "http://sealpropertiesus.s3.amazonaws.com/brochure_"+sp+".pdf"
+    @property.brochure_link = "http://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/brochure_"+sp+".pdf"
     @property.save
     end
     render :json => {:status => "ok"}
@@ -825,7 +868,7 @@ class PropertiesController < ApplicationController
     @property = Property.find(params[:id])
     sp = "sp"+@property.created_at.year.to_s.split(//).last(2).join()+@property.created_at.month.to_s.rjust(2,'0')+@property.id.to_s.rjust(4,'0')
     service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
-    bucket = service.buckets.find("sealpropertiesus")
+    bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
     object = bucket.objects.find("brochure_"+sp+".pdf")
     if object
       object.destroy
@@ -839,17 +882,45 @@ class PropertiesController < ApplicationController
     @data = PropertyType.where(search: params[:search])
   end
 
+  def properties_available
+    @properties = Property.where("category = ?", "Rent").where("stage = ? OR status = ?", "Available", "Available").includes(:user).includes(:agent)
+  end
+
+  def properties_let_agreed
+    @properties = Property.where("category = ?", "Rent").where("stage = ? OR status = ?", "Let Agreed", "Let Agreed").includes(:user).includes(:agent)
+  end
+
+  def properties_managed
+    @properties = Property.where("category = ? AND managed = ?", "Rent", true).includes(:user).includes(:agent)
+  end
+
+  def properties_sale
+    @properties = Property.where("category = ?", "Sale").where("stage = ? OR status = ?", "Available", "Available").includes(:user).includes(:agent)
+  end
+
+  def properties_sold
+    @properties = Property.where("category = ?", "Sale").where("stage = ? OR status = ? OR status = ?", "SSTC", "SSTC", "SSTCM").includes(:user).includes(:agent)
+  end
+
+  def properties_seller
+    @properties = Property.all
+  end
+
+  def properties_buyer
+    @properties = Property.all
+  end
+
   private
     def set_property
       @property = Property.friendly.find(params[:id])
     end
 
     def property_params
-      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status)
+      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status, :accredited, :licensed, :tenant_criteria, :cp12, :esc, :bond, :deal, :stage, :managed, :board)
     end
 
     def property_changes_params
-      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status)
+      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status, :accredited, :licensed, :tenant_criteria, :cp12, :esc, :bond, :deal, :stage, :managed, :board)
     end
 
     def property_image_params

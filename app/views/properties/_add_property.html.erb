@@ -12,16 +12,12 @@
 <div id="content">
   <div class="container" style="margin:0;width:100%">
     <div class="panel" style="padding-bottom:0">
-      <% if current_user.status == "landlord"%>
-        <div class="box-line">
-          <h3 class="title-heading">Please complete the form</h3>
-        </div>
-        <ul class="unstyled proper-step">
-          <li><a href="" class="active"><span>1</span></a></li>
-          <li><a href="" ><span>2</span></a></li>
-          <li><a href=""><span>3</span></a></li>
-        </ul>
-      <%end%>
+      <ul class="nav nav-tabs" >
+        <li class="active"><a href="#property_details">Property Details</a></li>
+        <li><a href="#marketing_details">Marketing Details</a></li>
+        <li><a href="#landlord_details">Landlord Details</a></li>
+        <li><a href="#tenant_details">Tenant Details</a></li>
+      </ul>
       <div class="clearfix"></div>
       <div class="payment">
         <%= form_for @property, html: { multipart: true },:style=>"padding-bottom:0" do |f| %>
@@ -35,8 +31,18 @@
               </ul>
             </div>
           <% end %>
-          <div class="proper-form-step-area" style="height:1115px">
+          <div class="proper-form-step-area" style="">
             <div class="proper-singup" style="max-width:100%;margin:0;padding:0;height:100%">
+              <div class="tab-content" style="background: none !important;border:none !important">
+              <%= render :partial => "add_property/property_detail", :locals=>{:f=>f} %>
+              <%= render :partial => "add_property/marketing_detail", :locals=>{:f=>f} %>
+              <%= render :partial => "add_property/landlord_detail", :locals=>{:f=>f} %>
+              <%= render :partial => "add_property/tenant_detail", :locals=>{:f=>f} %>
+
+              
+            </div>
+<%
+=begin%>
               <div style="float:left;margin:10px;width:23%">
                 <h3 class=""><b>Property</b></h3>
                 <%= f.hidden_field :user_id, value: params[:user_id].nil? ? current_user.id : params[:user_id] if params[:action]=="new"%>
@@ -241,7 +247,12 @@
               <div style="padding:10px;margin-top:950px;">
                 <%= f.submit (params[:action]=="edit" ? "Update" : "Create"), class: "btn btn-proper btn-large", :style=>"margin:0" %>
               </div>
+<%
+=end%>
             </div>  
+          </div>
+          <div style="padding:10px;margin-top:0px;margin-left:45%">
+            <%= f.submit (params[:action]=="edit" ? "Update" : "Create"), class: "btn btn-proper btn-large", :style=>"margin:0" %>
           </div>
         <% end %>
       </div>
@@ -264,13 +275,18 @@
       })
     })
     $("#property_category").on('change', function() {
-      var search = $("#property_category option:selected").text()
-      if($("#property_category option:selected").text() == "Sale"){
+      var category = $("#property_category option:selected").text()
+      if(category == "Sale"){
         $("#property_let_type_id").parent().css("display","none")
+        $("#property_stage").html('<option value="Available">Available</option><option value="offer made">offer made</option><option value="SSTC">SSTC</option><option value="sale complete">sale complete</option>')
       }else{
         $("#property_let_type_id").parent().css("display","block")
+        $("#property_stage").html('<option value="Available">Available</option><option value="On Hold">On Hold</option><option value="Awaiting Referencing">Awaiting Referencing</option><option value="Subject to Tenancy">Subject to Tenancy</option><option value="Let Agreed">Let Agreed</option>')
       }
     })
+    $(".nav-tabs a").click(function(){
+        $(this).tab('show');
+    });
   })
   <% if current_user.status == "landlord" && current_user.plan == "free" %>
     $(".alert_popup").click(function(e) {
@@ -295,18 +311,15 @@
     margin-top: -38px !important
   }
   #property_let_date_available_1i{
-      width: 62px !important;
-      margin-top: 0 !important;
-      margin-left: 0 !important;
+      width: 70px !important;
+      margin-left: 60px !important;
   }
   #property_let_date_available_2i{
-      width: 66px !important;
-      margin-top: 0 !important;
+      width: 100px !important;
       margin-left: 0 !important;
   }
-  #property_let_date_available_3i,#property_let_date_available_4i,#property_let_date_available_5i{
-      width: 48px !important;
-      margin-top: 0 !important;
+  #property_let_date_available_3i{
+      width: 50px !important;
       margin-left: 0 !important;
   }
-<style>
+</style>

@@ -72,6 +72,16 @@
 #  brochure_link      :string(255)
 #  let_date_available :datetime
 #  otm                :boolean          default(FALSE)
+#  accredited         :boolean
+#  licensed           :boolean
+#  tenant_criteria    :string(255)
+#  cp12               :string(255)
+#  esc                :string(255)
+#  bond               :string(255)
+#  deal               :text
+#  stage              :string(255)
+#  managed            :boolean
+#  board              :boolean
 #
 # Indexes
 #
