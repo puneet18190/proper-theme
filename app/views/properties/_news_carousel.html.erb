@@ -2,8 +2,10 @@
 <% @prop = Property.where(:visibility=>true,:approval_status=>"approved").where.not(status: "Let Agreed").last(5) %>
 
 <% (0..4).each do |n| %>
-  <dt><a href=<%="/properties_detail/#{@prop[n].id}"%>>Latest Property</a></dt>
-  <dd><%= @prop[n].name %> - <%= @prop[n].tag_line %></dd>
+  <%unless @prop[n].blank?%>
+    <dt><a href=<%="/properties_detail/#{@prop[n].id}"%>>Latest Property</a></dt>
+    <dd><%= @prop[n].name %> - <%= @prop[n].tag_line %></dd>
+  <%end%>
 <%end%>
 
 <script type="text/javascript">
