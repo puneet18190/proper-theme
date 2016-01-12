@@ -1,7 +1,7 @@
 <div id="landlord_details" class="tab-pane fade">
 	<div style="float:left;margin:10px;width:25%">
 	    <h3 class=""><b>Details</b></h3>
-	    <%= f.fields_for(@property.build_user) do |user| %>
+	    <%= f.fields_for(@user) do |user| %>
 		    <div class="field">
 		      <%= user.label :first_name %>
 		      <%= user.text_field :first_name %>
@@ -36,12 +36,22 @@
 		    </div>
 		    <div class="field">
 		      <%= user.label :email %>
-		      <%= user.text_field :email %>
+		      <%if params[:action] == "new"%>
+			      <%= user.text_field :email %>
+			  <%else%>
+			  	  <%= user.text_field :email, disabled: "disabled" %>
+			  	  <%= user.hidden_field :email %>
+			  <%end%> 
 		    </div>
 		    <div class="field">
 		      <%= user.label :dob %>
 		      <%= user.text_field :dob %>
 		    </div>
+		    <%if params[:action] == "new"%>
+			    <%= user.hidden_field :password, value: "12345678"%>
+			    <%= user.hidden_field :password_confirmation, value: "12345678"%>
+			    <%= user.hidden_field :status, value: "landlord"%>
+		    <%end%>
 		<%end%>
 	</div>
 </div>

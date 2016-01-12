@@ -46,6 +46,7 @@ class PropertiesController < ApplicationController
     else
       unless current_user.status == "tenant"
         @property = current_user.properties.new
+        @user = @property.build_user
         respond_with(@property)
       end
     end    
@@ -56,6 +57,8 @@ class PropertiesController < ApplicationController
       redirect_to root_url, alert: "You are not authorized."
     elsif current_user.status == "landlord" && Property.where(slug: params[:id]).first.user.id != current_user.id
       redirect_to root_url, alert: "You are not authorized."
+    elsif current_user.status == "admin"
+      @user = @property.user
     end
   end
 
@@ -90,6 +93,19 @@ class PropertiesController < ApplicationController
     end
     @user = current_user
     params[:property][:price] = params[:property][:price].scan(/\d+/).first.to_i
+    if params[:property][:user][:email].blank?
+      params[:property][:user_id] = current_user.id
+      params[:property].delete('user')
+    elsif User.find_by_email(params[:property][:user][:email]).blank?
+      u= User.new(user_params)
+      u.skip_confirmation!
+      u.save
+      params[:property][:user_id] = u.id
+      params[:property].delete('user')
+    else
+      params[:property][:user_id] = User.find_by_email(params[:property][:user][:email]).id
+      params[:property].delete('user')
+    end
     @property = Property.new(property_params)
     @property.category.downcase
     @property.name.downcase
@@ -164,6 +180,20 @@ class PropertiesController < ApplicationController
       @property.update_attributes(approval_status: "none")
       redirect_to "/properties", notice: "Once you have finished editing your property, please submit it for approval."
     else
+      if params[:property][:user][:email].blank?
+        params[:property][:user_id] = current_user.id
+        params[:property].delete('user')
+      elsif User.find_by_email(params[:property][:user][:email]).blank?
+        u= User.new(user_params)
+        u.skip_confirmation!
+        u.save
+        params[:property][:user_id] = u.id
+        params[:property].delete('user')
+      else
+        User.find_by_email(params[:property][:user][:email]).update_attributes(user_params)
+        params[:property][:user_id] = User.find_by_email(params[:property][:user][:email]).id
+        params[:property].delete('user')
+      end
       @property.update(property_params)
       if @property.let_changed?
         @property.l_date = Time.now
@@ -925,5 +955,9 @@ class PropertiesController < ApplicationController
 
     def property_image_params
       params.require(:property).permit(:image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10,:epc)
+    end
+
+    def user_params
+      params.require(:property).require(:user).permit(:first_name,:last_name, :address1, :address2, :address3,:phone,:postcode,:mobile,:dob,:status,:password,:password_confirmation,:email)
     end
 end

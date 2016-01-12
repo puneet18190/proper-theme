@@ -1,7 +1,7 @@
 <div id="property_details" class="tab-pane fade in active" style="width:100%;height:100%">
 	<div style="float:left;margin:10px;width:25%">
     <h3 class=""><b>Property</b></h3>
-    <%= f.hidden_field :user_id, value: params[:user_id].nil? ? current_user.id : params[:user_id] if params[:action]=="new"%>
+    <%#= f.hidden_field :user_id, value: params[:user_id].nil? ? current_user.id : params[:user_id] if params[:action]=="new"%>
     <div class="field">
       <%= f.label :name %>
       <%= f.text_field :name %>
