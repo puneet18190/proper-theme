@@ -1,5 +1,43 @@
 <div id="landlord_details" class="tab-pane fade">
 	<div style="float:left;margin:10px;width:25%">
+		<%#= form_tag('/search_old_user', :method => "get", id: "search-form") do %>
+
+		<%= text_field_tag :search, params[:search], class: "search-query", placeholder: "namesearch", type: "search", data: {autocomplete: users_autocomplete_user_email_path} %>  
+		<%#= submit_tag "Search" %>
+		<%#end%>
+
+		<script type="text/javascript" charset="utf-8">
+			$('#search').bind('railsAutocomplete.select', function(event, data){
+		    	
+		   		var user_id = data.item.id
+		   		$.ajax({
+		   			url: '/get_user_data',
+		   			dataType: 'json',
+		   			data: {id: user_id}
+		   		})
+		   		.done(function(res) {
+		   			$('#property_user_first_name').val(res.user.first_name)
+		   			$('#property_user_last_name').val(res.user.last_name)
+		   			$('#property_user_address1').val(res.user.address1)
+		   			$('#property_user_address2').val(res.user.address2)
+		   			$('#property_user_address3').val(res.user.address3)
+		   			$('#property_user_postcode').val(res.user.postcode)
+		   			$('#property_user_phone').val(res.user.phone)
+		   			$('#property_user_mobile').val(res.user.mobile)
+		   			$('#property_user_email').val(res.user.email).attr('disabled', true)
+		   			$('#property_user_dob').val(res.user.dob)
+		   			console.log("success");
+		   		})
+		   		.fail(function() {
+		   			console.log("error");
+		   		})
+		   		.always(function() {
+		   			console.log("complete");
+		   		});
+		   		
+		  	});
+		</script>
+
 	    <h3 class=""><b>Details</b></h3>
 	    <%= f.fields_for(@user) do |user| %>
 		    <div class="field">

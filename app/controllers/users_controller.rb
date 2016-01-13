@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	autocomplete :user, :email, :full => true
 	def profile
 		@user = current_user
 		if current_user.status == "landlord"
@@ -155,8 +156,17 @@ class UsersController < ApplicationController
     end
 
     def show
-    	@user = User.find params[:id]
+    	if params[:term].blank?
+	    	@user = User.find params[:id] 
+	    else
+    		@user = User.where("first_name ilike ?", "%#{params[:term]}%").order('first_name')
+    	end
     end
+
+	def get_user_data
+		user = User.find(params[:id])
+		render :json => {user: user}.to_json
+	end
 
     private
     def set_user

@@ -26,4 +26,6 @@
 //= require bootstrap-popover
 //= require jquery-confirm
 #= require s3_direct_upload
+//= require jquery-ui
+//= require autocomplete-rails
 //= require_tree .

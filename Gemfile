@@ -132,3 +132,4 @@ group :production do
 end
 gem 'kaminari'
 gem 'browserlog', '~> 0.0.2' #/logs/development
+gem 'rails4-autocomplete'

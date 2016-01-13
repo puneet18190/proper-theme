@@ -444,6 +444,8 @@ GEM
       activesupport (>= 3.2)
       choice (~> 0.2.0)
       ruby-graphviz (~> 1.2)
+    rails4-autocomplete (1.1.1)
+      rails (>= 3.0)
     rails_12factor (0.0.2)
       rails_serve_static_assets
       rails_stdout_logging
@@ -660,6 +662,7 @@ DEPENDENCIES
   railroady
   rails (= 4.1.7)
   rails-erd
+  rails4-autocomplete
   rails_12factor
   rails_best_practices
   rails_db_info
