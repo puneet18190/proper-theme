@@ -1,8 +1,9 @@
 <div id="landlord_details" class="tab-pane fade">
-	<div style="float:left;margin:10px;width:25%">
+	<div style="float:left;margin:10px;width:30%">
 		<%#= form_tag('/search_old_user', :method => "get", id: "search-form") do %>
 
-		<%= text_field_tag :search, params[:search], class: "search-query", placeholder: "namesearch", type: "search", data: {autocomplete: users_autocomplete_user_email_path} %>  
+		<%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Search User", type: "search", data: {autocomplete: users_autocomplete_user_email_path} %>  
+		<div class="btn btn-primary" id="reset" style="float:right">Reset</div>
 		<%#= submit_tag "Search" %>
 		<%#end%>
 
@@ -36,6 +37,20 @@
 		   		});
 		   		
 		  	});
+			$("#reset").click(function(){
+				$('#property_user_email').attr('disabled', false)
+				$('#property_user_first_name').val("")
+	   			$('#property_user_last_name').val("")
+	   			$('#property_user_address1').val("")
+	   			$('#property_user_address2').val("")
+	   			$('#property_user_address3').val("")
+	   			$('#property_user_postcode').val("")
+	   			$('#property_user_phone').val("")
+	   			$('#property_user_mobile').val("")
+	   			$('#property_user_email').val("")
+	   			$('#property_user_dob').val("")
+	   			$('#search').val("")
+			})
 		</script>
 
 	    <h3 class=""><b>Details</b></h3>
