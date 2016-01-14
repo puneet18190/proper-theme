@@ -12,25 +12,14 @@ class PropertiesController < ApplicationController
     if current_user.status == "admin"
       @properties = []
       @data = Property.where.not("approval_status = ?", "none")
-      @properties << @data.where.not("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC").includes(:user)
-      @properties << @data.where("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC").includes(:user)
+      @properties << @data.where.not("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC").includes(:user).includes(:agent)
+      @properties << @data.where("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC").includes(:user).includes(:agent)
       @properties = @properties.flatten.uniq
     elsif current_user.status == "landlord"
       @properties = Property.where(:user_id => current_user.id).order("created_at DESC").includes(:property_changes).includes(:user)
     else
       @properties = Property.order("created_at DESC")
     end
-
-    @users = User.all
-    # if current_user.status != "admin"
-    #   @users.each do |obj|
-    #     unless obj.validity == nil
-    #       if (obj.payment == true && (obj.validity - DateTime.now.in_time_zone("UTC") < 0))
-    #         obj.update_attributes(:payment => false,:validity=>nil)
-    #       end
-    #     end  
-    #   end
-    # end
 
     respond_with(@properties)
   end
