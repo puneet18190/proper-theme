@@ -203,5 +203,6 @@ Rails.application.routes.draw do
   match '/seller',   to: 'properties#properties_seller',   via: 'get'
   match '/buyer',   to: 'properties#properties_buyer',   via: 'get'
   get 'users/autocomplete_user_email'
+  get 'users/autocomplete_user_tenant'
   match '/get_user_data',   to: 'users#get_user_data',   via: 'get'
 end

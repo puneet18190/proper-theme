@@ -1,4 +1,167 @@
 <div id="tenant_details" class="tab-pane fade">
-                  <h3>Menu 1</h3>
-                  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                </div>
+	<div style="float:left;margin:10px;width:30%">
+
+		<%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Search Tenant", type: "search", data: {autocomplete: users_autocomplete_user_tenant_path }, id: 'tenant_search', style: "margin-left:0px !important;width:70%" %>  
+		<div class="btn btn-primary" id="tenant_reset" style="float:right">Reset</div>
+
+		<script type="text/javascript" charset="utf-8">
+			$('#tenant_search').bind('railsAutocomplete.select', function(event, data){
+		    	
+		   		var user_id = data.item.id
+		   		$.ajax({
+		   			url: '/get_user_data',
+		   			dataType: 'json',
+		   			data: {id: user_id}
+		   		})
+		   		.done(function(res) {
+		   			$('#tenant_details #property_user_first_name').val(res.user.first_name)
+		   			$('#tenant_details #property_user_last_name').val(res.user.last_name)
+		   			$('#tenant_details #property_user_address1').val(res.user.address1)
+		   			$('#tenant_details #property_user_address2').val(res.user.address2)
+		   			$('#tenant_details #property_user_address3').val(res.user.address3)
+		   			$('#tenant_details #property_user_postcode').val(res.user.postcode)
+		   			$('#tenant_details #property_user_phone').val(res.user.phone)
+		   			$('#tenant_details #property_user_mobile').val(res.user.mobile)
+		   			$('#tenant_details #property_user_email').val(res.user.email).attr('disabled', true)
+		   			$('#tenant_details #property_user_dob').val(res.user.dob)
+		   			$('#tenant_details #tenant_email').val(res.user.email)
+		   			console.log("success");
+		   		})
+		   		.fail(function() {
+		   			console.log("error");
+		   		})
+		   		.always(function() {
+		   			console.log("complete");
+		   		});
+		   		
+		  	});
+			$("#tenant_reset").click(function(){
+				$('#tenant_details #property_user_email').attr('disabled', false).attr('value', '')
+				$('#tenant_details #property_user_first_name').val("")
+	   			$('#tenant_details #property_user_last_name').val("")
+	   			$('#tenant_details #property_user_address1').val("")
+	   			$('#tenant_details #property_user_address2').val("")
+	   			$('#tenant_details #property_user_address3').val("")
+	   			$('#tenant_details #property_user_postcode').val("")
+	   			$('#tenant_details #property_user_phone').val("")
+	   			$('#tenant_details #property_user_mobile').val("")
+	   			$('#tenant_details #property_user_dob').val("")
+	   			$('#tenant_search').val("")
+	   			$('#tenant_details #tenant_email').val("")
+			})
+		</script>
+
+	    <h3 class=""><b>Details</b></h3>
+	    <%= f.fields_for(@tenant) do |tenant| %>
+		    <div class="field">
+		      <%= tenant.label :first_name %>
+		      <%= tenant.text_field :first_name, name: "property[tenant][first_name]" %>
+		    </div>
+		    <div class="field">
+		      <%= tenant.label :last_name %>
+		      <%= tenant.text_field :last_name, name: "property[tenant][last_name]" %>
+		    </div>
+		    <div class="field">
+		      <%= tenant.label :address1 %>
+		      <%= tenant.text_field :address1, name: "property[tenant][address1]" %>
+		    </div>
+		    <div class="field">
+		      <%= tenant.label :address2 %>
+		      <%= tenant.text_field :address2, name: "property[tenant][address2]" %>
+		    </div>
+		    <div class="field">
+		      <%= tenant.label :address3 %>
+		      <%= tenant.text_field :address3, name: "property[tenant][address3]" %>
+		    </div>
+		    <div class="field">
+		      <%= tenant.label :postcode %>
+		      <%= tenant.text_field :postcode, name: "property[tenant][postcode]" %>
+		    </div>
+		    <div class="field">
+		      <%= tenant.label :phone %>
+		      <%= tenant.text_field :phone, name: "property[tenant][phone]" %>
+		    </div>
+		    <div class="field">
+		      <%= tenant.label :mobile, "Alternative Phone" %>
+		      <%= tenant.text_field :mobile, name: "property[tenant][mobile]" %>
+		    </div>
+		    <div class="field">
+		      <%= tenant.label :email %>
+		      <%if params[:action] == "new"%>
+			      <%= tenant.text_field :email, name: "property[tenant][email]" %>
+			      <%= tenant.hidden_field :email, name: "property[tenant][email]", id: "tenant_email" %>
+			  <%else%>
+			  	  <%= tenant.text_field :email, disabled: "disabled", name: "property[tenant][email]" %>
+			  	  <%= tenant.hidden_field :email, name: "property[tenant][email]", id: "tenant_email" %>
+			  <%end%> 
+		    </div>
+		    <div class="field">
+		      <%= tenant.label :dob %>
+		      <%= tenant.text_field :dob, name: "property[tenant][dob]" %>
+		    </div>
+		    <%if params[:action] == "new"%>
+			    <%= tenant.hidden_field :password, value: "12345678", name: "property[tenant][password]" %>
+			    <%= tenant.hidden_field :password_confirmation, value: "12345678", name: "property[tenant][password_confirmation]" %>
+			    <%= tenant.hidden_field :status, value: "tenant", name: "property[tenant][status]" %>
+		    <%end%>
+		<%end%>
+	</div>
+</div>
+
+<style type="text/css">
+	.ui-autocomplete {
+	  position: absolute;
+	  top: 100%;
+	  left: 0;
+	  z-index: 1000;
+	  float: left;
+	  display: none;
+	  min-width: 160px;
+	  _width: 160px;
+	  padding: 4px 0;
+	  margin: 2px 0 0 0;
+	  list-style: none;
+	  background-color: #ffffff;
+	  border-color: #ccc;
+	  border-color: rgba(0, 0, 0, 0.2);
+	  border-style: solid;
+	  border-width: 1px;
+	  -webkit-border-radius: 5px;
+	  -moz-border-radius: 5px;
+	  border-radius: 5px;
+	  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	  -webkit-background-clip: padding-box;
+	  -moz-background-clip: padding;
+	  background-clip: padding-box;
+	  *border-right-width: 2px;
+	  *border-bottom-width: 2px;
+	 
+	  .ui-menu-item > a.ui-corner-all {
+	    display: block;
+	    padding: 3px 15px;
+	    clear: both;
+	    font-weight: normal;
+	    line-height: 18px;
+	    color: #555555;
+	    white-space: nowrap;
+	 
+	  
+
+	  }
+	}
+    .ui-widget-content .ui-state-focus {
+      color: #ffffff;
+      text-decoration: none;
+      background-color: #0088cc;
+      border-radius: 0px;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      background-image: none;
+    }
+
+    #tenant_details input, #tenant_details select{
+    	margin-left: 114px
+    }
+</style>

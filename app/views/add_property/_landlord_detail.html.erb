@@ -2,13 +2,13 @@
 	<div style="float:left;margin:10px;width:30%">
 		<%#= form_tag('/search_old_user', :method => "get", id: "search-form") do %>
 
-		<%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Search User", type: "search", data: {autocomplete: users_autocomplete_user_email_path} %>  
-		<div class="btn btn-primary" id="reset" style="float:right">Reset</div>
+		<%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Search Landlord", type: "search", data: {autocomplete: users_autocomplete_user_email_path }, id: 'landlord_search', style: "margin-left:0px !important;width:70%" %>  
+		<div class="btn btn-primary" id="landlord_reset" style="float:right">Reset</div>
 		<%#= submit_tag "Search" %>
 		<%#end%>
 
 		<script type="text/javascript" charset="utf-8">
-			$('#search').bind('railsAutocomplete.select', function(event, data){
+			$('#landlord_search').bind('railsAutocomplete.select', function(event, data){
 		    	
 		   		var user_id = data.item.id
 		   		$.ajax({
@@ -17,16 +17,17 @@
 		   			data: {id: user_id}
 		   		})
 		   		.done(function(res) {
-		   			$('#property_user_first_name').val(res.user.first_name)
-		   			$('#property_user_last_name').val(res.user.last_name)
-		   			$('#property_user_address1').val(res.user.address1)
-		   			$('#property_user_address2').val(res.user.address2)
-		   			$('#property_user_address3').val(res.user.address3)
-		   			$('#property_user_postcode').val(res.user.postcode)
-		   			$('#property_user_phone').val(res.user.phone)
-		   			$('#property_user_mobile').val(res.user.mobile)
-		   			$('#property_user_email').val(res.user.email).attr('disabled', true)
-		   			$('#property_user_dob').val(res.user.dob)
+		   			$('#landlord_details #property_user_first_name').val(res.user.first_name)
+		   			$('#landlord_details #property_user_last_name').val(res.user.last_name)
+		   			$('#landlord_details #property_user_address1').val(res.user.address1)
+		   			$('#landlord_details #property_user_address2').val(res.user.address2)
+		   			$('#landlord_details #property_user_address3').val(res.user.address3)
+		   			$('#landlord_details #property_user_postcode').val(res.user.postcode)
+		   			$('#landlord_details #property_user_phone').val(res.user.phone)
+		   			$('#landlord_details #property_user_mobile').val(res.user.mobile)
+		   			$('#landlord_details #property_user_email').val(res.user.email).attr('disabled', true)
+		   			$('#landlord_details #property_user_dob').val(res.user.dob)
+		   			$('#landlord_details #landlord_email').val(res.user.email)
 		   			console.log("success");
 		   		})
 		   		.fail(function() {
@@ -37,19 +38,19 @@
 		   		});
 		   		
 		  	});
-			$("#reset").click(function(){
-				$('#property_user_email').attr('disabled', false)
-				$('#property_user_first_name').val("")
-	   			$('#property_user_last_name').val("")
-	   			$('#property_user_address1').val("")
-	   			$('#property_user_address2').val("")
-	   			$('#property_user_address3').val("")
-	   			$('#property_user_postcode').val("")
-	   			$('#property_user_phone').val("")
-	   			$('#property_user_mobile').val("")
-	   			$('#property_user_email').val("")
-	   			$('#property_user_dob').val("")
-	   			$('#search').val("")
+			$("#landlord_reset").click(function(){
+				$('#landlord_details #property_user_email').attr('disabled', false).attr('value', '')
+				$('#landlord_details #property_user_first_name').val("")
+	   			$('#landlord_details #property_user_last_name').val("")
+	   			$('#landlord_details #property_user_address1').val("")
+	   			$('#landlord_details #property_user_address2').val("")
+	   			$('#landlord_details #property_user_address3').val("")
+	   			$('#landlord_details #property_user_postcode').val("")
+	   			$('#landlord_details #property_user_phone').val("")
+	   			$('#landlord_details #property_user_mobile').val("")
+	   			$('#landlord_details #property_user_dob').val("")
+	   			$('#landlord_search').val("")
+	   			$('#landlord_details #landlord_email').val("")
 			})
 		</script>
 
@@ -84,16 +85,17 @@
 		      <%= user.text_field :phone %>
 		    </div>
 		    <div class="field">
-		      <%= user.label :mobile %>
+		      <%= user.label :mobile, "Alternative Phone" %>
 		      <%= user.text_field :mobile %>
 		    </div>
 		    <div class="field">
 		      <%= user.label :email %>
 		      <%if params[:action] == "new"%>
 			      <%= user.text_field :email %>
+			      <%= user.hidden_field :email, id: "landlord_email" %>
 			  <%else%>
 			  	  <%= user.text_field :email, disabled: "disabled" %>
-			  	  <%= user.hidden_field :email %>
+			  	  <%= user.hidden_field :email, id: "landlord_email" %>
 			  <%end%> 
 		    </div>
 		    <div class="field">
@@ -162,4 +164,7 @@
       background-image: none;
     }
 
+    #landlord_details input, #landlord_details select{
+    	margin-left: 114px
+    }
 </style>

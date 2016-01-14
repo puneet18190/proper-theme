@@ -82,6 +82,7 @@
 #  stage              :string(255)
 #  managed            :boolean
 #  board              :boolean
+#  tenant_id          :integer
 #
 # Indexes
 #

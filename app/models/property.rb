@@ -82,6 +82,7 @@
 #  stage              :string(255)
 #  managed            :boolean
 #  board              :boolean
+#  tenant_id          :integer
 #
 # Indexes
 #
@@ -94,6 +95,7 @@ class Property < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :agent
+  belongs_to :tenant, :foreign_key => 'tenant_id', :class_name => 'User'
   has_many :property_changes
   mount_uploader :image1, Image1Uploader
   mount_uploader :image2, Image2Uploader

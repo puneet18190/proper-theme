@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	autocomplete :user, :email, :full => true
+	autocomplete :user, :tenant, :full => true
 	def profile
 		@user = current_user
 		if current_user.status == "landlord"
@@ -158,8 +159,10 @@ class UsersController < ApplicationController
     def show
     	if params[:term].blank?
 	    	@user = User.find params[:id] 
-	    else
-    		@user = User.where("first_name ilike ?", "%#{params[:term]}%").order('first_name')
+	    elsif params[:id] == "autocomplete_user_tenant"
+    		@user = User.where(status: "tenant").where("first_name ilike ?", "%#{params[:term]}%").order('first_name')
+    	else
+    		@user = User.where(status: "landlord").where("first_name ilike ?", "%#{params[:term]}%").order('first_name')
     	end
     end
 

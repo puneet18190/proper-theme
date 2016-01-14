@@ -47,6 +47,7 @@ class PropertiesController < ApplicationController
       unless current_user.status == "tenant"
         @property = current_user.properties.new
         @user = @property.build_user
+        @tenant = @property.build_tenant
         respond_with(@property)
       end
     end    
@@ -58,7 +59,8 @@ class PropertiesController < ApplicationController
     elsif current_user.status == "landlord" && Property.where(slug: params[:id]).first.user.id != current_user.id
       redirect_to root_url, alert: "You are not authorized."
     elsif current_user.status == "admin"
-      @user = @property.user
+      @user = (@property.user_id == current_user.id) ? @property.build_user : @property.user
+      @tenant = @property.tenant.blank? ? @property.build_tenant : @property.tenant
     end
   end
 
@@ -106,6 +108,20 @@ class PropertiesController < ApplicationController
       params[:property][:user_id] = User.find_by_email(params[:property][:user][:email]).id
       params[:property].delete('user')
     end
+
+    if params[:property][:tenant][:email].blank?
+      params[:property].delete('tenant')
+    elsif User.find_by_email(params[:property][:tenant][:email]).blank?
+      u= User.new(tenant_params)
+      u.skip_confirmation!
+      u.save
+      params[:property][:tenant_id] = u.id
+      params[:property].delete('tenant')
+    else
+      params[:property][:tenant_id] = User.find_by_email(params[:property][:tenant][:email]).id
+      params[:property].delete('tenant')
+    end
+
     @property = Property.new(property_params)
     @property.category.downcase
     @property.name.downcase
@@ -125,7 +141,7 @@ class PropertiesController < ApplicationController
   end
 
   def update
-    begin
+    # begin
     unless params[:property][:epc].nil?
       service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
       bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
@@ -194,6 +210,22 @@ class PropertiesController < ApplicationController
         params[:property][:user_id] = User.find_by_email(params[:property][:user][:email]).id
         params[:property].delete('user')
       end
+
+      if params[:property][:tenant][:email].blank?
+        params[:property][:tenant_id] = nil
+        params[:property].delete('tenant')
+      elsif User.find_by_email(params[:property][:tenant][:email]).blank?
+        u= User.new(tenant_params)
+        u.skip_confirmation!
+        u.save
+        params[:property][:tenant_id] = u.id
+        params[:property].delete('tenant')
+      else
+        User.find_by_email(params[:property][:tenant][:email]).update_attributes(tenant_params)
+        params[:property][:tenant_id] = User.find_by_email(params[:property][:tenant][:email]).id
+        params[:property].delete('tenant')
+      end
+
       @property.update(property_params)
       if @property.let_changed?
         @property.l_date = Time.now
@@ -206,9 +238,9 @@ class PropertiesController < ApplicationController
       end
       redirect_to "/properties"
     end
-    rescue Exception => e
-      redirect_to "/properties", alert: e.message
-    end
+    # rescue Exception => e
+    #   redirect_to "/properties", alert: e.message
+    # end
   end
 
   def destroy
@@ -946,7 +978,7 @@ class PropertiesController < ApplicationController
     end
 
     def property_params
-      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status, :accredited, :licensed, :tenant_criteria, :cp12, :esc, :bond, :deal, :stage, :managed, :board)
+      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status, :accredited, :licensed, :tenant_criteria, :cp12, :esc, :bond, :deal, :stage, :managed, :board, :tenant_id)
     end
 
     def property_changes_params
@@ -959,5 +991,9 @@ class PropertiesController < ApplicationController
 
     def user_params
       params.require(:property).require(:user).permit(:first_name,:last_name, :address1, :address2, :address3,:phone,:postcode,:mobile,:dob,:status,:password,:password_confirmation,:email)
+    end
+
+    def tenant_params
+      params.require(:property).require(:tenant).permit(:first_name,:last_name, :address1, :address2, :address3,:phone,:postcode,:mobile,:dob,:status,:password,:password_confirmation,:email)
     end
 end
