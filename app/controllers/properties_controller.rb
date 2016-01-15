@@ -58,58 +58,67 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    unless params[:property][:epc].nil?
-      service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
-      bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
-      object = bucket.objects.build(params[:property][:epc].original_filename)
-      object.content = params[:property][:epc].tempfile
-      object.save
-      params[:property][:epc] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:epc].original_filename
-    end
-    unless params[:property][:cp12].nil?
-      service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
-      bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
-      object = bucket.objects.build(params[:property][:cp12].original_filename)
-      object.content = params[:property][:cp12].tempfile
-      object.save
-      params[:property][:cp12] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:cp12].original_filename
-    end
-    unless params[:property][:esc].nil?
-      service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
-      bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
-      object = bucket.objects.build(params[:property][:esc].original_filename)
-      object.content = params[:property][:esc].tempfile
-      object.save
-      params[:property][:esc] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:esc].original_filename
-    end
-    @user = current_user
+    params[:property][:epc] = upload_document(params[:property][:epc], "epc", @property, "create") unless params[:property][:epc].nil?
+    params[:property][:ep12] = upload_document(params[:property][:ep12], "cp12", @property, "create") unless params[:property][:ep12].nil?
+    params[:property][:esc] = upload_document(params[:property][:esc], "esc", @property, "create") unless params[:property][:esc].nil?
+    # unless params[:property][:epc].nil?
+    #   service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
+    #   bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
+    #   object = bucket.objects.build(params[:property][:epc].original_filename)
+    #   object.content = params[:property][:epc].tempfile
+    #   object.save
+    #   params[:property][:epc] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:epc].original_filename
+    # end
+    # unless params[:property][:cp12].nil?
+    #   service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
+    #   bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
+    #   object = bucket.objects.build(params[:property][:cp12].original_filename)
+    #   object.content = params[:property][:cp12].tempfile
+    #   object.save
+    #   params[:property][:cp12] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:cp12].original_filename
+    # end
+    # unless params[:property][:esc].nil?
+    #   service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
+    #   bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
+    #   object = bucket.objects.build(params[:property][:esc].original_filename)
+    #   object.content = params[:property][:esc].tempfile
+    #   object.save
+    #   params[:property][:esc] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:esc].original_filename
+    # end
+    # @user = current_user
     params[:property][:price] = params[:property][:price].scan(/\d+/).first.to_i
-    if params[:property][:user][:email].blank?
-      params[:property][:user_id] = current_user.id
-      params[:property].delete('user')
-    elsif User.find_by_email(params[:property][:user][:email]).blank?
-      u= User.new(user_params)
-      u.skip_confirmation!
-      u.save
-      params[:property][:user_id] = u.id
-      params[:property].delete('user')
-    else
-      params[:property][:user_id] = User.find_by_email(params[:property][:user][:email]).id
-      params[:property].delete('user')
-    end
 
-    if params[:property][:tenant][:email].blank?
-      params[:property].delete('tenant')
-    elsif User.find_by_email(params[:property][:tenant][:email]).blank?
-      u= User.new(tenant_params)
-      u.skip_confirmation!
-      u.save
-      params[:property][:tenant_id] = u.id
-      params[:property].delete('tenant')
-    else
-      params[:property][:tenant_id] = User.find_by_email(params[:property][:tenant][:email]).id
-      params[:property].delete('tenant')
-    end
+
+    params[:property][:user_id] = set_landlord_tenant(params[:property][:user][:email], "landlord", "create")
+    params[:property][:tenant_id] = set_landlord_tenant(params[:property][:tenant][:email], "tenant", "create")
+    params[:property].delete('user').delete('tenant')
+
+    # if params[:property][:user][:email].blank?
+    #   params[:property][:user_id] = current_user.id
+    #   params[:property].delete('user')
+    # elsif User.find_by_email(params[:property][:user][:email]).blank?
+    #   u= User.new(user_params)
+    #   u.skip_confirmation!
+    #   u.save
+    #   params[:property][:user_id] = u.id
+    #   params[:property].delete('user')
+    # else
+    #   params[:property][:user_id] = User.find_by_email(params[:property][:user][:email]).id
+    #   params[:property].delete('user')
+    # end
+
+    # if params[:property][:tenant][:email].blank?
+    #   params[:property].delete('tenant')
+    # elsif User.find_by_email(params[:property][:tenant][:email]).blank?
+    #   u= User.new(tenant_params)
+    #   u.skip_confirmation!
+    #   u.save
+    #   params[:property][:tenant_id] = u.id
+    #   params[:property].delete('tenant')
+    # else
+    #   params[:property][:tenant_id] = User.find_by_email(params[:property][:tenant][:email]).id
+    #   params[:property].delete('tenant')
+    # end
 
     @property = Property.new(property_params)
     @property.category.downcase
@@ -130,48 +139,51 @@ class PropertiesController < ApplicationController
   end
 
   def update
-    # begin
-    unless params[:property][:epc].nil?
-      service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
-      bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
-      if !@property.epc.blank?
-        a= @property.epc.split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last
-        object = bucket.objects.find(a)
-        object.destroy if object
-      end
-      object = bucket.objects.build(params[:property][:epc].original_filename)
-      object.content = params[:property][:epc].tempfile
-      object.save
-      params[:property][:epc] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:epc].original_filename
-    end
+    begin
+    params[:property][:epc] = upload_document(params[:property][:epc], "epc", @property, "update") unless params[:property][:epc].nil?
+    params[:property][:ep12] = upload_document(params[:property][:ep12], "cp12", @property, "update") unless params[:property][:ep12].nil?
+    params[:property][:esc] = upload_document(params[:property][:esc], "esc", @property, "update") unless params[:property][:esc].nil?
+    # unless params[:property][:epc].nil?
+    #   service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
+    #   bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
+    #   if !@property.epc.blank?
+    #     a= @property.epc.split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last
+    #     object = bucket.objects.find(a)
+    #     object.destroy if object
+    #   end
+    #   object = bucket.objects.build(params[:property][:epc].original_filename)
+    #   object.content = params[:property][:epc].tempfile
+    #   object.save
+    #   params[:property][:epc] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:epc].original_filename
+    # end
 
-    unless params[:property][:cp12].nil?
-      service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
-      bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
-      if !@property.cp12.blank?
-        a= @property.cp12.split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last
-        object = bucket.objects.find(a)
-        object.destroy if object
-      end
-      object = bucket.objects.build(params[:property][:cp12].original_filename)
-      object.content = params[:property][:cp12].tempfile
-      object.save
-      params[:property][:cp12] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:cp12].original_filename
-    end
+    # unless params[:property][:cp12].nil?
+    #   service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
+    #   bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
+    #   if !@property.cp12.blank?
+    #     a= @property.cp12.split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last
+    #     object = bucket.objects.find(a)
+    #     object.destroy if object
+    #   end
+    #   object = bucket.objects.build(params[:property][:cp12].original_filename)
+    #   object.content = params[:property][:cp12].tempfile
+    #   object.save
+    #   params[:property][:cp12] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:cp12].original_filename
+    # end
 
-    unless params[:property][:esc].nil?
-      service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
-      bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
-      if !@property.esc.blank?
-        a= @property.esc.split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last
-        object = bucket.objects.find(a)
-        object.destroy if object
-      end
-      object = bucket.objects.build(params[:property][:esc].original_filename)
-      object.content = params[:property][:esc].tempfile
-      object.save
-      params[:property][:esc] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:esc].original_filename
-    end
+    # unless params[:property][:esc].nil?
+    #   service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
+    #   bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
+    #   if !@property.esc.blank?
+    #     a= @property.esc.split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last
+    #     object = bucket.objects.find(a)
+    #     object.destroy if object
+    #   end
+    #   object = bucket.objects.build(params[:property][:esc].original_filename)
+    #   object.content = params[:property][:esc].tempfile
+    #   object.save
+    #   params[:property][:esc] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:esc].original_filename
+    # end
 
     if current_user.status == "landlord"
       ['image1','image2','image3','image4','image5','image6','image7','image8','image9','image10'].each do |obj|
@@ -185,35 +197,40 @@ class PropertiesController < ApplicationController
       @property.update_attributes(approval_status: "none")
       redirect_to "/properties", notice: "Once you have finished editing your property, please submit it for approval."
     else
-      if params[:property][:user][:email].blank?
-        params[:property][:user_id] = current_user.id
-        params[:property].delete('user')
-      elsif User.find_by_email(params[:property][:user][:email]).blank?
-        u= User.new(user_params)
-        u.skip_confirmation!
-        u.save
-        params[:property][:user_id] = u.id
-        params[:property].delete('user')
-      else
-        User.find_by_email(params[:property][:user][:email]).update_attributes(user_params)
-        params[:property][:user_id] = User.find_by_email(params[:property][:user][:email]).id
-        params[:property].delete('user')
-      end
 
-      if params[:property][:tenant][:email].blank?
-        params[:property][:tenant_id] = nil
-        params[:property].delete('tenant')
-      elsif User.find_by_email(params[:property][:tenant][:email]).blank?
-        u= User.new(tenant_params)
-        u.skip_confirmation!
-        u.save
-        params[:property][:tenant_id] = u.id
-        params[:property].delete('tenant')
-      else
-        User.find_by_email(params[:property][:tenant][:email]).update_attributes(tenant_params)
-        params[:property][:tenant_id] = User.find_by_email(params[:property][:tenant][:email]).id
-        params[:property].delete('tenant')
-      end
+      params[:property][:user_id] = set_landlord_tenant(params[:property][:user][:email], "landlord", "update")
+      params[:property][:tenant_id] = set_landlord_tenant(params[:property][:tenant][:email], "tenant", "update")
+      params[:property].delete('user').delete('tenant')
+
+      # if params[:property][:user][:email].blank?
+      #   params[:property][:user_id] = current_user.id
+      #   params[:property].delete('user')
+      # elsif User.find_by_email(params[:property][:user][:email]).blank?
+      #   u= User.new(user_params)
+      #   u.skip_confirmation!
+      #   u.save
+      #   params[:property][:user_id] = u.id
+      #   params[:property].delete('user')
+      # else
+      #   User.find_by_email(params[:property][:user][:email]).update_attributes(user_params)
+      #   params[:property][:user_id] = User.find_by_email(params[:property][:user][:email]).id
+      #   params[:property].delete('user')
+      # end
+
+      # if params[:property][:tenant][:email].blank?
+      #   params[:property][:tenant_id] = nil
+      #   params[:property].delete('tenant')
+      # elsif User.find_by_email(params[:property][:tenant][:email]).blank?
+      #   u= User.new(tenant_params)
+      #   u.skip_confirmation!
+      #   u.save
+      #   params[:property][:tenant_id] = u.id
+      #   params[:property].delete('tenant')
+      # else
+      #   User.find_by_email(params[:property][:tenant][:email]).update_attributes(tenant_params)
+      #   params[:property][:tenant_id] = User.find_by_email(params[:property][:tenant][:email]).id
+      #   params[:property].delete('tenant')
+      # end
 
       @property.update(property_params)
       if @property.let_changed?
@@ -227,9 +244,9 @@ class PropertiesController < ApplicationController
       end
       redirect_to "/properties"
     end
-    # rescue Exception => e
-    #   redirect_to "/properties", alert: e.message
-    # end
+    rescue Exception => e
+      redirect_to "/properties", alert: e.message
+    end
   end
 
   def destroy
@@ -959,6 +976,34 @@ class PropertiesController < ApplicationController
 
   def properties_buyer
     @properties = Property.all
+  end
+
+  def upload_document(file, file_name, property, action)
+    service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
+    bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
+    if action=="update" && !property.send(file_name).blank?
+      a= property.send(file_name).split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last
+      object = bucket.objects.find(a)
+      object.destroy if object
+    end
+    object = bucket.objects.build(file.original_filename)
+    object.content = file.tempfile
+    object.save
+    return "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+file.original_filename
+  end
+
+  def set_landlord_tenant(email, user, action)
+    if email.blank?
+      return (user=="landlord") ? current_user.id : nil
+    elsif User.find_by_email(email).blank?
+      u= User.new((user=="landlord") ? user_params : tenant_params)
+      u.skip_confirmation!
+      u.save
+      return u.id
+    else
+      User.find_by_email(email).update_attributes((user=="landlord") ? user_params : tenant_params) if action=="update"
+      return User.find_by_email(email).id
+    end
   end
 
   private
