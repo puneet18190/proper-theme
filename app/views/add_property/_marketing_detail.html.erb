@@ -89,3 +89,26 @@
 		width: 220px
 	}
 </style>
+
+<script type="text/javascript">
+  $("#property_stage").on('change', function() {
+    var stage = $("#property_stage option:selected").text()
+    if(stage == "On Hold"){
+      $("#tenant_tab").show()
+    }else{
+      $("#tenant_tab").hide()
+      $('#tenant_details #property_user_email').attr('disabled', false).attr('value', '')
+      $('#tenant_details #property_user_first_name').val("")
+      $('#tenant_details #property_user_last_name').val("")
+      $('#tenant_details #property_user_address1').val("")
+      $('#tenant_details #property_user_address2').val("")
+      $('#tenant_details #property_user_address3').val("")
+      $('#tenant_details #property_user_postcode').val("")
+      $('#tenant_details #property_user_phone').val("")
+      $('#tenant_details #property_user_mobile').val("")
+      $('#tenant_details #property_user_dob').val("")
+      $('#tenant_search').val("")
+      $('#tenant_details #tenant_email').val("")
+    }
+  })
+</script>

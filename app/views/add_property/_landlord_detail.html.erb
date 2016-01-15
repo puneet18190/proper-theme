@@ -28,6 +28,7 @@
 		   			$('#landlord_details #property_user_email').val(res.user.email).attr('disabled', true)
 		   			$('#landlord_details #property_user_dob').val(res.user.dob)
 		   			$('#landlord_details #landlord_email').val(res.user.email)
+		   			$('#landlord_details #property_user_plan').val(res.user.plan).attr('disabled',true)
 		   			console.log("success");
 		   		})
 		   		.fail(function() {
@@ -51,6 +52,7 @@
 	   			$('#landlord_details #property_user_dob').val("")
 	   			$('#landlord_search').val("")
 	   			$('#landlord_details #landlord_email').val("")
+	   			$('#landlord_details #property_user_plan').val('basic').attr('disabled',false)
 			})
 		</script>
 
@@ -107,6 +109,13 @@
 			    <%= user.hidden_field :password_confirmation, value: "12345678"%>
 			    <%= user.hidden_field :status, value: "landlord"%>
 		    <%end%>
+
+		    <h3><b>Services</b></h3>
+		    <div class="field">
+		      <%= user.label :plan %>
+		      <%= user.select :plan, [['Basic', 'basic'], ['Pro', 'pro'],['Pro Plus', 'pro_plus'], ['Basic Plus', 'basic_plus']] %>
+		    </div>
+		    
 		<%end%>
 	</div>
 </div>
