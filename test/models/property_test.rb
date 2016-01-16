@@ -83,6 +83,8 @@
 #  managed            :boolean
 #  board              :boolean
 #  tenant_id          :integer
+#  let_agreed_date    :datetime
+#  sold_date          :datetime
 #
 # Indexes
 #

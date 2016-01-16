@@ -38,11 +38,11 @@
           <tr class="<%= 'bg_color' if property.user.status == 'landlord'%>">
             
             <td><%= data.name %></td>
-            <td></td>
+            <td><%= data.user.name %></td>
             <td><%= "#{data.address1} #{data.address2} #{data.address3} #{data.town} #{data.postcode} #{data.postcode1}" %></td>
             
-            <td></td>
-            <td></td>
+            <td><%= data.user.phone %></td>
+            <td><%= "#{data.address1} #{data.address2} #{data.address3} #{data.town} #{data.postcode} #{data.postcode1}" %></td>
             
             <td>
               <%= link_to 'Show', "/properties_detail/"+property.slug %>

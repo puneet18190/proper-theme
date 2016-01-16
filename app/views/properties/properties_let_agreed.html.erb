@@ -53,7 +53,7 @@
             <td></td>
             <td><%= (property.agent.nil? || property.agent.name=="Landlord") ? "" : "#{property.agent.name}" %></td>
             <td><%= property.user.plan.humanize %></td>
-            <td></td>
+            <td><%= data.let_agreed_date.strftime("%d-%m-%Y") unless data.let_agreed_date.blank? %></td>
             <td>
               <%= link_to 'Show', "/properties_detail/"+property.slug %>
               <%if property.approval_status=="waiting" && !property.property_changes.empty?%>

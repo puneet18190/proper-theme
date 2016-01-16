@@ -31,6 +31,7 @@
           <% if current_user.status == "admin" %>
             <th>Landlord</th>
             <th>Agent</th>
+            <th>Tenant</th>
             <th>Plan</th>
           <%end%>
           <th>Action</th>
@@ -71,6 +72,7 @@
             <% if current_user.status == "admin" %>
               <td><a href=<%="/users/#{property.user.id}"%>><%= "#{property.user.first_name} #{property.user.last_name}" %></a></td>
               <td><%= (property.agent.nil? || property.agent.name=="Landlord") ? "" : "#{property.agent.name}" %></td>
+              <td><%=property.tenant.first_name unless property.tenant.blank?%></td>
               <td><%= property.user.plan.humanize %></td>
             <%end%>        
             
@@ -145,7 +147,7 @@
       <% if current_user.status == "landlord" %>
         "order": [[ 8, "asc" ]]
       <%else%>
-        "order": [[ 13, "asc" ]]
+        "order": [[ 14, "asc" ]]
       <%end%> 
     })
 

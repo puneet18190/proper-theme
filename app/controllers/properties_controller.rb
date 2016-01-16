@@ -12,8 +12,8 @@ class PropertiesController < ApplicationController
     if current_user.status == "admin"
       @properties = []
       @data = Property.where.not("approval_status = ?", "none")
-      @properties << @data.where.not("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC").includes(:user).includes(:agent)
-      @properties << @data.where("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC").includes(:user).includes(:agent)
+      @properties << @data.where.not("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC").includes(:user).includes(:agent).includes(:tenant)
+      @properties << @data.where("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC").includes(:user).includes(:agent).includes(:tenant)
       @properties = @properties.flatten.uniq
     elsif current_user.status == "landlord"
       @properties = Property.where(:user_id => current_user.id).order("created_at DESC").includes(:property_changes).includes(:user)
@@ -232,6 +232,8 @@ class PropertiesController < ApplicationController
       #   params[:property].delete('tenant')
       # end
 
+      params[:property][:let_agreed_date] = DateTime.now if @property.status=="Available" && params[:property][:status] == "Let Agreed"
+      params[:property][:sold_date] = DateTime.now if @property.stage!="Complete" && params[:property][:stage] == "Complete"
       @property.update(property_params)
       if @property.let_changed?
         @property.l_date = Time.now
@@ -959,7 +961,7 @@ class PropertiesController < ApplicationController
   end
 
   def properties_managed
-    @properties = Property.where("category = ? AND managed = ?", "Rent", true).includes(:user).includes(:agent)
+    @properties = Property.where("category = ? AND managed = ?", "Rent", true).includes(:user).includes(:agent).includes(:tenant)
   end
 
   def properties_sale
@@ -967,15 +969,15 @@ class PropertiesController < ApplicationController
   end
 
   def properties_sold
-    @properties = Property.where("category = ?", "Sale").where("stage = ? OR status = ? OR status = ?", "SSTC", "SSTC", "SSTCM").includes(:user).includes(:agent)
+    @properties = Property.where("category = ?", "Sale").where("stage = ? OR status = ? OR status = ?", "SSTC", "SSTC", "SSTCM").includes(:user).includes(:agent).includes(:tenant)
   end
 
   def properties_seller
-    @properties = Property.all
+    @properties = Property.all.includes(:user)
   end
 
   def properties_buyer
-    @properties = Property.all
+    @properties = Property.all.includes(:user)
   end
 
   def upload_document(file, file_name, property, action)
@@ -1012,7 +1014,7 @@ class PropertiesController < ApplicationController
     end
 
     def property_params
-      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status, :accredited, :licensed, :tenant_criteria, :cp12, :esc, :bond, :deal, :stage, :managed, :board, :tenant_id)
+      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status, :accredited, :licensed, :tenant_criteria, :cp12, :esc, :bond, :deal, :stage, :managed, :board, :tenant_id, :let_agreed_date, :sold_date)
     end
 
     def property_changes_params

@@ -47,10 +47,10 @@
             <td><%= "#{data.address1} #{data.address2} #{data.address3} #{data.town} #{data.postcode} #{data.postcode1}" %></td>
             
             <td>£<%= data.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></td>
-            <td></td>
+            <td><%= data.qualifier %></td>
             <td><%= data.beds %></td>
             <td><%= data.bath %></td>
-            <td></td>
+            <td><%= data.user.first_name %></td>
             
             <td><%= (property.agent.nil? || property.agent.name=="Landlord") ? "" : "#{property.agent.name}" %></td>
             
