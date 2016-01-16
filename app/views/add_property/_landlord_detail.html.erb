@@ -1,11 +1,8 @@
 <div id="landlord_details" class="tab-pane fade">
 	<div style="float:left;margin:10px;width:30%">
-		<%#= form_tag('/search_old_user', :method => "get", id: "search-form") do %>
 
 		<%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Search Landlord", type: "search", data: {autocomplete: users_autocomplete_user_email_path }, id: 'landlord_search', style: "margin-left:0px !important;width:70%" %>  
 		<div class="btn btn-primary" id="landlord_reset" style="float:right">Reset</div>
-		<%#= submit_tag "Search" %>
-		<%#end%>
 
 		<script type="text/javascript" charset="utf-8">
 			$('#landlord_search').bind('railsAutocomplete.select', function(event, data){
@@ -29,7 +26,13 @@
 		   			$('#landlord_details #property_user_dob').val(res.user.dob)
 		   			$('#landlord_details #landlord_email').val(res.user.email)
 		   			$('#landlord_details #property_user_plan').val(res.user.plan).attr('disabled',true)
+		   			if (res.user.avatar.thumb.url == "noimage.gif"){
+		   				$('#landlord_details .user_avatar').attr('src', "/assets/noimage.gif")
+		   			}else{
+		   				$('#landlord_details .user_avatar').attr('src', res.user.avatar.thumb.url)	
+		   			}
 		   			console.log("success");
+		   			console.log(res.user.avatar)
 		   		})
 		   		.fail(function() {
 		   			console.log("error");
@@ -53,11 +56,13 @@
 	   			$('#landlord_search').val("")
 	   			$('#landlord_details #landlord_email').val("")
 	   			$('#landlord_details #property_user_plan').val('basic').attr('disabled',false)
+	   			$('#landlord_details .user_avatar').attr('src', "/assets/noimage.gif")
 			})
 		</script>
 
 	    <h3 class=""><b>Details</b></h3>
 	    <%= f.fields_for(@user) do |user| %>
+	    	
 		    <div class="field">
 		      <%= user.label :first_name %>
 		      <%= user.text_field :first_name %>
@@ -117,6 +122,15 @@
 		    </div>
 		    
 		<%end%>
+	</div>
+	<div style="float:right;margin:10px;width:50%">
+		<%= f.fields_for(@user) do |user| %>
+            <h4>Photo Upload</h4>
+            <div class="row-fluid">
+				<%= user.file_field :avatar, style: "" %>
+				<%= image_tag @user.avatar.url(:thumb), style: "width:200px;height:200px", class: "user_avatar" %>
+            </div>
+	    <%end%>
 	</div>
 </div>
 

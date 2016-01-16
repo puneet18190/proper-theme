@@ -1024,10 +1024,10 @@ class PropertiesController < ApplicationController
     end
 
     def user_params
-      params.require(:property).require(:user).permit(:first_name,:last_name, :address1, :address2, :address3,:phone,:postcode,:mobile,:dob,:status,:password,:password_confirmation,:email)
+      params.require(:property).require(:user).permit(:first_name,:last_name, :address1, :address2, :address3,:phone,:postcode,:mobile,:dob,:status,:password,:password_confirmation,:email, :avatar)
     end
 
     def tenant_params
-      params.require(:property).require(:tenant).permit(:first_name,:last_name, :address1, :address2, :address3,:phone,:postcode,:mobile,:dob,:status,:password,:password_confirmation,:email)
+      params.require(:property).require(:tenant).permit(:first_name,:last_name, :address1, :address2, :address3,:phone,:postcode,:mobile,:dob,:status,:password,:password_confirmation,:email, :tenant_status, :avatar)
     end
 end

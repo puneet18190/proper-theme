@@ -25,6 +25,7 @@
 		   			$('#tenant_details #property_user_email').val(res.user.email).attr('disabled', true)
 		   			$('#tenant_details #property_user_dob').val(res.user.dob)
 		   			$('#tenant_details #tenant_email').val(res.user.email)
+		   			$('#tenant_details #property_user_tenant_status').val(res.user.tenant_status)
 		   			console.log("success");
 		   		})
 		   		.fail(function() {
@@ -104,6 +105,10 @@
 			    <%= tenant.hidden_field :password_confirmation, value: "12345678", name: "property[tenant][password_confirmation]" %>
 			    <%= tenant.hidden_field :status, value: "tenant", name: "property[tenant][status]" %>
 		    <%end%>
+		    <div class="field">
+		      <%= tenant.label :tenant_status %>
+		      <%= tenant.select :tenant_status, [ 'Prospective', 'Awaiting Vetting', 'Subject to Tenancy', 'In Tenancy','Complete', 'Failed' ], {:include_blank => "Select"}, {:name => "property[tenant][tenant_status]"} %>
+		    </div>
 		<%end%>
 	</div>
 </div>

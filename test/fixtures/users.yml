@@ -60,6 +60,7 @@
 #  avatar                 :string(255)
 #  additional_info        :text
 #  supporting_doc         :string(255)
+#  tenant_status          :string(255)
 #
 # Indexes
 #

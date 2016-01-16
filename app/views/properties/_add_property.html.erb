@@ -12,11 +12,11 @@
 <div id="content">
   <div class="container" style="margin:0;width:100%">
     <div class="panel" style="padding-bottom:0">
-      <ul class="nav nav-tabs" >
+      <ul class="nav nav-tabs" style="margin:30px; margin-bottom:0;border-bottom:none">
         <li class="active"><a href="#property_details">Property Details</a></li>
         <li><a href="#marketing_details">Marketing Details</a></li>
         <li><a href="#landlord_details">Landlord Details</a></li>
-        <li><a href="#tenant_details">Tenant Details</a></li>
+        <li id="tenant_tab"><a href="#tenant_details">Tenant Details</a></li>
       </ul>
       <div class="clearfix"></div>
       <div class="payment">
@@ -31,7 +31,7 @@
               </ul>
             </div>
           <% end %>
-          <div class="proper-form-step-area" style="">
+          <div class="proper-form-step-area" style="padding-top:0">
             <div class="proper-singup" style="max-width:100%;margin:0;padding:0;height:100%">
               <div class="tab-content" style="background: none !important;border:none !important">
               <%= render :partial => "add_property/property_detail", :locals=>{:f=>f} %>
