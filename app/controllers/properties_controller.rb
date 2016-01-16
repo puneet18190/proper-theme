@@ -61,64 +61,12 @@ class PropertiesController < ApplicationController
     params[:property][:epc] = upload_document(params[:property][:epc], "epc", @property, "create") unless params[:property][:epc].nil?
     params[:property][:ep12] = upload_document(params[:property][:ep12], "cp12", @property, "create") unless params[:property][:ep12].nil?
     params[:property][:esc] = upload_document(params[:property][:esc], "esc", @property, "create") unless params[:property][:esc].nil?
-    # unless params[:property][:epc].nil?
-    #   service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
-    #   bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
-    #   object = bucket.objects.build(params[:property][:epc].original_filename)
-    #   object.content = params[:property][:epc].tempfile
-    #   object.save
-    #   params[:property][:epc] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:epc].original_filename
-    # end
-    # unless params[:property][:cp12].nil?
-    #   service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
-    #   bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
-    #   object = bucket.objects.build(params[:property][:cp12].original_filename)
-    #   object.content = params[:property][:cp12].tempfile
-    #   object.save
-    #   params[:property][:cp12] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:cp12].original_filename
-    # end
-    # unless params[:property][:esc].nil?
-    #   service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
-    #   bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
-    #   object = bucket.objects.build(params[:property][:esc].original_filename)
-    #   object.content = params[:property][:esc].tempfile
-    #   object.save
-    #   params[:property][:esc] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:esc].original_filename
-    # end
-    # @user = current_user
-    params[:property][:price] = params[:property][:price].scan(/\d+/).first.to_i
 
+    params[:property][:price] = params[:property][:price].scan(/\d+/).first.to_i
 
     params[:property][:user_id] = set_landlord_tenant(params[:property][:user][:email], "landlord", "create")
     params[:property][:tenant_id] = set_landlord_tenant(params[:property][:tenant][:email], "tenant", "create")
     params[:property].delete('user').delete('tenant')
-
-    # if params[:property][:user][:email].blank?
-    #   params[:property][:user_id] = current_user.id
-    #   params[:property].delete('user')
-    # elsif User.find_by_email(params[:property][:user][:email]).blank?
-    #   u= User.new(user_params)
-    #   u.skip_confirmation!
-    #   u.save
-    #   params[:property][:user_id] = u.id
-    #   params[:property].delete('user')
-    # else
-    #   params[:property][:user_id] = User.find_by_email(params[:property][:user][:email]).id
-    #   params[:property].delete('user')
-    # end
-
-    # if params[:property][:tenant][:email].blank?
-    #   params[:property].delete('tenant')
-    # elsif User.find_by_email(params[:property][:tenant][:email]).blank?
-    #   u= User.new(tenant_params)
-    #   u.skip_confirmation!
-    #   u.save
-    #   params[:property][:tenant_id] = u.id
-    #   params[:property].delete('tenant')
-    # else
-    #   params[:property][:tenant_id] = User.find_by_email(params[:property][:tenant][:email]).id
-    #   params[:property].delete('tenant')
-    # end
 
     @property = Property.new(property_params)
     @property.category.downcase
@@ -143,47 +91,6 @@ class PropertiesController < ApplicationController
     params[:property][:epc] = upload_document(params[:property][:epc], "epc", @property, "update") unless params[:property][:epc].nil?
     params[:property][:ep12] = upload_document(params[:property][:ep12], "cp12", @property, "update") unless params[:property][:ep12].nil?
     params[:property][:esc] = upload_document(params[:property][:esc], "esc", @property, "update") unless params[:property][:esc].nil?
-    # unless params[:property][:epc].nil?
-    #   service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
-    #   bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
-    #   if !@property.epc.blank?
-    #     a= @property.epc.split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last
-    #     object = bucket.objects.find(a)
-    #     object.destroy if object
-    #   end
-    #   object = bucket.objects.build(params[:property][:epc].original_filename)
-    #   object.content = params[:property][:epc].tempfile
-    #   object.save
-    #   params[:property][:epc] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:epc].original_filename
-    # end
-
-    # unless params[:property][:cp12].nil?
-    #   service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
-    #   bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
-    #   if !@property.cp12.blank?
-    #     a= @property.cp12.split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last
-    #     object = bucket.objects.find(a)
-    #     object.destroy if object
-    #   end
-    #   object = bucket.objects.build(params[:property][:cp12].original_filename)
-    #   object.content = params[:property][:cp12].tempfile
-    #   object.save
-    #   params[:property][:cp12] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:cp12].original_filename
-    # end
-
-    # unless params[:property][:esc].nil?
-    #   service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
-    #   bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
-    #   if !@property.esc.blank?
-    #     a= @property.esc.split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last
-    #     object = bucket.objects.find(a)
-    #     object.destroy if object
-    #   end
-    #   object = bucket.objects.build(params[:property][:esc].original_filename)
-    #   object.content = params[:property][:esc].tempfile
-    #   object.save
-    #   params[:property][:esc] = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+params[:property][:esc].original_filename
-    # end
 
     if current_user.status == "landlord"
       ['image1','image2','image3','image4','image5','image6','image7','image8','image9','image10'].each do |obj|
@@ -201,36 +108,6 @@ class PropertiesController < ApplicationController
       params[:property][:user_id] = set_landlord_tenant(params[:property][:user][:email], "landlord", "update")
       params[:property][:tenant_id] = set_landlord_tenant(params[:property][:tenant][:email], "tenant", "update")
       params[:property].delete('user').delete('tenant')
-
-      # if params[:property][:user][:email].blank?
-      #   params[:property][:user_id] = current_user.id
-      #   params[:property].delete('user')
-      # elsif User.find_by_email(params[:property][:user][:email]).blank?
-      #   u= User.new(user_params)
-      #   u.skip_confirmation!
-      #   u.save
-      #   params[:property][:user_id] = u.id
-      #   params[:property].delete('user')
-      # else
-      #   User.find_by_email(params[:property][:user][:email]).update_attributes(user_params)
-      #   params[:property][:user_id] = User.find_by_email(params[:property][:user][:email]).id
-      #   params[:property].delete('user')
-      # end
-
-      # if params[:property][:tenant][:email].blank?
-      #   params[:property][:tenant_id] = nil
-      #   params[:property].delete('tenant')
-      # elsif User.find_by_email(params[:property][:tenant][:email]).blank?
-      #   u= User.new(tenant_params)
-      #   u.skip_confirmation!
-      #   u.save
-      #   params[:property][:tenant_id] = u.id
-      #   params[:property].delete('tenant')
-      # else
-      #   User.find_by_email(params[:property][:tenant][:email]).update_attributes(tenant_params)
-      #   params[:property][:tenant_id] = User.find_by_email(params[:property][:tenant][:email]).id
-      #   params[:property].delete('tenant')
-      # end
 
       params[:property][:let_agreed_date] = DateTime.now if @property.status=="Available" && params[:property][:status] == "Let Agreed"
       params[:property][:sold_date] = DateTime.now if @property.stage!="Complete" && params[:property][:stage] == "Complete"
@@ -284,29 +161,6 @@ class PropertiesController < ApplicationController
 
     @user = current_user.status == "admin" ? User.find(params[:q][:user_id].to_i) : current_user
     @all_property = Property.where({visibility: true, approval_status: "approved"})
-    # @search = Property.search(params[:q])
-    # @properties = @search.result
-    # @properties = Property.where({visibility: true, approve: true})
-    # if params[:q][:postcode_cont] != ""
-    #   address2 = @properties.search(:address2_cont => params[:q][:postcode_cont])
-    #   unless address2.result.empty?
-    #     params[:q][:address2_cont] = params[:q][:postcode_cont]
-    #   end
-
-    #   address3 = @properties.search(:address3_cont => params[:q][:postcode_cont])
-    #   unless address3.result.empty?
-    #     params[:q][:address3_cont] = params[:q][:postcode_cont]
-    #   end
-
-
-    #   postcode = @properties.search(:postcode_cont => params[:q][:postcode_cont])
-    #   if postcode.result.empty?
-    #     params[:q].delete("postcode_cont")
-    #   end
-    # end
-
-    # @search = @properties.search(params[:q])
-    # @tasks = @search.result
 
     if params[:q][:beds_eq] == "Not Specified"
       params[:q].delete("beds_eq")
@@ -322,10 +176,6 @@ class PropertiesController < ApplicationController
         ids << o.p_id.to_s
       end
       @properties = @all_property.where(property_type: ids)
-      # ids.each do |o|
-      #   data = @all_property.where(property_type: o)
-      #   @properties << data unless data.empty?
-      # end
       @properties = @all_property if @properties.blank?
       @search = @properties.search(params[:q])
     end
@@ -334,14 +184,6 @@ class PropertiesController < ApplicationController
     @tasks = @properties.uniq
 
     @request = request.host_with_port
-    # @abc = params[:q]
-    # name = @abc[:name_cont]
-    # category = @abc[:category_cont]
-    # price_less_than = @abc[:price_lteq]
-    # price_greater_than = @abc[:price_gteq]
-    # beds = @abc[:beds_eq]
-    # bath = @abc[:bath_eq]
-    # @user.search = "#{name},#{category},#{price_less_than},#{price_greater_than},#{beds},#{bath}"
     @user.search = "#{category}|#{type}|#{price_less_than}|#{price_greater_than}|#{beds}|#{location}"
     @user.search.downcase
     @user.save
@@ -351,7 +193,6 @@ class PropertiesController < ApplicationController
     UserMailer.tenant_result_property(@user, @properties, @request).deliver unless request.referer.split('/').last == "edit"
   end
 
-
   def approve
     @user = current_user
     @property = Property.find(params[:id])
@@ -359,7 +200,6 @@ class PropertiesController < ApplicationController
     @status = params[:status]
     @property_id  = params[:id]
     if params[:status] == "approved"
-      # @property.update_attributes(:approval_status=>"approved")
       if !@property.property_changes.empty? 
         ['name','address1','address2','address3','postcode','postcode1','property_type','beds','bath','parking_status','car','ensuite','let_type_id','let_furn_id','gas_ch','garden','dg','pets','feature1','feature2','category','status','price','tag_line','summary','short_description','description','created_at','updated_at','town','image1','image2','image3','image4','image5','image6','image7','image8','image9','image10','epc'].each do |obj|
           @property.update_attributes(obj.to_sym => changes.send(obj)) if @property.send(obj) != changes.send(obj)
@@ -538,7 +378,6 @@ class PropertiesController < ApplicationController
     @advertisements = Advertisement.all
     @total = @advertisements.count
     @half = @total/2
-    # @count_lt = @total < 3 ? (3-@total) : 0
     (0..(@half-1)).each do |rec|
       @advertisements_t << @advertisements[rec]
     end
@@ -551,22 +390,15 @@ class PropertiesController < ApplicationController
     @ad = []
     @ad = Advertisement.all
     @section = (@ad.count)/5
-    # @section.times do |section|
-    #   (1..5).each do |count|   (@ad.count)+1
-    #     section = section * 5
-    #     num = section + count
-    #     @ad[num]
-    #   end
-    # end
   end
 
   def pdf_handle
     respond_to do |format|
       format.pdf do
-      @properties = Property.find(params[:id])
-      pdf = ReportPdf.new(@properties)
-      send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
-    end
+        @properties = Property.find(params[:id])
+        pdf = ReportPdf.new(@properties)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
     end
   end
 
@@ -579,13 +411,6 @@ class PropertiesController < ApplicationController
                page_size: "A3"      
       end
     end
-    # respond_to do |format|
-    #   format.pdf do
-    #     @properties = Property.find(params[:id])
-    #     pdf = Broucher.new(@properties)
-    #     send_data pdf.render, filename: 'broucher.pdf', type: 'application/pdf'
-    #   end
-    # end
   end
 
   def brochure1
@@ -611,7 +436,7 @@ class PropertiesController < ApplicationController
     end
   end
 
-   def approve_property
+  def approve_property
     @property = Property.find(params[:id])
     @status = params[:status]
     @property_id = params[:id]
