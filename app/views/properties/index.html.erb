@@ -54,7 +54,7 @@
             <% data = property%>
           <%end%>
           
-          <tr class="<%= 'bg_color' if property.user.status == 'landlord'%>" style="<%= 'color:red' if (property.status == "SSTC" || property.status == "SSTCM" || property.status == "Let Agreed")%>">
+          <tr class="<%= property_user(property) %>" style="<%= 'color:red' if (property.status == "SSTC" || property.status == "SSTCM" || property.status == "Let Agreed")%>">
             
             <td><%= data.name %></td>
             

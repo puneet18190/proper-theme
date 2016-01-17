@@ -78,8 +78,9 @@ class PropertiesController < ApplicationController
     @property.longitude = @a.lng
     @property.agent_id = Agent.where(name: "Landlord").first.id if current_user.status == "landlord"
     @property.save
-    @property.update_attributes(:payment=>true) if current_user.status == "admin"
+    @property.update_attributes(:payment=>true, :property_create_user => "admin") if current_user.status == "admin"
     if current_user.status == "landlord"
+      @property.update_attributes(:property_create_user => "landlord")
       redirect_to "/properties", notice: "Once you have finished editing your property, please submit it for approval."
     else
       redirect_to "/properties"

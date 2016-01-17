@@ -112,3 +112,7 @@ module ApplicationHelper
     end
   end 
 end
+
+def property_user(property)
+  property.property_create_user=="admin" ? "shaded-purple" : "shaded-blue"
+end
