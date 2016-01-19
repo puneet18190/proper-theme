@@ -33,7 +33,7 @@
         <%if params[:action]=="edit" && !@property.image1.file.nil?%>
         <span style="margin-left:132px"><%= @property.image1.file.filename %></span><%end%>
       </label>
-      <%if params[:action]=="edit" %>
+      <%if params[:action]=="edit" && !@property.image1.file.nil? %>
         <%= f.file_field :image1,:style=>"width:95px;line-height:0;" %>
       <%else%>
         <%= f.file_field :image1,:style=>"line-height:0;" %>
@@ -55,7 +55,7 @@
 
     <label style="margin:0">EPC</label>
     
-    <%if params[:action]=="edit" %>
+    <%if params[:action]=="edit"  && !@property.epc.nil?%>
       <%= f.file_field :epc,:style=>"width:95px;line-height:0;" %>
     <%else%>
       <%= f.file_field :epc,:style=>"line-height:0;" %>
@@ -67,7 +67,7 @@
 
     <label style="margin:0">CP12</label>
     
-    <%if params[:action]=="edit" %>
+    <%if params[:action]=="edit" && !@property.cp12.nil? %>
       <%= f.file_field :cp12,:style=>"width:95px;line-height:0;" %>
     <%else%>
       <%= f.file_field :cp12,:style=>"line-height:0;" %>
@@ -79,7 +79,7 @@
 
     <label style="margin:0">ESC</label>
     
-    <%if params[:action]=="edit" %>
+    <%if params[:action]=="edit" && !@property.esc.nil?%>
       <%= f.file_field :esc,:style=>"width:95px;line-height:0;" %>
     <%else%>
       <%= f.file_field :esc,:style=>"line-height:0;" %>
