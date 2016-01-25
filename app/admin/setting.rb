@@ -5,25 +5,25 @@ ActiveAdmin.register Setting do
       f.input :admin_image, :as => :file
       f.input :admin_text
       f.input :property_description, as: :html_editor
-      f.input :newest_screen_text
+      f.input :newest_screen_text, :as => :text
       f.input :newest_screen
-      f.input :oldest_screen_text
+      f.input :oldest_screen_text, :as => :text
       f.input :oldest_screen
-      f.input :featured_screen_text
+      f.input :featured_screen_text, :as => :text
       f.input :featured_screen
-      f.input :random_screen_text
+      f.input :random_screen_text, :as => :text
       f.input :random_screen
-      f.input :cycle_screen_text
+      f.input :cycle_screen_text, :as => :text
       f.input :cycle_screen
-      f.input :newest_inside_text
+      f.input :newest_inside_text, :as => :text
       f.input :newest_inside
-      f.input :oldest_inside_text
+      f.input :oldest_inside_text, :as => :text
       f.input :oldest_inside
-      f.input :featured_inside_text
+      f.input :featured_inside_text, :as => :text
       f.input :featured_inside
-      f.input :random_inside_text
+      f.input :random_inside_text, :as => :text
       f.input :random_inside
-      f.input :cycle_inside_text
+      f.input :cycle_inside_text, :as => :text
       f.input :cycle_inside
     end
     f.actions
