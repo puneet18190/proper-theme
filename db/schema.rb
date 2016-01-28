@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151010141034) do
+ActiveRecord::Schema.define(version: 20160128120219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -273,8 +273,8 @@ ActiveRecord::Schema.define(version: 20151010141034) do
     t.date     "l_date"
     t.date     "r_date"
     t.integer  "user_id"
-    t.boolean  "approve",            default: false
-    t.boolean  "payment",            default: false
+    t.boolean  "approve",              default: false
+    t.boolean  "payment",              default: false
     t.string   "slug"
     t.datetime "validity"
     t.string   "coordinates"
@@ -286,18 +286,19 @@ ActiveRecord::Schema.define(version: 20151010141034) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "radius"
-    t.string   "approval_status",    default: "false"
+    t.string   "approval_status",      default: "false"
     t.text     "short_description"
-    t.string   "gas_ch",             default: "No"
-    t.boolean  "glazing",            default: false
-    t.string   "parking_status",     default: "none"
+    t.string   "gas_ch",               default: "No"
+    t.boolean  "glazing",              default: false
+    t.string   "parking_status",       default: "none"
     t.integer  "car"
     t.text     "tag_line"
-    t.string   "garden",             default: "No"
-    t.string   "dg",                 default: false
-    t.boolean  "seal_approved",      default: false
-    t.string   "pets",               default: "No"
-    t.string   "ensuite",            default: "No"
+    t.string   "garden",               default: "No"
+    t.string   "dg",                   default: false
+    t.boolean  "seal_approved",        default: false
+    t.string   "property_type"
+    t.string   "pets",                 default: "No"
+    t.string   "ensuite",              default: "No"
     t.string   "town"
     t.string   "status"
     t.string   "postcode1"
@@ -306,13 +307,26 @@ ActiveRecord::Schema.define(version: 20151010141034) do
     t.string   "furnished"
     t.string   "feature1"
     t.string   "feature2"
-    t.integer  "property_type"
-    t.string   "let_type_id",        default: "Not Specified"
-    t.string   "let_furn_id",        default: "Not Specified"
+    t.string   "let_type_id",          default: "Not Specified"
+    t.string   "let_furn_id",          default: "Not Specified"
     t.string   "epc"
     t.string   "brochure_link"
     t.datetime "let_date_available"
-    t.boolean  "otm",                default: false
+    t.boolean  "otm",                  default: false
+    t.boolean  "accredited"
+    t.boolean  "licensed"
+    t.string   "tenant_criteria"
+    t.string   "cp12"
+    t.string   "esc"
+    t.string   "bond"
+    t.text     "deal"
+    t.string   "stage"
+    t.boolean  "managed"
+    t.boolean  "board"
+    t.integer  "tenant_id"
+    t.datetime "let_agreed_date"
+    t.datetime "sold_date"
+    t.string   "property_create_user"
   end
 
   add_index "properties", ["slug"], name: "index_properties_on_slug", unique: true, using: :btree
@@ -401,24 +415,24 @@ ActiveRecord::Schema.define(version: 20151010141034) do
     t.text     "property_description"
     t.string   "screen_text"
     t.boolean  "newest_screen"
-    t.string   "newest_screen_text"
+    t.text     "newest_screen_text"
     t.boolean  "oldest_screen"
-    t.string   "oldest_screen_text"
+    t.text     "oldest_screen_text"
     t.boolean  "featured_screen"
-    t.string   "featured_screen_text"
+    t.text     "featured_screen_text"
     t.boolean  "cycle_screen"
-    t.string   "cycle_screen_text"
+    t.text     "cycle_screen_text"
     t.boolean  "random_screen"
-    t.string   "random_screen_text"
-    t.string   "newest_inside_text"
+    t.text     "random_screen_text"
+    t.text     "newest_inside_text"
     t.boolean  "newest_inside"
-    t.string   "oldest_inside_text"
+    t.text     "oldest_inside_text"
     t.boolean  "oldest_inside"
-    t.string   "featured_inside_text"
+    t.text     "featured_inside_text"
     t.boolean  "featured_inside"
-    t.string   "cycle_inside_text"
+    t.text     "cycle_inside_text"
     t.boolean  "cycle_inside"
-    t.string   "random_inside_text"
+    t.text     "random_inside_text"
     t.boolean  "random_inside"
   end
 
@@ -490,6 +504,7 @@ ActiveRecord::Schema.define(version: 20151010141034) do
     t.string   "avatar"
     t.text     "additional_info"
     t.string   "supporting_doc"
+    t.string   "tenant_status"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
