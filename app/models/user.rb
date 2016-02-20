@@ -61,6 +61,7 @@
 #  additional_info        :text
 #  supporting_doc         :string(255)
 #  tenant_status          :string(255)
+#  notes                  :text
 #
 # Indexes
 #
@@ -68,6 +69,7 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
+
 require 'httparty'
 class User < ActiveRecord::Base
   include HTTParty

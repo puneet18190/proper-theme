@@ -39,6 +39,6 @@ class LandlordsController < ApplicationController
 	    end
 
 	    def landlord_params
-	      params.require(:user).permit(:first_name,:last_name, :address1, :address2, :address3,:phone,:postcode,:mobile,:dob,:status,:password,:password_confirmation,:email)
+	      params.require(:user).permit(:first_name,:last_name, :address1, :address2, :address3,:phone,:postcode,:mobile,:dob,:status,:password,:password_confirmation,:email, :notes, :plan)
 	    end
 end

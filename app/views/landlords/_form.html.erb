@@ -16,9 +16,9 @@
       <%end%>
       <div class="proper-form-step">
       <%= form_for @landlord,url: url, html: { multipart: true,class: "" },:style=>"" do |f| %>
+        <h4 style="margin-left:35px;margin-top: 35px">Personal Information</h4>
         <div class="proper-form-step-area">
-          <h4>Personal Information</h4>
-          <div style="width:300px;height:400px">
+          <div style="width:50%;height:400px;float: left">
             <div class="span5">
               <%= f.label :first_name, "<span style='color:red'>*</span>First Name".html_safe %>
               <%= f.text_field :first_name, class: "input-block-level", required: "true" %>
@@ -53,11 +53,21 @@
             </div>
             <div class="span5">
               <%= f.label :email %>
-                <%= f.text_field :email, class: "input-block-level" %>
+              <%= f.text_field :email, class: "input-block-level" %>
             </div>
             <div class="span5">
               <%= f.label :dob, "Date of Birth" %>
               <%= f.date_select :dob, class: "input-block-level", required: "true", start_year: 2015,end_year: 1930 %>
+            </div>
+          </div>
+          <div style="width:50%;height:400px;float: right">
+            <div class="span5">
+              <%= f.label :plan %>
+              <%= f.select :plan, [['Basic', 'basic'], ['Pro', 'pro'],['Pro Plus', 'pro_plus'], ['Basic Plus', 'basic_plus']], class: "input-block-level", required: "true", style: "width: 70% !important; float: right" %>
+            </div>
+            <div class="span5" >
+              <%= f.label :notes %>
+              <%= f.text_area :notes, style: "width:98%;height:80px" %>
             </div>
           </div>
         </div>
