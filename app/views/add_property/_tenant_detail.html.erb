@@ -105,10 +105,10 @@
 			    <%= tenant.hidden_field :password_confirmation, value: "12345678", name: "property[tenant][password_confirmation]" %>
 			    <%= tenant.hidden_field :status, value: "tenant", name: "property[tenant][status]" %>
 		    <%end%>
-		    <div class="field">
-		      <%= tenant.label :tenant_status %>
-		      <%= tenant.select :tenant_status, [ 'Prospective', 'Awaiting Vetting', 'Subject to Tenancy', 'In Tenancy','Complete', 'Failed' ], {:include_blank => "Select"}, {:name => "property[tenant][tenant_status]"} %>
-		    </div>
+		    <!-- <div class="field">
+		      <%#= tenant.label :tenant_status %>
+		      <%#= tenant.select :tenant_status, [ 'Prospective', 'Awaiting Vetting', 'Subject to Tenancy', 'In Tenancy','Complete', 'Failed' ], {:include_blank => "Select"}, {:name => "property[tenant][tenant_status]"} %>
+		    </div> -->
 		<%end%>
 	</div>
 </div>
