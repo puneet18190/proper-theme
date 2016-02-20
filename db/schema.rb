@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160128120219) do
+ActiveRecord::Schema.define(version: 20160220062439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -296,7 +296,6 @@ ActiveRecord::Schema.define(version: 20160128120219) do
     t.string   "garden",               default: "No"
     t.string   "dg",                   default: false
     t.boolean  "seal_approved",        default: false
-    t.string   "property_type"
     t.string   "pets",                 default: "No"
     t.string   "ensuite",              default: "No"
     t.string   "town"
@@ -307,6 +306,7 @@ ActiveRecord::Schema.define(version: 20160128120219) do
     t.string   "furnished"
     t.string   "feature1"
     t.string   "feature2"
+    t.integer  "property_type"
     t.string   "let_type_id",          default: "Not Specified"
     t.string   "let_furn_id",          default: "Not Specified"
     t.string   "epc"
@@ -434,6 +434,9 @@ ActiveRecord::Schema.define(version: 20160128120219) do
     t.boolean  "cycle_inside"
     t.text     "random_inside_text"
     t.boolean  "random_inside"
+    t.string   "sms_destination_no"
+    t.boolean  "send_sms_on_signup",   default: false
+    t.boolean  "send_sms_on_msg",      default: false
   end
 
   create_table "testimonials", force: true do |t|

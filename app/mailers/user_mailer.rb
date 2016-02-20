@@ -53,5 +53,10 @@ class UserMailer < ActionMailer::Base
     mail( :to => "steve@sealproperties.co.uk", :subject => "BLM status" )
   end
 
+  def notify_to_admin(user)
+    @user = user
+    mail( :to => "steve@sealproperties.co.uk", :subject => "New User Registered",:cc => "emma@sealproperties.co.uk" )
+  end
+
 end
 

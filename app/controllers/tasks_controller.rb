@@ -146,6 +146,14 @@ class TasksController < ApplicationController
     @contact_agent = ContactAgent.new(contact_agent_params)
     @contact_agent.save
     UserMailer.query_message(@contact_agent).deliver
+    @setting = Setting.all[0]
+    if !@setting.sms_destination_no.blank? && @setting.send_sms_on_msg
+      HTTParty.post("https://call-api.gradwell.com/0.9.3/sms",:body=>{ 
+        :auth=>'4KPDJWZRFOXXS50KXPOA4VTM4S', 
+        :originator=>441915805900, 
+        :destination=>@setting.sms_destination_no, 
+        :message=>"Name: #{params[:contact_agent][:name]},  Property: #{params[:contact_agent][:page_link].split("/").last}, message: #{params[:contact_agent][:message]}"})
+    end
     redirect_to :back, notice: "We will be in touch shortly. "
   end
 

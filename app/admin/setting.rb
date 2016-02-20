@@ -1,5 +1,5 @@
 ActiveAdmin.register Setting do
-  permit_params :admin_image, :admin_text, :property_description, :newest_screen_text, :newest_screen, :oldest_screen_text, :oldest_screen, :featured_screen_text,:featured_screen, :random_screen_text,:random_screen,:cycle_screen_text,:cycle_screen, :newest_inside_text, :newest_inside, :oldest_inside_text, :oldest_inside, :featured_inside_text,:featured_inside, :random_inside_text,:random_inside,:cycle_inside_text,:cycle_inside
+  permit_params :admin_image, :admin_text, :property_description, :newest_screen_text, :newest_screen, :oldest_screen_text, :oldest_screen, :featured_screen_text,:featured_screen, :random_screen_text,:random_screen,:cycle_screen_text,:cycle_screen, :newest_inside_text, :newest_inside, :oldest_inside_text, :oldest_inside, :featured_inside_text,:featured_inside, :random_inside_text,:random_inside,:cycle_inside_text,:cycle_inside, :sms_destination_no, :send_sms_on_signup,:send_sms_on_msg
   form(:html => { :multipart => true }) do |f|
     f.inputs "Create Setting..." do
       f.input :admin_image, :as => :file
@@ -25,6 +25,9 @@ ActiveAdmin.register Setting do
       f.input :random_inside
       f.input :cycle_inside_text, :as => :text
       f.input :cycle_inside
+      f.input :sms_destination_no
+      f.input :send_sms_on_signup
+      f.input :send_sms_on_msg
     end
     f.actions
   end

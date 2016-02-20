@@ -68,8 +68,9 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-
+require 'httparty'
 class User < ActiveRecord::Base
+  include HTTParty
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -77,6 +78,7 @@ class User < ActiveRecord::Base
   has_many :properties, dependent: :destroy
   Roles = [ :admin , :default ]
   acts_as_messageable
+  after_create :notify_to_admin
   def is?( requested_role )
     self.role == requested_role.to_s
   end
@@ -99,6 +101,18 @@ class User < ActiveRecord::Base
 
   def mailboxer_email(object)
     email
+  end
+
+  def notify_to_admin
+    UserMailer.notify_to_admin(self).deliver
+    @setting = Setting.all[0]
+    if !@setting.sms_destination_no.blank? && @setting.send_sms_on_signup
+      HTTParty.post("https://call-api.gradwell.com/0.9.3/sms",:body=>{ 
+        :auth=>'4KPDJWZRFOXXS50KXPOA4VTM4S', 
+        :originator=>441915805900, 
+        :destination=>@setting.sms_destination_no, 
+        :message=>"New User #{self.first_name} #{self.last_name} registered on SealProperies as a #{self.status}."})
+    end
   end
 end
 

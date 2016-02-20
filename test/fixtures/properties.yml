@@ -55,7 +55,6 @@
 #  garden               :string(255)      default("No")
 #  dg                   :string(255)      default(FALSE)
 #  seal_approved        :boolean          default(FALSE)
-#  property_type        :string(255)
 #  pets                 :string(255)      default("No")
 #  ensuite              :string(255)      default("No")
 #  town                 :string(255)
@@ -66,6 +65,7 @@
 #  furnished            :string(255)
 #  feature1             :string(255)
 #  feature2             :string(255)
+#  property_type        :integer
 #  let_type_id          :string(255)      default("Not Specified")
 #  let_furn_id          :string(255)      default("Not Specified")
 #  epc                  :string(255)

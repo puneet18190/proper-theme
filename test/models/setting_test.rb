@@ -29,6 +29,9 @@
 #  cycle_inside         :boolean
 #  random_inside_text   :text
 #  random_inside        :boolean
+#  sms_destination_no   :string(255)
+#  send_sms_on_signup   :boolean          default(FALSE)
+#  send_sms_on_msg      :boolean          default(FALSE)
 #
 
 require 'test_helper'
