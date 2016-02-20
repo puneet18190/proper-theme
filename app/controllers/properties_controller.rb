@@ -83,7 +83,7 @@ class PropertiesController < ApplicationController
       @property.update_attributes(:property_create_user => "landlord")
       redirect_to "/properties", notice: "Once you have finished editing your property, please submit it for approval."
     else
-      redirect_to "/properties"
+      redirect_to :back
     end
   end
 
@@ -122,7 +122,7 @@ class PropertiesController < ApplicationController
       if @property.featured_changed?
         @property.r_date = Time.now
       end
-      redirect_to "/properties"
+      redirect_to :back
     end
     rescue Exception => e
       redirect_to "/properties", alert: e.message
