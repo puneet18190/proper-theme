@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160117093429) do
+ActiveRecord::Schema.define(version: 20160220062439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -415,25 +415,28 @@ ActiveRecord::Schema.define(version: 20160117093429) do
     t.text     "property_description"
     t.string   "screen_text"
     t.boolean  "newest_screen"
-    t.string   "newest_screen_text"
+    t.text     "newest_screen_text"
     t.boolean  "oldest_screen"
-    t.string   "oldest_screen_text"
+    t.text     "oldest_screen_text"
     t.boolean  "featured_screen"
-    t.string   "featured_screen_text"
+    t.text     "featured_screen_text"
     t.boolean  "cycle_screen"
-    t.string   "cycle_screen_text"
+    t.text     "cycle_screen_text"
     t.boolean  "random_screen"
-    t.string   "random_screen_text"
-    t.string   "newest_inside_text"
+    t.text     "random_screen_text"
+    t.text     "newest_inside_text"
     t.boolean  "newest_inside"
-    t.string   "oldest_inside_text"
+    t.text     "oldest_inside_text"
     t.boolean  "oldest_inside"
-    t.string   "featured_inside_text"
+    t.text     "featured_inside_text"
     t.boolean  "featured_inside"
-    t.string   "cycle_inside_text"
+    t.text     "cycle_inside_text"
     t.boolean  "cycle_inside"
-    t.string   "random_inside_text"
+    t.text     "random_inside_text"
     t.boolean  "random_inside"
+    t.string   "sms_destination_no"
+    t.boolean  "send_sms_on_signup",   default: false
+    t.boolean  "send_sms_on_msg",      default: false
   end
 
   create_table "testimonials", force: true do |t|

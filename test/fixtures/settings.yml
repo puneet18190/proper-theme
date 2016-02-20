@@ -10,25 +10,28 @@
 #  property_description :text
 #  screen_text          :string(255)
 #  newest_screen        :boolean
-#  newest_screen_text   :string(255)
+#  newest_screen_text   :text
 #  oldest_screen        :boolean
-#  oldest_screen_text   :string(255)
+#  oldest_screen_text   :text
 #  featured_screen      :boolean
-#  featured_screen_text :string(255)
+#  featured_screen_text :text
 #  cycle_screen         :boolean
-#  cycle_screen_text    :string(255)
+#  cycle_screen_text    :text
 #  random_screen        :boolean
-#  random_screen_text   :string(255)
-#  newest_inside_text   :string(255)
+#  random_screen_text   :text
+#  newest_inside_text   :text
 #  newest_inside        :boolean
-#  oldest_inside_text   :string(255)
+#  oldest_inside_text   :text
 #  oldest_inside        :boolean
-#  featured_inside_text :string(255)
+#  featured_inside_text :text
 #  featured_inside      :boolean
-#  cycle_inside_text    :string(255)
+#  cycle_inside_text    :text
 #  cycle_inside         :boolean
-#  random_inside_text   :string(255)
+#  random_inside_text   :text
 #  random_inside        :boolean
+#  sms_destination_no   :string(255)
+#  send_sms_on_signup   :boolean          default(FALSE)
+#  send_sms_on_msg      :boolean          default(FALSE)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

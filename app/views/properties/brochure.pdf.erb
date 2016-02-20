@@ -118,7 +118,11 @@
       Whilst every effort is made to ensure the contents of this brochure are accurate and true, the particulars are set out as a general outline for guidance purposes only and do not constitute any part of an offer or contract. Interested Parties should not rely on them as statements of representation of fact, but instead must satisfy themselves by inspection or otherwise as to their accuracy.
     </p>   
     <p>
-      An Administration Fee is payable. Fees are typically £199 for a single tenancy. Please contact the office for more details.
+      <%if @properties.category == "Sale"%>
+        <b>Selling Fees start from £500. Please contact the office for more details. </b>
+      <%else%>
+        An Administration Fee is payable. Fees are typically £199 for a single tenancy. Please contact the office for more details.
+      <%end%>
     </p>
     <p>  
       Energy Performance Certificate (EPC) information is available upon request. Please contact the office.
