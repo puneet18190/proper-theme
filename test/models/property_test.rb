@@ -86,6 +86,7 @@
 #  let_agreed_date      :datetime
 #  sold_date            :datetime
 #  property_create_user :string(255)
+#  marketing_notes      :text
 #
 # Indexes
 #

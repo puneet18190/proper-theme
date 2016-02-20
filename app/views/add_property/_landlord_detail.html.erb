@@ -14,6 +14,7 @@
 		   			data: {id: user_id}
 		   		})
 		   		.done(function(res) {
+		   			$("#user_property").html("")
 		   			$('#landlord_details #property_user_first_name').val(res.user.first_name)
 		   			$('#landlord_details #property_user_last_name').val(res.user.last_name)
 		   			$('#landlord_details #property_user_address1').val(res.user.address1)
@@ -25,7 +26,9 @@
 		   			$('#landlord_details #property_user_email').val(res.user.email).attr('disabled', true)
 		   			$('#landlord_details #property_user_dob').val(res.user.dob)
 		   			$('#landlord_details #landlord_email').val(res.user.email)
+		   			$('#landlord_details #property_user_notes').val(res.user.notes)
 		   			$('#landlord_details #property_user_plan').val(res.user.plan).attr('disabled',true)
+		   			get_user_property(user_id)
 		   			if (res.user.avatar.thumb.url == "noimage.gif"){
 		   				$('#landlord_details .user_avatar').attr('src', "/assets/noimage.gif")
 		   			}else{
@@ -33,6 +36,7 @@
 		   			}
 		   			console.log("success");
 		   			console.log(res.user.avatar)
+		   			
 		   		})
 		   		.fail(function() {
 		   			console.log("error");
@@ -57,7 +61,20 @@
 	   			$('#landlord_details #landlord_email').val("")
 	   			$('#landlord_details #property_user_plan').val('basic').attr('disabled',false)
 	   			$('#landlord_details .user_avatar').attr('src', "/assets/noimage.gif")
+	   			$('#landlord_details #property_user_notes').val("")
+	   			$("#user_property").html("")
 			})
+
+			function get_user_property(user_id){
+				$.ajax({
+		   			url: '/users/'+user_id,
+		   		})
+		   		.done(function(res) {
+		   			console.log("success")
+		   			$("#user_property").append("<h3><b>Other Properties</b></h3>")
+		   			$("#user_property").append($(res).find("table").get(0).outerHTML)
+		   		})
+			}
 		</script>
 
 	    <h3 class=""><b>Details</b></h3>
@@ -123,14 +140,50 @@
 		    
 		<%end%>
 	</div>
-	<div style="float:right;margin:10px;width:50%">
+	<div style="float:left;margin:10px;width:26%;margin-top:7%">
 		<%= f.fields_for(@user) do |user| %>
-            <h4>Photo Upload</h4>
-            <div class="row-fluid">
-				<%= user.file_field :avatar, style: "" %>
-				<%= image_tag @user.avatar.url(:thumb), style: "width:200px;height:200px", class: "user_avatar" %>
-            </div>
+            <div class="field">
+		      <%= user.label :notes %>
+		      <%= user.text_area :notes, style: "width:300px;height:130px;" %>
+		    </div>
 	    <%end%>
+	</div>
+	<div style="float:right;margin:10px;width:38%;height:260px;margin-top:50px">
+		<%= f.fields_for(@user) do |user| %>
+            <div class="row-fluid" style="height: 270px">
+				<%= image_tag @user.avatar.url(:thumb), style: "width:200px;height:200px;margin-left:30%;margin-right:30%", class: "user_avatar" %>
+				<%= user.file_field :avatar, style: "margin-top: 30px;margin-left: 30%" %>
+            </div>
+            
+	    <%end%>
+	</div>
+	<div style="float:left;margin:10px;width:65%;margin-top:7%" id="user_property">
+		<%if params[:action] == "edit"%>
+			<h4><b>Other Properties</b></h4>
+			<table id="landlord_info" class="table table-bordered">
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Beds</th>
+                    <th>Bath</th>
+                    <th>Category</th>
+                </tr>
+
+                <%if @user.properties.empty?%>
+                    <tr><td>No Record.</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <%else%>
+                    <% @user.properties.each_with_index do |p,i| %>
+                      <tr>
+                        <td><%= p.name %></td>
+                        <td>£<%= p.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></td>
+                        <td><%= p.beds %></td>
+                        <td><%= p.bath %></td>
+                        <td><%= p.category %></td>
+                      </tr>
+                    <% end %>
+                <%end%>
+            </table>
+		<%end%>
 	</div>
 </div>
 
