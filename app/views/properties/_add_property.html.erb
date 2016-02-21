@@ -17,7 +17,8 @@
         <li><a href="#property_images">Property Images</a></li>
         <li><a href="#marketing_details">Marketing Details</a></li>
         <li><a href="#landlord_details">Landlord Details</a></li>
-        <li id="tenant_tab"><a href="#tenant_details">Tenant Details</a></li>
+        <% klass = params[:action]=="new" ? "hide" : (@property.stage=="Available" ? "hide" : "") %>
+        <li id="tenant_tab" class=<%=klass%> ><a href="#tenant_details">Tenant Details</a></li>
       </ul>
       <div class="clearfix"></div>
       <div class="payment">

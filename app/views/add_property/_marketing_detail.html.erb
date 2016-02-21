@@ -75,7 +75,7 @@
     </div><br/>
     <div class="field">
 	    <%= f.label :stage %>
-	    <%= f.select :stage,['Available','On Hold', 'Awaiting Referencing', 'Subject to Tenancy', 'Let Agreed'] %>
+	    <%= f.select :stage,['Available','On Hold/Awaiting Referencing', 'Subject to Tenancy', 'Let Agreed'] %>
 	  </div><br/>
 	  <div class="field">
       <%= f.label :managed %>
@@ -100,9 +100,7 @@
 <script type="text/javascript">
   $("#property_stage").on('change', function() {
     var stage = $("#property_stage option:selected").text()
-    if(stage == "On Hold"){
-      $("#tenant_tab").show()
-    }else{
+    if(stage == "Available"){
       $("#tenant_tab").hide()
       $('#tenant_details #property_user_email').attr('disabled', false).attr('value', '')
       $('#tenant_details #property_user_first_name').val("")
@@ -116,6 +114,8 @@
       $('#tenant_details #property_user_dob').val("")
       $('#tenant_search').val("")
       $('#tenant_details #tenant_email').val("")
+    }else{
+      $("#tenant_tab").show()
     }
   })
 </script>
