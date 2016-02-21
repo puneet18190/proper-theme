@@ -14,6 +14,7 @@
     <div class="panel" style="padding-bottom:0">
       <ul class="nav nav-tabs" style="margin:30px; margin-bottom:0;border-bottom:none">
         <li class="active"><a href="#property_details">Property Details</a></li>
+        <li><a href="#property_images">Property Images</a></li>
         <li><a href="#marketing_details">Marketing Details</a></li>
         <li><a href="#landlord_details">Landlord Details</a></li>
         <li id="tenant_tab"><a href="#tenant_details">Tenant Details</a></li>
@@ -35,6 +36,7 @@
             <div class="proper-singup" style="max-width:100%;margin:0;padding:0;height:100%">
               <div class="tab-content" style="background: none !important;border:none !important">
               <%= render :partial => "add_property/property_detail", :locals=>{:f=>f} %>
+              <%= render :partial => "add_property/property_images", :locals=>{:f=>f} %>
               <%= render :partial => "add_property/marketing_detail", :locals=>{:f=>f} %>
               <%= render :partial => "add_property/landlord_detail", :locals=>{:f=>f} %>
               <%= render :partial => "add_property/tenant_detail", :locals=>{:f=>f} %>

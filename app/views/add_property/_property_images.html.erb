@@ -1,0 +1,47 @@
+<div id="property_images" class="tab-pane fade in active" style="width:100%;height:100%">
+	<div style="float:left;margin:10px;width:40%">
+		<h3 class=""><b>Images</b></h3>
+	    <div class="field" style="padding: 10px;border: 1px solid grey">
+	      <label for="property_image1" style="margin:0">Main</label>
+	      <%#if params[:action]=="edit" && !@property.image1.file.nil? %>
+	        <%#= f.file_field :image1,:style=>"width:95px;line-height:0;" %>
+	      <%#else%>
+	        <%= f.file_field :image1,:style=>"line-height:0;" %>
+	      <%#end%>
+	      <%if params[:action]=="edit" && !@property.image1.file.nil?%>
+	        <%= image_tag @property.image1.url(:small) %>
+	        <span><%= @property.image1.file.filename %></span>
+	      <%end%>
+	    </div>
+	    <%(2..5).each do |n|%>
+	      <div class="field alert_popup" style="padding: 10px;border: 1px solid grey">
+	        <label for="property_image<%=n%>" style="margin:0">Image <%=n-1%></label>
+	        <%#if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
+	          <%#= f.file_field ("image"+n.to_s).to_sym,:style=>"width:95px;line-height:0;" %>
+	        <%#else%>
+	          <%= f.file_field ("image"+n.to_s).to_sym,:style=>"line-height:0;" %>
+	        <%#end%>
+	        <%if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
+	          	<%= image_tag @property.send("image"+n.to_s).url(:small) %>
+	          	<span><%= @property.send("image"+n.to_s).file.filename %></span>
+	        <%end%>
+	      </div>
+	    <%end%>
+	</div>
+	<div style="float:right;margin:10px;width:40%;margin-top:70px">
+	    <%(6..10).each do |n|%>
+	      <div class="field alert_popup" style="padding: 10px;border: 1px solid grey">
+	        <label for="property_image<%=n%>" style="margin:0">Image <%=n-1%></label>
+	        <%#if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
+	          <%#= f.file_field ("image"+n.to_s).to_sym,:style=>"width:95px;line-height:0;" %>
+	        <%#else%>
+	          <%= f.file_field ("image"+n.to_s).to_sym,:style=>"line-height:0;" %>
+	        <%#end%>
+	        <%if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
+	          	<%= image_tag @property.send("image"+n.to_s).url(:small) %>	
+	          	<span><%= @property.send("image"+n.to_s).file.filename %></span>
+	        <%end%>
+	      </div>
+	    <%end%>
+	</div>
+</div>
