@@ -156,3 +156,18 @@
     <%end%>
   </div>
 </div>
+
+<script type="text/javascript">
+  $("#property_postcode, #property_postcode1, #property_address2").on("blur", function(){
+    // alert("Sd")
+    var address2 = $("#property_address2").val()
+    var pincode = $("#property_postcode").val().trim()+$("#property_postcode1").val().trim()
+    arr1 = ["Brighton Road","Hedley Street","Hyde Park Street","Liddell Terrace","Miller Street","Newton Street","Rawling Road","Rectory Road","Saltwell Place","Saltwell Road","Saltwell Street","Stephenson Street","Trevethick Street","Westminster Street","Whitehall Road","Axwell Terrace","Brewery Bank","Crowley Road","Front Street","Hood Street","6 Jubilee Terrace","Lyndhurst Terrace","Napier Road","Park Terrace","Richmond Avenue","Ridley Gardens"]
+    arr2 = ["NE84QA","NE84XN","NE84QB","NE81YN","NE84RA","NE84XL","NE84QR","NE84RR","NE84QY","NE84XE","NE84PX","NE84XJ","NE84XP","NE84QE","NE84PS","NE163JS","NE163DP","NE163HD","NE163DW","NE163HS","NE163AG","NE163DY","NE163BT","NE163BU","NE163HA","NE163HT","NE84PY","NE84QD","NE84QS","NE84TH","NE84PT","NE163HE","NE163BS","NE84QB","NE84QT","NE84TJ","NE84PX","NE84XH"]
+    if (($.inArray(address2, arr1) != -1) || ($.inArray(pincode, arr2) != -1) ){
+      $("#property_licensed").val("Yes")
+    }else{
+      $("#property_licensed").val("No")
+    }
+  })
+</script>
