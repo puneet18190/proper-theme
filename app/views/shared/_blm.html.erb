@@ -84,16 +84,18 @@ AGENT_REF^ADDRESS_1^ADDRESS_2^ADDRESS_3^TOWN^POSTCODE1^POSTCODE2^FEATURE1^FEATUR
 <%elsif obj.status == "Let Agreed"%>
 <% @STATUS_ID = 5 %>					
 <%end%>
-<%if obj.beds > 1 %>
-	<% @BEDROOMS = obj.beds.to_s+" bedrooms" %>
-<%else%>
-	<% @BEDROOMS = "1 bedroom" %>
-<%end%>
-<%if obj.bath > 1 %>
-	<% @BATHROOMS = obj.bath.to_s+" bathrooms" %>
-<%else%>
-	<% @BATHROOMS = "1 bathroom" %>
-<%end%>	
+<%#if obj.beds > 1 %>
+	<% @BEDROOMS = obj.beds %>
+	<%# @BEDROOMS = obj.beds.to_s+" bedrooms" %>
+<%#else%>
+	<%# @BEDROOMS = "1 bedroom" %>
+<%#end%>
+<%#if obj.bath > 1 %>
+	<% @BATHROOMS = obj.bath %>
+	<%# @BATHROOMS = obj.bath.to_s+" bathrooms" %>
+<%#else%>
+	<%# @BATHROOMS = "1 bathroom" %>
+<%#end%>	
 <% @PRICE = obj.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %>
 <%if obj.qualifier == "Default"%>
 	<% @PRICE_QUALIFIER = 0 %>
