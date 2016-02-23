@@ -610,6 +610,16 @@ class PropertiesController < ApplicationController
     render layout: false
   end
 
+  def blm3
+    @data = Property.where(:approval_status=>"approved", :otm=>true)
+    render layout: false
+  end
+
+  def blm4
+    @data = Property.where(:approval_status=>"approved", :otm=>true)
+    render layout: false
+  end
+
   def test_blm
     @data = Property.where(:approval_status=>"approved", :otm=>true)
     render layout: false
