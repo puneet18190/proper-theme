@@ -59,7 +59,7 @@ class PropertiesController < ApplicationController
 
   def create
     params[:property][:epc] = upload_document(params[:property][:epc], "epc", @property, "create") unless params[:property][:epc].nil?
-    params[:property][:ep12] = upload_document(params[:property][:ep12], "cp12", @property, "create") unless params[:property][:ep12].nil?
+    params[:property][:cp12] = upload_document(params[:property][:cp12], "cp12", @property, "create") unless params[:property][:cp12].nil?
     params[:property][:esc] = upload_document(params[:property][:esc], "esc", @property, "create") unless params[:property][:esc].nil?
 
     params[:property][:price] = params[:property][:price].scan(/\d+/).first.to_i
@@ -90,7 +90,7 @@ class PropertiesController < ApplicationController
   def update
     begin
     params[:property][:epc] = upload_document(params[:property][:epc], "epc", @property, "update") unless params[:property][:epc].nil?
-    params[:property][:ep12] = upload_document(params[:property][:ep12], "cp12", @property, "update") unless params[:property][:ep12].nil?
+    params[:property][:cp12] = upload_document(params[:property][:cp12], "cp12", @property, "update") unless params[:property][:cp12].nil?
     params[:property][:esc] = upload_document(params[:property][:esc], "esc", @property, "update") unless params[:property][:esc].nil?
 
     if current_user.status == "landlord"
@@ -112,6 +112,7 @@ class PropertiesController < ApplicationController
 
       params[:property][:let_agreed_date] = DateTime.now if @property.status=="Available" && params[:property][:status] == "Let Agreed"
       params[:property][:sold_date] = DateTime.now if @property.stage!="Complete" && params[:property][:stage] == "Complete"
+
       @property.update(property_params)
       if @property.let_changed?
         @property.l_date = Time.now
@@ -809,10 +810,12 @@ class PropertiesController < ApplicationController
   def upload_document(file, file_name, property, action)
     service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
     bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
+    file.original_filename = "#{Time.now.to_i}/#{file.original_filename}"
     if action=="update" && !property.send(file_name).blank?
-      a= property.send(file_name).split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last
-      object = bucket.objects.find(a)
-      object.destroy if object
+      # a= property.send(file_name).split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last
+      # object = bucket.objects.find(a)
+      # object.destroy if object
+      property.property_documents.create(name: file_name, url: file.original_filename, date_completed: property.send("#{file_name}_date_complete"), due_date: property.send("#{file_name}_due_date") )
     end
     object = bucket.objects.build(file.original_filename)
     object.content = file.tempfile
@@ -840,7 +843,7 @@ class PropertiesController < ApplicationController
     end
 
     def property_params
-      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status, :accredited, :licensed, :tenant_criteria, :cp12, :esc, :bond, :deal, :stage, :managed, :board, :tenant_id, :let_agreed_date, :sold_date, :marketing_notes)
+      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status, :accredited, :licensed, :tenant_criteria, :cp12, :esc, :bond, :deal, :stage, :managed, :board, :tenant_id, :let_agreed_date, :sold_date, :marketing_notes, :epc_date_complete, :epc_due_date,:cp12_date_complete, :cp12_due_date,:esc_date_complete, :esc_due_date )
     end
 
     def property_changes_params

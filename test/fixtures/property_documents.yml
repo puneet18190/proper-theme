@@ -1,0 +1,33 @@
+# == Schema Information
+#
+# Table name: property_documents
+#
+#  id             :integer          not null, primary key
+#  name           :string(255)
+#  url            :string(255)
+#  date_completed :date
+#  due_date       :date
+#  property_id    :integer
+#  created_at     :datetime
+#  updated_at     :datetime
+#
+# Indexes
+#
+#  index_property_documents_on_property_id  (property_id)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  url: MyString
+  date_completed: 2016-02-21
+  due_date: 2016-02-21
+  property_id: 
+
+two:
+  name: MyString
+  url: MyString
+  date_completed: 2016-02-21
+  due_date: 2016-02-21
+  property_id: 

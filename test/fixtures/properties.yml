@@ -87,6 +87,12 @@
 #  sold_date            :datetime
 #  property_create_user :string(255)
 #  marketing_notes      :text
+#  epc_date_complete    :date
+#  epc_due_date         :date
+#  cp12_date_complete   :date
+#  cp12_due_date        :date
+#  esc_date_complete    :date
+#  esc_due_date         :date
 #
 # Indexes
 #

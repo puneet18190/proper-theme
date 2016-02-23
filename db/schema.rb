@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220171915) do
+ActiveRecord::Schema.define(version: 20160221185050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -328,6 +328,12 @@ ActiveRecord::Schema.define(version: 20160220171915) do
     t.datetime "sold_date"
     t.string   "property_create_user"
     t.text     "marketing_notes"
+    t.date     "epc_date_complete"
+    t.date     "epc_due_date"
+    t.date     "cp12_date_complete"
+    t.date     "cp12_due_date"
+    t.date     "esc_date_complete"
+    t.date     "esc_due_date"
   end
 
   add_index "properties", ["slug"], name: "index_properties_on_slug", unique: true, using: :btree
@@ -378,6 +384,18 @@ ActiveRecord::Schema.define(version: 20160220171915) do
   end
 
   add_index "property_changes", ["property_id"], name: "index_property_changes_on_property_id", using: :btree
+
+  create_table "property_documents", force: true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.date     "date_completed"
+    t.date     "due_date"
+    t.integer  "property_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "property_documents", ["property_id"], name: "index_property_documents_on_property_id", using: :btree
 
   create_table "property_types", force: true do |t|
     t.string   "p_type"

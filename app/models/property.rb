@@ -87,6 +87,12 @@
 #  sold_date            :datetime
 #  property_create_user :string(255)
 #  marketing_notes      :text
+#  epc_date_complete    :date
+#  epc_due_date         :date
+#  cp12_date_complete   :date
+#  cp12_due_date        :date
+#  esc_date_complete    :date
+#  esc_due_date         :date
 #
 # Indexes
 #
@@ -101,6 +107,7 @@ class Property < ActiveRecord::Base
   belongs_to :agent
   belongs_to :tenant, :foreign_key => 'tenant_id', :class_name => 'User'
   has_many :property_changes
+  has_many :property_documents
   mount_uploader :image1, Image1Uploader
   mount_uploader :image2, Image2Uploader
   mount_uploader :image3, Image3Uploader

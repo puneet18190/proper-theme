@@ -119,41 +119,74 @@
       <%= f.label :description, "Main Description" %>
       <%= f.text_area :description, :class=>"long_desc" %>
     </div>
-    <label style="margin:0">EPC</label>
+    <div class="field" style="height: 30px">
+      <label style="margin:0">EPC</label>
+      
+      <%if params[:action]=="edit"  && !@property.epc.nil?%>
+        <%= f.file_field :epc,:style=>"width:95px;line-height:0;" %>
+      <%else%>
+        <%= f.file_field :epc,:style=>"line-height:0;margin-left:90px" %>
+      <%end%>
     
-    <%if params[:action]=="edit"  && !@property.epc.nil?%>
-      <%= f.file_field :epc,:style=>"width:95px;line-height:0;" %>
-    <%else%>
-      <%= f.file_field :epc,:style=>"line-height:0;" %>
-    <%end%>
+      <%if params[:action]=="edit" && !@property.epc.nil?%>
+        <span style="float:right"><%= @property.epc.split(".com/").last %></span>
+      <%end%>
+    </div>
+
+    <div class="field">
+      <label style="margin:0">Date Complete</label>
+      <%= f.date_select :epc_date_complete %>
+    </div>
+    <div class="field">
+      <label style="margin:0">Due Date</label>
+      <%= f.date_select :epc_due_date, end_year: 2040 %>
+    </div>
+
+    <div class="field" style="height: 30px">
+      <label style="margin:0">CP12</label>
+      
+      <%if params[:action]=="edit"  && !@property.cp12.nil?%>
+        <%= f.file_field :cp12,:style=>"width:95px;line-height:0;" %>
+      <%else%>
+        <%= f.file_field :cp12,:style=>"line-height:0;margin-left:90px" %>
+      <%end%>
     
-    <%if params[:action]=="edit" && !@property.epc.nil?%>
-      <span style=""><%= @property.epc %></span>
-    <%end%>
+      <%if params[:action]=="edit" && !@property.cp12.nil?%>
+        <span style="float:right"><%= @property.cp12.split(".com/").last %></span>
+      <%end%>
+    </div>
 
-    <label style="margin:0">CP12</label>
+    <div class="field">
+      <label style="margin:0">Date Complete</label>
+      <%= f.date_select :cp12_date_complete %>
+    </div>
+    <div class="field">
+      <label style="margin:0">Due Date</label>
+      <%= f.date_select :cp12_due_date, end_year: 2040 %>
+    </div>
+
+    <div class="field" style="height: 30px">
+      <label style="margin:0">ESC</label>
+      
+      <%if params[:action]=="edit"  && !@property.esc.nil?%>
+        <%= f.file_field :esc,:style=>"width:95px;line-height:0" %>
+      <%else%>
+        <%= f.file_field :esc,:style=>"line-height:0;margin-left:90px" %>
+      <%end%>
     
-    <%if params[:action]=="edit" && !@property.cp12.nil? %>
-      <%= f.file_field :cp12,:style=>"width:95px;line-height:0;" %>
-    <%else%>
-      <%= f.file_field :cp12,:style=>"line-height:0;" %>
-    <%end%>
+      <%if params[:action]=="edit" && !@property.esc.nil?%>
+        <span style="float:right"><%= @property.esc.split(".com/").last %></span>
+      <%end%>
+    </div>
 
-    <%if params[:action]=="edit" && !@property.cp12.nil?%>
-      <span style=""><%= @property.cp12 %></span>
-    <%end%>
-
-    <label style="margin:0">ESC</label>
-    
-    <%if params[:action]=="edit" && !@property.esc.nil?%>
-      <%= f.file_field :esc,:style=>"width:95px;line-height:0;" %>
-    <%else%>
-      <%= f.file_field :esc,:style=>"line-height:0;" %>
-    <%end%>
-
-    <%if params[:action]=="edit" && !@property.esc.nil?%>
-      <span style=""><%= @property.esc %></span>
-    <%end%>
+    <div class="field">
+      <label style="margin:0">Date Complete</label>
+      <%= f.date_select :esc_date_complete  %>
+    </div>
+    <div class="field">
+      <label style="margin:0">Due Date</label>
+      <%= f.date_select :esc_due_date, end_year: 2040 %>
+    </div>
   </div>
 </div>
 
@@ -169,5 +202,38 @@
     }else{
       $("#property_licensed").val("No")
     }
+  })
+
+  $("#property_epc_date_complete_1i, #property_epc_date_complete_2i, #property_epc_date_complete_3i").on("blur",function() {
+    var year = $("#property_epc_date_complete_1i").val()
+    var month = $("#property_epc_date_complete_2i").val()
+    var date = $("#property_epc_date_complete_3i").val()
+    a=new Date(year,month,date)
+    a.setFullYear(a.getFullYear() + 10)
+    $("#property_epc_due_date_1i").val(a.getFullYear())
+    $("#property_epc_due_date_2i").val(a.getMonth())
+    $("#property_epc_due_date_3i").val(a.getDate())
+  })
+
+  $("#property_cp12_date_complete_1i, #property_cp12_date_complete_2i, #property_cp12_date_complete_3i").on("blur",function() {
+    var year = $("#property_cp12_date_complete_1i").val()
+    var month = $("#property_cp12_date_complete_2i").val()
+    var date = $("#property_cp12_date_complete_3i").val()
+    a=new Date(year,month,date)
+    a.setFullYear(a.getFullYear() + 12)
+    $("#property_cp12_due_date_1i").val(a.getFullYear())
+    $("#property_cp12_due_date_2i").val(a.getMonth())
+    $("#property_cp12_due_date_3i").val(a.getDate())
+  })
+
+  $("#property_esc_date_complete_1i, #property_esc_date_complete_2i, #property_esc_date_complete_3i").on("blur",function() {
+    var year = $("#property_esc_date_complete_1i").val()
+    var month = $("#property_esc_date_complete_2i").val()
+    var date = $("#property_esc_date_complete_3i").val()
+    a=new Date(year,month,date)
+    a.setFullYear(a.getFullYear() + 5)
+    $("#property_esc_due_date_1i").val(a.getFullYear())
+    $("#property_esc_due_date_2i").val(a.getMonth())
+    $("#property_esc_due_date_3i").val(a.getDate())
   })
 </script>
