@@ -167,6 +167,8 @@ Rails.application.routes.draw do
   match '/blm',   to: 'properties#blm', via: 'get'
   match '/blm1',   to: 'properties#blm1', via: 'get'
   match '/blm2',   to: 'properties#blm2', via: 'get'
+  match '/blm3',   to: 'properties#blm3', via: 'get'
+  match '/blm4',   to: 'properties#blm4', via: 'get'
   match '/download_blm',   to: 'properties#download_blm', via: 'get'
   match '/zip_blm',   to: 'properties#zip_blm', via: 'get'
   match '/upload_blm',   to: 'properties#upload_blm', via: 'get'
