@@ -58,9 +58,9 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    params[:property][:epc] = upload_document(params[:property][:epc], "epc", @property, "create") unless params[:property][:epc].nil?
-    params[:property][:cp12] = upload_document(params[:property][:cp12], "cp12", @property, "create") unless params[:property][:cp12].nil?
-    params[:property][:esc] = upload_document(params[:property][:esc], "esc", @property, "create") unless params[:property][:esc].nil?
+    params[:property][:epc] = upload_document(params[:property][:epc], "epc", "", "create") unless params[:property][:epc].nil?
+    params[:property][:cp12] = upload_document(params[:property][:cp12], "cp12", "", "create") unless params[:property][:cp12].nil?
+    params[:property][:esc] = upload_document(params[:property][:esc], "esc", "", "create") unless params[:property][:esc].nil?
 
     params[:property][:price] = params[:property][:price].scan(/\d+/).first.to_i
 
@@ -815,7 +815,7 @@ class PropertiesController < ApplicationController
       # a= property.send(file_name).split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last
       # object = bucket.objects.find(a)
       # object.destroy if object
-      property.property_documents.create(name: file_name, url: file.original_filename, date_completed: property.send("#{file_name}_date_complete"), due_date: property.send("#{file_name}_due_date") )
+      property.property_documents.create(name: file_name, url: property.send(file_name), date_completed: property.send("#{file_name}_date_complete"), due_date: property.send("#{file_name}_due_date") )
     end
     object = bucket.objects.build(file.original_filename)
     object.content = file.tempfile
