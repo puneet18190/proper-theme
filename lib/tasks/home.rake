@@ -46,7 +46,7 @@ task :home => :environment do
     # end
     d=DateTime.now
     f_name = "39545_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+d.hour.to_s.rjust(2,'0')+d.minute.to_s.rjust(2,'0')
-    Net::FTP.open('home.co.uk', 'sealproperties', 'sp2345y6f') do |ftp|
+    Net::FTP.open('ftp.home.co.uk', 'sealproperties', 'sp2345y6f') do |ftp|
       ftp.passive = true
       # ftp.chdir("/")
       ftp.putbinaryfile(t.path,"SP#{f_name}.zip")

@@ -39,7 +39,7 @@ task :nethouseprice => :environment do
       z.print remote_data
     end
     require 'net/ftp'
-    Net::FTP.open('nethouseprices.com', 'S4353C42053030', 'MAme6heR') do |ftp|
+    Net::FTP.open('ftp.nethouseprices.com', 'S4353C42053030', 'MAme6heR') do |ftp|
       ftp.passive = true
       ftp.chdir("/")
       ftp.putbinaryfile(t.path,"A56CC33A024AD3.zip")
