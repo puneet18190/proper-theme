@@ -93,6 +93,10 @@
 #  esc_date_complete    :date
 #  esc_due_date         :date
 #  tenant_id            :integer
+#  mouse_price          :boolean          default(FALSE)
+#  dss_move             :boolean          default(FALSE)
+#  home                 :boolean          default(FALSE)
+#  wonder_property      :boolean          default(FALSE)
 #
 # Indexes
 #

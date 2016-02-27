@@ -62,6 +62,11 @@
           </div>
           <div style="width:50%;height:400px;float: right">
             <div class="span5">
+              <%= f.label :avatar, "Photo Upload" %><br/>
+              <%= image_tag @landlord.avatar.url(:thumb), style: "width:200px;height:200px" %>
+              <%= f.file_field :avatar, style: "margin-top:0px" %>
+            </div>
+            <div class="span5">
               <%= f.label :plan %>
               <%= f.select :plan, [['Basic', 'basic'], ['Pro', 'pro'],['Pro Plus', 'pro_plus'], ['Basic Plus', 'basic_plus']], class: "input-block-level", required: "true", style: "width: 70% !important; float: right" %>
             </div>

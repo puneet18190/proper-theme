@@ -55,10 +55,7 @@
       <%= f.label :featured %>
       <%= f.select :featured, [['False', false],['True', true]] %>
     </div><br/>
-    <div class="field">
-      <%= f.label :otm%>
-      <%= f.select :otm, [['True', true], ['False', false]] %>
-    </div><br/>
+    
     <div class="field">
       <%= f.label :board %>
       <%= f.select :board, [['Yes', true], ['No', false]] %>
@@ -88,6 +85,32 @@
       <%= f.label :marketing_notes, "Notes" %>
       <%= f.text_area :marketing_notes, style: "width:300px;height:130px;" %>
     </div>
+    <h3><b>Portals</b></h3>
+    <div class="field">
+      <%= f.label :otm,"OTM", style: "display: inline-block"%>
+      <%#= f.select :otm, [['True', true], ['False', false]] %>
+      <%= f.check_box :otm, class: "form-control", style: "margin: 0 0 0 15px" %>
+    </div><br/>
+
+    <div class="field">
+      <%= f.label :dss_move,"DSS Move", style: "display: inline-block"%>
+      <%= f.check_box :dss_move, class: "form-control", style: "margin: 0 0 0 15px" %>
+    </div><br/>
+
+    <div class="field">
+      <%= f.label :mouse_price,"Mouse Price", style: "display: inline-block"%>
+      <%= f.check_box :mouse_price, class: "form-control", style: "margin: 0 0 0 15px" %>
+    </div><br/>
+
+    <div class="field">
+      <%= f.label :home,"Home.co.uk", style: "display: inline-block"%>
+      <%= f.check_box :home, class: "form-control", style: "margin: 0 0 0 15px" %>
+    </div><br/>
+
+    <div class="field">
+      <%= f.label :wonder_property, style: "display: inline-block"%>
+      <%= f.check_box :wonder_property, class: "form-control", style: "margin: 0 0 0 15px" %>
+    </div><br/>
   </div>                  
 </div>
 
