@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: tenant_properties
+#
+#  id          :integer          not null, primary key
+#  property_id :integer
+#  tenant_id   :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  property_id: 1
+  tenant_id: 1
+
+two:
+  property_id: 1
+  tenant_id: 1

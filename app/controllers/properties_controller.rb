@@ -12,8 +12,8 @@ class PropertiesController < ApplicationController
     if current_user.status == "admin"
       @properties = []
       @data = Property.where.not("approval_status = ?", "none")
-      @properties << @data.where.not("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC").includes(:user).includes(:agent).includes(:tenant)
-      @properties << @data.where("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC").includes(:user).includes(:agent).includes(:tenant)
+      @properties << @data.where.not("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC").includes(:user).includes(:agent)
+      @properties << @data.where("status = ? OR status = ? OR status = ?", "SSTC","SSTCM","Let Agreed" ).order("created_at DESC").includes(:user).includes(:agent)
       @properties = @properties.flatten.uniq
     elsif current_user.status == "landlord"
       @properties = Property.where(:user_id => current_user.id).order("created_at DESC").includes(:property_changes).includes(:user)
@@ -36,7 +36,7 @@ class PropertiesController < ApplicationController
       unless current_user.status == "tenant"
         @property = current_user.properties.new
         @user = @property.build_user
-        @tenant = @property.build_tenant
+        @tenant = @property.tenants.build  #@property.build_tenant
         respond_with(@property)
       end
     end    
@@ -49,7 +49,14 @@ class PropertiesController < ApplicationController
       redirect_to root_url, alert: "You are not authorized."
     elsif current_user.status == "admin"
       @user = (@property.user_id == current_user.id) ? @property.build_user : @property.user
-      @tenant = @property.tenant.blank? ? @property.build_tenant : @property.tenant
+      # @tenant = @property.tenant.blank? ? @property.build_tenant : @property.tenant
+      # @tenant = TenantProperty.where(property_id: )
+      ids =TenantProperty.where(property_id: Property.where(slug: params[:id])[0].id).map(&:tenant_id)
+      @tenant = User.where(status: "tenant", id: ids).reverse
+      if @tenant.blank?
+        @tenant = @property.tenants.build 
+        @no_tenant=true
+      end
     end
   end
 
@@ -65,7 +72,7 @@ class PropertiesController < ApplicationController
     params[:property][:price] = params[:property][:price].scan(/\d+/).first.to_i
 
     params[:property][:user_id] = set_landlord_tenant(params[:property][:user][:email], "landlord", "create")
-    params[:property][:tenant_id] = set_landlord_tenant(params[:property][:tenant][:email], "tenant", "create")
+    # params[:property][:tenant_id] = set_landlord_tenant(params[:property][:tenant][:email], "tenant", "create")
     params[:property].delete('user').delete('tenant')
 
     @property = Property.new(property_params)
@@ -78,12 +85,15 @@ class PropertiesController < ApplicationController
     @property.longitude = @a.lng
     @property.agent_id = Agent.where(name: "Landlord").first.id if current_user.status == "landlord"
     @property.save
+
+    @property.save_multiple_tenants(params[:property][:tenants_attributes], "create")
+
     @property.update_attributes(:payment=>true, :property_create_user => "admin") if current_user.status == "admin"
     if current_user.status == "landlord"
       @property.update_attributes(:property_create_user => "landlord")
       redirect_to "/properties", notice: "Once you have finished editing your property, please submit it for approval."
     else
-      redirect_to :back
+      redirect_to "/properties"
     end
   end
 
@@ -107,13 +117,18 @@ class PropertiesController < ApplicationController
     else
 
       params[:property][:user_id] = set_landlord_tenant(params[:property][:user][:email], "landlord", "update")
-      params[:property][:tenant_id] = set_landlord_tenant(params[:property][:tenant][:email], "tenant", "update")
+      # params[:property][:tenant_id] = set_landlord_tenant(params[:property][:tenant][:email], "tenant", "update")
       params[:property].delete('user').delete('tenant')
 
       params[:property][:let_agreed_date] = DateTime.now if @property.status=="Available" && params[:property][:status] == "Let Agreed"
       params[:property][:sold_date] = DateTime.now if @property.stage!="Complete" && params[:property][:stage] == "Complete"
 
       @property.update(property_params)
+      unless params[:property][:tenant].blank?
+        @property.save_multiple_tenants(params[:property][:tenant], "update")
+      else
+        @property.save_multiple_tenants(params[:property][:tenants_attributes], "create")
+      end
       if @property.let_changed?
         @property.l_date = Time.now
       end

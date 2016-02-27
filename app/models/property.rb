@@ -82,7 +82,6 @@
 #  stage                :string(255)
 #  managed              :boolean
 #  board                :boolean
-#  tenant_id            :integer
 #  let_agreed_date      :datetime
 #  sold_date            :datetime
 #  property_create_user :string(255)
@@ -93,6 +92,7 @@
 #  cp12_due_date        :date
 #  esc_date_complete    :date
 #  esc_due_date         :date
+#  tenant_id            :integer
 #
 # Indexes
 #
@@ -105,9 +105,11 @@ class Property < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :agent
-  belongs_to :tenant, :foreign_key => 'tenant_id', :class_name => 'User'
+  # belongs_to :tenant, :foreign_key => 'tenant_id', :class_name => 'User'
+  has_many :tenants, :foreign_key => 'tenant_property_id', :class_name => 'User'
   has_many :property_changes
   has_many :property_documents
+  accepts_nested_attributes_for :tenants
   mount_uploader :image1, Image1Uploader
   mount_uploader :image2, Image2Uploader
   mount_uploader :image3, Image3Uploader
@@ -170,5 +172,30 @@ class Property < ActiveRecord::Base
   # def ensuite
   #   self.ensuite? ? "Yes" : "No"
   # end
-  
+
+  def save_multiple_tenants(tenants, action)
+    TenantProperty.where(property_id: self.id).delete_all if action == "update"
+    
+    tenants.each do |obj|
+      tenant = obj[1]
+      email = tenant["email"]
+
+      if email.blank? 
+        if !tenant["first_name"].blank?
+          email = "#{tenant["first_name"]}_#{self.id}_#{rand(100)}@gmail.com}"
+          u= User.new(tenant)
+          u.skip_confirmation!
+          u.save
+        end
+      elsif User.find_by_email(email).blank?
+        u= User.new(tenant)
+        u.skip_confirmation!
+        u.save
+      else
+        User.find_by_email(email).update_attributes(tenant) if action=="update"
+        u=User.find_by_email(email)
+      end
+      TenantProperty.create(property_id: self.id, tenant_id: u.id) unless u.blank?
+    end
+  end  
 end

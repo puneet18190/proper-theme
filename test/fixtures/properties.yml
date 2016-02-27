@@ -82,7 +82,6 @@
 #  stage                :string(255)
 #  managed              :boolean
 #  board                :boolean
-#  tenant_id            :integer
 #  let_agreed_date      :datetime
 #  sold_date            :datetime
 #  property_create_user :string(255)
@@ -93,6 +92,7 @@
 #  cp12_due_date        :date
 #  esc_date_complete    :date
 #  esc_due_date         :date
+#  tenant_id            :integer
 #
 # Indexes
 #

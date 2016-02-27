@@ -72,7 +72,7 @@
             <% if current_user.status == "admin" %>
               <td><a href=<%="/users/#{property.user.id}"%>><%= "#{property.user.first_name} #{property.user.last_name}" %></a></td>
               <td><%= (property.agent.nil? || property.agent.name=="Landlord") ? "" : "#{property.agent.name}" %></td>
-              <td><%=property.tenant.first_name unless property.tenant.blank?%></td>
+              <td><%=User.where(status: "tenant", id: TenantProperty.where(property_id: property.id).map(&:tenant_id)).map(&:first_name).join(", ")%></td>
               <td><%= property.user.plan.humanize %></td>
             <%end%>        
             

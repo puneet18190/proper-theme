@@ -1,8 +1,11 @@
 <div id="tenant_details" class="tab-pane fade">
-	<div style="float:left;margin:10px;width:30%">
-
-		<%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Search Tenant", type: "search", data: {autocomplete: users_autocomplete_user_tenant_path }, id: 'tenant_search', style: "margin-left:0px !important;width:70%" %>  
-		<div class="btn btn-primary" id="tenant_reset" style="float:right">Reset</div>
+	<div style="float:left;margin:10px;width:100%">
+		<div class="panel" style="width: 55%">
+			<%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Search Tenant", type: "search", data: {autocomplete: users_autocomplete_user_tenant_path }, id: 'tenant_search', style: "margin-left:0px !important;width:50%" %>  
+			<div class="btn btn-primary" id="tenant_reset" style="">Reset</div>
+			<div class="btn btn-primary" id="tenant_remove" style="float:right;margin-left:5px">Remove</div>
+			<div class="btn btn-primary" id="tenant_add" style="float:right">Add</div>
+		</div>
 
 		<script type="text/javascript" charset="utf-8">
 			$('#tenant_search').bind('railsAutocomplete.select', function(event, data){
@@ -14,18 +17,33 @@
 		   			data: {id: user_id}
 		   		})
 		   		.done(function(res) {
-		   			$('#tenant_details #property_user_first_name').val(res.user.first_name)
-		   			$('#tenant_details #property_user_last_name').val(res.user.last_name)
-		   			$('#tenant_details #property_user_address1').val(res.user.address1)
-		   			$('#tenant_details #property_user_address2').val(res.user.address2)
-		   			$('#tenant_details #property_user_address3').val(res.user.address3)
-		   			$('#tenant_details #property_user_postcode').val(res.user.postcode)
-		   			$('#tenant_details #property_user_phone').val(res.user.phone)
-		   			$('#tenant_details #property_user_mobile').val(res.user.mobile)
-		   			$('#tenant_details #property_user_email').val(res.user.email).attr('disabled', true)
-		   			$('#tenant_details #property_user_dob').val(res.user.dob)
-		   			$('#tenant_details #tenant_email').val(res.user.email)
-		   			$('#tenant_details #property_user_tenant_status').val(res.user.tenant_status)
+		   			<%if params[:action]=="new" || @no_tenant%>
+		   			$('.tenant_form #property_tenants_attributes_0_first_name').val(res.user.first_name)
+		   			$('.tenant_form #property_tenants_attributes_0_last_name').val(res.user.last_name)
+		   			$('.tenant_form #property_tenants_attributes_0_address1').val(res.user.address1)
+		   			$('.tenant_form #property_tenants_attributes_0_address2').val(res.user.address2)
+		   			$('.tenant_form #property_tenants_attributes_0_address3').val(res.user.address3)
+		   			$('.tenant_form #property_tenants_attributes_0_postcode').val(res.user.postcode)
+		   			$('.tenant_form #property_tenants_attributes_0_phone').val(res.user.phone)
+		   			$('.tenant_form #property_tenants_attributes_0_mobile').val(res.user.mobile)
+		   			$('.tenant_form #property_tenants_attributes_0_email').val(res.user.email)
+		   			$($('.tenant_form #property_tenants_attributes_0_email')[0]).attr('disabled', true)
+		   			$('.tenant_form #property_tenants_attributes_0_dob').val(res.user.dob)
+		   			// $($('#tenant_details #tenant_email').val(res.user.email)
+		   			$('.tenant_form #property_tenants_attributes_0_tenant_status').val(res.user.tenant_status)
+		   			<%else%>
+		   			$('[name="property[tenant][0][first_name]"] ').val(res.user.first_name)
+		   			$('[name="property[tenant][0][last_name]"] ').val(res.user.last_name)
+		   			$('[name="property[tenant][0][address1]"] ').val(res.user.address1)
+		   			$('[name="property[tenant][0][address2]"] ').val(res.user.address2)
+		   			$('[name="property[tenant][0][address3]"] ').val(res.user.address3)
+		   			$('[name="property[tenant][0][postcode]"] ').val(res.user.postcode)
+		   			$('[name="property[tenant][0][phone]"] ').val(res.user.phone)
+		   			$('[name="property[tenant][0][mobile]"] ').val(res.user.mobile)
+		   			$($('[name="property[tenant][0][email]"] ')[0]).val(res.user.email).attr('disabled', true)
+		   			$($('[name="property[tenant][0][email]"] ')[1]).val(res.user.email)
+		   			$('[name="property[tenant][0][dob]"] ').val(res.user.dob)
+		   			<%end%>
 		   			console.log("success");
 		   		})
 		   		.fail(function() {
@@ -37,79 +55,195 @@
 		   		
 		  	});
 			$("#tenant_reset").click(function(){
-				$('#tenant_details #property_user_email').attr('disabled', false).attr('value', '')
-				$('#tenant_details #property_user_first_name').val("")
-	   			$('#tenant_details #property_user_last_name').val("")
-	   			$('#tenant_details #property_user_address1').val("")
-	   			$('#tenant_details #property_user_address2').val("")
-	   			$('#tenant_details #property_user_address3').val("")
-	   			$('#tenant_details #property_user_postcode').val("")
-	   			$('#tenant_details #property_user_phone').val("")
-	   			$('#tenant_details #property_user_mobile').val("")
-	   			$('#tenant_details #property_user_dob').val("")
+				<%if params[:action]=="new" || @no_tenant%>
+				$('.tenant_form #property_tenants_attributes_0_email').attr('value', '')
+				$($('.tenant_form #property_tenants_attributes_0_email')[0]).attr('disabled', false)
+				$('.tenant_form #property_tenants_attributes_0_first_name').val("")
+	   			$('.tenant_form #property_tenants_attributes_0_last_name').val("")
+	   			$('.tenant_form #property_tenants_attributes_0_address1').val("")
+	   			$('.tenant_form #property_tenants_attributes_0_address2').val("")
+	   			$('.tenant_form #property_tenants_attributes_0_address3').val("")
+	   			$('.tenant_form #property_tenants_attributes_0_postcode').val("")
+	   			$('.tenant_form #property_tenants_attributes_0_phone').val("")
+	   			$('.tenant_form #property_tenants_attributes_0_mobile').val("")
+	   			$('.tenant_form #property_tenants_attributes_0_dob').val("")
 	   			$('#tenant_search').val("")
-	   			$('#tenant_details #tenant_email').val("")
+	   			// $('#tenant_details #tenant_email').val("")
+	   			<%else%>
+	   			$('[name="property[tenant][0][first_name]"] ').val("")
+	   			$('[name="property[tenant][0][last_name]"] ').val("")
+	   			$('[name="property[tenant][0][address1]"] ').val("")
+	   			$('[name="property[tenant][0][address2]"] ').val("")
+	   			$('[name="property[tenant][0][address3]"] ').val("")
+	   			$('[name="property[tenant][0][postcode]"] ').val("")
+	   			$('[name="property[tenant][0][phone]"] ').val("")
+	   			$('[name="property[tenant][0][mobile]"] ').val("")
+	   			$($('[name="property[tenant][0][email]"] ')[0]).val("").attr('disabled', false)
+	   			$($('[name="property[tenant][0][email]"] ')[1]).val("")
+	   			$('[name="property[tenant][0][dob]"] ').val("")
+	   			$('#tenant_search').val("")
+	   			<%end%>
+			})
+
+			<%if params[:action]=="new" || @no_tenant%>
+			var n=0
+			<%else%>
+			var n = <%= @tenant.count - 1 %>
+			<%end%>
+			$("#tenant_add").click(function(e) {
+			    $("#all_tenants").append($("#all_tenants div.tenant_form:eq(0)").clone(true));
+			    $("#all_tenants div.tenant_form").eq(-1).find("input").val("");
+			    $("#all_tenants div.tenant_form").eq(-1).find("input").attr('disabled', false);
+			    i = $("#all_tenants div.tenant_form").eq(-1).find("input");
+			    n=n+1
+			    $(i).each(function(){
+			    	j = $(this).attr("name"); k = $(this).attr("id");
+				    j=j.replace(0, n); k = k.replace(0, n);
+				    $(this).attr("name", j); $(this).attr("id", k)	
+			    })
+			    <%if params[:action]=="new" || @no_tenant%>
+				    $($("[name='property[tenants_attributes]["+n+"][email]']")[1]).remove()
+				    $($("[name='property[tenants_attributes]["+n+"][password]']")[0]).val("12345678")
+				    $($("[name='property[tenants_attributes]["+n+"][password_confirmation]']")[0]).val("12345678")
+				    $($("[name='property[tenants_attributes]["+n+"][status]']")[0]).val("tenant")
+			    <%else%>
+				    $($("[name='property[tenant]["+n+"][email]']")[1]).remove()
+					$("#all_tenants div.tenant_form").eq(-1).append('<input name="property[tenant]['+n+'][password]" type="hidden" value="12345678">')
+					$("#all_tenants div.tenant_form").eq(-1).append('<input name="property[tenant]['+n+'][password_confirmation]" type="hidden" value="12345678">')
+					$("#all_tenants div.tenant_form").eq(-1).append('<input name="property[tenant]['+n+'][status]" type="hidden" value="tenant">')
+				<%end%>
+			    e.preventDefault();
+			});
+
+			$("#tenant_remove").click(function(){
+				if ($("#all_tenants div.tenant_form").size() > 1){
+					$("#all_tenants div.tenant_form").eq(-1).remove()	
+				}
 			})
 		</script>
 
-	    <h3 class=""><b>Details</b></h3>
-	    <%= f.fields_for(@tenant) do |tenant| %>
+	    <h3 class=""><b>Lead Tenant</b></h3>
+	    <div id="all_tenants">
+	    <%if params[:action]=="new" || @no_tenant%>
+	    <%= f.fields_for :tenants do |tenant| %>
+	    	<div class="tenant_form">
 		    <div class="field">
 		      <%= tenant.label :first_name %>
-		      <%= tenant.text_field :first_name, name: "property[tenant][first_name]" %>
+		      <%= tenant.text_field :first_name%>
 		    </div>
 		    <div class="field">
 		      <%= tenant.label :last_name %>
-		      <%= tenant.text_field :last_name, name: "property[tenant][last_name]" %>
+		      <%= tenant.text_field :last_name%>
 		    </div>
 		    <div class="field">
 		      <%= tenant.label :address1 %>
-		      <%= tenant.text_field :address1, name: "property[tenant][address1]" %>
+		      <%= tenant.text_field :address1%>
 		    </div>
 		    <div class="field">
 		      <%= tenant.label :address2 %>
-		      <%= tenant.text_field :address2, name: "property[tenant][address2]" %>
+		      <%= tenant.text_field :address2%>
 		    </div>
 		    <div class="field">
 		      <%= tenant.label :address3 %>
-		      <%= tenant.text_field :address3, name: "property[tenant][address3]" %>
+		      <%= tenant.text_field :address3%>
 		    </div>
 		    <div class="field">
 		      <%= tenant.label :postcode %>
-		      <%= tenant.text_field :postcode, name: "property[tenant][postcode]" %>
+		      <%= tenant.text_field :postcode%>
 		    </div>
 		    <div class="field">
 		      <%= tenant.label :phone %>
-		      <%= tenant.text_field :phone, name: "property[tenant][phone]" %>
+		      <%= tenant.text_field :phone%>
 		    </div>
 		    <div class="field">
 		      <%= tenant.label :mobile, "Alternative Phone" %>
-		      <%= tenant.text_field :mobile, name: "property[tenant][mobile]" %>
+		      <%= tenant.text_field :mobile%>
 		    </div>
 		    <div class="field">
 		      <%= tenant.label :email %>
-		      <%if params[:action] == "new"%>
-			      <%= tenant.text_field :email, name: "property[tenant][email]" %>
-			      <%= tenant.hidden_field :email, name: "property[tenant][email]", id: "tenant_email" %>
+		      <%if params[:action] == "new" || @no_tenant%>
+			      <%= tenant.text_field :email%>
+			      <%= tenant.hidden_field :email%>
 			  <%else%>
-			  	  <%= tenant.text_field :email, disabled: "disabled", name: "property[tenant][email]" %>
-			  	  <%= tenant.hidden_field :email, name: "property[tenant][email]", id: "tenant_email" %>
+			  	  <%= tenant.text_field :email, disabled: "disabled"%>
+			  	  <%= tenant.hidden_field :email%>
 			  <%end%> 
 		    </div>
 		    <div class="field">
 		      <%= tenant.label :dob %>
-		      <%= tenant.text_field :dob, name: "property[tenant][dob]" %>
+		      <%= tenant.text_field :dob%>
 		    </div>
 		    <%if params[:action] == "new"%>
-			    <%= tenant.hidden_field :password, value: "12345678", name: "property[tenant][password]" %>
-			    <%= tenant.hidden_field :password_confirmation, value: "12345678", name: "property[tenant][password_confirmation]" %>
-			    <%= tenant.hidden_field :status, value: "tenant", name: "property[tenant][status]" %>
+			    <%= tenant.hidden_field :password, value: "12345678"%>
+			    <%= tenant.hidden_field :password_confirmation, value: "12345678"%>
+			    <%= tenant.hidden_field :status, value: "tenant"%>
 		    <%end%>
 		    <!-- <div class="field">
 		      <%#= tenant.label :tenant_status %>
 		      <%#= tenant.select :tenant_status, [ 'Prospective', 'Awaiting Vetting', 'Subject to Tenancy', 'In Tenancy','Complete', 'Failed' ], {:include_blank => "Select"}, {:name => "property[tenant][tenant_status]"} %>
 		    </div> -->
+			</div>
 		<%end%>
+		<%else%>
+		<%@tenant.each_with_index do |obj, index|%>
+		<%= f.fields_for obj do |tenant| %>
+	    	<div class="tenant_form">
+		    <div class="field">
+		      <%= tenant.label :first_name %>
+		      <%= tenant.text_field :first_name, name: "property[tenant][#{index}][first_name]"%>
+		    </div>
+		    <div class="field">
+		      <%= tenant.label :last_name %>
+		      <%= tenant.text_field :last_name, name: "property[tenant][#{index}][last_name]"%>
+		    </div>
+		    <div class="field">
+		      <%= tenant.label :address1 %>
+		      <%= tenant.text_field :address1, name: "property[tenant][#{index}][address1]"%>
+		    </div>
+		    <div class="field">
+		      <%= tenant.label :address2 %>
+		      <%= tenant.text_field :address2, name: "property[tenant][#{index}][address2]"%>
+		    </div>
+		    <div class="field">
+		      <%= tenant.label :address3 %>
+		      <%= tenant.text_field :address3, name: "property[tenant][#{index}][address3]"%>
+		    </div>
+		    <div class="field">
+		      <%= tenant.label :postcode %>
+		      <%= tenant.text_field :postcode, name: "property[tenant][#{index}][postcode]"%>
+		    </div>
+		    <div class="field">
+		      <%= tenant.label :phone %>
+		      <%= tenant.text_field :phone, name: "property[tenant][#{index}][phone]"%>
+		    </div>
+		    <div class="field">
+		      <%= tenant.label :mobile, "Alternative Phone" %>
+		      <%= tenant.text_field :mobile, name: "property[tenant][#{index}][mobile]"%>
+		    </div>
+		    <div class="field">
+		  	  <%= tenant.label :email %>
+		  	  <%= tenant.text_field :email, disabled: "disabled", name: "property[tenant][#{index}][email]"%>
+		  	  <%= tenant.hidden_field :email, name: "property[tenant][#{index}][email]", value: obj.email%>
+		    </div>
+		    <div class="field">
+		      <%= tenant.label :dob %>
+		      <%= tenant.text_field :dob, name: "property[tenant][#{index}][dob]"%>
+		    </div>
+		    <%= tenant.hidden_field :tenant_status, value: "tenant", name: "property[tenant][#{index}][status]" %>
+		    <%#if params[:action] == "new"%>
+			    <%#= tenant.hidden_field :password, value: "12345678"%>
+			    <%#= tenant.hidden_field :password_confirmation, value: "12345678"%>
+			    <%#= tenant.hidden_field :status, value: "tenant"%>
+		    <%#end%>
+		    <!-- <div class="field">
+		      <%#= tenant.label :tenant_status %>
+		      <%#= tenant.select :tenant_status, [ 'Prospective', 'Awaiting Vetting', 'Subject to Tenancy', 'In Tenancy','Complete', 'Failed' ], {:include_blank => "Select"}, {:name => "property[tenant][tenant_status]"} %>
+		    </div> -->
+			</div>
+		<%end%>
+		<%end%>
+		<%end%>
+		</div>
 	</div>
 </div>
 
@@ -168,5 +302,14 @@
 
     #tenant_details input, #tenant_details select{
     	margin-left: 114px
+    }
+
+    .tenant_form{
+    	width: 30%;
+    	float: left;
+    	border: 1px solid grey;
+    	padding: 10px;
+    	margin: 8px;
+    	border-radius: 5px;
     }
 </style>
