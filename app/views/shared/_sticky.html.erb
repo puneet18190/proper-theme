@@ -1,0 +1,86 @@
+<ul id="example-1" class="sticklr">
+    <li>
+        <a href="#">Call Log</a>
+        <ul class="log">
+            <li>
+                <table class="table">
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Caller ID</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Status</th>
+                        <th>Call Duration</th>
+                    <tr>
+
+                    <tr>
+                        <td>01/02/2015</td>
+                        <td>17:08</td>
+                        <td>01456665455</td>
+                        <td>Puneet</td>
+                        <td>Landlord</td>
+                        <td>Answered</td>
+                        <td>9:36</td>
+                    </tr>    
+                </table>
+            </li>
+        </ul>
+    </li>
+
+    <!-- <li>
+        <a href="#" class="icon-zoom">H</a>
+        <ul class="handler">
+            <li>
+                <table class="table">
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Caller ID</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Status</th>
+                        <th>Call Duration</th>
+                    <tr>
+
+                    <tr>
+                        <td>01/02/2015</td>
+                        <td>17:08</td>
+                        <td>01456665455</td>
+                        <td>Puneet</td>
+                        <td>Landlord</td>
+                        <td>Answered</td>
+                        <td>9:36</td>
+                    </tr>    
+                </table>
+            </li>
+        </ul>
+    </li> -->
+    
+    
+</ul>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#example-1').sticklr({
+            animate         : false,
+            showOn          : 'hover'
+        });
+    });
+</script>
+
+<style type="text/css">
+    .log{
+        width: 600px !important;
+        margin-left: 70px !important
+    }
+    .sticklr{
+        width: 88px !important
+    }
+    .sticklr a{
+        width: 80px !important
+    }
+    .sticklr-arrow{
+        left: 89px !important
+    }
+</style>
