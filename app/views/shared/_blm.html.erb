@@ -32,7 +32,12 @@ AGENT_REF^ADDRESS_1^ADDRESS_2^ADDRESS_3^TOWN^POSTCODE1^POSTCODE2^FEATURE1^FEATUR
 <%end%>
 <% @FEATURE3 = nil %>
 <%if obj.parking_status == "On Street"%>
-	<% @FEATURE4 = "#{obj.parking_status} Parking" %>
+	<%# @FEATURE4 = "#{obj.parking_status} Parking" %>
+	<%if obj.car > 0%>
+		<% @FEATURE4 = "#{obj.parking_status} Parking, #{obj.car} cars" %>
+	<%else%>
+		<% @FEATURE4 = "#{obj.parking_status} Parking" %>
+	<%end%>
 <%elsif obj.parking_status == "Off Street"%>
 	<%if obj.car > 0%>
 		<% @FEATURE4 = "#{obj.parking_status} Parking, #{obj.car} cars" %>
