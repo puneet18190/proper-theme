@@ -50,7 +50,7 @@
 	/* all ie css fallback */
 	top: 0\9;
 	/* <ie7 css fallback */
-	background-color: #f7f7f7 !ie;
+	background-color: #f7f7f7;
 }
 
 .sticklr-right {
@@ -122,7 +122,7 @@
 	margin-left: 25px\9;
 	float: left\9;
 	/* <ie7 css fallback */
-	background-color: #f7f7f7 !ie;
+	background-color: #f7f7f7;
 }
 
 .sticklr-right > li > ul {
@@ -190,7 +190,7 @@
     min-width: 180px;
 
     /* <ie7 css fallback */
-	border: none !ie;
+	border: none;
 }
 
 .sticklr > li > ul > li:first-child {
