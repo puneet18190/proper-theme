@@ -57,7 +57,7 @@
   </head>
   <body>
     <%= render 'cookies_eu/cookies_eu', link: '/cookies'%>
-    <%if current_user && current_user.status == "admin"%><%= render 'shared/sticky' %><%end%>
+    <%if current_user && current_user.status == "admin"%><%#= render 'shared/sticky' %><%end%>
     <%= render 'layouts/header' %>
     
     <div id="loading" style="position: fixed;z-index: 1;margin-left: 635px;margin-top:180px"></div>
