@@ -39,7 +39,7 @@ task :houseladder => :environment do
       z.print remote_data
     end
     require 'net/ftp'
-    Net::FTP.open('uploads.houseladder.co.uk ', '555091', '555091-5891286-sp') do |ftp|
+    Net::FTP.open('uploads.houseladder.co.uk', '555091', '555091-5891286-sp') do |ftp|
       ftp.passive = true
       # ftp.chdir("/live/upload")
       ftp.putbinaryfile(t.path,"39545.zip")
