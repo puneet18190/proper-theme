@@ -1,16 +1,16 @@
-task :home => :environment do
+task :houseladder => :environment do
   require "open-uri"
   require 'nokogiri'
   require 'zip'
   
   # Thread.new do
     puts "===============Upload Start========================="
-    UserMailer.blm_status("BLM Upload on Home.co.uk Start").deliver
+    UserMailer.blm_status("BLM Upload on HouseLadder Start").deliver
     @data = Property.where(:approval_status=>"approved", :otm=>true)
-    t = Tempfile.new("SP39545")
+    t = Tempfile.new("39545")
     Zip::OutputStream.open(t.path) do |z|
       @data.each_with_index do |item,i|
-        sp = "SP39545_SP"+item.created_at.year.to_s.split(//).last(2).join()+item.created_at.month.to_s.rjust(2,'0')+item.id.to_s.rjust(4,'0')
+        sp = "39545_SP"+item.created_at.year.to_s.split(//).last(2).join()+item.created_at.month.to_s.rjust(2,'0')+item.id.to_s.rjust(4,'0')
         (0..9).each do |n|
           if !item.send("image#{n+1}").url.nil? && !item.send("image#{n+1}").path.nil?
             puts item.send("image#{n+1}").path
@@ -20,17 +20,17 @@ task :home => :environment do
             z.print url1_data
           end
         end
-        # z.put_next_entry("#{sp}_DOC_00.pdf")
-        # z.print open("http://www.sealproperties.co.uk/brochure.pdf?id="+item.id.to_s).read
+        z.put_next_entry("#{sp}_DOC_00.pdf")
+        z.print open("http://www.sealproperties.co.uk/brochure.pdf?id="+item.id.to_s).read
       end
       z.put_next_entry("coming_soon.jpg")
       z.print  File.open("#{Rails.root}/app/assets/images/default_images/no.jpg").read
       d=DateTime.now
       seq = "01"
-      f_name = "39545_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+d.hour.to_s.rjust(2,'0')+d.minute.to_s.rjust(2,'0')
+      f_name = "39545_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+seq
       z.put_next_entry("#{f_name}.blm")
       ac = ApplicationController.new()
-      remote_data = ac.render_to_string "properties/download_blm4", :locals => {:@data => @data}, :layout=>false
+      remote_data = ac.render_to_string "properties/download_blm", :locals => {:@data => @data}, :layout=>false
       remote_data = remote_data.gsub("<pre>","")
       remote_data = remote_data.gsub("</pre>","")
       remote_data = remote_data.gsub("&lt;","<")
@@ -39,20 +39,18 @@ task :home => :environment do
       z.print remote_data
     end
     require 'net/ftp'
-    # Net::FTP.open('feeds.agentsmutual.co.uk', 'sealproperties', 'Pwx85N8zAK8wHC5') do |ftp|
-    #   ftp.passive = true
-    #   ftp.chdir("/live/upload")
-    #   ftp.putbinaryfile(t.path,"39545.zip")
-    # end
-    d=DateTime.now
-    f_name = "39545_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+d.hour.to_s.rjust(2,'0')+d.minute.to_s.rjust(2,'0')
-    Net::FTP.open('ftp.home.co.uk', 'sealproperties', 'sp2345y6f') do |ftp|
+    Net::FTP.open('uploads.houseladder.co.uk', '555091', '555091-5891286-sp') do |ftp|
       ftp.passive = true
-      # ftp.chdir("/")
-      ftp.putbinaryfile(t.path,"SP#{f_name}.zip")
+      # ftp.chdir("/live/upload")
+      ftp.putbinaryfile(t.path,"39545.zip")
     end
+    # Net::FTP.open('mouseprice.net', 'SealProp', 'SealProp77') do |ftp|
+    #   ftp.passive = true
+    #   # ftp.chdir("/")
+    #   ftp.putbinaryfile(t.path,"SP39545.zip")
+    # end
     t.close
-    UserMailer.blm_status("BLM Uploaded Successfully on Home.co.uk.").deliver
+    UserMailer.blm_status("BLM Uploaded Successfully on HouseLadder.").deliver
     puts "===============Upload Complete========================="
   # end
 end
