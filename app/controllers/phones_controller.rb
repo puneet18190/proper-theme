@@ -5,9 +5,11 @@ class PhonesController < ApplicationController
   		mac= "Emma's Shop"
   	elsif params[:mac] == "0015654c6db2"
   		mac = "Steve's Shop"
+  	else
+  		mac=""
   	end
   		
-    @data = Phone.new(callerid: params[:call_id], call_action: params[:call_action], dataname: params[:mac], local: params[:local], remote: params[:remote])
+    @data = Phone.new(callerid: params[:call_id], call_action: params[:call_action], dataname: mac, local: params[:local], remote: params[:remote])
     @data.save
     render :nothing => true
   end
