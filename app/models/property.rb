@@ -82,10 +82,21 @@
 #  stage                :string(255)
 #  managed              :boolean
 #  board                :boolean
-#  tenant_id            :integer
 #  let_agreed_date      :datetime
 #  sold_date            :datetime
 #  property_create_user :string(255)
+#  marketing_notes      :text
+#  epc_date_complete    :date
+#  epc_due_date         :date
+#  cp12_date_complete   :date
+#  cp12_due_date        :date
+#  esc_date_complete    :date
+#  esc_due_date         :date
+#  tenant_id            :integer
+#  mouse_price          :boolean          default(FALSE)
+#  dss_move             :boolean          default(FALSE)
+#  home                 :boolean          default(FALSE)
+#  wonder_property      :boolean          default(FALSE)
 #
 # Indexes
 #

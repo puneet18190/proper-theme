@@ -8,6 +8,8 @@
 #  updated_at  :datetime
 #  call_action :string(255)
 #  dataname    :string(255)
+#  local       :string(255)
+#  remote      :string(255)
 #
 
 require 'test_helper'

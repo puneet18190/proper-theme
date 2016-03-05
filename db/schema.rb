@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220062439) do
+ActiveRecord::Schema.define(version: 20160305144842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -241,6 +241,8 @@ ActiveRecord::Schema.define(version: 20160220062439) do
     t.datetime "updated_at"
     t.string   "call_action"
     t.string   "dataname"
+    t.string   "local"
+    t.string   "remote"
   end
 
   create_table "properties", force: true do |t|
@@ -323,10 +325,21 @@ ActiveRecord::Schema.define(version: 20160220062439) do
     t.string   "stage"
     t.boolean  "managed"
     t.boolean  "board"
-    t.integer  "tenant_id"
     t.datetime "let_agreed_date"
     t.datetime "sold_date"
     t.string   "property_create_user"
+    t.text     "marketing_notes"
+    t.date     "epc_date_complete"
+    t.date     "epc_due_date"
+    t.date     "cp12_date_complete"
+    t.date     "cp12_due_date"
+    t.date     "esc_date_complete"
+    t.date     "esc_due_date"
+    t.integer  "tenant_id"
+    t.boolean  "mouse_price",          default: false
+    t.boolean  "dss_move",             default: false
+    t.boolean  "home",                 default: false
+    t.boolean  "wonder_property",      default: false
   end
 
   add_index "properties", ["slug"], name: "index_properties_on_slug", unique: true, using: :btree
@@ -377,6 +390,18 @@ ActiveRecord::Schema.define(version: 20160220062439) do
   end
 
   add_index "property_changes", ["property_id"], name: "index_property_changes_on_property_id", using: :btree
+
+  create_table "property_documents", force: true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.date     "date_completed"
+    t.date     "due_date"
+    t.integer  "property_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "property_documents", ["property_id"], name: "index_property_documents_on_property_id", using: :btree
 
   create_table "property_types", force: true do |t|
     t.string   "p_type"
@@ -437,6 +462,13 @@ ActiveRecord::Schema.define(version: 20160220062439) do
     t.string   "sms_destination_no"
     t.boolean  "send_sms_on_signup",   default: false
     t.boolean  "send_sms_on_msg",      default: false
+  end
+
+  create_table "tenant_properties", force: true do |t|
+    t.integer  "property_id"
+    t.integer  "tenant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "testimonials", force: true do |t|
@@ -508,6 +540,8 @@ ActiveRecord::Schema.define(version: 20160220062439) do
     t.text     "additional_info"
     t.string   "supporting_doc"
     t.string   "tenant_status"
+    t.text     "notes"
+    t.integer  "tenant_property_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
