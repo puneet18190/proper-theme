@@ -197,6 +197,7 @@ Rails.application.routes.draw do
   match 'newest_inside', to: 'screens#newest_inside', via: 'get'
   match 'screens/inside_properties_detail/:property_id',   to: 'screens#inside_properties_detail',   via: 'get'
 
+  match 'get_phone_data', to: 'phones#get_phone_data', via: 'get'
   #match '/uploadfile',   to: 'screens#uploadfile', via: 'post'
   # See how all your routes lay out with "rake routes".
 

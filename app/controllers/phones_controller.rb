@@ -16,4 +16,9 @@ class PhonesController < ApplicationController
     @data.save
     render :nothing => true
   end
+
+  def get_phone_data
+    @data = Phone.all
+    render :json => {data: @data}.to_json
+  end
 end
