@@ -16,13 +16,13 @@ class PhonesController < ApplicationController
     @data.save
 
     if params[:call_action] == "incoming_call"
-      YealinkPhone.create(callid: params[:call_id],name: params[:display_local], department: params[:display_remote].split("")[0],caller_id: params[:display_remote].split("")[1], status: "missed", duration: 0, mac: params[:mac] )
+      YealinkPhone.create(callid: params[:call_id],name: params[:display_local], department: params[:display_remote].split("")[0],caller_id: params[:display_remote].split("")[1], status: "missed", call_duration: 0, mac: params[:mac] )
     end
 
     if params[:call_action] == "call_terminated"
       call = YealinkPhone.where(callid: params[:call_id], mac: params[:mac]).last
       duration = DateTime.now.utc.to_f - call.created_at.utc.to_f
-      call.update_attributes(status: "answered", duration: duration)
+      call.update_attributes(status: "answered", call_duration: duration)
     end
     render :nothing => true
   end
