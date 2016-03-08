@@ -34,7 +34,7 @@
                             <td><%=obj["name"]%></td>
                             <td><%=obj["department"]%></td>
                             <td><%=obj["status"]%></td>
-                            <td><%="#{obj['call_duration']} sec"%></td>
+                            <td><%=Time.at(obj['call_duration']).utc.strftime("%H:%M:%S") %></td>
                         </tr>
                     <%end%>
                 </table>
