@@ -1,3 +1,3 @@
 ActiveAdmin.register YealinkPhone do
-  permit_params :name, :caller_id, :department, :status, :call_duration, :callid, :mac, :call_action
+  permit_params :name, :callerid, :department, :status, :call_duration, :callid, :mac, :callaction
 end
