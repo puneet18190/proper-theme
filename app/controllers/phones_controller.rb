@@ -28,7 +28,7 @@ class PhonesController < ApplicationController
   end
 
   def get_phone_data
-    @data = Phone.all
+    @data = YealinkPhone.all
     render :json => {data: @data}.to_json
   end
 end
