@@ -28,7 +28,7 @@ class PhonesController < ApplicationController
   end
 
   def get_phone_data
-    @data = YealinkPhone.all
+    @data = YealinkPhone.all.where(callaction: "incoming_call")
     render :json => {data: @data}.to_json
   end
 end
