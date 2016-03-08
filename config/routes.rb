@@ -262,4 +262,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  match '/make_call',   to: 'phones#make_call',   via: 'get'
 end

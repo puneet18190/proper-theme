@@ -1,7 +1,19 @@
+<style type="text/css">
+/*    .modal-content {
+        margin: 15% auto; 
+        border: 3px solid #428bca;
+        width: 80%; 
+    }
+    .modal-header-primary {
+    background-color: #428bca;
+    }*/
+</style>
+
+<% data = HTTParty.get("http://www.sealproperties.co.uk/get_phone_data")["data"] %>
 <ul id="example-1" class="sticklr">
     <li>
         <a href="#">Call Log</a>
-        <ul class="log">
+        <ul >
             <li>
                 <table class="table">
                     <tr>
@@ -12,75 +24,82 @@
                         <th>Department</th>
                         <th>Status</th>
                         <th>Call Duration</th>
-                    <tr>
+                    </tr>
 
-                    <tr>
-                        <td>01/02/2015</td>
-                        <td>17:08</td>
-                        <td><a href="tel:447903351304">447903351304</a></td>
-                        <td>Puneet</td>
-                        <td>Landlord</td>
-                        <td>Answered</td>
-                        <td>9:36</td>
-                    </tr>    
+                    <% data.each do |obj| %>
+                        <tr>
+                            <td><%=obj["created_at"].to_time.strftime("%D")%></td>
+                            <td><%=obj["created_at"].to_time.strftime("%T")%></td>
+                            <td><a id="a_select" class="example-p-2"  href="#"><%=obj["callerid"]%></a></td>
+                            <td><%=obj["name"]%></td>
+                            <td><%=obj["department"]%></td>
+                            <td><%=obj["status"]%></td>
+                            <td><%="#{obj['call_duration']} sec"%></td>
+                        </tr>
+                    <%end%>
                 </table>
             </li>
         </ul>
     </li>
-
-    <!-- <li>
-        <a href="#" class="icon-zoom">H</a>
-        <ul class="handler">
-            <li>
-                <table class="table">
-                    <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Caller ID</th>
-                        <th>Name</th>
-                        <th>Department</th>
-                        <th>Status</th>
-                        <th>Call Duration</th>
-                    <tr>
-
-                    <tr>
-                        <td>01/02/2015</td>
-                        <td>17:08</td>
-                        <td>01456665455</td>
-                        <td>Puneet</td>
-                        <td>Landlord</td>
-                        <td>Answered</td>
-                        <td>9:36</td>
-                    </tr>    
-                </table>
-            </li>
-        </ul>
-    </li> -->
-    
-    
 </ul>
 
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('#example-1').sticklr({
-            animate         : false,
-            showOn          : 'hover'
+<script type="text/javascript">   
+    $('#example-1').sticklr({
+        menuHeight  : 20,
+        menuWidth   : 700,
+        tabHeight   : 20,
+        tabWidth    : 80,
+        showOn      : 'hover',
+        stickTo     : 'right',
+    });
+
+    // $('#search').sticklr({
+    //     // animate     : true,
+    //     menuHeight  : 20,
+    //     menuWidth   : 200,
+    //     // relativeTo  : 'bottom',  
+    //     // relativeGap : 90,
+    //     showOn      : 'hover',
+    //     tabHeight   : 34,
+    //     tabWidth    : 32
+    // });
+    
+    $("#a_select").click(function(){
+        $('#select_number').modal({
+        backdrop: 'static',
+        keyboard: false
+        },'show');
+    })
+
+    $('.example-p-2').on('click', function () {
+        var destination = $(this).html()
+        $.confirm({
+            title: 'Call',
+            content: 
+            '<form action="send_sms" data-remote="true" class="form_control">'+
+                '<div class="radio"><input type="radio" value="2018480">2018480 Steve Shop Number</div><br>'+
+                '<div class="radio"><input type="radio" value="2018481">2018481 Emma Shop Number</div><br>'+
+                '<div class="radio"><input type="radio" value="2018700">2018700 Steve Home Number</div><br>'+
+                '<div class="radio"><input type="radio" value="2018701">2018701 Emma Home Number</div>'+
+            '</form>',
+            confirmButton: 'Proceed',
+            confirmButtonClass: 'btn-info',
+            icon: 'fa fa-question-circle',
+            animation: 'scale',
+            animationClose: 'top',
+            opacity: 0.5,
+            confirm: function () {
+                var extension = $('input[type="radio"]:checked').val();
+                $.ajax({ 
+                    url: "/make_call?extension="+extension+'&destination='+destination,
+                    success: function(){ 
+                        // $('#select_number').modal("hide");
+                    },
+                    error:function(){
+                        console.log('error')
+                    } 
+                })
+            }
         });
     });
 </script>
-
-<style type="text/css">
-    .log{
-        width: 600px !important;
-        margin-left: 70px !important
-    }
-    .sticklr{
-        width: 88px !important
-    }
-    .sticklr a{
-        width: 80px !important
-    }
-    .sticklr-arrow{
-        left: 89px !important
-    }
-</style>

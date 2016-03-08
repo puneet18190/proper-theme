@@ -15,4 +15,16 @@
 #
 
 class Phone < ActiveRecord::Base
+	def self.call(extension, destination)
+		HTTParty.post("https://call-api.gradwell.com/0.9.3/call",:body=>{ 
+	        :auth=>'RJFICF9O59PHQXOZ7M2B98DP7O', 
+	        :extension=>extension, 
+	        :destination=>destination
+	    })
+	end
 end
+
+#post https://call-api.gradwell.com/0.9.3/call 
+#auth = RJFICF9O59PHQXOZ7M2B98DP7O
+#extension = 2018700
+#destination = 447903351304

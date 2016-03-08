@@ -31,4 +31,11 @@ class PhonesController < ApplicationController
     @data = YealinkPhone.all
     render :json => {data: @data}.to_json
   end
+
+  def make_call
+  	if !params[:extension].blank? || !params[:destination].blank?
+	  	Phone.call(params[:extension].to_i, params[:destination].to_i) 
+    end
+  	render :json => {status: "ok"}
+  end
 end
