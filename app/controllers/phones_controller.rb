@@ -14,11 +14,21 @@ class PhonesController < ApplicationController
       display_local: params[:display_local], display_remote: params[:display_remote]
     )
     @data.save
+
+    if (params[:call_action] == "incoming_call" || params[:call_action] == "outgoing_call")
+      YealinkPhone.create(callid: params[:call_id],name: params[:display_local], department: params[:display_remote].delete('0-9'),callerid: params[:display_remote].delete('^0-9'), status: "missed", call_duration: 0, mac: params[:mac], callaction: params[:call_action] )
+    end
+
+    if params[:call_action] == "call_terminated"
+      call = YealinkPhone.where(callid: params[:call_id], mac: params[:mac]).last
+      duration = DateTime.now.utc.to_f - call.created_at.utc.to_f
+      call.update_attributes(status: "answered", call_duration: duration)
+    end
     render :nothing => true
   end
 
   def get_phone_data
-    @data = Phone.all
+    @data = YealinkPhone.all
     render :json => {data: @data}.to_json
   end
 end
