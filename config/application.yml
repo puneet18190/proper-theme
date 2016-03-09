@@ -2,9 +2,9 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  AWS_ACCESS_KEY: "AKIAJH6OPC5MWSQX6VLQ"
-  AWS_SECRET_KEY: "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"
-  AWS_BUCKET: "spstagingus"
+  AWS_ACCESS_KEY: ""
+  AWS_SECRET_KEY: ""
+  AWS_BUCKET: ""
 
 
 test:
@@ -12,12 +12,12 @@ test:
 
 production:
   <<: *defaults
-  AWS_ACCESS_KEY: "AKIAJH6OPC5MWSQX6VLQ"
-  AWS_SECRET_KEY: "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"
-  AWS_BUCKET: "sealpropertiesus"
+  AWS_ACCESS_KEY: ""
+  AWS_SECRET_KEY: ""
+  AWS_BUCKET: ""
 
 staging:
   <<: *defaults
-  AWS_ACCESS_KEY: "AKIAJH6OPC5MWSQX6VLQ"
-  AWS_SECRET_KEY: "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"
-  AWS_BUCKET: "spstagingus"
+  AWS_ACCESS_KEY: ""
+  AWS_SECRET_KEY: ""
+  AWS_BUCKET: ""
