@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227192101) do
+ActiveRecord::Schema.define(version: 20160308145710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -241,6 +241,10 @@ ActiveRecord::Schema.define(version: 20160227192101) do
     t.datetime "updated_at"
     t.string   "call_action"
     t.string   "dataname"
+    t.string   "local"
+    t.string   "remote"
+    t.string   "display_local"
+    t.string   "display_remote"
   end
 
   create_table "properties", force: true do |t|
@@ -545,6 +549,19 @@ ActiveRecord::Schema.define(version: 20160227192101) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "yealink_phones", force: true do |t|
+    t.string   "name"
+    t.string   "callerid"
+    t.string   "department"
+    t.string   "status"
+    t.integer  "call_duration"
+    t.string   "callid"
+    t.string   "mac"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "callaction"
+  end
 
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", name: "mb_opt_outs_on_conversations_id", column: "conversation_id"
 
