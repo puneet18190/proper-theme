@@ -7,6 +7,21 @@
     .modal-header-primary {
     background-color: #428bca;
     }*/
+
+/*    tr {
+        width: 100%;
+        display: inline-table;
+        table-layout: fixed;
+    }*/
+    .call_log table{
+        height:300px;              
+    }
+    .call_log tbody{
+        overflow-y: scroll;      
+        height: 320px;            
+        width: 100%;
+        position: absolute;
+    }
 </style>
 
 <% data = HTTParty.get("http://www.sealproperties.co.uk/get_phone_data")["data"] %>
@@ -46,7 +61,7 @@
 <script type="text/javascript">   
     $('#example-1').sticklr({
         menuHeight  : 20,
-        menuWidth   : 700,
+        menuWidth   : 750,
         tabHeight   : 20,
         tabWidth    : 80,
         showOn      : 'hover',
