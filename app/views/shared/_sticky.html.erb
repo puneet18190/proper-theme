@@ -28,8 +28,8 @@
 <ul id="example-1" class="sticklr">
     <li>
         <a href="#">Call Log</a>
-        <ul >
-            <li>
+        <ul>
+            <li class="call_log">
                 <table class="table">
                     <tr>
                         <th>Date</th>
@@ -41,7 +41,7 @@
                         <th>Call Duration</th>
                     </tr>
 
-                    <% data.each do |obj| %>
+                    <% data.reverse.each do |obj| %>
                         <tr>
                             <td><%=obj["created_at"].to_time.strftime("%D")%></td>
                             <td><%=obj["created_at"].to_time.strftime("%T")%></td>
