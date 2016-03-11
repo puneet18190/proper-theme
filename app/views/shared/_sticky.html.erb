@@ -56,6 +56,16 @@
             </li>
         </ul>
     </li>
+
+    <li>
+        <a href="#" id="call_handler">Call Handler</a>
+        <ul>
+            <li>
+                <%#user = User.where("mobile = ? OR phone =?", data.last["callerid"],data.last["callerid"]).first%>
+                <%#user = User.last%>
+            </li>
+        </ul>
+    </li>
 </ul>
 
 <script type="text/javascript">   
@@ -117,4 +127,15 @@
             }
         });
     });
+
+    $("#call_handler").mouseover(function(){
+        $.ajax({
+            type: 'get',
+            url: '/get_call_handler',
+            success: function(res){
+                console.log(res)
+                $("#call_handler").next().find("li").html(res)
+            }
+        })
+    })
 </script>

@@ -171,6 +171,13 @@ class UsersController < ApplicationController
 		render :json => {user: user}.to_json
 	end
 
+	def contact_notes
+		user = User.find(params[:id])
+		user.contact_notes.create(notes: params[:contact_note][:notes])
+		# render :nothing => true
+		redirect_to :back
+	end
+
     private
     def set_user
       @user = User.find(params[:id])

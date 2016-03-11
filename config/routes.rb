@@ -184,6 +184,10 @@ Rails.application.routes.draw do
     collection do 
       get 'profile'
     end
+
+    member do
+      post 'contact_notes'
+    end
   end
 
   resources :landlords
@@ -263,4 +267,5 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   match '/make_call',   to: 'phones#make_call',   via: 'get'
+  match '/get_call_handler',   to: 'phones#get_call_handler',   via: 'get'
 end

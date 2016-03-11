@@ -79,6 +79,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :properties, dependent: :destroy
+  has_many :contact_notes
   Roles = [ :admin , :default ]
   acts_as_messageable
   after_create :notify_to_admin
