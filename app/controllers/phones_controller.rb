@@ -51,8 +51,8 @@ class PhonesController < ApplicationController
 
   def get_call_handler
     # @data = YealinkPhone.where(status: "").last
-    @data = HTTParty.get("http://www.sealproperties.co.uk/get_phone_data")["data"].first
-    @user = User.where("mobile = ? OR phone =?", @data["callerid"],@data["callerid"]).first
+    @data = HTTParty.get("http://www.sealproperties.co.uk/get_call_handler")["data"].first
+    @user = @data.blank? ? nil : User.where("mobile = ? OR phone =?", @data["callerid"],@data["callerid"]).first
     render :layout => false
     # render :json => {data: @data}.to_json
   end
