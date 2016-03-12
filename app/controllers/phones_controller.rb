@@ -36,4 +36,9 @@ class PhonesController < ApplicationController
     @data = YealinkPhone.all.where(callaction: "incoming_call")
     render :json => {data: @data}.to_json
   end
+
+  def get_call_handler
+    @data = YealinkPhone.all.where(callaction: "incoming_call", status: "")
+    render :json => {data: @data}.to_json
+  end
 end
