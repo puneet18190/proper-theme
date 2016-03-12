@@ -19,6 +19,11 @@ class PhonesController < ApplicationController
       YealinkPhone.create(callid: params[:call_id],name: params[:display_local], department: params[:display_remote].delete('0-9'),callerid: params[:display_remote].delete('^0-9'), status: "missed", call_duration: 0, mac: params[:mac], callaction: params[:call_action] )
     end
 
+    if params[:call_action] == "call_established"
+      call = YealinkPhone.where(callid: params[:call_id], mac: params[:mac]).last
+      call.update_attributes(status: "")
+    end
+
     if params[:call_action] == "call_terminated"
       call = YealinkPhone.where(callid: params[:call_id], mac: params[:mac]).last
       duration = DateTime.now.utc.to_f - call.created_at.utc.to_f
@@ -28,7 +33,12 @@ class PhonesController < ApplicationController
   end
 
   def get_phone_data
-    @data = YealinkPhone.all
+    @data = YealinkPhone.all.where(callaction: "incoming_call")
+    render :json => {data: @data}.to_json
+  end
+
+  def get_call_handler
+    @data = YealinkPhone.all.where(callaction: "incoming_call", status: "")
     render :json => {data: @data}.to_json
   end
 
