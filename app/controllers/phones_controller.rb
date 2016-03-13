@@ -56,4 +56,16 @@ class PhonesController < ApplicationController
     render :layout => false
     # render :json => {data: @data}.to_json
   end
+
+  def send_sms_to_user
+    @setting = Setting.all[0]
+    if !@setting.sms_destination_no.blank?
+      res = HTTParty.post("https://call-api.gradwell.com/0.9.3/sms",:body=>{ 
+        :auth=>'4KPDJWZRFOXXS50KXPOA4VTM4S', 
+        :originator=>441915805900, 
+        :destination=>params[:number], 
+        :message=>params[:message]})
+      render :json => {data: res}
+    end
+  end
 end

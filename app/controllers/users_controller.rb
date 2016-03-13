@@ -157,12 +157,16 @@ class UsersController < ApplicationController
     end
 
     def show
+    	if params[:id] == "autocomplete_user"
+    		@user = User.where("first_name ilike ? OR last_name ilike ?", "%#{params[:term]}%", "%#{params[:term]}%").order('first_name')	
+    	else
     	if params[:term].blank?
 	    	@user = User.find params[:id] 
 	    elsif params[:id] == "autocomplete_user_tenant"
     		@user = User.where(status: "tenant").where("first_name ilike ? OR last_name ilike ?", "%#{params[:term]}%", "%#{params[:term]}%").order('first_name')
     	else
     		@user = User.where(status: "landlord").where("first_name ilike ? OR last_name ilike ?", "%#{params[:term]}%", "%#{params[:term]}%").order('first_name')
+    	end
     	end
     end
 

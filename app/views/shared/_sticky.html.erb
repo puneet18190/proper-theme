@@ -66,6 +66,20 @@
             </li>
         </ul>
     </li>
+    <li>
+        <a href="#">Message</a>
+        <ul>
+            <li>
+                <div class="container" style="padding: 30px">
+                    <div class="alert_msg" style="color: red"></div>
+                    <%= text_field_tag :search, params[:sticky_search], class: "search-query", placeholder: "Search Tenant", type: "search", data: {autocomplete: users_autocomplete_user_path }, id: 'tenant_search', style: "margin-left:0px !important;width:50%" %>
+                    <h2 style="margin-top: 10px;margin-bottom:10px"><span class="sms_username"></span> <span class="sms_number"></span></h2>
+                    <textarea style="width: 50%;height:60px" maxlength="50" id="message"></textarea>
+                    <div class="row"><div class="btn" style="margin-left: 20px" id="send_sms">Send</div></div>
+                </div>
+            </li>
+        </ul>
+    </li>
 </ul>
 
 <script type="text/javascript">   
@@ -138,4 +152,90 @@
             }
         })
     })
+
+    $('#tenant_search').bind('railsAutocomplete.select', function(event, data){
+        var user_id = data.item.id
+        $.ajax({
+            url: '/get_user_data',
+            dataType: 'json',
+            data: {id: user_id}
+        })
+        .done(function(res) {
+            $('.sms_username').html(res.user.first_name)
+            $('.sms_number').html(res.user.mobile)
+        })
+    })
+
+    $("#send_sms").click(function(){
+        var number = $(".sms_number").html() 
+        var message = $("#message").val()
+        $.ajax({
+            type: "get",
+            url: "/send_sms_to_user",
+            data: "number="+number+"&message="+message,
+            success: function(res){
+                console.log(res.data)
+                // alert('Message Sent Successfully.')
+                $(".alert_msg").html(res.data)
+                setTimeout(function() {
+                    $(".alert_msg").slideUp()
+                }, 4000);
+            }
+        })        
+    })
 </script>
+
+<style type="text/css">
+    .ui-autocomplete {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1000;
+      float: left;
+      display: none;
+      min-width: 160px;
+      _width: 160px;
+      padding: 4px 0;
+      margin: 2px 0 0 0;
+      list-style: none;
+      background-color: #ffffff;
+      border-color: #ccc;
+      border-color: rgba(0, 0, 0, 0.2);
+      border-style: solid;
+      border-width: 1px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      -webkit-background-clip: padding-box;
+      -moz-background-clip: padding;
+      background-clip: padding-box;
+      *border-right-width: 2px;
+      *border-bottom-width: 2px;
+     
+      .ui-menu-item > a.ui-corner-all {
+        display: block;
+        padding: 3px 15px;
+        clear: both;
+        font-weight: normal;
+        line-height: 18px;
+        color: #555555;
+        white-space: nowrap;
+     
+      
+
+      }
+    }
+    .ui-widget-content .ui-state-focus {
+      color: #ffffff;
+      text-decoration: none;
+      background-color: #0088cc;
+      border-radius: 0px;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      background-image: none;
+    }
+
+</style>

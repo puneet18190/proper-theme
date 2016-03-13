@@ -210,9 +210,11 @@ Rails.application.routes.draw do
   match '/buyer',   to: 'properties#properties_buyer',   via: 'get'
   get 'users/autocomplete_user_email'
   get 'users/autocomplete_user_tenant'
+  get 'users/autocomplete_user'
   match '/get_user_data',   to: 'users#get_user_data',   via: 'get'
   match 'get_phone_data', to: 'phones#get_phone_data', via: 'get'
   match 'get_call_handler', to: 'phones#get_call_handler', via: 'get'
+  match 'send_sms_to_user', to: 'phones#send_sms_to_user', via: 'get'
   #match '/uploadfile',   to: 'screens#uploadfile', via: 'post'
   # See how all your routes lay out with "rake routes".
 
