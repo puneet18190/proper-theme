@@ -63,7 +63,7 @@ class PhonesController < ApplicationController
       res = HTTParty.post("https://call-api.gradwell.com/0.9.3/sms",:body=>{ 
         :auth=>'4KPDJWZRFOXXS50KXPOA4VTM4S', 
         :originator=>441915805900, 
-        :destination=>params[:number], 
+        :destination=>params[:number].gsub(/^0/, "+44"), 
         :message=>params[:message]})
       render :json => {data: res}
     end
