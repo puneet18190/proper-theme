@@ -167,6 +167,7 @@
     })
 
     $("#send_sms").click(function(){
+        $(".alert_msg").html("Sending...")
         var number = $(".sms_number").html() 
         var message = $("#message").val()
         $.ajax({
