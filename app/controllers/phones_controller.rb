@@ -71,4 +71,8 @@ class PhonesController < ApplicationController
       render :json => {data: res}
     end
   end
+
+  def record_search
+    @user = User.where("first_name ilike ? OR last_name ilike ?", "%#{params[:term]}%", "%#{params[:term]}%").order('first_name')
+  end
 end
