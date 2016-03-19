@@ -215,6 +215,7 @@ Rails.application.routes.draw do
   match 'get_phone_data', to: 'phones#get_phone_data', via: 'get'
   match 'get_call_handler', to: 'phones#get_call_handler', via: 'get'
   match 'send_sms_to_user', to: 'phones#send_sms_to_user', via: 'get'
+  match 'record_search', to: 'phones#record_search', via: 'get'
   #match '/uploadfile',   to: 'screens#uploadfile', via: 'post'
   # See how all your routes lay out with "rake routes".
 
