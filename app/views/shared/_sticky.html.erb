@@ -1,18 +1,4 @@
 <style type="text/css">
-/*    .modal-content {
-        margin: 15% auto; 
-        border: 3px solid #428bca;
-        width: 80%; 
-    }
-    .modal-header-primary {
-    background-color: #428bca;
-    }*/
-
-/*    tr {
-        width: 100%;
-        display: inline-table;
-        table-layout: fixed;
-    }*/
     .call_log table{
         height:300px;              
     }
@@ -48,7 +34,6 @@
 <ul id="example-1" class="sticklr">
     <li>
         <a href="#" title="Call Log" style="height: 16px; width: 16px;" class="call_log_menu"><span></span></a>
-        <!-- <a href="#" style="background-image: /assets/phone-book.png">Call Log</a> -->
         <ul>
             <li class="call_log">
                 <table class="table">
@@ -81,10 +66,7 @@
     <li>
         <a href="#" id="call_handler" title="Call Handler" style="height: 16px; width: 16px;" class="call_handler_menu"><span></span></a>
         <ul>
-            <li>
-                <%#user = User.where("mobile = ? OR phone =?", data.last["callerid"],data.last["callerid"]).first%>
-                <%#user = User.last%>
-            </li>
+            <li></li>
         </ul>
     </li>
     <li>
@@ -106,17 +88,16 @@
         <ul>
             <li>
                 <div class="container" style="padding: 30px">
-                    <!-- <div class="alert_msg" style="color: red"></div> -->
-                    <%= text_field_tag :search, params[:record_search], class: "search-query", type: "search", data: {autocomplete: '/record_search' }, style: "margin-left:0px !important;width:50%" %>
+                    <%= text_field_tag :search, params[:record_search], class: "search-query", type: "search",id: "record_search", data: {autocomplete: '/record_search' }, style: "margin-left:0px !important;width:50%" %>
                     
-                    <table class="table">
+                    <table class="table" style="width: 75%">
                         <tr>
                             <th></th>
                             <th>Landlord/Buyer</th>
                             <th>Tenant/Seller</th>
                             <!-- <th>Property Contractor</th> -->
                         </tr>
-
+                        <span class="record_search_data"></span>
                     </table>
                 </div>
             </li>
@@ -133,17 +114,6 @@
         showOn      : 'hover',
         stickTo     : 'right',
     });
-
-    // $('#search').sticklr({
-    //     // animate     : true,
-    //     menuHeight  : 20,
-    //     menuWidth   : 200,
-    //     // relativeTo  : 'bottom',  
-    //     // relativeGap : 90,
-    //     showOn      : 'hover',
-    //     tabHeight   : 34,
-    //     tabWidth    : 32
-    // });
     
     $("#a_select").click(function(){
         $('#select_number').modal({
@@ -242,6 +212,46 @@
             }
         })        
     })
+
+    $('#record_search').bind('railsAutocomplete.select', function(event, data){
+        var user_id = data.item.id
+        $.ajax({
+            url: '/get_user_data',
+            dataType: 'json',
+            data: {id: user_id}
+        })
+        .done(function(res) {
+            console.log(res)
+            if(!($("#record_search").parent().find("table tr")[1] == undefined)){
+                $("#record_search").parent().find("table tr")[1].remove()
+                $("#record_search").parent().find("table tr")[1].remove()
+                $("#record_search").parent().find("table tr")[1].remove()
+                $("#record_search").parent().find("table tr")[1].remove()
+            }
+            // if(!($("#record_search").parent().find("table tr")[2] == undefined)){
+            //     $("#record_search").parent().find("table tr")[2].remove()    
+            // }
+            // if(!($("#record_search").parent().find("table tr")[3] == undefined)){
+            //     $("#record_search").parent().find("table tr")[3].remove()    
+            // }
+            
+            if(res.user.status == "landlord"){
+                $(
+                    "<tr><td> Name</td><td>"+res.user.first_name+"</td><td></td></tr>"+
+                    "<tr><td> Contact No</td><td>"+res.user.phone+"</td><td></td></tr>"+
+                    "<tr><td> Email</td><td>"+res.user.email+"</td><td></td></tr>"+
+                    "<tr><td> </td><td><a class='btn btn-proper' href='/users/"+res.user.id+"'>Go to Record</a></td><td></td></tr>"
+                ).insertAfter($("#record_search").parent().find("table tr")[0])
+            }else if(res.user.status == "tenant"){
+                $(
+                    "<tr><td> Name</td><td></td><td>"+res.user.first_name+"</td></tr>"+
+                    "<tr><td> Contact No</td><td></td><td>"+res.user.phone+"</td></tr>"+
+                    "<tr><td> Email</td><td></td><td>"+res.user.email+"</td></tr>"+
+                    "<tr><td> </td><td></td><td><a class='btn btn-proper' href='/users/"+res.user.id+"'>Go to Record</a></td></tr>"
+                ).insertAfter($("#record_search").parent().find("table tr")[0])
+            }
+        })
+    })
 </script>
 
 <style type="text/css">
@@ -281,10 +291,7 @@
         font-weight: normal;
         line-height: 18px;
         color: #555555;
-        white-space: nowrap;
-     
-      
-
+        white-space: nowrap;      
       }
     }
     .ui-widget-content .ui-state-focus {
