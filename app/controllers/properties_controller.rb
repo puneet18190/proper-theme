@@ -813,7 +813,7 @@ class PropertiesController < ApplicationController
   end
 
   def properties_managed
-    @properties = Property.where("category = ? AND managed = ?", "Rent", true).includes(:user).includes(:agent).includes(:tenant)
+    @properties = Property.where("category = ? AND managed = ?", "Rent", true).includes(:user).includes(:agent).includes(:tenants)
   end
 
   def properties_sale
