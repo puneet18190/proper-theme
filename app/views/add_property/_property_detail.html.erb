@@ -27,6 +27,20 @@
       <%= f.text_field :postcode, :style=>"width:90px"%>
       <%= f.text_field :postcode1, :style=>"width:90px;margin-left:2%"%>
     </div>
+    <%= f.fields_for :key do |key| %>
+      <div class="field">
+        <%= key.label :key_status, "Key" %>
+        <%= key.text_field :key_status,value: (@key.key_status=="unassign" ? "Assign": "Unassign"),class: "btn btn-proper key_btn",id: "assign_btn", :style=>"color: white;width:218px", type: "button"%>
+        <%= key.hidden_field :key_status, value: @key.key_status, class: "key_status"%>
+      </div>
+      <div class="field">
+        <%= key.label :key_number, "Key Number", style: "float: left; width: 50px" %>
+        <%= key.text_field :key_number, disabled: "disabled", style: "", class: "key_number", value: @key.key_number %>
+        <%= key.hidden_field :key_number, value: @key.key_number, class: "key_number"%>
+      </div>
+    <%end%>
+    <%= f.hidden_field :key_assign_date, class: "assign_date", value: (@property.new_record? ? "" : @property.key_assign_date)%>
+    <%= f.hidden_field :key_unassign_date, value: (@property.new_record? ? DateTime.now : @property.key_unassign_date), class: "unassign_date"%>
   </div>
 
   <div style="float:left;width:25%;margin:10px;height:95%">
@@ -235,5 +249,28 @@
     $("#property_esc_due_date_1i").val(a.getFullYear())
     $("#property_esc_due_date_2i").val(a.getMonth())
     $("#property_esc_due_date_3i").val(a.getDate())
+  })
+
+  $(".key_btn").click(function(){
+    var src = $(this)
+    if(src.val()=="Assign"){
+      $.ajax({
+        type: "get",
+        url: "/get_key",
+        success: function(res){
+          $(".key_number").val(res.data.key_number)
+          src.attr("value", "Unassign")
+          $(".key_status").attr("value", "assign")
+          $(".unassign_date").attr("value", "")
+          $(".assign_date").attr("value", '<%=DateTime.now%>')
+        }
+      })
+    }else{
+      src.attr("value", "Assign")
+      $(".key_status").attr("value", "unassign")
+      $(".key_number").val("")
+      $(".assign_date").attr("value", "")
+      $(".unassign_date").attr("value", '<%=DateTime.now%>')
+    }
   })
 </script>

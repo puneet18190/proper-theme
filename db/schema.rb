@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160321163139) do
+ActiveRecord::Schema.define(version: 20160325185059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,9 +149,7 @@ ActiveRecord::Schema.define(version: 20160321163139) do
 
   create_table "keys", force: true do |t|
     t.integer  "key_number"
-    t.string   "key_status",    default: "unassign"
-    t.datetime "assign_date"
-    t.datetime "unassign_date"
+    t.string   "key_status",  default: "unassign"
     t.integer  "property_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -361,6 +359,8 @@ ActiveRecord::Schema.define(version: 20160321163139) do
     t.boolean  "dss_move",             default: false
     t.boolean  "home",                 default: false
     t.boolean  "wonder_property",      default: false
+    t.datetime "key_assign_date"
+    t.datetime "key_unassign_date"
   end
 
   add_index "properties", ["slug"], name: "index_properties_on_slug", unique: true, using: :btree

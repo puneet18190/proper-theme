@@ -37,6 +37,7 @@ class PropertiesController < ApplicationController
         @property = current_user.properties.new
         @user = @property.build_user
         @tenant = @property.tenants.build  #@property.build_tenant
+        @key = @property.build_key
         respond_with(@property)
       end
     end    
@@ -57,6 +58,7 @@ class PropertiesController < ApplicationController
         @tenant = @property.tenants.build 
         @no_tenant=true
       end
+      @key = @property.key.nil? ? @property.build_key : @property.key
     end
   end
 
@@ -73,7 +75,9 @@ class PropertiesController < ApplicationController
 
     params[:property][:user_id] = set_landlord_tenant(params[:property][:user][:email], "landlord", "create")
     # params[:property][:tenant_id] = set_landlord_tenant(params[:property][:tenant][:email], "tenant", "create")
+    key_data = params[:property][:key]
     params[:property].delete('user').delete('tenant')
+    params[:property].delete('key')
 
     @property = Property.new(property_params)
     @property.category.downcase
@@ -85,7 +89,7 @@ class PropertiesController < ApplicationController
     @property.longitude = @a.lng
     @property.agent_id = Agent.where(name: "Landlord").first.id if current_user.status == "landlord"
     @property.save
-
+    Key.where(key_number: key_data["key_number"]).first.update_attributes(key_status: key_data["key_status"], property_id: @property.id) unless key_data["key_number"].blank?
     @property.save_multiple_tenants(params[:property][:tenants_attributes], "create")
 
     @property.update_attributes(:payment=>true, :property_create_user => "admin") if current_user.status == "admin"
@@ -123,6 +127,9 @@ class PropertiesController < ApplicationController
       params[:property][:let_agreed_date] = DateTime.now if @property.status=="Available" && params[:property][:status] == "Let Agreed"
       params[:property][:sold_date] = DateTime.now if @property.stage!="Complete" && params[:property][:stage] == "Complete"
 
+      key_data = params[:property][:key]
+      params[:property].delete('key')
+
       @property.update(property_params)
       unless params[:property][:tenant].blank?
         @property.save_multiple_tenants(params[:property][:tenant], "update")
@@ -137,6 +144,12 @@ class PropertiesController < ApplicationController
       end
       if @property.featured_changed?
         @property.r_date = Time.now
+      end
+
+      if key_data["key_number"].blank?
+        Key.where(key_number: @property.key.key_number).first.update_attributes(key_status: key_data["key_status"], property_id: nil)      
+      else
+        Key.where(key_number: key_data["key_number"]).first.update_attributes(key_status: key_data["key_status"], property_id: @property.id)
       end
       redirect_to :back
     end
@@ -862,13 +875,18 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def get_key
+    @key = Key.where(key_status: "unassign").first
+    render :json => {data: @key}.to_json 
+  end
+
   private
     def set_property
       @property = Property.friendly.find(params[:id])
     end
 
     def property_params
-      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status, :accredited, :licensed, :tenant_criteria, :cp12, :esc, :bond, :deal, :stage, :managed, :board, :tenant_id, :let_agreed_date, :sold_date, :marketing_notes, :epc_date_complete, :epc_due_date,:cp12_date_complete, :cp12_due_date,:esc_date_complete, :esc_due_date, :dss_move, :mouse_price,:home,:wonder_property )
+      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status, :accredited, :licensed, :tenant_criteria, :cp12, :esc, :bond, :deal, :stage, :managed, :board, :tenant_id, :let_agreed_date, :sold_date, :marketing_notes, :epc_date_complete, :epc_due_date,:cp12_date_complete, :cp12_due_date,:esc_date_complete, :esc_due_date, :dss_move, :mouse_price,:home,:wonder_property, :key_assign_date, :key_unassign_date )
     end
 
     def property_changes_params

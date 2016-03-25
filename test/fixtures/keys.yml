@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: keys
+#
+#  id          :integer          not null, primary key
+#  key_number  :integer
+#  key_status  :string(255)      default("unassign")
+#  property_id :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  key_number: 1
+  key_status: MyString
+  assign_date: 2016-03-20 12:51:06
+  unassign_date: 2016-03-20 12:51:06
+  property_id: 1
+
+two:
+  key_number: 1
+  key_status: MyString
+  assign_date: 2016-03-20 12:51:06
+  unassign_date: 2016-03-20 12:51:06
+  property_id: 1
