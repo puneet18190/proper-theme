@@ -8,7 +8,13 @@ class PhonesController < ApplicationController
   	# else
   	# 	mac=""
   	# end
-  		
+    if (params[:call_action] == "incoming_call")
+      number = params[:display_remote].delete('^0-9')
+      name =  number.blank? ? "" : User.where("mobile = ? OR phone =?", number, number).first.first_name
+      Pusher['private'].trigger('new_message', {body: "test", number: number, name: name})
+      # render :json => {:status => true}
+    end
+
     @data = Phone.new(callerid: params[:call_id], call_action: params[:call_action], dataname: params[:mac], 
       local: params[:local], remote: params[:remote], 
       display_local: params[:display_local], display_remote: params[:display_remote]

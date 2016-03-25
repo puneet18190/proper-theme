@@ -58,5 +58,11 @@ module Proper
     }
   }
 
+  require 'pusher'
+  Pusher.logger = Rails.logger
+  Pusher.app_id = '76135'
+  Pusher.key = '5bd96073aa957e3dd27d'
+  Pusher.secret = 'a03467df707d09f49c7c'
+  
   end
 end

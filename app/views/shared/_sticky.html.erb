@@ -161,18 +161,18 @@
             success: function(res){
                 console.log(res)
                 $("#call_handler").next().find("li").html(res)
-                if($(".call_handler_alert").size() == 0){
-                    data = $(res).find(".user_info").html()
-                    if (data == undefined){
-                        $(".main_container").prepend('<p class="alert alert-success call_handler_alert">No Call</p>')
-                    }else{
-                        $(".main_container").prepend('<p class="alert alert-success call_handler_alert">'+data+'</p>')
-                    }
-                    window.setInterval(function(){
-                        $(".call_handler_alert").fadeOut(5000)
-                        $(".call_handler_alert").remove()
-                    }, 10000);    
-                }
+                // if($(".call_handler_alert").size() == 0){
+                    // data = $(res).find(".user_info").html()
+                    // if (data == undefined){
+                    //     $(".main_container").prepend('<p class="alert alert-success call_handler_alert">No Call</p>')
+                    // }else{
+                    //     $(".main_container").prepend('<p class="alert alert-success call_handler_alert">'+data+'</p>')
+                    // }
+                    // window.setInterval(function(){
+                    //     $(".call_handler_alert").fadeOut(5000)
+                    //     $(".call_handler_alert").remove()
+                    // }, 10000);    
+                // }
                 
             }
         })

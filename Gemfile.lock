@@ -173,6 +173,7 @@ GEM
     cookies_eu (1.0.12)
       jquery-cookie-rails
       jquery-rails
+    crack (0.1.8)
     daemons (1.1.9)
     debug_inspector (0.0.2)
     delayed_job (4.0.1)
@@ -419,6 +420,11 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
+    pusher (0.8.1)
+      crack (~> 0.1.0)
+      multi_json (~> 1.0)
+      ruby-hmac (~> 0.4.0)
+      signature (~> 0.1.2)
     quiet_assets (1.0.3)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
@@ -497,6 +503,7 @@ GEM
       chunky_png
       rqrcode
     ruby-graphviz (1.2.2)
+    ruby-hmac (0.4.0)
     ruby-progressbar (1.7.5)
     ruby2ruby (2.1.4)
       ruby_parser (~> 3.1)
@@ -521,6 +528,8 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     sexp_processor (4.6.0)
+    signature (0.1.2)
+      ruby-hmac
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -657,6 +666,7 @@ DEPENDENCIES
   prawn
   pry
   pry-rails
+  pusher
   quiet_assets
   rack-mini-profiler
   railroady
