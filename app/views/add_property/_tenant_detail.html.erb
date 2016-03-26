@@ -27,7 +27,7 @@
 		   			$('.tenant_form #property_tenants_attributes_0_phone').val(res.user.phone)
 		   			$('.tenant_form #property_tenants_attributes_0_mobile').val(res.user.mobile)
 		   			$('.tenant_form #property_tenants_attributes_0_email').val(res.user.email)
-		   			$($('.tenant_form #property_tenants_attributes_0_email')[0]).attr('disabled', true)
+		   			// $($('.tenant_form #property_tenants_attributes_0_email')[0]).attr('disabled', true)
 		   			$('.tenant_form #property_tenants_attributes_0_dob').val(res.user.dob)
 		   			// $($('#tenant_details #tenant_email').val(res.user.email)
 		   			$('.tenant_form #property_tenants_attributes_0_tenant_status').val(res.user.tenant_status)
@@ -40,8 +40,8 @@
 		   			$('[name="property[tenant][0][postcode]"] ').val(res.user.postcode)
 		   			$('[name="property[tenant][0][phone]"] ').val(res.user.phone)
 		   			$('[name="property[tenant][0][mobile]"] ').val(res.user.mobile)
-		   			$($('[name="property[tenant][0][email]"] ')[0]).val(res.user.email).attr('disabled', true)
-		   			$($('[name="property[tenant][0][email]"] ')[1]).val(res.user.email)
+		   			$($('[name="property[tenant][0][email]"] ')[0]).val(res.user.email)//.attr('disabled', true)
+		   			// $($('[name="property[tenant][0][email]"] ')[1]).val(res.user.email)
 		   			$('[name="property[tenant][0][dob]"] ').val(res.user.dob)
 		   			<%end%>
 		   			console.log("success");
@@ -57,7 +57,7 @@
 			$("#tenant_reset").click(function(){
 				<%if params[:action]=="new" || @no_tenant%>
 				$('.tenant_form #property_tenants_attributes_0_email').attr('value', '')
-				$($('.tenant_form #property_tenants_attributes_0_email')[0]).attr('disabled', false)
+				// $($('.tenant_form #property_tenants_attributes_0_email')[0]).attr('disabled', false)
 				$('.tenant_form #property_tenants_attributes_0_first_name').val("")
 	   			$('.tenant_form #property_tenants_attributes_0_last_name').val("")
 	   			$('.tenant_form #property_tenants_attributes_0_address1').val("")
@@ -78,8 +78,8 @@
 	   			$('[name="property[tenant][0][postcode]"] ').val("")
 	   			$('[name="property[tenant][0][phone]"] ').val("")
 	   			$('[name="property[tenant][0][mobile]"] ').val("")
-	   			$($('[name="property[tenant][0][email]"] ')[0]).val("").attr('disabled', false)
-	   			$($('[name="property[tenant][0][email]"] ')[1]).val("")
+	   			$($('[name="property[tenant][0][email]"] ')[0]).val("")//.attr('disabled', false)
+	   			// $($('[name="property[tenant][0][email]"] ')[1]).val("")
 	   			$('[name="property[tenant][0][dob]"] ').val("")
 	   			$('#tenant_search').val("")
 	   			<%end%>
@@ -161,17 +161,17 @@
 		    </div>
 		    <div class="field">
 		      <%= tenant.label :email %>
-		      <%if params[:action] == "new" || @no_tenant%>
+		      <%#if params[:action] == "new" || @no_tenant%>
 			      <%= tenant.text_field :email%>
-			      <%= tenant.hidden_field :email%>
-			  <%else%>
-			  	  <%= tenant.text_field :email, disabled: "disabled"%>
-			  	  <%= tenant.hidden_field :email%>
-			  <%end%> 
+			      <%#= tenant.hidden_field :email%>
+			  <%#else%>
+			  	  <%#= tenant.text_field :email, disabled: "disabled"%>
+			  	  <%#= tenant.hidden_field :email%>
+			  <%#end%> 
 		    </div>
 		    <div class="field">
 		      <%= tenant.label :dob %>
-		      <%= tenant.text_field :dob%>
+		      <%= tenant.text_field :dob, placeholder: "DD-MM-YYYY"%>
 		    </div>
 		    <%if params[:action] == "new"%>
 			    <%= tenant.hidden_field :password, value: "12345678"%>
@@ -227,7 +227,7 @@
 		    </div>
 		    <div class="field">
 		      <%= tenant.label :dob %>
-		      <%= tenant.text_field :dob, name: "property[tenant][#{index}][dob]"%>
+		      <%= tenant.text_field :dob, name: "property[tenant][#{index}][dob]", placeholder: "DD-MM-YYYY", value: (obj.dob.nil? ? "" : obj.dob.strftime("%d-%m-%Y"))%>
 		    </div>
 		    <%= tenant.hidden_field :tenant_status, value: "tenant", name: "property[tenant][#{index}][status]" %>
 		    <%#if params[:action] == "new"%>

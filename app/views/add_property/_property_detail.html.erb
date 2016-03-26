@@ -149,11 +149,11 @@
 
     <div class="field">
       <label style="margin:0">Date Complete</label>
-      <%= f.date_select :epc_date_complete %>
+      <%= f.date_select :epc_date_complete, start_year: 2005 %>
     </div>
     <div class="field">
       <label style="margin:0">Due Date</label>
-      <%= f.date_select :epc_due_date, end_year: 2040 %>
+      <%= f.date_select :epc_due_date, start_year: 2005, end_year: 2040 %>
     </div>
 
     <div class="field" style="height: 30px">

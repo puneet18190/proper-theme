@@ -76,7 +76,8 @@ class PropertiesController < ApplicationController
     params[:property][:user_id] = set_landlord_tenant(params[:property][:user][:email], "landlord", "create")
     # params[:property][:tenant_id] = set_landlord_tenant(params[:property][:tenant][:email], "tenant", "create")
     key_data = params[:property][:key]
-    params[:property].delete('user').delete('tenant')
+    params[:property].delete('user')
+    params[:property].delete('tenant')
     params[:property].delete('key')
 
     @property = Property.new(property_params)
@@ -122,7 +123,8 @@ class PropertiesController < ApplicationController
 
       params[:property][:user_id] = set_landlord_tenant(params[:property][:user][:email], "landlord", "update")
       # params[:property][:tenant_id] = set_landlord_tenant(params[:property][:tenant][:email], "tenant", "update")
-      params[:property].delete('user').delete('tenant')
+      params[:property].delete('user')
+      # params[:property].delete('tenant')
 
       params[:property][:let_agreed_date] = DateTime.now if @property.status=="Available" && params[:property][:status] == "Let Agreed"
       params[:property][:sold_date] = DateTime.now if @property.stage!="Complete" && params[:property][:stage] == "Complete"
@@ -147,7 +149,7 @@ class PropertiesController < ApplicationController
       end
 
       if key_data["key_number"].blank?
-        Key.where(key_number: @property.key.key_number).first.update_attributes(key_status: key_data["key_status"], property_id: nil)      
+        Key.where(key_number: @property.key.key_number).first.update_attributes(key_status: key_data["key_status"], property_id: nil) unless @property.key.blank?
       else
         Key.where(key_number: key_data["key_number"]).first.update_attributes(key_status: key_data["key_status"], property_id: @property.id)
       end
@@ -865,6 +867,7 @@ class PropertiesController < ApplicationController
     if email.blank?
       return (user=="landlord") ? current_user.id : nil
     elsif User.find_by_email(email).blank?
+      params["property"]["user"].merge(status: "tenant", password: "12345678", password_confirmation: "12345678")
       u= User.new((user=="landlord") ? user_params : tenant_params)
       u.skip_confirmation!
       u.save

@@ -49,10 +49,11 @@
 
                     <% data.reverse.each do |obj| %>
                         <tr>
-                            <td><%=obj["created_at"].to_time.strftime("%D")%></td>
+                            <td><%=obj["created_at"].to_time.strftime("%d/%m/%y")%></td>
                             <td><%=obj["created_at"].to_time.strftime("%T")%></td>
                             <td><a id="a_select" class="example-p-2"  href="#"><%=obj["callerid"][0]=="0" ? obj["callerid"].gsub(/^0/, "+44") : "+44"+obj["callerid"] unless obj["callerid"].blank?%></a></td>
-                            <td><%=obj["name"]%></td>
+                            <% call_user = User.where("mobile = ? OR phone =?", obj["callerid"],obj["callerid"]).first %>
+                            <td><%=call_user.blank? ? "" : "#{call_user.first_name} (#{call_user.status[0].capitalize})" %></td>
                             <td><%=obj["department"]%></td>
                             <td><%=obj["status"]%></td>
                             <td><%=Time.at(obj['call_duration']).utc.strftime("%H:%M:%S") %></td>
@@ -75,7 +76,7 @@
             <li>
                 <div class="container" style="padding: 30px">
                     <div class="alert_msg" style="color: red"></div>
-                    <%= text_field_tag :search, params[:sticky_search], class: "search-query", placeholder: "Search Tenant", type: "search", data: {autocomplete: users_autocomplete_user_path }, id: 'tenant_search', style: "margin-left:0px !important;width:50%" %>
+                    <%= text_field_tag :search, params[:sticky_search], class: "search-query", placeholder: "Search Tenant", type: "search", data: {autocomplete: users_autocomplete_user_path }, id: 'search_user_sms', style: "margin-left:0px !important;width:50%" %>
                     <h2 style="margin-top: 10px;margin-bottom:10px"><span class="sms_username"></span> <span class="sms_number"></span></h2>
                     <textarea style="width: 50%;height:60px" maxlength="50" id="message"></textarea>
                     <div class="row"><div class="btn" style="margin-left: 20px" id="send_sms">Send</div></div>
@@ -128,10 +129,10 @@
             title: 'Call',
             content: 
             '<form action="send_sms" data-remote="true" class="form_control">'+
-                '<div class="radio"><input type="radio" value="2018480">2018480 Steve Shop Number</div><br>'+
-                '<div class="radio"><input type="radio" value="2018481">2018481 Emma Shop Number</div><br>'+
-                '<div class="radio"><input type="radio" value="2018700">2018700 Steve Home Number</div><br>'+
-                '<div class="radio"><input type="radio" value="2018701">2018701 Emma Home Number</div>'+
+                '<div class="radio"><input type="radio" value="2018480">2018480 Emma/Showroom</div><br>'+
+                '<div class="radio"><input type="radio" value="2018481">2018481 Steve/Big Office</div><br>'+
+                '<div class="radio"><input type="radio" value="2018700">2018700 Steve Home</div><br>'+
+                '<div class="radio"><input type="radio" value="2018701">2018701 Emma Home</div>'+
             '</form>',
             confirmButton: 'Proceed',
             confirmButtonClass: 'btn-info',
@@ -178,7 +179,7 @@
         })
     })
 
-    $('#tenant_search').bind('railsAutocomplete.select', function(event, data){
+    $('#search_user_sms').bind('railsAutocomplete.select', function(event, data){
         var user_id = data.item.id
         $.ajax({
             url: '/get_user_data',
