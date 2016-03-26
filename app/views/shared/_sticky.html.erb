@@ -1,66 +1,8 @@
-<style type="text/css">
-    .call_log table{
-        height:300px;              
-    }
-    .call_log tbody{
-        overflow-y: scroll;      
-        height: 320px;            
-        width: 100%;
-        position: absolute;
-    }
-    .call_log_menu{
-        background-image: url('./assets/phone-book.png');
-        background-size: 30px 30px;
-    }
-    .call_handler_menu{
-        background-image: url('./assets/call-center-girl.png');
-        background-size: 30px 30px;   
-    }
-    .quick_sms_menu{
-        background-image: url('./assets/smartphone-sending-data.png');
-        background-size: 25px 25px;   
-    }
-    .record_search_menu{
-        background-image: url('./assets/record_search.png');
-        background-size: 25px 25px;   
-    }
-</style>
-
-<%if Rails.env=="production"%>
-    <% data = YealinkPhone.all.where(callaction: "incoming_call").last(20) %>
-<%else%>
-    <% data = HTTParty.get("http://www.sealproperties.co.uk/get_phone_data")["data"] %>
-<%end%>
 <ul id="example-1" class="sticklr">
     <li>
-        <a href="#" title="Call Log" style="height: 16px; width: 16px;" class="call_log_menu"><span></span></a>
+        <a href="#" id="call_log" title="Call Log" style="height: 16px; width: 16px;" class="call_log_menu"><span></span></a>
         <ul>
-            <li class="call_log">
-                <table class="table">
-                    <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Caller ID</th>
-                        <th>Name</th>
-                        <th>Department</th>
-                        <th>Status</th>
-                        <th>Call Duration</th>
-                    </tr>
-
-                    <% data.reverse.each do |obj| %>
-                        <tr>
-                            <td><%=obj["created_at"].to_time.strftime("%d/%m/%y")%></td>
-                            <td><%=obj["created_at"].to_time.strftime("%T")%></td>
-                            <td><a id="a_select" class="example-p-2"  href="#"><%=obj["callerid"][0]=="0" ? obj["callerid"].gsub(/^0/, "+44") : "+44"+obj["callerid"] unless obj["callerid"].blank?%></a></td>
-                            <% call_user = User.where("mobile = ? OR phone =?", obj["callerid"],obj["callerid"]).first %>
-                            <td><%=call_user.blank? ? "" : "#{call_user.first_name} (#{call_user.status[0].capitalize})" %></td>
-                            <td><%=obj["department"]%></td>
-                            <td><%=obj["status"]%></td>
-                            <td><%=Time.at(obj['call_duration']).utc.strftime("%H:%M:%S") %></td>
-                        </tr>
-                    <%end%>
-                </table>
-            </li>
+            <li class="call_log"></li>
         </ul>
     </li>
 
@@ -106,7 +48,7 @@
     </li>
 </ul>
 
-<script type="text/javascript">   
+<script type="text/javascript">
     $('#example-1').sticklr({
         menuHeight  : 20,
         menuWidth   : 750,
@@ -162,19 +104,6 @@
             success: function(res){
                 console.log(res)
                 $("#call_handler").next().find("li").html(res)
-                // if($(".call_handler_alert").size() == 0){
-                    // data = $(res).find(".user_info").html()
-                    // if (data == undefined){
-                    //     $(".main_container").prepend('<p class="alert alert-success call_handler_alert">No Call</p>')
-                    // }else{
-                    //     $(".main_container").prepend('<p class="alert alert-success call_handler_alert">'+data+'</p>')
-                    // }
-                    // window.setInterval(function(){
-                    //     $(".call_handler_alert").fadeOut(5000)
-                    //     $(".call_handler_alert").remove()
-                    // }, 10000);    
-                // }
-                
             }
         })
     })
@@ -202,14 +131,13 @@
             data: "number="+number+"&message="+message,
             success: function(res){
                 console.log(res.data)
-                // alert('Message Sent Successfully.')
                 $(".alert_msg").html(res.data)
                 setTimeout(function() {
                     $(".alert_msg").slideUp()
                 }, 4000);
             },
             error: function(){
-                $(".alert_msg").html("")        
+                $(".alert_msg").html("")
             }
         })        
     })
@@ -229,13 +157,7 @@
                 $("#record_search").parent().find("table tr")[1].remove()
                 $("#record_search").parent().find("table tr")[1].remove()
             }
-            // if(!($("#record_search").parent().find("table tr")[2] == undefined)){
-            //     $("#record_search").parent().find("table tr")[2].remove()    
-            // }
-            // if(!($("#record_search").parent().find("table tr")[3] == undefined)){
-            //     $("#record_search").parent().find("table tr")[3].remove()    
-            // }
-            
+
             if(res.user.status == "landlord"){
                 $(
                     "<tr><td> Name</td><td>"+res.user.first_name+"</td><td></td></tr>"+
@@ -253,56 +175,14 @@
             }
         })
     })
+
+    $("#call_log").mouseover(function(){
+        $.ajax({
+            type: 'get',
+            url: '/get_call_log',
+            success: function(res){
+                $(".call_log").html(res)
+            }
+        })
+    })    
 </script>
-
-<style type="text/css">
-    .ui-autocomplete {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      z-index: 1000;
-      float: left;
-      display: none;
-      min-width: 160px;
-      _width: 160px;
-      padding: 4px 0;
-      margin: 2px 0 0 0;
-      list-style: none;
-      background-color: #ffffff;
-      border-color: #ccc;
-      border-color: rgba(0, 0, 0, 0.2);
-      border-style: solid;
-      border-width: 1px;
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      border-radius: 5px;
-      -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-      -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-      -webkit-background-clip: padding-box;
-      -moz-background-clip: padding;
-      background-clip: padding-box;
-      *border-right-width: 2px;
-      *border-bottom-width: 2px;
-     
-      .ui-menu-item > a.ui-corner-all {
-        display: block;
-        padding: 3px 15px;
-        clear: both;
-        font-weight: normal;
-        line-height: 18px;
-        color: #555555;
-        white-space: nowrap;      
-      }
-    }
-    .ui-widget-content .ui-state-focus {
-      color: #ffffff;
-      text-decoration: none;
-      background-color: #0088cc;
-      border-radius: 0px;
-      -webkit-border-radius: 0px;
-      -moz-border-radius: 0px;
-      background-image: none;
-    }
-
-</style>

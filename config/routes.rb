@@ -273,6 +273,7 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   match '/make_call',   to: 'phones#make_call',   via: 'get'
+  match '/get_call_log',   to: 'phones#get_call_log',   via: 'get'
   match '/get_call_handler',   to: 'phones#get_call_handler',   via: 'get'
   post 'pusher/auth'
   match '/get_key',   to: 'properties#get_key',   via: 'get'

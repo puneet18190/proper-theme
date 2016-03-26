@@ -1,18 +1,10 @@
 class PhonesController < ApplicationController
   
   def help
-  	# if params[:mac] == "0015654c66c2"
-  	# 	mac= "Emma's Shop"
-  	# elsif params[:mac] == "0015654c6db2"
-  	# 	mac = "Steve's Shop"
-  	# else
-  	# 	mac=""
-  	# end
     if (params[:call_action] == "incoming_call")
       number = params[:display_remote].delete('^0-9')
       name =  number.blank? ? "" : User.where("mobile = ? OR phone =?", number, number).first.first_name
       Pusher['private'].trigger('new_message', {body: "test", number: number, name: name})
-      # render :json => {:status => true}
     end
 
     @data = Phone.new(callerid: params[:call_id], call_action: params[:call_action], dataname: params[:mac], 
@@ -63,7 +55,15 @@ class PhonesController < ApplicationController
     end
     @user = @data.blank? ? nil : User.where("mobile = ? OR phone =?", @data["callerid"],@data["callerid"]).first
     render :layout => false
-    # render :json => {data: @data}.to_json
+  end
+
+  def get_call_log
+    if Rails.env=="production"
+      @data = YealinkPhone.all.where(callaction: "incoming_call").last(20)
+    else
+      @data = HTTParty.get("http://www.sealproperties.co.uk/get_phone_data")["data"]
+    end
+    render :layout => false
   end
 
   def send_sms_to_user
