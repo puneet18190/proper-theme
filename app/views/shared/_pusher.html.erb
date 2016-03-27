@@ -18,7 +18,15 @@
               '</span>'+
             '</p>'
           )
-          $("#call_handler").trigger('mouseover')
+          // $("#call_handler").trigger('mouseover')
+          $.ajax({
+            type: 'get',
+            url: '/get_call_handler',
+            success: function(res){
+              $("#call_handler").next().find("li").html(res)
+            }
+          })
+
           window.setInterval(function(){
               $(".call_handler_alert").fadeOut(5000)
               $(".call_handler_alert").remove()

@@ -16,13 +16,18 @@
         <a href="#" title="Quick SMS" style="height: 16px; width: 16px;" class="quick_sms_menu"><span></span></a>
         <ul>
             <li>
-                <div class="container" style="padding: 30px">
+                <div class="sms_container" style="padding: 30px">
                     <div class="alert_msg" style="color: red"></div>
-                    <%= text_field_tag :search, params[:sticky_search], class: "search-query", placeholder: "Search Tenant", type: "search", data: {autocomplete: users_autocomplete_user_path }, id: 'search_user_sms', style: "margin-left:0px !important;width:50%" %>
+                    <%= text_field_tag :search, params[:sticky_search], class: "search-query", placeholder: "Search", type: "search", data: {autocomplete: users_autocomplete_user_path }, id: 'search_user_sms', style: "margin-left:0px !important;width:50%" %>
                     <h2 style="margin-top: 10px;margin-bottom:10px"><span class="sms_username"></span> <span class="sms_number"></span></h2>
                     <textarea style="width: 50%;height:60px" maxlength="50" id="message"></textarea>
-                    <div class="row"><div class="btn" style="margin-left: 20px" id="send_sms">Send</div></div>
+                    <div class="row"><div class="btn btn-proper" style="margin-left: 20px" id="send_sms">Send</div></div>
                 </div>
+
+                <div class="sent_sms_container" style="padding: 30px; display: none">
+                    <div class="success_msg" style="color: green"></div>
+                    <div class="row"><div class="btn btn-proper" style="margin-left: 300px;margin-top: 25px" id="new_message">New Message</div></div>
+                </div
             </li>
         </ul>
     </li>
@@ -97,16 +102,16 @@
         });
     });
 
-    $("#call_handler").mouseover(function(){
-        $.ajax({
-            type: 'get',
-            url: '/get_call_handler',
-            success: function(res){
-                console.log(res)
-                $("#call_handler").next().find("li").html(res)
-            }
-        })
-    })
+    // $("#call_handler").mouseover(function(){
+    //     $.ajax({
+    //         type: 'get',
+    //         url: '/get_call_handler',
+    //         success: function(res){
+    //             console.log(res)
+    //             $("#call_handler").next().find("li").html(res)
+    //         }
+    //     })
+    // })
 
     $('#search_user_sms').bind('railsAutocomplete.select', function(event, data){
         var user_id = data.item.id
@@ -131,15 +136,28 @@
             data: "number="+number+"&message="+message,
             success: function(res){
                 console.log(res.data)
-                $(".alert_msg").html(res.data)
-                setTimeout(function() {
-                    $(".alert_msg").slideUp()
-                }, 4000);
+                // $(".alert_msg").html(res.data)
+                $(".sent_sms_container").show()
+                $(".success_msg").html(res.data)
+                $(".sms_container").hide()
+                $("#search_user_sms").val("")
+                $("#message").val("")
+                $(".sms_username").html("")
+                $(".sms_number").html("")
+                $(".alert_msg").html("")
+                // setTimeout(function() {
+                //     $(".alert_msg").slideUp()
+                // }, 4000);
             },
             error: function(){
                 $(".alert_msg").html("")
             }
         })        
+    })
+
+    $("#new_message").click(function(){
+        $(".sent_sms_container").hide()
+        $(".sms_container").show()
     })
 
     $('#record_search').bind('railsAutocomplete.select', function(event, data){
