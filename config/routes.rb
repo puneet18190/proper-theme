@@ -277,4 +277,6 @@ Rails.application.routes.draw do
   match '/get_call_handler',   to: 'phones#get_call_handler',   via: 'get'
   post 'pusher/auth'
   match '/get_key',   to: 'properties#get_key',   via: 'get'
+  match '/property_search',   to: 'phones#property_search',   via: 'get'
+  match '/get_property_data',   to: 'phones#get_property_data',   via: 'get'
 end

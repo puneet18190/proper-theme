@@ -57,6 +57,18 @@
             </li>
         </ul>
     </li>
+    <li>
+        <a href="#" title="Key" style="height: 16px; width: 16px;" class="key_menu"><span></span></a>
+        <ul>
+            <li>
+                <div class="container" style="padding: 30px; width: 50%">
+                    <%= text_field_tag :search, params[:property_search], class: "search-query", placeholder: "Search Property", type: "search", data: {autocomplete: '/property_search' }, id: 'search_property', style: "width:100%" %>
+                    <h1 style="padding: 10px">Key Status: <span class="key_status"></span></h1>
+                    <h1 style="padding: 10px">Key Number: <span class="key_number"></span></h1>
+                </div>
+            </li>
+        </ul>
+    </li>
 </ul>
 
 <script type="text/javascript">
@@ -208,5 +220,28 @@
                 $(".call_log").html(res)
             }
         })
-    })    
+    })
+
+    $('#search_property').bind('railsAutocomplete.select', function(event, data){
+        var property_id = data.item.id
+        $.ajax({
+            url: '/get_property_data',
+            dataType: 'json',
+            data: {id: property_id}
+        })
+        .done(function(res) {
+            console.log(res.data)
+            if(res.status == "true"){
+                $(".key_number").html(res.data.key_number)
+            }else{
+                $(".key_number").html("")
+            }
+            if (res.status == "true" && res.data.key_status == "assign"){
+                $(".key_status").html("Available")    
+            }else{
+                $(".key_status").html("Unavailable")
+            }
+            
+        })
+    })
 </script>
