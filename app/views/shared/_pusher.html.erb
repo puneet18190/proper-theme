@@ -33,6 +33,28 @@
           }, 10000);
       });
 
+      channel.bind('receive_sms', function(data) {
+          $(".sms_receive").next().find("li").html(
+            '<table class="table">'+
+              '<tr>'+
+                '<th>Received Date</th>'+
+                '<th>Received Time</th>'+
+                '<th>Caller ID</th>'+
+                '<th>Name</th>'+
+                '<th>message</th>'+
+              '</tr>'+
+              '<tr>'+
+                '<td>'+ data.received_date +'</td>'+
+                '<td>'+ data.received_time +'</td>'+
+                '<td>'+ data.caller_id +'</td>'+
+                '<td>'+ data.name +'('+ data.user_type +')</td>'+
+                '<td>'+ data.message +'</td>'+
+              '</tr>'+
+            '<table>'
+          )
+          $(".sms_receive").trigger('mouseover')
+      });
+
       pusher.connection.bind('connecting', function() {
           console.log('Connecting to Pusher...');
       });

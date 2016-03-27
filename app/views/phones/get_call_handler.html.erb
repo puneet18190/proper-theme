@@ -12,7 +12,7 @@
                 </tr>
                 <%@user.contact_notes.last(3).reverse.each do |obj|%>
                     <tr>
-                        <td style="border: none"><%=obj.created_at.to_time.strftime("%D")%></td>
+                        <td style="border: none"><%=obj.created_at.to_time.strftime("%d/%m/%Y")%></td>
                         <td style="border: none"><%=obj.created_at.to_time.strftime("%T")%></td>
                         <td style="border: none"><%=obj.notes%></td>
                     </tr>

@@ -302,7 +302,7 @@
 
 /* icons */
 
-.icon-zoom {
+/*.icon-zoom {
     background-image: url('img/pc.de-16/zoom.png');
 }
 
@@ -336,7 +336,7 @@
 
 .icon-google {
     background-image: url('img/icondock-16/google.png');
-}
+}*/
 
 .call_log table{
     height:300px;
@@ -369,6 +369,15 @@
     background-size: 25px 25px;
 }
 
+.sms_receive{
+    background-image: url('/assets/smartphone-receiving-sign.png');
+    background-size: 25px 25px;
+}
+
+.key_menu{
+    background-image: url('/assets/key.png');
+    background-size: 25px 25px;
+}
 .ui-autocomplete {
   position: absolute;
   top: 100%;
