@@ -2,7 +2,7 @@
     <%#if @data.blank?%>
         <!-- No Data -->
     <%#else%>
-        <span style="font-size: 18px" class="user_info">Name (<%=@user.blank? ? "" : @user.first_name%>) Number (<%=@number%>)</span><br/>
+        <span style="font-size: 18px" class="user_info">Name (<%=@user.blank? ? "" : "#{@user.first_name} #{@user.last_name}"%>) Number (<%=@number%>)</span><br/>
         <%if @user.blank?%>
             <p>User not in contact list.</p>
         <%else%>
