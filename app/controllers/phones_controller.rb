@@ -4,7 +4,7 @@ class PhonesController < ApplicationController
     if (params[:call_action] == "incoming_call")
       number = params[:display_remote].delete('^0-9')
       user =  number.blank? ? "" : User.where("mobile = ? OR phone =?", number, number).first
-      name = user.blank? "" : "#{user.first_name} #{user.last_name}"
+      name = user.blank? ? "" : "#{user.first_name} #{user.last_name}"
       Pusher['private'].trigger('new_message', {number: number, name: name})
     end
 
