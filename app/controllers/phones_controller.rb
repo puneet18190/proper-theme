@@ -4,7 +4,7 @@ class PhonesController < ApplicationController
     if (params[:call_action] == "incoming_call")
       number = params[:display_remote].delete('^0-9')
       name =  number.blank? ? "" : User.where("mobile = ? OR phone =?", number, number).first.first_name
-      Pusher['private'].trigger('new_message', {body: "test", number: number, name: name})
+      Pusher['private'].trigger('new_message', {number: number, name: name})
     end
 
     @data = Phone.new(callerid: params[:call_id], call_action: params[:call_action], dataname: params[:mac], 
@@ -56,12 +56,14 @@ class PhonesController < ApplicationController
   end
 
   def get_call_handler
-    if Rails.env=="production"
-      @data = YealinkPhone.all.where(callaction: "incoming_call", status: "").last
-    else
-      @data = HTTParty.get("http://www.sealproperties.co.uk/get_call_handler_api")["data"].first
-    end
-    @user = @data.blank? ? nil : User.where("mobile = ? OR phone =?", @data["callerid"],@data["callerid"]).first
+    # if Rails.env=="production"
+    #   @data = YealinkPhone.all.where(callaction: "incoming_call", status: "").last
+    # else
+    #   @data = HTTParty.get("http://www.sealproperties.co.uk/get_call_handler_api")["data"].first
+    # end
+    # @user = @data.blank? ? nil : User.where("mobile = ? OR phone =?", @data["callerid"],@data["callerid"]).first
+    @user = User.where("mobile = ? OR phone =?", params[:number],params[:number]).first
+    @number = params[:number]
     render :layout => false
   end
 

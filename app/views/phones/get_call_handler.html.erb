@@ -1,8 +1,8 @@
 <div class="container" style="padding: 10px">
-    <%if @data.blank?%>
-        No Data
-    <%else%>
-        <span style="font-size: 18px" class="user_info">Name (<%=@user.blank? ? "" : @user.first_name%>) Number (<%=@data['callerid']%>)</span><br/>
+    <%#if @data.blank?%>
+        <!-- No Data -->
+    <%#else%>
+        <span style="font-size: 18px" class="user_info">Name (<%=@user.blank? ? "" : @user.first_name%>) Number (<%=@number%>)</span><br/>
         <%if @user.blank?%>
             <p>User not in contact list.</p>
         <%else%>
@@ -20,8 +20,8 @@
             </table>
             <%= form_for @user.contact_notes.new, url: contact_notes_user_path(id: @user.id) do |f|%>
                 <%= f.text_area :notes, placeholder: "Free text box", style: "width: 50%"%>
-                <%= f.submit "Add Note", style: "display: block" %>
+                <%= f.submit "Add Note", style: "display: block", class: "btn btn-proper" %>
             <%end%>
         <%end%>
-    <%end%>
+    <%#end%>
 </div>

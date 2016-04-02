@@ -11,24 +11,30 @@
       var channel = pusher.subscribe('private');
 
       channel.bind('new_message', function(data) {
-          $(".main_container").prepend(
-            '<p class="alert alert-success call_handler_alert">'+
-              '<span style="font-size: 18px" class="user_info">'+
-                'Name (' + data.name + ') Number (' + data.number + ') Calling...'+ 
-              '</span>'+
-            '</p>'
-          )
+          if ($("body").find(".call_handler_alert")[0] == undefined){
+
+            $(".main_container").prepend(
+              '<p class="alert alert-success call_handler_alert">'+
+                '<span style="font-size: 18px" class="user_info">'+
+                  'Name (' + data.name + ') Number (' + data.number + ') Calling...'+ 
+                '</span>'+
+              '</p>'
+            )
+          }
           // $("#call_handler").trigger('mouseover')
           $.ajax({
             type: 'get',
             url: '/get_call_handler',
+            data: 'number='+data.number,
             success: function(res){
               $("#call_handler").next().find("li").html(res)
             }
           })
 
+          $("#call_handler").trigger('mouseover')
+
           window.setInterval(function(){
-              $(".call_handler_alert").slideUp()
+              $(".call_handler_alert").slideUp().remove()
           }, 10000);
       });
 
@@ -61,7 +67,7 @@
           )
           $(".sms_receive").trigger('mouseover')
           window.setInterval(function(){
-              $(".sms_alert").slideUp()
+              $(".sms_alert").slideUp().remove()
           }, 10000);
       });
 
