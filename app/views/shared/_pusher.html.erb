@@ -11,7 +11,7 @@
       var channel = pusher.subscribe('private');
 
       channel.bind('new_message', function(data) {
-          if ($("body").find(".call_handler_alert")[0] == undefined){
+          if ($("body").find(".call_handler_alert").size() == 0){
 
             $(".main_container").prepend(
               '<p class="alert alert-success call_handler_alert">'+
