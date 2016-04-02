@@ -28,12 +28,19 @@
           })
 
           window.setInterval(function(){
-              $(".call_handler_alert").fadeOut(5000)
-              $(".call_handler_alert").remove()
+              $(".call_handler_alert").slideUp()
           }, 10000);
       });
 
       channel.bind('receive_sms', function(data) {
+          $(".main_container").prepend(
+            '<p class="alert alert-success sms_alert">'+
+              '<span style="font-size: 18px" class="user_info">'+
+                'New Message Received...'+ 
+              '</span>'+
+            '</p>'
+          )
+
           $(".sms_receive").next().find("li").html(
             '<table class="table">'+
               '<tr>'+
@@ -53,6 +60,9 @@
             '<table>'
           )
           $(".sms_receive").trigger('mouseover')
+          window.setInterval(function(){
+              $(".sms_alert").slideUp()
+          }, 10000);
       });
 
       pusher.connection.bind('connecting', function() {
