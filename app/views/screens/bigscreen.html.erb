@@ -66,19 +66,21 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#test').weatherfeed(['UKXX0060'],{
-            unit: 'c',
-            image: true,
-            country: true,
-            highlow: true,
-            wind: true,
-            humidity: true,
-            visibility: true,
-            sunrise: true,
-            sunset: true,
-            forecast: true,
-            link: false
-        });
+        // $('#test').weatherfeed(['UKXX0060'],{
+        //     unit: 'c',
+        //     image: true,
+        //     country: true,
+        //     highlow: true,
+        //     wind: true,
+        //     humidity: true,
+        //     visibility: true,
+        //     sunrise: true,
+        //     sunset: true,
+        //     forecast: true,
+        //     link: false
+        // });
+
+        $('#test').EasyWeather({ forecasts: true, orientation: 'horizontal', nbForecastDays: 4,showDetails: true, width: '675px' });
     });
 </script>
 
@@ -144,4 +146,7 @@ ul li { display:inline; font-size:8em; text-align:center; font-family:'BebasNeue
 100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; }
 }
 
+.ew-forecasts{
+    padding-top: 20px;
+}
 </style>
