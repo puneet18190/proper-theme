@@ -5,7 +5,8 @@
         <div class="row">
             <div class="" style="float:left;margin-left:40px;">
                 <div class="vertical" style="height:210px">
-                    <div id="test" class="items" style="width:675px;"></div>
+                    <!-- <div id="test" class="items" style="width:675px;"></div> -->
+                    <div class="ewLoc"> </div>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 hero-feature" style="float:left;width:28%">
@@ -80,7 +81,7 @@
         //     link: false
         // });
 
-        $('#test').EasyWeather({ location: 'Gateshead' });
+        $('.ewLoc').EasyWeather({ location: "Gateshed", forecasts: true, orientation: 'horizontal', nbForecastDays: 4,showDetails: true, width: '675px', enableGeolocation: false });
     });
 </script>
 
