@@ -137,8 +137,11 @@
       $('#tenant_details #property_user_dob').val("")
       $('#tenant_search').val("")
       $('#tenant_details #tenant_email').val("")
+    }else if(stage == "On Hold/Awaiting Referencing"){
+      $("#vetting_tab").show()
     }else{
       $("#tenant_tab").show()
+      $("#vetting_tab").hide()
     }
   })
 </script>

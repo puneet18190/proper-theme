@@ -38,6 +38,7 @@ class PropertiesController < ApplicationController
         @user = @property.build_user
         @tenant = @property.tenants.build  #@property.build_tenant
         @key = @property.build_key
+        @vetting = @property.build_vetting
         respond_with(@property)
       end
     end    
@@ -59,6 +60,7 @@ class PropertiesController < ApplicationController
         @no_tenant=true
       end
       @key = @property.key.nil? ? @property.build_key : @property.key
+      @vetting = @property.vetting.nil? ? @property.build_vetting : @property.vetting
     end
   end
 
@@ -70,6 +72,7 @@ class PropertiesController < ApplicationController
     params[:property][:epc] = upload_document(params[:property][:epc], "epc", "", "create") unless params[:property][:epc].nil?
     params[:property][:cp12] = upload_document(params[:property][:cp12], "cp12", "", "create") unless params[:property][:cp12].nil?
     params[:property][:esc] = upload_document(params[:property][:esc], "esc", "", "create") unless params[:property][:esc].nil?
+    params[:property][:vetting_attributes][:vetting_doc] = upload_document(params[:property][:vetting_attributes][:vetting_doc], "vetting_doc", "", "create") unless params[:property][:vetting_attributes][:vetting_doc].nil?
 
     params[:property][:price] = params[:property][:price].scan(/\d+/).first.to_i
 
@@ -98,7 +101,7 @@ class PropertiesController < ApplicationController
       @property.update_attributes(:property_create_user => "landlord")
       redirect_to "/properties", notice: "Once you have finished editing your property, please submit it for approval."
     else
-      redirect_to "/properties"
+      redirect_to "/properties", notice: "Property created successfully."
     end
   end
 
@@ -107,6 +110,7 @@ class PropertiesController < ApplicationController
     params[:property][:epc] = upload_document(params[:property][:epc], "epc", @property, "update") unless params[:property][:epc].nil?
     params[:property][:cp12] = upload_document(params[:property][:cp12], "cp12", @property, "update") unless params[:property][:cp12].nil?
     params[:property][:esc] = upload_document(params[:property][:esc], "esc", @property, "update") unless params[:property][:esc].nil?
+    params[:property][:vetting_attributes][:vetting_doc] = upload_document(params[:property][:vetting_attributes][:vetting_doc], "vetting_doc", @property, "update") unless params[:property][:vetting_attributes][:vetting_doc].nil?
 
     if current_user.status == "landlord"
       ['image1','image2','image3','image4','image5','image6','image7','image8','image9','image10'].each do |obj|
@@ -132,7 +136,7 @@ class PropertiesController < ApplicationController
       key_data = params[:property][:key]
       params[:property].delete('key')
 
-      @property.update(property_params)
+      @property.update_attributes(property_params)
       unless params[:property][:tenant].blank?
         @property.save_multiple_tenants(params[:property][:tenant], "update")
       else
@@ -153,7 +157,7 @@ class PropertiesController < ApplicationController
       else
         Key.where(key_number: key_data["key_number"]).first.update_attributes(key_status: key_data["key_status"], property_id: @property.id)
       end
-      redirect_to :back
+      redirect_to :back, notice: "Property updated successfully."
     end
     rescue Exception => e
       redirect_to "/properties", alert: e.message
@@ -850,8 +854,11 @@ class PropertiesController < ApplicationController
   def upload_document(file, file_name, property, action)
     service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
     bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
+
     file.original_filename = "#{Time.now.to_i}/#{file.original_filename}"
-    if action=="update" && !property.send(file_name).blank?
+    if action=="update" && file_name.include?("vetting_doc")
+      property.property_documents.create(name: file_name, url: property.vetting.send(file_name) ) if !property.vetting.blank?
+    elsif action=="update" && !property.send(file_name).blank?
       # a= property.send(file_name).split("https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/").last
       # object = bucket.objects.find(a)
       # object.destroy if object
@@ -889,7 +896,7 @@ class PropertiesController < ApplicationController
     end
 
     def property_params
-      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status, :accredited, :licensed, :tenant_criteria, :cp12, :esc, :bond, :deal, :stage, :managed, :board, :tenant_id, :let_agreed_date, :sold_date, :marketing_notes, :epc_date_complete, :epc_due_date,:cp12_date_complete, :cp12_due_date,:esc_date_complete, :esc_due_date, :dss_move, :mouse_price,:home,:wonder_property, :key_assign_date, :key_unassign_date )
+      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status, :accredited, :licensed, :tenant_criteria, :cp12, :esc, :bond, :deal, :stage, :managed, :board, :tenant_id, :let_agreed_date, :sold_date, :marketing_notes, :epc_date_complete, :epc_due_date,:cp12_date_complete, :cp12_due_date,:esc_date_complete, :esc_due_date, :dss_move, :mouse_price,:home,:wonder_property, :key_assign_date, :key_unassign_date, vetting_attributes: [ :vetting_type, :submission_date, :outcome_date, :outcome, :vetting_doc, :guarantor ])
     end
 
     def property_changes_params

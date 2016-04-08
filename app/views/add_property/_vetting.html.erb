@@ -1,0 +1,62 @@
+<div id="vetting" class="tab-pane fade" style="width:100%;height:100%">
+	<div style="float:left;margin:10px;width:24%; padding-left:40px">
+		<%= f.fields_for :vetting do |v| %>
+	    <h3 style="margin-top:20px;padding:5px"><b>Vetting</b></h3>
+
+	    <div class="field">
+	      <%= v.label :vetting_type, "Type" %>
+	      <%= v.text_field :vetting_type ,style: "float: right" %>
+	    </div><br/>
+
+	    <div class="field">
+	      <%= v.label :submission_date %>
+	      <%= v.date_select :submission_date, {  :prompt => { day: 'Day', month: 'Month',year: "Year" }, :use_short_month => true }, {style: "width: 63px; float: right; margin-left: 0"} %>
+	    </div><br/>
+
+      <div class="field">
+        <%= v.label :outcome_date %>
+        <%= v.date_select :outcome_date, {  :prompt => { day: 'Day', month: 'Month',year: "Year" }, :use_short_month => true }, {style: "width: 63px; float: right; margin-left: 0"} %>
+      </div><br/>
+
+	    <div class="field">
+	      <%= v.label :outcome %>
+	      <%= v.select :outcome, ["Insufficient", "Pass","Fail"],{}, {style: "float: right", id: "vetting_outcome"} %>
+	    </div><br/>
+
+	    <div class="field">
+	      <%= v.label :guarantor %>
+	      <%= v.select :guarantor, [['Yes', true], ['No', false]],{}, {style: "float: right"} %>
+	    </div><br/>
+
+      <div class="field" style="height: 30px">
+        <label style="margin:0">Upload</label>
+        
+        <%if params[:action]=="edit"  && !@property.vetting.vetting_doc.nil?%>
+          <%= v.file_field :vetting_doc,:style=>"width:95px;line-height:0;" %>
+        <%else%>
+          <%= v.file_field :vetting_doc,:style=>"line-height:0;margin-left:90px" %>
+        <%end%>
+      
+        <%if params[:action]=="edit" && !@property.vetting.vetting_doc.nil?%>
+          <span style="float:right"><%= @property.vetting.vetting_doc.split(".com/").last %></span>
+        <%end%>
+      </div>
+      <%= v.hidden_field :property_id, value: @property.id %>
+	  <%end%>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $("#vetting_outcome").on('change', function() {
+    var outcome = $("#vetting_outcome option:selected").text()
+    if(outcome == "Pass"){
+      $("#property_stage").val("Subject to Tenancy")
+      $("#tenancy_term_tab").show()
+    }else{
+      <%if params[:action] == "edit"%>
+        $("#property_stage").val("<%= @property.stage %>")  
+      <%end%>
+      $("#tenancy_term_tab").hide()
+    }
+  })
+</script>

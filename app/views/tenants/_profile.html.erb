@@ -1,0 +1,87 @@
+<div id="tenant_profile" class="tab-pane fade in active" style="width:100%;height:100%">
+	<%= form_for @tenant,url: url, html: { multipart: true,class: "",:style=>"width:40%;float:left" } do |f| %>
+    <div class="proper-form-step-area">
+      <h4>Personal Information</h4>
+      <div style="width:300px;height:400px">
+        <div class="span5">
+          <%= f.label :first_name, "<span style='color:red'>*</span>First Name".html_safe %>
+          <%= f.text_field :first_name, class: "input-block-level", required: "true" %>
+        </div>
+        <div class="span5">
+          <%= f.label :last_name, "<span style='color:red'>*</span>Last Name".html_safe %>
+          <%= f.text_field :last_name, class: "input-block-level", required: "true" %>
+        </div>
+        <div class="span5">
+          <%= f.label :address1, "<span style='color:red'>*</span>Address 1".html_safe %>
+          <%= f.text_field :address1, class: "input-block-level", required: "true" %>
+        </div>
+        <div class="span5">
+          <%= f.label "Address 2" %>
+          <%= f.text_field :address2, class: "input-block-level" %>
+        </div>
+        <div class="span5">
+          <%= f.label "Address 3" %>
+          <%= f.text_field :address3, class: "input-block-level" %>
+        </div>
+        <div class="span5">
+          <%= f.label :postcode, "<span style='color:red'>*</span>Postcode".html_safe %>
+          <%= f.text_field :postcode, class: "input-block-level", required: "true" %>
+        </div>
+        <div class="span5">
+          <%= f.label :mobile, "<span style='color:red'>*</span>Mobile".html_safe %>
+          <%= f.text_field :mobile, class: "input-block-level", required: "true" %>
+        </div>
+        <div class="span5">
+          <%= f.label :phone, "Alternative Phone" %>
+          <%= f.text_field :phone, class: "input-block-level" %>
+        </div>
+        <div class="span5">
+          <%= f.label :email %>
+          <%= f.text_field :email, class: "input-block-level" %>
+        </div>
+        <div class="span5">
+          <%= f.label :dob, "Date of Birth" %>
+          <%= f.date_select :dob, class: "input-block-level", required: "true", start_year: 2015,end_year: 1930 %>
+        </div>
+      </div>
+    </div>
+    <%= f.submit 'Save', class: "btn btn-proper btn-large submit-btn", style: "margin-left:50%" %>
+  <%end%>
+    
+  <form class="" action="/tenant_search_result" method="get" style="float:right;width:50%">
+    <%= search_form_for Property.search(params[:q]) do |f| %>
+      <div class="proper-form-step-area">
+      	<h4>Property Requirements</h4>
+        <%=f.hidden_field :user_id, value: params[:id]%>
+        <div class="span5">
+          <%= f.label :category_cont, "Category" %>
+          <%= f.select :category_cont, ["Rent","Sale"], class: "input-block-level", selected: "#{@category unless @data.nil?}" %>
+        </div>
+        <div class="span5">
+          <%= f.label :type, "Type" %>
+          <%= f.select :property_type,["Not Specified", "Character Property", "Mobile / Park Homes", "Land", "Houses", "Commercial Property", "Flats / Apartments"], class: "input-block-level", selected: "#{@type unless @data.nil?}" %>
+        </div>
+        <div class="span5">
+          <%= f.label :price_lteq, "Min Price" %>
+          <%= f.search_field :price_gteq, class: "input-block-level", value: "#{@price_greater_than unless @data.nil?}" %>
+        </div>
+        <div class="span5">
+          <%= f.label :price_gteq, "Max Price" %>
+          <%= f.search_field :price_lteq, class: "input-block-level", value: "#{@price_less_than unless @data.nil?}" %>
+        </div>
+        <div class="span5">
+          <%= f.label :beds_eq, "Bedrooms" %>
+          <%= f.select :beds_eq, ["Not Specified","1","2","3","4","5+"], class: "input-block-level", selected: "#{@beds unless @data.nil?}" %>
+        </div>
+        <div class="span5">
+          <%= f.label :location %>
+          <%= f.search_field :address1_or_address2_or_address3_cont_or_town_cont, class: "input-block-level", value: "#{@location unless @data.nil?}" %>
+        </div>
+        <div class="span5">
+          <%= f.submit 'Search', class: "btn btn-proper btn-large", style: "margin:10%;margin-left:50%" %>
+        </div>
+      </div>
+      
+    <%end%>
+  </form>
+</div>

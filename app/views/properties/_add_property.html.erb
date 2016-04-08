@@ -19,6 +19,10 @@
         <li><a href="#landlord_details">Landlord Details</a></li>
         <% klass = params[:action]=="new" ? "hide" : (@property.stage=="Available" ? "hide" : "") %>
         <li id="tenant_tab" class=<%=klass%> ><a href="#tenant_details">Tenant Details</a></li>
+        <% klass1 = params[:action]=="new" ? "hide" : (@property.stage=="On Hold/Awaiting Referencing" ? "" : "hide") %>
+        <li id="vetting_tab" class=<%=klass1%> ><a href="#vetting">Vetting</a></li>
+        <% klass2= (params[:action]=="new"|| @property.vetting.blank?) ? "hide" : (@property.vetting.outcome=="Pass" ? "" : "hide") %>
+        <li id="tenancy_term_tab" class=<%=klass2%>><a href="#tenancy_term">Tenancy Term</a></li>
       </ul>
       <div class="clearfix"></div>
       <div class="payment">
@@ -36,222 +40,14 @@
           <div class="proper-form-step-area" style="padding-top:0">
             <div class="proper-singup" style="max-width:100%;margin:0;padding:0;height:100%">
               <div class="tab-content" style="background: none !important;border:none !important">
-              <%= render :partial => "add_property/property_detail", :locals=>{:f=>f} %>
-              <%= render :partial => "add_property/property_images", :locals=>{:f=>f} %>
-              <%= render :partial => "add_property/marketing_detail", :locals=>{:f=>f} %>
-              <%= render :partial => "add_property/landlord_detail", :locals=>{:f=>f} %>
-              <%= render :partial => "add_property/tenant_detail", :locals=>{:f=>f} %>
-
-              
-            </div>
-<%
-=begin%>
-              <div style="float:left;margin:10px;width:23%">
-                <h3 class=""><b>Property</b></h3>
-                <%= f.hidden_field :user_id, value: params[:user_id].nil? ? current_user.id : params[:user_id] if params[:action]=="new"%>
-                <div class="field">
-                  <%= f.label :name %>
-                  <%= f.text_field :name %>
-                </div>
-                <div class="field">
-                  <%= f.label :address1 %>
-                  <%= f.text_field :address1 %>
-                </div>
-                <div class="field">
-                  <%= f.label :address2 %>
-                  <%= f.text_field :address2 %>
-                </div>
-                <div class="field">
-                  <%= f.label :address3 %>
-                  <%= f.text_field :address3 %>
-                </div>
-                <div class="field">
-                  <%= f.label :town %>
-                  <%= f.text_field :town %>
-                </div>
-                <div class="field">
-                  <%= f.label :postcode %>
-                  <%= f.text_field :postcode, :style=>"width:90px"%>
-                  <%= f.text_field :postcode1, :style=>"width:90px;margin-top:-68px;margin-left:175px"%>
-                </div>
-                <div class="field">
-                  <%= f.label "Search Criteria",:style=>"width:53px" %>
-                  <% if params[:action] == "edit" && !PropertyType.where(:p_id=>f.object.property_type).first.nil?%>
-                    <%= f.select :search_criteria,['Not Specified','Bungalows','Retirement Property','House / Flat Share','Garage / Parking','Flats / Apartments','Houses','Land','Mobile / Park Homes','Character Property','Commercial Property'],:style=>"margin-top:-42px", :selected => "#{PropertyType.where(:p_id=>f.object.property_type).first.search}"%>
-                  <%else%>
-                    <%= f.select :search_criteria,['Not Specified','Bungalows','Retirement Property','House / Flat Share','Garage / Parking','Flats / Apartments','Houses','Land','Mobile / Park Homes','Character Property','Commercial Property'],:style=>"margin-top:-42px"%>
-                  <%end%>
-                </div>
-                <div class="field">
-                  <%= f.label "PROP SUB ID",:style=>"width:53px" %>
-                  <% if params[:action] == "edit" && !PropertyType.where(:p_id=>f.object.property_type).first.nil?%>
-                    <%= f.select :property_type,[["#{PropertyType.where(:p_id=>f.object.property_type).first.p_type}",f.object.property_type]],:style=>"margin-top:-42px", :selected => "#{PropertyType.where(:p_id=>f.object.property_type).first.p_type}" %>
-                  <%else%>
-                    <%= f.select :property_type,[['Not Specified',0]],:style=>"margin-top:-42px" %>
-                  <%end%>
-                </div>
-
-                <h3 style="margin-top:10px;padding:5px"><b>Marketing</b></h3>
-                <div class="field">
-                  <%= f.label :category %>
-                  <%= f.select :category, ["Rent","Sale"] %>
-                </div><br/>
-                <div class="field">
-                  <%= f.label "Status ID" %>
-                  <%= f.select :status,['Available','SSTC','SSTCM','Under Offer','Reserved','Let Agreed'] %>
-                </div>
-                <div class="field">
-                  <%= f.label :price %>
-                  <%= f.text_field :price %>
-                </div>
-                <div class="field">
-                  <%= f.label "PRICE_QUALIFIER",:style=>"width:50px" %>
-                  <%= f.select :qualifier,['Default', 'POA', 'Guide Price', 'Fixed Price', 'Offers in Excess of', 'OIRO', 'Sale by Tender','From (new homes and commercial only)', 'Shared Ownership', 'Offers Over', 'Part Buy Part Rent', 'Shared Equity','Equity Loan','Offers Invited'],:id=>"qualifier" %>
-                </div>
-                <div class="field">
-                  <%= f.label :agent_id %>
-                  <% arr = Agent.all.map { |ag| [ag.name, ag.id ] } %>
-                  <%= f.select :agent_id, (arr), :selected => @property.agent_id %>
-                </div><br/>
-                <div class="field">
-                  <%= f.label :seal %>
-                  <%= f.select :seal_approved, [['True', true], ['False', false]] %>
-                </div><br/>
-                <div class="field">
-                  <%= f.label :featured %>
-                  <%= f.select :featured, [['False', false],['True', true]] %>
-                </div><br/>
-                <div class="field">
-                  <%= f.label :visibility %>
-                  <%= f.check_box :visibility %>
-                </div>
-                <div class="field" style="margin-top:-53px;margin-left:95px">
-                  <%= f.label :otm%>
-                  <%= f.check_box :otm %>
-                </div>
-                <div class="field" style="margin-top:40px">
-                  <%= f.label :tag_line %>
-                  <%= f.text_field :tag_line,:style=>"width:500px" %>
-                </div> 
+                <%= render :partial => "add_property/property_detail", :locals=>{:f=>f} %>
+                <%= render :partial => "add_property/property_images", :locals=>{:f=>f} %>
+                <%= render :partial => "add_property/marketing_detail", :locals=>{:f=>f} %>
+                <%= render :partial => "add_property/landlord_detail", :locals=>{:f=>f} %>
+                <%= render :partial => "add_property/tenant_detail", :locals=>{:f=>f} %>
+                <%= render :partial => "add_property/vetting", :locals=>{:f=>f} %>
+                <%= render :partial => "add_property/tenancy_term", :locals=>{:f=>f} %>
               </div>
-              <div style="float:left;width:20%;margin:10px;height:95%">
-                <h3 class=""><b>Images</b></h3>
-                <div class="field">
-                  <label for="property_image1" style="margin:0">Main
-                    <%if params[:action]=="edit" && !@property.image1.file.nil?%>
-                    <span style="margin-left:132px"><%= @property.image1.file.filename %></span><%end%>
-                  </label>
-                  <%if params[:action]=="edit" %>
-                    <%= f.file_field :image1,:style=>"width:95px;line-height:0;" %>
-                  <%else%>
-                    <%= f.file_field :image1,:style=>"line-height:0;" %>
-                  <%end%>
-                </div>
-                <%(2..10).each do |n|%>
-                  <div class="field alert_popup">
-                    <label for="property_image<%=n%>" style="margin:0">Image <%=n-1%>
-                      <%if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
-                      <span style="margin-left:114px"><%= @property.send("image"+n.to_s).file.filename %></span><%end%>
-                    </label>
-                    <%if params[:action]=="edit" && !@property.send("image"+n.to_s).file.nil?%>
-                      <%= f.file_field ("image"+n.to_s).to_sym,:style=>"width:95px;line-height:0;" %>
-                    <%else%>
-                      <%= f.file_field ("image"+n.to_s).to_sym,:style=>"line-height:0;" %>
-                    <%end%>
-                  </div>
-                <%end%>
-                <label style="margin:0">EPC
-                </label>
-                <%if params[:action]=="edit" %>
-                  <%= f.file_field :epc,:style=>"width:95px;line-height:0;" %>
-                <%else%>
-                  <%= f.file_field :epc,:style=>"line-height:0;" %>
-                <%end%>
-                <%if params[:action]=="edit" && !@property.epc.nil?%>
-                  <span style=""><%= @property.epc %></span>
-                <%end%>
-              </div>  
-              <div style="float:right;width:48%;margin:10px;">
-                <div class="field" >
-                  <%= f.label :summary %>
-                  <%= f.text_area :summary, style: "width:98%;height:50px",:maxlength => 300 %>
-                </div>
-                <div class="field" >
-                  <%= f.label :short_description %>
-                  <%= f.text_area :short_description, style: "width:98%;height:60px",:maxlength => 900 %>
-                </div>
-                <div class="field" >
-                  <%= f.label :description %>
-                  <%= f.text_area :description, :class=>"long_desc" %>
-                </div><br/>
-                <h3 class=""><b>Key Features</b></h3>
-                <div style="float:left">
-                  <div class="field">
-                    <%= f.label :beds %>
-                    <%= f.number_field :beds, :min => 0 %>
-                  </div>
-                  <div class="field">
-                    <%= f.label :bath %>
-                    <%= f.number_field :bath, :min => 0 %>
-                  </div>
-                  <div class="field">
-                    <%= f.label :parking %>
-                    <%= f.select :parking_status, ["None","On Street","Off Street"] %>
-                  </div><br/>
-                  <div class="field">
-                    <%= f.label "Cars" %>
-                    <%= f.number_field :car, :min => 0, value: 0 %>
-                  </div>
-                  <div class="field">
-                    <%= f.label "En-suite" %>
-                    <%= f.select :ensuite, [['No', 'No'],['Yes', 'Yes']] %>
-                  </div><br/>
-                  <div class="field" style=<%="display:none" if (params[:action]=='edit' && @property.category == 'Sale' )%> >
-                    <%= f.label "LET_TYPE_ID", style: "margin-left:-10px" %>
-                    <%= f.select :let_type_id, ['Not Specified','Long Term','Short Term','Student','Commercial'] %>
-                  </div><br/>
-                  <div class="field">
-                    <%= f.label "Furnished" %>
-                    <%= f.select :let_furn_id, ['Not Specified','Furnished','Part Furnished','Unfurnished','Furnished/Un Furnished'] %>
-                  </div><br/>
-                  <div class="field" style="width:305px !important">
-                    <%= f.label "Let Date Available" %>
-                    <%= f.datetime_select :let_date_available, :ampm => false, :minute_step => 15 %>
-                  </div><br/>
-                </div>
-                <div style="float:right">  
-                  <div class="field">
-                    <%= f.label :gas_CH %>
-                    <%= f.select :gas_ch, [['No', 'No'],['Yes', 'Yes']] %>
-                  </div><br/>
-                  <div class="field">
-                    <%= f.label :garden %>
-                    <%= f.select :garden, [['No', 'No'],['Yes', 'Yes']] %>
-                  </div><br/>
-                  <div class="field">
-                    <%= f.label :dg, "DG" %>
-                    <%= f.select :dg, ["Full", "Partial", "No"] %>
-                  </div><br/>
-                  <div class="field">
-                    <%= f.label :pets %>
-                    <%= f.select :pets, [['No', 'No'],['Yes', 'Yes']] %>
-                  </div><br/>
-                  <div class="field">
-                    <%= f.label :feature1 %>
-                    <%= f.text_field :feature1 %>
-                  </div>
-                  <div class="field">
-                    <%= f.label :feature2 %>
-                    <%= f.text_field :feature2 %>
-                  </div>
-                </div>  
-                <br/><br/><br/>
-              </div>
-              <div style="padding:10px;margin-top:950px;">
-                <%= f.submit (params[:action]=="edit" ? "Update" : "Create"), class: "btn btn-proper btn-large", :style=>"margin:0" %>
-              </div>
-<%
-=end%>
             </div>  
           </div>
           <div style="padding:10px;margin-top:0px;margin-left:45%">

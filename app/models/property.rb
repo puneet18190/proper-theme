@@ -145,7 +145,12 @@ class Property < ActiveRecord::Base
   attr_accessor :address
 
   has_one :key
+  has_one :vetting
+  accepts_nested_attributes_for :vetting, :allow_destroy => true, :update_only => true
 
+  # after_initialize do
+  #     self.vetting ||= self.build_vetting()
+  # end
   # getter
   def address
     return "#{address1}, #{address2}, #{address3}"
