@@ -97,6 +97,8 @@
 #  dss_move             :boolean          default(FALSE)
 #  home                 :boolean          default(FALSE)
 #  wonder_property      :boolean          default(FALSE)
+#  key_assign_date      :datetime
+#  key_unassign_date    :datetime
 #
 # Indexes
 #

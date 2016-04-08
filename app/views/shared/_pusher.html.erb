@@ -1,0 +1,87 @@
+<script src="http://js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+      Pusher.log = function(message) {
+          if (window.console && window.console.log) {
+              window.console.log(message);
+          }
+      };
+
+      var pusher = new Pusher('5bd96073aa957e3dd27d'); // Replace with your app key
+      var channel = pusher.subscribe('private');
+
+      channel.bind('new_message', function(data) {
+          if ($("body").find(".call_handler_alert").size() == 0){
+
+            $(".main_container").prepend(
+              '<p class="alert alert-success call_handler_alert">'+
+                '<span style="font-size: 18px" class="user_info">'+
+                  'Name (' + data.name + ') Number (' + data.number + ') Calling...'+ 
+                '</span>'+
+              '</p>'
+            )
+          }
+          // $("#call_handler").trigger('mouseover')
+          $.ajax({
+            type: 'get',
+            url: '/get_call_handler',
+            data: 'number='+data.number,
+            success: function(res){
+              $("#call_handler").next().find("li").html(res)
+            }
+          })
+
+          $("#call_handler").trigger('mouseover')
+
+          window.setInterval(function(){
+              $(".call_handler_alert").slideUp().remove()
+          }, 10000);
+      });
+
+      channel.bind('receive_sms', function(data) {
+          $(".main_container").prepend(
+            '<p class="alert alert-success sms_alert">'+
+              '<span style="font-size: 18px" class="user_info">'+
+                'New Message Received...'+ 
+              '</span>'+
+            '</p>'
+          )
+
+          $(".sms_receive").next().find("li").html(
+            '<table class="table">'+
+              '<tr>'+
+                '<th>Received Date</th>'+
+                '<th>Received Time</th>'+
+                '<th>Caller ID</th>'+
+                '<th>Name</th>'+
+                '<th>message</th>'+
+              '</tr>'+
+              '<tr>'+
+                '<td>'+ data.received_date +'</td>'+
+                '<td>'+ data.received_time +'</td>'+
+                '<td>'+ data.caller_id +'</td>'+
+                '<td>'+ data.name +'('+ data.user_type +')</td>'+
+                '<td>'+ data.message +'</td>'+
+              '</tr>'+
+            '<table>'
+          )
+          $(".sms_receive").trigger('mouseover')
+          window.setInterval(function(){
+              $(".sms_alert").slideUp().remove()
+          }, 10000);
+      });
+
+      pusher.connection.bind('connecting', function() {
+          console.log('Connecting to Pusher...');
+      });
+      pusher.connection.bind('connected', function() {
+          console.log('Connected to Pusher!');
+      });
+      pusher.connection.bind('failed', function() {
+          console.log('Connection to Pusher failed');
+      });
+      channel.bind('subscription_error', function(status) {
+          console.log('Pusher subscription_error');
+      });
+  });
+</script>

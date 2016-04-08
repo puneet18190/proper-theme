@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308145710) do
+ActiveRecord::Schema.define(version: 20160325185059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,15 @@ ActiveRecord::Schema.define(version: 20160308145710) do
     t.string   "page_link"
   end
 
+  create_table "contact_notes", force: true do |t|
+    t.string   "notes"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contact_notes", ["user_id"], name: "index_contact_notes_on_user_id", using: :btree
+
   create_table "contacts", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -137,6 +146,14 @@ ActiveRecord::Schema.define(version: 20160308145710) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "keys", force: true do |t|
+    t.integer  "key_number"
+    t.string   "key_status",  default: "unassign"
+    t.integer  "property_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "mail_merge_items", force: true do |t|
     t.string   "filename"
@@ -342,6 +359,8 @@ ActiveRecord::Schema.define(version: 20160308145710) do
     t.boolean  "dss_move",             default: false
     t.boolean  "home",                 default: false
     t.boolean  "wonder_property",      default: false
+    t.datetime "key_assign_date"
+    t.datetime "key_unassign_date"
   end
 
   add_index "properties", ["slug"], name: "index_properties_on_slug", unique: true, using: :btree
@@ -466,6 +485,14 @@ ActiveRecord::Schema.define(version: 20160308145710) do
     t.boolean  "send_sms_on_msg",      default: false
   end
 
+  create_table "sms", force: true do |t|
+    t.string   "originator"
+    t.string   "destination"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tenant_properties", force: true do |t|
     t.integer  "property_id"
     t.integer  "tenant_id"
@@ -516,7 +543,7 @@ ActiveRecord::Schema.define(version: 20160308145710) do
     t.string   "address2"
     t.string   "address3"
     t.string   "postcode"
-    t.integer  "mobile"
+    t.string   "mobile"
     t.string   "employment"
     t.integer  "price"
     t.string   "deposit"

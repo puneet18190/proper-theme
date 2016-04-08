@@ -35,7 +35,7 @@
 #  address2               :string(255)
 #  address3               :string(255)
 #  postcode               :string(255)
-#  mobile                 :integer
+#  mobile                 :string(255)
 #  employment             :string(255)
 #  price                  :integer
 #  deposit                :string(255)

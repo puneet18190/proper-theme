@@ -97,6 +97,8 @@
 #  dss_move             :boolean          default(FALSE)
 #  home                 :boolean          default(FALSE)
 #  wonder_property      :boolean          default(FALSE)
+#  key_assign_date      :datetime
+#  key_unassign_date    :datetime
 #
 # Indexes
 #
@@ -141,6 +143,8 @@ class Property < ActiveRecord::Base
   geocoded_by :address
   attr_accessor :search_criteria
   attr_accessor :address
+
+  has_one :key
 
   # getter
   def address
@@ -192,6 +196,7 @@ class Property < ActiveRecord::Base
           u.save
         end
       elsif User.find_by_email(email).blank?
+        tenant.merge(status: "tenant", password: "12345678", password_confirmation: "12345678")
         u= User.new(tenant)
         u.skip_confirmation!
         u.save

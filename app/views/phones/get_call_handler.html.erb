@@ -1,0 +1,27 @@
+<div class="container" style="padding: 10px">
+    <%#if @data.blank?%>
+        <!-- No Data -->
+    <%#else%>
+        <span style="font-size: 18px" class="user_info">Name (<%=@user.blank? ? "" : "#{@user.first_name} #{@user.last_name}"%>) Number (<%=@number%>)</span><br/>
+        <%if @user.blank?%>
+            <p>User not in contact list.</p>
+        <%else%>
+            <table class="table">
+                <tr>
+                    <th colspan="3" style="border: none">Last 3 contact Notes associated with this person:</th>
+                </tr>
+                <%@user.contact_notes.last(3).reverse.each do |obj|%>
+                    <tr>
+                        <td style="border: none"><%=obj.created_at.to_time.strftime("%d/%m/%Y")%></td>
+                        <td style="border: none"><%=obj.created_at.to_time.strftime("%T")%></td>
+                        <td style="border: none"><%=obj.notes%></td>
+                    </tr>
+                <%end%>
+            </table>
+            <%= form_for @user.contact_notes.new, url: contact_notes_user_path(id: @user.id) do |f|%>
+                <%= f.text_area :notes, placeholder: "Free text box", style: "width: 50%"%>
+                <%= f.submit "Add Note", style: "display: block", class: "btn btn-proper" %>
+            <%end%>
+        <%end%>
+    <%#end%>
+</div>

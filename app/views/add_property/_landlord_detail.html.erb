@@ -72,7 +72,7 @@
 		   		.done(function(res) {
 		   			console.log("success")
 		   			$("#user_property").append("<h3><b>Other Properties</b></h3>")
-		   			$("#user_property").append($(res).find("table").get(0).outerHTML)
+		   			$("#user_property").append($(res).find("table#landlord_info").get(0).outerHTML)
 		   		})
 			}
 		</script>
@@ -114,17 +114,18 @@
 		    </div>
 		    <div class="field">
 		      <%= user.label :email %>
-		      <%if params[:action] == "new"%>
-			      <%= user.text_field :email %>
-			      <%= user.hidden_field :email, id: "landlord_email" %>
-			  <%else%>
-			  	  <%= user.text_field :email, disabled: "disabled" %>
-			  	  <%= user.hidden_field :email, id: "landlord_email" %>
-			  <%end%> 
+		      <%#if params[:action] == "new"%>
+			      <%= user.text_field :email, id: "landlord_email" %>
+			      <%#= user.text_field :email %>
+			      <%#= user.hidden_field :email, id: "landlord_email" %>
+			  <%#else%>
+			  	  <%#= user.text_field :email, disabled: "disabled" %>
+			  	  <%#= user.hidden_field :email, id: "landlord_email" %>
+			  <%#end%> 
 		    </div>
 		    <div class="field">
 		      <%= user.label :dob %>
-		      <%= user.text_field :dob %>
+		      <%= user.text_field :dob, placeholder: "DD-MM-YYYY", value: (@user.dob.nil? ? "" : @user.dob.strftime("%d-%m-%Y")) %>
 		    </div>
 		    <%if params[:action] == "new"%>
 			    <%= user.hidden_field :password, value: "12345678"%>
@@ -243,4 +244,5 @@
     #landlord_details input, #landlord_details select{
     	margin-left: 114px
     }
+    
 </style>

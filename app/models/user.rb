@@ -35,7 +35,7 @@
 #  address2               :string(255)
 #  address3               :string(255)
 #  postcode               :string(255)
-#  mobile                 :integer
+#  mobile                 :string(255)
 #  employment             :string(255)
 #  price                  :integer
 #  deposit                :string(255)
@@ -79,6 +79,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :properties, dependent: :destroy
+  has_many :contact_notes
   Roles = [ :admin , :default ]
   acts_as_messageable
   after_create :notify_to_admin
