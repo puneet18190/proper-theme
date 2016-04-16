@@ -189,6 +189,7 @@ class Property < ActiveRecord::Base
   def save_multiple_tenants(tenants, action)
     TenantProperty.where(property_id: self.id).delete_all if action == "update"
     
+    unless tenants.blank?
     tenants.each do |obj|
       tenant = obj[1]
       email = tenant["email"]
@@ -202,14 +203,18 @@ class Property < ActiveRecord::Base
         end
       elsif User.find_by_email(email).blank?
         tenant.merge(status: "tenant", password: "12345678", password_confirmation: "12345678")
-        u= User.new(tenant)
+        u= User.new(tenant.to_hash)
         u.skip_confirmation!
         u.save
       else
-        User.find_by_email(email).update_attributes(tenant) if action=="update"
+        tenant.delete("status")
+        tenant.delete("password")
+        tenant.delete("password_confirmation")
+        User.find_by_email(email).update_attributes(tenant) #if action=="update"
         u=User.find_by_email(email)
       end
       TenantProperty.create(property_id: self.id, tenant_id: u.id) unless u.blank?
+    end
     end
   end  
 end

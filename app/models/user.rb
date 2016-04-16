@@ -63,6 +63,7 @@
 #  tenant_status          :string(255)
 #  notes                  :text
 #  tenant_property_id     :integer
+#  po                     :boolean          default(FALSE)
 #
 # Indexes
 #

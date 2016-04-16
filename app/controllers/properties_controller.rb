@@ -54,7 +54,9 @@ class PropertiesController < ApplicationController
       # @tenant = @property.tenant.blank? ? @property.build_tenant : @property.tenant
       # @tenant = TenantProperty.where(property_id: )
       ids =TenantProperty.where(property_id: Property.where(slug: params[:id])[0].id).map(&:tenant_id)
-      @tenant = User.where(status: "tenant", id: ids).reverse
+      @tenant = User.where(status: "tenant", id: ids)
+      @tenant_count = User.where(status: "tenant", id: ids).where(po: false).count
+      @po_count = User.where(status: "tenant", id: ids).where(po: true).count
       if @tenant.blank?
         @tenant = @property.tenants.build 
         @no_tenant=true
@@ -137,7 +139,10 @@ class PropertiesController < ApplicationController
       params[:property].delete('key')
 
       @property.update_attributes(property_params)
-      unless params[:property][:tenant].blank?
+      
+      if params[:property][:tenant].blank? && params[:property][:tenants_attributes].blank?
+        TenantProperty.where(property_id: @property.id).delete_all
+      elsif !params[:property][:tenant].blank?
         @property.save_multiple_tenants(params[:property][:tenant], "update")
       else
         @property.save_multiple_tenants(params[:property][:tenants_attributes], "create")
@@ -896,7 +901,7 @@ class PropertiesController < ApplicationController
     end
 
     def property_params
-      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status, :accredited, :licensed, :tenant_criteria, :cp12, :esc, :bond, :deal, :stage, :managed, :board, :tenant_id, :let_agreed_date, :sold_date, :marketing_notes, :epc_date_complete, :epc_due_date,:cp12_date_complete, :cp12_due_date,:esc_date_complete, :esc_due_date, :dss_move, :mouse_price,:home,:wonder_property, :key_assign_date, :key_unassign_date, vetting_attributes: [ :vetting_type, :submission_date, :outcome_date, :outcome, :vetting_doc, :guarantor ])
+      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status, :accredited, :licensed, :tenant_criteria, :cp12, :esc, :bond, :deal, :stage, :managed, :board, :tenant_id, :let_agreed_date, :sold_date, :marketing_notes, :epc_date_complete, :epc_due_date,:cp12_date_complete, :cp12_due_date,:esc_date_complete, :esc_due_date, :dss_move, :mouse_price,:home,:wonder_property, :key_assign_date, :key_unassign_date, :po, vetting_attributes: [ :vetting_type, :submission_date, :outcome_date, :outcome, :vetting_doc, :guarantor ])
     end
 
     def property_changes_params
