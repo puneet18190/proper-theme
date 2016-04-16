@@ -5,7 +5,7 @@
 			<div class="btn btn-primary" id="tenant_reset" style="">Reset</div>
 			<!-- <div class="btn btn-primary" id="tenant_remove" style="float:right;margin-left:5px">Remove</div> -->
 			<div class="btn btn-primary" id="permitted_occupier" style="float:right;margin-left:5px" num="<%= params[:action]=='edit' ? @po_count : 0 %>" >Add Permitted Occupier</div>
-			<div class="btn btn-primary" id="tenant_add" style="float:right" num="<%= params[:action]=='edit' ? @tenant_count : 1 %>" >Add Additional Tenant</div>
+			<div class="btn btn-primary" id="tenant_add" style="float:right" num="<%= (params[:action]=='edit') ? @tenant_count : 1 %>" >Add Additional Tenant</div>
 		</div>
 
 		<script type="text/javascript" charset="utf-8">
@@ -106,6 +106,8 @@
 			    $("#all_tenants div.tenant_form").eq(-1).removeClass('active_user') //.css("border", "1px solid grey")
 			    if ($(this).attr('id') == "permitted_occupier" ){
 			    	$("#all_tenants div.tenant_form").eq(-1).find(".tenant_name").html('Permitted Occupier')
+			    }else{
+			    	$("#all_tenants div.tenant_form").eq(-1).find(".tenant_name").html('Tenant')
 			    }
 			    n=n+1
 			    $(i).each(function(){

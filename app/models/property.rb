@@ -193,6 +193,7 @@ class Property < ActiveRecord::Base
     tenants.each do |obj|
       tenant = obj[1]
       email = tenant["email"]
+      tenant["po"] = false if tenant["po"].blank?
 
       if email.blank? 
         if !tenant["first_name"].blank?
