@@ -12,7 +12,7 @@ class SmsController < ApplicationController
 			name: name, 
 			message: params[:message], 
 			received_date: DateTime.now.strftime("%d/%m/%Y"),
-			received_time: DateTime.now.strftime("%T"),
+			received_time: DateTime.now.in_time_zone('London').strftime("%T"),
 			user_type: user_type
 		})
 		if @sms.save
