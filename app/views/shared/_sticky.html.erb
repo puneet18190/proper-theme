@@ -19,7 +19,11 @@
                 <div class="sms_container" style="padding: 30px">
                     <div class="alert_msg" style="color: red"></div>
                     <%= text_field_tag :search, params[:sticky_search], class: "search-query", placeholder: "Search", type: "search", data: {autocomplete: users_autocomplete_user_path }, id: 'search_user_sms', style: "margin-left:0px !important;width:50%" %>
-                    <h2 style="margin-top: 10px;margin-bottom:10px"><span class="sms_username"></span> <span class="sms_number"></span></h2>
+                    <h2 style="margin-top: 10px;margin-bottom:10px">
+                        <span class="sms_username"></span>
+                        <!-- <span class="sms_number"></span> -->
+                        <input type="text" class="sms_number" placeholder="Phone Number" />
+                    </h2>
                     <textarea style="width: 50%;height:60px" maxlength="50" id="message"></textarea>
                     <div class="row"><div class="btn btn-proper" style="margin-left: 20px" id="send_sms">Send</div></div>
                 </div>
@@ -140,13 +144,13 @@
         })
         .done(function(res) {
             $('.sms_username').html(res.user.first_name)
-            $('.sms_number').html(res.user.phone)
+            $('.sms_number').val(res.user.phone)
         })
     })
 
     $("#send_sms").click(function(){
         $(".alert_msg").html("Sending...")
-        var number = $(".sms_number").html() 
+        var number = $(".sms_number").val() 
         var message = $("#message").val()
         $.ajax({
             type: "get",
@@ -161,7 +165,7 @@
                 $("#search_user_sms").val("")
                 $("#message").val("")
                 $(".sms_username").html("")
-                $(".sms_number").html("")
+                $(".sms_number").val("")
                 $(".alert_msg").html("")
                 // setTimeout(function() {
                 //     $(".alert_msg").slideUp()
