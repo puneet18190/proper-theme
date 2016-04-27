@@ -4,7 +4,7 @@ class SmsController < ApplicationController
 	def send_sms
 		@sms = Sms.new(originator: params[:originator], destination: params[:destination], message: params[:message])
 		@user = User.where("mobile = ? OR phone =?", params[:originator],params[:originator]).first
-		name = @user.blank? ? "" : @user.first_name
+		name = @user.blank? ? "" : "#{@user.first_name} #{@user.last_name}"
 		user_type = @user.blank? ? "" : @user.status[0].capitalize
 
 		Pusher['private'].trigger('receive_sms', {

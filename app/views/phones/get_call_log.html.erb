@@ -15,7 +15,7 @@
             <td><%=obj["created_at"].to_time.in_time_zone('London').strftime("%T")%></td>
             <td><a id="a_select" class="example-p-2"  href="#"><%=obj["callerid"][0]=="0" ? obj["callerid"].gsub(/^0/, "+44") : "+44"+obj["callerid"] unless obj["callerid"].blank?%></a></td>
             <% call_user = User.where("mobile = ? OR phone =?", obj["callerid"],obj["callerid"]).first %>
-            <td><%=call_user.blank? ? "" : "#{call_user.first_name} (#{call_user.status[0].capitalize})" %></td>
+            <td><%=call_user.blank? ? "" : "#{call_user.first_name} #{call_user.last_name} (#{call_user.status[0].capitalize})" %></td>
             <td><%=obj["department"]%></td>
             <td><%=obj["status"]%></td>
             <td><%=Time.at(obj['call_duration']).utc.strftime("%H:%M:%S") %></td>
