@@ -46,7 +46,7 @@
         <ul>
             <li>
                 <div class="container" style="padding: 30px">
-                    <%= text_field_tag :search, params[:record_search], class: "search-query", type: "search",id: "record_search", data: {autocomplete: '/record_search' }, style: "margin-left:0px !important;width:50%" %>
+                    <%= text_field_tag :search, params[:record_search], class: "search-query", type: "search",id: "record_search", data: {autocomplete: '/search_user_by_name_property' }, style: "margin-left:0px !important;width:50%" %>
                     
                     <table class="table" style="width: 75%">
                         <tr>
@@ -206,16 +206,19 @@
                     "<tr><td> Name</td><td>"+res.user.first_name+"</td><td></td></tr>"+
                     "<tr><td> Contact No</td><td>"+res.user.phone+"</td><td></td></tr>"+
                     "<tr><td> Email</td><td>"+res.user.email+"</td><td></td></tr>"+
-                    "<tr><td> </td><td><a class='btn btn-proper' href='/users/"+res.user.id+"'>Go to Record</a></td><td></td></tr>"
+                    "<tr><td> </td><td><a class='btn btn-proper' href='/landlords/"+res.user.id+"/edit '>Go to Record</a></td><td></td></tr>"
                 ).insertAfter($("#record_search").parent().find("table tr")[0])
             }else if(res.user.status == "tenant"){
                 $(
                     "<tr><td> Name</td><td></td><td>"+res.user.first_name+"</td></tr>"+
                     "<tr><td> Contact No</td><td></td><td>"+res.user.phone+"</td></tr>"+
                     "<tr><td> Email</td><td></td><td>"+res.user.email+"</td></tr>"+
-                    "<tr><td> </td><td></td><td><a class='btn btn-proper' href='/users/"+res.user.id+"'>Go to Record</a></td></tr>"
+                    "<tr><td> </td><td></td><td><a class='btn btn-proper' href='/tenants/"+res.user.id+"/edit '>Go to Record</a></td></tr>"
                 ).insertAfter($("#record_search").parent().find("table tr")[0])
             }
+            setTimeout(function(){
+              $(".record_search_menu").trigger('mouseover')
+            }, 200);
         })
     })
 
