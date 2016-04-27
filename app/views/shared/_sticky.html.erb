@@ -145,6 +145,9 @@
         .done(function(res) {
             $('.sms_username').html(res.user.first_name+' '+(res.user.last_name == null ? "" : res.user.last_name ))
             $('.sms_number').val(res.user.phone)
+            setTimeout(function(){
+              $(".quick_sms_menu").trigger('mouseover')
+            }, 200);
         })
     })
 
