@@ -18,7 +18,7 @@
             <li>
                 <div class="sms_container" style="padding: 30px">
                     <div class="alert_msg" style="color: red"></div>
-                    <%= text_field_tag :search, params[:sticky_search], class: "search-query", placeholder: "Search", type: "search", data: {autocomplete: users_autocomplete_user_path }, id: 'search_user_sms', style: "margin-left:0px !important;width:50%" %>
+                    <%= text_field_tag :search, params[:sticky_search], class: "search-query", placeholder: "Search", type: "search", data: {autocomplete: '/search_user_by_name_property' }, id: 'search_user_sms', style: "margin-left:0px !important;width:50%" %>
                     <h2 style="margin-top: 10px;margin-bottom:10px">
                         <span class="sms_username"></span>
                         <!-- <span class="sms_number"></span> -->

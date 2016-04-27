@@ -106,4 +106,17 @@ class PhonesController < ApplicationController
     @property = Property.find(params[:id])
     render :json => {data: @property.key, status: @property.key.blank? ? "false" : "true"}
   end
+
+  def search_user_by_name_property
+    @user = []
+    @user << User.where("first_name ilike ? OR last_name ilike ?", "%#{params[:term]}%", "%#{params[:term]}%").order('first_name')
+    Property.where("name ilike ? OR address1 ilike ? OR address2 ilike ? OR address3 ilike ?" , 
+      "%#{params[:term]}%", "%#{params[:term]}%", "%#{params[:term]}%", "%#{params[:term]}%").each do |p|
+        @user << p.user
+        TenantProperty.all.where(property_id: p.id).each do |t|
+          @user << User.where(id: t.tenant_id) unless t.tenant_id.blank?
+        end
+    end
+    @user = @user.flatten.uniq
+  end
 end
