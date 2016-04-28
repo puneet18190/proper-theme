@@ -191,6 +191,7 @@
 
     /* <ie7 css fallback */
 	border: none;
+    background-color: yellow
 }
 
 .sticklr > li > ul > li:first-child {
@@ -352,31 +353,37 @@
 .call_log_menu{
     background-image: url('/assets/phone-book.png');
     background-size: 30px 30px;
+    background-color: yellow !important;
 }
 
 .call_handler_menu{
     background-image: url('/assets/call-center-girl.png');
     background-size: 30px 30px;
+    background-color: yellow !important;
 }
 
 .quick_sms_menu{
     background-image: url('/assets/smartphone-sending-data.png');
     background-size: 25px 25px;
+    background-color: yellow !important;
 }
 
 .record_search_menu{
     background-image: url('/assets/record_search.png');
     background-size: 25px 25px;
+    background-color: yellow !important;
 }
 
 .sms_receive{
     background-image: url('/assets/smartphone-receiving-sign.png');
     background-size: 25px 25px;
+    background-color: yellow !important;
 }
 
 .key_menu{
     background-image: url('/assets/key.png');
     background-size: 25px 25px;
+    background-color: yellow !important;
 }
 .ui-autocomplete {
   position: absolute;

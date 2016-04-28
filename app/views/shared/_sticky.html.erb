@@ -16,6 +16,7 @@
         <a href="#" title="Quick SMS" style="height: 16px; width: 16px;" class="quick_sms_menu"><span></span></a>
         <ul>
             <li>
+                <h3 style="padding: 20px;font-size: 30px;font-weight: bold;">Quick SMS</h3>
                 <div class="sms_container" style="padding: 30px">
                     <div class="alert_msg" style="color: red"></div>
                     <%= text_field_tag :search, params[:sticky_search], class: "search-query", placeholder: "Search", type: "search", data: {autocomplete: '/search_user_by_name_property' }, id: 'search_user_sms', style: "margin-left:0px !important;width:50%" %>
@@ -45,6 +46,7 @@
         <a href="#" title="Record Search" style="height: 16px; width: 16px;" class="record_search_menu"><span></span></a>
         <ul>
             <li>
+                <h3 style="padding: 20px;font-size: 30px;font-weight: bold;">Record Search</h3>
                 <div class="container" style="padding: 30px">
                     <%= text_field_tag :search, params[:record_search], class: "search-query", type: "search",id: "record_search", data: {autocomplete: '/search_user_by_name_property' }, style: "margin-left:0px !important;width:50%" %>
                     
@@ -65,6 +67,7 @@
         <a href="#" title="Key" style="height: 16px; width: 16px;" class="key_menu"><span></span></a>
         <ul>
             <li>
+                <h3 style="padding: 20px;font-size: 30px;font-weight: bold;">Key</h3>
                 <div class="container" style="padding: 30px; width: 50%">
                     <%= text_field_tag :search, params[:property_search], class: "search-query", placeholder: "Search Property", type: "search", data: {autocomplete: '/property_search' }, id: 'search_property', style: "width:100%" %>
                     <h1 style="padding: 10px">Key Status: <span class="key_status"></span></h1>
