@@ -35,7 +35,7 @@
       </div>
       <div class="field">
         <%= key.label :key_number, "Key Number", style: "float: left; width: 50px" %>
-        <%= key.text_field :key_number, disabled: "disabled", style: "", class: "key_number", value: @key.key_number %>
+        <%= key.text_field :key_number, disabled: "disabled", class: "key_number", value: @key.key_number, style: "margin-left: 10px; margin-top: 0px" %>
         <%= key.hidden_field :key_number, value: @key.key_number, class: "key_number"%>
       </div>
     <%end%>
