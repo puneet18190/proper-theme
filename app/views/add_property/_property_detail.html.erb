@@ -235,7 +235,7 @@
     var month = $("#property_cp12_date_complete_2i").val()
     var date = $("#property_cp12_date_complete_3i").val()
     a=new Date(year,month,date)
-    a.setFullYear(a.getFullYear() + 12)
+    a.setFullYear(a.getFullYear() + 1)
     a.setDate(a.getDate() - 1)
     $("#property_cp12_due_date_1i").val(a.getFullYear())
     $("#property_cp12_due_date_2i").val(a.getMonth())
