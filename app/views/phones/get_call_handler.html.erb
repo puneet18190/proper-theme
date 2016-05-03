@@ -3,18 +3,18 @@
     <%#if @data.blank?%>
         <!-- No Data -->
     <%#else%>
-        <span style="font-size: 18px" class="user_info">Name (<%=@user.blank? ? "" : "#{@user.first_name} #{@user.last_name}"%>) Number (<%=@number%>)</span><br/>
+        <span style="font-size: 18px" class="user_info"><%=@user.blank? ? "" : "#{@user.first_name} #{@user.last_name}"%> <%=" (#{@user.status[0].capitalize})"%> <%=@number%></span><br/>
         <%if @user.blank?%>
             <p>User not in contact list.</p>
         <%else%>
             <table class="table">
-                <tr>
+<!--                 <tr>
                     <th colspan="3" style="border: none">Last 3 contact Notes associated with this person:</th>
-                </tr>
+                </tr> -->
                 <%@user.contact_notes.last(3).reverse.each do |obj|%>
                     <tr>
-                        <td style="border: none"><%=obj.created_at.to_time.strftime("%d/%m/%Y")%></td>
-                        <td style="border: none"><%=obj.created_at.to_time.in_time_zone('London').strftime("%T")%></td>
+                        <td style="border: none; width: 12%"><%=obj.created_at.to_time.strftime("%d/%m/%Y")%></td>
+                        <td style="border: none; width: 12%"><%=obj.created_at.to_time.in_time_zone('London').strftime("%T")%></td>
                         <td style="border: none"><%=obj.notes%></td>
                     </tr>
                 <%end%>
