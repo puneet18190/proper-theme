@@ -1,0 +1,29 @@
+<table class="sticky_search_data table" style="width: 75%">
+	<tr>
+		<th></th>
+		<th>Landlord</th>
+		<th>Tenant</th>
+	</tr>
+
+	<tr>
+		<td>Name</td>
+		<td><%= @landlord.try('name') %></td>
+		<td><%= @tenant.try('name') %></td>
+	</tr>
+	<tr>
+		<td>Contact</td>
+		<td><%= @landlord.try('phone') || @landlord.try('mobile') %></td>
+		<td><%= @tenant.try('phone') || @tenant.try('mobile') %></td>
+	</tr>
+	<tr>
+		<td>Email</td>
+		<td><%= @landlord.try('email') %></td>
+		<td><%= @tenant.try('email') %></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><%unless @landlord.blank?%><a class='btn btn-proper' href='/landlords/<%= @landlord.id %>/edit '>Go to Record</a><%end%></td>
+		<td><%unless @tenant.blank?%><a class='btn btn-proper' href='/tenants/<%= @landlord.id %>/edit '>Go to Record</a><%end%></td>
+	</tr>
+
+</table>

@@ -280,4 +280,7 @@ Rails.application.routes.draw do
   match '/property_search',   to: 'phones#property_search',   via: 'get'
   match '/get_property_data',   to: 'phones#get_property_data',   via: 'get'
   match '/search_user_by_name_property',   to: 'phones#search_user_by_name_property',   via: 'get'
+  match '/search_user_and_property',   to: 'phones#search_user_and_property',   via: 'get'
+  match '/sticky_property_search_data',   to: 'phones#sticky_property_search_data',   via: 'get'
+  match '/sticky_user_search_data',   to: 'phones#sticky_user_search_data',   via: 'get'
 end

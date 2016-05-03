@@ -48,17 +48,16 @@
             <li>
                 <h3 style="padding: 20px;font-size: 30px;font-weight: bold;">Record Search</h3>
                 <div class="container" style="padding: 30px">
-                    <%= text_field_tag :search, params[:record_search], class: "search-query", type: "search",id: "record_search", data: {autocomplete: '/search_user_by_name_property' }, style: "margin-left:0px !important;width:50%" %>
-                    
-                    <table class="table" style="width: 75%">
+                    <%= text_field_tag :search, params[:record_search], class: "search-query", type: "search",id: "record_search", data: {autocomplete: '/search_user_and_property' }, style: "margin-left:0px !important;width:50%" %>
+                    <div class="record_search_result"></div>
+<!--                     <table class="table" style="width: 75%">
                         <tr>
                             <th></th>
                             <th>Landlord/Buyer</th>
                             <th>Tenant/Seller</th>
-                            <!-- <th>Property Contractor</th> -->
                         </tr>
                         <span class="record_search_data"></span>
-                    </table>
+                    </table> -->
                 </div>
             </li>
         </ul>
@@ -189,36 +188,44 @@
     })
 
     $('#record_search').bind('railsAutocomplete.select', function(event, data){
-        var user_id = data.item.id
+        var item_id = data.item.id
+        var item_type = data.item.type
+        if (item_type == "property"){
+            item_url = '/sticky_property_search_data'
+        }else{
+            item_url = '/sticky_user_search_data'
+        }
+
         $.ajax({
-            url: '/get_user_data',
-            dataType: 'json',
-            data: {id: user_id}
+            url: item_url,
+            data: {id: item_id}
         })
         .done(function(res) {
-            console.log(res)
-            if(!($("#record_search").parent().find("table tr")[1] == undefined)){
-                $("#record_search").parent().find("table tr")[1].remove()
-                $("#record_search").parent().find("table tr")[1].remove()
-                $("#record_search").parent().find("table tr")[1].remove()
-                $("#record_search").parent().find("table tr")[1].remove()
-            }
+            $(".record_search_result").html("")
+            $(".record_search_result").html(res)
+            // console.log(res)
+            // if(!($("#record_search").parent().find("table tr")[1] == undefined)){
+            //     $("#record_search").parent().find("table tr")[1].remove()
+            //     $("#record_search").parent().find("table tr")[1].remove()
+            //     $("#record_search").parent().find("table tr")[1].remove()
+            //     $("#record_search").parent().find("table tr")[1].remove()
+            // }
 
-            if(res.user.status == "landlord"){
-                $(
-                    "<tr><td> Name</td><td>"+res.user.first_name+"</td><td></td></tr>"+
-                    "<tr><td> Contact No</td><td>"+res.user.phone+"</td><td></td></tr>"+
-                    "<tr><td> Email</td><td>"+res.user.email+"</td><td></td></tr>"+
-                    "<tr><td> </td><td><a class='btn btn-proper' href='/landlords/"+res.user.id+"/edit '>Go to Record</a></td><td></td></tr>"
-                ).insertAfter($("#record_search").parent().find("table tr")[0])
-            }else if(res.user.status == "tenant"){
-                $(
-                    "<tr><td> Name</td><td></td><td>"+res.user.first_name+"</td></tr>"+
-                    "<tr><td> Contact No</td><td></td><td>"+res.user.phone+"</td></tr>"+
-                    "<tr><td> Email</td><td></td><td>"+res.user.email+"</td></tr>"+
-                    "<tr><td> </td><td></td><td><a class='btn btn-proper' href='/tenants/"+res.user.id+"/edit '>Go to Record</a></td></tr>"
-                ).insertAfter($("#record_search").parent().find("table tr")[0])
-            }
+            // if(res.user.status == "landlord"){
+            //     $(
+            //         "<tr><td> Name</td><td>"+res.user.first_name+"</td><td></td></tr>"+
+            //         "<tr><td> Contact No</td><td>"+res.user.phone+"</td><td></td></tr>"+
+            //         "<tr><td> Email</td><td>"+res.user.email+"</td><td></td></tr>"+
+            //         "<tr><td> </td><td><a class='btn btn-proper' href='/landlords/"+res.user.id+"/edit '>Go to Record</a></td><td></td></tr>"
+            //     ).insertAfter($("#record_search").parent().find("table tr")[0])
+            // }else if(res.user.status == "tenant"){
+            //     $(
+            //         "<tr><td> Name</td><td></td><td>"+res.user.first_name+"</td></tr>"+
+            //         "<tr><td> Contact No</td><td></td><td>"+res.user.phone+"</td></tr>"+
+            //         "<tr><td> Email</td><td></td><td>"+res.user.email+"</td></tr>"+
+            //         "<tr><td> </td><td></td><td><a class='btn btn-proper' href='/tenants/"+res.user.id+"/edit '>Go to Record</a></td></tr>"
+            //     ).insertAfter($("#record_search").parent().find("table tr")[0])
+            // }
             setTimeout(function(){
               $(".record_search_menu").trigger('mouseover')
             }, 200);
