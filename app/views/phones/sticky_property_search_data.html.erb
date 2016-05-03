@@ -7,8 +7,8 @@
 
 	<tr>
 		<td>Name</td>
-		<td><%= @landlord.try('name') %></td>
-		<td><%= @tenant.try('name') %></td>
+		<td><%= "#{@landlord.try('first_name')} #{@landlord.try('last_name')}" %></td>
+		<td><%= "#{@tenant.try('first_name')} #{@tenant.try('last_name')}" %></td>
 	</tr>
 	<tr>
 		<td>Contact</td>
