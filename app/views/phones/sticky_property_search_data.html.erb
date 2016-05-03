@@ -17,8 +17,8 @@
 	</tr>
 	<tr>
 		<td>Email</td>
-		<td><%= @landlord.try('email') %></td>
-		<td><%= @tenant.try('email') %></td>
+		<td><%= mail_to @landlord.try('email') %></td>
+		<td><%= mail_to @tenant.try('email') %></td>
 	</tr>
 	<tr>
 		<td></td>
