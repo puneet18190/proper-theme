@@ -6,6 +6,7 @@
         <th>Caller ID</th>
         <th>Name</th>
         <th>Department</th>
+        <th>Extension</th>
         <th>Status</th>
         <th>Call Duration</th>
     </tr>
@@ -18,6 +19,7 @@
             <% call_user = User.where("mobile = ? OR phone =?", obj["callerid"],obj["callerid"]).first %>
             <td><%=call_user.blank? ? "" : "#{call_user.first_name} #{call_user.last_name} (#{call_user.status[0].capitalize})" %></td>
             <td><%=obj["department"]%></td>
+            <td><%= get_extension(obj["mac"]) %></td>
             <td><%=obj["status"]%></td>
             <td><%=Time.at(obj['call_duration']).utc.strftime("%H:%M:%S") %></td>
         </tr>
