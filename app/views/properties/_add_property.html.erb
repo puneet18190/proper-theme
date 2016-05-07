@@ -51,7 +51,7 @@
             </div>  
           </div>
           <div style="padding:10px;margin-top:0px;margin-left:45%">
-            <%= f.submit (params[:action]=="edit" ? "Update" : "Create"), class: "btn btn-proper btn-large", :style=>"margin:0" %>
+            <%= f.submit (params[:action]=="edit" ? "Update" : "Create"), class: "btn btn-proper btn-large", :style=>"margin:0", data: {confirm: "Are you sure?"} %>
           </div>
         <% end %>
       </div>
