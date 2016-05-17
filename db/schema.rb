@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416120944) do
+ActiveRecord::Schema.define(version: 20160517052322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,17 @@ ActiveRecord::Schema.define(version: 20160416120944) do
     t.string   "email_id"
     t.string   "fb_id"
     t.string   "twitter_id"
+  end
+
+  create_table "appraisals", force: true do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "email"
+    t.string   "contact"
+    t.string   "status"
+    t.text     "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "attachments", force: true do |t|
@@ -317,6 +328,7 @@ ActiveRecord::Schema.define(version: 20160416120944) do
     t.string   "garden",               default: "No"
     t.string   "dg",                   default: false
     t.boolean  "seal_approved",        default: false
+    t.string   "property_type"
     t.string   "pets",                 default: "No"
     t.string   "ensuite",              default: "No"
     t.string   "town"
@@ -327,7 +339,6 @@ ActiveRecord::Schema.define(version: 20160416120944) do
     t.string   "furnished"
     t.string   "feature1"
     t.string   "feature2"
-    t.integer  "property_type"
     t.string   "let_type_id",          default: "Not Specified"
     t.string   "let_furn_id",          default: "Not Specified"
     t.string   "epc"
@@ -344,6 +355,7 @@ ActiveRecord::Schema.define(version: 20160416120944) do
     t.string   "stage"
     t.boolean  "managed"
     t.boolean  "board"
+    t.integer  "tenant_id"
     t.datetime "let_agreed_date"
     t.datetime "sold_date"
     t.string   "property_create_user"
@@ -354,7 +366,6 @@ ActiveRecord::Schema.define(version: 20160416120944) do
     t.date     "cp12_due_date"
     t.date     "esc_date_complete"
     t.date     "esc_due_date"
-    t.integer  "tenant_id"
     t.boolean  "mouse_price",          default: false
     t.boolean  "dss_move",             default: false
     t.boolean  "home",                 default: false

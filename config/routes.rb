@@ -280,4 +280,6 @@ Rails.application.routes.draw do
   match '/property_search',   to: 'phones#property_search',   via: 'get'
   match '/get_property_data',   to: 'phones#get_property_data',   via: 'get'
   match '/search_user_by_name_property',   to: 'phones#search_user_by_name_property',   via: 'get'
+  match '/bookanappraisal',   to: 'users#bookanappraisal',   via: 'get'
+  match '/save_appraisal',   to: 'users#save_appraisal',   via: 'post'
 end

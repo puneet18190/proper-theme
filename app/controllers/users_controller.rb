@@ -182,6 +182,16 @@ class UsersController < ApplicationController
 		redirect_to :back
 	end
 
+	def bookanappraisal
+		@appraisal = Appraisal.new
+	end
+
+	def save_appraisal
+		@appraisal = Appraisal.new(appraisal_params)
+		@appraisal.save
+		redirect_to :back
+	end
+
     private
     def set_user
       @user = User.find(params[:id])
@@ -196,4 +206,7 @@ class UsersController < ApplicationController
       )
     end
 
+    def appraisal_params
+    	params.require(:appraisal).permit(:firstname, :lastname, :contact, :email, :comments, :status)
+    end
 end

@@ -1,0 +1,74 @@
+<div id="content">
+    <div id="main-title-content">
+        <img src="assets/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
+        <div class="container">
+            <div class="panel">
+                <h1>Property Appraisal</h1>
+                <p>Book an appraisal</p>
+            </div>
+        </div>
+    </div>
+    <!--    News Carousel-->
+    <div class="news-carousel-wrapper">
+        <dl id="news-carousel" class="news-carousel-style">
+          <%= render 'properties/news_carousel'%>
+        </dl>
+    </div>
+    <!--    End News Carousel-->
+    <div class="container">
+        <div class="row-fluid">
+            
+            <div class="span12">
+                <div class="panel left-line">
+                    <h3 class="bottom-line main-heading box-panel"><span class="main-circle-icon"><i class="icon-envelope"></i></span> Your Details</h3>
+                    <%= form_for @appraisal, url: '/save_appraisal' do |f| %>
+                        <div class="box-panel ">
+                            <div class="row-fluid">
+                                <div class="span6">
+                                  <%= f.label :firstname %>
+                                  <%= f.text_field :firstname, :class=> "input-block-level"%>
+                                </div>
+                                <div class="field span6">
+                                  <%= f.label :lastname %>
+                                  <%= f.text_field :lastname, :class=> "input-block-level"%>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="field span6">
+                                  <%= f.label :email %>
+                                  <%= f.text_field :email, :class=> "input-block-level"%>
+                                </div>
+                                <div class="field span6">
+                                  <%= f.label :contact %>
+                                  <%= f.text_field :contact, :class=> "input-block-level"%>
+                                </div>
+                            </div>
+
+                            <div class="row-fluid">
+                              <%= f.label :status, 'I am' %>
+                              <%= f.select :status,['Letting', 'Selling'], :class=> "input-block-level"%>
+                            </div>
+
+                            <div class="row-fluid">
+                              <%= f.label :comments %>
+                              <%= f.text_area :comments, :class=> "input-block-level", :placeholder=> "Please type your comments here.."%>
+                            </div>
+
+                            <div class="row-fluid">
+                              <%#= recaptcha_tags %>
+                              <div class="g-recaptcha" data-sitekey="6LeHQQITAAAAAN1D1kD3ArHe2yEB3bjN-1pHO2pF"></div>
+                            </div>
+                            <br/>
+
+                          <%= f.submit "Send", class: "btn-proper btn" %>
+
+                          <h4>This data needs to be stored as either a prospective landlord or prospective seller depending on the selection of the 'I am' field above. Comments to be listed in the contact manager .</h4>
+                          <h4>Contact me when enquiry is submitted.</h4>
+                          <h4>If user has entered an email address it needs to sent intro email out as soon as submitted (to be designed soon!)</h4>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
