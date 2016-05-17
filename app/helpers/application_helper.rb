@@ -116,3 +116,15 @@ end
 def property_user(property)
   property.property_create_user=="admin" ? "shaded-purple" : "shaded-blue"
 end
+
+def get_extension(mac)
+  if mac == "0015653b4906"
+    return "Emma Bovingdon (2018701)"
+  elsif mac == "0015654c6db2"
+    return "Stephen Bovingdon (2018481)"
+  elsif mac == "0015654c66c2"
+    return "Emma Bovingdon (2018480)"
+  else
+    return "Stephen Bovingdon (2018700)"
+  end
+end

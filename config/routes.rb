@@ -282,4 +282,7 @@ Rails.application.routes.draw do
   match '/search_user_by_name_property',   to: 'phones#search_user_by_name_property',   via: 'get'
   match '/bookanappraisal',   to: 'users#bookanappraisal',   via: 'get'
   match '/save_appraisal',   to: 'users#save_appraisal',   via: 'post'
+  match '/search_user_and_property',   to: 'phones#search_user_and_property',   via: 'get'
+  match '/sticky_property_search_data',   to: 'phones#sticky_property_search_data',   via: 'get'
+  match '/sticky_user_search_data',   to: 'phones#sticky_user_search_data',   via: 'get'
 end

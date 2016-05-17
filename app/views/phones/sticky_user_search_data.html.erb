@@ -1,0 +1,24 @@
+<table class="sticky_search_data table" style="width: 75%">
+	<tr>
+		<th></th>
+		<th><%= @user.status=="landlord" ? "Landlord" : "Tenant" %></th>
+	</tr>
+
+	<tr>
+		<td>Name</td>
+		<td><%= "#{@user.first_name} #{@user.last_name}" %></td>
+	</tr>
+	<tr>
+		<td>Contact</td>
+		<td class="example-p-2"><a href="#"><%= @user.phone || @user.mobile %></a></td>
+	</tr>
+	<tr>
+		<td>Email</td>
+		<td><%= mail_to @user.email %></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><a class='btn btn-proper' href='/<%= @user.status=="landlord" ? "landlords" : "tenants" %>/<%= @user.id %>/edit '>Go to Record</a></td>
+	</tr>
+
+</table>

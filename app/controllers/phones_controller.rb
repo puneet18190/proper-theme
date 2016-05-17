@@ -119,4 +119,24 @@ class PhonesController < ApplicationController
     end
     @user = @user.flatten.uniq
   end
+
+  def search_user_and_property
+    @user = []
+    @user = User.where("first_name ilike ? OR last_name ilike ?", "%#{params[:term]}%", "%#{params[:term]}%").order('first_name')
+    @property = Property.where("name ilike ? OR address1 ilike ? OR address2 ilike ? OR address3 ilike ?" , 
+      "%#{params[:term]}%", "%#{params[:term]}%", "%#{params[:term]}%", "%#{params[:term]}%")
+  end
+
+  def sticky_user_search_data
+    @user = User.find(params[:id])
+    render layout: false
+  end
+
+  def sticky_property_search_data
+    @property = Property.find(params[:id])
+    @landlord = @property.user
+    tenant_id = TenantProperty.where(property_id: @property.id).first.try("tenant_id")
+    @tenant = tenant_id.nil? ? nil : User.find(tenant_id)
+    render layout: false
+  end
 end
