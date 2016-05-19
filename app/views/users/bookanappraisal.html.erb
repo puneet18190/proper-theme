@@ -25,11 +25,11 @@
                         <div class="box-panel ">
                             <div class="row-fluid">
                                 <div class="span6">
-                                  <%= f.label :firstname %>
+                                  <%= f.label :firstname, "First Name" %>
                                   <%= f.text_field :firstname, :class=> "input-block-level"%>
                                 </div>
                                 <div class="field span6">
-                                  <%= f.label :lastname %>
+                                  <%= f.label :lastname, "Last Name" %>
                                   <%= f.text_field :lastname, :class=> "input-block-level"%>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
                                   <%= f.text_field :email, :class=> "input-block-level"%>
                                 </div>
                                 <div class="field span6">
-                                  <%= f.label :contact %>
+                                  <%= f.label :contact, "Contact Number" %>
                                   <%= f.text_field :contact, :class=> "input-block-level"%>
                                 </div>
                             </div>
@@ -62,9 +62,6 @@
 
                           <%= f.submit "Send", class: "btn-proper btn" %>
 
-                          <h4>This data needs to be stored as either a prospective landlord or prospective seller depending on the selection of the 'I am' field above. Comments to be listed in the contact manager .</h4>
-                          <h4>Contact me when enquiry is submitted.</h4>
-                          <h4>If user has entered an email address it needs to sent intro email out as soon as submitted (to be designed soon!)</h4>
                         </div>
                     <% end %>
                 </div>
