@@ -58,5 +58,10 @@ class UserMailer < ActionMailer::Base
     mail( :to => "steve@sealproperties.co.uk", :subject => "New User Registered",:cc => "emma@sealproperties.co.uk" )
   end
 
+  def book_appraisal(appraisal)
+    @appraisal = appraisal
+    mail( :to => "emma@sealproperties.co.uk", :subject => "Book An Appraisal" )
+  end
+
 end
 

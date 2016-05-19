@@ -189,7 +189,8 @@ class UsersController < ApplicationController
 	def save_appraisal
 		@appraisal = Appraisal.new(appraisal_params)
 		@appraisal.save
-		redirect_to :back
+		UserMailer.book_appraisal(@appraisal).deliver
+		redirect_to :back, notice: "Appraisal Booked sucessfully."
 	end
 
     private
