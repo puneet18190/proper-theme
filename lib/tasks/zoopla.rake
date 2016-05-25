@@ -39,7 +39,7 @@ task :zoopla => :environment do
       z.print remote_data
     end
     require 'net/ftp'
-    Net::FTP.open('zoopla.com', 'sealproperties_ne8', 'v5ZUFVQBjDKZ') do |ftp|
+    Net::FTP.open('ftp.zoopla.com', 'sealproperties_ne8', 'v5ZUFVQBjDKZ') do |ftp|
       ftp.passive = true
       # ftp.chdir("/live/upload")
       ftp.putbinaryfile(t.path,"70273.zip")
