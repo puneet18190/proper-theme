@@ -1,4 +1,4 @@
-task :upload_blm => :environment do
+task :zoopla => :environment do
   require "open-uri"
   require 'nokogiri'
   require 'zip'
@@ -41,7 +41,7 @@ task :upload_blm => :environment do
     require 'net/ftp'
     Net::FTP.open('zoopla.com', 'sealproperties_ne8', 'v5ZUFVQBjDKZ') do |ftp|
       ftp.passive = true
-      ftp.chdir("/live/upload")
+      # ftp.chdir("/live/upload")
       ftp.putbinaryfile(t.path,"70273.zip")
     end
     # Net::FTP.open('mouseprice.net', 'SealProp', 'SealProp77') do |ftp|
