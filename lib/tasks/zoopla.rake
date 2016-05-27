@@ -20,8 +20,8 @@ task :zoopla => :environment do
             z.print url1_data
           end
         end
-        z.put_next_entry("#{sp}_DOC_00.pdf")
-        z.print open("http://www.sealproperties.co.uk/brochure.pdf?id="+item.id.to_s).read
+        # z.put_next_entry("#{sp}_DOC_00.pdf")
+        # z.print open("http://www.sealproperties.co.uk/brochure.pdf?id="+item.id.to_s).read
       end
       z.put_next_entry("coming_soon.jpg")
       z.print  File.open("#{Rails.root}/app/assets/images/default_images/no.jpg").read
@@ -30,7 +30,7 @@ task :zoopla => :environment do
       f_name = "70273_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+seq
       z.put_next_entry("#{f_name}.blm")
       ac = ApplicationController.new()
-      remote_data = ac.render_to_string "properties/download_blm", :locals => {:@data => @data}, :layout=>false
+      remote_data = ac.render_to_string "properties/download_blm5", :locals => {:@data => @data}, :layout=>false
       remote_data = remote_data.gsub("<pre>","")
       remote_data = remote_data.gsub("</pre>","")
       remote_data = remote_data.gsub("&lt;","<")
