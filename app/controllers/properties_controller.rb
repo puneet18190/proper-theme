@@ -813,8 +813,8 @@ class PropertiesController < ApplicationController
               z.print url1_data
             end
           end
-          z.put_next_entry("#{sp}_DOC_00.pdf")
-          z.print open("http://www.sealproperties.co.uk/broucher.pdf?id="+item.id.to_s).read
+          # z.put_next_entry("#{sp}_DOC_00.pdf")
+          # z.print open("http://www.sealproperties.co.uk/broucher.pdf?id="+item.id.to_s).read
         end
         z.put_next_entry("coming_soon.jpg")
         z.print  File.open("#{Rails.root}/app/assets/images/default_images/no.jpg").read
@@ -822,7 +822,7 @@ class PropertiesController < ApplicationController
         seq = "01"
         f_name = "70273_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+seq
         z.put_next_entry("#{f_name}.blm")
-        remote_data = render_to_string "download_blm", :layout => false
+        remote_data = render_to_string "download_blm5", :layout => false
         remote_data = remote_data.gsub("<pre>","")
         remote_data = remote_data.gsub("</pre>","")
         remote_data = remote_data.gsub("&lt;","<")
