@@ -599,6 +599,11 @@ class PropertiesController < ApplicationController
     render layout: false
   end
 
+  def blm5
+    @data = Property.where(:approval_status=>"approved", :otm=>true)
+    render layout: false
+  end
+
   def test_blm
     @data = Property.where(:approval_status=>"approved", :otm=>true)
     render layout: false
@@ -790,6 +795,50 @@ class PropertiesController < ApplicationController
       t.close
     end
     redirect_to root_url, notice: "DSSMove Uploading is start...."
+  end
+
+  def upload_blm_zoopla
+    Thread.new do
+      @data = Property.where(:approval_status=>"approved", :otm=>true)
+      t = Tempfile.new("70273")
+      Zip::OutputStream.open(t.path) do |z|
+        @data.each_with_index do |item,i|
+          sp = "70273_SP"+item.created_at.year.to_s.split(//).last(2).join()+item.created_at.month.to_s.rjust(2,'0')+item.id.to_s.rjust(4,'0')
+          (0..9).each do |n|
+            if !item.send("image#{n+1}").url.nil? && !item.send("image#{n+1}").path.nil?
+              puts item.send("image#{n+1}").path
+              z.put_next_entry(sp+"_IMG_"+n.to_s.rjust(2,'0')+"."+item.send("image#{n+1}").path.split(".").last.downcase)
+              url1 = item.send("image#{n+1}").url(:large)
+              url1_data = open(url1.gsub('https','http')).read
+              z.print url1_data
+            end
+          end
+          z.put_next_entry("#{sp}_DOC_00.pdf")
+          z.print open("http://www.sealproperties.co.uk/broucher.pdf?id="+item.id.to_s).read
+        end
+        z.put_next_entry("coming_soon.jpg")
+        z.print  File.open("#{Rails.root}/app/assets/images/default_images/no.jpg").read
+        d=DateTime.now
+        seq = "01"
+        f_name = "70273_"+d.year.to_s+d.month.to_s.rjust(2,'0')+d.day.to_s+seq
+        z.put_next_entry("#{f_name}.blm")
+        remote_data = render_to_string "download_blm", :layout => false
+        remote_data = remote_data.gsub("<pre>","")
+        remote_data = remote_data.gsub("</pre>","")
+        remote_data = remote_data.gsub("&lt;","<")
+        remote_data = remote_data.gsub("&gt;",">")
+        remote_data = remote_data.gsub("&quot;","'")
+        z.print remote_data
+      end
+      require 'net/ftp'
+      Net::FTP.open('ftp.zoopla.com', 'sealproperties_ne8', 'v5ZUFVQBjDKZ') do |ftp|
+        ftp.passive = true
+        # ftp.chdir("/live/upload")
+        ftp.putbinaryfile(t.path,"70273.zip")
+      end
+      t.close
+    end
+    redirect_to root_url, notice: "Zoopla Uploading is start...."
   end
 
   def upload_pdf
