@@ -190,7 +190,7 @@ class UsersController < ApplicationController
 		@appraisal = Appraisal.new(appraisal_params)
 		@appraisal.save
 		UserMailer.book_appraisal(@appraisal).deliver
-		redirect_to :back, notice: "Appraisal Booked sucessfully."
+		redirect_to :back, notice: "We will be in touch shortly to arrange your free property appraisal."
 	end
 
     private
