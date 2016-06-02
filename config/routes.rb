@@ -192,6 +192,11 @@ Rails.application.routes.draw do
     end
   end
 
+  match '/landlords/prospective',   to: 'landlords#prospective',   via: 'get'
+  match '/landlords/active_lead',   to: 'landlords#active_lead',   via: 'get'
+  match '/landlords/active_landlord_pro',   to: 'landlords#active_landlord_pro',   via: 'get'
+  match '/landlords/active_landlord_pro_plus',   to: 'landlords#active_landlord_pro_plus',   via: 'get'
+
   resources :landlords
   resources :tenants  
   match '/seal_approved',   to: 'tasks#seal_approved',   via: 'get'

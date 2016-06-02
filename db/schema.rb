@@ -328,7 +328,6 @@ ActiveRecord::Schema.define(version: 20160517052322) do
     t.string   "garden",               default: "No"
     t.string   "dg",                   default: false
     t.boolean  "seal_approved",        default: false
-    t.string   "property_type"
     t.string   "pets",                 default: "No"
     t.string   "ensuite",              default: "No"
     t.string   "town"
@@ -339,6 +338,7 @@ ActiveRecord::Schema.define(version: 20160517052322) do
     t.string   "furnished"
     t.string   "feature1"
     t.string   "feature2"
+    t.integer  "property_type"
     t.string   "let_type_id",          default: "Not Specified"
     t.string   "let_furn_id",          default: "Not Specified"
     t.string   "epc"
@@ -355,7 +355,6 @@ ActiveRecord::Schema.define(version: 20160517052322) do
     t.string   "stage"
     t.boolean  "managed"
     t.boolean  "board"
-    t.integer  "tenant_id"
     t.datetime "let_agreed_date"
     t.datetime "sold_date"
     t.string   "property_create_user"
@@ -366,6 +365,7 @@ ActiveRecord::Schema.define(version: 20160517052322) do
     t.date     "cp12_due_date"
     t.date     "esc_date_complete"
     t.date     "esc_due_date"
+    t.integer  "tenant_id"
     t.boolean  "mouse_price",          default: false
     t.boolean  "dss_move",             default: false
     t.boolean  "home",                 default: false

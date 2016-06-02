@@ -1,0 +1,64 @@
+<div id="content">
+    <div class="news-carousel-wrapper">
+        <dl id="news-carousel" class="news-carousel-style">
+            <%= render 'properties/news_carousel'%>
+        </dl>
+    </div>
+    <div class="cont" style="max-width:1200px">
+        <h3><b>ACIVE LANDLORD (ProPlus+)</b></h3>
+      
+        <table id="landlord_info">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Address</th>
+              <th>Phone</th>
+              <th>Action</th>
+              <th>Plan</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @users.each_with_index do |l,i| %>
+              <tr>
+                <td><%= "#{l.first_name} #{l.last_name}" %></td>
+                <td><%= l.email.include?("@dummy.com") ? "" : l.email %></td>
+                <td><%= "#{l.address1} #{l.address2} #{l.address3}" %></td>
+                <td><%= l.phone %></td>
+                <td>
+                  <%= link_to 'Show', "/users/#{l.id}" %>
+                  <%= link_to 'Edit', edit_landlord_path(l) %>
+                  <%= link_to 'Destroy', landlord_path(l), method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
+                <td><%= l.plan.humanize %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      $("#landlord_info").dataTable()
+    })
+</script>
+
+<style type="text/css">
+  .dataTables_paginate .next{
+    position: relative;
+    bottom: 0;
+    color: white !important;
+  }
+  select{
+    width: 70px;
+    float: none;
+  }
+  tr{
+    background-color: #eee !important;
+  }
+  .bg_color{
+    background-color: papayawhip !important
+  }
+</style>
