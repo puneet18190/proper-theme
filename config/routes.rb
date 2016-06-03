@@ -211,6 +211,8 @@ Rails.application.routes.draw do
   match '/available',   to: 'properties#properties_available',   via: 'get'
   match '/let_agreed',   to: 'properties#properties_let_agreed',   via: 'get'
   match '/managed',   to: 'properties#properties_managed',   via: 'get'
+  match '/prospective',   to: 'properties#properties_prospective',   via: 'get'
+  match '/reserved',   to: 'properties#properties_reserved',   via: 'get'
   match '/sale',   to: 'properties#properties_sale',   via: 'get'
   match '/sold',   to: 'properties#properties_sold',   via: 'get'
   match '/seller',   to: 'properties#properties_seller',   via: 'get'

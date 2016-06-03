@@ -944,6 +944,14 @@ class PropertiesController < ApplicationController
     render :json => {data: @key}.to_json 
   end
 
+  def properties_prospective
+    @properties = Property.where.not("approval_status = ?", "approved").includes(:user).includes(:agent).includes(:tenants)
+  end
+
+  def properties_reserved
+    @properties = Property.where("status = ?", "Reserved").includes(:user).includes(:agent)
+  end
+
   private
     def set_property
       @property = Property.friendly.find(params[:id])
