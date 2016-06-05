@@ -187,10 +187,14 @@ class UsersController < ApplicationController
 	end
 
 	def save_appraisal
-		@appraisal = Appraisal.new(appraisal_params)
-		@appraisal.save
-		UserMailer.book_appraisal(@appraisal).deliver
-		redirect_to :back, notice: "We will be in touch shortly to arrange your free property appraisal."
+		if User.where(email: params[:appraisal][:email]).empty? && Appraisal.where(email: params[:appraisal][:email]).empty?
+			@appraisal = Appraisal.new(appraisal_params)
+			@appraisal.save
+			UserMailer.book_appraisal(@appraisal).deliver
+			redirect_to :back, notice: "We will be in touch shortly to arrange your free property appraisal."
+		else
+			redirect_to :back, alert: "Email address already registered."
+		end
 	end
 
     private

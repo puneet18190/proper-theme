@@ -37,6 +37,8 @@ class LandlordsController < ApplicationController
 		user=[]
 		Property.where.not(approval_status: "approved").includes(:user).each{|obj| user << obj.user.id}
 		@users = User.find(user.uniq)
+
+		@other_users = Appraisal.where(status: "Letting").all
 	end
 
 	def active_lead

@@ -5,7 +5,7 @@
         </dl>
     </div>
     <div class="cont" style="max-width:1200px">
-        <h3><b>PROSPECTIVE LANDLORD</b></h3>
+        <h3><b>PROSPECTIVE SELLER</b></h3>
       
         <table id="landlord_info">
           <thead>
@@ -20,21 +20,6 @@
           </thead>
 
           <tbody>
-            <% @users.each_with_index do |l,i| %>
-              <tr>
-                <td><%= "#{l.first_name} #{l.last_name}" %></td>
-                <td><%= l.email.include?("@dummy.com") ? "" : l.email %></td>
-                <td><%= "#{l.address1} #{l.address2} #{l.address3}" %></td>
-                <td><%= l.phone %></td>
-                <td>
-                  <%= link_to 'Show', "/users/#{l.id}" %>
-                  <%= link_to 'Edit', edit_landlord_path(l) %>
-                  <%= link_to 'Destroy', landlord_path(l), method: :delete, data: { confirm: 'Are you sure?' } %>
-                </td>
-                <td><%= l.plan.humanize %></td>
-              </tr>
-            <% end %>
-
             <% @other_users.each_with_index do |l,i| %>
               <tr>
                 <td><%= "#{l.firstname} #{l.lastname}" %></td>

@@ -952,6 +952,10 @@ class PropertiesController < ApplicationController
     @properties = Property.where("status = ?", "Reserved").includes(:user).includes(:agent)
   end
 
+  def properties_seller_prospective
+    @other_users = Appraisal.where(status: "Selling").all
+  end
+
   private
     def set_property
       @property = Property.friendly.find(params[:id])
