@@ -25,6 +25,12 @@
               <div class="main-heading bottom-line line-before filterarea">
                 <form class="filterform">
                   <p></p>
+                    <select class="type">
+                        <%type = params[:type].blank? ? 'all' : params[:type]%>
+                        <option class="all active" id="all" <% if type=='all'%> selected<%end%>>All</option>
+                        <option class="to_let" id="to_let" <% if type=='to_let'%> selected<%end%>>To Let</option>
+                        <option class="for_sale" id="for_sale" <% if type=='for_sale'%> selected<%end%>>For Sale</option>
+                    </select>
                     <select class="sort">
                         <%sort = params[:sort].blank? ? 'asc' : params[:sort]%>
                         <option class='asc' id="asc" <% if sort=='asc'%> selected<%end%>>Asc</option>
@@ -177,7 +183,7 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    $(".condition, .sort").click(function(){
+    $(".condition, .sort, .type").click(function(){
       target = document.getElementById('loading')
       spinner = new Spinner({radius: 80,width:25,length:60}).spin(target)
       var src = $( "."+$(this).attr("class")+" option:selected" )
@@ -190,12 +196,13 @@
       // }
       condition = $(".condition").find("option:selected")[0].id
       sort = $(".sort").find("option:selected")[0].id
+      type = $(".type").find("option:selected")[0].id
       src.parent().find("option").removeClass("active")
       src.addClass("active");
       $.ajax({
         type: "get",
         url: "/properties_filter",
-        data: "condition="+condition+"&sort="+sort,
+        data: "condition="+condition+"&sort="+sort+"&type="+type,
         success: function(res){
           $(".filter_data").html($(res).find(".filter_data").html())
           target.removeChild(spinner.el)
@@ -249,4 +256,8 @@
   position: inherit;
 }
 .next:hover{color: white;text-decoration: none;border: none;background: white;}
+
+.filterform select{
+  width: 24%
+}
 </style>
