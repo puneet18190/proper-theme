@@ -27,6 +27,12 @@
       <%= f.label :price %>
       <%= f.text_field :price %>
     </div>
+
+    <div class="field">
+      <%= f.label :let_rent_frequency,:style=>"width:50px" %>
+      <%= f.select :let_rent_frequency, [['Weekly', 0], ['Monthly', 1], ['Quarterly', 2], ['Annually', 3]] %>
+    </div>
+
     <div class="field">
       <%= f.label "PRICE_QUALIFIER",:style=>"width:50px" %>
       <%= f.select :qualifier,['Default', 'POA', 'Guide Price', 'Fixed Price', 'Offers in Excess of', 'OIRO', 'Sale by Tender','From (new homes and commercial only)', 'Shared Ownership', 'Offers Over', 'Part Buy Part Rent', 'Shared Equity','Equity Loan','Offers Invited'],:id=>"qualifier" %>
@@ -128,6 +134,9 @@
 	#property_category{
 		width: 220px
 	}
+  #property_let_rent_frequency{
+    margin-top: -42px
+  }
 </style>
 
 <script type="text/javascript">

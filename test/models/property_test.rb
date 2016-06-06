@@ -101,6 +101,7 @@
 #  key_unassign_date    :datetime
 #  zoopla               :boolean          default(TRUE)
 #  nethouse             :boolean          default(TRUE)
+#  let_rent_frequency   :integer          default(1)
 #
 # Indexes
 #

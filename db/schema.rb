@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606152443) do
+ActiveRecord::Schema.define(version: 20160606172552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -374,6 +374,7 @@ ActiveRecord::Schema.define(version: 20160606152443) do
     t.datetime "key_unassign_date"
     t.boolean  "zoopla",               default: true
     t.boolean  "nethouse",             default: true
+    t.integer  "let_rent_frequency",   default: 1
   end
 
   add_index "properties", ["slug"], name: "index_properties_on_slug", unique: true, using: :btree
