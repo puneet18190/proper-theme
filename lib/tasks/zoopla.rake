@@ -6,7 +6,7 @@ task :zoopla => :environment do
   # Thread.new do
     puts "===============Upload Start========================="
     UserMailer.blm_status("BLM Upload on Zoopla Start").deliver
-    @data = Property.where(:approval_status=>"approved", :otm=>true)
+    @data = Property.where(:approval_status=>"approved", :zoopla=>true)
     t = Tempfile.new("70273")
     Zip::OutputStream.open(t.path) do |z|
       @data.each_with_index do |item,i|

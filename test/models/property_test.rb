@@ -99,6 +99,8 @@
 #  wonder_property      :boolean          default(FALSE)
 #  key_assign_date      :datetime
 #  key_unassign_date    :datetime
+#  zoopla               :boolean          default(TRUE)
+#  nethouse             :boolean          default(TRUE)
 #
 # Indexes
 #
