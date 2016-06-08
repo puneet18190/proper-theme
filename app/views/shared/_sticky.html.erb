@@ -25,7 +25,8 @@
                         <!-- <span class="sms_number"></span> -->
                         <input type="text" class="sms_number" placeholder="Phone Number" />
                     </h2>
-                    <textarea style="width: 50%;height:60px" maxlength="50" id="message"></textarea>
+                    <textarea style="width: 50%;height:60px" maxlength="160" id="message"></textarea>
+                    <div id="textarea_feedback"></div>
                     <div class="row"><div class="btn btn-proper" style="margin-left: 20px" id="send_sms">Send</div></div>
                 </div>
 
@@ -264,4 +265,14 @@
             
         })
     })
+
+    var text_max = 160;
+    $('#textarea_feedback').html(text_max + ' characters remaining');
+
+    $('#message').keyup(function() {
+        var text_length = $('#message').val().length;
+        var text_remaining = text_max - text_length;
+
+        $('#textarea_feedback').html(text_remaining + ' characters remaining');
+    });
 </script>
