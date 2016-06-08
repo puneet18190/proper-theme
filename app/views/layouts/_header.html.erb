@@ -53,6 +53,7 @@
               </li>
               <li><%= link_to "PROPERTIES", properties_path %></li>
               <li><%= link_to "Admin Mails", mails_path %></li>
+              <li><%= link_to "Misc Contact", miscellaneous_contacts_path %></li>
             </ul>
           <% elsif current_user.status == "landlord" %>
             <%= link_to "Profile", "/users/#{current_user.id}" %>

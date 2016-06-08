@@ -949,7 +949,7 @@ class PropertiesController < ApplicationController
   end
 
   def properties_reserved
-    @properties = Property.where("status = ?", "Reserved").includes(:user).includes(:agent)
+    @properties = Property.where("status = ? OR stage = ? OR stage = ?", "Reserved", "On Hold/Awaiting Referencing", "Subject to Tenancy").includes(:user).includes(:agent)
   end
 
   def properties_seller_prospective

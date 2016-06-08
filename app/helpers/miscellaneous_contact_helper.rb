@@ -1,0 +1,2 @@
+module MiscellaneousContactHelper
+end

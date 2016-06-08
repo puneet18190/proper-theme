@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   mount Browserlog::Engine => '/logs'
   resources :property_changes
   resources :mails
+  resources :miscellaneous_contacts
   # resources :advertisements
   devise_for :users, controllers: { confirmations: "confirmations", sessions: "sessions" }
 
