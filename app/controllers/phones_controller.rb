@@ -69,11 +69,13 @@ class PhonesController < ApplicationController
   end
 
   def get_call_log
-    if Rails.env=="production"
-      @data = YealinkPhone.all.where(callaction: "incoming_call").last(20)
-    else
-      @data = HTTParty.get("http://www.sealproperties.co.uk/get_phone_data")["data"]
-    end
+    #if Rails.env=="production"
+      # @data = YealinkPhone.all.where(callaction: "incoming_call").last(20)
+
+      @data = YealinkPhone.where("created_at >= ? AND callaction = ?", Time.zone.now - 5.days, "incoming_call").order("created_at desc").group_by(&:callerid)
+    #else
+    #  @data = HTTParty.get("http://www.sealproperties.co.uk/get_phone_data")["data"]
+    #end
     render :layout => false
   end
 

@@ -11,17 +11,20 @@
         <th>Call Duration</th>
     </tr>
 
-    <% @data.reverse.each do |obj| %>
+    <% @data.each do |obj| %>
+        <% obj[1].last(3).each_with_index do |a, i| %>
         <tr>
-            <td><%=obj["created_at"].to_time.strftime("%d/%m/%y")%></td>
-            <td><%=obj["created_at"].to_time.in_time_zone('London').strftime("%T")%></td>
-            <td><a id="a_select" class="example-p-2"  href="#"><%=obj["callerid"][0]=="0" ? obj["callerid"].gsub(/^0/, "+44") : "+44"+obj["callerid"] unless obj["callerid"].blank?%></a></td>
-            <% call_user = User.where("mobile = ? OR phone =?", obj["callerid"],obj["callerid"]).first %>
-            <td><%=call_user.blank? ? "" : "#{call_user.first_name} #{call_user.last_name} (#{call_user.status[0].capitalize})" %></td>
-            <td><%=obj["department"]%></td>
-            <td><%= get_extension(obj["mac"]) %></td>
-            <td><%=obj["status"]%></td>
-            <td><%=Time.at(obj['call_duration']).utc.strftime("%H:%M:%S") %></td>
+            <td><%=a["created_at"].to_time.strftime("%d/%m/%y")%></td>
+            <td><%=a["created_at"].to_time.in_time_zone('London').strftime("%T")%></td>
+            <td><a id="a_select" class="example-p-2"  href="#"><%=a["callerid"][0]=="0" ? a["callerid"].gsub(/^0/, "+44") : "+44"+a["callerid"] unless a["callerid"].blank? if i==0 %></a></td>
+            <% call_user = User.where("mobile = ? OR phone =?", a["callerid"],a["callerid"]).first %>
+            <td><%=call_user.blank? ? "" : "#{call_user.first_name} #{call_user.last_name} (#{call_user.status[0].capitalize})"  if i==0 %></td>
+            <td><%=a["department"] if i==0 %></td>
+            <td><%= get_extension(a["mac"])%></td>
+            <td><%=a["status"]%></td>
+            <td><%=Time.at(a['call_duration']).utc.strftime("%H:%M:%S") %></td>
         </tr>
+        <% end %>
+        <tr style="color:yellow; background-color: grey !important"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
     <%end%>
 </table>
