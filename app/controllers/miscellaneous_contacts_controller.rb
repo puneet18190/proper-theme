@@ -39,6 +39,6 @@ class MiscellaneousContactsController < ApplicationController
     end
 
     def misc_contact_params
-      params.require(:miscellaneous_contact).permit(:name,:company, :category, :phone,:email)
+      params.require(:miscellaneous_contact).permit(:first_name,:last_name, :company,:position, :category, :phone,:mobile, :web,:email, :avatar, :notes)
     end
 end

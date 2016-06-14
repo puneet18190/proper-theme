@@ -25,7 +25,7 @@
       <tbody>
         <% @contact.each_with_index do |obj,i| %>
           <tr>
-            <td><%= obj.name %></td>
+            <td><%= "#{obj.first_name} #{obj.last_name}" %></td>
             <td><%= obj.company %></td>
             <td><%= obj.category %></td>
             <td><%= obj.phone %></td>

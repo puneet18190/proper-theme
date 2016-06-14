@@ -1,0 +1,55 @@
+<div id="landlord_profile" class="tab-pane fade in active" style="width:100%;height:100%">
+	<h4 style="margin-left:35px;margin-top: 35px">Personal Information</h4>
+  <div class="proper-form-step-area" style="height: 450px">
+    <div style="width:50%;height:400px;float: left">
+      <div class="span5">
+        <%= f.label :first_name, "First Name" %>
+        <%= f.text_field :first_name, class: "input-block-level", required: "true" %>
+      </div>
+      <div class="span5">
+        <%= f.label :last_name, "Last Name" %>
+        <%= f.text_field :last_name, class: "input-block-level", required: "true" %>
+      </div>
+      <div class="span5">
+        <%= f.label :company, "Company Name" %>
+        <%= f.text_field :company, class: "input-block-level" %>
+      </div>
+      <div class="span5">
+        <%= f.label :position %>
+        <%= f.text_field :position, class: "input-block-level" %>
+      </div>
+      <div class="span5">
+        <%= f.label :phone, "Telephone" %>
+        <%= f.text_field :phone, class: "input-block-level" %>
+      </div>
+      <div class="span5">
+        <%= f.label :mobile %>
+        <%= f.text_field :mobile, class: "input-block-level" %>
+      </div>
+      <div class="span5">
+        <%= f.label :web %>
+        <%= f.text_field :web, class: "input-block-level" %>
+      </div>
+      <div class="span5">
+        <%= f.label :email %>
+        <%= f.text_field :email, class: "input-block-level" %>
+      </div>
+      <div class="span5">
+        <%= f.label :category %>
+        <%= f.select :category, ['Partners', 'Admin', 'Contractor', 'Suppliers', 'Unclassified'], class: "input-block-level", style: "width: 70% !important; float: right" %>
+      </div>
+    </div>
+    <div style="width:50%;height:400px;float: right">
+      <div class="span5">
+        <%= f.label :avatar, "Photo Upload" %><br/>
+        <%= image_tag @contact.avatar.url(:thumb), style: "width:200px;height:200px" %>
+        <%= f.file_field :avatar, style: "margin-top:0px" %>
+      </div>
+      <div class="span5" >
+        <%= f.label :notes %>
+        <%= f.text_area :notes, style: "width:98%;height:80px" %>
+      </div>
+    </div>
+  </div>
+
+</div>
