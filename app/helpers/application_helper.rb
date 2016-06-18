@@ -48,6 +48,8 @@ module ApplicationHelper
       data = "Reserved"
     elsif category == "Sale" && status_id == "Under Offer"
       data = "Under Offer"
+    elsif category == "Rent" && status_id == "Reserved"
+      data = "Reserved"  
     else
       data =""
     end
