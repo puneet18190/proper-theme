@@ -176,14 +176,23 @@ class ScreensController < ApplicationController
 	def bigscreen
 	    @title = []
 	    @description = []
+	    l = []
 	    response = Nokogiri::HTML(open("http://feeds.bbci.co.uk/news/uk/rss.xml?edition=uk"))
-	    sleep 2
-	    response.css('title').each do |t|
-	      @title.push(t.text)
-	    end  
-	    response.css('description').each do |t|
-	      @description.push(t.text)
-	    end  
+	    # sleep 2
+	    response.css("item").each{|b| l << b.css("guid").text}
+	    l.each do |obj|
+	    	doc = ""
+		    doc = Nokogiri::HTML(open(obj))
+		    @title.push( doc.css("title").text )
+		    @description.push( doc.css("meta")[2].attributes["content"].value )
+		end
+	    #response.css('title').each do |t|
+	    #  @title.push(t.text)
+	    #end  
+	    #response.css('description').each do |t|
+	    #  @description.push(t.text)
+	    #end  
+
 
 	    @p_title = []
 	    @p_description = []
