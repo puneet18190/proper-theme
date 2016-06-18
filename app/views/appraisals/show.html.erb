@@ -1,0 +1,34 @@
+<div id="content">
+  <div class="news-carousel-wrapper">
+    <dl id="news-carousel" class="news-carousel-style">
+      <%= render 'properties/news_carousel'%>
+    </dl>
+  </div>
+  <div class="proper-singup">
+    <p>
+      <strong>First Name:</strong>
+      <%= @appraisal.firstname %>
+    </p>
+    <p>
+      <strong>Last Name:</strong>
+      <%= @appraisal.lastname %>
+    </p>
+    <p>
+      <strong>Email:</strong>
+      <%= @appraisal.email %>
+    </p>
+    <p>
+      <strong>Contact:</strong>
+      <%= @appraisal.contact %>
+    </p>
+    <p>
+      <strong>Status:</strong>
+      <%= @appraisal.status %>
+    </p>
+    <p>
+      <strong>Comments:</strong>
+      <%= @appraisal.comments %>
+    </p>  
+  </div>
+</div>
+
