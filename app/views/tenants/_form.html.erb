@@ -71,8 +71,8 @@
     var m = parseInt($("#user_dob_2i option:selected" ).val())
     var y = parseInt($("#user_dob_1i option:selected" ).text())
     if(isNaN(d) || isNaN(m) || isNaN(y)){
-      e.preventDefault();
-      alert("Please Enter your Date of Birth")
+      //e.preventDefault();
+      //alert("Please Enter your Date of Birth")
     }else if (new Date(y,m-1,d).getTime() > new Date().getTime() ){
       e.preventDefault();
       alert("cannot be future date")
