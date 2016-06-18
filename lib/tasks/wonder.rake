@@ -6,7 +6,7 @@ task :wonder => :environment do
   # Thread.new do
     puts "===============Upload Start========================="
     UserMailer.blm_status("BLM Upload on WonderProperty Start").deliver
-    @data = Property.where(:approval_status=>"approved", :otm=>true)
+    @data = Property.where(:approval_status=>"approved", :wonder_property=>true)
     t = Tempfile.new("39545")
     Zip::OutputStream.open(t.path) do |z|
       @data.each_with_index do |item,i|

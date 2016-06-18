@@ -580,12 +580,12 @@ class PropertiesController < ApplicationController
   end
 
   def blm1
-    @data = Property.where(:approval_status=>"approved", :otm=>true)
+    @data = Property.where(:approval_status=>"approved", :mouse_price=>true)
     render layout: false
   end
 
   def blm2
-    @data = Property.where(:approval_status=>"approved", :otm=>true)
+    @data = Property.where(:approval_status=>"approved", :dss_move=>true)
     render layout: false
   end
 
@@ -595,7 +595,7 @@ class PropertiesController < ApplicationController
   end
 
   def blm4
-    @data = Property.where(:approval_status=>"approved", :otm=>true)
+    @data = Property.where(:approval_status=>"approved", :home=>true)
     render layout: false
   end
 
@@ -703,7 +703,7 @@ class PropertiesController < ApplicationController
 
   def upload_blm_mouseprice
     Thread.new do
-      @data = Property.where(:approval_status=>"approved", :otm=>true)
+      @data = Property.where(:approval_status=>"approved", :mouse_price=>true)
       t = Tempfile.new("SP39545")
       Zip::OutputStream.open(t.path) do |z|
         @data.each_with_index do |item,i|
@@ -755,7 +755,7 @@ class PropertiesController < ApplicationController
 
   def upload_blm_dssmove
     Thread.new do
-      @data = Property.where(:approval_status=>"approved", :otm=>true)
+      @data = Property.where(:approval_status=>"approved", :dss_move=>true)
       t = Tempfile.new("8266149499")
       Zip::OutputStream.open(t.path) do |z|
         @data.each_with_index do |item,i|

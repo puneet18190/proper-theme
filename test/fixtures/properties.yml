@@ -71,7 +71,7 @@
 #  epc                  :string(255)
 #  brochure_link        :string(255)
 #  let_date_available   :datetime
-#  otm                  :boolean          default(FALSE)
+#  otm                  :boolean          default(TRUE)
 #  accredited           :boolean
 #  licensed             :boolean
 #  tenant_criteria      :string(255)
@@ -93,10 +93,10 @@
 #  esc_date_complete    :date
 #  esc_due_date         :date
 #  tenant_id            :integer
-#  mouse_price          :boolean          default(FALSE)
-#  dss_move             :boolean          default(FALSE)
-#  home                 :boolean          default(FALSE)
-#  wonder_property      :boolean          default(FALSE)
+#  mouse_price          :boolean          default(TRUE)
+#  dss_move             :boolean          default(TRUE)
+#  home                 :boolean          default(TRUE)
+#  wonder_property      :boolean          default(TRUE)
 #  key_assign_date      :datetime
 #  key_unassign_date    :datetime
 #  zoopla               :boolean          default(TRUE)

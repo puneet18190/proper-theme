@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614050657) do
+ActiveRecord::Schema.define(version: 20160618084712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -360,7 +360,7 @@ ActiveRecord::Schema.define(version: 20160614050657) do
     t.string   "epc"
     t.string   "brochure_link"
     t.datetime "let_date_available"
-    t.boolean  "otm",                  default: false
+    t.boolean  "otm",                  default: true
     t.boolean  "accredited"
     t.boolean  "licensed"
     t.string   "tenant_criteria"
@@ -382,10 +382,10 @@ ActiveRecord::Schema.define(version: 20160614050657) do
     t.date     "esc_date_complete"
     t.date     "esc_due_date"
     t.integer  "tenant_id"
-    t.boolean  "mouse_price",          default: false
-    t.boolean  "dss_move",             default: false
-    t.boolean  "home",                 default: false
-    t.boolean  "wonder_property",      default: false
+    t.boolean  "mouse_price",          default: true
+    t.boolean  "dss_move",             default: true
+    t.boolean  "home",                 default: true
+    t.boolean  "wonder_property",      default: true
     t.datetime "key_assign_date"
     t.datetime "key_unassign_date"
     t.boolean  "zoopla",               default: true
