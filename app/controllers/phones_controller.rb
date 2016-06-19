@@ -63,8 +63,16 @@ class PhonesController < ApplicationController
     #   @data = HTTParty.get("http://www.sealproperties.co.uk/get_call_handler_api")["data"].first
     # end
     # @user = @data.blank? ? nil : User.where("mobile = ? OR phone =?", @data["callerid"],@data["callerid"]).first
-    @user = User.where("mobile = ? OR phone =?", params[:number],params[:number]).first
+    @user = User.where("mobile ilike ? OR phone ilike ?", "%#{params[:number].gsub(/^0/, "")}%","%#{params[:number].gsub(/^0/, "")}%").first
     @number = params[:number]
+    n=params[:number].gsub(/^0/, "")
+    a=[]
+    a << YealinkPhone.all.where("callaction = ? AND callerid ilike ?",  "incoming_call", "%#{n}%").select(:status, :created_at).last(5)
+
+    a << @user.contact_notes.select(:notes, :created_at)
+    a= a.flatten.sort_by &:created_at
+    @data = a.first 5
+
     render :layout => false
   end
 

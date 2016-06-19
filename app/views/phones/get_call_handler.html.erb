@@ -2,28 +2,40 @@
 <div class="container" style="padding: 10px">
     <span style="font-size: 18px" class="user_info">
         <%=@user.blank? ? "" : "#{@user.first_name} #{@user.last_name}"%> <%=" (#{@user.status[0].capitalize})"%> <%=@number%>
+        <div class="btn btn-proper" style="margin: 4px"><a href="/users/<%=@user.id%>" style="color: white">Go to Record</a></div>
     </span>
-    <div class="row" style="width: 75%; margin: 0;padding-top: 10px">
-        <select style="width: 20% !important" class="call_user_type">
-            <option link="/#"></option>
-            <option link="/landlords">Landlord</option>
-            <option link="/tenants">Tenant</option>
-            <option link="/buyer">Buyer</option>
-            <option link="/seller">Seller</option>
-            <option link="/miscellaneous_contacts">Admin</option>
-            <option link="/miscellaneous_contacts">Partner</option>
-            <option link="/miscellaneous_contacts">Contractor</option>
-            <option link="/miscellaneous_contacts">Supplier</option>
-            <option link="/miscellaneous_contacts">Unclassified</option>
-        </select>
-        <div class="btn btn-proper call_user_type_link" style="margin: 4px"><a href="#">Create Record</a></div>
-    </div>
+    <%unless @user.blank?%>
+        <div class="row" style="width: 75%; margin: 0;padding-top: 10px">
+            <select style="width: 20% !important" class="call_user_type">
+                <option link="/#"></option>
+                <option link="/landlords">Landlord</option>
+                <option link="/tenants">Tenant</option>
+                <option link="/buyer">Buyer</option>
+                <option link="/seller">Seller</option>
+                <option link="/miscellaneous_contacts">Admin</option>
+                <option link="/miscellaneous_contacts">Partner</option>
+                <option link="/miscellaneous_contacts">Contractor</option>
+                <option link="/miscellaneous_contacts">Supplier</option>
+                <option link="/miscellaneous_contacts">Unclassified</option>
+            </select>
+            <div class="btn btn-proper call_user_type_link" style="margin: 4px"><a href="#" style="color: white">Create Record</a></div>
+        </div>
+    <%end%>
     <br/>
-    
+    <hr/>
     <%if @user.blank?%>
         <p>User not in contact list.</p>
     <%else%>
         <table class="table">
+            <%@data.each do |obj|%>
+                <tr>
+                    <td style="border: none; width: 12%"><%=obj.created_at.to_time.strftime("%d/%m/%Y")%></td>
+                    <td style="border: none; width: 12%"><%=obj.created_at.to_time.in_time_zone('London').strftime("%T")%></td>
+                    <td style="border: none"><%=obj.try(:notes).blank? ? "Call: #{obj.status}" : "Message: #{obj.notes}"%></td>
+                </tr>
+            <%end%>
+<%
+=begin%>            
             <%@user.contact_notes.last(3).reverse.each do |obj|%>
                 <tr>
                     <td style="border: none; width: 12%"><%=obj.created_at.to_time.strftime("%d/%m/%Y")%></td>
@@ -31,12 +43,46 @@
                     <td style="border: none"><%=obj.notes%></td>
                 </tr>
             <%end%>
+<%
+=end%>
         </table>
         <%= form_for @user.contact_notes.new, url: contact_notes_user_path(id: @user.id) do |f|%>
             <%= f.text_area :notes, placeholder: "Free text box", style: "width: 50%"%>
             <%= f.submit "Add Note", style: "display: block", class: "btn btn-proper" %>
         <%end%>
     <%end%>
+    <hr/>
+<%
+=begin%>
+    <h3 style="padding: 20px;font-size: 22px;font-weight: bold;">Last 5 Contacts</h3>
+    <table class="table" style="width: 80%">
+        <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <!-- <th>Caller ID</th> -->
+            <!-- <th>Name</th> -->
+            <th>Department</th>
+            <th>Extension</th>
+            <th>Status</th>
+            <th>Call Duration</th>
+        </tr>
+
+        <% @data.each do |obj| %>
+            <tr>
+                <td><%=obj["created_at"].to_time.strftime("%d/%m/%y")%></td>
+                <td><%=obj["created_at"].to_time.in_time_zone('London').strftime("%T")%></td>
+                <!-- <td><a id="a_select" class="example-p-2"  href="#"><%#=obj["callerid"][0]=="0" ? obj["callerid"].gsub(/^0/, "+44") : "+44"+obj["callerid"] unless obj["callerid"].blank? %></a></td> -->
+                <%# call_user = User.where("mobile = ? OR phone =?", obj["callerid"],obj["callerid"]).first %>
+                <!-- <td><%#=call_user.blank? ? "" : "#{call_user.first_name} #{call_user.last_name} (#{call_user.status[0].capitalize})"  %></td> -->
+                <td><%=obj["department"] %></td>
+                <td><%= get_extension(obj["mac"])%></td>
+                <td><%=obj["status"]%></td>
+                <td><%=Time.at(obj['call_duration']).utc.strftime("%H:%M:%S") %></td>
+            </tr>
+        <%end%>
+    </table>
+<%
+=end%>
 </div>
 
 <script type="text/javascript">
