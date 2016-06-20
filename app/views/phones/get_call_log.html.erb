@@ -20,7 +20,7 @@
             <% call_user = User.where("mobile = ? OR phone =?", a["callerid"],a["callerid"]).first %>
             <td><%=call_user.blank? ? "" : "#{call_user.first_name} #{call_user.last_name} (#{call_user.status[0].capitalize})"  if i==0 %></td>
             <td><%=a["department"] if i==0 %></td>
-            <td><%= get_extension(a["mac"])%></td>
+            <td><%= get_extension(a["mac"]) unless a["status"]=="missed"%></td>
             <td><%=a["status"]%></td>
             <td><%=Time.at(a['call_duration']).utc.strftime("%H:%M:%S") %></td>
         </tr>
