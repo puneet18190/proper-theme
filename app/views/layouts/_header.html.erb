@@ -2,7 +2,7 @@
   <div id="breadcrumb-wrapper">
     <div class="container" style="width: auto">
       <div class="pull-left"><%= Time.now.strftime("%A, %d %B %Y") %></div>
-      <div class="pull-right navbar" style="width: 90%">
+      <div class="pull-right navbar">
         <% if user_signed_in? %>
           <% if current_user.status == "admin" %>
             <ul class="nav" style="margin-right:10px">
@@ -106,7 +106,7 @@
     </div>
   </div>
   <div id="navigation">
-    <div class="container" style="width: 74%">
+    <div class="container" style="width: 960px">
       <div class="navbar navbar-inverse">
         <div class="navbar-inner">
           <div class="container">
