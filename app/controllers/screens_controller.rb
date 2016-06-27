@@ -180,7 +180,7 @@ class ScreensController < ApplicationController
 	    response = Nokogiri::HTML(open("http://feeds.bbci.co.uk/news/uk/rss.xml?edition=uk"))
 	    # sleep 2
 	    response.css("item").each{|b| l << b.css("guid").text}
-	    l.each do |obj|
+	    l.first(20).each do |obj|
 	    	doc = ""
 		    doc = Nokogiri::HTML(open(obj))
 		    @title.push( doc.css("title").text )
