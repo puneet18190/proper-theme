@@ -61,9 +61,27 @@
 <%= render 'shared/plans'%>
 <script type="text/javascript">
   $(document).ready(function(){
-    // $('#wrapper').click(function(evt){
-    //   $("input.btn-proper[type='submit']").trigger('click')
-    // });
+    var form_original_data = $("form.edit_property").serialize(); 
+    $('#wrapper').click(function(e){
+      if ($("form.edit_property").serialize() != form_original_data) {
+        //$("input.btn-proper[type='submit']").trigger('click')
+        // $.confirm({
+        //   title: 'Confirm!',
+        //   confirmButton: 'Ok',
+        //   content: 'Please Update the changes first.',
+        //   confirm: function () {
+        //       flag = true
+        //       $(".proper-form-step").submit()
+        //   },
+        //   cancel: function () {
+        //       // alert('Canceled!')
+        //   }
+        // })
+        e.preventDefault();
+        alert("Please update the changes first.")
+      }
+      
+    });
 
     $('.long_desc').cleditor();
     $("#property_search_criteria").on('change', function() {
