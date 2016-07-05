@@ -11,8 +11,8 @@
         <%= f.text_field :last_name, class: "input-block-level", required: "true" %>
       </div>
       <div class="span5">
-        <%= f.label :address1, "<span style='color:red'>*</span>Address 1".html_safe %>
-        <%= f.text_field :address1, class: "input-block-level", required: "true" %>
+        <%= f.label :address1, "Address 1" %>
+        <%= f.text_field :address1, class: "input-block-level" %>
       </div>
       <div class="span5">
         <%= f.label "Address 2" %>
@@ -23,12 +23,12 @@
         <%= f.text_field :address3, class: "input-block-level" %>
       </div>
       <div class="span5">
-        <%= f.label :postcode, "<span style='color:red'>*</span>Postcode".html_safe %>
-        <%= f.text_field :postcode, class: "input-block-level", required: "true" %>
+        <%= f.label :postcode, "Postcode" %>
+        <%= f.text_field :postcode, class: "input-block-level" %>
       </div>
       <div class="span5">
-        <%= f.label :mobile, "<span style='color:red'>*</span>Mobile".html_safe %>
-        <%= f.text_field :mobile, class: "input-block-level", required: "true" %>
+        <%= f.label :mobile, "Mobile" %>
+        <%= f.text_field :mobile, class: "input-block-level" %>
       </div>
       <div class="span5">
         <%= f.label :phone, "Alternative Phone" %>
@@ -40,7 +40,7 @@
       </div>
       <div class="span5">
         <%= f.label :dob, "Date of Birth" %>
-        <%= f.date_select :dob, class: "input-block-level", required: "true", start_year: 2015,end_year: 1930 %>
+        <%= f.date_select :dob, class: "input-block-level", start_year: 2015,end_year: 1930 %>
       </div>
     </div>
     <div style="width:50%;height:400px;float: right">
