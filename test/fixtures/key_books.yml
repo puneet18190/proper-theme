@@ -1,0 +1,35 @@
+# == Schema Information
+#
+# Table name: key_books
+#
+#  id          :integer          not null, primary key
+#  property_id :integer
+#  key_id      :integer
+#  name        :string(255)
+#  status      :string(255)
+#  book_time   :datetime
+#  person      :string(255)
+#  notes       :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  property_id: 1
+  key_id: 1
+  name: MyString
+  status: MyString
+  book_time: 2016-07-14 20:39:58
+  person: MyString
+  notes: MyText
+
+two:
+  property_id: 1
+  key_id: 1
+  name: MyString
+  status: MyString
+  book_time: 2016-07-14 20:39:58
+  person: MyString
+  notes: MyText

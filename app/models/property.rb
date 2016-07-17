@@ -146,9 +146,11 @@ class Property < ActiveRecord::Base
   geocoded_by :address
   attr_accessor :search_criteria
   attr_accessor :address
+  attr_accessor :key_num
 
   has_one :key
   has_one :vetting
+  has_many :key_books
   accepts_nested_attributes_for :vetting, :allow_destroy => true, :update_only => true
 
   # after_initialize do
@@ -221,4 +223,31 @@ class Property < ActiveRecord::Base
     end
     end
   end  
+
+  def add_key(num, key_num, action)
+    if action == "create"
+      num.split(",").each do |o|
+        self.key_books.create(property_id: self.id, name: o, key_id: key_num, status: "Available")
+      end
+    elsif action == "update"
+      k = self.key_books.where(property_id: self.id, key_id: key_num).map(&:name)
+      if k.empty?
+        num.split(",").each do |o|
+          self.key_books.create(property_id: self.id, name: o, key_id: key_num, status: "Available")
+        end
+      else
+        num.split(",").each do |o|
+          if self.key_books.where(property_id: self.id, name: o, key_id: key_num).empty?
+            self.key_books.create(property_id: self.id, name: o, key_id: key_num, status: "Available")
+          end
+        end
+
+        k.each do |o|
+          unless num.split(",").include?(o)
+            self.key_books.where(property_id: self.id, name: o, key_id: key_num).delete_all
+          end
+        end
+      end
+    end
+  end
 end

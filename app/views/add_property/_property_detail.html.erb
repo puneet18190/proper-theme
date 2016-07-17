@@ -38,6 +38,14 @@
         <%= key.text_field :key_number, disabled: "disabled", class: "key_number", value: @key.key_number, style: "margin-left: 10px; margin-top: 0px" %>
         <%= key.hidden_field :key_number, value: @key.key_number, class: "key_number"%>
       </div>
+      <div class="field">
+        <%= key.label :key_num, "Key", style: "float: left; width: 50px" %>
+        <% if params[:action] == "create" %>
+          <%= f.text_field :key_num %>
+        <% else %>
+          <%= f.text_field :key_num, value: @property.key_books.map(&:name).join(",") %>
+        <% end %>
+      </div>
     <%end%>
     <%= f.hidden_field :key_assign_date, class: "assign_date", value: (@property.new_record? ? "" : @property.key_assign_date)%>
     <%= f.hidden_field :key_unassign_date, value: (@property.new_record? ? DateTime.now : @property.key_unassign_date), class: "unassign_date"%>

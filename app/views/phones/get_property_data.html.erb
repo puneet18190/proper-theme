@@ -1,0 +1,46 @@
+<!-- <h1 style="padding: 10px">Key Status: <span class="key_status"><%#=@property.key.key_status == "assign" ? "Available" : "Unavailable" %></span></h1> -->
+<h1 style="padding: 10px">Key Number: <span class="key_number"><%=@property.key.key_number%></span></h1>
+
+<table class="table table-stripped">
+	<tr>
+		<th>Key</th>
+		<th>Status</th>
+		<th colspan="2">Book</th>
+		<th>Person</th>
+		<th>Notes</th>
+	</tr>
+	<% @property.key_books.each do |obj| %>
+		<tr id="<%=obj.id%>">
+			<td><%=obj.name%></td>
+			<td><div id="key_book_status"><%=obj.status%></div></td>
+			<td><div class="btn btn-primary pull-left" id="key_book_in">Book In</div></td>
+			<td><div class="btn btn-primary pull-right" id="key_book_out">Book Out</div></td>
+			<td><input type="text" value="<%=obj.person%>" id="key_book_person" /></td>
+			<td><input type="text" value="<%=obj.notes%>" id="key_book_notes" /></td>
+		</tr>
+	<%end%>
+</table>
+
+<script type="text/javascript">
+    $("#key_book_out, #key_book_in").click(function(){
+    	var src = $(this)
+    	var id = $(this).parent().parent().attr("id");
+    	var book = $(this).attr("id");
+    	var person = $(this).parent().parent().find("#key_book_person").val();
+    	var notes = $(this).parent().parent().find("#key_book_notes").val();
+        $.ajax({
+            url: '/key_book',
+            data: {id: id, book: book, person: person, notes: notes}
+        })
+        .done(function(res){
+        	console.log(id)
+        	if (src.attr("id") == "key_book_in"){
+        		src.parent().parent().find("#key_book_status").html("Available");
+        		src.parent().parent().find("#key_book_person").val("");
+        		src.parent().parent().find("#key_book_notes").val("");
+        	}else{
+        		src.parent().parent().find("#key_book_status").html("Unavailable");
+        	}
+        })
+    })
+</script>

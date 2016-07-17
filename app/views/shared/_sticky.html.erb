@@ -68,10 +68,12 @@
         <ul>
             <li>
                 <h3 style="padding: 20px;font-size: 30px;font-weight: bold;">Key</h3>
-                <div class="container" style="padding: 30px; width: 50%">
+                <div class="container" style="padding: 30px; width: 90%">
                     <%= text_field_tag :search, params[:property_search], class: "search-query", placeholder: "Search Property", type: "search", data: {autocomplete: '/property_search' }, id: 'search_property', style: "width:100%" %>
-                    <h1 style="padding: 10px">Key Status: <span class="key_status"></span></h1>
-                    <h1 style="padding: 10px">Key Number: <span class="key_number"></span></h1>
+                    <div class="property_key_data">
+                    <!-- <h1 style="padding: 10px">Key Status: <span class="key_status"></span></h1>
+                    <h1 style="padding: 10px">Key Number: <span class="key_number"></span></h1> -->
+                    </div>
                 </div>
             </li>
         </ul>
@@ -247,21 +249,22 @@
         var property_id = data.item.id
         $.ajax({
             url: '/get_property_data',
-            dataType: 'json',
+            // dataType: 'json',
             data: {id: property_id}
         })
         .done(function(res) {
-            console.log(res.data)
-            if(res.status == "true"){
-                $(".key_number").html(res.data.key_number)
-            }else{
-                $(".key_number").html("")
-            }
-            if (res.status == "true" && res.data.key_status == "assign"){
-                $(".key_status").html("Available")    
-            }else{
-                $(".key_status").html("Unavailable")
-            }
+            $(".property_key_data").html(res)
+            // console.log(res.data)
+            // if(res.status == "true"){
+            //     $(".key_number").html(res.data.key_number)
+            // }else{
+            //     $(".key_number").html("")
+            // }
+            // if (res.status == "true" && res.data.key_status == "assign"){
+            //     $(".key_status").html("Available")    
+            // }else{
+            //     $(".key_status").html("Unavailable")
+            // }
             
         })
     })

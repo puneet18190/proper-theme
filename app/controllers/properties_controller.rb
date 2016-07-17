@@ -97,6 +97,7 @@ class PropertiesController < ApplicationController
     @property.save
     Key.where(key_number: key_data["key_number"]).first.update_attributes(key_status: key_data["key_status"], property_id: @property.id) unless key_data["key_number"].blank?
     @property.save_multiple_tenants(params[:property][:tenants_attributes], "create")
+    @property.add_key(params[:property][:key_num], key_data["key_number"], "create")
 
     @property.update_attributes(:payment=>true, :property_create_user => "admin") if current_user.status == "admin"
     if current_user.status == "landlord"
@@ -139,7 +140,7 @@ class PropertiesController < ApplicationController
       params[:property].delete('key')
 
       @property.update_attributes(property_params)
-      
+      @property.add_key(params[:property][:key_num], key_data["key_number"], "update")  
       if params[:property][:tenant].blank? && params[:property][:tenants_attributes].blank?
         TenantProperty.where(property_id: @property.id).delete_all
       elsif !params[:property][:tenant].blank?

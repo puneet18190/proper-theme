@@ -114,7 +114,8 @@ class PhonesController < ApplicationController
 
   def get_property_data
     @property = Property.find(params[:id])
-    render :json => {data: @property.key, status: @property.key.blank? ? "false" : "true"}
+    render :layout => false
+    # render :json => {data: @property.key, status: @property.key.blank? ? "false" : "true"}
   end
 
   def search_user_by_name_property
@@ -148,5 +149,14 @@ class PhonesController < ApplicationController
     tenant_id = TenantProperty.where(property_id: @property.id).first.try("tenant_id")
     @tenant = tenant_id.nil? ? nil : User.find(tenant_id)
     render layout: false
+  end
+
+  def key_book
+    if params[:book] == "key_book_in"
+      KeyBook.find(params[:id]).update_attributes(book_time: DateTime.now, status: "Available", person: "", notes: "")
+    else
+      KeyBook.find(params[:id]).update_attributes(book_time: DateTime.now, status: "Unavailable", person: params[:person], notes: params[:notes])
+    end
+    render :nothing => true
   end
 end
