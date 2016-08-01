@@ -25,12 +25,16 @@
               <div class="main-heading bottom-line line-before filterarea">
                 <form class="filterform">
                   <p></p>
+<%
+=begin%>                  
                     <select class="type">
                         <%type = params[:type].blank? ? 'all' : params[:type]%>
                         <option class="all active" id="all" <% if type=='all'%> selected<%end%>>All</option>
                         <option class="to_let" id="to_let" <% if type=='to_let'%> selected<%end%>>To Let</option>
                         <option class="for_sale" id="for_sale" <% if type=='for_sale'%> selected<%end%>>For Sale</option>
                     </select>
+<%
+=end%>
                     <select class="sort">
                         <%sort = params[:sort].blank? ? 'asc' : params[:sort]%>
                         <option class='asc' id="asc" <% if sort=='asc'%> selected<%end%>>Asc</option>
@@ -47,10 +51,15 @@
           </div>
           <div class="filter_data">
           <% if @data.empty? %>
-            <div class="item" >
-              <a href="#" class="with-hover">
-                <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
-              </a>
+            <div class="item" style="height: 1150px">
+              <%if params[:type] == "for_sale"%>
+                <h3>We currently have no properties for sale. </h3>
+                <h3>If you would like to register your interest then contact us her.</h3>
+              <%else%>
+                <a href="#" class="with-hover">
+                  <img alt='images' src="assets/default_images/no.jpg" class="full"/><span class="mask_hover"></span>
+                </a>
+              <%end%>
             </div>
           <% else %>
             <% @data.each do |task| %>
@@ -196,7 +205,7 @@
       // }
       condition = $(".condition").find("option:selected")[0].id
       sort = $(".sort").find("option:selected")[0].id
-      type = $(".type").find("option:selected")[0].id
+      type = "<%=params[:type].blank? ? 'all' : params[:type]%>" //$(".type").find("option:selected")[0].id
       src.parent().find("option").removeClass("active")
       src.addClass("active");
       $.ajax({

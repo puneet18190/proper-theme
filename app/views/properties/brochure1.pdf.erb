@@ -11,7 +11,7 @@
   <div style="height:300px">
     <div style="width:550px;height:300px;float:left;margin-left:1px">
       <center>
-        <%=image_tag(@properties.image1.url(:large).gsub("https","http"),:width=>"550",:height=>"300") %>
+        <%=image_tag(@properties.image1.url().gsub("https","http"),:width=>"550",:height=>"300") %>
       </center>
     </div>
 
@@ -31,7 +31,7 @@
 
     <div style="width:550px;height:300px;float:right;margin-right:1px">
       <center>
-        <%=image_tag(@properties.image2.url(:large).gsub("https","http"),:width=>"550",:height=>"300") unless @properties.image2.url(:large).nil? %>
+        <%=image_tag(@properties.image2.url().gsub("https","http"),:width=>"550",:height=>"300") unless @properties.image2.url().nil? %>
       </center>
     </div>
   </div>
@@ -42,23 +42,23 @@
 
   <div style="height:330px;margin-top:10px;text-align: center;">
     <span class="image">
-      <% unless @properties.image3.url(:large).nil? %>
-        <%=image_tag(@properties.image3.url(:large).gsub("https","http"),:width=>"355",:height=>"329") %>
+      <% unless @properties.image3.url().nil? %>
+        <%=image_tag(@properties.image3.url().gsub("https","http"),:width=>"355",:height=>"329") %>
       <% end %>
     </span>
     <span class="image">
-      <% unless @properties.image4.url(:large).nil? %>
-        <%=image_tag(@properties.image4.url(:large).gsub("https","http"),:width=>"355",:height=>"329") %>
+      <% unless @properties.image4.url().nil? %>
+        <%=image_tag(@properties.image4.url().gsub("https","http"),:width=>"355",:height=>"329") %>
       <% end %>  
     </span>
     <span class="image">
-      <% unless @properties.image5.url(:large).nil? %>
-        <%=image_tag(@properties.image5.url(:large).gsub("https","http"),:width=>"355",:height=>"329") %>
+      <% unless @properties.image5.url().nil? %>
+        <%=image_tag(@properties.image5.url().gsub("https","http"),:width=>"355",:height=>"329") %>
       <% end %>  
     </span>
     <span class="image">
-      <% unless @properties.image6.url(:large).nil? %>
-        <%=image_tag(@properties.image6.url(:large).gsub("https","http"),:width=>"355",:height=>"329") %>
+      <% unless @properties.image6.url().nil? %>
+        <%=image_tag(@properties.image6.url().gsub("https","http"),:width=>"355",:height=>"329") %>
       <% end %>  
     </span>
   </div>  

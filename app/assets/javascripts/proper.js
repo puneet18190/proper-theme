@@ -324,7 +324,7 @@ function init_slider(){
             }
         });
         $('#list_images_property a').click(function(){
-            $('.preloader').show(0).delay(4000).fadeOut("slow");
+            $('.preloader').show(0).delay(500).fadeOut("slow");
             var bigImage = $(this).data("bigimage");
             // var bigTitle = $(this).data("title");
             // var bigDesc = $(this).data("desc");

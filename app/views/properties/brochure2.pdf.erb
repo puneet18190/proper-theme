@@ -23,7 +23,7 @@
   <div class="desc-type for-sale" style="height:auto;width:auto;position:absolute;top:530px; padding:25px;left:202px;color:white;font-size:30px;background: #FF6666;font-weight: bold;z-index:1;opacity:0.8"><%=property_status(@properties.category, @properties.status) %></div>
   
   <div style="margin:20px;width:900px;position:absolute;left:180px;border:2px solid #2e4588;height:700px">
-    <center><%=image_tag(@properties.image1.url(:large).gsub("https","http"), :height=> "700",:width=>"898") %></center>
+    <center><%=image_tag(@properties.image1.url().gsub("https","http"), :height=> "700",:width=>"898") %></center>
   </div>
 
   <div style="height:70px;width:<%=(@properties.category == "rent" || @properties.category == "Rent") ? "130px" : "230px" %>;position:absolute;font-weight: bold;background-color: rgba(0,0,0,0.6);font-size: 50px;color:white;padding:10px;top:1141px;left:202px">
@@ -42,29 +42,29 @@
 <div class="page-break" style="display:block; clear:both; page-break-after:always;"></div>
 
 <div style="width:1300px;height:1900px;border:1px solid transparent">
-  <% unless @properties.image2.url(:large).nil? %>
+  <% unless @properties.image2.url().nil? %>
     <div style="float:left;width:625px;height:550px;">
-      <%=image_tag(@properties.image2.url(:large).gsub("https","http"), :height=> "550",:width=>"625") %>
+      <%=image_tag(@properties.image2.url().gsub("https","http"), :height=> "550",:width=>"625") %>
     </div>
   <%end%>
-  <% unless @properties.image3.url(:large).nil? %>
+  <% unless @properties.image3.url().nil? %>
     <div style="float:right;width:625px;height:550px;">
-      <%=image_tag(@properties.image3.url(:large).gsub("https","http"), :height=> "550",:width=>"625") %>
+      <%=image_tag(@properties.image3.url().gsub("https","http"), :height=> "550",:width=>"625") %>
     </div>
   <%end%>
-  <% unless @properties.image4.url(:large).nil? %>
+  <% unless @properties.image4.url().nil? %>
     <div style="float:left;width:625px;margin-top:25px;height:550px;">
-      <%=image_tag(@properties.image4.url(:large).gsub("https","http"), :height=> "550",:width=>"625") %>
+      <%=image_tag(@properties.image4.url().gsub("https","http"), :height=> "550",:width=>"625") %>
     </div>
   <%end%>
-  <% unless @properties.image5.url(:large).nil? %>
+  <% unless @properties.image5.url().nil? %>
     <div style="float:right;width:625px;margin-top:25px;height:550px;">
-      <%=image_tag(@properties.image5.url(:large).gsub("https","http"), :height=> "550",:width=>"625") %>
+      <%=image_tag(@properties.image5.url().gsub("https","http"), :height=> "550",:width=>"625") %>
     </div>
   <%end%>
-  <% unless @properties.image6.url(:large).nil? %>
+  <% unless @properties.image6.url().nil? %>
     <div style="float:left;width:1300px;height:640px;margin-top:25px">
-      <%=image_tag(@properties.image6.url(:large).gsub("https","http"), :height=> "640",:width=>"1300") %>
+      <%=image_tag(@properties.image6.url().gsub("https","http"), :height=> "640",:width=>"1300") %>
     </div>
   <%end%>
   <div style="left:60px;margin-top:10px;bottom:0;position:absolute;">
