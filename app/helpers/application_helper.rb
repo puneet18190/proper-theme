@@ -21,7 +21,7 @@ module ApplicationHelper
         image.url
       else
         if is_mobile_device?
-          image.url(:small)
+          image.url(:medium)
         elsif ::MobileFu::Tablet.is_a_tablet_device? request.user_agent
           image.url(:medium)
         else
