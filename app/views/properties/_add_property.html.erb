@@ -78,7 +78,19 @@
         //   }
         // })
         e.preventDefault();
-        alert("Please update the changes first.")
+        // alert("Please update the changes first.")
+        $.confirm({
+          title: 'Confirm!',
+          confirmButton: "Don't Save",
+          cancelButton: 'Save',
+          content: 'Please Update the changes first.',
+          confirm: function () {
+              
+          },
+          cancel: function () {
+            $("form.edit_property").submit()
+          }
+        })
       }
       
     });
