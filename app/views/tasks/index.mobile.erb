@@ -33,12 +33,11 @@
                                 <div class="grid-item grid-style-properties">
                                     <% @properties.each do |obj| %>
                                         <div class="item">
-                                            <a href=<%="/properties_detail/#{obj.slug}"%> class="with-hover">
-                                                <div class="for_rent_banner"></div>
-                                                <!-- <img alt='images' src="/assets/properties/p2.jpg" class="full"/> -->
-                                                <%=  image_tag (responsive_image(obj.image1)), class: "full"%>
-                                                <span class="mask_hover"></span>
-                                            </a>
+                                            <a href="#" class="with-hover property">
+                                                <div class="desc-type for-sale" style="opacity:0.8"><%=property_status(task.category, task.status)%></div>
+                                                <%= image_tag "sealmark.png", style: "z-index: 1; overflow: none; position: absolute; top: -21px; right: -14px; box-shadow: none;", class: "seal_image" if task.seal_approved == true%>
+                                                <a href=<%="/properties_detail/#{task.slug}"%>><%=  image_tag (responsive_image(task.image1)), class: "full", class: "mask_hover" %></a>
+                                              </a>
                                             <h4 class=" "><%= obj.name %></h4>
                                             <div class="preview-properties ">
                                                 <div class="box-detail"> 
