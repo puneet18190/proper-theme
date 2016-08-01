@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_filter :configure_devise_params, if: :devise_controller?
-  has_mobile_fu
+  # has_mobile_fu
   def configure_devise_params
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u.permit(:email, :password, :password_confirmation, :first_name, :address, :phone, :status, :last_name)
