@@ -8,6 +8,7 @@
 		<th colspan="2">Book</th>
 		<th>Person</th>
 		<th>Notes</th>
+        <th>Date</th>
 	</tr>
 	<% @property.key_books.each do |obj| %>
 		<tr id="<%=obj.id%>">
@@ -17,6 +18,7 @@
 			<td><div class="btn btn-primary pull-right" id="key_book_out">Book Out</div></td>
 			<td><input type="text" value="<%=obj.person%>" id="key_book_person" /></td>
 			<td><input type="text" value="<%=obj.notes%>" id="key_book_notes" /></td>
+            <td><%=obj.book_time.in_time_zone('London').strftime("%D %T") if obj.status=="Unavailable"%></td>
 		</tr>
 	<%end%>
 </table>
@@ -28,19 +30,23 @@
     	var book = $(this).attr("id");
     	var person = $(this).parent().parent().find("#key_book_person").val();
     	var notes = $(this).parent().parent().find("#key_book_notes").val();
-        $.ajax({
-            url: '/key_book',
-            data: {id: id, book: book, person: person, notes: notes}
-        })
-        .done(function(res){
-        	console.log(id)
-        	if (src.attr("id") == "key_book_in"){
-        		src.parent().parent().find("#key_book_status").html("Available");
-        		src.parent().parent().find("#key_book_person").val("");
-        		src.parent().parent().find("#key_book_notes").val("");
-        	}else{
-        		src.parent().parent().find("#key_book_status").html("Unavailable");
-        	}
-        })
+        if(book=="key_book_out" && person==""){
+            alert("Please Enter Person Name")
+        }else{
+            $.ajax({
+                url: '/key_book',
+                data: {id: id, book: book, person: person, notes: notes}
+            })
+            .done(function(res){
+            	console.log(id)
+            	if (src.attr("id") == "key_book_in"){
+            		src.parent().parent().find("#key_book_status").html("Available");
+            		src.parent().parent().find("#key_book_person").val("");
+            		src.parent().parent().find("#key_book_notes").val("");
+            	}else{
+            		src.parent().parent().find("#key_book_status").html("Unavailable");
+            	}
+            })
+        }
     })
 </script>
