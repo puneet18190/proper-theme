@@ -70,7 +70,7 @@
   <% unless @properties.image6.url().nil? %>
     <div style="float:left;width:1300px;height:640px;margin-top:25px">
       <% p_image = params[:high_res]=="true" ? @properties.image6.url() : @properties.image6.url(:large)%>
-      <%=image_tag(p_image.url().gsub("https","http"), :height=> "640",:width=>"1300") %>
+      <%=image_tag(p_image.gsub("https","http"), :height=> "640",:width=>"1300") %>
     </div>
   <%end%>
   <div style="left:60px;margin-top:10px;bottom:0;position:absolute;">
