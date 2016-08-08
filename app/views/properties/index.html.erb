@@ -89,9 +89,9 @@
 
             <% if current_user.status == "admin" %>
               <td>
-                <%= link_to 'Main', brochure_path(:id => property.id, format: 'pdf') %>
-                <%= link_to 'A3', brochure1_path(:id => property.id, format: 'pdf') %>
-                <%= link_to 'A4', brochure2_path(:id => property.id, format: 'pdf') %>
+                <%= link_to 'Main', brochure_path(:id => property.id, format: 'pdf', high_res: true) %>
+                <%= link_to 'A3', brochure1_path(:id => property.id, format: 'pdf', high_res: true) %>
+                <%= link_to 'A4', brochure2_path(:id => property.id, format: 'pdf', high_res: true) %>
               </td>
               <td><%=property.seal_approved ? 'Yes' : 'No'%></td>
             <%end%>
