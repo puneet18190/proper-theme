@@ -35,7 +35,7 @@
                                         <div class="item">
                                             <a href="#" class="with-hover property">
                                                 <div class="desc-type for-sale" style="opacity:0.8"><%=property_status(obj.category, obj.status)%></div>
-                                                <%= image_tag "sealmark_1.gif", style: "z-index: 1; overflow: none; position: absolute; top: -21px; right: -14px; box-shadow: none;height: 40px !important; width: 40px !important", class: "seal_image" if obj.seal_approved == true%>
+                                                <%#= image_tag "sealmark.png", style: "z-index: 1; overflow: none; position: absolute; top: -21px; right: -14px; box-shadow: none;height: 20px !important; width: 20px !important", class: "seal_image" if obj.seal_approved == true%>
                                                 <a href=<%="/properties_detail/#{obj.slug}"%>><%=  image_tag (responsive_image(obj.image1)), class: "full", class: "mask_hover" %></a>
                                               </a>
                                             <h4 class=" "><%= obj.name %></h4>
