@@ -2,6 +2,11 @@ class TasksController < ApplicationController
   layout proc { false if request.xhr? }	
   respond_to :html, :xml, :json,:mobile, :tablet
   def index
+    puts "=================================================="
+    puts request.format.symbol
+
+    puts "=================================================="
+
     if !current_user.nil? && current_user.sign_in_count == 1
       redirect_to "/users/profile"
     else
