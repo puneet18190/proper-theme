@@ -4,7 +4,8 @@ class TasksController < ApplicationController
   def index
     puts "=================================================="
     puts request.format.symbol
-
+    Rails.logger.info "Year: #{Time.now.year}"
+    Rails.logger.info request.format.symbol
     puts "=================================================="
 
     if !current_user.nil? && current_user.sign_in_count == 1
