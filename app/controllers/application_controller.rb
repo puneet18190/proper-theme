@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_filter :configure_devise_params, if: :devise_controller?
+  helper_method :mobile_device?
   # has_mobile_fu
   def configure_devise_params
     devise_parameter_sanitizer.for(:sign_up) do |u|
@@ -20,5 +21,10 @@ class ApplicationController < ActionController::Base
 
   def redirect_back_or(path)
     redirect_to request.referer || path
+  end
+
+  def mobile_device?
+    user_agent = request.headers["HTTP_USER_AGENT"]
+    user_agent.present? && user_agent =~ /\b(Android|iPhone|iPad|Windows Phone|Opera Mobi|Kindle|BackBerry|PlayBook)\b/i
   end
 end
