@@ -1,47 +1,64 @@
-<form class="bottom-line line-before" action="/search_results" method="get">
-  <h3 class="main-heading bottom-line line-before">
-    <span class="main-circle-icon"><i class="icon-search"></i></span>Find Properties
-  </h3>
+<h3 class="main-heading bottom-line line-before">
+  <span class="main-circle-icon"><i class="icon-search"></i></span>Find Properties
+</h3>
+<form class="bottom-line line-before" action="/search_results" method="get"> 
   <%= search_form_for Property.search(params[:q]) do |f| %>
-    <div class="field">
+    <!-- <div class="field"> -->
       <!-- <div class="input-block-level">
         <%#= f.label :name_cont, "Name" %>
         <%#= f.search_field :name_cont, class: "tc1size" %>
       </div> -->
-      <div class="input-block-level">
+      <!-- <div class="input-block-level"> -->
         <%= f.label :category_cont, "Category" %>
-        <%= f.select :category_cont, ["Rent","Sale"], class: "tcksize" %>
-      </div>
-      <div class="input-block-level">
+        <%= f.select :category_cont, ["Rent","Sale"],{}, class: "input-block-level" %><br/><br/>
+      <!-- </div> -->
+      <!-- <div class="input-block-level"> -->
         <%= f.label :type, "Type" %>
-        <%= f.search_field :property_type_cont, class: "tc1size" %>
-      </div>
-      <div class="control-group half pull-left">
-        <%= f.label :price_lteq, "Min Price" %>
-        <%= f.search_field :price_gteq, class: "tpgsize" %>
+        <%= f.search_field :property_type_cont,class: "input-block-level",style: "min-height: 0;padding-left:0;padding-right:0" %>
+      <!-- </div> -->
+
+      <div class="control-group-form">
+        <div class="control-group half pull-left">
+            <%= f.label :price_lteq, "Min Price",class: "control-label" %>
+            <div class="controls">
+                <%= f.search_field :price_gteq,:style=>"width:80px;min-height:0",class: "input-block-level" %>
+            </div>
+        </div>
+        <div class="control-group half text-right pull-right">
+            <%= f.label :price_gteq, "Max Price", class: "control-label" %>
+            <div class="controls">
+                <%= f.search_field :price_lteq,:style=>"width:80px;min-height:0;padding-left:0;padding-right:0",class: "input-block-level" %>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+      <!-- <div class="control-group half pull-left">
+        <%#= f.label :price_lteq, "Min Price" %>
+        <%#= f.search_field :price_gteq, class: "tpgsize" %>
       </div>
       <div class="control-group half text-right pull-right" style="margin-right:23px;width:40%">
-        <%= f.label :price_gteq, "Max Price", class: "tpgsize" %>
-        <%= f.search_field :price_lteq, class: "tpgsize" %>
-      </div>
-      <div class="input-block-level">
+        <%#= f.label :price_gteq, "Max Price", class: "tpgsize" %>
+        <%#= f.search_field :price_lteq, class: "tpgsize" %>
+      </div> -->
+      <!-- <div class="input-block-level"> -->
         <%= f.label :beds_eq, "Number of Bedrooms" %>
         <%#= f.search_field :beds_eq, class: "tc1size" %>
-        <%=f.select :beds_eq, ["1","2","3","4","5+"] %>
-      </div>
+        <%=f.select :beds_eq, ["1","2","3","4","5+"],{}, class: "input-block-level" %>
+      <!-- </div> -->
       <!-- <div class="input-block-level">
         <%#= f.label :bath_eq, "Bath" %>
         <%#= f.search_field :bath_eq, class: "tc1size" %>
       </div> -->
-      <div class="input-block-level">
+      <!-- <div class="input-block-level"> -->
         <%= f.label :location %>
-        <%= f.search_field :address1_or_address2_or_address3_or_town_or_postcode_or_postcode1_cont, class: "tc1size" %>
-      </div>
+        <%= f.search_field :address1_or_address2_or_address3_or_town_or_postcode_or_postcode1_cont,class: "input-block-level",style: "min-height: 0;padding-left:0;padding-right:0" %>
+      <!-- </div> -->
       <!-- <div class="control-group half pull-left">
         <%#=f.label :radius, "Radius"%>
         <%#=f.select :radius, ["Select","1/4","1/2","1","3","5","10","15","20","30","40"] %>
       </div><br><br><br> -->
-    </div>
-    <%= f.submit "Search", :class=>"input-block-level btn-proper btn btn-large", :style=>"width:90% !important"%>
+    <!-- </div> -->
+    <%= f.submit "Search", :class=>"input-block-level btn-proper btn btn-large"%>
   <% end %>
 </form>

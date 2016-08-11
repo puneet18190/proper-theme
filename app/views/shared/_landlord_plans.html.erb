@@ -12,14 +12,14 @@
                 <li>Matches Emailed</li>
             </ul>
             <% unless user_signed_in? %>
-                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:50%">Sign Up</a>
+                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:100px">Sign Up</a>
             <%else%>
                 <%if current_user.status == "landlord" && current_user.plan == "free"%>
-                    <a class="btn btn-proper" href="#" style="margin-top:50%">My Current Plan</a>
+                    <a class="btn btn-proper" href="#" style="margin-top:100px">My Current Plan</a>
                 <%elsif current_user.status == "landlord" && current_user.plan != "free"%>
-                    <a class="btn btn-proper" href="/pay_plans?plan=basic" style="margin-top:50%">Upgrade Now</a>
+                    <a class="btn btn-proper" href="/pay_plans?plan=basic" style="margin-top:100px">Upgrade Now</a>
                 <%else%>
-                    <a class="btn btn-proper" href="/landlord_free_plan" style="margin-top:50%">More Details</a>
+                    <a class="btn btn-proper" href="/landlord_free_plan" style="margin-top:100px">More Details</a>
                 <%end%>    
             <% end %> 
         </div>
@@ -41,14 +41,14 @@
                 <li>Extensive Marketing</li>
             </ul>
             <% unless user_signed_in? %>
-                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:10%">Sign Up</a>
+                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:20px">Sign Up</a>
             <%else%>
                 <%if current_user.status == "landlord" && current_user.plan == "pro"%>
-                    <a class="btn btn-proper" href="#" style="margin-top:10%">My Current Plan</a>
+                    <a class="btn btn-proper" href="#" style="margin-top:20px">My Current Plan</a>
                 <%elsif current_user.status == "landlord" && current_user.plan != "pro"%>
-                    <a class="btn btn-proper" href="/pay_plans?plan=pro" style="margin-top:10%">Upgrade Now</a>
+                    <a class="btn btn-proper" href="/pay_plans?plan=pro" style="margin-top:20px">Upgrade Now</a>
                 <%else%>
-                    <a class="btn btn-proper" href="/landlord_pro_plan" style="margin-top:10%">More Details</a>
+                    <a class="btn btn-proper" href="/landlord_pro_plan" style="margin-top:20px">More Details</a>
                 <%end%>    
             <% end %>
         </div>  
@@ -65,14 +65,14 @@
                 <li>Bespoke Portfolio Service</li>
             </ul>
             <% unless user_signed_in? %>
-                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:76%">Sign Up</a>
+                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:150px">Sign Up</a>
             <%else%>
                 <%if current_user.status == "landlord" && current_user.plan == "pro_plus"%>
-                    <a class="btn btn-proper" href="#" style="margin-top:76%">My Current Plan</a>
+                    <a class="btn btn-proper" href="#" style="margin-top:150px">My Current Plan</a>
                 <%elsif current_user.status == "landlord" && current_user.plan != "pro_plus"%>
-                    <a class="btn btn-proper" href="/pay_plans?plan=pro_plus" style="margin-top:76%">Upgrade Now</a>
+                    <a class="btn btn-proper" href="/pay_plans?plan=pro_plus" style="margin-top:150px">Upgrade Now</a>
                 <%else%>
-                    <a class="btn btn-proper" href="/landlord_pro_plus_plan" style="margin-top:76%">More Details</a>
+                    <a class="btn btn-proper" href="/landlord_pro_plus_plan" style="margin-top:150px">More Details</a>
                 <%end%>    
             <% end %>    
         </div> 
@@ -92,14 +92,14 @@
             <li>Matches Emailed</li>
         </ul>
         <% unless user_signed_in? %>
-            <a class="btn btn-proper" href="/users/sign_up" style="margin-top:32%">Sign Up</a>
+            <a class="btn btn-proper" href="/users/sign_up" style="margin-top:73px">Sign Up</a>
         <%else%>
             <%if current_user.status == "landlord" && current_user.plan == "basic_plus"%>
-                <a class="btn btn-proper" href="#" style="margin-top:32%">My Current Plan</a>
+                <a class="btn btn-proper" href="#" style="margin-top:73px">My Current Plan</a>
             <%elsif current_user.status == "landlord" && current_user.plan != "basic_plus"%>
-                <a class="btn btn-proper" href="/pay_plans?plan=Basic Plus" style="margin-top:32%">Upgrade Now</a>
+                <a class="btn btn-proper" href="/pay_plans?plan=Basic Plus" style="margin-top:73px">Upgrade Now</a>
             <%else%>
-                <a class="btn btn-proper" href="/landlord_basic_plus_plan" style="margin-top:32%">More Details</a>
+                <a class="btn btn-proper" href="/landlord_basic_plus_plan" style="margin-top:73px">More Details</a>
             <%end%>    
         <% end %>
       </div>

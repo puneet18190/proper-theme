@@ -22,6 +22,7 @@
  *= require_self
  *= require cleditor
  *= require jquery-confirm
+ *= require custom
  //= require s3_direct_upload_progress_bars
  */
 

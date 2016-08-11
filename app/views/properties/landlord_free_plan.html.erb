@@ -11,7 +11,7 @@
     <% a = ['Free!', "3 Free Property Ads", "1 Photo per Property", "Digital Sign Airtime", "Matching Tenants", "View Matching Tenants"] %>
     <% b = ["This plan is completely <b>free</b>, the only cost to you is the time it takes for you to complete the form.", "With this plan you can upload <b>3 free property ads</b> from the comfort of your own home by simply filling out the online form.", "You can upload <b>one photo per property.</b> To upload more photos, and increase the let-ability of your property you will need to upgrade your package subscription.", "Your ad will be displayed on our website and on our digital signs in the branch. The <b>digital sign airtime</b> your property receives will provide another platform to promote your property.", "You will be emailed a list of <b>matching tenants</b> that you can look over.","With this plan you will be able to <b>view matching tenants</b>  however you will not be able to contact any matches unless one party, either the landlord or tenant, subscribes to the Basic Plus+ package."] %>
 
-  <div class="row pricing-style1" style="position: absolute">
+  <div class="row pricing-style1" style="float:left">
     <div class="span3">
       <a href=<%="#{user_signed_in? ? '#' : '/users/sign_up' }" %>>
         <div class="well" style="height:400px">
@@ -25,12 +25,12 @@
                 <li>Matches Emailed</li>
             </ul>
             <% unless user_signed_in? %>
-                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:50%">Sign Up</a>
+                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:35%">Sign Up</a>
             <%else%>
                 <%if current_user.status == "landlord" && current_user.plan == "free"%>
-                    <a class="btn btn-proper" href="#" style="margin-top:50%">My Current Plan</a>
+                    <a class="btn btn-proper" href="#" style="margin-top:35%">My Current Plan</a>
                 <%else%>
-                    <a class="btn btn-proper" href="/users/sign_up" style="margin-top:50%">Sign Up</a>
+                    <a class="btn btn-proper" href="/users/sign_up" style="margin-top:35%">Sign Up</a>
                 <%end%>    
             <% end %> 
         </div>
@@ -38,7 +38,7 @@
     </div>
   </div>
     <%a.each_with_index do |n,i|%>
-    <div class="row-fluid" style="margin-left:25%;width:75%">
+    <div class="row-fluid" style="float:right;width:75%">
         <div class="span12">
             <div class="new-list ">
                 <div class="item panel" style="padding-bottom:0px">

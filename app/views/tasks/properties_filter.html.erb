@@ -13,7 +13,8 @@
       <%= render 'properties/news_carousel'%>
     </dl>
   </div>
-  <div class="container" style="width:1030px">
+  <div class="container">
+     <!-- style="width:1030px" -->
     <div class="row-fluid">
       <div class="span9">
         <div class="panel right-line" style="margin-right:7px">
@@ -24,7 +25,7 @@
             <div class="span6 ">
               <div class="main-heading bottom-line line-before filterarea">
                 <form class="filterform">
-                  <p></p>
+                  <!-- <p></p> -->
 <%
 =begin%>                  
                     <select class="type">
@@ -46,6 +47,7 @@
                         <option class="name" id="name" <% if condition=='name'%> selected<%end%>>Name</option>
                     </select>
                 </form>
+                <div class="clearfix"></div>
               </div>
             </div>
           </div>

@@ -129,4 +129,9 @@ def get_extension(mac)
   else
     return "Stephen Bovingdon (2018700)"
   end
+
+  def mobile_device?
+    user_agent = request.headers["HTTP_USER_AGENT"]
+    user_agent.present? && user_agent =~ /\b(Android|iPhone|iPad|Windows Phone|Opera Mobi|Kindle|BackBerry|PlayBook)\b/i
+  end
 end

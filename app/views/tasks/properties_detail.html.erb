@@ -16,7 +16,8 @@
   <div class="container">
     <div class="row-fluid">
       <div class="span9">
-        <div class="panel right-line" style="width:690px" itemscope="" itemtype="http://schema.org/Property">
+        <div class="panel right-line" style="" itemscope="" itemtype="http://schema.org/Property"> 
+          <!-- width:690px -->
           <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span>Property</h2>
           <div class="detail-properties right-space" itemscope="" itemtype="http://schema.org/Product">
             <div itemprop="name" style="display:none"><%= @data.name %></div>
@@ -26,7 +27,7 @@
                 <%=property_status(@data.category, @data.status) %>
               </div>
               <%= image_tag "sealmark.png", style: "width:100px;height:100px;z-index: 1;overflow: none;position: absolute;top: -40px;right: -40px;" if @data.seal_approved == true%>
-              <%= image_tag responsive_image(@data.image1), id: "big-image-preview", alt: "big-image-preview", style: "width:100%" %>
+              <%= image_tag responsive_image(@data.image1), id: "big-image-preview", alt: "big-image-preview", style: "width:100%;height:100%" %>
               <div style="height: 25px;width: auto;position:absolute;background-color: rgba(0,0,0,0.6);font-size: 35px;color:white;padding: 10px;bottom: 0;left: 0;padding-top: 20px;">
                 &pound; <%= @data.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %>
               </div>

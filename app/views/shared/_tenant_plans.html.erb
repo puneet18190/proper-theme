@@ -11,14 +11,14 @@
                 <li>View Property Details</li>
             </ul>
             <% unless user_signed_in? %>
-                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:17%">Sign Up</a>
+                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:15%">Sign Up</a>
             <%else%>
                 <%if current_user.status == "tenant" && current_user.plan == "free"%>
-                    <a class="btn btn-proper" href="#" style="margin-top:17%">My Current Plan</a>
+                    <a class="btn btn-proper" href="#" style="margin-top:15%">My Current Plan</a>
                 <%elsif current_user.status == "tenant" && current_user.plan != "free"%>
-                    <a class="btn btn-proper" href="/pay_plans?plan=basic" style="margin-top:17%">Upgrade Now</a>
+                    <a class="btn btn-proper" href="/pay_plans?plan=basic" style="margin-top:15%">Upgrade Now</a>
                 <%else%>
-                    <a class="btn btn-proper" href="/users/sign_up" style="margin-top:17%">Sign Up</a>
+                    <a class="btn btn-proper" href="/users/sign_up" style="margin-top:15%">Sign Up</a>
                 <%end%>
             <% end %> 
         </div>
@@ -37,14 +37,14 @@
                 <li>Attractive for Landlords</li>
             </ul>
             <% unless user_signed_in? %>
-                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:17%">Sign Up</a>
+                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:15%">Sign Up</a>
             <%else%>
                 <%if current_user.status == "tenant" && current_user.plan == "pro"%>
-                    <a class="btn btn-proper" href="#" style="margin-top:17%">My Current Plan</a>
+                    <a class="btn btn-proper" href="#" style="margin-top:15%">My Current Plan</a>
                 <%elsif current_user.status == "tenant" && current_user.plan != "pro"%>
-                    <a class="btn btn-proper" href="/pay_plans?plan=pro" style="margin-top:17%">Upgrade Now</a>
+                    <a class="btn btn-proper" href="/pay_plans?plan=pro" style="margin-top:15%">Upgrade Now</a>
                 <%else%>
-                    <a class="btn btn-proper" href="/users/sign_up" style="margin-top:17%">Sign Up</a>    
+                    <a class="btn btn-proper" href="/users/sign_up" style="margin-top:15%">Sign Up</a>    
                 <%end%>
             <% end %> 
         </div>

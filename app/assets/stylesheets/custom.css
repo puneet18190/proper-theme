@@ -1,0 +1,11 @@
+@media (max-width: 992px) {
+    .top-nav-bar {
+        width: 100% !important;
+    }
+    .top-nav-logo{
+    	width: 100% !important;
+    }
+    .googleMaparea{
+    	display: none;
+    }
+}
