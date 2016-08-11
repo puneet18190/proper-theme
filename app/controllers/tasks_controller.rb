@@ -2,11 +2,11 @@ class TasksController < ApplicationController
   layout proc { false if request.xhr? }	
   respond_to :html, :xml, :json,:mobile, :tablet
   def index
-    puts "=================================================="
+    puts "==================================================1"
     puts request.format.symbol
-    Rails.logger.info "Year: #{Time.now.year}"
-    Rails.logger.info request.format.symbol
-    puts "=================================================="
+    Rails.logger.debug "Year: #{Time.now.year}"
+    Rails.logger.debug request.format.symbol
+    puts "==================================================2"
 
     if !current_user.nil? && current_user.sign_in_count == 1
       redirect_to "/users/profile"
