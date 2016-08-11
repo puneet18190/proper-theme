@@ -2,44 +2,40 @@ class TasksController < ApplicationController
   layout proc { false if request.xhr? }	
   respond_to :html, :xml, :json,:mobile, :tablet
   def index
-    if  request.format.symbol == :mobile
-      render :nothing => true
+    if !current_user.nil? && current_user.sign_in_count == 1
+      redirect_to "/users/profile"
     else
-      if !current_user.nil? && current_user.sign_in_count == 1
-        redirect_to "/users/profile"
-      else
-      # if is_mobile_device? == false
-        @properties = Property.where({visibility: true, approval_status: "approved"}).order("status ASC,created_at DESC")
+    # if is_mobile_device? == false
+      @properties = Property.where({visibility: true, approval_status: "approved"}).order("status ASC,created_at DESC")
 
-        if !params[:q].nil? && params[:q][:radius]!="Select"
-          @properties = @properties.near(params[:q][:postcode_eq],params[:q][:radius].to_f)
-        end
+      if !params[:q].nil? && params[:q][:radius]!="Select"
+        @properties = @properties.near(params[:q][:postcode_eq],params[:q][:radius].to_f)
+      end
 
-        params[:q].delete("postcode_eq") if params[:q] && params[:q][:postcode_eq]
-        params[:q].delete("radius") if params[:q] && params[:q][:radius]
+      params[:q].delete("postcode_eq") if params[:q] && params[:q][:postcode_eq]
+      params[:q].delete("radius") if params[:q] && params[:q][:radius]
 
-        @search = @properties.search(params[:q])
-        #@locations = Property.near(params[:q][:address1],params[:q][:radius].to_f) unless params[:q].nil?
-        # unless params[:q].nil?
-        #   @result = []
-        #   @result.push(@search.result)
-        #   @result.push(@locations) unless @locations.nil?
-        #   @tasks = @result.flatten
-        # else
-        @tasks = @search.result
-
-        # end
-        @agents= Agent.all.first 2
-        @news= News.all
-        @settings = Setting.all.first
-        respond_with(@properties,@search,@tasks,@agents,@news,@settings)
+      @search = @properties.search(params[:q])
+      #@locations = Property.near(params[:q][:address1],params[:q][:radius].to_f) unless params[:q].nil?
+      # unless params[:q].nil?
+      #   @result = []
+      #   @result.push(@search.result)
+      #   @result.push(@locations) unless @locations.nil?
+      #   @tasks = @result.flatten
       # else
-      #   @properties = Property.where({payment: true, visibility: true, approve: true}).take(3)
-      #   @agents= Agent.all
-      #   render "mobile/index.html.erb"#,:layout => "mobile"
+      @tasks = @search.result
+
       # end
-      end  
-    end
+      @agents= Agent.all.first 2
+      @news= News.all
+      @settings = Setting.all.first
+      respond_with(@properties,@search,@tasks,@agents,@news,@settings)
+    # else
+    #   @properties = Property.where({payment: true, visibility: true, approve: true}).take(3)
+    #   @agents= Agent.all
+    #   render "mobile/index.html.erb"#,:layout => "mobile"
+    # end
+    end  
   end
 
   def home_simple
