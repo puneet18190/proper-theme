@@ -4,67 +4,69 @@
       <%= render 'properties/news_carousel'%>
     </dl>
   </div>
-  <div class="container" style="width:1200px">
-    <div class="box-line"> 
-        <h1 class="title-heading">Pro Plan</h1>
-    </div>
-    <% a = ["No Let-No Fee", "Free Market Appraisal", "Professional Photos", "Tenant Find only", "Vetted Tenants", "Agent Escorted Viewings", "Extensive Marketing", "Digital Sign Airtime"] %>
+  
+  <div class="container">
+    <div class="panel">
+      <div class="box-line"> 
+          <h1 class="title-heading">Pro Plan</h1>
+      </div>
+      <% a = ["No Let-No Fee", "Free Market Appraisal", "Professional Photos", "Tenant Find only", "Vetted Tenants", "Agent Escorted Viewings", "Extensive Marketing", "Digital Sign Airtime"] %>
 
-    <% b = ["This plan is £199 but is based on a <b>'no let-no fee'</b> guarantee, so there is nothing to pay until SEAL Properties find you a suitable tenant.",
-    "With this plan, we offer you a <b>free market appraisal</b> of your property, offering you tips on how to increase your properties appeal.",
-    "We will take <b>professional photos</b> of your property, showing your property at its very best angle!", 
-    "This is a <b>Tenant Find only</b> service, although additional services can be arranged if required. Please do not hesitate to contact us.",
-    "With our tenant find service we will only consider <b>vetted tenants</b> for your property, or those prepared to undertake our extensive vetting process. Our vetting includes credit checks, checks with</li> previous landlords and liaising with Gatesheads Private Landlords Association to find you the best possible tenant.", 
-    "We will conduct <b>agent escorted viewings</b> of your property, or if you prefer you can conduct your own viewings.", 
-    "Your ad will benefit from <b>extensive marketing</b> across a number of avenues including on our website, On the Market, in the local press and on our digital screens.", 
-    "Your adverts will have priority on our digital signs and benefit from extensive <b>digital sign airtime</b> across our 12 screens."] %>
+      <% b = ["This plan is £199 but is based on a <b>'no let-no fee'</b> guarantee, so there is nothing to pay until SEAL Properties find you a suitable tenant.",
+      "With this plan, we offer you a <b>free market appraisal</b> of your property, offering you tips on how to increase your properties appeal.",
+      "We will take <b>professional photos</b> of your property, showing your property at its very best angle!", 
+      "This is a <b>Tenant Find only</b> service, although additional services can be arranged if required. Please do not hesitate to contact us.",
+      "With our tenant find service we will only consider <b>vetted tenants</b> for your property, or those prepared to undertake our extensive vetting process. Our vetting includes credit checks, checks with</li> previous landlords and liaising with Gatesheads Private Landlords Association to find you the best possible tenant.", 
+      "We will conduct <b>agent escorted viewings</b> of your property, or if you prefer you can conduct your own viewings.", 
+      "Your ad will benefit from <b>extensive marketing</b> across a number of avenues including on our website, On the Market, in the local press and on our digital screens.", 
+      "Your adverts will have priority on our digital signs and benefit from extensive <b>digital sign airtime</b> across our 12 screens."] %>
 
-    <div class="row pricing-style1" style="position: absolute">
-      <div class="span3">
-      <a href=<%="#{user_signed_in? ? '#' : '/users/sign_up' }" %>>
-        <div class="well active" style="height:400px">
+      <div class="row pricing-style1" style="float: left">
+        <div class="span3">
+        <a href=<%="#{user_signed_in? ? '#' : '/users/sign_up' }" %>>
+          <div class="well active">
             <h3 class="title"><span class="em">Pro</span></h3>
             <p class="price"><span class="currency">£</span> <span class="digits">199</span></p>
             <ul class="unstyled points">
-                <li>No Let - No Fee</li>
-                <li>Vetted Tenants Only</li>
-                <li>Tenant Find</li>
-                <li>Professional Photos</li>
-                <li>Free Market Appraisal</li>
-                <li>Agent Escorted Viewings</li>
-                <li>Digital Sign Airtime</li>
-                <li>Extensive Marketing</li>
+              <li>No Let - No Fee</li>
+              <li>Vetted Tenants Only</li>
+              <li>Tenant Find</li>
+              <li>Professional Photos</li>
+              <li>Free Market Appraisal</li>
+              <li>Agent Escorted Viewings</li>
+              <li>Digital Sign Airtime</li>
+              <li>Extensive Marketing</li>
             </ul>
             <% unless user_signed_in? %>
-                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:10%">Sign Up</a>
+              <a class="btn btn-proper" href="/users/sign_up" style="margin-top:10%">Sign Up</a>
             <%else%>
-                <%if current_user.status == "landlord" && current_user.plan == "pro"%>
-                    <a class="btn btn-proper" href="#" style="margin-top:10%">My Current Plan</a>
-                <%else%>
-                    <a class="btn btn-proper" href="/users/sign_up" style="margin-top:10%">Sign Up</a>
-                <%end%>    
+              <%if current_user.status == "landlord" && current_user.plan == "pro"%>
+                <a class="btn btn-proper" href="#" style="margin-top:10%">My Current Plan</a>
+              <%else%>
+                <a class="btn btn-proper" href="/users/sign_up" style="margin-top:10%">Sign Up</a>
+              <%end%>
             <% end %>
-        </div>  
-      </a>    
-    </div>
-    </div>
-    <%a.each_with_index do |n,i|%>
-    <div class="row-fluid" style="margin-left:25%;width:75%">
-        <div class="span12">
-            <div class="new-list ">
-                <div class="item panel" style="padding-bottom:0px">
-                    <h3 class="title-heading" style="margin-bottom:0;margin-top:5px"><%=n%></h3>
-                    <div class="box-panel" style="padding:10px;">
-                        <div class="clearfix decs-meta" style="margin:0">
-                            <span class="pull-left">
-                                <h4><%=b[i].html_safe%></h4>
-                            </span>
-                        </div>
-                    </div>
+          </div>  
+        </a>    
+      </div>
+      
+      <%a.each_with_index do |n,i|%>
+        <div class="span9 pull-right">
+          <div class="new-list ">
+            <div class="item panel" style="padding-bottom:0px">
+              <h3 class="title-heading" style="margin-bottom:0;margin-top:5px"><%=n%></h3>
+              <div class="box-panel" style="padding:10px;">
+                <div class="clearfix decs-meta" style="margin:0">
+                  <span class="pull-left">
+                    <h4><%=b[i].html_safe%></h4>
+                  </span>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      <%end%>
+      </div>
     </div>
-    <%end%>
   </div>
 </div>

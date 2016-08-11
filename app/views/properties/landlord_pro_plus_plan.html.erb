@@ -4,55 +4,56 @@
       <%= render 'properties/news_carousel'%>
     </dl>
   </div>
-  <div class="container" style="width:1200px">
-    <div class="box-line"> 
+  <div class="container">
+    <div class="panel">
+      <div class="box-line"> 
         <h1 class="title-heading">Pro Plus+ Plan</h1>
-    </div>
-    <% a = ["Pro Plus+","Fully Managed Service", "Discounted Tenant Find", "Bespoke Portfolio Service"] %>
+      </div>
+      <% a = ["Pro Plus+","Fully Managed Service", "Discounted Tenant Find", "Bespoke Portfolio Service"] %>
 
-    <% b = ["This plan is priced from <b>£30 per month</b>, with deals available.", "This is a <b>fully managed service,</b> which means we take care of everything from finding you a tenant to managing your property on a monthly basis.", "This plan includes a <b>discounted tenant find</b>.", "This plan is a <b>bespoke portfolio service</b> tailored to your needs exactly."] %>
+      <% b = ["This plan is priced from <b>£30 per month</b>, with deals available.", "This is a <b>fully managed service,</b> which means we take care of everything from finding you a tenant to managing your property on a monthly basis.", "This plan includes a <b>discounted tenant find</b>.", "This plan is a <b>bespoke portfolio service</b> tailored to your needs exactly."] %>
 
-    <div class="row pricing-style1" style="position: absolute">
-      <div class="span3">
-        <a href=<%="#{user_signed_in? ? '#' : '/users/sign_up' }" %>>
-          <div class="well active" style="height:286px">
-              <h3 class="title"><span class="em">Pro Plus+</span></h3>
-              <p class="price">Only <span class="currency">£</span> <span class="digits">30</span> <span class="term">/Month</span></p>
-              <ul class="unstyled points">
-                  <li>Fully Managed Service</li>
-                  <li>Discounted Tenant Find</li>
-                  <li>Bespoke Portfolio Service</li>
-              </ul>
-              <% unless user_signed_in? %>
-                  <a class="btn btn-proper" href="/users/sign_up" style="margin-top:15%">Sign Up</a>
-              <%else%>
-                  <%if current_user.status == "landlord" && current_user.plan == "pro_plus"%>
-                      <a class="btn btn-proper" href="#" style="margin-top:15%">My Current Plan</a>
-                  <%else%>
-                      <a class="btn btn-proper" href="/users/sign_up" style="margin-top:15%">Sign Up</a>
-                  <%end%>    
-              <% end %>    
-          </div> 
-        </a>  
+      <div class="row pricing-style1">
+        <div class="span3">
+          <a href=<%="#{user_signed_in? ? '#' : '/users/sign_up' }" %>>
+            <div class="well active">
+                <h3 class="title"><span class="em">Pro Plus+</span></h3>
+                <p class="price">Only <span class="currency">£</span> <span class="digits">30</span> <span class="term">/Month</span></p>
+                <ul class="unstyled points">
+                    <li>Fully Managed Service</li>
+                    <li>Discounted Tenant Find</li>
+                    <li>Bespoke Portfolio Service</li>
+                </ul>
+                <% unless user_signed_in? %>
+                    <a class="btn btn-proper" href="/users/sign_up" style="margin-top:15%">Sign Up</a>
+                <%else%>
+                    <%if current_user.status == "landlord" && current_user.plan == "pro_plus"%>
+                        <a class="btn btn-proper" href="#" style="margin-top:15%">My Current Plan</a>
+                    <%else%>
+                        <a class="btn btn-proper" href="/users/sign_up" style="margin-top:15%">Sign Up</a>
+                    <%end%>
+                <% end %>
+            </div> 
+          </a>  
+        </div>
+      
+        <%a.each_with_index do |n,i|%>
+          <div class="span9 pull-right">
+            <div class="new-list ">
+              <div class="item panel" style="padding-bottom:0px">
+                <h3 class="title-heading" style="margin-bottom:0;margin-top:5px"><%=n%></h3>
+                <div class="box-panel" style="padding:10px;">
+                  <div class="clearfix decs-meta" style="margin:0">
+                    <span class="pull-left">
+                      <h4><%=b[i].html_safe%></h4>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <%end%>
       </div>
     </div>
-    <%a.each_with_index do |n,i|%>
-    <div class="row-fluid" style="margin-left:25%;width:75%">
-        <div class="span12">
-            <div class="new-list ">
-                <div class="item panel" style="padding-bottom:0px">
-                    <h3 class="title-heading" style="margin-bottom:0;margin-top:5px"><%=n%></h3>
-                    <div class="box-panel" style="padding:10px;">
-                        <div class="clearfix decs-meta" style="margin:0">
-                            <span class="pull-left">
-                                <h4><%=b[i].html_safe%></h4>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <%end%>
   </div>
 </div>

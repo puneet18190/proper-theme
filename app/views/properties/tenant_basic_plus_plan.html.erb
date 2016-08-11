@@ -1,60 +1,62 @@
 <div id="content">
-    <div class="news-carousel-wrapper">
-        <dl id="news-carousel" class="news-carousel-style">
-            <%= render 'properties/news_carousel'%>
-        </dl>
-    </div>
-    <div class="container" style="width:1200px">
-        <div class="box-line"> 
-            <h1 class="title-heading">Basic Plus+ Plan</h1>
-        </div>
-        <% a = ["Basic Plus+", "Create your own Extended Profile", "Specify your Property Requirements", "Property Matches will be Emailed", "View Property"] %>
+  <div class="news-carousel-wrapper">
+    <dl id="news-carousel" class="news-carousel-style">
+        <%= render 'properties/news_carousel'%>
+    </dl>
+  </div>
+  
+  <div class="container">
+    <div class="panel">  
+      <div class="box-line"> 
+          <h1 class="title-heading">Basic Plus+ Plan</h1>
+      </div>
+      <% a = ["Basic Plus+", "Create your own Extended Profile", "Specify your Property Requirements", "Property Matches will be Emailed", "View Property"] %>
 
-        <% b = ["This plan costs only <b>£19.99 per month.</b>", "With this plan you can <b>create your own extended profile</b>, allowing you to add a photo of yourself and upload references increasing your appeal to our landlords.", "You can <b>specify your property requirements</b> and search our database according to your needs.", "<b>Property matches will be emailed</b> to you regularly.", "You can <b>view property</b> details to learn more about your dream home.","Under this plan it is <b>free to contact landlords</b> about properties you are interested in."] %>
+      <% b = ["This plan costs only <b>£19.99 per month.</b>", "With this plan you can <b>create your own extended profile</b>, allowing you to add a photo of yourself and upload references increasing your appeal to our landlords.", "You can <b>specify your property requirements</b> and search our database according to your needs.", "<b>Property matches will be emailed</b> to you regularly.", "You can <b>view property</b> details to learn more about your dream home.","Under this plan it is <b>free to contact landlords</b> about properties you are interested in."] %>
 
-        <div class="row pricing-style1" style="position: absolute">
-            <div class="span3">
-                <a href=<%="#{user_signed_in? ? '#' : '/users/sign_up' }" %>>
-                    <div class="well" style="height:326px">
-                        <h3 class="title"><span class="">Basic Plus+</span></h3>
-                        <p class="price"><span class="currency">£</span> <span class="digits">19<span>.99</span></span> <span class="term">/Month</span></p>
-                        <ul class="unstyled points">
-                            <li>Create an Extended Profile</li>
-                            <li>Specify Property Requirements</li>
-                            <li>Emailed Property Matches</li>
-                            <li>View Property Details</li>
-                            <li>Free to Contact Landlord</li>
-                        </ul>
-                        <% unless user_signed_in? %>
-                            <a class="btn btn-proper" href="/users/sign_up" style="margin-top:0">Sign Up</a>
-                        <%else%>
-                          <%if current_user.status == "tenant" && current_user.plan == "basic_plus"%>
-                              <a class="btn btn-proper" href="#" style="margin-top:12%">My Current Plan</a>
-                          <%else%>
-                              <a class="btn btn-proper" href="/users/sign_up" style="margin-top:12%">Sign Up</a>
-                          <%end%>    
-                        <% end %> 
-                    </div>
-                </a>  
+      <div class="row pricing-style1">
+        <div class="span3">
+          <a href=<%="#{user_signed_in? ? '#' : '/users/sign_up' }" %>>
+            <div class="well" style="height:326px">
+              <h3 class="title"><span class="">Basic Plus+</span></h3>
+              <p class="price"><span class="currency">£</span> <span class="digits">19<span>.99</span></span> <span class="term">/Month</span></p>
+              <ul class="unstyled points">
+                  <li>Create an Extended Profile</li>
+                  <li>Specify Property Requirements</li>
+                  <li>Emailed Property Matches</li>
+                  <li>View Property Details</li>
+                  <li>Free to Contact Landlord</li>
+              </ul>
+              <% unless user_signed_in? %>
+                  <a class="btn btn-proper" href="/users/sign_up" style="margin-top:0">Sign Up</a>
+              <%else%>
+                <%if current_user.status == "tenant" && current_user.plan == "basic_plus"%>
+                    <a class="btn btn-proper" href="#" style="margin-top:0">My Current Plan</a>
+                <%else%>
+                    <a class="btn btn-proper" href="/users/sign_up" style="margin-top:0">Sign Up</a>
+                <%end%>
+              <% end %> 
             </div>
+          </a>  
         </div>
+      
         <%a.each_with_index do |n,i|%>
-            <div class="row-fluid" style="margin-left:25%;width:75%">
-                <div class="span12">
-                    <div class="new-list ">
-                        <div class="item panel" style="padding-bottom:0px">
-                            <h3 class="title-heading" style="margin-bottom:0;margin-top:5px"><%=n%></h3>
-                            <div class="box-panel" style="padding:10px;">
-                                <div class="clearfix decs-meta" style="margin:0">
-                                    <span class="pull-left">
-                                        <h4><%=b[i].html_safe%></h4>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+          <div class="span9 pull-right">
+            <div class="new-list ">
+              <div class="item panel" style="padding-bottom:0px">
+                <h3 class="title-heading" style="margin-bottom:0;margin-top:5px"><%=n%></h3>
+                <div class="box-panel" style="padding:10px;">
+                  <div class="clearfix decs-meta" style="margin:0">
+                    <span class="pull-left">
+                      <h4><%=b[i].html_safe%></h4>
+                    </span>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         <%end%>
+      </div>
     </div>
+  </div>
 </div>
