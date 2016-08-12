@@ -4,8 +4,9 @@
             <%= render 'properties/news_carousel'%>
         </dl>
     </div>
-    <div class="cont" style="max-width:1200px">
-        <h3><b>PROSPECTIVE LANDLORD</b> <%= button_to "New Landlord", "/landlords/new", :method=>:get, :class=>"btn btn-warning", :style=>"margin-left:1000px;margin-top:-90px;"%></h3>
+    <div class="container">
+      <div class="panel">
+        <h3><b>PROSPECTIVE LANDLORD</b> <%= button_to "New Landlord", "/landlords/new", :method=>:get, :class=>"btn btn-warning new_landlord_btn", :style=>"margin-left:1000px;margin-top:-90px;"%></h3>
       
         <table id="landlord_info">
           <thead>
@@ -52,12 +53,16 @@
 
           </tbody>
         </table>
+      </div>
     </div>
 </div>
 
 <script type="text/javascript">
     $(document).ready(function(){
-      $("#landlord_info").dataTable()
+      // $("#landlord_info").dataTable()
+      $('#landlord_info').DataTable( {
+        responsive: true
+      } );
     })
 </script>
 
