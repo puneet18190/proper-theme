@@ -28,4 +28,5 @@
 #= require s3_direct_upload
 //= require jquery-ui
 //= require autocomplete-rails
+//= require dataTables.responsive
 //= require_tree .

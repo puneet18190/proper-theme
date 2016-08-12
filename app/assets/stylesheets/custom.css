@@ -8,4 +8,8 @@
     .googleMaparea{
     	display: none;
     }
+    .new_landlord_btn{
+    	margin-left: 0 !important;
+    	margin-top: 0 !important;
+    }
 }
