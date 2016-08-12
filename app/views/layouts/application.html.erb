@@ -89,11 +89,11 @@
     </div>
     
     <%= render 'layouts/footer' %>
-    <script src="/assets/bootstrap-dropdown.js"></script>
     
     <script type='text/javascript'>
       $('.alert').fadeOut(60000);
       $(document).ready( function(){
+        $('.dropdown-toggle').dropdown()
         $('.cookies-eu-ok').click(function(e){
           e.preventDefault();
           $.cookie('cookie_eu_consented', 'true', { path: '/', expires: 365 });
