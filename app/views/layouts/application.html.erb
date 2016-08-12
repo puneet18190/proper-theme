@@ -74,7 +74,7 @@
       <%= render 'shared/sticky' %>
       <%= render 'shared/pusher' if Rails.env=="production" %>
     <%end%>
-    <%= render 'shared/book_appraisal' %>
+    <%= render 'shared/book_appraisal' if !mobile_device? %>
     <%= render 'layouts/header' %>
     
     <div id="loading" style="position: fixed;z-index: 1;margin-left: 635px;margin-top:180px"></div>
