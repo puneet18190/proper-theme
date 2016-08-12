@@ -27,9 +27,9 @@ class TasksController < ApplicationController
 
       # end
       @agents= Agent.all.first 2
-      @news= News.all
+      # @news= News.all
       @settings = Setting.all.first
-      respond_with(@properties,@search,@tasks,@agents,@news,@settings)
+      respond_with(@properties,@search,@tasks,@agents,@settings)
     # else
     #   @properties = Property.where({payment: true, visibility: true, approve: true}).take(3)
     #   @agents= Agent.all
