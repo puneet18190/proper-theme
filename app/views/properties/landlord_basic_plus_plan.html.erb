@@ -42,17 +42,15 @@
           </div>
       
         <%a.each_with_index do |n,i|%>
-          <div class="row-fluid" style="margin-left:25%;width:75%">
-            <div class="span9 pull-right">
-              <div class="new-list ">
-                <div class="item panel" style="padding-bottom:0px">
-                  <h3 class="title-heading" style="margin-bottom:0;margin-top:5px"><%=n%></h3>
-                  <div class="box-panel" style="padding:10px;">
-                    <div class="clearfix decs-meta" style="margin:0">
-                      <span class="pull-left">
-                        <h4><%=b[i].html_safe%></h4>
-                      </span>
-                    </div>
+          <div class="span9 pull-right">
+            <div class="new-list ">
+              <div class="item panel" style="padding-bottom:0px">
+                <h3 class="title-heading" style="margin-bottom:0;margin-top:5px"><%=n%></h3>
+                <div class="box-panel" style="padding:10px;">
+                  <div class="clearfix decs-meta" style="margin:0">
+                    <span class="pull-left">
+                      <h4><%=b[i].html_safe%></h4>
+                    </span>
                   </div>
                 </div>
               </div>

@@ -20,10 +20,10 @@ module ApplicationHelper
       if request.ip == "82.68.0.86"
         image.url
       else
-        if is_mobile_device?
+        if mobile_device? #is_mobile_device?
           image.url(:medium)
-        elsif ::MobileFu::Tablet.is_a_tablet_device? request.user_agent
-          image.url(:medium)
+        # elsif ::MobileFu::Tablet.is_a_tablet_device? request.user_agent
+        #   image.url(:medium)
         else
           image.url(:large)
         end      

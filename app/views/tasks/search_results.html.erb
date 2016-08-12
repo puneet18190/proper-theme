@@ -1,6 +1,6 @@
 <div id="content">
   <div class="container">
-    <div class="row-fluid" style="width:110%">
+    <div class="row-fluid">
       <div class="span9">
         <div class="panel right-line">
           <h2 class="main-heading bottom-line">
@@ -12,7 +12,7 @@
             <%end%>
           </h2>
           <div class="featured-grid right-space">
-            <div class="scroll" style="height:882px">
+            <!-- <div class="scroll" style="height:882px"> -->
               <div class="box-white">
                 <div class="grid-item grid-style-properties">
                   <% if @tasks.empty? %>
@@ -25,11 +25,12 @@
                   <% else %>
                     <% @tasks.each do |task| %>
                       <% task = task.first if @tasks.kind_of?(Array) && @status %>
-                      <% puts task %>
+                      <%# puts task %>
                       <% if !task.nil?%>
                         <div class="item">
                           <a href="#" class="with-hover property">
                             <div class="desc-type for-sale" style="opacity:0.8"><%=property_status(task.category, task.status)%></div>
+                            <%= image_tag "sealmark.png", style: "z-index: 1; overflow: none; position: absolute; top: -21px; right: -14px; box-shadow: none;", class: "seal_image" if task.seal_approved == true%>
                             <a href=<%="/properties_detail/#{task.slug}"%>><%=  image_tag (responsive_image(task.image1)), class: "full", class: "mask_hover" %></a>
                           </a>
                           <h4 class=" "><%= task.name %></h4>
@@ -48,7 +49,7 @@
                               </p>
                               <div class="clearfix">
                                 <div class="btn-proper btn btn-small pull-left">
-                                  <a href=<%="/properties_detail/#{task.slug}"%>>See Detail</a>
+                                  <a href=<%="/properties_detail/#{task.slug}"%>>More Details</a>
                                 </div>
                                 <a href="#" class="btn-proper btn btn-small pull-right">Compare</a>
                               </div>
@@ -60,7 +61,7 @@
                   <% end %>
                 </div>
               </div>
-            </div>
+            <!-- </div> -->
           </div>
         </div>
       </div>
@@ -72,3 +73,9 @@
     </div>
   </div>
 </div>
+<style>
+.seal_image{
+    width:50px !important;
+    max-height:50px !important;
+  }
+</style>
