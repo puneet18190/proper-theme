@@ -4,44 +4,49 @@
       <%= render 'properties/news_carousel'%>
     </dl>
   </div>
-  <div class="cont" style="max-width:1200px">
-    <h3><b>Miscellaneous Contacts</b></h3>
+  <div class="container">
+    <div class="panel">
+      <h3><b>Miscellaneous Contacts</b></h3>
 
-    <%= button_to "New Contact", new_miscellaneous_contact_path, :method=>:get, :class=>"btn btn-warning new_property", 
-      :style=>"margin-left:1000px;margin-top:-90px;"%>
+      <%= button_to "New Contact", new_miscellaneous_contact_path, :method=>:get, :class=>"btn btn-warning new_property new_property_btn", 
+        :style=>"margin-left:1000px;margin-top:-90px;"%>
 
-    <table id="prop_info">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Company</th>
-          <th>Category</th>
-          <th>Phone</th>
-          <th>Email</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @contact.each_with_index do |obj,i| %>
+      <table id="prop_info">
+        <thead>
           <tr>
-            <td><%= "#{obj.first_name} #{obj.last_name}" %></td>
-            <td><%= obj.company %></td>
-            <td><%= obj.category %></td>
-            <td><%= obj.phone %></td>
-            <td><%= obj.email %></td>
-            <td><%= link_to "Edit", edit_miscellaneous_contact_path(id: obj.id) %>
-            <%= link_to 'Delete', miscellaneous_contact_path(id: obj.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Category</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Action</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          <% @contact.each_with_index do |obj,i| %>
+            <tr>
+              <td><%= "#{obj.first_name} #{obj.last_name}" %></td>
+              <td><%= obj.company %></td>
+              <td><%= obj.category %></td>
+              <td><%= obj.phone %></td>
+              <td><%= obj.email %></td>
+              <td><%= link_to "Edit", edit_miscellaneous_contact_path(id: obj.id) %>
+              <%= link_to 'Delete', miscellaneous_contact_path(id: obj.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $("#prop_info").dataTable()
+    // $("#prop_info").dataTable()
+    $('#prop_info').DataTable( {
+        responsive: true
+    } );
   })  
 </script>
 

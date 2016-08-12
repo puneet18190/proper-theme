@@ -4,60 +4,62 @@
       <%= render 'properties/news_carousel'%>
     </dl>
   </div>
-  <div class="cont" style="max-width:1200px">
-    <h3><b>Buyers</b></h3>
-    <%if current_user.status == "admin"%>
-      <% if current_user.fb_token.nil? %>
-        <%= button_to "Connect Facebook","/connect_facebook",:class=>"btn btn-primary"%>
-      <%else%>
-        <a class= "btn disconnect_fb btn-primary" href="/disconnect_fb">Connected with Facebook</a>
-      <%end%>  
-    <%end%>
+  <div class="container">
+    <div class="panel">
+      <h3><b>Buyers</b></h3>
+      <%if current_user.status == "admin"%>
+        <% if current_user.fb_token.nil? %>
+          <%= button_to "Connect Facebook","/connect_facebook",:class=>"btn btn-primary"%>
+        <%else%>
+          <a class= "btn disconnect_fb btn-primary" href="/disconnect_fb">Connected with Facebook</a>
+        <%end%>  
+      <%end%>
 
-    <% if can? :create, @property %>
-      <%= button_to "New Buyer", "#", :method=>:get, :class=>"btn btn-warning new_property", 
-      :style=>"margin-left:1000px;margin-top:-90px;"%>
-    <% end %>
+      <% if can? :create, @property %>
+        <%= button_to "New Buyer", "#", :method=>:get, :class=>"btn btn-warning new_property new_property_btn", 
+        :style=>"margin-left:1000px;margin-top:-90px;"%>
+      <% end %>
 
-    <table id="prop_info">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Address</th>
-          <th>Phone</th>
-          <th>Status</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @properties.each_with_index do |property,i| %>
-          <% data = property%>
-          
-          <tr class="<%= property_user(property) %>">
-            
-            <td><%= data.name %></td>
-            <td><%= data.user.email %></td>
-            <td><%= "#{data.address1} #{data.address2} #{data.address3} #{data.town} #{data.postcode} #{data.postcode1}" %></td>
-            
-            <td><%= data.user.phone %></td>
-            <td><%= data.stage %></td>
-            
-            <td>
-              <%= link_to 'Show', "/properties_detail/"+property.slug %>
-              <%if property.approval_status=="waiting" && !property.property_changes.empty?%>
-                <%= link_to 'View Changes', change_property_path(property), :method=>:get, id: "changes_#{property.id}" %>
-              <%else%>
-                <%= link_to 'Edit', edit_property_path(property), :method=>:get, id: "edit_#{property.id}", class: "#{property.approval_status} edit_property" %>
-              <%end%>
-
-              <%= link_to 'Delete', property, method: :delete, data: { confirm: 'Are you sure?' } %>
-            </td>
+      <table id="prop_info">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Status</th>
+            <th>Action</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          <% @properties.each_with_index do |property,i| %>
+            <% data = property%>
+            
+            <tr class="<%= property_user(property) %>">
+              
+              <td><%= data.name %></td>
+              <td><%= data.user.email %></td>
+              <td><%= "#{data.address1} #{data.address2} #{data.address3} #{data.town} #{data.postcode} #{data.postcode1}" %></td>
+              
+              <td><%= data.user.phone %></td>
+              <td><%= data.stage %></td>
+              
+              <td>
+                <%= link_to 'Show', "/properties_detail/"+property.slug %>
+                <%if property.approval_status=="waiting" && !property.property_changes.empty?%>
+                  <%= link_to 'View Changes', change_property_path(property), :method=>:get, id: "changes_#{property.id}" %>
+                <%else%>
+                  <%= link_to 'Edit', edit_property_path(property), :method=>:get, id: "edit_#{property.id}", class: "#{property.approval_status} edit_property" %>
+                <%end%>
+
+                <%= link_to 'Delete', property, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 
@@ -65,7 +67,10 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $("#prop_info").dataTable()
+    // $("#prop_info").dataTable()
+    $('#prop_info').DataTable( {
+        responsive: true
+    } );
   })
 
   $( ".disconnect_fb" )

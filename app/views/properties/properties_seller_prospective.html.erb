@@ -4,7 +4,8 @@
             <%= render 'properties/news_carousel'%>
         </dl>
     </div>
-    <div class="cont" style="max-width:1200px">
+    <div class="container">
+      <div class="panel">
         <h3><b>PROSPECTIVE SELLER</b></h3>
       
         <table id="landlord_info">
@@ -33,12 +34,16 @@
 
           </tbody>
         </table>
+      </div>
     </div>
 </div>
 
 <script type="text/javascript">
     $(document).ready(function(){
-      $("#landlord_info").dataTable()
+      // $("#landlord_info").dataTable()
+      $('#landlord_info').DataTable( {
+          responsive: true
+      } );
     })
 </script>
 

@@ -4,105 +4,107 @@
       <%= render 'properties/news_carousel'%>
     </dl>
   </div>
-  <div class="cont" style="max-width:1200px">
-    <h3><b>Prospective</b></h3>
-    <%if current_user.status == "admin"%>
-      <% if current_user.fb_token.nil? %>
-        <%= button_to "Connect Facebook","/connect_facebook",:class=>"btn btn-primary"%>
-      <%else%>
-        <a class= "btn disconnect_fb btn-primary" href="/disconnect_fb">Connected with Facebook</a>
-      <%end%>  
-    <%end%>
+  <div class="container">
+    <div class="panel">
+      <h3><b>Prospective</b></h3>
+      <%if current_user.status == "admin"%>
+        <% if current_user.fb_token.nil? %>
+          <%= button_to "Connect Facebook","/connect_facebook",:class=>"btn btn-primary"%>
+        <%else%>
+          <a class= "btn disconnect_fb btn-primary" href="/disconnect_fb">Connected with Facebook</a>
+        <%end%>  
+      <%end%>
 
-    <% if can? :create, @property %>
-      <%= button_to "New Property", "/properties/new", :method=>:get, :class=>"btn btn-warning new_property", 
-      :style=>"margin-left:1000px;margin-top:-90px;"%>
-    <% end %>
+      <% if can? :create, @property %>
+        <%= button_to "New Property", "/properties/new", :method=>:get, :class=>"btn btn-warning new_property new_property_btn", 
+        :style=>"margin-left:1000px;margin-top:-90px;"%>
+      <% end %>
 
-    <table id="prop_info">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Address</th>
-          <th>Price</th>
-          <th>Bond</th>
-          <th>Beds</th>
-          <th>Bath</th>
-          <th>Tenant Criteria</th>
-          <th>Landlord</th>
-          <th>Agent</th>
-          <th>Plan</th>
-          <th>Action</th>
-          <th>Brochure</th>
-          <th>Seal Approved</th>
-          <th>Approval Status</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @properties.each_with_index do |property,i| %>
-          <% data = property%>
-          
-          <tr class="<%= property_user(property) %>">
-            
-            <td><%= data.name %></td>
-            <td><%= "#{data.address1} #{data.address2} #{data.address3} #{data.town} #{data.postcode} #{data.postcode1}" %></td>
-            
-            <td>£<%= data.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></td>
-            <td><%= data.bond %></td>
-            <td><%= data.beds %></td>
-            <td><%= data.bath %></td>
-            <td><%= data.tenant_criteria %></td>
-            
-            <td><a href=<%="/users/#{property.user.id}"%>><%= "#{property.user.first_name} #{property.user.last_name}" %></a></td>
-            <td><%= (property.agent.nil? || property.agent.name=="Landlord") ? "" : "#{property.agent.name}" %></td>
-            <td><%= property.user.plan.humanize %></td>
-            
-            <td>
-              <%= link_to 'Show', "/properties_detail/"+property.slug %>
-              <%if property.approval_status=="waiting" && !property.property_changes.empty?%>
-                <%= link_to 'View Changes', change_property_path(property), :method=>:get, id: "changes_#{property.id}" %>
-              <%else%>
-                <%= link_to 'Edit', edit_property_path(property), :method=>:get, id: "edit_#{property.id}", class: "#{property.approval_status} edit_property" %>
-              <%end%>
-
-              <%= link_to 'Delete', property, method: :delete, data: { confirm: 'Are you sure?' } %>
-            </td>
-
-            <td>
-              <%= link_to 'Main', brochure_path(:id => property.id, format: 'pdf') %>
-              <%= link_to 'A3', brochure1_path(:id => property.id, format: 'pdf') %>
-              <%= link_to 'A4', brochure2_path(:id => property.id, format: 'pdf') %>
-            </td>
-            <td><%=property.seal_approved ? 'Yes' : 'No'%></td>
-
-            <td>
-              <div class="" id= <%="approve_#{property.id}"%>>
-                <%if property.approval_status=="waiting"%>
-                  <%= button_to 'Approve', 
-                  {:controller => "properties", :action => "approve", :id => property.id, 
-                    :status => 'approved'},
-                    :class=>'btn btn-danger approve add_loader', 
-                    :method=>:post, :remote=>true %>
-                    <%= button_to 'Unapprove', 
-                  {:controller => "properties", :action => "approve", :id => property.id, 
-                    :status => 'unapprove'},
-                    :class=>'btn btn-success unapprove add_loader', 
-                    :method=>:post, :remote=>true %>
-                <%else%>
-                  <%= button_to (property.approval_status == "approved" ? 'Unapprove' : 'Approve'), 
-                  {:controller => "properties", :action => "approve", :id => property.id, 
-                    :status => property.approval_status == "approved" ? 'unapprove' : 'approved'},
-                    :class=>property.approval_status == "approved" ? 'btn btn-success add_loader' : 'btn btn-danger add_loader', 
-                    :method=>:post, :remote=>true %>
-                <%end%>
-              </div>
-            </td>
-            
+      <table id="prop_info">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Price</th>
+            <th>Bond</th>
+            <th>Beds</th>
+            <th>Bath</th>
+            <th>Tenant Criteria</th>
+            <th>Landlord</th>
+            <th>Agent</th>
+            <th>Plan</th>
+            <th>Action</th>
+            <th>Brochure</th>
+            <th>Seal Approved</th>
+            <th>Approval Status</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          <% @properties.each_with_index do |property,i| %>
+            <% data = property%>
+            
+            <tr class="<%= property_user(property) %>">
+              
+              <td><%= data.name %></td>
+              <td><%= "#{data.address1} #{data.address2} #{data.address3} #{data.town} #{data.postcode} #{data.postcode1}" %></td>
+              
+              <td>£<%= data.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></td>
+              <td><%= data.bond %></td>
+              <td><%= data.beds %></td>
+              <td><%= data.bath %></td>
+              <td><%= data.tenant_criteria %></td>
+              
+              <td><a href=<%="/users/#{property.user.id}"%>><%= "#{property.user.first_name} #{property.user.last_name}" %></a></td>
+              <td><%= (property.agent.nil? || property.agent.name=="Landlord") ? "" : "#{property.agent.name}" %></td>
+              <td><%= property.user.plan.humanize %></td>
+              
+              <td>
+                <%= link_to 'Show', "/properties_detail/"+property.slug %>
+                <%if property.approval_status=="waiting" && !property.property_changes.empty?%>
+                  <%= link_to 'View Changes', change_property_path(property), :method=>:get, id: "changes_#{property.id}" %>
+                <%else%>
+                  <%= link_to 'Edit', edit_property_path(property), :method=>:get, id: "edit_#{property.id}", class: "#{property.approval_status} edit_property" %>
+                <%end%>
+
+                <%= link_to 'Delete', property, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </td>
+
+              <td>
+                <%= link_to 'Main', brochure_path(:id => property.id, format: 'pdf') %>
+                <%= link_to 'A3', brochure1_path(:id => property.id, format: 'pdf') %>
+                <%= link_to 'A4', brochure2_path(:id => property.id, format: 'pdf') %>
+              </td>
+              <td><%=property.seal_approved ? 'Yes' : 'No'%></td>
+
+              <td>
+                <div class="" id= <%="approve_#{property.id}"%>>
+                  <%if property.approval_status=="waiting"%>
+                    <%= button_to 'Approve', 
+                    {:controller => "properties", :action => "approve", :id => property.id, 
+                      :status => 'approved'},
+                      :class=>'btn btn-danger approve add_loader', 
+                      :method=>:post, :remote=>true %>
+                      <%= button_to 'Unapprove', 
+                    {:controller => "properties", :action => "approve", :id => property.id, 
+                      :status => 'unapprove'},
+                      :class=>'btn btn-success unapprove add_loader', 
+                      :method=>:post, :remote=>true %>
+                  <%else%>
+                    <%= button_to (property.approval_status == "approved" ? 'Unapprove' : 'Approve'), 
+                    {:controller => "properties", :action => "approve", :id => property.id, 
+                      :status => property.approval_status == "approved" ? 'unapprove' : 'approved'},
+                      :class=>property.approval_status == "approved" ? 'btn btn-success add_loader' : 'btn btn-danger add_loader', 
+                      :method=>:post, :remote=>true %>
+                  <%end%>
+                </div>
+              </td>
+              
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 
@@ -110,7 +112,10 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $("#prop_info").dataTable()
+    // $("#prop_info").dataTable()
+    $('#prop_info').DataTable( {
+        responsive: true
+    } );
   })
 
   $(".add_loader").click(function(e){

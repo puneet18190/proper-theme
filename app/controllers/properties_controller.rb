@@ -946,7 +946,7 @@ class PropertiesController < ApplicationController
   end
 
   def properties_prospective
-    @properties = Property.where.not("approval_status = ?", "approved").includes(:user).includes(:agent).includes(:tenants)
+    @properties = Property.where.not("approval_status = ?", "approved").includes(:user).includes(:agent)
   end
 
   def properties_reserved
