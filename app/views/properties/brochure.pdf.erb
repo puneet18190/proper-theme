@@ -17,7 +17,7 @@
     <%end%>  
     <div style="font-size:40px;margin:10px;font-family:arial;font-weight: bold"><center><b><%="#{@properties.address3} #{@properties.town}"%></b></center></div>
     <!-- <div style="font-size:40px;margin:10px;font-family:arial"><center><b><%#="#{@properties.town}"%></b></center></div> -->
-    <div style="font-size:40px;margin:10px;font-family:arial;font-weight: bold"><center><b><%="#{@properties.postcode.to_s} #{@properties.postcode1.to_s}"%></b></center></div>
+    <div style="font-size:40px;margin:10px;font-family:arial;font-weight: bold"><center><b><%="#{@properties.postcode.to_s.upcase} #{@properties.postcode1.to_s.upcase}"%></b></center></div>
   </div>
 
   <div class="desc-type for-sale" style="height:auto;width:auto;position:absolute;top:530px; padding:25px;left:202px;color:white;font-size:30px;background: #FF6666;font-weight: bold;z-index:1;opacity:0.8"><%=property_status(@properties.category, @properties.status) %></div>

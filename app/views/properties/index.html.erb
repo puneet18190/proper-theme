@@ -62,7 +62,7 @@
               <% if current_user.status == "landlord" %>
                 <td><%= "#{data.address1} #{data.address2} #{data.address3} #{data.town}" %></td>
               <%else%>
-                <td><%= "#{data.address1} #{data.address2} #{data.address3} #{data.town} #{data.postcode} #{data.postcode1}" %></td>
+                <td><%= "#{data.address1} #{data.address2} #{data.address3} #{data.town} #{data.postcode.to_s.upcase} #{data.postcode1.to_s.upcase}" %></td>
               <%end%>
               
               <td>£<%= data.price.to_i.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></td>
