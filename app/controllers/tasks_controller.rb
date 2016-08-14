@@ -71,6 +71,8 @@ class TasksController < ApplicationController
       @data = Property.where({visibility: true, approval_status: "approved"}).page(params[:page].blank? ? 1 : params[:page]).per(5).order("#{condition} #{sort}").includes(:agent).includes(:user).order("status ASC,created_at DESC")
     elsif type=="to_let"
       @data = Property.where({visibility: true, approval_status: "approved", status: "Available", category: "Rent"}).page(params[:page].blank? ? 1 : params[:page]).per(5).order("#{condition} #{sort}").includes(:agent).includes(:user).order("status ASC,created_at DESC")
+    elsif type=="let_agreed"
+      @data = Property.where({visibility: true, approval_status: "approved", status: "Let Agreed", category: "Rent"}).page(params[:page].blank? ? 1 : params[:page]).per(5).order("#{condition} #{sort}").includes(:agent).includes(:user).order("status ASC,created_at DESC")
     else
       @data = Property.where({visibility: true, approval_status: "approved", status: "Available", category: "Sale"}).page(params[:page].blank? ? 1 : params[:page]).per(5).order("#{condition} #{sort}").includes(:agent).includes(:user).order("status ASC,created_at DESC")
     end      
