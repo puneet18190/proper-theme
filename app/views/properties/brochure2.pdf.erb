@@ -46,7 +46,6 @@
   <% unless @properties.image2.url().nil? %>
     <div style="float:left;width:1300px;height:640px;">
       <% p_image = params[:high_res]=="true" ? @properties.image2.url() : @properties.image2.url(:large)%>
-      <%#=image_tag(p_image.gsub("https","http"), :height=> "550",:width=>"625") %>
       <%=image_tag(p_image.gsub("https","http"), :height=> "640",:width=>"1300") %>
     </div>
   <%end%>
@@ -71,7 +70,7 @@
   <% unless @properties.image5.url().nil? %>
     <div style="float:left;width:625px;height:550px;margin-top:25px">
       <% p_image = params[:high_res]=="true" ? @properties.image5.url() : @properties.image5.url(:large)%>
-      <%#=image_tag(p_image.gsub("https","http"), :height=> "640",:width=>"1300") %>
+      <%=image_tag(p_image.gsub("https","http"), :height=> "550",:width=>"625") %>
     </div>
   <%end%>
   <div style="left:60px;margin-top:10px;bottom:0;position:absolute;">
