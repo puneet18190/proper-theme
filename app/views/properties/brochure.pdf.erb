@@ -139,27 +139,27 @@
       <%=image_tag(p_image.gsub("https","http"), :height=> "680",:width=>"1290") %>
     </div>
   <%end%>
-  <% unless @properties.image3.url().nil? %>
-    <div style="float:right;width:625px;margin:5px;margin-top:25px">
-      <% p_image = params[:high_res]=="true" ? @properties.image3.url() : @properties.image3.url(:large)%>
-      <%=image_tag(p_image.gsub("https","http"), :height=> "525",:width=>"625") %>
-    </div>
-  <%end%>
   <% unless @properties.image4.url().nil? %>
-    <div style="float:left;width:625px;margin:5px;margin-top:25px">
+    <div style="float:right;width:625px;margin:5px;margin-top:25px">
       <% p_image = params[:high_res]=="true" ? @properties.image4.url() : @properties.image4.url(:large)%>
       <%=image_tag(p_image.gsub("https","http"), :height=> "525",:width=>"625") %>
     </div>
   <%end%>
-  <% unless @properties.image5.url().nil? %>
-    <div style="float:right;width:625px;margin:5px;margin-top:25px">
-      <% p_image = params[:high_res]=="true" ? @properties.image5.url() : @properties.image5.url(:large)%>
+  <% unless @properties.image3.url().nil? %>
+    <div style="float:left;width:625px;margin:5px;margin-top:25px">
+      <% p_image = params[:high_res]=="true" ? @properties.image3.url() : @properties.image3.url(:large)%>
       <%=image_tag(p_image.gsub("https","http"), :height=> "525",:width=>"625") %>
     </div>
   <%end%>
   <% unless @properties.image6.url().nil? %>
-    <div style="float:left;width:625px;margin:5px;margin-top:25px">
+    <div style="float:right;width:625px;margin:5px;margin-top:25px">
       <% p_image = params[:high_res]=="true" ? @properties.image6.url() : @properties.image6.url(:large)%>
+      <%=image_tag(p_image.gsub("https","http"), :height=> "525",:width=>"625") %>
+    </div>
+  <%end%>
+  <% unless @properties.image5.url().nil? %>
+    <div style="float:left;width:625px;margin:5px;margin-top:25px">
+      <% p_image = params[:high_res]=="true" ? @properties.image5.url() : @properties.image5.url(:large)%>
       <%=image_tag(p_image.gsub("https","http"), :height=> "525",:width=>"625") %>
     </div>
   <%end%>

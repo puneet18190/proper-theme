@@ -879,15 +879,15 @@ class PropertiesController < ApplicationController
   end
 
   def properties_available
-    @properties = Property.where("category = ?", "Rent").where("stage = ? OR status = ?", "Available", "Available").includes(:user).includes(:agent)
+    @properties = Property.where("approval_status = ? AND status = ?", "approved", "Available").includes(:user).includes(:agent)
   end
 
   def properties_let_agreed
-    @properties = Property.where("category = ?", "Rent").where("stage = ? OR status = ?", "Let Agreed", "Let Agreed").includes(:user).includes(:agent)
+    @properties = Property.where("approval_status = ? AND status = ? AND managed = ?", "approved", "Let Agreed", false).includes(:user).includes(:agent)
   end
 
   def properties_managed
-    @properties = Property.where("category = ? AND managed = ?", "Rent", true).includes(:user).includes(:agent).includes(:tenants)
+    @properties = Property.where("approval_status = ? AND status = ? AND managed = ?", "approved", "Let Agreed", true).includes(:user).includes(:agent).includes(:tenants)
   end
 
   def properties_sale
@@ -950,7 +950,7 @@ class PropertiesController < ApplicationController
   end
 
   def properties_reserved
-    @properties = Property.where("status = ? OR stage = ? OR stage = ?", "Reserved", "On Hold/Awaiting Referencing", "Subject to Tenancy").includes(:user).includes(:agent)
+    @properties = Property.where("approval_status = ? AND status = ?", "approved", "Reserved").includes(:user).includes(:agent)
   end
 
   def properties_seller_prospective
