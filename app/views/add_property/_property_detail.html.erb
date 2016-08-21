@@ -41,9 +41,9 @@
       <div class="field">
         <%= key.label :key_num, "Key", style: "float: left; width: 50px" %>
         <% if params[:action] == "create" %>
-          <%= f.text_field :key_num %>
+          <%= f.text_field :key_num, style: "margin-top: 0;margin-left: 10px" %>
         <% else %>
-          <%= f.text_field :key_num, value: @property.key_books.map(&:name).join(",") %>
+          <%= f.text_field :key_num, value: @property.key_books.map(&:name).join(","), style: "margin-top: 0;margin-left: 10px" %>
         <% end %>
       </div>
     <%end%>
