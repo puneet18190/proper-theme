@@ -39,6 +39,7 @@
 
             <% if current_user.status == "admin" %>
               <th>Brochure</th>
+              <th>Visibility</th>
               <th>Seal Approved</th>
             <%end%>
 
@@ -94,6 +95,7 @@
                   <%= link_to 'A3', brochure1_path(:id => property.id, format: 'pdf', high_res: true) %>
                   <%= link_to 'A4', brochure2_path(:id => property.id, format: 'pdf', high_res: true) %>
                 </td>
+                <td><%=property.visibility ? 'Yes' : 'No'%></td>
                 <td><%=property.seal_approved ? 'Yes' : 'No'%></td>
               <%end%>
 
