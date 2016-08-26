@@ -45,6 +45,7 @@ task :zoopla => :environment do
       # ftp.chdir("/live/upload")
       ftp.putbinaryfile(t.path,"70273.zip")
     end
+    Blm.where(name: "zoopla").first.update_attributes(upload_time: DateTime.now)
     # Net::FTP.open('mouseprice.net', 'SealProp', 'SealProp77') do |ftp|
     #   ftp.passive = true
     #   # ftp.chdir("/")

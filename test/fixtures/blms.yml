@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: blms
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  upload_time :datetime
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  upload_time: 2016-08-26 17:51:11
+
+two:
+  name: MyString
+  upload_time: 2016-08-26 17:51:11
