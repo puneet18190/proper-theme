@@ -25,7 +25,7 @@ class TenantsController < ApplicationController
 			user2 = TenantProperty.all.map(&:tenant_id).compact.uniq
 			@tenants = User.find(user1 - user2)
 		elsif params[:id] == "vetted"
-
+			@tenants = []
 		elsif params[:id] == "active"
 			p = Property.where(status: "Let Agreed").map(&:id).uniq
 			users = TenantProperty.where(property_id: p).map(&:tenant_id).compact.uniq
