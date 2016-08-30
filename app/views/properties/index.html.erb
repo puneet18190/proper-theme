@@ -26,11 +26,11 @@
             <th>Name</th>
             <th>Address</th>
             <th>Price</th>
-            <th>Beds</th>
+            <th>Bed</th>
             <th>Bath</th>
             <th>Category</th>
             <% if current_user.status == "admin" %>
-              <th>Landlord</th>
+              <th>LL</th>
               <th>Agent</th>
               <th>Tenant</th>
               <th>Plan</th>
@@ -39,7 +39,8 @@
 
             <% if current_user.status == "admin" %>
               <th>Brochure</th>
-              <th>Visibility</th>
+              <th>Visible</th>
+              <th>Create</th>
               <th>Seal Approved</th>
             <%end%>
 
@@ -96,6 +97,7 @@
                   <%= link_to 'A4', brochure2_path(:id => property.id, format: 'pdf', high_res: true) %>
                 </td>
                 <td><%=property.visibility ? 'Yes' : 'No'%></td>
+                <td><%=property.created_at.strftime("%d/%m/%y")%></td>
                 <td><%=property.seal_approved ? 'Yes' : 'No'%></td>
               <%end%>
 
