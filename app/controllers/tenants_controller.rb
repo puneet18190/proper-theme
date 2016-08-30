@@ -1,5 +1,5 @@
 class TenantsController < ApplicationController
-	before_action :set_tenant, only: [:show, :edit, :update, :destroy]
+	before_action :set_tenant, only: [:edit, :update, :destroy]
 	def index
 		@tenants = User.where(status: "tenant")
 	end
@@ -17,6 +17,22 @@ class TenantsController < ApplicationController
 		@user.skip_confirmation!
 		@user.save!
 		redirect_to tenants_path
+	end
+
+	def show
+		if params[:id] == "prospective"
+			user1 = User.where(status: "tenant").map(&:id)
+			user2 = TenantProperty.all.map(&:tenant_id).compact.uniq
+			@tenants = User.find(user1 - user2)
+		elsif params[:id] == "vetted"
+
+		elsif params[:id] == "active"
+			p = Property.where(status: "Let Agreed").map(&:id).uniq
+			users = TenantProperty.where(property_id: p).map(&:tenant_id).compact.uniq
+			@tenants = User.find(users)
+		elsif params[:id] == "permitted_occupiers"
+			@tenants = User.where(status: "tenant", po: true)
+		end
 	end
 
 	def edit
