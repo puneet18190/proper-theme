@@ -100,6 +100,7 @@ class PropertiesController < ApplicationController
     @property.add_key(params[:property][:key_num], key_data["key_number"], "create")
 
     @property.update_attributes(:payment=>true, :property_create_user => "admin") if current_user.status == "admin"
+    Blm.where(name: "onthemarket").first.update_attributes(count: 0)
     if current_user.status == "landlord"
       @property.update_attributes(:property_create_user => "landlord")
       redirect_to "/properties", notice: "Once you have finished editing your property, please submit it for approval."

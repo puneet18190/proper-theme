@@ -7,6 +7,7 @@
 #  upload_time :datetime
 #  created_at  :datetime
 #  updated_at  :datetime
+#  count       :integer          default(0)
 #
 
 class Blm < ActiveRecord::Base
