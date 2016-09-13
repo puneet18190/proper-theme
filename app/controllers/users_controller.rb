@@ -187,13 +187,17 @@ class UsersController < ApplicationController
 	end
 
 	def save_appraisal
-		if User.where(email: params[:appraisal][:email]).empty? && Appraisal.where(email: params[:appraisal][:email]).empty?
-			@appraisal = Appraisal.new(appraisal_params)
-			@appraisal.save
-			UserMailer.book_appraisal(@appraisal).deliver
-			redirect_to :back, notice: "We will be in touch shortly to arrange your free property appraisal."
+		if verify_recaptcha
+			#if User.where(email: params[:appraisal][:email]).empty? && Appraisal.where(email: params[:appraisal][:email]).empty?
+				@appraisal = Appraisal.new(appraisal_params)
+				@appraisal.save
+				UserMailer.book_appraisal(@appraisal).deliver
+				redirect_to "/", notice: "We will be in touch shortly to arrange your free property appraisal."
+			#else
+			#	redirect_to "/bookanappraisal", alert: "Email address already registered."
+			#end
 		else
-			redirect_to :back, alert: "Email address already registered."
+			redirect_to :back, alert: "Please re-enter captcha......"
 		end
 	end
 
