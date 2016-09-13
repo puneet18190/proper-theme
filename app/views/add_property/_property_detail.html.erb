@@ -139,7 +139,7 @@
     </div>
     <div class="field" >
       <%= f.label :description, "Main Description" %>
-      <%= f.text_area :description, :class=>"long_desc" %>
+      <%= f.text_area :description, :class=>"long_desc", :value => @property.description.blank? ? Setting.first.property_description : @property.description%>
     </div>
     <div class="field" style="height: 30px">
       <label style="margin:0">EPC</label>
