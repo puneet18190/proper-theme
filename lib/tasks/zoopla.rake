@@ -4,6 +4,7 @@ task :zoopla => :environment do
   require 'zip'
   
   # Thread.new do
+  if Blm.where(name: "onthemarket").first.count > 1
     puts "===============Upload Start========================="
     UserMailer.blm_status("BLM Upload on Zoopla Start").deliver
     #@data = Property.where(:approval_status=>"approved", :zoopla=>true)
@@ -54,5 +55,6 @@ task :zoopla => :environment do
     t.close
     UserMailer.blm_status("BLM Uploaded Successfully on Zoopla.").deliver
     puts "===============Upload Complete========================="
-  # end
+  end
+  #end
 end

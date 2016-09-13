@@ -62,7 +62,9 @@
 <script type="text/javascript">
   $(document).ready(function(){
     var form_original_data = $("form.edit_property").serialize(); 
+    var flag = false
     $('#wrapper').click(function(e){
+      var eve = ""
       if ($("form.edit_property").serialize() != form_original_data) {
         //$("input.btn-proper[type='submit']").trigger('click')
         // $.confirm({
@@ -78,6 +80,9 @@
         //   }
         // })
         e.preventDefault();
+        e.stopPropagation();
+        eve = e
+        console.log(eve)
         // alert("Please update the changes first.")
         $.confirm({
           title: 'Confirm!',
@@ -85,7 +90,9 @@
           cancelButton: 'Save',
           content: 'Please Update the changes first.',
           confirm: function () {
-              
+            if ((eve.target.attributes.href != undefined) && (eve.target.attributes.href.value.search("/") == 0)){
+              window.location.href = eve.target.attributes.href.value
+            }
           },
           cancel: function () {
             $("form.edit_property").submit()

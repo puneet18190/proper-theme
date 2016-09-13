@@ -44,7 +44,11 @@ task :upload_blm => :environment do
       ftp.chdir("/live/upload")
       ftp.putbinaryfile(t.path,"39545.zip")
     end
-    Blm.where(name: "onthemarket").first.update_attributes(upload_time: DateTime.now)
+    otm = Blm.where(name: "onthemarket").first
+    otm.count = otm.count + 1
+    otm.upload_time = DateTime.now
+    otm.save
+
     # Net::FTP.open('mouseprice.net', 'SealProp', 'SealProp77') do |ftp|
     #   ftp.passive = true
     #   # ftp.chdir("/")
