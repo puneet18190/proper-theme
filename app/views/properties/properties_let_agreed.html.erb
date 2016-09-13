@@ -51,7 +51,7 @@
               <td><%= data.bath %></td>
               
               <td><a href=<%="/users/#{property.user.id}"%>><%= "#{property.user.first_name} #{property.user.last_name}" %></a></td>
-              <td></td>
+              <td><%=User.where(status: "tenant", id: TenantProperty.where(property_id: property.id).map(&:tenant_id)).map(&:first_name).join(", ")%></td>
               <td><%= (property.agent.nil? || property.agent.name=="Landlord") ? "" : "#{property.agent.name}" %></td>
               <td><%= property.user.plan.humanize %></td>
               <td><%= data.let_agreed_date.strftime("%d-%m-%Y") unless data.let_agreed_date.blank? %></td>
