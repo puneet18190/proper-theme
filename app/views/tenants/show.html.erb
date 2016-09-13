@@ -35,7 +35,12 @@
               <tr>
                 <td><%= "#{l.first_name} #{l.last_name}" %></td>
                 <td><%= l.email.include?("@dummy.com") ? "" : l.email %></td>
-                <td><%= "#{l.address1} #{l.address2} #{l.address3}" %></td>
+                <% if params[:action] == "active" %>
+                  <% data = Property.where(id: TenantProperty.where(tenant_id: tenant.id).first.property_id ) %>
+                  <td><%= "#{data.address1} #{data.address2} #{data.address3} #{data.town} #{data.postcode} #{data.postcode1}" %></td>
+                <%else%>
+                  <td><%= "#{l.address1} #{l.address2} #{l.address3}" %></td>
+                <%end%>
                 <td><%= l.phone %></td>
                 <td><%= l.tenant_status %></td>
                 <td>
