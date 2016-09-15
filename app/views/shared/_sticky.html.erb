@@ -199,6 +199,10 @@
             item_url = '/sticky_user_search_data'
         }
 
+        setTimeout(function(){
+          $(".record_search_menu").trigger('mouseover')
+        }, 500);
+
         $.ajax({
             url: item_url,
             data: {id: item_id}
@@ -229,9 +233,6 @@
             //         "<tr><td> </td><td></td><td><a class='btn btn-proper' href='/tenants/"+res.user.id+"/edit '>Go to Record</a></td></tr>"
             //     ).insertAfter($("#record_search").parent().find("table tr")[0])
             // }
-            setTimeout(function(){
-              $(".record_search_menu").trigger('mouseover')
-            }, 500);
         })
     })
 
@@ -247,6 +248,10 @@
 
     $('#search_property').bind('railsAutocomplete.select', function(event, data){
         var property_id = data.item.id
+        setTimeout(function(){
+          $(".key_menu").trigger('mouseover')
+        }, 500);
+
         $.ajax({
             url: '/get_property_data',
             // dataType: 'json',
