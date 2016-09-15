@@ -30,6 +30,7 @@
             <th>Agent</th>
             <th>Tenancy Renewal Date</th>
             <th>Action</th>
+            <th style="display:none">Created Date</th>
           </tr>
         </thead>
 
@@ -56,6 +57,7 @@
 
                 <%= link_to 'Delete', property, method: :delete, data: { confirm: 'Are you sure?' } %>
               </td>
+              <td style="display:none"><%=property.created_at.strftime("%D")%></td>
             </tr>
           <% end %>
         </tbody>
@@ -70,7 +72,8 @@
   $(document).ready(function(){
     // $("#prop_info").dataTable()
     $('#prop_info').DataTable( {
-        responsive: true
+        responsive: true,
+        "order": [[ 7, "desc" ]]
     } );
   })
 

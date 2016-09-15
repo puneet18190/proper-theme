@@ -35,6 +35,7 @@
             <th>Let Date</th>
             <th>Action</th>
             <th>Approval Status</th>
+            <th style="display:none">Created Date</th>
           </tr>
         </thead>
 
@@ -88,7 +89,7 @@
                   <%end%>
                 </div>
               </td>
-              
+              <td style="display:none"><%=property.created_at.strftime("%D")%></td>
             </tr>
           <% end %>
         </tbody>
@@ -103,7 +104,8 @@
   $(document).ready(function(){
     // $("#prop_info").dataTable()
     $('#prop_info').DataTable( {
-        responsive: true
+        responsive: true,
+        "order": [[ 12, "desc" ]]
     } );
   })
 

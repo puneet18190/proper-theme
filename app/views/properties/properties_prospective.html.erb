@@ -37,6 +37,7 @@
             <th>Brochure</th>
             <th>Seal Approved</th>
             <th>Approval Status</th>
+            <th style="display:none">Created Date</th>
           </tr>
         </thead>
 
@@ -97,6 +98,8 @@
                       :class=>property.approval_status == "approved" ? 'btn btn-success add_loader' : 'btn btn-danger add_loader', 
                       :method=>:post, :remote=>true %>
                   <%end%>
+
+                  <td style="display:none"><%=property.created_at.strftime("%D")%></td>
                 </div>
               </td>
               
@@ -114,7 +117,8 @@
   $(document).ready(function(){
     // $("#prop_info").dataTable()
     $('#prop_info').DataTable( {
-        responsive: true
+        responsive: true,
+        "order": [[ 14, "desc" ]]
     } );
   })
 
