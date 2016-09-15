@@ -26,6 +26,9 @@ class TenantsController < ApplicationController
 			@tenants = User.find(user1 - user2)
 		elsif params[:id] == "vetted"
 			@tenants = []
+			Vetting.where("vetting_type=? AND outcome = ?", "standard", "Pass").map(&:property_id).each do |p|
+				@tenants << User.find (TenantProperty.where(property_id: p).first.tenant_id)
+			end
 		elsif params[:id] == "active"
 			p = Property.where(status: "Let Agreed").map(&:id).uniq
 			users = TenantProperty.where(property_id: p).map(&:tenant_id).compact.uniq
