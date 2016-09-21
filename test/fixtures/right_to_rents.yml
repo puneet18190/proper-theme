@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: right_to_rents
+#
+#  id          :integer          not null, primary key
+#  date_check  :date
+#  expiry_doc  :date
+#  doc_recheck :boolean
+#  recheck_due :date
+#  property_id :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_check: 2016-09-18
+  expiry_doc: 2016-09-18
+  doc_recheck: false
+  recheck_due: 2016-09-18
+  property_id: 1
+
+two:
+  date_check: 2016-09-18
+  expiry_doc: 2016-09-18
+  doc_recheck: false
+  recheck_due: 2016-09-18
+  property_id: 1

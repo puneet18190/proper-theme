@@ -55,7 +55,6 @@
 #  garden               :string(255)      default("No")
 #  dg                   :string(255)      default(FALSE)
 #  seal_approved        :boolean          default(FALSE)
-#  property_type        :string(255)
 #  pets                 :string(255)      default("No")
 #  ensuite              :string(255)      default("No")
 #  town                 :string(255)
@@ -66,6 +65,7 @@
 #  furnished            :string(255)
 #  feature1             :string(255)
 #  feature2             :string(255)
+#  property_type        :integer
 #  let_type_id          :string(255)      default("Not Specified")
 #  let_furn_id          :string(255)      default("Not Specified")
 #  epc                  :string(255)
@@ -82,7 +82,6 @@
 #  stage                :string(255)
 #  managed              :boolean
 #  board                :boolean
-#  tenant_id            :integer
 #  let_agreed_date      :datetime
 #  sold_date            :datetime
 #  property_create_user :string(255)
@@ -93,6 +92,7 @@
 #  cp12_due_date        :date
 #  esc_date_complete    :date
 #  esc_due_date         :date
+#  tenant_id            :integer
 #  mouse_price          :boolean          default(TRUE)
 #  dss_move             :boolean          default(TRUE)
 #  home                 :boolean          default(TRUE)
@@ -102,6 +102,7 @@
 #  zoopla               :boolean          default(TRUE)
 #  nethouse             :boolean          default(TRUE)
 #  let_rent_frequency   :integer          default(1)
+#  portal_visibility    :boolean          default(TRUE)
 #
 # Indexes
 #
@@ -151,7 +152,18 @@ class Property < ActiveRecord::Base
   has_one :key
   has_one :vetting
   has_many :key_books
+  has_one :property_info
+  has_one :guarantor
+  has_one :right_to_rent
+  has_one :tenancy_term
+  has_one :pet_detail
+  has_many :tenant_histroys
   accepts_nested_attributes_for :vetting, :allow_destroy => true, :update_only => true
+  accepts_nested_attributes_for :property_info, :allow_destroy => true, :update_only => true
+  accepts_nested_attributes_for :guarantor, :allow_destroy => true, :update_only => true
+  accepts_nested_attributes_for :right_to_rent, :allow_destroy => true, :update_only => true
+  accepts_nested_attributes_for :tenancy_term, :allow_destroy => true, :update_only => true
+  accepts_nested_attributes_for :pet_detail, :allow_destroy => true, :update_only => true
 
   # after_initialize do
   #     self.vetting ||= self.build_vetting()

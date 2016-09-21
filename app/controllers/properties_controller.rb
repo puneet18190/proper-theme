@@ -39,6 +39,11 @@ class PropertiesController < ApplicationController
         @tenant = @property.tenants.build  #@property.build_tenant
         @key = @property.build_key
         @vetting = @property.build_vetting
+        @property_info = @property.build_property_info
+        @guarantor = @property.build_guarantor
+        @right_to_rent = @property.build_right_to_rent
+        @tenancy_term = @property.build_tenancy_term
+        @pet_detail = @property.build_pet_detail
         respond_with(@property)
       end
     end    
@@ -63,6 +68,12 @@ class PropertiesController < ApplicationController
       end
       @key = @property.key.nil? ? @property.build_key : @property.key
       @vetting = @property.vetting.nil? ? @property.build_vetting : @property.vetting
+      @property_info = @property.property_info.blank? ? @property.build_property_info : @property.property_info
+      @guarantor = @property.guarantor.blank? ? @property.build_guarantor : @property.guarantor
+      @right_to_rent = @property.right_to_rent.blank? ? @property.build_right_to_rent : @property.right_to_rent
+      @tenancy_term = @property.tenancy_term.nil? ? @property.build_tenancy_term : @property.tenancy_term
+      @pet_detail = @property.pet_detail.nil? ? @property.build_pet_detail : @property.pet_detail
+      @tenancy_history = @property.tenant_histroys
     end
   end
 
@@ -964,7 +975,14 @@ class PropertiesController < ApplicationController
     end
 
     def property_params
-      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status, :accredited, :licensed, :tenant_criteria, :cp12, :esc, :bond, :deal, :stage, :managed, :board, :tenant_id, :let_agreed_date, :sold_date, :marketing_notes, :epc_date_complete, :epc_due_date,:cp12_date_complete, :cp12_due_date,:esc_date_complete, :esc_due_date, :dss_move, :mouse_price,:home,:wonder_property, :key_assign_date, :key_unassign_date, :po, :zoopla, :nethouse, :let_rent_frequency, vetting_attributes: [ :vetting_type, :submission_date, :outcome_date, :outcome, :vetting_doc, :guarantor ])
+      params.require(:property).permit(:name, :address1, :address2, :address3, :postcode, :bath, :beds, :parking, :category, :image1, :image2, :image3, :image4, :image5, :image6, :image7, :image8, :image9, :image10, :description, :date, :visibility, :price, :let, :sold, :featured, :approved, :payment, :user_id, :agent_id, :coordinates, :latitude, :longitude,:gas_ch,:glazing,:parking_status,:car,:short_description,:tag_line,:dg,:garden,:seal_approved,:property_type,:pets,:ensuite,:town,:status,:postcode1,:qualifier,:summary,:furnished,:feature1,:feature2,:epc,:brochure_link,:let_type_id,:let_furn_id,:let_date_available,:otm, :approval_status, :accredited, :licensed, :tenant_criteria, :cp12, :esc, :bond, :deal, :stage, :managed, :board, :tenant_id, :let_agreed_date, :sold_date, :marketing_notes, :epc_date_complete, :epc_due_date,:cp12_date_complete, :cp12_due_date,:esc_date_complete, :esc_due_date, :dss_move, :mouse_price,:home,:wonder_property, :key_assign_date, :key_unassign_date, :po, :zoopla, :nethouse, :portal_visibility, :let_rent_frequency, 
+        vetting_attributes: [ :vetting_type, :submission_date, :outcome_date, :outcome, :vetting_doc, :guarantor ], 
+        property_info_attributes: [:battery, :battery_operated, :mains, :mains_operated, :carbon, :carbon_monoxide, :elec_meter_loc, :elec_last_supplier, :gas_meter_loc, :gas_last_supplier, :gas_valve, :water_meter_loc, :water_stopcock_loc, :bin_coll_day, :alarm_loc, :alarm_code ,:property_id], 
+        guarantor_attributes: [:firstname,:lastname,:previous_name,:dob,:address1,:address2,:address3,:postcode,:home_tel,:mobile_tel,:email,:emp_status,:emp_from,:job_title,:annual_inc,:ref_name,:ref_job,:ref_company,:ref_address,:ref_tel,:ref_email,:ref_rel,:outcome,:add_info,:property_id],
+        right_to_rent_attributes: [:date_check,:expiry_doc,:doc_recheck,:recheck_due,:property_id ],
+        tenancy_term_attributes: [ :start_date,:tenancy_length,:agreed_rent,:agreed_bond,:advanced_payment,:shared,:garden,:parking,:other,:water,:council_tax,:gas,:electricity,:tv_licence,:telephone,:broadband,:inventory,:guarantor_agreement,:epc,:rent_guide,:smoke_alarm,:pet,:property_id ],
+        pet_detail_attributes: [ :pet_name,:pet_type,:pet_breed,:pet_age ,:property_id ]
+      )
     end
 
     def property_changes_params

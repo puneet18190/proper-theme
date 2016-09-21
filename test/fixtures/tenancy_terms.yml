@@ -1,0 +1,85 @@
+# == Schema Information
+#
+# Table name: tenancy_terms
+#
+#  id                  :integer          not null, primary key
+#  start_date          :date
+#  tenancy_length      :string(255)
+#  agreed_rent         :string(255)
+#  agreed_bond         :string(255)
+#  advanced_payment    :string(255)
+#  shared              :boolean
+#  garden              :boolean
+#  parking             :boolean
+#  other               :boolean
+#  water               :boolean
+#  council_tax         :boolean
+#  gas                 :boolean
+#  electricity         :boolean
+#  tv_licence          :boolean
+#  telephone           :boolean
+#  broadband           :boolean
+#  inventory           :boolean
+#  guarantor_agreement :boolean
+#  epc                 :boolean
+#  rent_guide          :boolean
+#  smoke_alarm         :boolean
+#  pet                 :boolean
+#  property_id         :integer
+#  created_at          :datetime
+#  updated_at          :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_date: 2016-09-20
+  tenancy_length: MyString
+  agreed_rent: MyString
+  agreed_bond: MyString
+  advanced_payment: MyString
+  shared: false
+  garden: false
+  parking: false
+  other: false
+  water: false
+  council_tax: false
+  gas: false
+  electricity: false
+  tv_licence: false
+  telephone: false
+  broadband: false
+  other: false
+  inventory: false
+  guarantor_agreement: false
+  epc: false
+  rent_guide: false
+  smoke_alarm: false
+  pet: false
+  property_id: 1
+
+two:
+  start_date: 2016-09-20
+  tenancy_length: MyString
+  agreed_rent: MyString
+  agreed_bond: MyString
+  advanced_payment: MyString
+  shared: false
+  garden: false
+  parking: false
+  other: false
+  water: false
+  council_tax: false
+  gas: false
+  electricity: false
+  tv_licence: false
+  telephone: false
+  broadband: false
+  other: false
+  inventory: false
+  guarantor_agreement: false
+  epc: false
+  rent_guide: false
+  smoke_alarm: false
+  pet: false
+  property_id: 1

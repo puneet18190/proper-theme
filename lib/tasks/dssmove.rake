@@ -6,7 +6,7 @@ task :dssmove => :environment do
   # Thread.new do
     puts "===============Upload Start========================="
     UserMailer.blm_status("BLM Upload on DSSMove Start").deliver
-    @data = Property.where(:approval_status=>"approved", :dss_move=>true)
+    @data = Property.where(:approval_status=>"approved", :dss_move=>true, :portal_visibility => true)
     t = Tempfile.new("8266149499")
     Zip::OutputStream.open(t.path) do |z|
       @data.each_with_index do |item,i|

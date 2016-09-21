@@ -1,0 +1,59 @@
+<div id="right_to_rent" class="tab-pane fade">
+	<%= f.fields_for :right_to_rent do |p| %>
+		<div style="float:left;margin:10px;width:35%; padding-left:40px">
+		    <h3 style="margin-top:10px;padding:5px"><b>Right to Rent</b></h3>
+		    
+		    <div class="field date_check" style="height: 32px">
+		      <%= p.label :date_check,"Date of check", style: "display: inline" %>
+		      <%= p.date_select :date_check, {:use_short_month => true, include_blank: true}, { style: "margin-top: 0; margin-left: 0; display:inline; float: right; width: 70px"} %>
+		    </div>
+
+		    <div class="field expiry_doc" style="height: 32px">
+		      <%= p.label :expiry_doc,"Expiry of Document", style: "display: inline" %>
+		      <%= p.date_select :expiry_doc, {:use_short_month => true, include_blank: true}, {style: "margin-top: 0; margin-left: 0; display:inline; float: right; width: 70px"} %>
+		    </div>
+
+		    <div class="field" style="height: 32px">
+		      <%= p.label :doc_recheck,"Document Recheck", style: "display: inline" %>
+		      <%= p.select :doc_recheck,[['Yes', true], ['No', false]],{}, {style: "margin-top: 0; margin-left: 0; display:inline; float: right; width: 210px"} %>
+		    </div>
+
+		    <div class="field" style="height: 32px">
+		      <%= p.label :recheck_due,"Recheck due", style: "display: inline" %>
+		      <%= p.date_select :recheck_due, {:use_short_month => true, include_blank: true},{style: "margin-top: 0; margin-left: 0; display:inline; float: right; width: 70px"} %>
+		    </div>
+		</div>
+	<%end%>
+</div>
+
+<style type="text/css">
+	.date_check{
+
+	}
+</style>
+
+<script type="text/javascript">
+	$(".date_check select, .expiry_doc select").on('blur', function() {
+      	var year = $("#property_right_to_rent_attributes_date_check_1i").val()
+	    var month = $("#property_right_to_rent_attributes_date_check_2i").val()
+	    var date = $("#property_right_to_rent_attributes_date_check_3i").val()
+	    a=new Date(year,month,date)
+	    a.setFullYear(a.getFullYear() + 1)
+	    a.setDate(a.getDate() - 1)
+
+	    var year1 = $("#property_right_to_rent_attributes_expiry_doc_1i").val()
+	    var month1 = $("#property_right_to_rent_attributes_expiry_doc_2i").val()
+	    var date1 = $("#property_right_to_rent_attributes_expiry_doc_3i").val()
+	    b=new Date(year1,month1,date1)
+	
+		if(a > b){
+			var c = a;
+		}else{
+			var c = b;
+		}
+
+	    $("#property_right_to_rent_attributes_recheck_due_1i").val(c.getFullYear())
+	    $("#property_right_to_rent_attributes_recheck_due_2i").val(c.getMonth())
+	    $("#property_right_to_rent_attributes_recheck_due_3i").val(c.getDate())
+    })
+</script>

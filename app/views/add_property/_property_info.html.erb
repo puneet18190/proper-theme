@@ -1,0 +1,82 @@
+<div id="property_info" class="tab-pane fade">
+	<%= f.fields_for :property_info do |p| %>
+		<div style="float:left;margin:10px;width:35%; padding-left:40px">
+		    <h3 style="margin-top:10px;padding:5px"><b>Smoke alarms</b></h3>
+		    <div class="field" style="height: 32px">
+		      <%= p.label :battery_operated, "Battery Operated", style: "display: inline" %>
+		      <%= p.text_field :battery_operated, style: "margin-top: 0; margin-left: 0; display:inline; float: right; width: 150px; margin-left: 8px" %>
+		      <%= p.number_field :battery, style: "margin-top: 0; margin-left: 0; display:inline; width: 50px; float: right" %>
+		    </div>
+
+		    <div class="field" style="height: 32px">
+		      <%= p.label :mains_operated, "Mains Operated", style: "display: inline" %>
+		      <%= p.text_field :mains_operated, style: "margin-top: 0; margin-left: 0; display:inline; float: right; width: 150px; margin-left: 8px" %>
+		      <%= p.number_field :mains, style: "margin-top: 0; margin-left: 0; display:inline; width: 50px; float: right" %>
+		    </div>
+
+		    <div class="field" style="height: 32px">
+		      <%= p.label :carbon_monoxide, "Carbon Monoxide", style: "display: inline" %>
+		      <%= p.text_field :carbon_monoxide, style: "margin-top: 0; margin-left: 0; display:inline; float: right; width: 150px; margin-left: 8px" %>
+		      <%= p.number_field :carbon, style: "margin-top: 0; margin-left: 0; display:inline; width: 50px; float: right" %>
+		    </div>
+
+		    <h3 style="margin-top:20px;padding:5px"><b>Electricity Meter</b></h3>
+		    <div class="field" style="height: 32px">
+		      <%= p.label :elec_meter_loc,"Location", style: "display: inline" %>
+		      <%= p.text_field :elec_meter_loc, style: "margin-top: 0; margin-left: 0; display:inline; float: right" %>
+		    </div>
+
+		    <div class="field" style="height: 32px">
+		      <%= p.label :elec_last_supplier,"Last known supplier", style: "display: inline" %>
+		      <%= p.text_field :elec_last_supplier, style: "margin-top: 0; margin-left: 0; display:inline; float: right" %>
+		    </div>
+
+		    <h3 style="margin-top:20px;padding:5px"><b>Gas Meter</b></h3>
+		    <div class="field" style="height: 32px">
+		      <%= p.label :gas_meter_loc,"Location", style: "display: inline" %>
+		      <%= p.text_field :gas_meter_loc, style: "margin-top: 0; margin-left: 0; display:inline; float: right" %>
+		    </div>
+
+		    <div class="field" style="height: 32px">
+		      <%= p.label :gas_last_supplier,"Last known supplier", style: "display: inline" %>
+		      <%= p.text_field :gas_last_supplier, style: "margin-top: 0; margin-left: 0; display:inline; float: right" %>
+		    </div>
+
+		    <div class="field" style="height: 32px">
+		      <%= p.label :gas_valve,"Shut off valve", style: "display: inline" %>
+		      <%= p.text_field :gas_valve, style: "margin-top: 0; margin-left: 0; display:inline; float: right" %>
+		    </div>
+
+			<h3 style="margin-top:20px;padding:5px"><b>Water</b></h3>
+		    <div class="field" style="height: 32px">
+		      <%= p.label :water_meter_loc,"Location of Meter", style: "display: inline" %>
+		      <%= p.text_field :water_meter_loc, style: "margin-top: 0; margin-left: 0; display:inline; float: right" %>
+		    </div>
+
+		    <div class="field" style="height: 32px">
+		      <%= p.label :water_stopcock_loc,"Stopcock Location", style: "display: inline" %>
+		      <%= p.text_field :water_stopcock_loc, style: "margin-top: 0; margin-left: 0; display:inline; float: right" %>
+		    </div>
+
+		    <h3 style="margin-top:20px;padding:5px"><b>Bin Collection</b></h3>
+		    <div class="field" style="height: 32px">
+		      <%= p.label :bin_coll_day,"Day", style: "display: inline" %>
+		      <%= p.select :bin_coll_day,['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],{},  style: "margin-top: 0; margin-left: 0; display:inline; float: right" %>
+		    </div>
+
+		</div>
+
+		<div style="float:left;margin:10px;width:35%; padding-left:80px">
+		    <h3 style="margin-top:10px;padding:5px"><b>Alarm</b></h3>
+		    <div class="field" style="height: 32px">
+		      <%= p.label :alarm_loc,"Alarm Location", style: "display: inline" %>
+		      <%= p.text_field :alarm_loc, style: "margin-top: 0; margin-left: 0; display:inline; float: right" %>
+		    </div>
+
+		    <div class="field" style="height: 32px">
+		      <%= p.label :alarm_code, style: "display: inline" %>
+		      <%= p.text_field :alarm_code, style: "margin-top: 0; margin-left: 0; display:inline; float: right" %>
+		    </div>
+		</div>
+	<%end%>
+</div>

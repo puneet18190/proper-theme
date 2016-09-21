@@ -1,0 +1,89 @@
+# == Schema Information
+#
+# Table name: guarantors
+#
+#  id            :integer          not null, primary key
+#  firstname     :string(255)
+#  lastname      :string(255)
+#  previous_name :string(255)
+#  dob           :string(255)
+#  address1      :string(255)
+#  address2      :string(255)
+#  address3      :string(255)
+#  postcode      :string(255)
+#  home_tel      :string(255)
+#  mobile_tel    :string(255)
+#  email         :string(255)
+#  emp_status    :string(255)
+#  emp_from      :string(255)
+#  job_title     :string(255)
+#  annual_inc    :string(255)
+#  ref_name      :string(255)
+#  ref_job       :string(255)
+#  ref_company   :string(255)
+#  ref_address   :string(255)
+#  ref_tel       :string(255)
+#  ref_email     :string(255)
+#  ref_rel       :string(255)
+#  outcome       :string(255)
+#  add_info      :text
+#  property_id   :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  firstname: MyString
+  lastname: MyString
+  previous_name: MyString
+  dob: MyString
+  address1: MyString
+  address2: MyString
+  address3: MyString
+  postcode: MyString
+  home_tel: MyString
+  mobile_tel: MyString
+  email: MyString
+  emp_status: MyString
+  emp_from: MyString
+  job_title: MyString
+  annual_inc: MyString
+  ref_name: MyString
+  ref_job: MyString
+  ref_company: MyString
+  ref_address: MyString
+  ref_tel: MyString
+  ref_email: MyString
+  ref_rel: MyString
+  outcome: MyString
+  add_info: MyText
+  property_id: 1
+
+two:
+  firstname: MyString
+  lastname: MyString
+  previous_name: MyString
+  dob: MyString
+  address1: MyString
+  address2: MyString
+  address3: MyString
+  postcode: MyString
+  home_tel: MyString
+  mobile_tel: MyString
+  email: MyString
+  emp_status: MyString
+  emp_from: MyString
+  job_title: MyString
+  annual_inc: MyString
+  ref_name: MyString
+  ref_job: MyString
+  ref_company: MyString
+  ref_address: MyString
+  ref_tel: MyString
+  ref_email: MyString
+  ref_rel: MyString
+  outcome: MyString
+  add_info: MyText
+  property_id: 1

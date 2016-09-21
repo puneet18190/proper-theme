@@ -1,0 +1,65 @@
+# == Schema Information
+#
+# Table name: property_infos
+#
+#  id                 :integer          not null, primary key
+#  battery            :integer
+#  battery_operated   :string(255)
+#  mains              :integer
+#  mains_operated     :string(255)
+#  carbon             :integer
+#  carbon_monoxide    :string(255)
+#  elec_meter_loc     :string(255)
+#  elec_last_supplier :string(255)
+#  gas_meter_loc      :string(255)
+#  gas_last_supplier  :string(255)
+#  gas_valve          :string(255)
+#  water_meter_loc    :string(255)
+#  water_stopcock_loc :string(255)
+#  bin_coll_day       :string(255)
+#  alarm_loc          :string(255)
+#  alarm_code         :string(255)
+#  property_id        :integer
+#  created_at         :datetime
+#  updated_at         :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  battery: 1
+  battery_operated: MyString
+  mains: 1
+  mains_operated: MyString
+  carbon: 1
+  carbon_monoxide: MyString
+  elec_meter_loc: MyString
+  elec_last_supplier: MyString
+  gas_meter_loc: MyString
+  gas_last_supplier: MyString
+  gas_valve: MyString
+  water_meter_loc: MyString
+  water_stopcock_loc: MyString
+  bin_coll_day: MyString
+  alarm_loc: MyString
+  alarm_code: MyString
+  property_id: 1
+
+two:
+  battery: 1
+  battery_operated: MyString
+  mains: 1
+  mains_operated: MyString
+  carbon: 1
+  carbon_monoxide: MyString
+  elec_meter_loc: MyString
+  elec_last_supplier: MyString
+  gas_meter_loc: MyString
+  gas_last_supplier: MyString
+  gas_valve: MyString
+  water_meter_loc: MyString
+  water_stopcock_loc: MyString
+  bin_coll_day: MyString
+  alarm_loc: MyString
+  alarm_code: MyString
+  property_id: 1

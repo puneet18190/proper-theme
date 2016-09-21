@@ -93,6 +93,11 @@
     </div>
     <h3><b>Portals</b></h3>
     <div class="field">
+      <%= f.label :portal_visibility,"All Portals Visibility", style: "display: inline-block"%>
+      <%= f.check_box :portal_visibility, class: "form-control", style: "margin: 0 0 0 15px" %>
+    </div><br/>
+
+    <div class="field">
       <%= f.label :otm,"OTM", style: "display: inline-block"%>
       <%#= f.select :otm, [['True', true], ['False', false]] %>
       <%= f.check_box :otm, class: "form-control", style: "margin: 0 0 0 15px" %>

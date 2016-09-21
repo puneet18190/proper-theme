@@ -1,0 +1,27 @@
+<div id="pet_detail" class="tab-pane fade" style="width:100%;height:100%">
+	<%= f.fields_for :pet_detail do |p| %>
+		<div style="float:left;margin:10px;width:35%; padding-left:40px">
+		    <h3 style="margin-top:10px;padding:5px"><b>Pet Details</b></h3>
+		    
+		    <div class="field" style="height: 32px">
+		      <%= p.label :pet_name, style: "display: inline" %>
+		      <%= p.text_field :pet_name, style: "margin-top: 0; margin-left: 0; display:inline; float: right; margin-left: 8px" %>
+		    </div>
+
+		    <div class="field" style="height: 32px">
+		      <%= p.label :pet_type, style: "display: inline" %>
+		      <%= p.text_field :pet_type, style: "margin-top: 0; margin-left: 0; display:inline; float: right; margin-left: 8px" %>
+		    </div>
+
+		    <div class="field" style="height: 32px">
+		      <%= p.label :pet_breed, style: "display: inline" %>
+		      <%= p.text_field :pet_breed, style: "margin-top: 0; margin-left: 0; display:inline; float: right; margin-left: 8px" %>
+		    </div>
+
+		    <div class="field" style="height: 32px">
+		      <%= p.label :pet_age, style: "display: inline" %>
+		      <%= p.text_field :pet_age, style: "margin-top: 0; margin-left: 0; display:inline; float: right; margin-left: 8px" %>
+			</div>
+		</div>
+	<%end%>
+</div>

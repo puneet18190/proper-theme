@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: tenant_histroys
+#
+#  id                 :integer          not null, primary key
+#  name               :string(255)
+#  tenancy_start_date :date
+#  tenancy_end_date   :date
+#  property_id        :integer
+#  created_at         :datetime
+#  updated_at         :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  tenancy_start_date: 2016-09-20
+  tenancy_end_date: 2016-09-20
+  property_id: 1
+
+two:
+  name: MyString
+  tenancy_start_date: 2016-09-20
+  tenancy_end_date: 2016-09-20
+  property_id: 1

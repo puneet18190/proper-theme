@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831051206) do
+ActiveRecord::Schema.define(version: 20160921145603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -166,6 +166,36 @@ ActiveRecord::Schema.define(version: 20160831051206) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
+  create_table "guarantors", force: true do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "previous_name"
+    t.string   "dob"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "address3"
+    t.string   "postcode"
+    t.string   "home_tel"
+    t.string   "mobile_tel"
+    t.string   "email"
+    t.string   "emp_status"
+    t.string   "emp_from"
+    t.string   "job_title"
+    t.string   "annual_inc"
+    t.string   "ref_name"
+    t.string   "ref_job"
+    t.string   "ref_company"
+    t.string   "ref_address"
+    t.string   "ref_tel"
+    t.string   "ref_email"
+    t.string   "ref_rel"
+    t.string   "outcome"
+    t.text     "add_info"
+    t.integer  "property_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "key_books", force: true do |t|
     t.integer  "property_id"
     t.integer  "key_id"
@@ -299,6 +329,16 @@ ActiveRecord::Schema.define(version: 20160831051206) do
     t.datetime "updated_at"
   end
 
+  create_table "pet_details", force: true do |t|
+    t.string   "pet_name"
+    t.string   "pet_type"
+    t.string   "pet_breed"
+    t.string   "pet_age"
+    t.integer  "property_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "phones", force: true do |t|
     t.string   "callerid"
     t.datetime "created_at"
@@ -364,7 +404,6 @@ ActiveRecord::Schema.define(version: 20160831051206) do
     t.string   "garden",               default: "No"
     t.string   "dg",                   default: false
     t.boolean  "seal_approved",        default: false
-    t.string   "property_type"
     t.string   "pets",                 default: "No"
     t.string   "ensuite",              default: "No"
     t.string   "town"
@@ -375,6 +414,7 @@ ActiveRecord::Schema.define(version: 20160831051206) do
     t.string   "furnished"
     t.string   "feature1"
     t.string   "feature2"
+    t.integer  "property_type"
     t.string   "let_type_id",          default: "Not Specified"
     t.string   "let_furn_id",          default: "Not Specified"
     t.string   "epc"
@@ -391,7 +431,6 @@ ActiveRecord::Schema.define(version: 20160831051206) do
     t.string   "stage"
     t.boolean  "managed"
     t.boolean  "board"
-    t.integer  "tenant_id"
     t.datetime "let_agreed_date"
     t.datetime "sold_date"
     t.string   "property_create_user"
@@ -402,6 +441,7 @@ ActiveRecord::Schema.define(version: 20160831051206) do
     t.date     "cp12_due_date"
     t.date     "esc_date_complete"
     t.date     "esc_due_date"
+    t.integer  "tenant_id"
     t.boolean  "mouse_price",          default: true
     t.boolean  "dss_move",             default: true
     t.boolean  "home",                 default: true
@@ -411,6 +451,7 @@ ActiveRecord::Schema.define(version: 20160831051206) do
     t.boolean  "zoopla",               default: true
     t.boolean  "nethouse",             default: true
     t.integer  "let_rent_frequency",   default: 1
+    t.boolean  "portal_visibility",    default: true
   end
 
   add_index "properties", ["slug"], name: "index_properties_on_slug", unique: true, using: :btree
@@ -474,6 +515,28 @@ ActiveRecord::Schema.define(version: 20160831051206) do
 
   add_index "property_documents", ["property_id"], name: "index_property_documents_on_property_id", using: :btree
 
+  create_table "property_infos", force: true do |t|
+    t.integer  "battery"
+    t.string   "battery_operated"
+    t.integer  "mains"
+    t.string   "mains_operated"
+    t.integer  "carbon"
+    t.string   "carbon_monoxide"
+    t.string   "elec_meter_loc"
+    t.string   "elec_last_supplier"
+    t.string   "gas_meter_loc"
+    t.string   "gas_last_supplier"
+    t.string   "gas_valve"
+    t.string   "water_meter_loc"
+    t.string   "water_stopcock_loc"
+    t.string   "bin_coll_day"
+    t.string   "alarm_loc"
+    t.string   "alarm_code"
+    t.integer  "property_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "property_types", force: true do |t|
     t.string   "p_type"
     t.string   "search"
@@ -485,6 +548,16 @@ ActiveRecord::Schema.define(version: 20160831051206) do
   create_table "provisions", force: true do |t|
     t.string   "name"
     t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "right_to_rents", force: true do |t|
+    t.date     "date_check"
+    t.date     "expiry_doc"
+    t.boolean  "doc_recheck"
+    t.date     "recheck_due"
+    t.integer  "property_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -539,6 +612,43 @@ ActiveRecord::Schema.define(version: 20160831051206) do
     t.string   "originator"
     t.string   "destination"
     t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tenancy_terms", force: true do |t|
+    t.date     "start_date"
+    t.string   "tenancy_length"
+    t.string   "agreed_rent"
+    t.string   "agreed_bond"
+    t.string   "advanced_payment"
+    t.boolean  "shared"
+    t.boolean  "garden"
+    t.boolean  "parking"
+    t.boolean  "other"
+    t.boolean  "water"
+    t.boolean  "council_tax"
+    t.boolean  "gas"
+    t.boolean  "electricity"
+    t.boolean  "tv_licence"
+    t.boolean  "telephone"
+    t.boolean  "broadband"
+    t.boolean  "inventory"
+    t.boolean  "guarantor_agreement"
+    t.boolean  "epc"
+    t.boolean  "rent_guide"
+    t.boolean  "smoke_alarm"
+    t.boolean  "pet"
+    t.integer  "property_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tenant_histroys", force: true do |t|
+    t.string   "name"
+    t.date     "tenancy_start_date"
+    t.date     "tenancy_end_date"
+    t.integer  "property_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

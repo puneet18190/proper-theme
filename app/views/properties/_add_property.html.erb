@@ -14,15 +14,22 @@
     <div class="panel" style="padding-bottom:0">
       <ul class="nav nav-tabs" style="margin:30px; margin-bottom:0;border-bottom:none">
         <li class="active"><a href="#property_details">Property Details</a></li>
-        <li><a href="#property_images">Property Images</a></li>
-        <li><a href="#marketing_details">Marketing Details</a></li>
-        <li><a href="#landlord_details">Landlord Details</a></li>
+        <li><a href="#property_info">Property Information</a></li>
+        <li><a href="#property_images">Images</a></li>
+        <li><a href="#marketing_details">Marketing</a></li>
+        <li><a href="#landlord_details">Landlord</a></li>
         <% klass = params[:action]=="new" ? "hide" : (@property.stage=="Available" ? "hide" : "") %>
-        <li id="tenant_tab" class=<%=klass%> ><a href="#tenant_details">Tenant Details</a></li>
+        <li id="tenant_tab" class=<%=klass%> ><a href="#tenant_details">Tenant</a></li>
         <% klass1 = params[:action]=="new" ? "hide" : (@property.stage=="On Hold/Awaiting Referencing" ? "" : "hide") %>
         <li id="vetting_tab" class=<%=klass1%> ><a href="#vetting">Vetting</a></li>
         <% klass2= (params[:action]=="new"|| @property.vetting.blank?) ? "hide" : (@property.vetting.outcome=="Pass" ? "" : "hide") %>
         <li id="tenancy_term_tab" class=<%=klass2%>><a href="#tenancy_term">Tenancy Term</a></li>
+        <li><a href="#guarantor">Guarantor</a></li>
+        <li><a href="#right_to_rent">Right to Rent</a></li>
+        
+        <% klass3= (params[:action]=="new"|| @property.tenancy_term.blank? || (@property.tenancy_term.pet == false)) ? "hide" : "" %>
+        <li id="pet_detail_tab" class="<%=klass3%>" ><a href="#pet_detail">Pet</a></li>
+        <li><a href="#tenancy_history">Tenancy History</a></li>
       </ul>
       <div class="clearfix"></div>
       <div class="payment">
@@ -42,12 +49,17 @@
               <a class="btn btn-proper pull-right" style="margin-top: -40px; color: white" href="/properties">Back</a>
               <div class="tab-content" style="background: none !important;border:none !important">
                 <%= render :partial => "add_property/property_detail", :locals=>{:f=>f} %>
+                <%= render :partial => "add_property/property_info", :locals=>{:f=>f} %>
                 <%= render :partial => "add_property/property_images", :locals=>{:f=>f} %>
                 <%= render :partial => "add_property/marketing_detail", :locals=>{:f=>f} %>
                 <%= render :partial => "add_property/landlord_detail", :locals=>{:f=>f} %>
                 <%= render :partial => "add_property/tenant_detail", :locals=>{:f=>f} %>
                 <%= render :partial => "add_property/vetting", :locals=>{:f=>f} %>
                 <%= render :partial => "add_property/tenancy_term", :locals=>{:f=>f} %>
+                <%= render :partial => "add_property/guarantor", :locals=>{:f=>f} %>
+                <%= render :partial => "add_property/right_to_rent", :locals=>{:f=>f} %>
+                <%= render :partial => "add_property/pet_detail", :locals=>{:f=>f} %>
+                <%= render :partial => "add_property/tenancy_history", :locals=>{:f=>f} %>
               </div>
             </div>  
           </div>
