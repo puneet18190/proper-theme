@@ -27,7 +27,7 @@
         <li><a href="#guarantor">Guarantor</a></li>
         <li><a href="#right_to_rent">Right to Rent</a></li>
         
-        <% klass3= (params[:action]=="new"|| @property.tenancy_term.blank? || (@property.tenancy_term.pet == false)) ? "hide" : "" %>
+        <% klass3= ((params[:action]=="new"|| @property.tenancy_term.blank? ) ? "hide" : (@property.tenancy_term.pet ? "" : "hide")) %>
         <li id="pet_detail_tab" class="<%=klass3%>" ><a href="#pet_detail">Pet</a></li>
         <li><a href="#tenancy_history">Tenancy History</a></li>
       </ul>
