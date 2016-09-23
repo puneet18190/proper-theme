@@ -10,6 +10,7 @@
 #  property_id    :integer
 #  created_at     :datetime
 #  updated_at     :datetime
+#  description    :text
 #
 # Indexes
 #
@@ -18,4 +19,6 @@
 
 class PropertyDocument < ActiveRecord::Base
   belongs_to :property
+
+  attr_accessor :property_doc
 end

@@ -44,6 +44,7 @@ class PropertiesController < ApplicationController
         @right_to_rent = @property.build_right_to_rent
         @tenancy_term = @property.build_tenancy_term
         @pet_detail = @property.build_pet_detail
+        @property_document = @property.property_documents.new
         respond_with(@property)
       end
     end    
@@ -74,6 +75,8 @@ class PropertiesController < ApplicationController
       @tenancy_term = @property.tenancy_term.nil? ? @property.build_tenancy_term : @property.tenancy_term
       @pet_detail = @property.pet_detail.nil? ? @property.build_pet_detail : @property.pet_detail
       @tenancy_history = @property.tenant_histroys
+      @documents = @property.property_documents
+      @property_document = @property.property_documents.new
     end
   end
 
@@ -96,6 +99,7 @@ class PropertiesController < ApplicationController
     params[:property].delete('tenant')
     params[:property].delete('key')
 
+    params[:property][:property_document][:url] = upload_property_doc(params[:property][:property_document]) unless params[:property][:property_document][:property_doc].nil?
     @property = Property.new(property_params)
     @property.category.downcase
     @property.name.downcase
@@ -111,6 +115,10 @@ class PropertiesController < ApplicationController
     @property.add_key(params[:property][:key_num], key_data["key_number"], "create")
 
     @property.update_attributes(:payment=>true, :property_create_user => "admin") if current_user.status == "admin"
+    
+    prop_doc = params[:property][:property_document]
+    @property.property_documents.create(name: prop_doc["name"], description: prop_doc["description"], url: prop_doc["url"]) unless prop_doc["url"].blank?
+    
     Blm.where(name: "onthemarket").first.update_attributes(count: 0)
     if current_user.status == "landlord"
       @property.update_attributes(:property_create_user => "landlord")
@@ -151,6 +159,9 @@ class PropertiesController < ApplicationController
       key_data = params[:property][:key]
       params[:property].delete('key')
 
+      params[:property][:property_document][:url] = upload_property_doc(params[:property][:property_document]) unless params[:property][:property_document][:property_doc].nil?
+      prop_doc = params[:property][:property_document]
+      @property.property_documents.create(name: prop_doc["name"], description: prop_doc["description"], url: prop_doc["url"]) unless prop_doc["url"].blank?
       @property.update_attributes(property_params)
       @property.add_key(params[:property][:key_num], key_data["key_number"], "update")  
       if params[:property][:tenant].blank? && params[:property][:tenants_attributes].blank?
@@ -967,6 +978,19 @@ class PropertiesController < ApplicationController
 
   def properties_seller_prospective
     @other_users = Appraisal.where(status: "Selling").all
+  end
+
+  def upload_property_doc(doc)
+    unless doc[:property_doc].blank?
+      service = S3::Service.new(:access_key_id => ENV['AWS_ACCESS_KEY'],:secret_access_key => ENV['AWS_SECRET_KEY'])
+      bucket = service.buckets.find("#{ENV['AWS_BUCKET']}")
+
+      doc[:property_doc].original_filename = "#{Time.now.to_i}/#{doc[:property_doc].original_filename}"      
+      object = bucket.objects.build(doc[:property_doc].original_filename)
+      object.content = doc[:property_doc].tempfile
+      object.save
+      return "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com/"+doc[:property_doc].original_filename
+    end
   end
 
   private

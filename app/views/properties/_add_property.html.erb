@@ -30,6 +30,7 @@
         <% klass3= ((params[:action]=="new"|| @property.tenancy_term.blank? ) ? "hide" : (@property.tenancy_term.pet ? "" : "hide")) %>
         <li id="pet_detail_tab" class="<%=klass3%>" ><a href="#pet_detail">Pet</a></li>
         <li><a href="#tenancy_history">Tenancy History</a></li>
+        <li><a href="#documents">Documents</a></li>
       </ul>
       <div class="clearfix"></div>
       <div class="payment">
@@ -60,6 +61,7 @@
                 <%= render :partial => "add_property/right_to_rent", :locals=>{:f=>f} %>
                 <%= render :partial => "add_property/pet_detail", :locals=>{:f=>f} %>
                 <%= render :partial => "add_property/tenancy_history", :locals=>{:f=>f} %>
+                <%= render :partial => "add_property/documents", :locals=>{:f=>f} %>
               </div>
             </div>  
           </div>
