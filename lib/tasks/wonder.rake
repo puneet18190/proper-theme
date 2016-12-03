@@ -39,7 +39,7 @@ task :wonder => :environment do
       z.print remote_data
     end
     require 'net/ftp'
-    Net::FTP.open('89.238.190.243', 'Seal-Properties', '$we3e4r_NaBr=*2cHure') do |ftp|
+    Net::FTP.open('ftp.wonderproperty.com', 'Seal-Properties', 'Sp9Z00IcdkGHJlysrIGu') do |ftp|
       ftp.passive = true
       # ftp.chdir("/live/upload")
       ftp.putbinaryfile(t.path,"39545.zip")
