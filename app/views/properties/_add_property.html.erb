@@ -13,24 +13,24 @@
   <div class="container" style="margin:0;width:100%">
     <div class="panel" style="padding-bottom:0">
       <ul class="nav nav-tabs" style="margin:30px; margin-bottom:0;border-bottom:none">
-        <li class="active"><a href="#property_details">Property Details</a></li>
-        <li><a href="#property_info">Property Information</a></li>
-        <li><a href="#property_images">Images</a></li>
-        <li><a href="#marketing_details">Marketing</a></li>
-        <li><a href="#landlord_details">Landlord</a></li>
+        <li class="active" id="property_details_tab"><a href="#property_details">Property Details</a></li>
+        <li id="property_info_tab"><a href="#property_info">Property Information</a></li>
+        <li id="property_images_tab"><a href="#property_images">Images</a></li>
+        <li id="marketing_details_tab"><a href="#marketing_details">Marketing</a></li>
+        <li id="landlord_details_tab"><a href="#landlord_details">Landlord</a></li>
         <% klass = params[:action]=="new" ? "hide" : (@property.stage=="Available" ? "hide" : "") %>
         <li id="tenant_tab" class=<%=klass%> ><a href="#tenant_details">Tenant</a></li>
         <% klass1 = params[:action]=="new" ? "hide" : (@property.stage=="On Hold/Awaiting Referencing" ? "" : "hide") %>
         <li id="vetting_tab" class=<%=klass1%> ><a href="#vetting">Vetting</a></li>
         <% klass2= (params[:action]=="new"|| @property.vetting.blank?) ? "hide" : (@property.vetting.outcome=="Pass" ? "" : "hide") %>
         <li id="tenancy_term_tab" class=<%=klass2%>><a href="#tenancy_term">Tenancy Term</a></li>
-        <li><a href="#guarantor">Guarantor</a></li>
-        <li><a href="#right_to_rent">Right to Rent</a></li>
+        <li id="guarantor_tab"><a href="#guarantor">Guarantor</a></li>
+        <li id="right_to_rent_tab"><a href="#right_to_rent">Right to Rent</a></li>
         
         <% klass3= ((params[:action]=="new"|| @property.tenancy_term.blank? ) ? "hide" : (@property.tenancy_term.pet ? "" : "hide")) %>
         <li id="pet_detail_tab" class="<%=klass3%>" ><a href="#pet_detail">Pet</a></li>
-        <li><a href="#tenancy_history">Tenancy History</a></li>
-        <li><a href="#documents">Documents</a></li>
+        <li id="tenancy_history_tab"><a href="#tenancy_history">Tenancy History</a></li>
+        <li id="documents_tab"><a href="#documents">Documents</a></li>
       </ul>
       <div class="clearfix"></div>
       <div class="payment">
@@ -141,7 +141,7 @@
       }
     })
     $(".nav-tabs a").click(function(){
-      // tab_select = $("li.active").attr("id");
+      tab_select = $("li.active").attr("id");
       $(this).tab('show');
     });
 
