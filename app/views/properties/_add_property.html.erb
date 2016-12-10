@@ -13,24 +13,24 @@
   <div class="container" style="margin:0;width:100%">
     <div class="panel" style="padding-bottom:0">
       <ul class="nav nav-tabs" style="margin:30px; margin-bottom:0;border-bottom:none">
-        <li class="active"><a href="#property_details">Property Details</a></li>
-        <li><a href="#property_info">Property Information</a></li>
-        <li><a href="#property_images">Images</a></li>
-        <li><a href="#marketing_details">Marketing</a></li>
-        <li><a href="#landlord_details">Landlord</a></li>
+        <li class="active" id="property_details"><a href="#property_details">Property Details</a></li>
+        <li id="property_info"><a href="#property_info">Property Information</a></li>
+        <li id="property_images"><a href="#property_images">Images</a></li>
+        <li id="marketing_details"><a href="#marketing_details">Marketing</a></li>
+        <li id="landlord_details"><a href="#landlord_details">Landlord</a></li>
         <% klass = params[:action]=="new" ? "hide" : (@property.stage=="Available" ? "hide" : "") %>
         <li id="tenant_tab" class=<%=klass%> ><a href="#tenant_details">Tenant</a></li>
         <% klass1 = params[:action]=="new" ? "hide" : (@property.stage=="On Hold/Awaiting Referencing" ? "" : "hide") %>
         <li id="vetting_tab" class=<%=klass1%> ><a href="#vetting">Vetting</a></li>
         <% klass2= (params[:action]=="new"|| @property.vetting.blank?) ? "hide" : (@property.vetting.outcome=="Pass" ? "" : "hide") %>
         <li id="tenancy_term_tab" class=<%=klass2%>><a href="#tenancy_term">Tenancy Term</a></li>
-        <li><a href="#guarantor">Guarantor</a></li>
-        <li><a href="#right_to_rent">Right to Rent</a></li>
+        <li id="guarantor"><a href="#guarantor">Guarantor</a></li>
+        <li id="right_to_rent"><a href="#right_to_rent">Right to Rent</a></li>
         
         <% klass3= ((params[:action]=="new"|| @property.tenancy_term.blank? ) ? "hide" : (@property.tenancy_term.pet ? "" : "hide")) %>
         <li id="pet_detail_tab" class="<%=klass3%>" ><a href="#pet_detail">Pet</a></li>
-        <li><a href="#tenancy_history">Tenancy History</a></li>
-        <li><a href="#documents">Documents</a></li>
+        <li id="tenancy_history"><a href="#tenancy_history">Tenancy History</a></li>
+        <li id="documents"><a href="#documents">Documents</a></li>
       </ul>
       <div class="clearfix"></div>
       <div class="payment">
@@ -47,7 +47,7 @@
           <% end %>
           <div class="proper-form-step-area" style="padding-top:0">
             <div class="proper-singup" style="max-width:100%;margin:0;padding:0;height:100%">
-              <a class="btn btn-proper pull-right" style="margin-top: -40px; color: white" href="/properties">Back</a>
+              <a class="btn btn-proper pull-right" style="margin-top: -40px; color: white" href="#" id="back_btn">Back</a>
               <div class="tab-content" style="background: none !important;border:none !important">
                 <%= render :partial => "add_property/property_detail", :locals=>{:f=>f} %>
                 <%= render :partial => "add_property/property_info", :locals=>{:f=>f} %>
@@ -75,6 +75,7 @@
 </div>
 <%= render 'shared/plans'%>
 <script type="text/javascript">
+  var tab_select = "property_details";
   $(document).ready(function(){
     var form_original_data = $("form.edit_property").serialize(); 
     var flag = false
@@ -140,7 +141,12 @@
       }
     })
     $(".nav-tabs a").click(function(){
-        $(this).tab('show');
+      tab_select = $("li.active").attr("id");
+      $(this).tab('show');
+    });
+
+    $("#back_btn").click(function(){
+      $("#"+tab_select+" a").tab("show");
     });
   })
   <% if current_user.status == "landlord" && current_user.plan == "free" %>

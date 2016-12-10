@@ -149,10 +149,10 @@
         })
         .done(function(res) {
             $('.sms_username').html(res.user.first_name+' '+(res.user.last_name == null ? "" : res.user.last_name ))
-            $('.sms_number').val(res.user.phone)
+            $('.sms_number').val(res.user.mobile)
             setTimeout(function(){
               $(".quick_sms_menu").trigger('mouseover')
-            }, 300);
+            }, 900);
         })
     })
 
@@ -201,7 +201,7 @@
 
         setTimeout(function(){
           $(".record_search_menu").trigger('mouseover')
-        }, 500);
+        }, 900);
 
         $.ajax({
             url: item_url,
@@ -250,7 +250,7 @@
         var property_id = data.item.id
         setTimeout(function(){
           $(".key_menu").trigger('mouseover')
-        }, 500);
+        }, 900);
 
         $.ajax({
             url: '/get_property_data',

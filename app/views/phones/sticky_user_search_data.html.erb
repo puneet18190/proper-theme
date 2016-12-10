@@ -9,8 +9,12 @@
 		<td><%= "#{@user.first_name} #{@user.last_name}" %></td>
 	</tr>
 	<tr>
+		<td>Mobile</td>
+		<td class="example-p-2"><a href="#"><%= @user.mobile %></a></td>
+	</tr>
+	<tr>
 		<td>Contact</td>
-		<td class="example-p-2"><a href="#"><%= @user.phone || @user.mobile %></a></td>
+		<td class="example-p-2"><a href="#"><%= @user.phone %></a></td>
 	</tr>
 	<tr>
 		<td>Email</td>
