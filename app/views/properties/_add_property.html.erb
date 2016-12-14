@@ -75,7 +75,7 @@
 </div>
 <%= render 'shared/plans'%>
 <script type="text/javascript">
-  var tab_select = "property_details";
+  // var tab_select = "property_details";
   $(document).ready(function(){
     var form_original_data = $("form.edit_property").serialize(); 
     var flag = false
@@ -141,13 +141,17 @@
       }
     })
     $(".nav-tabs a").click(function(){
-      tab_select = $("li.active").attr("id");
+      // tab_select = $("li.active").attr("id");
       $(this).tab('show');
     });
 
-    $("#back_btn").click(function(){
-      $("#"+tab_select+" a").tab("show");
-    });
+    <%if params.has_key?("p") && !params[:p].blank? %>
+      $("#back_btn").attr("href", "/properties?p=<%=params[:p]%>")      
+    <%end%>
+
+    // $("#back_btn").click(function(){
+    //   $("#"+tab_select+" a").tab("show");
+    // });
   })
   <% if current_user.status == "landlord" && current_user.plan == "free" %>
     $(".alert_popup").click(function(e) {

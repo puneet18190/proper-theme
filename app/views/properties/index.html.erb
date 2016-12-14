@@ -149,7 +149,7 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $("#prop_info").dataTable({
+    t = $("#prop_info").dataTable({
       responsive: true,
       <% if current_user.status == "landlord" %>
         "order": [[ 8, "asc" ]]
@@ -158,11 +158,21 @@
       <%end%> 
     })
 
+    <%if params.has_key?("p") && !params[:p].blank? %>
+      t.fnPageChange(<%=params[:p]%>,true);
+    <%end%>
+
     <% if session.has_key?('plan') %>
       <%session.delete('plan')%>
         $("#myModal").modal();
         $("#myModal").css("z-index",10000)
     <% end %>
+  })
+
+  $("a.edit_property").click(function(e){
+    e.preventDefault();
+    page = parseInt($(".current").html())-1
+    $(this).attr("href", $(this).attr("href")+"?p="+page )
   })
 
   $(".add_loader").click(function(e){
