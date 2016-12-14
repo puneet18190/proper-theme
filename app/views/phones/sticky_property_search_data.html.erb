@@ -11,9 +11,14 @@
 		<td><%= "#{@tenant.try('first_name')} #{@tenant.try('last_name')}" %></td>
 	</tr>
 	<tr>
-		<td>Contact</td>
-		<td class="example-p-2"><a href="#"><%= @landlord.try('phone') || @landlord.try('mobile') %></a></td>
-		<td class="example-p-2"><a href="#"><%= @tenant.try('phone') || @tenant.try('mobile') %></a></td>
+		<td>Mobile</td>
+		<td class="example-p-2"><a href="#"><%= @landlord.try('mobile') %></a></td>
+		<td class="example-p-2"><a href="#"><%= @tenant.try('mobile') %></a></td>
+	</tr>
+	<tr>
+		<td>Alternative Phone</td>
+		<td class="example-p-2"><a href="#"><%= @landlord.try('phone') %></a></td>
+		<td class="example-p-2"><a href="#"><%= @tenant.try('phone') %></a></td>
 	</tr>
 	<tr>
 		<td>Email</td>
